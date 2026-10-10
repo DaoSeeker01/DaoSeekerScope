@@ -421,7 +421,8 @@
             "reason": "not_supported",
             "source": "custom",
             "value": null
-          }
+          },
+          "description": "OS interface name; may contain user identifiers. Redacted by default.\nCollection ordering is not a persistent identity across refreshes."
         },
         "received_bytes": {
           "$ref": "#/$defs/Observed3",
@@ -431,7 +432,8 @@
             "reason": "not_supported",
             "source": "custom",
             "value": null
-          }
+          },
+          "description": "Cumulative OS interface counter in bytes, not a rate or sampling delta.\nMay reset when the interface is recreated; valid zero is preserved."
         },
         "transmitted_bytes": {
           "$ref": "#/$defs/Observed3",
@@ -441,7 +443,8 @@
             "reason": "not_supported",
             "source": "custom",
             "value": null
-          }
+          },
+          "description": "Cumulative transmitted bytes, with the same reset semantics as received."
         }
       },
       "type": "object"

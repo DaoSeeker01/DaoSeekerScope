@@ -124,7 +124,25 @@ fn run(args: &[String]) -> Result<String, (u8, String)> {
         }
         Command::Gpu => list(&mut output, "GPU", &snapshot.static_info.gpus),
         Command::Disk => list(&mut output, "Storage", &snapshot.static_info.storage),
-        Command::Network => list(&mut output, "Network", &snapshot.dynamic.networks),
+        Command::Network => {
+            list(&mut output, "Network", &snapshot.dynamic.networks);
+            if let Some(items) = snapshot.dynamic.networks.value() {
+                for (index, network) in items.iter().enumerate() {
+                    writeln!(output, "Interface entry {}", index + 1).expect("string formatting");
+                    show(&mut output, "Name", &network.interface_name);
+                    show(
+                        &mut output,
+                        "Received cumulative bytes",
+                        &network.received_bytes,
+                    );
+                    show(
+                        &mut output,
+                        "Transmitted cumulative bytes",
+                        &network.transmitted_bytes,
+                    );
+                }
+            }
+        }
         Command::Battery => {
             list(&mut output, "Batteries", &snapshot.dynamic.batteries);
             if let Some(items) = snapshot.dynamic.batteries.value() {

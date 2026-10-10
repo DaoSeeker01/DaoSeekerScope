@@ -761,6 +761,12 @@ fn collect_dynamic(
                 }
                 if let Some(entries) = &mut next.networks.value {
                     for item in entries {
+                        if !context.options.privacy.permits_sensitive() {
+                            item.interface_name = Observed::restricted(
+                                item.interface_name.source,
+                                ReasonCode::PrivacyRedacted,
+                            );
+                        }
                         limit_string(&mut item.interface_name);
                     }
                 }

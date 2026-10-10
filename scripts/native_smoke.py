@@ -89,6 +89,19 @@ def check_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
             selected["dynamic.batteries"] = snapshot["dynamic"]["batteries"]
         if "sensors" in snapshot.get("dynamic", {}):
             selected["dynamic.sensors"] = snapshot["dynamic"]["sensors"]
+        if "networks" in snapshot.get("dynamic", {}):
+            networks = snapshot["dynamic"]["networks"]
+            if networks["availability"] == "available":
+                for entry in networks["value"]:
+                    name = entry["interface_name"]
+                    if (
+                        name["value"] is not None
+                        or name["availability"] != "restricted"
+                        or name["reason"] != "privacy_redacted"
+                        or name["observed_at"] is not None
+                    ):
+                        raise ValidationFailure("network: privacy_violation")
+            selected["dynamic.networks"] = networks
         return selected
     except (KeyError, TypeError) as error:
         raise ValidationFailure("snapshot: malformed") from error
@@ -158,6 +171,26 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
         except jsonschema.ValidationError as error:
             raise ValidationFailure(f"{label}: schema_invalid") from error
         observations = check_snapshot(snapshot)
+        if platform.system() == "Linux":
+            networks = observations.get("dynamic.networks", {})
+            if (
+                networks.get("availability") != "available"
+                or networks.get("source") != "procfs"
+                or not networks.get("value")
+            ):
+                raise ValidationFailure("network: minimum_read_unavailable")
+            for entry in networks["value"]:
+                for field in ("received_bytes", "transmitted_bytes"):
+                    counter = entry[field]
+                    if (
+                        counter["availability"] != "available"
+                        or counter["source"] != "procfs"
+                        or type(counter["value"]) is not int
+                        or not 0 <= counter["value"] <= 2**64 - 1
+                        or counter["observed_at"] is None
+                        or counter["reason"] is not None
+                    ):
+                        raise ValidationFailure("network: invalid_real_counter")
         report["observations"][label] = observations
         report["checks"][label] = "passed"
     report["checks"]["python_ffi"] = "running"

@@ -17,7 +17,8 @@
 | 电池 | D/N GetSystemPowerStatus | D/P power_supply、Partial，CI枚举/权限fixture通过 | U，IOKit候选 | Linux capacity/Mains online受控枚举；原生runner无条目，USB拓扑/真实电池未验 |
 | 温度 | U，WMI质量不一 | D/P hwmon、Partial | U，公开接口不足 | coretemp、k10temp Tdie；NVMe1..9路由本机/三平台CI和47项合成内核观察通过，原生runner无条目，设备计算值不等于物理点；[验收](../nvme-temperature-validation.md) |
 | GPU/显存 | U，DXGI候选 | U，PCI/DRM候选 | U，Metal/IOKit候选 | 最小模型，Unsupported集合 |
-| 存储/网络 | U，sysinfo/SetupAPI候选 | U，sysinfo/udev/NVMe候选 | U，sysinfo/IOKit候选 | 后续受控枚举；MAC/serial不采集 |
+| 存储 | U，SetupAPI候选 | U，udev/NVMe候选 | U，IOKit候选 | 后续受控枚举；serial不采集 |
+| 网络累计字节数 | U | D/P procfs、Supported | U | 当前网络命名空间；不读MAC/IP，名称默认脱敏；[契约与验证](../network-validation.md) |
 | 显示器 | U，SetupAPI/Win32候选 | U，DRM候选 | U，公开Apple API候选 | 后续 |
 | 原始SMBIOS/磁盘底层探测 | A/P | A/P | P/U | 不选默认路径 |
 | 移动/Web/no_std/MCU | U | U | U | 独立后续发布计划，无crate空壳 |

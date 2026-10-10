@@ -340,8 +340,13 @@ pub struct StorageInfo {
 )]
 #[cfg_attr(feature = "schema", derive(schemars::JsonSchema))]
 pub struct NetworkInfo {
+    /// OS interface name; may contain user identifiers. Redacted by default.
+    /// Collection ordering is not a persistent identity across refreshes.
     pub interface_name: Observed<String>,
+    /// Cumulative OS interface counter in bytes, not a rate or sampling delta.
+    /// May reset when the interface is recreated; valid zero is preserved.
     pub received_bytes: Observed<u64>,
+    /// Cumulative transmitted bytes, with the same reset semantics as received.
     pub transmitted_bytes: Observed<u64>,
 }
 #[derive(Debug, Clone, PartialEq, Default)]

@@ -147,6 +147,10 @@ jobs:
         run: |
           set -o pipefail
           cargo +nightly-2026-10-08 fuzz run hwmon_temperature -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/hwmon_temperature.log
+      - name: Fuzz bounded network counters and privacy
+        run: |
+          set -o pipefail
+          cargo +nightly-2026-10-08 fuzz run network_dev -- -seed=20261011 -max_total_time=60 -max_len=524289 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/network_dev.log
       - name: Preserve procfs fuzz logs and failure reproducers
         # Includes hwmon temperature parsing alongside procfs/power_supply.
         if: always()
@@ -160,6 +164,7 @@ jobs:
             fuzz/artifacts/uptime/
             fuzz/artifacts/power_supply/
             fuzz/artifacts/hwmon_temperature/
+            fuzz/artifacts/network_dev/
           if-no-files-found: ignore
           retention-days: 14
   miri:

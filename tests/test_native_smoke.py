@@ -19,6 +19,60 @@ class EvidenceGuards(unittest.TestCase):
             (native_smoke.ROOT / "tests/fixtures/snapshot-v1.json").read_text("utf-8")
         )
 
+    def test_network_report_rejects_names_and_preserves_redacted_counters(self) -> None:
+        self.fixture["static_info"]["system"]["os"]["name"] = {
+            "availability": "available",
+            "value": "Unit OS",
+            "source": "custom",
+            "observed_at": 1,
+            "reason": None,
+        }
+        self.fixture["dynamic"]["networks"] = {
+            "availability": "available",
+            "source": "procfs",
+            "observed_at": 1,
+            "reason": None,
+            "value": [
+                {
+                    "interface_name": {
+                        "value": None,
+                        "availability": "restricted",
+                        "source": "procfs",
+                        "observed_at": None,
+                        "reason": "privacy_redacted",
+                    },
+                    "received_bytes": {
+                        "value": 0,
+                        "availability": "available",
+                        "source": "procfs",
+                        "observed_at": 1,
+                        "reason": None,
+                    },
+                    "transmitted_bytes": {
+                        "value": 2**64 - 1,
+                        "availability": "available",
+                        "source": "procfs",
+                        "observed_at": 1,
+                        "reason": None,
+                    },
+                }
+            ],
+        }
+        selected = native_smoke.check_snapshot(self.fixture)
+        self.assertEqual(
+            selected["dynamic.networks"], self.fixture["dynamic"]["networks"]
+        )
+        for key, value in [
+            ("value", "private-name"),
+            ("availability", "unavailable"),
+            ("observed_at", 1),
+            ("reason", "unknown"),
+        ]:
+            bad = copy.deepcopy(self.fixture)
+            bad["dynamic"]["networks"]["value"][0]["interface_name"][key] = value
+            with self.assertRaises(native_smoke.ValidationFailure):
+                native_smoke.check_snapshot(bad)
+
     def test_available_minimum_and_privacy_metadata_are_preserved(self) -> None:
         # Golden fixture has no OS read; explicitly supply a unit-only observation.
         self.fixture["static_info"]["system"]["os"]["name"] = {

@@ -1,6 +1,15 @@
 //! Opt-in test hooks for the production parsers. Synthetic timestamps only.
 use daoseeker_scope_core::Observed;
 
+/// Bounded production /proc/net/dev parser; synthetic timestamp, no files.
+pub fn network_dev(
+    data: &[u8],
+    max_entries: usize,
+    sensitive: bool,
+) -> Observed<Vec<daoseeker_scope_core::NetworkInfo>> {
+    super::network::fuzz(data, max_entries, sensitive)
+}
+
 /// At most 16 NUL-separated frames within the first 8192 bytes, plus five fixed
 /// recovery observations. Each frame's first byte controls elapsed time (low
 /// two bits: 0/50/300/1000 ms) and synthetic IO (next two bits: read/denied/

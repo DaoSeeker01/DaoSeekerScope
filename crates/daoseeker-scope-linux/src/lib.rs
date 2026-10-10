@@ -10,6 +10,7 @@ mod cpu;
 #[doc(hidden)]
 pub mod fuzzing;
 mod hwmon;
+mod network;
 mod procfs;
 
 fn failure<T>(error: io::Error) -> Observed<T> {
@@ -106,6 +107,7 @@ impl Backend for LinuxBackend {
                 "system.memory.total_usable_bytes",
                 "memory_available_bytes",
                 "runtime.uptime_seconds",
+                "networks",
             ]
             .into_iter()
             .map(|field| Capability::new(field, CapabilityLevel::Supported, Source::Procfs)),
@@ -164,6 +166,7 @@ impl Backend for LinuxBackend {
         context.check()?;
         result.batteries = battery::collect(&self.power_root, context)?;
         result.sensors = hwmon::collect(&self.hwmon_root, context)?;
+        result.networks = network::collect(&self.proc_root.join("net/dev"), context)?;
         Ok(result)
     }
 }
@@ -209,6 +212,110 @@ mod tests {
         fn drop(&mut self) {
             std::fs::remove_dir_all(&self.0).expect("remove own fixture");
         }
+    }
+    #[test]
+    fn network_refresh_is_fresh_isolated_and_handles_interface_changes() {
+        let fixture = Fixture::new(b"MemTotal: 1024 kB\nMemAvailable: 512 kB\n");
+        std::fs::create_dir(fixture.0.join("net")).expect("net fixture");
+        let path = fixture.0.join("net/dev");
+        let head = "Inter-| Receive | Transmit\nface |bytes packets errs drop fifo frame compressed multicast|bytes packets errs drop fifo colls carrier compressed\n";
+        std::fs::write(
+            &path,
+            format!("{head}eth0: 10 0 0 0 0 0 0 0 20 0 0 0 0 0 0 0\n"),
+        )
+        .expect("net input");
+        let hardware = fixture.hardware();
+        let snapshot = hardware.collect().expect("collect");
+        let entry = &snapshot.dynamic.networks.value().expect("network")[0];
+        assert_eq!(entry.received_bytes.value(), Some(&10));
+        assert_eq!(
+            entry.interface_name.reason(),
+            Some(ReasonCode::PrivacyRedacted)
+        );
+        assert!(
+            snapshot
+                .capabilities
+                .iter()
+                .any(|cap| cap.field == "networks"
+                    && cap.level == CapabilityLevel::Supported
+                    && cap.source == Source::Procfs)
+        );
+        for input in [b"".as_slice(), b"corrupt\n"] {
+            std::fs::write(&path, input).expect("damage network");
+            let dynamic = hardware.refresh_dynamic().expect("field isolation");
+            assert!(dynamic.networks.value().is_none());
+            assert_eq!(dynamic.networks.reason(), Some(ReasonCode::InvalidData));
+            assert_eq!(dynamic.memory_available_bytes.value(), Some(&524288));
+        }
+        std::fs::remove_file(&path).expect("remove network fixture");
+        assert_eq!(
+            hardware
+                .refresh_dynamic()
+                .expect("missing isolation")
+                .networks
+                .reason(),
+            Some(ReasonCode::NotPresent)
+        );
+        std::fs::write(
+            &path,
+            format!("{head}new0: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n"),
+        )
+        .expect("recovery");
+        let recovered = hardware.collect().expect("recover");
+        assert_eq!(
+            recovered.dynamic.networks.value().expect("recovered")[0]
+                .received_bytes
+                .value(),
+            Some(&0)
+        );
+        assert_eq!(recovered.static_info, snapshot.static_info);
+        #[cfg(target_os = "linux")]
+        {
+            use std::os::unix::fs::PermissionsExt;
+            std::fs::set_permissions(&path, std::fs::Permissions::from_mode(0))
+                .expect("deny fixture");
+            match std::fs::File::open(&path) {
+                Err(error) => {
+                    assert_eq!(error.kind(), std::io::ErrorKind::PermissionDenied);
+                    let denied = hardware.refresh_dynamic().expect("permission isolation");
+                    assert_eq!(denied.networks.availability(), Availability::Restricted);
+                    assert_eq!(denied.networks.reason(), Some(ReasonCode::PermissionDenied));
+                    assert!(denied.networks.value().is_none());
+                    assert_eq!(denied.memory_available_bytes.value(), Some(&524288));
+                }
+                Ok(_) => {
+                    assert!(
+                        std::env::var_os("CI").is_none(),
+                        "CI kernel permission fixture requires an unprivileged runner"
+                    );
+                    eprintln!("network permission check not_run: privileged local user");
+                }
+            }
+            std::fs::set_permissions(&path, std::fs::Permissions::from_mode(0o600))
+                .expect("restore fixture");
+            assert!(
+                hardware
+                    .refresh_dynamic()
+                    .expect("permission recovery")
+                    .networks
+                    .value()
+                    .is_some()
+            );
+        }
+        std::fs::write(&path, head).expect("remove all interfaces");
+        assert_eq!(
+            hardware.refresh_dynamic().expect("empty").networks.value(),
+            Some(&Vec::new())
+        );
+        std::fs::write(&path, vec![b' '; 512 * 1024 + 1]).expect("oversized input");
+        assert_eq!(
+            hardware
+                .refresh_dynamic()
+                .expect("bounded")
+                .networks
+                .reason(),
+            Some(ReasonCode::InvalidData)
+        );
     }
     #[test]
     fn fresh_failures_recovery_and_total_changes_preserve_static_cache() {

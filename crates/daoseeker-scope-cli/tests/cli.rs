@@ -5,6 +5,31 @@ fn cli(args: &[&str]) -> std::process::Output {
         .output()
         .expect("cli")
 }
+
+#[test]
+fn network_text_and_json_preserve_states_and_privacy() {
+    let text = cli(&["network"]);
+    let json = cli(&["network", "--json"]);
+    assert!(text.status.success() && json.status.success());
+    assert!(text.stderr.is_empty() && json.stderr.is_empty());
+    let snapshot = daoseeker_scope::from_json(&json.stdout).expect("snapshot");
+    let text = String::from_utf8(text.stdout).expect("text");
+    if let Some(entries) = snapshot.dynamic.networks.value() {
+        for entry in entries {
+            assert!(entry.interface_name.value().is_none());
+            assert_eq!(
+                entry.interface_name.reason(),
+                Some(daoseeker_scope::ReasonCode::PrivacyRedacted)
+            );
+        }
+        if !entries.is_empty() {
+            assert!(text.contains("Received cumulative bytes"));
+            assert!(text.contains("PrivacyRedacted"));
+        }
+    } else {
+        assert!(text.contains(&format!("{:?}", snapshot.dynamic.networks.availability())));
+    }
+}
 #[test]
 fn help_version_and_usage_codes() {
     assert!(cli(&["--help"]).status.success());

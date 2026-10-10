@@ -1,5 +1,11 @@
 # Fuzz 目标
 
+2026-10-11 新增第九个目标 `network_dev`：生产 `/proc/net/dev` 解析、512 KiB 上限、1/128/1024 条数上限、默认/授权名称与字段状态不变量。六个种子覆盖有效/零值/溢出/重复/列损坏/合法空集合；执行证据见[网络验收](../docs/network-validation.md)。下文先前轮次的计数不代表本目标已运行。
+
+```sh
+cargo +nightly-2026-10-08 fuzz run network_dev -- -seed=20261011 -max_total_time=60 -max_len=524289 -timeout=2 -rss_limit_mb=512
+```
+
 原有三个目标：snapshot_json（1MiB JSON上限、不变量与往返）、dmi_text（损坏/过长/DMI占位字符串）、cli_args（换行拆分参数、数量/大小/敏感授权，不执行采集）。corpus提供合法快照、DMI合法/占位/非法UTF-8、CLI合法/授权/未授权种子。
 
 固定nightly-2026-10-08、cargo-fuzz0.13.2。官方cargo-fuzz仅支持Unix类平台的x86_64/AArch64，Windows原生不受支持；六个harness在Windows编译通过，2026-10-10已在Linux x64 CI各完成60秒libFuzzer smoke，均正常结束，详见[最新验收](../docs/procfs-fuzz-validation.md)。

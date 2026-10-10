@@ -13,6 +13,8 @@
 
 [公共模型](adr/0001-public-model.md) · [sysinfo 适配](adr/0002-sysinfo-backend.md) · [能力、错误与资源](adr/0003-capability-and-error-model.md) · [C ABI](adr/0004-c-abi.md) · [procfs fuzz](adr/0006-procfs-fuzz-hooks.md) · [Linux 电池](adr/0007-linux-power-supply.md) · [hwmon](adr/0008-linux-hwmon.md) · [NVMe 温度](adr/0009-linux-nvme-temperature.md)
 
+[Linux 网络决策](adr/0010-linux-network-counters.md) · [网络验证](network-validation.md)
+
 [JSON Schema v1](schema/snapshot-v1.schema.json) · [黄金样例](../tests/fixtures/snapshot-v1.json)
 
 ## 验证记录
