@@ -23,6 +23,8 @@
 | 原始SMBIOS/磁盘底层探测 | A/P | A/P | P/U | 不选默认路径 |
 | 移动/Web/no_std/MCU | U | U | U | 独立后续发布计划，无crate空壳 |
 
+2026-10-11 网络切片源码 `7f08ac0` 的 CI 38092523723 全部 8 个任务成功：Linux CLI/C 实读 4 条 Procfs 接口统计且名称脱敏，普通用户权限拒绝/恢复 fixture 通过，新解析器 fuzz 实跑 61 秒。Windows/macOS 网络仍 Unsupported；[独立证据与范围](../network-validation.md)不把虚拟接口数量当作物理网卡数量。
+
 增强研究依据：[Win32安装内存](https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getphysicallyinstalledsystemmemory)、[电源状态](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getsystempowerstatus)、[WMI Next timeout](https://learn.microsoft.com/en-us/windows/win32/api/wbemcli/nf-wbemcli-ienumwbemclassobject-next)、[DXGI适配器](https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgifactory-enumadapters)、[Linux sysfs ABI](https://docs.kernel.org/admin-guide/abi-testing.html)、[hwmon单位](https://docs.kernel.org/hwmon/sysfs-interface.html)、[Apple sysctl](https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man3/sysctlbyname.3.html)、[IOKit](https://developer.apple.com/documentation/iokit)。文档是选型依据，不能代替编译或设备实验。
 
 选择普通用户的小范围增强以避免WMI永久阻塞；不引入wmi/udev/Metal依赖。Linux无DMI、WSL、容器、安全策略按真实ErrorKind降级；不根据文件exists断言能力。macOS仅公开sysctl只读查询。后续引入扫描器必须加资源/权限/错误隔离测试。

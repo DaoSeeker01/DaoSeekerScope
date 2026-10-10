@@ -1,0 +1,105 @@
+{
+  "source_commit": "7f08ac035e815ee31225c09a56830885024d3c87",
+  "run_id": 38092523723,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38092523723",
+  "ci_jobs_passed": 8,
+  "native": {
+    "Linux": {
+      "path": "network-native-linux-38092523723.json",
+      "sha256": "d62334b05c5ec68b0ecd5b6c10a63298e6a5cb94ad534bf8b324304c11018df1",
+      "network_counts": {
+        "cli": 4,
+        "c_abi": 4
+      }
+    },
+    "macOS": {
+      "path": "network-native-macos-38092523723.json",
+      "sha256": "0f2c0350f40908c8c4dae9bc78b88c1acbcfc4c07d1d44911790f40bd209779a",
+      "network_counts": {
+        "cli": null,
+        "c_abi": null
+      }
+    },
+    "Windows": {
+      "path": "network-native-windows-38092523723.json",
+      "sha256": "1cc996cf6ef06838034d04a4be89cd200deaedcdce7e8130983817c49c9edd13",
+      "network_counts": {
+        "cli": null,
+        "c_abi": null
+      }
+    }
+  },
+  "packages": {
+    "Linux": {
+      "path": "network-package-linux-38092523723.json",
+      "sha256": "e109340f567e9186ff478ddba5167f9dea2e17b4ba4c4766257c9697225d27ec",
+      "rust_tests_including_doctests": 95
+    },
+    "macOS": {
+      "path": "network-package-macos-38092523723.json",
+      "sha256": "e10b462d64b449c8e0a8580f5ca1d73b0eb821c7c2b256e6a0acef019fb546f2",
+      "rust_tests_including_doctests": 94
+    },
+    "Windows": {
+      "path": "network-package-windows-38092523723.json",
+      "sha256": "82bc485f28fac567b1616a092d6a39025fee6e1e6167fd8d3c510299c592709f",
+      "rust_tests_including_doctests": 92
+    }
+  },
+  "fuzz": {
+    "cpu_stat": {
+      "runs": 1883220,
+      "seconds": 61,
+      "log_sha256": "b4352281168256d388a083bd7006bac908de4694d0d93fba6cd098e040da04a9"
+    },
+    "meminfo": {
+      "runs": 5285730,
+      "seconds": 61,
+      "log_sha256": "bc9a387380565a38c8bdb47b6866529a1d85780c9a986a8c45c1c14454a9b7db"
+    },
+    "uptime": {
+      "runs": 33583053,
+      "seconds": 61,
+      "log_sha256": "fbb53e78c4e9fe6fa1710a6e03c3220f52b6dbee7985deeedd832b7e61a1ef60"
+    },
+    "power_supply": {
+      "runs": 33552308,
+      "seconds": 61,
+      "log_sha256": "6f010df7c835351d5aa986fba8015d72c34d99660cd9f813088e94575301bdca"
+    },
+    "hwmon_temperature": {
+      "runs": 34185301,
+      "seconds": 61,
+      "log_sha256": "1f8e63eb2f2de44b9f91d416f1f0f976319113cf3e744958bb083253f66dfdcd"
+    },
+    "network_dev": {
+      "runs": 6460215,
+      "seconds": 61,
+      "log_sha256": "ead12dadf624b4a1f9933f129e2367c9d013c8c53bee57035e6dd9f94169f597"
+    }
+  },
+  "limits": [
+    "no Windows/macOS network collection",
+    "no disk implementation",
+    "no long fuzz campaign or network benchmark",
+    "no host namespace or per-process traffic claim"
+  ],
+  "fuzz_targets_completed": 9,
+  "linux_permission_fixture": "passed with unprivileged CI requirement",
+  "source_tests_including_doctests": {
+    "Linux": 95,
+    "Windows": 92,
+    "macOS": 94
+  },
+  "ci_jobs": {
+    "fuzz-smoke": "success",
+    "linux-container": "success",
+    "miri": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "desktop (windows-latest)": "success",
+    "ffi-asan": "success",
+    "desktop (macos-latest)": "success",
+    "supply-chain": "success"
+  },
+  "all_jobs_log_sha256": "2d0304e87849baebe9e85834c7ea7bfe860470df2006435ee6a445c30b13745e"
+}
