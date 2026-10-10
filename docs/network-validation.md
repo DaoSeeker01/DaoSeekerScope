@@ -31,4 +31,6 @@ Windows x64 / Rust 1.96.0：`scripts/check.ps1 -Cross` 全部通过，含 fmt、
 
 Linux CI 另检查生产读取的累计字节数和默认名称脱敏，并对合成网络文件执行真实 chmod 权限拒绝/恢复；该权限 fixture 在 CI 要求普通用户，特权本地执行明确记录 not_run。原生 Linux 读取、权限 fixture、libFuzzer、最终打包结果将在本轮 CI 完成后单独归档。旧版本 CI 或 Windows fixture 不算此切片的 Linux 真机证据。
 
+初次源码 `6fed0fb` 的 [CI 38092358804](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38092358804) 在 Linux Clippy 阶段拒绝 `Permissions::from_mode(0)`：Unix 权限字面量应写成八进制 `0o0`。修正字面量并保留权限测试/Clippy 门槛，随后重新运行原生 CI；此前该任务未进入 Linux 测试，不算网络读取成功。
+
 本轮尚未运行新增网络路径的 benchmark、长期 fuzz 或 Linux 网络命名空间切换实验；已有容器证据不证明宿主网络可见。无新依赖/feature；Schema 1 仅更新字段说明，ABI 1 的函数和头文件均未改变。

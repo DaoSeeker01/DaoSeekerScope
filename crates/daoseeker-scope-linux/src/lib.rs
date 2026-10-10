@@ -272,7 +272,7 @@ mod tests {
         #[cfg(target_os = "linux")]
         {
             use std::os::unix::fs::PermissionsExt;
-            std::fs::set_permissions(&path, std::fs::Permissions::from_mode(0))
+            std::fs::set_permissions(&path, std::fs::Permissions::from_mode(0o0))
                 .expect("deny fixture");
             match std::fs::File::open(&path) {
                 Err(error) => {
