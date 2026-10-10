@@ -1,0 +1,97 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-10T00:14:32.116381+00:00",
+  "overall": "failed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "synthetic_memory_and_uptime": true,
+  "samples": {
+    "initial": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791591272412,
+        "reason": null
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791591272412,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "empty": {
+      "status": "failed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791591272508,
+        "reason": null
+      },
+      "uptime": {
+        "value": 68,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791591272508,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        }
+      ]
+    }
+  },
+  "git_revision": "64e65c0ed1c9b59f455432b657dd3678522298f4",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "probe": "7e1c53cc05a53025e8e3f3c84cd284d2f0b3d1839c8ff6c87de1d47f35716078",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "docker_version": "28.0.4",
+  "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+  "configuration": {
+    "user": "65534:65534",
+    "ReadonlyRootfs": true,
+    "NetworkMode": "none",
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges=true"
+    ],
+    "Memory": 268435456,
+    "MemorySwap": 268435456,
+    "PidsLimit": 32,
+    "NanoCpus": 1000000000
+  },
+  "failure": "memory_available_bytes: unexpected_observation"
+}

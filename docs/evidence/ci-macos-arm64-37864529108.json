@@ -1,0 +1,184 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-09T00:24:12.652785+00:00",
+  "execution_platform": {
+    "os": "Darwin",
+    "architecture": "arm64"
+  },
+  "python_version": "3.14.7",
+  "overall": "passed",
+  "checks": {
+    "cli": "passed",
+    "c_abi": "passed",
+    "python_ffi": "passed"
+  },
+  "observations": {
+    "cli": {
+      "os.name": {
+        "value": "Darwin",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452798,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "Apple M2 Pro (Virtual)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452798,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 5,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452798,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 15032385536,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452798,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "os.version": {
+        "value": "26.6.2",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452798,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "25.6.0",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452798,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "arm64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452798,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 5,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452798,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": 15032385536,
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1791505452798,
+        "reason": null
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysinfo",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      }
+    },
+    "c_abi": {
+      "os.name": {
+        "value": "Darwin",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452806,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "Apple M2 Pro (Virtual)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452806,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 5,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452806,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 15032385536,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452806,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "os.version": {
+        "value": "26.6.2",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452806,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "25.6.0",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452806,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "arm64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452806,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 5,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791505452806,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": 15032385536,
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1791505452806,
+        "reason": null
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysinfo",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      }
+    }
+  },
+  "artifact_sha256": {
+    "cli": "01c15b1d05c9f0ad01cb68c07b14a02443407221ad3dd43ad4c5cccd22cb408a",
+    "c_example": "a34cb96cf777f975c8898b8356a2d1353c8d7d45ef9e267c0c76974c3b9eaf17",
+    "ffi": "b1851bb163d178a441d7cea10881c06a05584db53bd51abd3ad9bd89ea80cc61",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "available_rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: aarch64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "git_revision": "a0acc060381fc3e9a68eb1ff48a8f5c379f92058",
+  "git_dirty": false
+}

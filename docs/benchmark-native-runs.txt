@@ -1,0 +1,20 @@
+first_collect_us=371997
+refresh_n=100 p50_us=35 p95_us=69 max_us=239
+cpu_usage_state=Available
+synthetic_sensors=100 synthetic_networks=1024 collect_us=420 serialized_bytes=366287
+first_collect_us=370602
+refresh_n=100 p50_us=34 p95_us=54 max_us=309
+cpu_usage_state=Available
+synthetic_sensors=100 synthetic_networks=1024 collect_us=628 serialized_bytes=366287
+first_collect_us=369462
+refresh_n=100 p50_us=35 p95_us=36 max_us=305
+cpu_usage_state=Available
+synthetic_sensors=100 synthetic_networks=1024 collect_us=323 serialized_bytes=366287
+first_collect_us=370386
+refresh_n=100 p50_us=34 p95_us=41 max_us=292
+cpu_usage_state=Available
+synthetic_sensors=100 synthetic_networks=1024 collect_us=313 serialized_bytes=366287
+first_collect_us=376903
+refresh_n=100 p50_us=34 p95_us=53 max_us=438
+cpu_usage_state=Available
+synthetic_sensors=100 synthetic_networks=1024 collect_us=389 serialized_bytes=366287

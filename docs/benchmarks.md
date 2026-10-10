@@ -1,0 +1,41 @@
+# 性能基线
+
+日期：2026-10-08 Asia/Shanghai。硬件：主机读取i7-9750H，12逻辑CPU/6物理核，安装内存16GiB；OS Microsoft Windows10.0.26300 x86_64。Rust1.96.0 / MSVC14.51.36231，bench优化profile，门面默认serde；sysinfo0.39.6 default-features=false + system/apple-app-store。普通主机权限，采集不含敏感标识。
+
+复现：cargo bench --locked -p daoseeker-scope --bench collect。每次进程首次collect（不含Hardware构造）计时，然后100次动态刷新，等待250ms检查CPU有效样本，再读取100个合成传感器与1024个合成网络条目（max_entries=1024）。实际OS数据与注入的合成数据明确分开。最终可执行文件另外启动5次，原始输出见benchmark-native-runs.txt。
+
+| 指标 | 5次进程范围 |
+|---|---|
+| 首次collect | 369.462–376.903ms |
+| 100次refresh p50（每次进程各计算一次） | 34–35µs |
+| refresh p95 | 36–69µs |
+| refresh max | 239–438µs |
+| 合成100传感器/1024网络条目collect | 313–628µs |
+| 合成完整快照UTF-8 JSON | 366,287字节（不是heap/RSS） |
+
+之前一次沙箱测量首次collect770µs，但安装内存API被权限拒绝，不能与普通主机权限结果当成同一采集范围比较。首次采集目前约0.37秒；未做采样器逐API成本剖析，不能把它归因于某一API，更不能宣称低于1ms。默认2秒调用方等待上限，应用可设置1..60000ms；超短预算会返回Timeout。
+
+资源上限：每Hardware一worker，进程最多16；每类别最多1024条目，默认128；DMI单文件最多4097字节读取（超过4096拒绝）；FFI最多64个1MiB buffer；JSON输入最多1MiB。core测试证明100限额下101条传感器数据会Unavailable/InvalidData，而成功空列表仍Available。增强读取/输出受控，sysinfo内部CPU列表/平台分配无法保证同等限制，trusted自定义backend也必须履约。
+
+尚未测：Linux/macOS延迟、实际传感器查询（当前Unsupported）、多backend峰值heap/RSS、CPU热点/分配计数和长时间并发。当前fake超时测试只验证调用方等待有界，不测真实OS调用强制终止。此基线不是发布性能SLA。
+
+2026-10-10追加：Linux电池枚举切片未重跑性能benchmark。上文数据是2026-10-08 Windows历史基线，不是Linux电池扫描延迟或新源码SLA；256个供应设备/128字节属性/调用方条目限制经测试，不替代峰值分配与真实驱动超时测量。fuzz RSS284Mb包含libFuzzer/ASan，不能作为库的内存占用。
+# hwmon切片的性能证据边界（2026-10-10）
+
+本轮未运行新采集延迟/分配benchmark；以上历史Windows数据不验证Linux hwmon的SLA。枚举限额为256类入口、每芯片1024/合计4096目录条目、默认128输出，超限拒绝前缀而不截断。容器限额/恢复测试验证拒绝行为，不等于真实100传感器性能测量。60秒属性fuzz的RSS包含libFuzzer/ASan运行时，不能作为采集库峰值内存。后续实机基准须记录驱动/通道数量、系统、profile和feature，见[hwmon验收](hwmon-validation.md)。
+
+2026-10-11 NVMe路由增量没有新benchmark。不发ioctl，但Linux hwmon驱动读取仍可能查询SMART并阻塞；现有timeout限制调用方等待，不能硬取消驱动。零Kelvin策略与47项合成容器观察验证单位/错误/恢复，不能给出真实SSD读取延迟或分配SLA，见[NVMe验收](nvme-temperature-validation.md)。
+
+## 全项目审查后的 Windows 基准（2026-10-11）
+
+源码 `4ec4360a2cae1ab56f7218a3142444dd64217ee1`；复现 `cargo bench --locked -p daoseeker-scope --bench collect`。i7-9750H、12 逻辑/6 物理核、安装 16 GiB；Windows 11 (26300) x64，Rust 1.96/MSVC，bench 优化 profile，门面默认 serde，max_entries=1024 仅用于合成采集。CPU 等待已改为 300 ms。本轮只测一次进程，范围与旧五进程统计不同。
+
+| 指标 | 本次结果 |
+|---|---|
+| 首次 collect（不含构造） | 402089 µs |
+| 100 次动态刷新 p50 / p95 / max | 40 / 106 / 477 µs |
+| CPU 样本状态 | Available |
+| 合成 100 传感器、1024 网络接口 collect | 505 µs |
+| 合成快照 JSON | 366287 bytes |
+
+这是当前 Windows 基础路径的延迟样本，不测 Linux 电池/hwmon 驱动、真实 100 个传感器或峰值内存。JSON 解码现在有一次额外的有界编码大小遍历，其成本未在此采集基准中独立测量。[审查证据](evidence/project-review-38070151022.json)保存参数和原始日志哈希；已有历史数据保留。

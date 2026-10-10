@@ -1,0 +1,198 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-10T11:10:37.138844+00:00",
+  "execution_platform": {
+    "os": "Linux",
+    "architecture": "x86_64"
+  },
+  "python_version": "3.12.3",
+  "overall": "passed",
+  "checks": {
+    "cli": "passed",
+    "c_abi": "passed",
+    "python_ffi": "passed"
+  },
+  "observations": {
+    "cli": {
+      "os.name": {
+        "value": "Ubuntu",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637269,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "AMD EPYC 9V45 96-Core Processor",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637269,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 2,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637269,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 8323960832,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637269,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "os.version": {
+        "value": "24.04",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637269,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "6.17.0-1022-azure",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637269,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "x86_64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637269,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 1,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637269,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "dynamic.batteries": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791630637270,
+        "reason": null
+      }
+    },
+    "c_abi": {
+      "os.name": {
+        "value": "Ubuntu",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637275,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "AMD EPYC 9V45 96-Core Processor",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637275,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 2,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637275,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 8323960832,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637275,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "os.version": {
+        "value": "24.04",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637275,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "6.17.0-1022-azure",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637275,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "x86_64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637275,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 1,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791630637275,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "dynamic.batteries": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791630637275,
+        "reason": null
+      }
+    }
+  },
+  "artifact_sha256": {
+    "cli": "b662f729979df6c0b0901e478a94f8a5488224d90ba43f47ca10709ead223ae6",
+    "c_example": "fe1d54e6c80754bb26bb7508ca427161981cdf0bad466b3470eb8deca3de0eaa",
+    "ffi": "0b261f4787fec370aa998a48d488b05a4e81bd464583ba79f72e26210a2c3cdd",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "available_rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "git_revision": "15ef5c10dc99307501bf617f57779905cc1f50d6",
+  "git_dirty": false
+}

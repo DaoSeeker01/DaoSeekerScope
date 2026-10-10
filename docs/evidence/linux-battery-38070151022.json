@@ -1,0 +1,943 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-10T17:03:46.156214+00:00",
+  "overall": "passed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "synthetic_power_supply": true,
+  "samples": {
+    "empty": {
+      "status": "passed",
+      "batteries": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826505,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "added_default_present": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": 50.0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826604,
+              "reason": null
+            },
+            "on_ac_power": {
+              "value": true,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826603,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826604,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "genuine_zero_offline": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": 0.0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826629,
+              "reason": null
+            },
+            "on_ac_power": {
+              "value": false,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826629,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826629,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "percent_exceeds": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            },
+            "on_ac_power": {
+              "value": false,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826653,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826653,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "percent_negative": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            },
+            "on_ac_power": {
+              "value": false,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826678,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826678,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "percent_nan": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            },
+            "on_ac_power": {
+              "value": false,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826705,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826705,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "percent_utf8": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            },
+            "on_ac_power": {
+              "value": false,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826740,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826740,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "percent_oversize": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            },
+            "on_ac_power": {
+              "value": false,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826766,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826767,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "capacity_missing": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "not_present"
+            },
+            "on_ac_power": {
+              "value": false,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826792,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826792,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "capacity_denied": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "permission_denied"
+            },
+            "on_ac_power": {
+              "value": false,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826817,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826817,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "capacity_fifo_rejected": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            },
+            "on_ac_power": {
+              "value": false,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826842,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826842,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "capacity_recovered": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": 100.0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826869,
+              "reason": null
+            },
+            "on_ac_power": {
+              "value": false,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826869,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826869,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "online_denied": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": 100.0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826894,
+              "reason": null
+            },
+            "on_ac_power": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "permission_denied"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826894,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "online_invalid": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": 100.0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826920,
+              "reason": null
+            },
+            "on_ac_power": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826920,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "usb_does_not_imply_ac": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": 100.0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651826946,
+              "reason": null
+            },
+            "on_ac_power": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "not_present"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826946,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "battery_absent": {
+      "status": "passed",
+      "batteries": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651826971,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "present_invalid": {
+      "status": "passed",
+      "batteries": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "present_denied": {
+      "status": "passed",
+      "batteries": {
+        "value": null,
+        "availability": "restricted",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "permission_denied"
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "restricted",
+        "source": "sysfs",
+        "reason": "permission_denied"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "present_recovered_missing": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": 100.0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651827047,
+              "reason": null
+            },
+            "on_ac_power": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "not_present"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651827047,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "type_missing": {
+      "status": "passed",
+      "batteries": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "not_present"
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": "not_present"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "type_denied": {
+      "status": "passed",
+      "batteries": {
+        "value": null,
+        "availability": "restricted",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "permission_denied"
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "restricted",
+        "source": "sysfs",
+        "reason": "permission_denied"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "type_recovered": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": 100.0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651827119,
+              "reason": null
+            },
+            "on_ac_power": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "not_present"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651827119,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "second_bad_field_isolated": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": 100.0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651827144,
+              "reason": null
+            },
+            "on_ac_power": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "not_present"
+            }
+          },
+          {
+            "charge_percent": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            },
+            "on_ac_power": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "not_present"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651827144,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "directory_denied": {
+      "status": "passed",
+      "batteries": {
+        "value": null,
+        "availability": "restricted",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "permission_denied"
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "restricted",
+        "source": "sysfs",
+        "reason": "permission_denied"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "directory_recovered": {
+      "status": "passed",
+      "batteries": {
+        "value": [
+          {
+            "charge_percent": {
+              "value": 100.0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1791651827193,
+              "reason": null
+            },
+            "on_ac_power": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "not_present"
+            }
+          },
+          {
+            "charge_percent": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            },
+            "on_ac_power": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "not_present"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651827194,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "directory_missing": {
+      "status": "passed",
+      "batteries": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "not_present"
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": "not_present"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "directory_restored_empty": {
+      "status": "passed",
+      "batteries": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651827244,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "battery_count_limit": {
+      "status": "passed",
+      "batteries": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "scan_count_limit": {
+      "status": "passed",
+      "batteries": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "final_empty_recovery": {
+      "status": "passed",
+      "batteries": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791651827398,
+        "reason": null
+      },
+      "capability": {
+        "field": "batteries",
+        "level": "partial",
+        "source": "sysfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    }
+  },
+  "git_revision": "4ec4360a2cae1ab56f7218a3142444dd64217ee1",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "probe": "6c9239cd248a98b23e299ce0eb6e1c8a7d4dff5e85f0cc297a7ef11ef796b1f2",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "docker_version": "28.0.4",
+  "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+  "configuration": {
+    "user": "65534:65534",
+    "ReadonlyRootfs": true,
+    "NetworkMode": "none",
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges=true"
+    ],
+    "Memory": 268435456,
+    "MemorySwap": 268435456,
+    "PidsLimit": 32,
+    "NanoCpus": 1000000000
+  },
+  "docker_exit_code": 0,
+  "process_exit_code": 0,
+  "process_started": true
+}

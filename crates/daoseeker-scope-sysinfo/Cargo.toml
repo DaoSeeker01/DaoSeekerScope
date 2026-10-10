@@ -1,0 +1,13 @@
+[package]
+name = "daoseeker-scope-sysinfo"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "DaoSeekerScope sysinfo"
+[lints]
+workspace = true
+[dependencies]
+daoseeker-scope-core.workspace = true
+sysinfo.workspace = true

@@ -1,0 +1,24 @@
+# 发布与迁移路线
+
+当前 0.1.0 为开发版本，尚未发布。当前构建与检查结果见[项目检查报告](project-review-2026-10-11.md)和 [CI 工作流](https://github.com/DaoSeeker01/DaoSeekerScope/actions/workflows/ci.yml)；下面的日期记录属于对应历史版本。创建私有仓库、推送和 CI 已获授权，crates.io 发布或 release 制品分发仍需单独授权。
+
+发布顺序：维护者ADR/Schema评审 → 三平台原生build/test/doc + C/Python契约 → Linux容器/DMI缺失/权限降级 → fuzz与sanitizer campaign → 依赖/许可证审计 → cargo package逐crate验证 → 制品checksum/安装/回滚演练 → 发布。先core，随后sysinfo及平台crate，再门面、CLI/FFI，避免依赖不存在的crate版本。此顺序是计划，未执行的步骤不算通过。
+
+JSON v1：对象新增字段可向前兼容（未知字段忽略），新增枚举值要求Schema主版本协商；字段删除/语义/单位变化增加Schema主版本并提供v1读取迁移器。C ABI v1：不改变现有options/buffer布局，新增ABI主版本以新入口并存；错误码不复用。Rust0.1破坏变更提高minor，1.0后破坏变更提高major并附迁移说明。sysinfo升级固定版本并重跑状态/单位/CPU采样/黄金样例/Schema/三平台门禁。
+
+回滚：保留上一版库与header、CLI及checksum；上层应用按ABI与Schema版本拒绝不兼容数据，恢复匹配版本，不能只替换DLL却保留不兼容header。静态失败重新构造Hardware刷新，当前无热插拔静态重扫API。
+
+版本1首次发布，没有从旧ABI/Schema迁移。移动/Web/no_std/MCU独立能力矩阵与实际构建证据后再决定接入。
+
+开发版Linux CPU行为迁移：CPU占用率来源改为procfs，失败清基线且恢复首读重新等待300ms采样对；仅单独SysinfoBackend注册者需补LinuxBackend或使用门面。既有Source枚举、Rust签名、ABI/Schema1与feature不变。实际故障回归、三平台及FFI门禁见[CPU刷新验收](cpu-refresh-validation.md)。Windows/macOS sysinfo路径的Partial新鲜度边界仍适用。
+
+
+原生验收入口：scripts/native_smoke.py；先构建当前CLI/FFI/C例子，再执行。CI自动保留14天原生报告，报告overall及job/退出码共同判断，incomplete/failed/not_run不算通过。Windows x64、Linux x64、macOS arm64报告均已保存仓库，见[首次三平台CI验收](ci-validation.md)与[最新容器验收](linux-container-validation.md)。所列Ubuntu24.04/Docker28.0.4 x86_64权限和输入缺失场景已通过，完整/proc覆盖被运行时拒绝且未执行库。短期fuzz、Miri和Rust FFI ASan已通过；其他容器/安全策略、动态源中途失效、长期campaign、峰值分配profiling和发行制品验证仍待完成。
+
+开发版Linux内存/uptime行为迁移：相关字段来源改为Procfs、实现能力Supported；SysinfoBackend在Linux不再提供总内存/可用内存/uptime，需补LinuxBackend或使用门面。错误不保留旧值，缺MemAvailable不估算，缓存MemTotal变化时动态暂不可用，重建Hardware刷新静态总量。既有字段/单位/签名/feature/ABI1/Schema1不变，尚未发布，因此记录为开发版backend行为修正；正式版本仍需按上述兼容规则评审。见[验收与限制](memory-refresh-validation.md)。
+
+开发版Linux电池扩展：原Unsupported类别现在由LinuxBackend提供Partial、SourceSysfs的有界动态power_supply枚举。完整可读视图无Battery是Available空集合；缺路径、分类不完整/受限、数值错误或超限各按观察返回。仅Mains聚合提供AC状态，没有Mains不可推断false；不采集电池ID，不保证索引跨热插拔稳定。旧消费者应继续检查集合及字段Availability，不能把新空集合当作真实电池字段成功。公共类型/签名/feature集合、ABI1/Schema1和锁不变，仅增加Schema描述元数据；尚未发布。30项内核权限/合成观测与七目标短fuzz已验，真实Linux电池与发行性能仍待独立验证，见[报告](battery-validation.md)。
+
+开发版Linux传感器扩展：sensors从Unsupported转为Partial/SourceHwmon。调用方仍需逐项检查温度状态，完整集合Available并不表示每个温度Available；未知单位/驱动和相对Tctl保持Unsupported，默认标签Restricted/PrivacyRedacted。仅coretemp与k10temp的Tdie路由，索引不保证跨热插拔稳定；不提供完整hwmon或主板校正能力。Rust模型形状、签名、依赖、feature、ABI1/Schema1不变，仅增加Schema description。实测与未验证范围见[hwmon验收](hwmon-validation.md)。
+
+2026-10-11开发增量：NVMe hwmon通道1..9加入现有路由；独立通道零Kelvin返回NotPresent，Composite零Kelvin为InvalidData。Composite可为设备计算值，SensorInfo说明相应修正，Schema只改description；默认不采集磁盘标识，存储集合仍Unsupported。无版本/feature/依赖/许可证变化，非发行制品；[独立验收](nvme-temperature-validation.md)。

@@ -1,0 +1,169 @@
+name: desktop-contracts
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+env:
+  CARGO_INCREMENTAL: "0"
+  CARGO_HTTP_MULTIPLEXING: "false"
+jobs:
+  desktop:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-24.04, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - name: Pinned toolchain
+        run: rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy
+      - run: cargo fmt --all --check
+      - run: cargo clippy --locked --workspace --all-targets --all-features -- -D warnings
+      - run: cargo test --locked --workspace --all-features -- --test-threads=1
+      - run: cargo check --locked -p daoseeker-scope-core --no-default-features
+      - run: cargo check --locked -p daoseeker-scope --no-default-features
+      - run: cargo doc --locked --workspace --all-features --no-deps
+        env:
+          RUSTDOCFLAGS: "-D warnings"
+      - run: cargo build --locked -p daoseeker-scope-ffi -p daoseeker-scope-cli
+      - name: Python dev schema validator
+        run: python -m pip install jsonschema==4.25.1 ruff==0.14.13 mypy==1.19.1
+      - name: Python static checks
+        run: |
+          ruff format --check scripts tests examples/collect.py
+          ruff check scripts tests examples/collect.py
+          mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py
+      - name: Evidence and project guards
+        run: python -m unittest discover -s tests -p "test_*.py"
+      - name: Project data and documentation links
+        run: python scripts/check_project.py
+      - run: python scripts/check_schema.py
+      - name: C FFI on Windows
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: |
+          for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath`) do call "%%i\VC\Auxiliary\Build\vcvars64.bat"
+          if errorlevel 1 exit /b 1
+          cl /nologo /W4 /WX /std:c11 /Fetarget\debug\c-example.exe /Fotarget\debug\c-example.obj examples\collect.c target\debug\daoseeker_scope_ffi.dll.lib
+          if errorlevel 1 exit /b 1
+      - name: Build C example on Linux
+        if: runner.os == 'Linux'
+        run: |
+          cc -Wall -Wextra -Werror examples/collect.c -Ltarget/debug -ldaoseeker_scope_ffi -Wl,-rpath,"$PWD/target/debug" -o target/debug/c-example
+      - name: Build C example on macOS
+        if: runner.os == 'macOS'
+        run: |
+          cc -Wall -Wextra -Werror examples/collect.c -Ltarget/debug -ldaoseeker_scope_ffi -Wl,-rpath,"$PWD/target/debug" -o target/debug/c-example
+      - name: Native smoke evidence
+        run: python scripts/native_smoke.py
+      - name: Human readable sensor observations
+        run: cargo run --locked --quiet -p daoseeker-scope-cli -- sensors
+      - name: Preserve native evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: native-evidence-${{ runner.os }}-${{ runner.arch }}
+          path: target/native-evidence.json
+          if-no-files-found: ignore
+          retention-days: 14
+  linux-container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - run: rustup toolchain install 1.96.0 --profile minimal
+      - run: cargo build --locked -p daoseeker-scope-cli
+      - run: python -m pip install jsonschema==4.25.1
+      - name: Kernel-enforced filesystem degradation
+        run: python scripts/linux_container_smoke.py
+      - run: cargo build --locked -p daoseeker-scope --example dynamic_probe
+      - name: CPU sampling failure and recovery
+        run: python scripts/linux_dynamic_smoke.py
+      - name: Memory and uptime failure and recovery
+        run: python scripts/linux_memory_smoke.py
+      - name: Battery enumeration failure and recovery
+        run: python scripts/linux_battery_smoke.py
+      - name: Hwmon unit routing failure and recovery
+        run: python scripts/linux_hwmon_smoke.py
+      - name: Preserve container evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: linux-container-evidence
+          path: |
+            target/linux-container-evidence.json
+            target/linux-dynamic-evidence.json
+            target/linux-memory-evidence.json
+            target/linux-battery-evidence.json
+            target/linux-hwmon-evidence.json
+          if-no-files-found: ignore
+          retention-days: 14
+  supply-chain:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - run: rustup toolchain install 1.96.0 --profile minimal
+      - run: cargo install cargo-deny --version 0.20.2 --locked
+      - run: cargo deny check
+  fuzz-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - run: rustup toolchain install nightly-2026-10-08 --profile minimal
+      - run: cargo +nightly-2026-10-08 install cargo-fuzz --version 0.13.2 --locked
+      - run: cargo fmt --manifest-path fuzz/Cargo.toml --check
+      - run: cargo +nightly-2026-10-08 check --locked --manifest-path fuzz/Cargo.toml
+      - run: cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512
+      - run: cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512
+      - run: cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512
+      - name: Fuzz CPU state and bounded stat parsing
+        run: |
+          set -o pipefail
+          mkdir -p target/procfs-fuzz
+          cargo +nightly-2026-10-08 fuzz run cpu_stat -- -seed=20261010 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/cpu_stat.log
+      - name: Fuzz meminfo parsing and field isolation
+        run: |
+          set -o pipefail
+          cargo +nightly-2026-10-08 fuzz run meminfo -- -seed=20261010 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/meminfo.log
+      - name: Fuzz uptime parsing and numeric boundaries
+        run: |
+          set -o pipefail
+          cargo +nightly-2026-10-08 fuzz run uptime -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/uptime.log
+      - name: Fuzz power supply attribute boundaries
+        run: |
+          set -o pipefail
+          cargo +nightly-2026-10-08 fuzz run power_supply -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/power_supply.log
+      - name: Fuzz bounded hwmon millidegrees
+        run: |
+          set -o pipefail
+          cargo +nightly-2026-10-08 fuzz run hwmon_temperature -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/hwmon_temperature.log
+      - name: Preserve procfs fuzz logs and failure reproducers
+        # Includes hwmon temperature parsing alongside procfs/power_supply.
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: procfs-fuzz-evidence
+          path: |
+            target/procfs-fuzz/*.log
+            fuzz/artifacts/cpu_stat/
+            fuzz/artifacts/meminfo/
+            fuzz/artifacts/uptime/
+            fuzz/artifacts/power_supply/
+            fuzz/artifacts/hwmon_temperature/
+          if-no-files-found: ignore
+          retention-days: 14
+  miri:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - run: rustup toolchain install nightly-2026-10-08 --profile minimal --component miri --component rust-src
+      - run: cargo +nightly-2026-10-08 miri test --locked -p daoseeker-scope-ffi --target x86_64-unknown-linux-gnu memory_contracts -- --test-threads=1
+  ffi-asan:
+    runs-on: ubuntu-24.04
+    env:
+      RUSTFLAGS: "-Zsanitizer=address"
+      ASAN_OPTIONS: "detect_leaks=1:halt_on_error=1"
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - run: rustup toolchain install nightly-2026-10-08 --profile minimal --component rust-src
+      - run: cargo +nightly-2026-10-08 test --locked -Zbuild-std --target x86_64-unknown-linux-gnu -p daoseeker-scope-ffi --lib -- --test-threads=1

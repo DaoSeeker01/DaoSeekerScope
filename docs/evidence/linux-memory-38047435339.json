@@ -1,0 +1,900 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-10T11:10:36.610959+00:00",
+  "overall": "passed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "synthetic_memory_and_uptime": true,
+  "samples": {
+    "initial": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637075,
+        "reason": null
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637075,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "empty": {
+      "status": "passed",
+      "memory": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "uptime": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "empty_recovery": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637209,
+        "reason": null
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637209,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_denied": {
+      "status": "passed",
+      "memory": {
+        "value": null,
+        "availability": "restricted",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "permission_denied"
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637243,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "restricted",
+          "source": "procfs",
+          "reason": "permission_denied"
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_recovery": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637267,
+        "reason": null
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637268,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "uptime_denied": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637292,
+        "reason": null
+      },
+      "uptime": {
+        "value": null,
+        "availability": "restricted",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "permission_denied"
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "restricted",
+          "source": "procfs",
+          "reason": "permission_denied"
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "uptime_recovery": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637317,
+        "reason": null
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637317,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_utf8": {
+      "status": "passed",
+      "memory": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637341,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_oversize": {
+      "status": "passed",
+      "memory": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637365,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_wrong_unit": {
+      "status": "passed",
+      "memory": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637389,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_overflow": {
+      "status": "passed",
+      "memory": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637414,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_duplicate": {
+      "status": "passed",
+      "memory": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637438,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_exceeds_total": {
+      "status": "passed",
+      "memory": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637466,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_missing_key": {
+      "status": "passed",
+      "memory": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "not_present"
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637490,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "not_present"
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_genuine_zero": {
+      "status": "passed",
+      "memory": {
+        "value": 0,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637515,
+        "reason": null
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637515,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_final_recovery": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637539,
+        "reason": null
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637539,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_total_changed": {
+      "status": "passed",
+      "memory": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637563,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "temporarily_unavailable"
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "memory_total_recovery": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637588,
+        "reason": null
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637588,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "uptime_utf8": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637613,
+        "reason": null
+      },
+      "uptime": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "uptime_oversize": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637636,
+        "reason": null
+      },
+      "uptime": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "uptime_nan": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637660,
+        "reason": null
+      },
+      "uptime": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "uptime_negative": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637684,
+        "reason": null
+      },
+      "uptime": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "uptime_overflow": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637708,
+        "reason": null
+      },
+      "uptime": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "uptime_missing_idle": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637732,
+        "reason": null
+      },
+      "uptime": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "uptime_genuine_zero": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637756,
+        "reason": null
+      },
+      "uptime": {
+        "value": 0,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637756,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "uptime_final_recovery": {
+      "status": "passed",
+      "memory": {
+        "value": 524288,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637780,
+        "reason": null
+      },
+      "uptime": {
+        "value": 123,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791630637780,
+        "reason": null
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "runtime.uptime_seconds",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    }
+  },
+  "git_revision": "15ef5c10dc99307501bf617f57779905cc1f50d6",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "probe": "d0caa498b516696fc140990c8bf6a77cd8a7ec821ecf60cb646f2f972f35b256",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "docker_version": "28.0.4",
+  "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+  "configuration": {
+    "user": "65534:65534",
+    "ReadonlyRootfs": true,
+    "NetworkMode": "none",
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges=true"
+    ],
+    "Memory": 268435456,
+    "MemorySwap": 268435456,
+    "PidsLimit": 32,
+    "NanoCpus": 1000000000
+  },
+  "cached_total": {
+    "value": 1048576,
+    "availability": "available",
+    "source": "procfs",
+    "observed_at": 1791630637075,
+    "reason": null
+  },
+  "docker_exit_code": 0,
+  "process_exit_code": 0,
+  "process_started": true
+}

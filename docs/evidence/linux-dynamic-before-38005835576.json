@@ -1,0 +1,79 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-09T23:44:20.363699+00:00",
+  "overall": "failed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "synthetic_cpu_counters": true,
+  "samples": {
+    "initial": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysinfo",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "partial",
+        "source": "sysinfo",
+        "reason": "temporarily_unavailable"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "ready": {
+      "status": "passed",
+      "cpu": {
+        "value": 50.0,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791589461176,
+        "reason": null
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "partial",
+        "source": "sysinfo",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "empty": {
+      "status": "failed",
+      "cpu": {
+        "value": 50.0,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791589461544,
+        "reason": null
+      }
+    }
+  },
+  "git_revision": "448dd814c2532ead10f306865e82014fe2f7cbcb",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "probe": "ba7b3af963d184add191a07487a7d0f71f78c635858e9ca53b9d76bb5165fa0a",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "docker_version": "28.0.4",
+  "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+  "configuration": {
+    "user": "65534:65534",
+    "ReadonlyRootfs": true,
+    "NetworkMode": "none",
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges=true"
+    ],
+    "Memory": 268435456,
+    "MemorySwap": 268435456,
+    "PidsLimit": 32,
+    "NanoCpus": 1000000000
+  },
+  "failure": "cpu: unexpected_observation"
+}

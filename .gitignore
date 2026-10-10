@@ -1,0 +1,12 @@
+/target/
+**/target/
+/docs/generated/
+*.pyc
+__pycache__/
+/.tools/
+/.venv/
+/.mypy_cache/
+/.ruff_cache/
+/docs/generated-metadata.json
+/fuzz/artifacts/
+/fuzz/coverage/

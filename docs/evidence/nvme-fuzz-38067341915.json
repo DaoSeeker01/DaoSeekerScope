@@ -1,0 +1,122 @@
+{
+  "report_version": 1,
+  "ci_run": 38067341915,
+  "source_revision": "9931cf9ed789e600c89cb67f123c9bb878e5ddfb",
+  "overall": "passed",
+  "abi_version": 1,
+  "schema_version": 1,
+  "scope": "bounded millidegree parser and NVMe Composite/secondary zero-Kelvin policy only",
+  "target": "hwmon_temperature",
+  "seed": 20261010,
+  "configured_seconds": 60,
+  "actual_seconds": 61,
+  "runs": 35010619,
+  "cov": 154,
+  "ft": 343,
+  "final_rss_mb": 306,
+  "limits": {
+    "attribute_bytes": 128,
+    "input_bytes": 512,
+    "timeout_seconds": 2,
+    "rss_termination_mb": 512,
+    "hard_sandbox": false
+  },
+  "log_sha256": "7b2d69aec9a69915328006b842017f4a7bdfdbce96c77929161a0f2c2baf8cc2",
+  "log_bytes": 66708,
+  "seeds": [
+    {
+      "name": "absolute_zero",
+      "bytes": 8,
+      "sha256": "682799365c451aa767fe741da5f48b3c2bc428a8d73756d81fb541650d992c80"
+    },
+    {
+      "name": "below_zero",
+      "bytes": 8,
+      "sha256": "4d4a5302881e0882bec9df26fc0e0ea76ad0d41f99439d76ad1e42ee11755b35"
+    },
+    {
+      "name": "invalid_utf8",
+      "bytes": 1,
+      "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+    },
+    {
+      "name": "maximum",
+      "bytes": 8,
+      "sha256": "085c348f64a3b543e973a33749e90ba20847b99016a87e5228847597d61ce582"
+    },
+    {
+      "name": "nan",
+      "bytes": 4,
+      "sha256": "3f3ea8a1afc0f5a6ce7ace3152abfdaa52ea3726c4f66e728790f42cbc005901"
+    },
+    {
+      "name": "negative",
+      "bytes": 6,
+      "sha256": "02c13adad9470bf68fe17f9123fe03e508e07f8a494a43b71a021ffb1699154c"
+    },
+    {
+      "name": "nvme_below_freezing",
+      "bytes": 4,
+      "sha256": "3821691b2f28f7992d91defafc3b441b1473eb4556656e0746f1336ed6c27033"
+    },
+    {
+      "name": "nvme_positive",
+      "bytes": 5,
+      "sha256": "849c5f90f2fb0cce76947b8e68fb3afc08199192fc499e2420d884d0be4ed9e3"
+    },
+    {
+      "name": "overflow",
+      "bytes": 11,
+      "sha256": "604fec38960d7c5bd3bd6c06ad8f4b42eac0bb30ea02d43518d0f9f11d5e131e"
+    },
+    {
+      "name": "oversize",
+      "bytes": 129,
+      "sha256": "beab3966389f2ad495c7db4f9dc029f16aae31c76af3ebefd9754faf0e6ddcb4"
+    },
+    {
+      "name": "unit",
+      "bytes": 5,
+      "sha256": "2e002e4a79ed8d45c56234aed260e6974fa18641e3d2c5bbef9c6d5b7d61d23f"
+    },
+    {
+      "name": "zero",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    }
+  ],
+  "cargo_lock_sha256": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9",
+  "fuzz_lock_sha256": "332274ef082506cb8c5ec664f940845868265313981720d81d0d413d0cd4572b",
+  "all_eight_targets_completed": true,
+  "fuzz_job_log_sha256": "61611a8d569e8c430f3b422b72458fae674373f6df9a5d594473affbee178b6f",
+  "actual_test_counts": {
+    "linux": {
+      "passed_including_doctests": 75,
+      "log_sha256": "061a0e5e11735549fc69b749cf10d92acc8a3e9384c5d3bf8b65602f9779e072"
+    },
+    "windows": {
+      "passed_including_doctests": 72,
+      "log_sha256": "6f900f6dd84408d8ef14b7cd250e2ca38cbdc65caf63fdf66403d6268ffdb44c"
+    },
+    "macos": {
+      "passed_including_doctests": 74,
+      "log_sha256": "e5c24177dcd5eabaa10bb10b8e10370e9a05f6da0f3bfd59881bc4ec83bbd3ab"
+    },
+    "miri": {
+      "passed_including_doctests": 8,
+      "log_sha256": "c77456019b8d87add1293d27f4d86add98426c1dc532b19f5fea9fbd20d81b47"
+    },
+    "asan": {
+      "passed_including_doctests": 10,
+      "log_sha256": "406f2f63d17b526e6aa17cf964f65fe07f563d3d7222f56a7d93814b33bccc76"
+    }
+  },
+  "limitations": [
+    "not a physical NVMe device probe or calibration",
+    "not directory/permission/hotplug fuzzing",
+    "cov/ft are not coverage percentages",
+    "RSS includes libFuzzer/ASan",
+    "60 second smoke only",
+    "mutated corpus not archived"
+  ]
+}

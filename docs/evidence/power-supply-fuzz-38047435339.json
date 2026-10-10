@@ -1,0 +1,213 @@
+{
+  "report_version": 1,
+  "overall": "passed",
+  "run_id": 38047435339,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38047435339",
+  "git_revision": "15ef5c10dc99307501bf617f57779905cc1f50d6",
+  "created_at_utc": "2026-10-10T11:09:54Z",
+  "updated_at_utc": "2026-10-10T11:19:34Z",
+  "job_id": 114199689392,
+  "execution_platform": "Linux x86_64 hosted CI",
+  "toolchain": "nightly-2026-10-08",
+  "cargo_fuzz_version": "0.13.2",
+  "synthetic_inputs": true,
+  "hardware_collection": false,
+  "locks_sha256": {
+    "Cargo.lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9",
+    "fuzz/Cargo.lock": "332274ef082506cb8c5ec664f940845868265313981720d81d0d413d0cd4572b"
+  },
+  "power_supply_seeds": [
+    {
+      "name": "battery-type",
+      "bytes": 8,
+      "sha256": "314fc5420fec3cce784b91a867585974df652499277ad366bf739055141d0e60"
+    },
+    {
+      "name": "bool",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "name": "invalid-utf8",
+      "bytes": 1,
+      "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+    },
+    {
+      "name": "mains-type",
+      "bytes": 6,
+      "sha256": "d49ee06945a80563c3192f20b86f655aba185ec403a7b5c3d51379490281e1b3"
+    },
+    {
+      "name": "max-percent",
+      "bytes": 4,
+      "sha256": "eea8254c7500ba3de996aa8ad6af399183f04e17d4a8102fde539dbc93a90012"
+    },
+    {
+      "name": "nan",
+      "bytes": 4,
+      "sha256": "3f3ea8a1afc0f5a6ce7ace3152abfdaa52ea3726c4f66e728790f42cbc005901"
+    },
+    {
+      "name": "negative",
+      "bytes": 3,
+      "sha256": "ee3aa64bb94a50845d5024cd4bd20202a4567aed5cd5328c0d97e9920775fc28"
+    },
+    {
+      "name": "overflow",
+      "bytes": 34,
+      "sha256": "3ba2c86a281fbdbcfffc01df15a5b4c3f9934542435c913ea675cd053e53b728"
+    },
+    {
+      "name": "oversize",
+      "bytes": 129,
+      "sha256": "0ec9eb33e74510bcdd1f2ea55206e82f21649c5c2becbf2b433eb475b34c01bd"
+    },
+    {
+      "name": "zero",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    }
+  ],
+  "targets": {
+    "cpu_stat": {
+      "status": "passed",
+      "step_number": 10,
+      "seed": 20261010,
+      "command": "cargo +nightly-2026-10-08 fuzz run cpu_stat -- -seed=20261010 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512",
+      "max_total_time_seconds": 60,
+      "max_len_bytes": 8192,
+      "timeout_seconds": 2,
+      "rss_limit_mb": 512,
+      "runs": 1074281,
+      "elapsed_seconds": 61,
+      "cov": 201,
+      "ft": 794,
+      "final_corpus": "315/66Kb",
+      "final_input_limit_bytes": 6330,
+      "executions_per_second": 17611,
+      "final_rss_mb": 410,
+      "log_sha256": "eccef0fc18542358c3283b1a9aa03b007d94cbb6baa1053e56aa8d0bdcee5f8a",
+      "log_bytes": 466985
+    },
+    "meminfo": {
+      "status": "passed",
+      "step_number": 11,
+      "seed": 20261010,
+      "command": "cargo +nightly-2026-10-08 fuzz run meminfo -- -seed=20261010 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512",
+      "max_total_time_seconds": 60,
+      "max_len_bytes": 8192,
+      "timeout_seconds": 2,
+      "rss_limit_mb": 512,
+      "runs": 4685965,
+      "elapsed_seconds": 61,
+      "cov": 247,
+      "ft": 985,
+      "final_corpus": "390/74Kb",
+      "final_input_limit_bytes": 8192,
+      "executions_per_second": 76819,
+      "final_rss_mb": 287,
+      "log_sha256": "4b351ed71c3eff38fec17151b7b12d00a4f8c0be1b00238ff2c950b423a9ecbb",
+      "log_bytes": 571653
+    },
+    "uptime": {
+      "status": "passed",
+      "step_number": 12,
+      "seed": 20261010,
+      "command": "cargo +nightly-2026-10-08 fuzz run uptime -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512",
+      "max_total_time_seconds": 60,
+      "max_len_bytes": 512,
+      "timeout_seconds": 2,
+      "rss_limit_mb": 512,
+      "runs": 20955969,
+      "elapsed_seconds": 61,
+      "cov": 148,
+      "ft": 413,
+      "final_corpus": "169/5267b",
+      "final_input_limit_bytes": 512,
+      "executions_per_second": 343540,
+      "final_rss_mb": 310,
+      "log_sha256": "ebf8a46f92d8cdabb748da4692fb5d48114d144f509ff688d12ffaacda38761e",
+      "log_bytes": 151425
+    },
+    "power_supply": {
+      "status": "passed",
+      "step_number": 13,
+      "seed": 20261010,
+      "command": "cargo +nightly-2026-10-08 fuzz run power_supply -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512",
+      "max_total_time_seconds": 60,
+      "max_len_bytes": 512,
+      "timeout_seconds": 2,
+      "rss_limit_mb": 512,
+      "runs": 19744677,
+      "elapsed_seconds": 61,
+      "cov": 140,
+      "ft": 395,
+      "final_corpus": "112/2025b",
+      "final_input_limit_bytes": 512,
+      "executions_per_second": 323683,
+      "final_rss_mb": 284,
+      "log_sha256": "935e0bb5ab3a65354e34d0ccf9f70baac42c431d7f905d8ec10792203baef8c5",
+      "log_bytes": 52268
+    }
+  },
+  "other_targets": [
+    {
+      "target": "snapshot_json",
+      "status": "passed",
+      "step_name": "Run cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512",
+      "command": "cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512",
+      "reported_seed": 1461411586,
+      "runs": 2253735,
+      "elapsed_seconds": 61,
+      "cov": 4304,
+      "ft": 10192,
+      "final_corpus": "2769/1790Kb",
+      "final_input_limit_bytes": 5889,
+      "executions_per_second": 36946,
+      "final_rss_mb": 266,
+      "evidence": "full fuzz job log"
+    },
+    {
+      "target": "dmi_text",
+      "status": "passed",
+      "step_name": "Run cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512",
+      "command": "cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512",
+      "reported_seed": 2742299164,
+      "runs": 20749902,
+      "elapsed_seconds": 61,
+      "cov": 152,
+      "ft": 492,
+      "final_corpus": "166/13497b",
+      "final_input_limit_bytes": 8192,
+      "executions_per_second": 340162,
+      "final_rss_mb": 261,
+      "evidence": "full fuzz job log"
+    },
+    {
+      "target": "cli_args",
+      "status": "passed",
+      "step_name": "Run cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512",
+      "command": "cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512",
+      "reported_seed": 4083446781,
+      "runs": 19178097,
+      "elapsed_seconds": 61,
+      "cov": 144,
+      "ft": 248,
+      "final_corpus": "71/2718b",
+      "final_input_limit_bytes": 8192,
+      "executions_per_second": 314395,
+      "final_rss_mb": 275,
+      "evidence": "full fuzz job log"
+    }
+  ],
+  "artifact_name": "procfs-fuzz-evidence",
+  "artifact_retention_days": 14,
+  "crash_reproducer_files_in_artifact": 0,
+  "limitations": [
+    "60-second smoke only; feedback is not source coverage percentage or proof of absence of bugs",
+    "Attribute harness does not validate enumeration, permissions, cancellation, hotplug or real batteries",
+    "RSS includes libFuzzer/ASan; threshold is not a hard memory sandbox or backend benchmark",
+    "Mutated corpus not archived; replay a specific reproducer to reproduce failures"
+  ],
+  "full_job_log_sha256": "bce9cfc5c3ee6626519d5bbbe7b1f2132561402df5eea88826bf7b2fd1b57f11"
+}

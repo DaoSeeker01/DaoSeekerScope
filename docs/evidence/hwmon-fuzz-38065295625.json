@@ -1,0 +1,112 @@
+{
+  "report_version": 1,
+  "ci_run": 38065295625,
+  "source_revision": "0fbc84ae445c9c2f717ac29c12da0a2bc512c4bf",
+  "overall": "passed",
+  "abi_version": 1,
+  "schema_version": 1,
+  "scope": "bounded attribute parser only",
+  "target": "hwmon_temperature",
+  "seed": 20261010,
+  "configured_seconds": 60,
+  "actual_seconds": 61,
+  "runs": 43961544,
+  "cov": 113,
+  "ft": 313,
+  "final_rss_mb": 266,
+  "limits": {
+    "attribute_bytes": 128,
+    "input_bytes": 512,
+    "timeout_seconds": 2,
+    "rss_termination_mb": 512,
+    "hard_sandbox": false
+  },
+  "log_sha256": "858626b12e181018d1cbae9d5d6084197563a874e5172e9cd520e3a61892eed4",
+  "log_bytes": 70833,
+  "seeds": [
+    {
+      "name": "absolute_zero",
+      "bytes": 8,
+      "sha256": "682799365c451aa767fe741da5f48b3c2bc428a8d73756d81fb541650d992c80"
+    },
+    {
+      "name": "below_zero",
+      "bytes": 8,
+      "sha256": "4d4a5302881e0882bec9df26fc0e0ea76ad0d41f99439d76ad1e42ee11755b35"
+    },
+    {
+      "name": "invalid_utf8",
+      "bytes": 1,
+      "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+    },
+    {
+      "name": "maximum",
+      "bytes": 8,
+      "sha256": "085c348f64a3b543e973a33749e90ba20847b99016a87e5228847597d61ce582"
+    },
+    {
+      "name": "nan",
+      "bytes": 4,
+      "sha256": "3f3ea8a1afc0f5a6ce7ace3152abfdaa52ea3726c4f66e728790f42cbc005901"
+    },
+    {
+      "name": "negative",
+      "bytes": 6,
+      "sha256": "02c13adad9470bf68fe17f9123fe03e508e07f8a494a43b71a021ffb1699154c"
+    },
+    {
+      "name": "overflow",
+      "bytes": 11,
+      "sha256": "604fec38960d7c5bd3bd6c06ad8f4b42eac0bb30ea02d43518d0f9f11d5e131e"
+    },
+    {
+      "name": "oversize",
+      "bytes": 129,
+      "sha256": "beab3966389f2ad495c7db4f9dc029f16aae31c76af3ebefd9754faf0e6ddcb4"
+    },
+    {
+      "name": "unit",
+      "bytes": 5,
+      "sha256": "2e002e4a79ed8d45c56234aed260e6974fa18641e3d2c5bbef9c6d5b7d61d23f"
+    },
+    {
+      "name": "zero",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    }
+  ],
+  "cargo_lock_sha256": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9",
+  "fuzz_lock_sha256": "332274ef082506cb8c5ec664f940845868265313981720d81d0d413d0cd4572b",
+  "limitations": [
+    "not a physical temperature probe",
+    "not a directory/permission/hotplug fuzz campaign",
+    "cov/ft are not coverage percentages",
+    "RSS includes libFuzzer/ASan",
+    "60 second smoke only",
+    "mutated corpus not archived"
+  ],
+  "all_eight_targets_completed": true,
+  "fuzz_job_log_sha256": "4ceb5021a12a28bb350361a358679cca7af4b97b4dbec477a18c08664204197c",
+  "actual_test_counts": {
+    "linux": {
+      "passed_including_doctests": 74,
+      "log_sha256": "46866ff9fb0a0ac077589c8cceab25dd5c4843bc51a9b638599a15a584e70a3d"
+    },
+    "windows": {
+      "passed_including_doctests": 71,
+      "log_sha256": "d2c6d34d9c9fbfcf948432dfde73fd67c76c166f22ee7b1f5a3d0102e06a99f2"
+    },
+    "macos": {
+      "passed_including_doctests": 73,
+      "log_sha256": "cef60cfb3941d2b5214779c660a98895f08d437d98b6912648b0d3ce7111d4db"
+    },
+    "miri": {
+      "passed_including_doctests": 8,
+      "log_sha256": "e25e3f29ed77878a48a384fdbad2a22d96cac2caba38a341d5d6bf04a0c86ea3"
+    },
+    "asan": {
+      "passed_including_doctests": 10,
+      "log_sha256": "05ab83c818538a261b2c54af3276a329177e4fc4e7972581560c40fe91cf41cb"
+    }
+  }
+}

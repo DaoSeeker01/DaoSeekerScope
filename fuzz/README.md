@@ -1,0 +1,44 @@
+# Fuzz 目标
+
+原有三个目标：snapshot_json（1MiB JSON上限、不变量与往返）、dmi_text（损坏/过长/DMI占位字符串）、cli_args（换行拆分参数、数量/大小/敏感授权，不执行采集）。corpus提供合法快照、DMI合法/占位/非法UTF-8、CLI合法/授权/未授权种子。
+
+固定nightly-2026-10-08、cargo-fuzz0.13.2。官方cargo-fuzz仅支持Unix类平台的x86_64/AArch64，Windows原生不受支持；六个harness在Windows编译通过，2026-10-10已在Linux x64 CI各完成60秒libFuzzer smoke，均正常结束，详见[最新验收](../docs/procfs-fuzz-validation.md)。
+
+```sh
+rustup toolchain install nightly-2026-10-08 --profile minimal
+cargo +nightly-2026-10-08 install cargo-fuzz --version 0.13.2 --locked
+cargo +nightly-2026-10-08 check --locked --manifest-path fuzz/Cargo.toml
+cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512
+cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512
+cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512
+```
+
+从仓库根运行；CI已远端执行通过。60秒smoke不能代表长期campaign或完整覆盖率。RSS上限是libFuzzer终止门限，不是硬内存沙箱；原三个目标2026-10-09首次运行最终RSS分别302/307/350Mb，最新六目标计数见验收表，包含libFuzzer运行开销，不作为采集库内存基准。变异后的corpus未单独上传，运行次数与覆盖计数不能保证逐次复现。
+
+Windows确定性回归已随workspace tests运行：512个JSON变异、512个DMI样本、4096个CLI组合、256种重复字节参数。它们没有覆盖反馈，不属于libFuzzer campaign。8项FFI内存契约经Miri交叉解释通过，详见 [验收记录](../docs/input-ffi-validation.md)。
+
+hwmon第8个目标hwmon_temperature复用生产有符号整数毫度解析器；12个种子（新增NVMe毫度值），128字节上限、物理下界与库接受上界、无NaN/钳制或缺失时间伪装。2026-10-11扩展同一harness，分别检查Composite/独立通道零Kelvin缺失策略与其他数值等价，执行状态见[NVMe验收](../docs/nvme-temperature-validation.md)。驱动枚举和真实权限由另外的fixture/容器验证；属性fuzz不证明硬件可读。
+
+```sh
+cargo +nightly-2026-10-08 fuzz run hwmon_temperature -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512
+```
+
+本机Windows八个harness fmt/check/clippy通过；最终源码0fbc84a的CI38065295625全部八目标通过，新hwmon目标实际61秒/43,961,544次、cov113/ft313/RSS266Mb，无崩溃完成；2026-10-11归档于[hwmon验收](../docs/hwmon-validation.md)。计数/RSS不是覆盖百分比或库内存基准；上文七目标数据属于前轮电池源码。种子/日志与实际测试计数哈希见[汇总](../docs/evidence/hwmon-fuzz-38065295625.json)。
+
+依据：[cargo-fuzz官方平台限制](https://github.com/rust-fuzz/cargo-fuzz#installation)。
+
+新增三个procfs目标：cpu_stat（最多16帧的解析/采样状态与恢复）、meminfo（单位/总量/字段隔离）、uptime（小数截断与整数边界），25个合成种子。默认关闭的Linux fuzzing feature只提供隐藏测试入口，复用生产解析器，不读取真实设备或声明新平台支持；见[ADR](../docs/adr/0006-procfs-fuzz-hooks.md)和[独立验收](../docs/procfs-fuzz-validation.md)。本机Windows的check/clippy不是libFuzzer执行，实际Linux CI结果在验收中单列。
+
+```sh
+cargo +nightly-2026-10-08 fuzz run cpu_stat -- -seed=20261010 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512
+cargo +nightly-2026-10-08 fuzz run meminfo -- -seed=20261010 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512
+cargo +nightly-2026-10-08 fuzz run uptime -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512
+```
+
+新增power_supply目标与10个合成种子，复用生产属性解析器的128字节限额和0..100/0..1严格整数规则；不执行sysfs枚举或权限测试。第7个harness本机fmt/check/clippy通过，2026-10-10修复源码15ef5c1的CI38047435339全部七目标各60秒正常结束；power_supply执行19,744,677次，cov140/ft395、最终RSS284Mb，不是覆盖百分比或采集库内存基准。原六目标上文记录属于先前运行，最新七目标计数见[电池验收](../docs/battery-validation.md)。
+
+```sh
+cargo +nightly-2026-10-08 fuzz run power_supply -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512
+```
+
+2026-10-11 NVMe扩展源码9931cf9的CI38067341915全部八目标通过；同一hwmon目标增加生产零Kelvin策略，实际61秒/35,010,619次、cov154/ft343/RSS306Mb，无崩溃完成。12种子/日志/测试计数哈希见[NVMe汇总](../docs/evidence/nvme-fuzz-38067341915.json)与[验收](../docs/nvme-temperature-validation.md)；前一hwmon轮次是历史结果，不等于新harness执行。

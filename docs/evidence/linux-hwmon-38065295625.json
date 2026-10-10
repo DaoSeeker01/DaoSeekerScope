@@ -1,0 +1,1225 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-10T15:52:04.102970+00:00",
+  "overall": "passed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "synthetic_hwmon": true,
+  "samples": {
+    "empty": {
+      "status": "passed",
+      "sensors": {
+        "value": [],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524452,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "genuine_zero": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": 0.0,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1791647524538,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524538,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "positive": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": 42.5,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1791647524557,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524557,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "negative_coretemp": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524574,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "nan": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524594,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "fraction": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524611,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "utf8": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524629,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "oversize": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524647,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "input_denied": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "permission_denied"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524666,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "input_fifo": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524684,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "input_recovery": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": 42.5,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1791647524701,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524701,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "fault": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "temporarily_unavailable"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524719,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "fault_invalid": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524740,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "fault_denied": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "permission_denied"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524758,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "fault_recovery": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": 42.5,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1791647524775,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524775,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "disabled": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "temporarily_unavailable"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524794,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "enable_invalid": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524812,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "enable_denied": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "permission_denied"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524829,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "enable_recovery": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": 42.5,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1791647524847,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524847,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "name_missing": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "not_present"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524876,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "name_denied": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "permission_denied"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524893,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "name_invalid": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524911,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "unknown_driver": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unsupported",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "not_supported"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524928,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "k10_routes": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unsupported",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "not_supported"
+            }
+          },
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": -1.25,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1791647524946,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524946,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "name_recovery_bad_channel_isolated": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": 42.5,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1791647524964,
+              "reason": null
+            }
+          },
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524964,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "chip_denied": {
+      "status": "passed",
+      "sensors": {
+        "value": null,
+        "availability": "restricted",
+        "source": "hwmon",
+        "observed_at": null,
+        "reason": "permission_denied"
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "restricted",
+        "source": "hwmon",
+        "reason": "permission_denied"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "chip_recovery": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": 42.5,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1791647524999,
+              "reason": null
+            }
+          },
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647524999,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "root_denied": {
+      "status": "passed",
+      "sensors": {
+        "value": null,
+        "availability": "restricted",
+        "source": "hwmon",
+        "observed_at": null,
+        "reason": "permission_denied"
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "restricted",
+        "source": "hwmon",
+        "reason": "permission_denied"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "root_recovery": {
+      "status": "passed",
+      "sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": 42.5,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1791647525035,
+              "reason": null
+            }
+          },
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647525035,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "root_missing": {
+      "status": "passed",
+      "sensors": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "hwmon",
+        "observed_at": null,
+        "reason": "not_present"
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": "not_present"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "root_restore_empty": {
+      "status": "passed",
+      "sensors": {
+        "value": [],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647525070,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "sensor_count_limit": {
+      "status": "passed",
+      "sensors": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "hwmon",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "chip_scan_limit": {
+      "status": "passed",
+      "sensors": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "hwmon",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "class_scan_limit": {
+      "status": "passed",
+      "sensors": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "hwmon",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "global_scan_limit": {
+      "status": "passed",
+      "sensors": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "hwmon",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    },
+    "final_empty_recovery": {
+      "status": "passed",
+      "sensors": {
+        "value": [],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647525356,
+        "reason": null
+      },
+      "capability": {
+        "field": "sensors",
+        "level": "partial",
+        "source": "hwmon",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "static_cache_unchanged": true
+    }
+  },
+  "git_revision": "0fbc84ae445c9c2f717ac29c12da0a2bc512c4bf",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "probe": "40fb4490e1462c1e7af1fd21501676b808771e88be773b9b77e5a4065410862e",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "docker_version": "28.0.4",
+  "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+  "configuration": {
+    "user": "65534:65534",
+    "ReadonlyRootfs": true,
+    "NetworkMode": "none",
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges=true"
+    ],
+    "Memory": 268435456,
+    "MemorySwap": 268435456,
+    "PidsLimit": 32,
+    "NanoCpus": 1000000000
+  },
+  "docker_exit_code": 0,
+  "process_exit_code": 0,
+  "process_started": true
+}

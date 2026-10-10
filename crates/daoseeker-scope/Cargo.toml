@@ -1,0 +1,37 @@
+[package]
+name = "daoseeker-scope"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "DaoSeekerScope desktop facade"
+[lints]
+workspace = true
+[features]
+default = ["serde"]
+serde = ["daoseeker-scope-core/serde", "dep:serde_json"]
+schema = ["serde", "daoseeker-scope-core/schema", "dep:schemars"]
+[dependencies]
+daoseeker-scope-core.workspace = true
+daoseeker-scope-sysinfo.workspace = true
+serde_json = { workspace = true, optional = true }
+schemars = { workspace = true, optional = true }
+[target.'cfg(target_os = "windows")'.dependencies]
+daoseeker-scope-windows.workspace = true
+[target.'cfg(target_os = "linux")'.dependencies]
+daoseeker-scope-linux.workspace = true
+[target.'cfg(target_os = "macos")'.dependencies]
+daoseeker-scope-macos.workspace = true
+[[example]]
+name = "schema"
+required-features = ["schema"]
+[[example]]
+name = "golden"
+required-features = ["serde"]
+[[example]]
+name = "dynamic_probe"
+required-features = ["serde"]
+[[bench]]
+name = "collect"
+harness = false

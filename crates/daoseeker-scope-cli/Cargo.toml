@@ -1,0 +1,15 @@
+[package]
+name = "daoseeker-scope-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "DaoSeekerScope cli"
+[lints]
+workspace = true
+[[bin]]
+name = "dscope"
+path = "src/main.rs"
+[dependencies]
+daoseeker-scope.workspace = true

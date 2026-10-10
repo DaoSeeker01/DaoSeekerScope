@@ -1,0 +1,610 @@
+{
+  "conclusion": "success",
+  "createdAt": "2026-10-09T23:50:42Z",
+  "headSha": "3ec5f6e949889b4df95df5bb171f09fc0eeeb9bb",
+  "jobs": [
+    {
+      "completedAt": "2026-10-09T23:51:41Z",
+      "conclusion": "success",
+      "databaseId": 114076022847,
+      "name": "ffi-asan",
+      "startedAt": "2026-10-09T23:50:45Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run rustup toolchain install nightly-2026-10-08 --profile minimal --component rust-src",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo +nightly-2026-10-08 test --locked -Zbuild-std --target x86_64-unknown-linux-gnu -p daoseeker-scope-ffi --lib -- --test-threads=1",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "completedAt": "2026-10-09T23:51:35Z",
+      "conclusion": "success",
+      "databaseId": 114076022966,
+      "name": "miri",
+      "startedAt": "2026-10-09T23:50:44Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run rustup toolchain install nightly-2026-10-08 --profile minimal --component miri --component rust-src",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo +nightly-2026-10-08 miri test --locked -p daoseeker-scope-ffi --target x86_64-unknown-linux-gnu memory_contracts -- --test-threads=1",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "completedAt": "2026-10-09T23:56:10Z",
+      "conclusion": "success",
+      "databaseId": 114076023035,
+      "name": "fuzz-smoke",
+      "startedAt": "2026-10-09T23:50:45Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run rustup toolchain install nightly-2026-10-08 --profile minimal",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo +nightly-2026-10-08 install cargo-fuzz --version 0.13.2 --locked",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo fmt --manifest-path fuzz/Cargo.toml --check",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo +nightly-2026-10-08 check --locked --manifest-path fuzz/Cargo.toml",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "completedAt": "2026-10-09T23:51:24Z",
+      "conclusion": "success",
+      "databaseId": 114076023052,
+      "name": "desktop (macos-latest)",
+      "startedAt": "2026-10-09T23:50:48Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Pinned toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo fmt --all --check",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo clippy --locked --workspace --all-targets --all-features -- -D warnings",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo test --locked --workspace --all-features -- --test-threads=1",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo check --locked -p daoseeker-scope-core --no-default-features",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo check --locked -p daoseeker-scope --no-default-features",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo doc --locked --workspace --all-features --no-deps",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo build --locked -p daoseeker-scope-ffi -p daoseeker-scope-cli",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Python dev schema validator",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Evidence script static checks",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Evidence report guards",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python scripts/check_schema.py",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "C FFI on Windows",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Build C example on Linux",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Build C example on macOS",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Native smoke evidence",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Preserve native evidence",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "completedAt": "2026-10-09T23:55:17Z",
+      "conclusion": "success",
+      "databaseId": 114076023076,
+      "name": "desktop (windows-latest)",
+      "startedAt": "2026-10-09T23:50:44Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Pinned toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo fmt --all --check",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo clippy --locked --workspace --all-targets --all-features -- -D warnings",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo test --locked --workspace --all-features -- --test-threads=1",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo check --locked -p daoseeker-scope-core --no-default-features",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo check --locked -p daoseeker-scope --no-default-features",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo doc --locked --workspace --all-features --no-deps",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo build --locked -p daoseeker-scope-ffi -p daoseeker-scope-cli",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Python dev schema validator",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Evidence script static checks",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Evidence report guards",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python scripts/check_schema.py",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "C FFI on Windows",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Build C example on Linux",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Build C example on macOS",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Native smoke evidence",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Preserve native evidence",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "completedAt": "2026-10-09T23:51:21Z",
+      "conclusion": "success",
+      "databaseId": 114076023077,
+      "name": "linux-container",
+      "startedAt": "2026-10-09T23:50:44Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run rustup toolchain install 1.96.0 --profile minimal",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo build --locked -p daoseeker-scope-cli",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python -m pip install jsonschema==4.25.1",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Kernel-enforced filesystem degradation",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo build --locked -p daoseeker-scope --example dynamic_probe",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "CPU sampling failure and recovery",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Preserve container evidence",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "completedAt": "2026-10-09T23:53:47Z",
+      "conclusion": "success",
+      "databaseId": 114076023079,
+      "name": "supply-chain",
+      "startedAt": "2026-10-09T23:50:44Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run rustup toolchain install 1.96.0 --profile minimal",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo install cargo-deny --version 0.20.2 --locked",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo deny check",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "completedAt": "2026-10-09T23:51:43Z",
+      "conclusion": "success",
+      "databaseId": 114076023545,
+      "name": "desktop (ubuntu-24.04)",
+      "startedAt": "2026-10-09T23:50:45Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Pinned toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo fmt --all --check",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo clippy --locked --workspace --all-targets --all-features -- -D warnings",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo test --locked --workspace --all-features -- --test-threads=1",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo check --locked -p daoseeker-scope-core --no-default-features",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo check --locked -p daoseeker-scope --no-default-features",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo doc --locked --workspace --all-features --no-deps",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run cargo build --locked -p daoseeker-scope-ffi -p daoseeker-scope-cli",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Python dev schema validator",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Evidence script static checks",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Evidence report guards",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python scripts/check_schema.py",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "C FFI on Windows",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Build C example on Linux",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Build C example on macOS",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Native smoke evidence",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Preserve native evidence",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "status": "completed",
+  "updatedAt": "2026-10-09T23:56:11Z",
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38006382007"
+}

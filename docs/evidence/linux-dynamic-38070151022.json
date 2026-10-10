@@ -1,0 +1,305 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-10T17:03:38.990855+00:00",
+  "overall": "passed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "synthetic_cpu_counters": true,
+  "samples": {
+    "initial": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": "temporarily_unavailable"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "ready": {
+      "status": "passed",
+      "cpu": {
+        "value": 50.0,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791651819789,
+        "reason": null
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "empty": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "recovery_baseline": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": "temporarily_unavailable"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "recovery_ready": {
+      "status": "passed",
+      "cpu": {
+        "value": 50.0,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791651820913,
+        "reason": null
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "permission_denied": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "restricted",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "permission_denied"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "restricted",
+        "source": "procfs",
+        "reason": "permission_denied"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "permission_recovery": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": "temporarily_unavailable"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "permission_ready": {
+      "status": "passed",
+      "cpu": {
+        "value": 50.0,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791651822037,
+        "reason": null
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "unchanged": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": "temporarily_unavailable"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "counter_reset": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "reset_ready": {
+      "status": "passed",
+      "cpu": {
+        "value": 50.0,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791651823160,
+        "reason": null
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "invalid_utf8": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "oversize": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "final_baseline": {
+      "status": "passed",
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": "temporarily_unavailable"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "genuine_zero": {
+      "status": "passed",
+      "cpu": {
+        "value": 0.0,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791651824657,
+        "reason": null
+      },
+      "capability": {
+        "field": "cpu_usage_percent",
+        "level": "supported",
+        "source": "procfs",
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    }
+  },
+  "git_revision": "4ec4360a2cae1ab56f7218a3142444dd64217ee1",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "probe": "6c9239cd248a98b23e299ce0eb6e1c8a7d4dff5e85f0cc297a7ef11ef796b1f2",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "docker_version": "28.0.4",
+  "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+  "configuration": {
+    "user": "65534:65534",
+    "ReadonlyRootfs": true,
+    "NetworkMode": "none",
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges=true"
+    ],
+    "Memory": 268435456,
+    "MemorySwap": 268435456,
+    "PidsLimit": 32,
+    "NanoCpus": 1000000000
+  },
+  "docker_exit_code": 0,
+  "process_exit_code": 0,
+  "process_started": true
+}

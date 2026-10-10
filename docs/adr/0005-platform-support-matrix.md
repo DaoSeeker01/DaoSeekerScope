@@ -1,0 +1,33 @@
+# 0005 平台能力矩阵
+
+以下为实现路线/权限预期，运行证据单列于 docs/validation.md。D=普通用户直接读取、P=可能权限/沙盒受限、A=增强需管理员（不选默认路径）、U=本切片未实现、N=平台无此通用语义。不是设备上所有字段可用的保证。
+
+2026-10-09实际验收：Windows x64（windows-2025-vs2026）、Linux x64（ubuntu-24.04）、macOS arm64（macos-26-arm64）原生CI均完成CPU/内存/OS最小读取、Rust门禁及C/Python调用，见[CI证据](../ci-validation.md)。Windows安装内存来自win32、macOS安装内存来自sysctl，Linux该字段仍Unsupported。这些托管runner结果不证明所有发行版、架构、硬件字段或受限容器可用；下表仍为字段能力路线。
+
+2026-10-09运行、2026-10-10归档的[Linux容器证据](../linux-container-validation.md)增加7个真实production CLI场景：非root内核权限拒绝、DMI缺失/损坏、serial授权与权限分离、三个proc输入为空。DMI内容为合成Fixture，不是实际硬件识别。缺失DMI字段为Unavailable/NotPresent、能力Supported且附原因；拒绝权限为Restricted/PermissionDenied；空proc输入为Unavailable/Unknown，sysinfo能力Partial。完整/proc覆盖被OCI拒绝、进程未运行，不能宣称完全缺失procfs可用。当前仅覆盖Ubuntu24.04/Docker28.0.4 x86_64配置；更多安全策略与动态刷新仍待验证。
+
+| 字段 | Windows | Linux | macOS | 本切片路线 |
+|---|---|---|---|---|
+| OS/静态CPU摘要 | D/P | D/P，procfs容器可缺 | D/P | sysinfo system；错误模型 Partial |
+| OS可用总量/可用内存/uptime | D/P，sysinfo Partial | D/P，procfs Supported | D/P，sysinfo Partial | Linux有界读取并区分失败；总量缓存、总量变化时动态暂不可用 |
+| 动态CPU占用率 | D/P，sysinfo Partial | D/P，procfs Supported | D/P，sysinfo Partial | Linux直接有界两样本采集；故障清基线，独立于静态CPU |
+| 安装物理内存 | D，SMBIOS可损坏 | U | D/P hw.memsize | Win32 / sysctl；与 OS 可用总量分开 |
+| 设备model/vendor、主板、固件 | U，WMI/SMBIOS候选 | D/P sysfs DMI | D/P hw.model（仅model） | Linux 固定 DMI 文件；macOS sysctl |
+| 设备serial | U | P，显式授权后 sysfs | U（IOKit候选） | 默认 Restricted/PrivacyRedacted |
+| 电池 | D/N GetSystemPowerStatus | D/P power_supply、Partial，CI枚举/权限fixture通过 | U，IOKit候选 | Linux capacity/Mains online受控枚举；原生runner无条目，USB拓扑/真实电池未验 |
+| 温度 | U，WMI质量不一 | D/P hwmon、Partial | U，公开接口不足 | coretemp、k10temp Tdie；NVMe1..9路由本机/三平台CI和47项合成内核观察通过，原生runner无条目，设备计算值不等于物理点；[验收](../nvme-temperature-validation.md) |
+| GPU/显存 | U，DXGI候选 | U，PCI/DRM候选 | U，Metal/IOKit候选 | 最小模型，Unsupported集合 |
+| 存储/网络 | U，sysinfo/SetupAPI候选 | U，sysinfo/udev/NVMe候选 | U，sysinfo/IOKit候选 | 后续受控枚举；MAC/serial不采集 |
+| 显示器 | U，SetupAPI/Win32候选 | U，DRM候选 | U，公开Apple API候选 | 后续 |
+| 原始SMBIOS/磁盘底层探测 | A/P | A/P | P/U | 不选默认路径 |
+| 移动/Web/no_std/MCU | U | U | U | 独立后续发布计划，无crate空壳 |
+
+增强研究依据：[Win32安装内存](https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getphysicallyinstalledsystemmemory)、[电源状态](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getsystempowerstatus)、[WMI Next timeout](https://learn.microsoft.com/en-us/windows/win32/api/wbemcli/nf-wbemcli-ienumwbemclassobject-next)、[DXGI适配器](https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgifactory-enumadapters)、[Linux sysfs ABI](https://docs.kernel.org/admin-guide/abi-testing.html)、[hwmon单位](https://docs.kernel.org/hwmon/sysfs-interface.html)、[Apple sysctl](https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man3/sysctlbyname.3.html)、[IOKit](https://developer.apple.com/documentation/iokit)。文档是选型依据，不能代替编译或设备实验。
+
+选择普通用户的小范围增强以避免WMI永久阻塞；不引入wmi/udev/Metal依赖。Linux无DMI、WSL、容器、安全策略按真实ErrorKind降级；不根据文件exists断言能力。macOS仅公开sysctl只读查询。后续引入扫描器必须加资源/权限/错误隔离测试。
+
+2026-10-10 [CPU刷新切片](../cpu-refresh-validation.md)将Linux CPU动态来源改为procfs。源码3ec5f6e的非root容器完成15个连续观测，涵盖损坏、权限拒绝、恢复后重新采样、无增长、计数回退及真实0%；原7个DMI/proc场景也重新通过。计数为合成Fixture，真实CPU读取由原生desktop测试独立验证；不推断Windows/macOS或其他动态字段已解决新鲜度问题。仅注册SysinfoBackend的Linux消费者需注册LinuxBackend或使用门面。
+
+2026-10-10 [内存/uptime切片](../memory-refresh-validation.md)实际CI运行38008554490对源码6d0a377全部8任务成功。Linux非root容器26个连续观测验证清空、损坏、内核权限拒绝/恢复、合法0及总量变化；数据为合成Fixture，真实最小读取由三平台desktop独立验证。当前Linux内存/uptime来源Procfs、Supported，空meminfo为InvalidData；此前历史sysinfo Partial描述保留为当轮结果。Windows/macOS不增加新鲜度声明，完全缺失procfs的运行时探针仍not_run。
+
+2026-10-10 [电池切片](../battery-validation.md)源码15ef5c1的CI38047435339全部8任务成功，Linux非root内核权限/热插拔/两类资源限额等30个生产观测通过；新属性fuzz执行19,744,677次正常结束。Linux实际原生枚举Available空集合，Windows runner仍NotApplicable/NotPresent，macOS仍Unsupported；不把空集合当作真实电池字段成功。原生Windows本机Win32电量100%/AC=true是独立机器读值。Linux能力Partial、SourceSysfs，128字节属性/256个供应设备上限、默认128电池上限；USB充电不推断AC，未验证真实Linux电池或完整电源拓扑。

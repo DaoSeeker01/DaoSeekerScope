@@ -1,0 +1,212 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-10T15:52:26.143971+00:00",
+  "execution_platform": {
+    "os": "Linux",
+    "architecture": "x86_64"
+  },
+  "python_version": "3.12.3",
+  "overall": "passed",
+  "checks": {
+    "cli": "passed",
+    "c_abi": "passed",
+    "python_ffi": "passed"
+  },
+  "observations": {
+    "cli": {
+      "os.name": {
+        "value": "Ubuntu",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546445,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "AMD EPYC 7763 64-Core Processor",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546445,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 2,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546445,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 8323969024,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791647546445,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "os.version": {
+        "value": "24.04",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546445,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "6.17.0-1022-azure",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546445,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "x86_64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546445,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 1,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546445,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "dynamic.batteries": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791647546445,
+        "reason": null
+      },
+      "dynamic.sensors": {
+        "value": [],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647546445,
+        "reason": null
+      }
+    },
+    "c_abi": {
+      "os.name": {
+        "value": "Ubuntu",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546464,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "AMD EPYC 7763 64-Core Processor",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546464,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 2,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546464,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 8323969024,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1791647546464,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "os.version": {
+        "value": "24.04",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546464,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "6.17.0-1022-azure",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546464,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "x86_64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546464,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 1,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791647546464,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "dynamic.batteries": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1791647546465,
+        "reason": null
+      },
+      "dynamic.sensors": {
+        "value": [],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1791647546465,
+        "reason": null
+      }
+    }
+  },
+  "artifact_sha256": {
+    "cli": "fb2603ef9738957e965806c52498b127d65f45c1fe29bed389c61ea0c6d33f89",
+    "c_example": "fe1d54e6c80754bb26bb7508ca427161981cdf0bad466b3470eb8deca3de0eaa",
+    "ffi": "a2105a2a83eb3975f1ba6e6ff7dde1caa55d32d5a19a6afd7966b4d27d4af0d1",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "available_rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "git_revision": "0fbc84ae445c9c2f717ac29c12da0a2bc512c4bf",
+  "git_dirty": false
+}

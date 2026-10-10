@@ -1,0 +1,14 @@
+[package]
+name = "daoseeker-scope-macos"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "DaoSeekerScope macos"
+[lints]
+workspace = true
+[dependencies]
+daoseeker-scope-core.workspace = true
+[target.'cfg(target_os = "macos")'.dependencies]
+libc.workspace = true

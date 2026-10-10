@@ -1,0 +1,2 @@
+* text=auto eol=lf
+fuzz/corpus/dmi_text/invalid-utf8 -text

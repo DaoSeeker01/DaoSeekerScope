@@ -1,0 +1,137 @@
+{
+  "report_version": 1,
+  "source_revision": "4ec4360a2cae1ab56f7218a3142444dd64217ee1",
+  "ci_run": 38070151022,
+  "overall": "passed",
+  "abi_version": 1,
+  "schema_version": 1,
+  "project_files_checked_at_source": 241,
+  "confirmed_findings_fixed": 20,
+  "python_guard_tests_per_native_platform": 34,
+  "python_static_checked_files": 17,
+  "test_counts": {
+    "linux": {
+      "passed_including_doctests": 86,
+      "job_log_sha256": "93864219b2d0d8f3eeb213ef6330af233fcfe5f0146e44f5a15bd69383ea0fd3"
+    },
+    "windows": {
+      "passed_including_doctests": 83,
+      "job_log_sha256": "ff3cc791cde93999b234706f904d2f44e0f9cef85879b8949ac39320d37ed916"
+    },
+    "macos": {
+      "passed_including_doctests": 85,
+      "job_log_sha256": "6297f4cf5d8a5c9351decec8445884378c18e28f9e97204443a387fbd7d9e4b3"
+    },
+    "miri": {
+      "passed_including_doctests": 8,
+      "job_log_sha256": "f5a0fd8a78071dc6fbc6dd7ff6ed59ddf6f553b283c9ed6a9f262c5969030c4f"
+    },
+    "asan": {
+      "passed_including_doctests": 10,
+      "job_log_sha256": "99ffd81a47c5dc7033551f127b916ad711a006a4dd89eef1ce26edfed0a46dee"
+    }
+  },
+  "fuzz_campaigns": [
+    {
+      "target": "snapshot_json",
+      "runs": 431715,
+      "cov": 4507,
+      "ft": 10117,
+      "final_rss_mb": 421,
+      "actual_seconds": 61
+    },
+    {
+      "target": "dmi_text",
+      "runs": 21159675,
+      "cov": 152,
+      "ft": 484,
+      "final_rss_mb": 333,
+      "actual_seconds": 61
+    },
+    {
+      "target": "cli_args",
+      "runs": 18368397,
+      "cov": 144,
+      "ft": 248,
+      "final_rss_mb": 362,
+      "actual_seconds": 61
+    },
+    {
+      "target": "cpu_stat",
+      "runs": 1282206,
+      "cov": 201,
+      "ft": 816,
+      "final_rss_mb": 412,
+      "actual_seconds": 61
+    },
+    {
+      "target": "meminfo",
+      "runs": 3893981,
+      "cov": 243,
+      "ft": 971,
+      "final_rss_mb": 298,
+      "actual_seconds": 61
+    },
+    {
+      "target": "uptime",
+      "runs": 19213814,
+      "cov": 148,
+      "ft": 412,
+      "final_rss_mb": 294,
+      "actual_seconds": 61
+    },
+    {
+      "target": "power_supply",
+      "runs": 18306240,
+      "cov": 140,
+      "ft": 395,
+      "final_rss_mb": 265,
+      "actual_seconds": 61
+    },
+    {
+      "target": "hwmon_temperature",
+      "runs": 18336999,
+      "cov": 153,
+      "ft": 342,
+      "final_rss_mb": 269,
+      "actual_seconds": 61
+    }
+  ],
+  "fuzz_log_sha256": "c339c65c7314d5c119a0cb8e1cdeda6de244375830d9f0e1fbef5348d9f2050f",
+  "compact_expansion_seed_sha256": "97efb0ad54eee0119b2fd9c0a4512c0f5b8caf26a7d65bb619d44d6b6be00ea6",
+  "cargo_lock_sha256": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9",
+  "fuzz_lock_sha256": "332274ef082506cb8c5ec664f940845868265313981720d81d0d413d0cd4572b",
+  "local_windows": {
+    "rust_tests_including_doctest": 83,
+    "c_example": "passed",
+    "python_example": {
+      "normal_cycles": 100,
+      "optimized_cycles": 100
+    },
+    "miri_tests": 8,
+    "bench_profile": "optimized",
+    "features": "facade defaults: serde",
+    "first_collect_us": 402089,
+    "refresh_n": 100,
+    "refresh_p50_us": 40,
+    "refresh_p95_us": 106,
+    "refresh_max_us": 477,
+    "cpu_usage_state": "Available",
+    "synthetic_sensors": 100,
+    "synthetic_networks": 1024,
+    "synthetic_collect_us": 505,
+    "synthetic_json_bytes": 366287,
+    "check_log_sha256": "b303fda478b56a0a163ac38cd42f4256fefc648c08c24770df302cbb6e0ea9ad",
+    "benchmark_log_sha256": "af6bc7a25dd591a71bf9159a0f10fd31974ada855020828677bfbeef3adcdf5b"
+  },
+  "limitations": [
+    "60-second fuzz smoke per target, not long campaigns",
+    "C sanitizer coverage is Rust FFI tests; C/Python examples are native smoke",
+    "Linux CI has no real battery or routed temperature devices",
+    "full /proc replacement is an OCI runtime rejection, not backend execution",
+    "package --list verifies included files, not full publication packaging",
+    "decode now includes a bounded serialized-size traversal",
+    "nightly Miri warns on fetch_update deprecation; stable MSRV remains 1.96",
+    "ABI v1 has no shutdown/drain entrypoint; keep the shared library loaded for process lifetime after collection"
+  ]
+}

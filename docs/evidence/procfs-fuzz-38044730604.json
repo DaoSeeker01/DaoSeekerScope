@@ -1,0 +1,227 @@
+{
+  "report_version": 1,
+  "overall": "passed",
+  "run_id": 38044730604,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38044730604",
+  "git_revision": "4eb7e971cb43e8996487feed98c7de039a147ade",
+  "created_at_utc": "2026-10-10T10:23:30Z",
+  "updated_at_utc": "2026-10-10T10:31:49Z",
+  "job_id": 114191852163,
+  "execution_platform": "Linux x86_64 hosted CI",
+  "toolchain": "nightly-2026-10-08",
+  "cargo_fuzz_version": "0.13.2",
+  "synthetic_inputs": true,
+  "hardware_collection": false,
+  "cpu_io_failures": "synthetic flags, not OS permission evidence",
+  "locks_sha256": {
+    "Cargo.lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9",
+    "fuzz/Cargo.lock": "332274ef082506cb8c5ec664f940845868265313981720d81d0d413d0cd4572b"
+  },
+  "seeds": {
+    "cpu_stat": [
+      {
+        "name": "baseline-ready",
+        "bytes": 35,
+        "sha256": "449f6f06a1fb4f8d59908aab421e4e9353a0dafbbe11f980ceb87fe9b6c1a394"
+      },
+      {
+        "name": "counter-reset",
+        "bytes": 55,
+        "sha256": "97116d3a494258e59f6ba6b8fc57f4c710b9d55552ded0efe576de5287475887"
+      },
+      {
+        "name": "fast-poll",
+        "bytes": 71,
+        "sha256": "af3ba94e074cdade46038d1e3ba849a707a525eee12619de8f52b7d247aab6da"
+      },
+      {
+        "name": "guest-iowait",
+        "bytes": 59,
+        "sha256": "ed91e6abf6d21101b7bf76cc5db279305b65772f0d46e52f16b0862d0aa5fc44"
+      },
+      {
+        "name": "invalid-utf8",
+        "bytes": 13,
+        "sha256": "2ae46ffc98cddabe29e2004c298df3ee6223326a8536a17f58a40dd0c66fde49"
+      },
+      {
+        "name": "io-recovery",
+        "bytes": 77,
+        "sha256": "186830d27ee31ffdcc4a8a803c6b720a0a7e2fca6047d4636d539913cf3d3e5a"
+      },
+      {
+        "name": "overflow",
+        "bytes": 32,
+        "sha256": "520e33f28bd29663a5557dd25b4710c177e21e5413efbb7d0c7414655d8030d3"
+      },
+      {
+        "name": "oversize",
+        "bytes": 4098,
+        "sha256": "39da5814855c205bb122cf0e6162450f57993dcd831391fa4a52a1b502afa4bc"
+      }
+    ],
+    "meminfo": [
+      {
+        "name": "duplicate",
+        "bytes": 58,
+        "sha256": "607dc52b72ebffe90c9694543f224e0966a0962fd4fc41a974a45ac754e24b99"
+      },
+      {
+        "name": "invalid-utf8",
+        "bytes": 15,
+        "sha256": "2d63990f6357ec738cfbde14d49ee9986a561a232a7c9ea13d2c24f5862a73a4"
+      },
+      {
+        "name": "missing-key",
+        "bytes": 34,
+        "sha256": "5e256eca1408726fec492d857d2a48a5313f1a7ca6f3c69526056e155582c7c3"
+      },
+      {
+        "name": "overflow",
+        "bytes": 53,
+        "sha256": "fc7e9eec387fab41d760a462fdc503a27078f7ec3b0d5e11e66d6c845513d0f0"
+      },
+      {
+        "name": "oversize",
+        "bytes": 4097,
+        "sha256": "3e97197f4b8d46a893067c94ab15e195e3d97fb5f24eede5ef047b571240d92b"
+      },
+      {
+        "name": "valid",
+        "bytes": 39,
+        "sha256": "e5bcf466233d267fe797a6a8fb43632417e61e1fbf21e74599b09e9c65ec76ac"
+      },
+      {
+        "name": "wrong-unit",
+        "bytes": 39,
+        "sha256": "bb8bd09a46f47f2be8859fb3133e4924ef7280f8c87bf1b81867e69f381af43a"
+      },
+      {
+        "name": "zero",
+        "bytes": 37,
+        "sha256": "2da6b66cb7f6e1b1f6740feeb9daab50ea58c5b834ca2ad0415221435f61bf2c"
+      }
+    ],
+    "uptime": [
+      {
+        "name": "invalid-utf8",
+        "bytes": 7,
+        "sha256": "d5815a47d617c8d69b42b587c18d1f6064fb21f2cfa467320c01f1e695af39b5"
+      },
+      {
+        "name": "max",
+        "bytes": 29,
+        "sha256": "f77bdf6be630adaf388082d7c9f39e50a153a5ea865cd733bbae3f2c93187285"
+      },
+      {
+        "name": "missing-idle",
+        "bytes": 7,
+        "sha256": "b5311e0e7de28f59cfbe7e84b950bcf27e3b37ed21915cb43092e3f914261306"
+      },
+      {
+        "name": "nan",
+        "bytes": 9,
+        "sha256": "d8ff3d9c1bf5eaeb5656d30d95743326ce9087995b0ae6a1da1c6e1cbd26d361"
+      },
+      {
+        "name": "negative",
+        "bytes": 11,
+        "sha256": "4c72b9fa6347029db756f154d626eaf839b33439e9f102d06793bd434618178f"
+      },
+      {
+        "name": "overflow",
+        "bytes": 29,
+        "sha256": "c644380af74fad3a42f58bde037a422c9c68aa1433f39062ddd02bbc7901b154"
+      },
+      {
+        "name": "oversize",
+        "bytes": 257,
+        "sha256": "409339361ec2c199ca6a3b2c1134e268ad96880bf73b3a3ef4184ba18805a206"
+      },
+      {
+        "name": "valid",
+        "bytes": 14,
+        "sha256": "0de9d9916ab2bd907bed4e5063d5c13fcf7e34007c9ee3cf18e8735658484bd8"
+      },
+      {
+        "name": "zero",
+        "bytes": 10,
+        "sha256": "245da3b1c980ec4b1a568274a71268270d6e1493ffde2a8de8104c57181e5953"
+      }
+    ]
+  },
+  "targets": {
+    "cpu_stat": {
+      "status": "passed",
+      "step_number": 10,
+      "step_name": "Fuzz CPU state and bounded stat parsing",
+      "command": "cargo +nightly-2026-10-08 fuzz run cpu_stat -- -seed=20261010 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512",
+      "seed": 20261010,
+      "max_total_time_seconds": 60,
+      "max_len_bytes": 8192,
+      "timeout_seconds": 2,
+      "rss_limit_mb": 512,
+      "runs": 1263006,
+      "elapsed_seconds": 61,
+      "cov": 201,
+      "ft": 803,
+      "final_corpus": "328/78Kb",
+      "final_input_limit_bytes": 7134,
+      "executions_per_second": 20705,
+      "final_rss_mb": 410,
+      "log_sha256": "ba9aa41e51fb9c673280ee320d213d3ac3bb52eb087d8bcf76a4a890b4b2d3df",
+      "log_bytes": 493087
+    },
+    "meminfo": {
+      "status": "passed",
+      "step_number": 11,
+      "step_name": "Fuzz meminfo parsing and field isolation",
+      "command": "cargo +nightly-2026-10-08 fuzz run meminfo -- -seed=20261010 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512",
+      "seed": 20261010,
+      "max_total_time_seconds": 60,
+      "max_len_bytes": 8192,
+      "timeout_seconds": 2,
+      "rss_limit_mb": 512,
+      "runs": 4324530,
+      "elapsed_seconds": 61,
+      "cov": 247,
+      "ft": 978,
+      "final_corpus": "393/119Kb",
+      "final_input_limit_bytes": 8192,
+      "executions_per_second": 70893,
+      "final_rss_mb": 296,
+      "log_sha256": "aa2d7e145e0624d2e016aa4eb517f47b50648fcefcb2a67aa59683d07451dce9",
+      "log_bytes": 662248
+    },
+    "uptime": {
+      "status": "passed",
+      "step_number": 12,
+      "step_name": "Fuzz uptime parsing and numeric boundaries",
+      "command": "cargo +nightly-2026-10-08 fuzz run uptime -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512",
+      "seed": 20261010,
+      "max_total_time_seconds": 60,
+      "max_len_bytes": 512,
+      "timeout_seconds": 2,
+      "rss_limit_mb": 512,
+      "runs": 19206072,
+      "elapsed_seconds": 61,
+      "cov": 148,
+      "ft": 413,
+      "final_corpus": "170/5476b",
+      "final_input_limit_bytes": 512,
+      "executions_per_second": 314853,
+      "final_rss_mb": 293,
+      "log_sha256": "6f82cd5acb4838877924bbc26eee972f486eec33c1185a859886de264329c0b3",
+      "log_bytes": 153377
+    }
+  },
+  "artifact_name": "procfs-fuzz-evidence",
+  "artifact_retention_days": 14,
+  "crash_reproducer_files_in_artifact": 0,
+  "limitations": [
+    "60-second smoke only; no coverage percentage or proof of absence of bugs",
+    "RSS includes libFuzzer/ASan; termination threshold is not a hard memory sandbox",
+    "No OS hard cancellation, concurrency, MemTotal cache or hardware validation in these parser harnesses",
+    "Mutated corpus was not archived; replay a specific reproducer to reproduce a failure"
+  ]
+}

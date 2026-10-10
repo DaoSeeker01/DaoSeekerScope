@@ -1,0 +1,8 @@
+[package]
+name = "scope-research-probe"
+version = "0.0.0"
+edition = "2024"
+publish = false
+[workspace]
+[dependencies]
+sysinfo = { version = "=0.39.6", default-features = false, features = ["system", "apple-app-store"] }

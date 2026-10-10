@@ -1,0 +1,1326 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-10T00:20:03.715549+00:00",
+  "execution_platform": {
+    "os": "Linux",
+    "architecture": "x86_64"
+  },
+  "overall": "passed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "scenarios": {
+    "readable_dmi": {
+      "status": "passed",
+      "configuration": {
+        "user": "65534:65534",
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges=true"
+        ],
+        "Memory": 268435456,
+        "MemorySwap": 268435456,
+        "PidsLimit": 32,
+        "NanoCpus": 1000000000
+      },
+      "exit_code": 0,
+      "docker_start_exit_code": 0,
+      "process_started": true,
+      "observations": {
+        "system.device.model": {
+          "value": "Fixture-product_name",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591605876,
+          "reason": null
+        },
+        "system.device.vendor": {
+          "value": "Fixture-sys_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591605876,
+          "reason": null
+        },
+        "system.motherboard.vendor": {
+          "value": "Fixture-board_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591605876,
+          "reason": null
+        },
+        "system.motherboard.model": {
+          "value": "Fixture-board_name",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591605876,
+          "reason": null
+        },
+        "system.firmware.vendor": {
+          "value": "Fixture-bios_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591605876,
+          "reason": null
+        },
+        "system.firmware.version": {
+          "value": "Fixture-bios_version",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591605876,
+          "reason": null
+        },
+        "system.os.name": {
+          "value": "Ubuntu",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591605871,
+          "reason": null
+        },
+        "system.cpu.brand": {
+          "value": "AMD EPYC 7763 64-Core Processor",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591605871,
+          "reason": null
+        },
+        "system.cpu.logical_count": {
+          "value": 2,
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591605871,
+          "reason": null
+        },
+        "system.memory.total_usable_bytes": {
+          "value": 8323969024,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591605876,
+          "reason": null
+        },
+        "memory_available_bytes": {
+          "value": 7334273024,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591605876,
+          "reason": null
+        },
+        "system.device.serial_number": {
+          "availability": "restricted",
+          "source": "custom",
+          "observed_at": null,
+          "reason": "privacy_redacted",
+          "value_recorded": false
+        }
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.brand",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.logical_count",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.device.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.device.serial_number",
+          "level": "restricted",
+          "source": "custom",
+          "reason": "privacy_redacted"
+        },
+        {
+          "field": "system.device.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.firmware.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.firmware.version",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.memory.total_usable_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.motherboard.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.motherboard.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.os.name",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "synthetic_dmi": true
+    },
+    "missing_dmi": {
+      "status": "passed",
+      "configuration": {
+        "user": "65534:65534",
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges=true"
+        ],
+        "Memory": 268435456,
+        "MemorySwap": 268435456,
+        "PidsLimit": 32,
+        "NanoCpus": 1000000000
+      },
+      "exit_code": 0,
+      "docker_start_exit_code": 0,
+      "process_started": true,
+      "observations": {
+        "system.device.model": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "not_present"
+        },
+        "system.device.vendor": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "not_present"
+        },
+        "system.motherboard.vendor": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "not_present"
+        },
+        "system.motherboard.model": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "not_present"
+        },
+        "system.firmware.vendor": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "not_present"
+        },
+        "system.firmware.version": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "not_present"
+        },
+        "system.os.name": {
+          "value": "Ubuntu",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606167,
+          "reason": null
+        },
+        "system.cpu.brand": {
+          "value": "AMD EPYC 7763 64-Core Processor",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606167,
+          "reason": null
+        },
+        "system.cpu.logical_count": {
+          "value": 2,
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606167,
+          "reason": null
+        },
+        "system.memory.total_usable_bytes": {
+          "value": 8323969024,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591606167,
+          "reason": null
+        },
+        "memory_available_bytes": {
+          "value": 7327723520,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591606168,
+          "reason": null
+        },
+        "system.device.serial_number": {
+          "availability": "restricted",
+          "source": "custom",
+          "observed_at": null,
+          "reason": "privacy_redacted",
+          "value_recorded": false
+        }
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.brand",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.logical_count",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.device.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": "not_present"
+        },
+        {
+          "field": "system.device.serial_number",
+          "level": "restricted",
+          "source": "custom",
+          "reason": "privacy_redacted"
+        },
+        {
+          "field": "system.device.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": "not_present"
+        },
+        {
+          "field": "system.firmware.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": "not_present"
+        },
+        {
+          "field": "system.firmware.version",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": "not_present"
+        },
+        {
+          "field": "system.memory.total_usable_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.motherboard.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": "not_present"
+        },
+        {
+          "field": "system.motherboard.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": "not_present"
+        },
+        {
+          "field": "system.os.name",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "synthetic_dmi": true
+    },
+    "denied_dmi": {
+      "status": "passed",
+      "configuration": {
+        "user": "65534:65534",
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges=true"
+        ],
+        "Memory": 268435456,
+        "MemorySwap": 268435456,
+        "PidsLimit": 32,
+        "NanoCpus": 1000000000
+      },
+      "exit_code": 0,
+      "docker_start_exit_code": 0,
+      "process_started": true,
+      "observations": {
+        "system.device.model": {
+          "value": null,
+          "availability": "restricted",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "permission_denied"
+        },
+        "system.device.vendor": {
+          "value": null,
+          "availability": "restricted",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "permission_denied"
+        },
+        "system.motherboard.vendor": {
+          "value": null,
+          "availability": "restricted",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "permission_denied"
+        },
+        "system.motherboard.model": {
+          "value": null,
+          "availability": "restricted",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "permission_denied"
+        },
+        "system.firmware.vendor": {
+          "value": null,
+          "availability": "restricted",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "permission_denied"
+        },
+        "system.firmware.version": {
+          "value": null,
+          "availability": "restricted",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "permission_denied"
+        },
+        "system.os.name": {
+          "value": "Ubuntu",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606382,
+          "reason": null
+        },
+        "system.cpu.brand": {
+          "value": "AMD EPYC 7763 64-Core Processor",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606382,
+          "reason": null
+        },
+        "system.cpu.logical_count": {
+          "value": 2,
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606382,
+          "reason": null
+        },
+        "system.memory.total_usable_bytes": {
+          "value": 8323969024,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591606382,
+          "reason": null
+        },
+        "memory_available_bytes": {
+          "value": 7326949376,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591606383,
+          "reason": null
+        },
+        "system.device.serial_number": {
+          "availability": "restricted",
+          "source": "custom",
+          "observed_at": null,
+          "reason": "privacy_redacted",
+          "value_recorded": false
+        }
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.brand",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.logical_count",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.device.model",
+          "level": "restricted",
+          "source": "sysfs",
+          "reason": "permission_denied"
+        },
+        {
+          "field": "system.device.serial_number",
+          "level": "restricted",
+          "source": "custom",
+          "reason": "privacy_redacted"
+        },
+        {
+          "field": "system.device.vendor",
+          "level": "restricted",
+          "source": "sysfs",
+          "reason": "permission_denied"
+        },
+        {
+          "field": "system.firmware.vendor",
+          "level": "restricted",
+          "source": "sysfs",
+          "reason": "permission_denied"
+        },
+        {
+          "field": "system.firmware.version",
+          "level": "restricted",
+          "source": "sysfs",
+          "reason": "permission_denied"
+        },
+        {
+          "field": "system.memory.total_usable_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.motherboard.model",
+          "level": "restricted",
+          "source": "sysfs",
+          "reason": "permission_denied"
+        },
+        {
+          "field": "system.motherboard.vendor",
+          "level": "restricted",
+          "source": "sysfs",
+          "reason": "permission_denied"
+        },
+        {
+          "field": "system.os.name",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "synthetic_dmi": true
+    },
+    "mixed_dmi": {
+      "status": "passed",
+      "configuration": {
+        "user": "65534:65534",
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges=true"
+        ],
+        "Memory": 268435456,
+        "MemorySwap": 268435456,
+        "PidsLimit": 32,
+        "NanoCpus": 1000000000
+      },
+      "exit_code": 0,
+      "docker_start_exit_code": 0,
+      "process_started": true,
+      "observations": {
+        "system.device.model": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "invalid_data"
+        },
+        "system.device.vendor": {
+          "value": null,
+          "availability": "restricted",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "permission_denied"
+        },
+        "system.motherboard.vendor": {
+          "value": "Fixture-board_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591606599,
+          "reason": null
+        },
+        "system.motherboard.model": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "not_present"
+        },
+        "system.firmware.vendor": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "invalid_data"
+        },
+        "system.firmware.version": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "invalid_data"
+        },
+        "system.os.name": {
+          "value": "Ubuntu",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606599,
+          "reason": null
+        },
+        "system.cpu.brand": {
+          "value": "AMD EPYC 7763 64-Core Processor",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606599,
+          "reason": null
+        },
+        "system.cpu.logical_count": {
+          "value": 2,
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606599,
+          "reason": null
+        },
+        "system.memory.total_usable_bytes": {
+          "value": 8323969024,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591606599,
+          "reason": null
+        },
+        "memory_available_bytes": {
+          "value": 7331549184,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591606599,
+          "reason": null
+        },
+        "system.device.serial_number": {
+          "availability": "restricted",
+          "source": "custom",
+          "observed_at": null,
+          "reason": "privacy_redacted",
+          "value_recorded": false
+        }
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.brand",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.logical_count",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.device.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "system.device.serial_number",
+          "level": "restricted",
+          "source": "custom",
+          "reason": "privacy_redacted"
+        },
+        {
+          "field": "system.device.vendor",
+          "level": "restricted",
+          "source": "sysfs",
+          "reason": "permission_denied"
+        },
+        {
+          "field": "system.firmware.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "system.firmware.version",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "system.memory.total_usable_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.motherboard.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": "not_present"
+        },
+        {
+          "field": "system.motherboard.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.os.name",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "synthetic_dmi": true
+    },
+    "authorized_serial": {
+      "status": "passed",
+      "configuration": {
+        "user": "65534:65534",
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges=true"
+        ],
+        "Memory": 268435456,
+        "MemorySwap": 268435456,
+        "PidsLimit": 32,
+        "NanoCpus": 1000000000
+      },
+      "exit_code": 0,
+      "docker_start_exit_code": 0,
+      "process_started": true,
+      "observations": {
+        "system.device.model": {
+          "value": "Fixture-product_name",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "system.device.vendor": {
+          "value": "Fixture-sys_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "system.motherboard.vendor": {
+          "value": "Fixture-board_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "system.motherboard.model": {
+          "value": "Fixture-board_name",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "system.firmware.vendor": {
+          "value": "Fixture-bios_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "system.firmware.version": {
+          "value": "Fixture-bios_version",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "system.os.name": {
+          "value": "Ubuntu",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "system.cpu.brand": {
+          "value": "AMD EPYC 7763 64-Core Processor",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "system.cpu.logical_count": {
+          "value": 2,
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "system.memory.total_usable_bytes": {
+          "value": 8323969024,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "memory_available_bytes": {
+          "value": 7329333248,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591606821,
+          "reason": null
+        },
+        "system.device.serial_number": {
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591606821,
+          "reason": null,
+          "value_recorded": false
+        }
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.brand",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.logical_count",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.device.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.device.serial_number",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.device.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.firmware.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.firmware.version",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.memory.total_usable_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.motherboard.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.motherboard.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.os.name",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "synthetic_dmi": true
+    },
+    "denied_serial": {
+      "status": "passed",
+      "configuration": {
+        "user": "65534:65534",
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges=true"
+        ],
+        "Memory": 268435456,
+        "MemorySwap": 268435456,
+        "PidsLimit": 32,
+        "NanoCpus": 1000000000
+      },
+      "exit_code": 0,
+      "docker_start_exit_code": 0,
+      "process_started": true,
+      "observations": {
+        "system.device.model": {
+          "value": "Fixture-product_name",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "system.device.vendor": {
+          "value": "Fixture-sys_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "system.motherboard.vendor": {
+          "value": "Fixture-board_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "system.motherboard.model": {
+          "value": "Fixture-board_name",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "system.firmware.vendor": {
+          "value": "Fixture-bios_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "system.firmware.version": {
+          "value": "Fixture-bios_version",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "system.os.name": {
+          "value": "Ubuntu",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "system.cpu.brand": {
+          "value": "AMD EPYC 7763 64-Core Processor",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "system.cpu.logical_count": {
+          "value": 2,
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "system.memory.total_usable_bytes": {
+          "value": 8323969024,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "memory_available_bytes": {
+          "value": 7325306880,
+          "availability": "available",
+          "source": "procfs",
+          "observed_at": 1791591607032,
+          "reason": null
+        },
+        "system.device.serial_number": {
+          "availability": "restricted",
+          "source": "sysfs",
+          "observed_at": null,
+          "reason": "permission_denied",
+          "value_recorded": false
+        }
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.brand",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.cpu.logical_count",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        },
+        {
+          "field": "system.device.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.device.serial_number",
+          "level": "restricted",
+          "source": "sysfs",
+          "reason": "permission_denied"
+        },
+        {
+          "field": "system.device.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.firmware.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.firmware.version",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.memory.total_usable_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": null
+        },
+        {
+          "field": "system.motherboard.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.motherboard.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.os.name",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "synthetic_dmi": true
+    },
+    "empty_proc_inputs": {
+      "status": "passed",
+      "configuration": {
+        "user": "65534:65534",
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges=true"
+        ],
+        "Memory": 268435456,
+        "MemorySwap": 268435456,
+        "PidsLimit": 32,
+        "NanoCpus": 1000000000
+      },
+      "exit_code": 0,
+      "docker_start_exit_code": 0,
+      "process_started": true,
+      "observations": {
+        "system.device.model": {
+          "value": "Fixture-product_name",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607252,
+          "reason": null
+        },
+        "system.device.vendor": {
+          "value": "Fixture-sys_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607252,
+          "reason": null
+        },
+        "system.motherboard.vendor": {
+          "value": "Fixture-board_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607252,
+          "reason": null
+        },
+        "system.motherboard.model": {
+          "value": "Fixture-board_name",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607252,
+          "reason": null
+        },
+        "system.firmware.vendor": {
+          "value": "Fixture-bios_vendor",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607252,
+          "reason": null
+        },
+        "system.firmware.version": {
+          "value": "Fixture-bios_version",
+          "availability": "available",
+          "source": "sysfs",
+          "observed_at": 1791591607252,
+          "reason": null
+        },
+        "system.os.name": {
+          "value": "Ubuntu",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1791591607252,
+          "reason": null
+        },
+        "system.cpu.brand": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysinfo",
+          "observed_at": null,
+          "reason": "unknown"
+        },
+        "system.cpu.logical_count": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "sysinfo",
+          "observed_at": null,
+          "reason": "unknown"
+        },
+        "system.memory.total_usable_bytes": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "procfs",
+          "observed_at": null,
+          "reason": "invalid_data"
+        },
+        "memory_available_bytes": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "procfs",
+          "observed_at": null,
+          "reason": "invalid_data"
+        },
+        "system.device.serial_number": {
+          "availability": "restricted",
+          "source": "custom",
+          "observed_at": null,
+          "reason": "privacy_redacted",
+          "value_recorded": false
+        }
+      },
+      "capabilities": [
+        {
+          "field": "memory_available_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "system.cpu.brand",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": "unknown"
+        },
+        {
+          "field": "system.cpu.logical_count",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": "unknown"
+        },
+        {
+          "field": "system.device.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.device.serial_number",
+          "level": "restricted",
+          "source": "custom",
+          "reason": "privacy_redacted"
+        },
+        {
+          "field": "system.device.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.firmware.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.firmware.version",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.memory.total_usable_bytes",
+          "level": "supported",
+          "source": "procfs",
+          "reason": "invalid_data"
+        },
+        {
+          "field": "system.motherboard.model",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.motherboard.vendor",
+          "level": "supported",
+          "source": "sysfs",
+          "reason": null
+        },
+        {
+          "field": "system.os.name",
+          "level": "partial",
+          "source": "sysinfo",
+          "reason": null
+        }
+      ],
+      "schema_validated": true,
+      "synthetic_dmi": true
+    }
+  },
+  "runtime_probes": {
+    "empty_proc": {
+      "status": "not_run",
+      "configuration": {
+        "user": "65534:65534",
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges=true"
+        ],
+        "Memory": 268435456,
+        "MemorySwap": 268435456,
+        "PidsLimit": 32,
+        "NanoCpus": 1000000000
+      },
+      "exit_code": 128,
+      "docker_start_exit_code": 1,
+      "process_started": false,
+      "failure_category": "runtime_mount_error",
+      "probe_result": "runtime_rejected_mount"
+    }
+  },
+  "artifact_sha256": {
+    "cli": "caf0ca6156da5b39bcd1fc601c1095b79ef87ec1bd18af09b407d0e145c6cc84",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "git_revision": "6d0a37703ad46ed859562752b7f21fae2dbcfeae",
+  "git_dirty": false,
+  "docker_version": "28.0.4",
+  "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9"
+}

@@ -1,0 +1,198 @@
+//! Narrow sysinfo adapter. Process/user/device identifier enumeration is disabled.
+#![forbid(unsafe_code)]
+use daoseeker_scope_core::*;
+#[cfg(not(target_os = "linux"))]
+use std::time::Instant;
+
+/// Generic OS/CPU/memory adapter. Linux CPU usage, memory and uptime are
+/// delegated to `daoseeker-scope-linux` for explicit fresh-read failures.
+/// Register both backends, or use the desktop facade, for those Linux fields.
+pub struct SysinfoBackend {
+    system: sysinfo::System,
+    #[cfg(not(target_os = "linux"))]
+    last_cpu_sample: Option<Instant>,
+}
+impl Default for SysinfoBackend {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+impl SysinfoBackend {
+    pub fn new() -> Self {
+        Self {
+            system: sysinfo::System::new(),
+            #[cfg(not(target_os = "linux"))]
+            last_cpu_sample: None,
+        }
+    }
+}
+fn text(value: Option<&str>, at: Timestamp) -> Observed<String> {
+    match value.filter(|s| !s.trim().is_empty() && s.len() <= 4096) {
+        Some(s) => Observed::available(s.trim().into(), Source::Sysinfo, at),
+        None => Observed::unavailable(Source::Sysinfo, ReasonCode::Unknown),
+    }
+}
+fn nonzero<T: Default + PartialEq>(value: T, at: Timestamp) -> Observed<T> {
+    if value == T::default() {
+        Observed::unavailable(Source::Sysinfo, ReasonCode::Unknown)
+    } else {
+        Observed::available(value, Source::Sysinfo, at)
+    }
+}
+impl Backend for SysinfoBackend {
+    fn name(&self) -> &'static str {
+        "sysinfo"
+    }
+    fn capabilities(&self) -> Capabilities {
+        [
+            "system.os.name",
+            "system.os.version",
+            "system.os.kernel_version",
+            "system.cpu.brand",
+            "system.cpu.architecture",
+            "system.cpu.logical_count",
+            "system.cpu.physical_count",
+        ]
+        .into_iter()
+        .map(|field| Capability::new(field, CapabilityLevel::Partial, Source::Sysinfo))
+        .chain({
+            #[cfg(not(target_os = "linux"))]
+            let fields = [
+                "cpu_usage_percent",
+                "system.memory.total_usable_bytes",
+                "runtime.uptime_seconds",
+                "memory_available_bytes",
+            ];
+            #[cfg(target_os = "linux")]
+            let fields: [&str; 0] = [];
+            fields
+                .into_iter()
+                .map(|field| Capability::new(field, CapabilityLevel::Partial, Source::Sysinfo))
+        })
+        .collect()
+    }
+    fn collect_static(&mut self, context: &CollectContext) -> Result<StaticSnapshot, ScopeError> {
+        context.check()?;
+        if !sysinfo::IS_SUPPORTED_SYSTEM {
+            return Err(ScopeError::new(ErrorCode::UnsupportedPlatform));
+        }
+        self.system
+            .refresh_cpu_list(sysinfo::CpuRefreshKind::nothing());
+        context.check()?;
+        #[cfg(not(target_os = "linux"))]
+        self.system.refresh_memory();
+        context.check()?;
+        let at = Timestamp::now()?;
+        let mut result = StaticSnapshot::default();
+        result.system.os.name = text(sysinfo::System::name().as_deref(), at);
+        result.system.os.version = text(sysinfo::System::os_version().as_deref(), at);
+        result.system.os.kernel_version = text(sysinfo::System::kernel_version().as_deref(), at);
+        result.system.cpu.architecture = text(Some(&sysinfo::System::cpu_arch()), at);
+        result.system.cpu.brand = text(self.system.cpus().first().map(|cpu| cpu.brand()), at);
+        result.system.cpu.logical_count = match u32::try_from(self.system.cpus().len()) {
+            Ok(n) => nonzero(n, at),
+            Err(_) => Observed::unavailable(Source::Sysinfo, ReasonCode::InvalidData),
+        };
+        result.system.cpu.physical_count =
+            match sysinfo::System::physical_core_count().and_then(|n| u32::try_from(n).ok()) {
+                Some(n) => nonzero(n, at),
+                None => Observed::unavailable(Source::Sysinfo, ReasonCode::Unknown),
+            };
+        #[cfg(not(target_os = "linux"))]
+        {
+            result.system.memory.total_usable_bytes = nonzero(self.system.total_memory(), at);
+        }
+        Ok(result)
+    }
+    fn refresh_dynamic(&mut self, context: &CollectContext) -> Result<DynamicSnapshot, ScopeError> {
+        context.check()?;
+        #[cfg(not(target_os = "linux"))]
+        self.system.refresh_memory();
+        context.check()?;
+        #[cfg(not(target_os = "linux"))]
+        let cpu_usage_percent = {
+            let now = Instant::now();
+            let ready = self.last_cpu_sample.is_some_and(|previous| {
+                now.duration_since(previous) >= sysinfo::MINIMUM_CPU_UPDATE_INTERVAL
+            });
+            if ready || self.last_cpu_sample.is_none() {
+                self.system.refresh_cpu_usage();
+                self.last_cpu_sample = Some(now);
+            }
+            if ready {
+                Observed::available(
+                    f64::from(self.system.global_cpu_usage()),
+                    Source::Sysinfo,
+                    Timestamp::now()?,
+                )
+            } else {
+                Observed::unavailable(Source::Sysinfo, ReasonCode::TemporarilyUnavailable)
+            }
+        };
+        context.check()?;
+        let result = DynamicSnapshot::default();
+        #[cfg(not(target_os = "linux"))]
+        let result = {
+            let at = Timestamp::now()?;
+            let mut result = result;
+            result.memory_available_bytes = if self.system.total_memory() == 0 {
+                Observed::unavailable(Source::Sysinfo, ReasonCode::Unknown)
+            } else if self.system.available_memory() > self.system.total_memory() {
+                Observed::unavailable(Source::Sysinfo, ReasonCode::InvalidData)
+            } else {
+                Observed::available(self.system.available_memory(), Source::Sysinfo, at)
+            };
+            result.runtime.uptime_seconds =
+                Observed::available(sysinfo::System::uptime(), Source::Sysinfo, at);
+            result.cpu_usage_percent = cpu_usage_percent;
+            result
+        };
+        Ok(result)
+    }
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[cfg(target_os = "linux")]
+    #[test]
+    fn standalone_adapter_never_offers_a_stale_procfs_fallback() {
+        let backend = SysinfoBackend::new();
+        assert!(!backend.capabilities().iter().any(|cap| {
+            [
+                "cpu_usage_percent",
+                "system.memory.total_usable_bytes",
+                "memory_available_bytes",
+                "runtime.uptime_seconds",
+            ]
+            .contains(&cap.field.as_str())
+        }));
+        let hardware = HardwareBuilder::default()
+            .with_backend(0, backend)
+            .build()
+            .expect("build");
+        let snapshot = hardware.collect().expect("collect");
+        assert_eq!(
+            snapshot.dynamic.cpu_usage_percent.availability(),
+            Availability::Unsupported
+        );
+        for item in [
+            &snapshot.dynamic.memory_available_bytes,
+            &snapshot.dynamic.runtime.uptime_seconds,
+            &snapshot.static_info.system.memory.total_usable_bytes,
+        ] {
+            assert_eq!(item.availability(), Availability::Unsupported);
+        }
+    }
+    #[test]
+    fn empty_and_zero_are_not_success() {
+        assert_eq!(
+            text(Some("  "), Timestamp(1)).availability(),
+            Availability::Unavailable
+        );
+        assert_eq!(
+            nonzero(0u64, Timestamp(1)).availability(),
+            Availability::Unavailable
+        );
+        assert_eq!(nonzero(1024u64, Timestamp(1)).value(), Some(&1024));
+    }
+}

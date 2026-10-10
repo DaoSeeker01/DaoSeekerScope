@@ -1,0 +1,68 @@
+[package]
+name = "daoseeker-scope-fuzz"
+version = "0.0.0"
+edition = "2024"
+publish = false
+license = "MIT"
+[package.metadata]
+cargo-fuzz = true
+[workspace]
+[dependencies]
+libfuzzer-sys = "0.4"
+daoseeker-scope = { path = "../crates/daoseeker-scope" }
+daoseeker-scope-linux = { path = "../crates/daoseeker-scope-linux", features = ["fuzzing"] }
+daoseeker-scope-cli = { path = "../crates/daoseeker-scope-cli" }
+[[bin]]
+name = "snapshot_json"
+path = "fuzz_targets/snapshot_json.rs"
+test = false
+doc = false
+bench = false
+[[bin]]
+name = "dmi_text"
+path = "fuzz_targets/dmi_text.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "cli_args"
+path = "fuzz_targets/cli_args.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "cpu_stat"
+path = "fuzz_targets/cpu_stat.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "meminfo"
+path = "fuzz_targets/meminfo.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "uptime"
+path = "fuzz_targets/uptime.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "power_supply"
+path = "fuzz_targets/power_supply.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "hwmon_temperature"
+path = "fuzz_targets/hwmon_temperature.rs"
+test = false
+doc = false
+bench = false

@@ -1,0 +1,19 @@
+[package]
+name = "daoseeker-scope-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "DaoSeekerScope core"
+[lints]
+workspace = true
+[features]
+default = []
+serde = ["dep:serde"]
+schema = ["serde", "dep:schemars"]
+[dependencies]
+serde = { workspace = true, optional = true }
+schemars = { workspace = true, optional = true }
+[dev-dependencies]
+serde_json.workspace = true

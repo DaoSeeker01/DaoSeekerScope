@@ -1,0 +1,184 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-10T10:26:24.290410+00:00",
+  "execution_platform": {
+    "os": "Windows",
+    "architecture": "AMD64"
+  },
+  "python_version": "3.12.10",
+  "overall": "passed",
+  "checks": {
+    "cli": "passed",
+    "c_abi": "passed",
+    "python_ffi": "passed"
+  },
+  "observations": {
+    "cli": {
+      "os.name": {
+        "value": "Windows",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984560,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "AMD EPYC 9V45 96-Core Processor",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984560,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 2,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984560,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 8584425472,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984560,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "os.version": {
+        "value": "11 (26100)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984560,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "26100",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984560,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "x86_64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984560,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 1,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984560,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": 8589934592,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1791627984560,
+        "reason": null
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysinfo",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      }
+    },
+    "c_abi": {
+      "os.name": {
+        "value": "Windows",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984746,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "AMD EPYC 9V45 96-Core Processor",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984746,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 2,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984746,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 8584425472,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984746,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "os.version": {
+        "value": "11 (26100)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984746,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "26100",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984746,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "x86_64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984746,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 1,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1791627984746,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": 8589934592,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1791627984746,
+        "reason": null
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysinfo",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      }
+    }
+  },
+  "artifact_sha256": {
+    "cli": "65218eb1385f1850d4b670ea184e8e05efbccf1c3a53aa041d3eeb2e7a3e6767",
+    "c_example": "4863d542d43281f61da1eb3a86e549a9ba2abd9dac9a061da62f9cd7f27a411e",
+    "ffi": "1b27753fd5d5b0d31b8a4e9307fd361fcd353d2fb8ed5b759324e201cc8d7702",
+    "cargo_lock": "e04239561667b4f20152f0fe6b80aaafeb483e7ad8fea41f8c3aaadd76c177a9"
+  },
+  "available_rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "git_revision": "4eb7e971cb43e8996487feed98c7de039a147ade",
+  "git_dirty": false
+}

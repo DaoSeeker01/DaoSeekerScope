@@ -1,0 +1,1966 @@
+{
+  "$defs": {
+    "Availability": {
+      "enum": [
+        "available",
+        "unavailable",
+        "restricted",
+        "unsupported",
+        "not_applicable"
+      ],
+      "type": "string"
+    },
+    "BackendIssue": {
+      "properties": {
+        "backend": {
+          "type": "string"
+        },
+        "code": {
+          "$ref": "#/$defs/ErrorCode"
+        }
+      },
+      "required": [
+        "backend",
+        "code"
+      ],
+      "type": "object"
+    },
+    "BatteryInfo": {
+      "properties": {
+        "charge_percent": {
+          "$ref": "#/$defs/Observed7",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          },
+          "description": "Fresh reported percentage, not a remaining-time or health estimate."
+        },
+        "on_ac_power": {
+          "$ref": "#/$defs/Observed9",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          },
+          "description": "OS-reported AC state. Linux aggregates only Mains supplies: any known online\nis true; all known offline is false. No Mains is unavailable; charging and\nUSB/Wireless status do not imply AC. Applies to each battery, not its wiring."
+        }
+      },
+      "type": "object"
+    },
+    "Capability": {
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "level": {
+          "$ref": "#/$defs/CapabilityLevel"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        }
+      },
+      "required": [
+        "field",
+        "level",
+        "source"
+      ],
+      "type": "object"
+    },
+    "CapabilityLevel": {
+      "enum": [
+        "supported",
+        "partial",
+        "unsupported",
+        "restricted",
+        "not_applicable"
+      ],
+      "type": "string"
+    },
+    "CpuInfo": {
+      "properties": {
+        "architecture": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "brand": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "logical_count": {
+          "$ref": "#/$defs/Observed2",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "physical_count": {
+          "$ref": "#/$defs/Observed2",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "DeviceInfo": {
+      "properties": {
+        "model": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "serial_number": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "vendor": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "DisplayInfo": {
+      "properties": {
+        "height_pixels": {
+          "$ref": "#/$defs/Observed2",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "name": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "width_pixels": {
+          "$ref": "#/$defs/Observed2",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "DynamicSnapshot": {
+      "properties": {
+        "batteries": {
+          "$ref": "#/$defs/Observed8",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "cpu_usage_percent": {
+          "$ref": "#/$defs/Observed7",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "memory_available_bytes": {
+          "$ref": "#/$defs/Observed3",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "networks": {
+          "$ref": "#/$defs/Observed11",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "runtime": {
+          "$ref": "#/$defs/RuntimeInfo",
+          "default": {
+            "uptime_seconds": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            }
+          }
+        },
+        "sensors": {
+          "$ref": "#/$defs/Observed10",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "ErrorCode": {
+      "enum": [
+        "invalid_argument",
+        "unsupported_platform",
+        "timeout",
+        "cancelled",
+        "busy",
+        "backend_failure",
+        "resource_limit",
+        "panic",
+        "invalid_buffer"
+      ],
+      "type": "string"
+    },
+    "FirmwareInfo": {
+      "properties": {
+        "vendor": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "version": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "GpuInfo": {
+      "properties": {
+        "dedicated_memory_bytes": {
+          "$ref": "#/$defs/Observed3",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "name": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "MemoryInfo": {
+      "properties": {
+        "installed_bytes": {
+          "$ref": "#/$defs/Observed3",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "total_usable_bytes": {
+          "$ref": "#/$defs/Observed3",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "MergeEvent": {
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "previous_source": {
+          "$ref": "#/$defs/Source"
+        },
+        "priority": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "selected_source": {
+          "$ref": "#/$defs/Source"
+        }
+      },
+      "required": [
+        "field",
+        "previous_source",
+        "selected_source",
+        "priority"
+      ],
+      "type": "object"
+    },
+    "MotherboardInfo": {
+      "properties": {
+        "model": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "vendor": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "NetworkInfo": {
+      "properties": {
+        "interface_name": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "received_bytes": {
+          "$ref": "#/$defs/Observed3",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "transmitted_bytes": {
+          "$ref": "#/$defs/Observed3",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "Observed": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "Observed10": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "items": {
+            "$ref": "#/$defs/SensorInfo"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "Observed11": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "items": {
+            "$ref": "#/$defs/NetworkInfo"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "Observed2": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "Observed3": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "Observed4": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "items": {
+            "$ref": "#/$defs/GpuInfo"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "Observed5": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "items": {
+            "$ref": "#/$defs/StorageInfo"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "Observed6": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "items": {
+            "$ref": "#/$defs/DisplayInfo"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "Observed7": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "Observed8": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "items": {
+            "$ref": "#/$defs/BatteryInfo"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "Observed9": {
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "available"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "A missing value never represents a successful observation. Constructors and JSON validate this invariant.",
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "value": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "availability",
+        "source",
+        "observed_at",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "OsInfo": {
+      "properties": {
+        "kernel_version": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "name": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "version": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "ReasonCode": {
+      "enum": [
+        "permission_denied",
+        "sandbox",
+        "not_supported",
+        "not_present",
+        "timeout",
+        "invalid_data",
+        "privacy_redacted",
+        "temporarily_unavailable",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "RuntimeInfo": {
+      "properties": {
+        "uptime_seconds": {
+          "$ref": "#/$defs/Observed3",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "SensorInfo": {
+      "properties": {
+        "label": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          },
+          "description": "A backend-provided label, when collected. Linux hwmon leaves labels\nprivacy-redacted; array indices are not stable device identifiers."
+        },
+        "temperature_celsius": {
+          "$ref": "#/$defs/Observed7",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          },
+          "description": "Fresh backend-reported Celsius observation, not a control value or voltage.\nLinux routes coretemp, k10temp Tdie (channel 2) and nvme (channels 1..9).\nNVMe Composite may be computed and need not represent a physical point."
+        }
+      },
+      "type": "object"
+    },
+    "Source": {
+      "enum": [
+        "sysinfo",
+        "wmi",
+        "win32",
+        "setupapi",
+        "dxgi",
+        "smbios",
+        "sysfs",
+        "procfs",
+        "udev",
+        "hwmon",
+        "pci",
+        "drm",
+        "iokit",
+        "sysctl",
+        "apple_api",
+        "android_api",
+        "web_api",
+        "hal",
+        "custom"
+      ],
+      "type": "string"
+    },
+    "StaticSnapshot": {
+      "properties": {
+        "displays": {
+          "$ref": "#/$defs/Observed6",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "gpus": {
+          "$ref": "#/$defs/Observed4",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "storage": {
+          "$ref": "#/$defs/Observed5",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "system": {
+          "$ref": "#/$defs/SystemInfo",
+          "default": {
+            "cpu": {
+              "architecture": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              },
+              "brand": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              },
+              "logical_count": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              },
+              "physical_count": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              }
+            },
+            "device": {
+              "model": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              },
+              "serial_number": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              },
+              "vendor": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              }
+            },
+            "firmware": {
+              "vendor": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              },
+              "version": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              }
+            },
+            "memory": {
+              "installed_bytes": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              },
+              "total_usable_bytes": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              }
+            },
+            "motherboard": {
+              "model": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              },
+              "vendor": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              }
+            },
+            "os": {
+              "kernel_version": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              },
+              "name": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              },
+              "version": {
+                "availability": "unsupported",
+                "observed_at": null,
+                "reason": "not_supported",
+                "source": "custom",
+                "value": null
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "StorageInfo": {
+      "properties": {
+        "capacity_bytes": {
+          "$ref": "#/$defs/Observed3",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        },
+        "name": {
+          "$ref": "#/$defs/Observed",
+          "default": {
+            "availability": "unsupported",
+            "observed_at": null,
+            "reason": "not_supported",
+            "source": "custom",
+            "value": null
+          }
+        }
+      },
+      "type": "object"
+    },
+    "SystemInfo": {
+      "properties": {
+        "cpu": {
+          "$ref": "#/$defs/CpuInfo",
+          "default": {
+            "architecture": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            },
+            "brand": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            },
+            "logical_count": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            },
+            "physical_count": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            }
+          }
+        },
+        "device": {
+          "$ref": "#/$defs/DeviceInfo",
+          "default": {
+            "model": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            },
+            "serial_number": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            },
+            "vendor": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            }
+          }
+        },
+        "firmware": {
+          "$ref": "#/$defs/FirmwareInfo",
+          "default": {
+            "vendor": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            },
+            "version": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            }
+          }
+        },
+        "memory": {
+          "$ref": "#/$defs/MemoryInfo",
+          "default": {
+            "installed_bytes": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            },
+            "total_usable_bytes": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            }
+          }
+        },
+        "motherboard": {
+          "$ref": "#/$defs/MotherboardInfo",
+          "default": {
+            "model": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            },
+            "vendor": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            }
+          }
+        },
+        "os": {
+          "$ref": "#/$defs/OsInfo",
+          "default": {
+            "kernel_version": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            },
+            "name": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            },
+            "version": {
+              "availability": "unsupported",
+              "observed_at": null,
+              "reason": "not_supported",
+              "source": "custom",
+              "value": null
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "Timestamp": {
+      "description": "Milliseconds since Unix epoch; clock failure is a real collection error.",
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://github.com/DaoSeeker01/DaoSeekerScope/schema/snapshot-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "capabilities": {
+      "items": {
+        "$ref": "#/$defs/Capability"
+      },
+      "type": "array"
+    },
+    "collected_at": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "conflicts": {
+      "items": {
+        "$ref": "#/$defs/MergeEvent"
+      },
+      "type": "array"
+    },
+    "dynamic": {
+      "$ref": "#/$defs/DynamicSnapshot"
+    },
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/BackendIssue"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": 1,
+      "type": "integer"
+    },
+    "static_info": {
+      "$ref": "#/$defs/StaticSnapshot"
+    }
+  },
+  "required": [
+    "schema_version",
+    "collected_at",
+    "static_info",
+    "dynamic",
+    "capabilities",
+    "conflicts",
+    "issues"
+  ],
+  "title": "Snapshot",
+  "type": "object"
+}
