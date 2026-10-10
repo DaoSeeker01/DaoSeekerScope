@@ -7,6 +7,7 @@
     "Linux": {
       "path": "windows-network-native-linux-38094160512.json",
       "sha256": "ff7f3740e59c69ddec5220d133b02e029e70bc50d3ffc59eb8eeb10fb10cb5e7",
+      "original_report_sha256": "ff7f3740e59c69ddec5220d133b02e029e70bc50d3ffc59eb8eeb10fb10cb5e7",
       "network_counts": {
         "cli": 4,
         "c_abi": 4
@@ -15,6 +16,7 @@
     "macOS": {
       "path": "windows-network-native-macos-38094160512.json",
       "sha256": "43cf4663448be3afd3d92215e511073a4b80711006a1bcf892f2077a50f635a9",
+      "original_report_sha256": "43cf4663448be3afd3d92215e511073a4b80711006a1bcf892f2077a50f635a9",
       "network_counts": {
         "cli": null,
         "c_abi": null
@@ -22,7 +24,8 @@
     },
     "Windows": {
       "path": "windows-network-native-windows-38094160512.json",
-      "sha256": "fcf8e04aa8a7c3569625541577fdd1a62bbdf572ac35e6433fa947c3a98874be",
+      "sha256": "b10370fb8f5d42a7a70139fabfaacae06fc400bdc9367d34a03a031b5a57abce",
+      "original_report_sha256": "fcf8e04aa8a7c3569625541577fdd1a62bbdf572ac35e6433fa947c3a98874be",
       "network_counts": {
         "cli": 18,
         "c_abi": 18
@@ -33,16 +36,19 @@
     "Linux": {
       "path": "windows-network-package-linux-38094160512.json",
       "sha256": "fe03294369709ad67f5401db7193c80916f4c246537408818bdcdfe289f853f9",
+      "original_report_sha256": "fe03294369709ad67f5401db7193c80916f4c246537408818bdcdfe289f853f9",
       "rust_tests_including_doctests": 95
     },
     "macOS": {
       "path": "windows-network-package-macos-38094160512.json",
       "sha256": "7b7a6e3fa99713661e449d3b44c32eb3c0254e2a624b5e82453ffbc2816a5138",
+      "original_report_sha256": "7b7a6e3fa99713661e449d3b44c32eb3c0254e2a624b5e82453ffbc2816a5138",
       "rust_tests_including_doctests": 94
     },
     "Windows": {
       "path": "windows-network-package-windows-38094160512.json",
-      "sha256": "84da126d34afcbc1bd6f6bb0ef21e1176f771f1b1f9eb01535d62da69d8d0df7",
+      "sha256": "16a2dc0f8e2628d758be3c4304dc8783709a1cd45809a0df135443454d72cc68",
+      "original_report_sha256": "84da126d34afcbc1bd6f6bb0ef21e1176f771f1b1f9eb01535d62da69d8d0df7",
       "rust_tests_including_doctests": 97
     }
   },
@@ -116,7 +122,8 @@
   "all_jobs_log_sha256": "1116165b0f9d126c454c19f221d888c5b3507f5696e3e4b2903fc21e66212d2f",
   "local_native": {
     "path": "windows-network-native-local-windows-38094160512.json",
-    "sha256": "eb2994c1cbbb9a4f52212c5fa7921be20b732674ebb14af975eb3c202547f1c6",
+    "sha256": "e154418affa1db9a26d77bbae2946212c733af88b6fff1f8c0cc4a211389b7f8",
+    "original_report_sha256": "eb2994c1cbbb9a4f52212c5fa7921be20b732674ebb14af975eb3c202547f1c6",
     "network_counts": {
       "cli": 43,
       "c_abi": 43
@@ -124,11 +131,13 @@
   },
   "local_extra": {
     "path": "windows-network-extra-local-windows-38094160512.json",
-    "sha256": "2437623cab20f3540749699368aca49309ef79ee82b2342461ef916c0bb3deb8"
+    "sha256": "8be25033d5827ecbf66b687102e1f69662853960ccdee8687413a52c54a28c27",
+    "original_report_sha256": "2437623cab20f3540749699368aca49309ef79ee82b2342461ef916c0bb3deb8"
   },
   "local_package": {
     "path": "windows-network-package-local-windows-38094160512.json",
-    "sha256": "589faa3e67f8520e56cd4a586ad6c7c346554023c1b7032ec0290db21ca67900"
+    "sha256": "79aeaac91e2b87a76933529eedd867f36b25fe1a824cad3d55595ca73bf83241",
+    "original_report_sha256": "589faa3e67f8520e56cd4a586ad6c7c346554023c1b7032ec0290db21ca67900"
   },
   "benchmark": {
     "limitations": [
@@ -161,6 +170,8 @@
   },
   "local_native_limit_probe": {
     "path": "windows-network-limits-local-windows-38094160512.json",
-    "sha256": "40765afb82d6238193630de4fa687c70ec2de7936ffdd5827561f9b4d8aef971"
-  }
+    "sha256": "9e2c8633d742760b6640a1da5d29de8de5c868d30a6f70f147079864054bb710",
+    "original_report_sha256": "40765afb82d6238193630de4fa687c70ec2de7936ffdd5827561f9b4d8aef971"
+  },
+  "hash_contract": "sha256 covers archived LF report bytes; original_report_sha256 covers original downloaded/generated report bytes. Log hashes cover original captured logs."
 }
