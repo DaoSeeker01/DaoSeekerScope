@@ -1,4 +1,11 @@
 //! macOS public sysctl queries; no private IOKit sensor interfaces.
+#[cfg(feature = "fuzzing")]
+#[doc(hidden)]
+pub mod fuzzing;
+#[cfg(any(target_os = "macos", test))]
+mod network;
+#[cfg(any(target_os = "macos", test, feature = "fuzzing"))]
+mod network_wire;
 #[cfg(target_os = "macos")]
 mod native {
     use daoseeker_scope_core::*;
@@ -20,10 +27,17 @@ mod native {
             "macos"
         }
         fn capabilities(&self) -> Capabilities {
-            ["system.device.model", "system.memory.installed_bytes"]
-                .into_iter()
-                .map(|field| Capability::new(field, CapabilityLevel::Supported, Source::Sysctl))
-                .collect()
+            let mut capabilities: Capabilities =
+                ["system.device.model", "system.memory.installed_bytes"]
+                    .into_iter()
+                    .map(|field| Capability::new(field, CapabilityLevel::Supported, Source::Sysctl))
+                    .collect();
+            capabilities.push(Capability::new(
+                "networks",
+                CapabilityLevel::Partial,
+                Source::Sysctl,
+            ));
+            capabilities
         }
         fn collect_static(
             &mut self,
@@ -87,7 +101,9 @@ mod native {
             context: &CollectContext,
         ) -> Result<DynamicSnapshot, ScopeError> {
             context.check()?;
-            Ok(DynamicSnapshot::default())
+            let mut result = DynamicSnapshot::default();
+            result.networks = crate::network::collect(context)?;
+            Ok(result)
         }
     }
 }

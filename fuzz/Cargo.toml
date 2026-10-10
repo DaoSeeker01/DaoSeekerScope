@@ -11,6 +11,7 @@ cargo-fuzz = true
 libfuzzer-sys = "0.4"
 daoseeker-scope = { path = "../crates/daoseeker-scope" }
 daoseeker-scope-linux = { path = "../crates/daoseeker-scope-linux", features = ["fuzzing"] }
+daoseeker-scope-macos = { path = "../crates/daoseeker-scope-macos", features = ["fuzzing"] }
 daoseeker-scope-cli = { path = "../crates/daoseeker-scope-cli" }
 [[bin]]
 name = "snapshot_json"
@@ -70,6 +71,13 @@ bench = false
 [[bin]]
 name = "network_dev"
 path = "fuzz_targets/network_dev.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "macos_network"
+path = "fuzz_targets/macos_network.rs"
 test = false
 doc = false
 bench = false

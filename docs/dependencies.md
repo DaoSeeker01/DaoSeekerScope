@@ -5,6 +5,8 @@
 
 2026-10-11 Windows 网络切片仅为 Windows target 的 windows-sys 0.61.2 增加 `Win32_NetworkManagement_IpHelper` / `Win32_NetworkManagement_Ndis` feature；未增加 crate 或修改锁定版本、许可证。sysinfo network feature 仍关闭。
 
+macOS 网络切片沿用 libc 0.2.190，不新增依赖或许可证；macOS crate 增加默认关闭的 `fuzzing` 测试 feature，fuzz harness 显式启用。公开消费 API 不变。
+
 | crate | version | SPDX license |
 |---|---|---|
 | bitflags | 2.13.2 | MIT OR Apache-2.0 |

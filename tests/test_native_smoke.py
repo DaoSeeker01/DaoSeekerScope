@@ -109,7 +109,7 @@ class EvidenceGuards(unittest.TestCase):
     def test_real_network_gate_distinguishes_sources_and_bad_counter_states(
         self,
     ) -> None:
-        for source in ("procfs", "win32"):
+        for source in ("procfs", "win32", "sysctl"):
             counter = {
                 "availability": "available",
                 "source": source,

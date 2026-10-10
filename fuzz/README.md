@@ -1,5 +1,11 @@
 # Fuzz 目标
 
+第十个目标 `macos_network` 复用生产 Darwin 路由字节解析器，检查消息边界、512 KiB/8192 消息/接口条数上限、默认脱敏和字段状态。四个合成种子覆盖有效 u64、截断、零索引和超大输入；不执行 macOS sysctl，Linux fuzz 不能代替 macOS 原生读取。当前执行结果待 CI，契约见 [ADR 0012](../docs/adr/0012-macos-network-counters.md)。
+
+```sh
+cargo +nightly-2026-10-08 fuzz run macos_network -- -seed=20261011 -max_total_time=60 -max_len=524289 -timeout=2 -rss_limit_mb=512
+```
+
 2026-10-11 新增第九个目标 `network_dev`：生产 `/proc/net/dev` 解析、512 KiB 上限、1/128/1024 条数上限、默认/授权名称与字段状态不变量。六个种子覆盖有效/零值/溢出/重复/列损坏/合法空集合；执行证据见[网络验收](../docs/network-validation.md)。下文先前轮次的计数不代表本目标已运行。
 
 ```sh

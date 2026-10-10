@@ -48,7 +48,7 @@ python scripts/native_smoke.py
 
 ## Fuzz、内存与性能
 
-九个 fuzz 目标及命令见 [fuzz 指南](fuzz/README.md)。Miri 使用 `nightly-2026-10-08` 的 miri/rust-src 组件：`pwsh -NoProfile -File scripts/check_miri.ps1`。它验证内存契约，不执行原生系统 API。
+十个 fuzz 目标及命令见 [fuzz 指南](fuzz/README.md)。Miri 使用 `nightly-2026-10-08` 的 miri/rust-src 组件：`pwsh -NoProfile -File scripts/check_miri.ps1`。它验证内存契约，不执行原生系统 API。
 
 CI 另有 Rust FFI AddressSanitizer 和 cargo-deny 门禁。性能入口：`cargo bench --locked -p daoseeker-scope --bench collect`；记录平台、profile 和真实/合成数据范围，参考[性能报告](docs/benchmarks.md)。
 

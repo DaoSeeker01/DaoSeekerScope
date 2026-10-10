@@ -194,7 +194,11 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
         except jsonschema.ValidationError as error:
             raise ValidationFailure(f"{label}: schema_invalid") from error
         observations = check_snapshot(snapshot)
-        expected_source = {"Linux": "procfs", "Windows": "win32"}.get(platform.system())
+        expected_source = {
+            "Linux": "procfs",
+            "Windows": "win32",
+            "Darwin": "sysctl",
+        }.get(platform.system())
         if expected_source is not None:
             check_real_network(observations, expected_source)
         report["observations"][label] = observations
