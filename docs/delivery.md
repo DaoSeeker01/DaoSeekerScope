@@ -14,7 +14,9 @@
 
 本机 Windows 未提交修复的预验收：8 个实际归档检查、解包后的 83 项 Rust 测试（含 doctest）、锁文件不变、CLI 隔离安装及版本/JSON 输出通过。34 项 Python 守卫、18 个 Python 文件的 Ruff/mypy、Rust fmt、actionlint、项目数据/文档链接与 diff 检查通过。初次 Python 检查缺 jsonschema 且沙盒临时目录拒绝写入；在隔离开发环境和正常临时目录权限下重跑成功，未跳过测试。最初 doctest 也因沙盒拒绝临时可执行文件而失败，重跑通过。
 
-预验收报告位于 `target/package-evidence.json`，标记 `git_dirty=true`，不冒充干净提交验收。三平台新增 CI 门禁等待实际执行结果；尚未完成真实 registry 安装、标准 Cargo package 全流程、发行二进制许可声明、checksum/回滚演练或发布，也未重跑性能基线。
+预验收报告位于 `target/package-evidence.json`，标记 `git_dirty=true`，不冒充干净提交验收。随后源码 1413e17 的三平台新增门禁通过，Windows/Linux/macOS 解包后的测试数（含 doctest）为 83/86/85；均验证 8 个归档、CLI 隔离安装、锁文件不变且报告 `git_dirty=false`。
+
+进一步在全新输出目录复核，Cargo 1.96 的标准 `cargo package --locked --offline --workspace --all-features` 全部 8 个包通过；复用该目录也通过，最初内部错误的确切根因尚未确定。最终门禁每次新目录执行完整原生验证，并继续做解包测试及安装，不使用 `--no-verify`；本机修改前的 8 包原生验证、修改后的完整门禁及 83 项测试/安装均通过。首次失败及隔离诊断保留本地原始记录；当前仍未完成真实 registry 安装、发行二进制许可声明、checksum/回滚演练或发布，也未重跑性能基线。
 
 2026-10-08。本地E:/Projects/DaoSeekerScope；无既有代码或Git历史可迁移，目标DaoSeeker01/DaoSeekerScope当前账号查询404。已本地git init并设置origin，无commit/push/远端创建/发布。
 

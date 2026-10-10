@@ -7,6 +7,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import tarfile
 import tempfile
@@ -60,18 +61,6 @@ def main() -> None:
         if package["id"] in metadata["workspace_members"]
     ]
     lock_before = (ROOT / "Cargo.lock").read_bytes()
-    run(
-        [
-            "cargo",
-            "package",
-            "--locked",
-            "--workspace",
-            "--all-features",
-            "--no-verify",
-            *offline,
-            *(["--allow-dirty"] if options.allow_dirty else []),
-        ]
-    )
     license_bytes = (ROOT / "LICENSE-MIT").read_bytes()
     header_bytes = (ROOT / "bindings/daoseeker_scope.h").read_bytes()
     archives = []
@@ -79,11 +68,28 @@ def main() -> None:
     with tempfile.TemporaryDirectory(prefix="package-check-", dir=target) as folder:
         stage = Path(folder).resolve()
         require(stage.is_relative_to(target.resolve()), "unexpected staging path")
+        native_output = stage / "native"
+        run(
+            [
+                "cargo",
+                "package",
+                "--locked",
+                "--workspace",
+                "--all-features",
+                "--target-dir",
+                str(native_output),
+                *offline,
+                *(["--allow-dirty"] if options.allow_dirty else []),
+            ]
+        )
+        archive_output = ROOT / "target/package"
+        archive_output.mkdir(parents=True, exist_ok=True)
         package_names = []
         for package in members:
             name = package["name"]
             prefix = f"{name}-{package['version']}"
-            archive = ROOT / "target/package" / f"{prefix}.crate"
+            archive = archive_output / f"{prefix}.crate"
+            shutil.copyfile(native_output / "package" / archive.name, archive)
             require(package["license"] == "MIT", f"license mismatch: {name}")
             with tarfile.open(archive, "r:gz") as bundle:
                 entries = bundle.getmembers()
@@ -176,7 +182,8 @@ def main() -> None:
         "overall": "passed",
         "git_revision": run(["git", "rev-parse", "HEAD"]).strip(),
         "git_dirty": bool(run(["git", "status", "--porcelain"]).strip()),
-        "verification": "archive contents + isolated workspace tests + CLI install",
+        "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+        "native_cargo_verification": True,
         "registry_publication_verified": False,
         "unpublished_siblings": "local patches to extracted archives",
         "third_party_lock_unchanged": True,

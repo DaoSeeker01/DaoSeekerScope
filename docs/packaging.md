@@ -10,7 +10,7 @@ python scripts/check_packages.py
 
 依赖已缓存时可加 `--offline`；验证未提交的修改时可加 `--allow-dirty`，报告会记录工作区状态。结果写入 `target/package-evidence.json`。CI 在三个原生桌面平台运行，并保存报告 14 天。
 
-脚本创建 8 个实际 `.crate` 文件，检查每个包的 MIT 声明和许可证全文，以及 FFI 包的 C 头文件。随后解包到独立临时目录，运行全部 feature 的 Rust 测试及 doctest，安装 CLI 到该目录，检查 `--version` 和 JSON 输出。源仓库和独立目录的第三方依赖锁文件均不得变化。所有构建文件和临时安装位置位于 `target/`，不修改系统 PATH 或全局 CLI 安装。
+脚本在全新临时输出目录执行完整 `cargo package --locked --workspace --all-features`，创建并验证 8 个实际 `.crate` 文件，再检查每个包的 MIT 声明和许可证全文，以及 FFI 包的 C 头文件。归档保存在 `target/package/`。随后解包到独立临时目录，运行全部 feature 的 Rust 测试及 doctest，安装 CLI 到该目录，检查 `--version` 和 JSON 输出。源仓库和独立目录的第三方依赖锁文件均不得变化。所有构建文件和临时安装位置位于 `target/`，不修改系统 PATH 或全局 CLI 安装。
 
 独立测试目录通过本地 Cargo patch 连接解包后的同项目依赖。这验证实际包内文件和消费者构建，不验证真实 registry 下载、依赖发布顺序或 crates.io 发布权限。
 
@@ -22,6 +22,6 @@ python scripts/check_packages.py
 
 ## 验证边界
 
-本机 Cargo 1.96.0 的 `cargo package --workspace --locked --offline` 在验证第二个包时失败，报 `no hash listed for daoseeker-scope-core v0.1.0` 并标记为 Cargo 内部错误。移除 `--locked` 后也出现相同错误，源锁文件没有变化。失败记录不算完整原生 package 验证通过。
+本机 Cargo 1.96.0 在原输出目录执行 `cargo package --workspace --locked --offline` 时，在验证第二个包时失败，报 `no hash listed for daoseeker-scope-core v0.1.0` 并标记为 Cargo 内部错误。移除 `--locked` 后也出现相同错误，源锁文件没有变化。使用全新 `--target-dir`、保留 `--locked --offline --all-features` 后，8 个包的完整 Cargo 验证全部通过；再次使用该目录也通过。因此确切根因尚未确定，不能将目录复用本身或平台 backend 判为故障原因。初次失败与后续成功分别保留证据。
 
-脚本用 `--no-verify` 生成归档，再执行上述独立测试及安装；它保留 `--locked`，并记录使用本地 patch 的边界。这是额外验证路径，不代替 Cargo 原生 package 验证。正式发布前仍需解决或重新验证该问题，再执行真实 registry 安装、制品校验和回滚演练。当前没有上传 crate 或发布 release。
+脚本每次使用新输出目录，保留原生 Cargo 验证与锁文件约束；额外的独立测试仍记录使用本地 patch 的边界。正式发布前还需真实 registry 安装、制品校验和回滚演练；不要把本地临时 registry 验证当作 crates.io 下载验证。当前没有上传 crate 或发布 release。
