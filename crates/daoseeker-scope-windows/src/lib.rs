@@ -1,5 +1,7 @@
 //! Ordinary-user Windows enhancement, compiled only on Windows.
 #[cfg(target_os = "windows")]
+mod network;
+#[cfg(target_os = "windows")]
 mod native {
     use daoseeker_scope_core::*;
     use windows_sys::Win32::{
@@ -25,10 +27,16 @@ mod native {
             "windows"
         }
         fn capabilities(&self) -> Capabilities {
-            ["system.memory.installed_bytes", "batteries"]
+            let mut capabilities: Capabilities = ["system.memory.installed_bytes", "batteries"]
                 .into_iter()
                 .map(|field| Capability::new(field, CapabilityLevel::Supported, Source::Win32))
-                .collect()
+                .collect();
+            capabilities.push(Capability::new(
+                "networks",
+                CapabilityLevel::Partial,
+                Source::Win32,
+            ));
+            capabilities
         }
         fn collect_static(
             &mut self,
@@ -85,6 +93,7 @@ mod native {
             context.check()?;
             let mut result = DynamicSnapshot::default();
             result.batteries = batteries;
+            result.networks = crate::network::collect(context)?;
             Ok(result)
         }
     }

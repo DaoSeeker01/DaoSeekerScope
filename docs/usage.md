@@ -57,9 +57,9 @@ ABI v1 没有 shutdown 接口。首次采集后应保持共享库加载到进程
 
 ## 隐私与限制
 
-序列号默认不读取，网络接口名称默认隐藏。显式请求须同时声明调用方已获授权；CLI 使用 `--include-sensitive --authorized` 并向 stderr 输出警告。声明授权不会绕过系统权限。当前不采集 MAC、IP、UUID、磁盘序列号、用户、进程、主机名或个人文件。
+序列号默认不读取，网络接口名称默认隐藏。显式请求须同时声明调用方已获授权；CLI 使用 `--include-sensitive --authorized` 并向 stderr 输出警告。声明授权不会绕过系统权限。当前不解析、保存或输出 MAC、IP、UUID、磁盘序列号、用户、进程、主机名或个人文件。Windows 网络 API 向临时原始缓冲写入 MAC/GUID 等元数据，实现只访问索引、计数及授权后的名称；这不等于标识从未进入进程内存，详见 [Windows 契约](adr/0011-windows-network-counters.md)。
 
-Linux 的 `dscope network` 显示当前网络命名空间内的累计接收/发送字节数（含回环、虚拟接口），不是网速或进程流量。每次刷新重新读 `/proc/net/dev`，接口重建后计数可以下降；数组顺序不是稳定身份。接口名称默认 Restricted/PrivacyRedacted，累计字节数仍可用。读取失败返回字段状态，不保留旧值；Windows/macOS 网络仍 Unsupported。细节见[网络契约](adr/0010-linux-network-counters.md)。
+Linux 的 `dscope network` 显示当前网络命名空间内的累计接收/发送字节数（含回环、虚拟接口），不是网速或进程流量。每次刷新重新读 `/proc/net/dev`，接口重建后计数可以下降；数组顺序不是稳定身份。接口名称默认 Restricted/PrivacyRedacted，累计字节数仍可用。读取失败返回字段状态，不保留旧值；细节见[网络契约](adr/0010-linux-network-counters.md)。Windows 通过有界 GetIfTable 枚举和 GetIfEntry2 读取 64 位计数，能力 Partial，不保证所有逻辑隧道接口；macOS 网络仍 Unsupported。
 
 Linux 温度仅路由 coretemp、k10temp 的 Tdie 和 NVMe 通道 1..9，默认不读标签；NVMe Composite 可以是设备计算值。Windows/macOS 的 sysinfo 动态值仍有上游缓存与错误表达限制，能力标为 Partial。
 

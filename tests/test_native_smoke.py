@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from typing import Any
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
@@ -94,6 +95,7 @@ class EvidenceGuards(unittest.TestCase):
             bad["static_info"]["system"]["cpu"]["logical_count"]["value"] = value
             with self.assertRaises(native_smoke.ValidationFailure):
                 native_smoke.check_snapshot(bad)
+
         for key, value in [
             ("value", "private"),
             ("availability", "unavailable"),
@@ -103,6 +105,56 @@ class EvidenceGuards(unittest.TestCase):
             bad["static_info"]["system"]["device"]["serial_number"][key] = value
             with self.assertRaises(native_smoke.ValidationFailure):
                 native_smoke.check_snapshot(bad)
+
+    def test_real_network_gate_distinguishes_sources_and_bad_counter_states(
+        self,
+    ) -> None:
+        for source in ("procfs", "win32"):
+            counter = {
+                "availability": "available",
+                "source": source,
+                "value": 0,
+                "observed_at": 1,
+                "reason": None,
+            }
+            observations: dict[str, Any] = {
+                "dynamic.networks": {
+                    "availability": "available",
+                    "source": source,
+                    "value": [
+                        {
+                            "received_bytes": counter,
+                            "transmitted_bytes": {
+                                **counter,
+                                "value": 2**64 - 1,
+                            },
+                        }
+                    ],
+                }
+            }
+            native_smoke.check_real_network(observations, source)
+            for key, value in [
+                ("availability", "restricted"),
+                ("source", "custom"),
+                ("value", -1),
+                ("value", 2**64),
+                ("value", True),
+                ("observed_at", None),
+                ("reason", "unknown"),
+            ]:
+                bad = copy.deepcopy(observations)
+                bad["dynamic.networks"]["value"][0]["received_bytes"][key] = value
+                with self.assertRaises(native_smoke.ValidationFailure):
+                    native_smoke.check_real_network(bad, source)
+            for key, value in [
+                ("source", "custom"),
+                ("availability", "unsupported"),
+                ("value", []),
+            ]:
+                bad = copy.deepcopy(observations)
+                bad["dynamic.networks"][key] = value
+                with self.assertRaises(native_smoke.ValidationFailure):
+                    native_smoke.check_real_network(bad, source)
 
     def test_malformed_and_oversized_data_fail(self) -> None:
         for data in [b"null", b"[]", b"bad", b"\xff", b"[" * 512]:

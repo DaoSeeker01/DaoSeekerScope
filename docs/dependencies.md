@@ -3,6 +3,8 @@
 由 cargo metadata --locked --all-features 生成，含三个目标的传递依赖；构建/开发工具 cargo-deny、jsonschema、libFuzzer 不属于运行时依赖。
 项目自身采用 MIT；上游保留各自许可证，分发时仍需保留版权与许可证。清单不是法律结论。
 
+2026-10-11 Windows 网络切片仅为 Windows target 的 windows-sys 0.61.2 增加 `Win32_NetworkManagement_IpHelper` / `Win32_NetworkManagement_Ndis` feature；未增加 crate 或修改锁定版本、许可证。sysinfo network feature 仍关闭。
+
 | crate | version | SPDX license |
 |---|---|---|
 | bitflags | 2.13.2 | MIT OR Apache-2.0 |

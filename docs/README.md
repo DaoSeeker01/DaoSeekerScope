@@ -15,6 +15,8 @@
 
 [Linux 网络决策](adr/0010-linux-network-counters.md) · [网络验证](network-validation.md)
 
+[Windows 网络决策](adr/0011-windows-network-counters.md) · [Windows 网络验证](windows-network-validation.md)
+
 [JSON Schema v1](schema/snapshot-v1.schema.json) · [黄金样例](../tests/fixtures/snapshot-v1.json)
 
 ## 验证记录

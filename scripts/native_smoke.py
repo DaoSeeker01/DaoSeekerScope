@@ -119,6 +119,29 @@ def decode(data: bytes) -> dict[str, Any]:
     return snapshot
 
 
+def check_real_network(observations: dict[str, Any], source: str) -> None:
+    """Require real native counters; an empty list is insufficient smoke evidence."""
+    networks = observations.get("dynamic.networks", {})
+    if (
+        networks.get("availability") != "available"
+        or networks.get("source") != source
+        or not networks.get("value")
+    ):
+        raise ValidationFailure("network: minimum_read_unavailable")
+    for entry in networks["value"]:
+        for field in ("received_bytes", "transmitted_bytes"):
+            counter = entry[field]
+            if (
+                counter["availability"] != "available"
+                or counter["source"] != source
+                or type(counter["value"]) is not int
+                or not 0 <= counter["value"] <= 2**64 - 1
+                or counter["observed_at"] is None
+                or counter["reason"] is not None
+            ):
+                raise ValidationFailure("network: invalid_real_counter")
+
+
 def digest(path: Path) -> str:
     hasher = hashlib.sha256()
     with path.open("rb") as stream:
@@ -171,26 +194,9 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
         except jsonschema.ValidationError as error:
             raise ValidationFailure(f"{label}: schema_invalid") from error
         observations = check_snapshot(snapshot)
-        if platform.system() == "Linux":
-            networks = observations.get("dynamic.networks", {})
-            if (
-                networks.get("availability") != "available"
-                or networks.get("source") != "procfs"
-                or not networks.get("value")
-            ):
-                raise ValidationFailure("network: minimum_read_unavailable")
-            for entry in networks["value"]:
-                for field in ("received_bytes", "transmitted_bytes"):
-                    counter = entry[field]
-                    if (
-                        counter["availability"] != "available"
-                        or counter["source"] != "procfs"
-                        or type(counter["value"]) is not int
-                        or not 0 <= counter["value"] <= 2**64 - 1
-                        or counter["observed_at"] is None
-                        or counter["reason"] is not None
-                    ):
-                        raise ValidationFailure("network: invalid_real_counter")
+        expected_source = {"Linux": "procfs", "Windows": "win32"}.get(platform.system())
+        if expected_source is not None:
+            check_real_network(observations, expected_source)
         report["observations"][label] = observations
         report["checks"][label] = "passed"
     report["checks"]["python_ffi"] = "running"
