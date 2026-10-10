@@ -1,0 +1,40 @@
+{
+  "source_commit": "5e43fdde5df11fbaa9b6590414de7ef7d88010e9",
+  "recorded_at_utc": "2026-10-10T23:16:26.8122724Z",
+  "process_elevated": false,
+  "network_capability": {
+    "field": "networks",
+    "level": "partial",
+    "source": "win32",
+    "reason": null
+  },
+  "benchmark": {
+    "limitations": [
+      "one process per run, not a performance SLA",
+      "no native Windows leak profiler or OS-driver timeout measurement"
+    ],
+    "earlier_concurrent_build_sample": {
+      "p50_us": 3283,
+      "max_us": 11038,
+      "log_sha256": "623e16da0f3e4301651cdc0a1819d5e7248899d2a1f09103297a86f68940501f",
+      "p95_us": 4127,
+      "first_collect_us": 539955
+    },
+    "native_network_entries": 43,
+    "command": "cargo bench --locked -p daoseeker-scope --bench collect",
+    "final_run": {
+      "synthetic_networks": 1024,
+      "synthetic_sensors": 100,
+      "refresh_n": 100,
+      "first_collect_us": 379910,
+      "synthetic_collect_us": 440,
+      "p50_us": 2078,
+      "max_us": 3319,
+      "p95_us": 2464,
+      "synthetic_json_bytes": 373541,
+      "log_sha256": "e30045dd917aa10efe05d56e02b22ec03effac181ec7d52130b517f3e06157d9"
+    },
+    "profile": "bench optimized",
+    "features": "facade default serde"
+  }
+}

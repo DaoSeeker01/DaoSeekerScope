@@ -39,3 +39,17 @@
 | 合成快照 JSON | 366287 bytes |
 
 这是当前 Windows 基础路径的延迟样本，不测 Linux 电池/hwmon 驱动、真实 100 个传感器或峰值内存。JSON 解码现在有一次额外的有界编码大小遍历，其成本未在此采集基准中独立测量。[审查证据](evidence/project-review-38070151022.json)保存参数和原始日志哈希；已有历史数据保留。
+
+## Windows 网络切片基准（2026-10-11）
+
+源码 `5e43fdde5df11fbaa9b6590414de7ef7d88010e9`，干净工作区；复现 `cargo bench --locked -p daoseeker-scope --bench collect`。同一本机 i7-9750H、12 逻辑/6 物理核、安装 16 GiB，Windows 11 (26300) x64、Rust 1.96/MSVC、bench 优化 profile、门面默认 serde。默认 max_entries=128，原生网络有 43 条 Win32 统计，含回环/虚拟接口，不等于物理网卡数；合成测试单独使用 max_entries=1024。
+
+| 指标 | 打包结束后单进程样本 |
+|---|---|
+| 首次 collect（不含构造） | 379910 µs |
+| 100 次动态刷新 p50 / p95 / max | 2078 / 2464 / 3319 µs |
+| CPU 样本状态 | Available |
+| 合成 100 传感器、1024 网络接口 collect | 440 µs |
+| 合成快照 JSON | 373541 bytes |
+
+首次样本与本机打包构建并行：首次 539955 µs，刷新 p50/p95/max 3283/4127/11038 µs。为减少并发编译的干扰，在打包结束后重新执行，表格采用后一次结果，[两个日志哈希及参数](evidence/windows-network-extra-local-windows-38094160512.json)均保留。没有与旧版本在相同条件下做配对测试，不能据此宣称总体性能提升或退化；逐接口原生查询增加了工作量。没有测原生峰值内存、Windows 泄漏、坏驱动的阻塞时长，或 Linux/macOS 性能；这是单机样本，不是性能 SLA。

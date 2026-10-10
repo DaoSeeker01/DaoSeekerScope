@@ -1,0 +1,44 @@
+{
+  "source_commit": "5e43fdde5df11fbaa9b6590414de7ef7d88010e9",
+  "git_dirty": false,
+  "verification": "real Windows C ABI with distinct options; each call creates a new collector",
+  "scenarios": [
+    {
+      "max_entries": 128,
+      "abi_status": 0,
+      "network": {
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1791674248720,
+        "reason": null
+      },
+      "network_entries": 43,
+      "cpu_memory_still_available": true
+    },
+    {
+      "max_entries": 1,
+      "abi_status": 0,
+      "network": {
+        "availability": "unavailable",
+        "source": "win32",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "network_entries": null,
+      "cpu_memory_still_available": true
+    },
+    {
+      "max_entries": 128,
+      "abi_status": 0,
+      "network": {
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1791674248728,
+        "reason": null
+      },
+      "network_entries": 43,
+      "cpu_memory_still_available": true
+    }
+  ],
+  "overall": "passed"
+}

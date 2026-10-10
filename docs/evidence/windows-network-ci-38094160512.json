@@ -1,0 +1,166 @@
+{
+  "source_commit": "5e43fdde5df11fbaa9b6590414de7ef7d88010e9",
+  "run_id": 38094160512,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38094160512",
+  "ci_jobs_passed": 8,
+  "native": {
+    "Linux": {
+      "path": "windows-network-native-linux-38094160512.json",
+      "sha256": "ff7f3740e59c69ddec5220d133b02e029e70bc50d3ffc59eb8eeb10fb10cb5e7",
+      "network_counts": {
+        "cli": 4,
+        "c_abi": 4
+      }
+    },
+    "macOS": {
+      "path": "windows-network-native-macos-38094160512.json",
+      "sha256": "43cf4663448be3afd3d92215e511073a4b80711006a1bcf892f2077a50f635a9",
+      "network_counts": {
+        "cli": null,
+        "c_abi": null
+      }
+    },
+    "Windows": {
+      "path": "windows-network-native-windows-38094160512.json",
+      "sha256": "fcf8e04aa8a7c3569625541577fdd1a62bbdf572ac35e6433fa947c3a98874be",
+      "network_counts": {
+        "cli": 18,
+        "c_abi": 18
+      }
+    }
+  },
+  "packages": {
+    "Linux": {
+      "path": "windows-network-package-linux-38094160512.json",
+      "sha256": "fe03294369709ad67f5401db7193c80916f4c246537408818bdcdfe289f853f9",
+      "rust_tests_including_doctests": 95
+    },
+    "macOS": {
+      "path": "windows-network-package-macos-38094160512.json",
+      "sha256": "7b7a6e3fa99713661e449d3b44c32eb3c0254e2a624b5e82453ffbc2816a5138",
+      "rust_tests_including_doctests": 94
+    },
+    "Windows": {
+      "path": "windows-network-package-windows-38094160512.json",
+      "sha256": "84da126d34afcbc1bd6f6bb0ef21e1176f771f1b1f9eb01535d62da69d8d0df7",
+      "rust_tests_including_doctests": 97
+    }
+  },
+  "fuzz": {
+    "cpu_stat": {
+      "runs": 1323382,
+      "seconds": 61,
+      "log_sha256": "8a1cb38edf656dc510b415c2d341ad3e1005bfcf1316e64748dca8ed737b51ab"
+    },
+    "meminfo": {
+      "runs": 3825434,
+      "seconds": 61,
+      "log_sha256": "729a825ff478b43246e8f854a4d36c2ecb7061b0dd95411507351e57f583b6f5"
+    },
+    "uptime": {
+      "runs": 19519539,
+      "seconds": 61,
+      "log_sha256": "4b27f9f4738be59c4ac1dc8b2a6e44354027a96886c22e9afa1b3284ee542286"
+    },
+    "power_supply": {
+      "runs": 18505556,
+      "seconds": 61,
+      "log_sha256": "aaf8e9ed54aeaea35931fce8acc2fd69522941624cb1d343f54c7a1d51fd4bc6"
+    },
+    "hwmon_temperature": {
+      "runs": 17995247,
+      "seconds": 61,
+      "log_sha256": "760d34ad809e9a9bcb62271f83aedc46d3974f1242dec4dcbdf95f362393d91e"
+    },
+    "network_dev": {
+      "runs": 3325636,
+      "seconds": 61,
+      "log_sha256": "07aedadeff742cdff987e74e8cd17b9f1daa6a0129e521f6cabc251a2a758944"
+    }
+  },
+  "public_api_shape_changed": false,
+  "schema_version": 1,
+  "c_abi_version": 1,
+  "license": "MIT",
+  "third_party_versions_changed": false,
+  "target_features_added": [
+    "Windows: windows-sys/Win32_NetworkManagement_IpHelper",
+    "Windows: windows-sys/Win32_NetworkManagement_Ndis"
+  ],
+  "limits": [
+    "Windows network capability Partial: bounded GetIfTable does not enumerate all logical tunnels",
+    "OS buffers contain identifiers; MAC/GUID are not accessed, retained, logged or returned",
+    "blocked native API cannot be forcibly interrupted",
+    "no macOS network or disk implementation",
+    "Windows permission denial, hotplug and driver hangs tested by fixtures only",
+    "Linux Miri/ASan/fuzz do not execute Windows native unsafe code",
+    "no long Windows fuzz campaign, native leak profiler or registry publication"
+  ],
+  "fuzz_targets_completed": 9,
+  "source_tests_including_doctests": {
+    "Linux": 95,
+    "Windows": 97,
+    "macOS": 94
+  },
+  "python_tests_per_desktop": 36,
+  "ci_jobs": {
+    "miri": "success",
+    "supply-chain": "success",
+    "desktop (windows-latest)": "success",
+    "linux-container": "success",
+    "desktop (macos-latest)": "success",
+    "ffi-asan": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "fuzz-smoke": "success"
+  },
+  "all_jobs_log_sha256": "1116165b0f9d126c454c19f221d888c5b3507f5696e3e4b2903fc21e66212d2f",
+  "local_native": {
+    "path": "windows-network-native-local-windows-38094160512.json",
+    "sha256": "eb2994c1cbbb9a4f52212c5fa7921be20b732674ebb14af975eb3c202547f1c6",
+    "network_counts": {
+      "cli": 43,
+      "c_abi": 43
+    }
+  },
+  "local_extra": {
+    "path": "windows-network-extra-local-windows-38094160512.json",
+    "sha256": "2437623cab20f3540749699368aca49309ef79ee82b2342461ef916c0bb3deb8"
+  },
+  "local_package": {
+    "path": "windows-network-package-local-windows-38094160512.json",
+    "sha256": "589faa3e67f8520e56cd4a586ad6c7c346554023c1b7032ec0290db21ca67900"
+  },
+  "benchmark": {
+    "limitations": [
+      "one process per run, not a performance SLA",
+      "no native Windows leak profiler or OS-driver timeout measurement"
+    ],
+    "earlier_concurrent_build_sample": {
+      "p50_us": 3283,
+      "max_us": 11038,
+      "log_sha256": "623e16da0f3e4301651cdc0a1819d5e7248899d2a1f09103297a86f68940501f",
+      "p95_us": 4127,
+      "first_collect_us": 539955
+    },
+    "native_network_entries": 43,
+    "command": "cargo bench --locked -p daoseeker-scope --bench collect",
+    "final_run": {
+      "synthetic_networks": 1024,
+      "synthetic_sensors": 100,
+      "refresh_n": 100,
+      "first_collect_us": 379910,
+      "synthetic_collect_us": 440,
+      "p50_us": 2078,
+      "max_us": 3319,
+      "p95_us": 2464,
+      "synthetic_json_bytes": 373541,
+      "log_sha256": "e30045dd917aa10efe05d56e02b22ec03effac181ec7d52130b517f3e06157d9"
+    },
+    "profile": "bench optimized",
+    "features": "facade default serde"
+  },
+  "local_native_limit_probe": {
+    "path": "windows-network-limits-local-windows-38094160512.json",
+    "sha256": "40765afb82d6238193630de4fa687c70ec2de7936ffdd5827561f9b4d8aef971"
+  }
+}
