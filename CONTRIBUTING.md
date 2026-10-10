@@ -31,6 +31,8 @@ python scripts/check_project.py
 
 项目检查读取 Git 跟踪文件及未忽略的新文件，检查 JSON/TOML、Python 语法、本地文档链接和黄金样例副本一致性。原始 fuzz 种子允许损坏字节。它不验证外部网站、Markdown 锚点或证明代码没有缺陷。
 
+打包与独立安装检查运行 `python scripts/check_packages.py`；已缓存依赖可加 `--offline`。它检查实际 crate 归档中的 MIT 和 FFI 头文件，再用解包后的文件运行测试、安装 CLI。依赖未发布时使用本地 patch，不能据此声称真实 registry 安装通过。完整命令和 Cargo 1.96 验证限制见[打包指南](docs/packaging.md)。
+
 ## 跨语言与负面测试
 
 先构建 `cargo build --locked -p daoseeker-scope-ffi -p daoseeker-scope-cli`。Windows：`pwsh -NoProfile -File scripts/build_c_example.ps1`，可用 `-VcRoot`、`-SdkRoot`、`-SdkVersion` 指定安装。

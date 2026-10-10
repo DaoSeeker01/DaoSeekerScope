@@ -2,6 +2,8 @@
 
 当前 0.1.0 为开发版本，尚未发布。当前构建与检查结果见[项目检查报告](project-review-2026-10-11.md)和 [CI 工作流](https://github.com/DaoSeeker01/DaoSeekerScope/actions/workflows/ci.yml)；下面的日期记录属于对应历史版本。创建私有仓库、推送和 CI 已获授权，crates.io 发布或 release 制品分发仍需单独授权。
 
+打包准备的可复现入口与限制见[打包与安装验证](packaging.md)。它验证实际归档和使用本地 patch 的独立构建，真实 registry 安装与原生 Cargo package 验证分别验收，不以 `--list` 或 `--no-verify` 宣称发布准备完成。
+
 发布顺序：维护者ADR/Schema评审 → 三平台原生build/test/doc + C/Python契约 → Linux容器/DMI缺失/权限降级 → fuzz与sanitizer campaign → 依赖/许可证审计 → cargo package逐crate验证 → 制品checksum/安装/回滚演练 → 发布。先core，随后sysinfo及平台crate，再门面、CLI/FFI，避免依赖不存在的crate版本。此顺序是计划，未执行的步骤不算通过。
 
 JSON v1：对象新增字段可向前兼容（未知字段忽略），新增枚举值要求Schema主版本协商；字段删除/语义/单位变化增加Schema主版本并提供v1读取迁移器。C ABI v1：不改变现有options/buffer布局，新增ABI主版本以新入口并存；错误码不复用。Rust0.1破坏变更提高minor，1.0后破坏变更提高major并附迁移说明。sysinfo升级固定版本并重跑状态/单位/CPU采样/黄金样例/Schema/三平台门禁。

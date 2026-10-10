@@ -36,6 +36,16 @@ jobs:
         run: python -m unittest discover -s tests -p "test_*.py"
       - name: Project data and documentation links
         run: python scripts/check_project.py
+      - name: Crate archives and isolated consumer
+        run: python scripts/check_packages.py
+      - name: Preserve package evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: package-evidence-${{ runner.os }}-${{ runner.arch }}
+          path: target/package-evidence.json
+          if-no-files-found: ignore
+          retention-days: 14
       - run: python scripts/check_schema.py
       - name: C FFI on Windows
         if: runner.os == 'Windows'

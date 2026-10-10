@@ -7,6 +7,7 @@
 - [平台能力矩阵](adr/0005-platform-support-matrix.md)：逐字段来源和支持范围。
 - [项目检查与修复](project-review-2026-10-11.md)：2026-10-11 全项目审查结果。
 - [发布与迁移](release.md)、[依赖许可证](dependencies.md)、[性能基线](benchmarks.md)。
+- [打包与安装验证](packaging.md)：归档内容、MIT/C 头文件、独立构建与验证边界。
 
 ## 设计决策
 

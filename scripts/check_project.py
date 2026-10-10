@@ -68,6 +68,17 @@ def main() -> None:
             ROOT / "tests/fixtures/snapshot-v1.json"
         ).read_bytes():
             failures.append(f"golden fixture drift: {copy}")
+    for manifest in (ROOT / "crates").glob("*/Cargo.toml"):
+        license_copy = manifest.parent / "LICENSE-MIT"
+        if (
+            not license_copy.is_file()
+            or license_copy.read_bytes() != (ROOT / "LICENSE-MIT").read_bytes()
+        ):
+            failures.append(f"package license drift: {manifest.parent.name}")
+    if (ROOT / "bindings/daoseeker_scope.h").read_bytes() != (
+        ROOT / "crates/daoseeker-scope-ffi/include/daoseeker_scope.h"
+    ).read_bytes():
+        failures.append("packaged C header drift")
     if failures:
         raise SystemExit("\n".join(failures))
     print(

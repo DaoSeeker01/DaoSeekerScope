@@ -8,6 +8,14 @@
 
 实际检查：两份 manifest 的 cargo metadata --locked --offline --no-deps 确认 9 个本项目包均为 MIT；完整 all-features metadata 重新生成 39 个第三方包清单，cargo-deny --offline check licenses、cargo fmt --all --check、git diff --check 及项目结构/本地链接检查通过。默认 Python 未安装 Ruff，因此本轮 Ruff 检查未运行，mypy 也未运行。没有 Rust 源码变更，未重跑 Rust 测试、clippy、doc、fuzz 或 benchmark。依赖/锁、feature、公共 API、C ABI 1 和 Schema 1 均不变。
 
+## 2026-10-11：归档内容与独立消费者
+
+修复 8 个 crate 漏打包 MIT 全文、FFI crate 漏打包 C 头文件；新增副本一致性检查和 `scripts/check_packages.py`。三个桌面 CI 增加实际归档、解包后的独立测试、CLI 临时安装及报告上传，原有门禁保留。复现步骤和原生 Cargo package 的内部错误见[打包指南](packaging.md)。没有 Rust 源码、公共 API、feature、依赖或锁文件变化；许可证仍为 MIT，ABI 1、Schema 1。
+
+本机 Windows 未提交修复的预验收：8 个实际归档检查、解包后的 83 项 Rust 测试（含 doctest）、锁文件不变、CLI 隔离安装及版本/JSON 输出通过。34 项 Python 守卫、18 个 Python 文件的 Ruff/mypy、Rust fmt、actionlint、项目数据/文档链接与 diff 检查通过。初次 Python 检查缺 jsonschema 且沙盒临时目录拒绝写入；在隔离开发环境和正常临时目录权限下重跑成功，未跳过测试。最初 doctest 也因沙盒拒绝临时可执行文件而失败，重跑通过。
+
+预验收报告位于 `target/package-evidence.json`，标记 `git_dirty=true`，不冒充干净提交验收。三平台新增 CI 门禁等待实际执行结果；尚未完成真实 registry 安装、标准 Cargo package 全流程、发行二进制许可声明、checksum/回滚演练或发布，也未重跑性能基线。
+
 2026-10-08。本地E:/Projects/DaoSeekerScope；无既有代码或Git历史可迁移，目标DaoSeeker01/DaoSeekerScope当前账号查询404。已本地git init并设置origin，无commit/push/远端创建/发布。
 
 | 部分 | 修改/公共契约 |
