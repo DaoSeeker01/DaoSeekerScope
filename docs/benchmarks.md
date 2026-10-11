@@ -1,5 +1,21 @@
 # 性能基线
 
+## macOS 网络切片基准（2026-10-11）
+
+源码 `69b9c4ef7eed97fdad7951983c6cb84fe4ddedc6`，macOS 26.6.2 / Darwin 25.6.0 arm64 CI 虚拟机；OS 报告 Apple M2 Pro (Virtual)、5 逻辑核、14 GiB。Rust 1.96，bench 优化 profile，门面默认 serde、sysinfo system/apple-app-store；原生默认 max_entries=128、11 条 Sysctl 网络统计、名称脱敏，macOS 能力 Partial（数值可能取整/回绕）。
+
+复现 `cargo bench --locked -p daoseeker-scope --bench collect`；单进程首次 collect 不含 Hardware 构造，100 次动态刷新，300 ms 后检查 CPU，合成部分另外用 max_entries=1024。
+
+| 指标 | 原生 macOS CI 样本 |
+|---|---|
+| 首次 collect | 136 µs |
+| 100 次动态刷新 p50 / p95 / max | 19 / 24 / 35 µs |
+| CPU 样本状态 | Available |
+| 合成 100 传感器、1024 网络条目 collect | 515 µs |
+| 合成快照 JSON | 373541 bytes |
+
+这是共享 runner 上完整 collector 的一次样本，包含 sysinfo，不是独立 sysctl 延迟。没有记录峰值分配、真实 100 个传感器或坏驱动阻塞，也未在同条件下与旧版配对比较；不能宣称跨系统性能提升或 SLA。[本轮验证](macos-network-validation.md)区分原生与合成证据。以下各轮历史基线保留原日期与平台。
+
 日期：2026-10-08 Asia/Shanghai。硬件：主机读取i7-9750H，12逻辑CPU/6物理核，安装内存16GiB；OS Microsoft Windows10.0.26300 x86_64。Rust1.96.0 / MSVC14.51.36231，bench优化profile，门面默认serde；sysinfo0.39.6 default-features=false + system/apple-app-store。普通主机权限，采集不含敏感标识。
 
 复现：cargo bench --locked -p daoseeker-scope --bench collect。每次进程首次collect（不含Hardware构造）计时，然后100次动态刷新，等待250ms检查CPU有效样本，再读取100个合成传感器与1024个合成网络条目（max_entries=1024）。实际OS数据与注入的合成数据明确分开。最终可执行文件另外启动5次，原始输出见benchmark-native-runs.txt。

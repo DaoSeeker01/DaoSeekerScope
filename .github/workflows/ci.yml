@@ -128,6 +128,8 @@ jobs:
       - run: cargo +nightly-2026-10-08 install cargo-fuzz --version 0.13.2 --locked
       - run: cargo fmt --manifest-path fuzz/Cargo.toml --check
       - run: cargo +nightly-2026-10-08 check --locked --manifest-path fuzz/Cargo.toml
+      - name: Fuzz harness observation regression
+        run: cargo +nightly-2026-10-08 test --locked --manifest-path fuzz/Cargo.toml --lib
       - run: cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512
       - run: cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512
       - run: cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512

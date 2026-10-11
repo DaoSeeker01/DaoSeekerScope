@@ -17,7 +17,7 @@
 
 [Windows 网络决策](adr/0011-windows-network-counters.md) · [Windows 网络验证](windows-network-validation.md)
 
-[macOS 网络决策](adr/0012-macos-network-counters.md)
+[macOS 网络决策](adr/0012-macos-network-counters.md) · [macOS 网络验证](macos-network-validation.md)
 
 [JSON Schema v1](schema/snapshot-v1.schema.json) · [黄金样例](../tests/fixtures/snapshot-v1.json)
 

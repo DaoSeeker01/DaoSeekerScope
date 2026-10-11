@@ -1,12 +1,12 @@
 #![no_main]
 mod common;
-use daoseeker_scope::ReasonCode;
+use daoseeker_scope::{ReasonCode, Source};
 use daoseeker_scope_linux::fuzzing::meminfo;
 
 libfuzzer_sys::fuzz_target!(|data: &[u8]| {
     let (total, available) = meminfo(data);
-    common::observed(&total);
-    common::observed(&available);
+    common::observed(&total, Source::Procfs);
+    common::observed(&available, Source::Procfs);
     assert_eq!(meminfo(data), (total.clone(), available.clone()));
     if data.len() > 4096 {
         assert_eq!(total.reason(), Some(ReasonCode::InvalidData));

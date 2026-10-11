@@ -1,13 +1,13 @@
 #![no_main]
 mod common;
-use daoseeker_scope::{ReasonCode, Timestamp};
+use daoseeker_scope::{ReasonCode, Source, Timestamp};
 use daoseeker_scope_linux::fuzzing::cpu_stat;
 
 libfuzzer_sys::fuzz_target!(|data: &[u8]| {
     let samples = cpu_stat(data);
     assert!((6..=21).contains(&samples.len()));
     for item in &samples {
-        common::observed(item);
+        common::observed(item, Source::Procfs);
         if let Some(value) = item.value() {
             assert!(value.is_finite() && (0.0..=100.0).contains(value));
         }

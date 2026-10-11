@@ -1,7 +1,7 @@
 use daoseeker_scope::{Availability, Observed, Source};
 
-pub fn observed<T>(item: &Observed<T>) {
-    assert_eq!(item.source(), Source::Procfs);
+pub fn observed<T>(item: &Observed<T>, source: Source) {
+    assert_eq!(item.source(), source);
     if item.value().is_some() {
         assert_eq!(item.availability(), Availability::Available);
         assert!(item.observed_at().is_some());

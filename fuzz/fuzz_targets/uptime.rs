@@ -1,11 +1,11 @@
 #![no_main]
 mod common;
-use daoseeker_scope::ReasonCode;
+use daoseeker_scope::{ReasonCode, Source};
 use daoseeker_scope_linux::fuzzing::uptime;
 
 libfuzzer_sys::fuzz_target!(|data: &[u8]| {
     let item = uptime(data);
-    common::observed(&item);
+    common::observed(&item, Source::Procfs);
     assert_eq!(uptime(data), item);
     if data.len() > 256 {
         assert_eq!(item.reason(), Some(ReasonCode::InvalidData));

@@ -6,15 +6,15 @@ use daoseeker_scope_macos::fuzzing::network_route;
 libfuzzer_sys::fuzz_target!(|data: &[u8]| {
     for limit in [1, 128, 1024] {
         let observed = network_route(data, limit);
-        common::observed(&observed);
+        common::observed(&observed, Source::Sysctl);
         assert_eq!(network_route(data, limit), observed);
         assert_eq!(observed.source(), Source::Sysctl);
         if let Some(entries) = observed.value() {
             assert!(entries.len() <= limit);
             for entry in entries {
-                common::observed(&entry.interface_name);
-                common::observed(&entry.received_bytes);
-                common::observed(&entry.transmitted_bytes);
+                common::observed(&entry.interface_name, Source::Sysctl);
+                common::observed(&entry.received_bytes, Source::Sysctl);
+                common::observed(&entry.transmitted_bytes, Source::Sysctl);
                 assert!(entry.interface_name.value().is_none());
                 assert_eq!(
                     entry.interface_name.reason(),
