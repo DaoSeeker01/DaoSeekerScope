@@ -1,0 +1,166 @@
+{
+  "source_commit": "d27e681b87cc64f5ed55c11218752b3c70268f0a",
+  "run_id": 38186025262,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38186025262",
+  "ci_jobs_passed": 8,
+  "native": {
+    "Linux": {
+      "path": "macos-network-native-linux-38186025262.json",
+      "sha256": "2200a31571014c21b9a733da9eb4f68187b710593d75fbfdb756c332074e2099",
+      "original_report_sha256": "2200a31571014c21b9a733da9eb4f68187b710593d75fbfdb756c332074e2099",
+      "network_counts": {
+        "cli": 4,
+        "c_abi": 4
+      }
+    },
+    "macOS": {
+      "path": "macos-network-native-macos-38186025262.json",
+      "sha256": "b267a7730f4ca177cba323950f7854a0317b6803bfe0837d301b5f06a072be0a",
+      "original_report_sha256": "b267a7730f4ca177cba323950f7854a0317b6803bfe0837d301b5f06a072be0a",
+      "network_counts": {
+        "cli": 11,
+        "c_abi": 11
+      }
+    },
+    "Windows": {
+      "path": "macos-network-native-windows-38186025262.json",
+      "sha256": "fa1c486a3e4a5b1d088193844816d8dd5479eb646d28568856b2113f201aebab",
+      "original_report_sha256": "0aa882c38064404f71c6d86511726f25fd2601588c70ea5429e4b07010693a4e",
+      "network_counts": {
+        "cli": 18,
+        "c_abi": 18
+      }
+    }
+  },
+  "packages": {
+    "Linux": {
+      "path": "macos-network-package-linux-38186025262.json",
+      "sha256": "9ff5f173f02158e143d62e9ce7682c681b79265849be7207234b016e92956017",
+      "original_report_sha256": "9ff5f173f02158e143d62e9ce7682c681b79265849be7207234b016e92956017",
+      "rust_tests_including_doctests": 103
+    },
+    "macOS": {
+      "path": "macos-network-package-macos-38186025262.json",
+      "sha256": "ae9265085895e26e515dc3381e6d916ec108d0505c32466da655f0d734ecc908",
+      "original_report_sha256": "ae9265085895e26e515dc3381e6d916ec108d0505c32466da655f0d734ecc908",
+      "rust_tests_including_doctests": 102
+    },
+    "Windows": {
+      "path": "macos-network-package-windows-38186025262.json",
+      "sha256": "75c3d10d79790c18c4c41c7821752825b42a5fa4cf7c8a0754551149e3dcdbad",
+      "original_report_sha256": "e63bea3c0327ef7a5de0249653d8073e31ef6d1d49d38631d554bf3582a2a497",
+      "rust_tests_including_doctests": 105
+    }
+  },
+  "fuzz": {
+    "cpu_stat": {
+      "runs": 1326442,
+      "seconds": 61,
+      "log_sha256": "d4b2ce69e08b7d498cd33d2b0027c3158d398a15c31d29b1a66e5b0b5217ce1b"
+    },
+    "meminfo": {
+      "runs": 3020320,
+      "seconds": 61,
+      "log_sha256": "f2ecd7e1405aeb52e1a95a16a81513162c69bd659917584bb3955d4709384d22"
+    },
+    "uptime": {
+      "runs": 19796381,
+      "seconds": 61,
+      "log_sha256": "64014fd340657dad790f66115046ee45884a9d57f5f058b3be51e5ad89642298"
+    },
+    "power_supply": {
+      "runs": 18622647,
+      "seconds": 61,
+      "log_sha256": "fa302fb8bbdde65278f6be698077220232065b362a4b7a36f16b2b3283dd353c"
+    },
+    "hwmon_temperature": {
+      "runs": 18626151,
+      "seconds": 61,
+      "log_sha256": "d3b9ddf75f720ab893713d04785349e466dfb57ea7ee774a0cf1318df153ecb5"
+    },
+    "network_dev": {
+      "runs": 1806033,
+      "seconds": 61,
+      "log_sha256": "f2cde424536deef8f717ae6525a246f4879c78c2c3d7d64b46b3f7a81beff15c"
+    },
+    "macos_network": {
+      "runs": 5057654,
+      "seconds": 61,
+      "log_sha256": "f3460baa4ab3945098751c2664e7b2e26ce1d2cd00bd932a7cc5914e16380283"
+    }
+  },
+  "public_api_shape_changed": false,
+  "schema_version": 1,
+  "c_abi_version": 1,
+  "license": "MIT",
+  "third_party_versions_changed": false,
+  "features_added": [
+    "daoseeker-scope-macos/fuzzing (default off; hidden validation hooks)"
+  ],
+  "limits": [
+    "macOS Partial/Sysctl: ordinary application counters may be rounded and reduced to 32-bit range by OS",
+    "OS buffer contains opaque link addresses; they are not decoded, retained, logged or returned",
+    "one 512 KiB caller buffer; 8192 routing records and max_entries interface bounds",
+    "blocked OS call cannot be forcibly interrupted; kernel allocations are not bounded by caller buffer",
+    "no disk/GPU/mobile/Web/MCU implementation in this slice",
+    "macOS real permission denial, sandbox restriction, hotplug and OS blocking not tested",
+    "Linux Miri/ASan/fuzz do not execute macOS native unsafe calls",
+    "no long fuzz campaign, native leak profiler or registry publication"
+  ],
+  "hash_contract": "sha256 covers archived LF report bytes; original_report_sha256 covers original downloaded/generated report bytes. Log hashes cover original captured logs.",
+  "fuzz_targets_completed": 10,
+  "source_tests_including_doctests": {
+    "Linux": 103,
+    "Windows": 105,
+    "macOS": 102
+  },
+  "python_tests_per_desktop": 36,
+  "ci_jobs": {
+    "ffi-asan": "success",
+    "desktop (macos-latest)": "success",
+    "linux-container": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "fuzz-smoke": "success",
+    "supply-chain": "success",
+    "miri": "success",
+    "desktop (windows-latest)": "success"
+  },
+  "all_jobs_log_sha256": "e4a31f38aa6395d30a647cbb0addbb7f5fe8a3b6fb03423debf016d8720d347c",
+  "fuzz_harness_regression_tests": 2,
+  "ffi_memory_checks": {
+    "miri": 8,
+    "ffi-asan": 10
+  },
+  "local_package": {
+    "path": "macos-network-package-local-windows-38186025262.json",
+    "sha256": "b988347a3640275fb1278e051830d30fa3fea1cc5a24bfc6ae081104c60c0565",
+    "original_report_sha256": "d4d77cf75714bbc6346fb740715f7f6f378372de836ab18ee00187055acaf5f2"
+  },
+  "benchmark": {
+    "execution_platform": "macOS CI runner (same source as native report)",
+    "profile": "bench (optimized)",
+    "default_features": true,
+    "first_collect_us": 167,
+    "refresh_n": 100,
+    "p50_us": 33,
+    "p95_us": 50,
+    "max_us": 65,
+    "synthetic_sensors": 100,
+    "synthetic_networks": 1024,
+    "synthetic_collect_us": 124,
+    "synthetic_json_bytes": 373541,
+    "log_sha256": "d2c8ddef7b6e7dbebb0f060fa7313395ce616aec1db953f9d535fe4da78c6c76",
+    "limits": "Shared runner; whole collector including sysinfo, not isolated sysctl timing or allocation profiling."
+  },
+  "parser_seed_hashes": {
+    "oversize": "eda6e9fb7e8bed184a10de09683556f9fc1720ffc1af5fa73f4891c7dec70bca",
+    "truncated": "f644fd523c77fd514b221ea1dbae7424795bca53489f22db2941e10fac5b8fb8",
+    "valid": "94255dde63d9bb487c0d7a9c2fc062ddb340821d44d097240b798711f6f0c0dc",
+    "zero-index": "8676f4af58407733dcdecd6a288dff60f6f3995e2015b3d473f7342751a9a1c8"
+  },
+  "previous_failed_run": {
+    "path": "macos-network-failure-previous-run-38186025262.json",
+    "sha256": "a42da94f7647d20271133031795bd11ca88bb5ac6dacda3269f4308fb5b1abb6",
+    "original_report_sha256": "a42da94f7647d20271133031795bd11ca88bb5ac6dacda3269f4308fb5b1abb6"
+  }
+}

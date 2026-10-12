@@ -27,6 +27,8 @@
 
 2026-10-11 Windows 网络切片源码 `5e43fdd` 的 CI 38094160512 全部 8 个任务成功：Windows CLI/C 各实读 18 条 Win32 统计且名称脱敏，能力 Partial；本机未提升权限进程读到 43 条，并实际验证 1 条限额拒绝、CPU/内存隔离。三平台源码及独立消费者各 97/95/94 项 Rust 测试（Windows/Linux/macOS）通过；macOS 网络仍 Unsupported。系统临时缓冲确实含标识，不解析保存不等于从未进入内存，详见 [Windows 契约与证据](../windows-network-validation.md)。
 
+2026-10-12 macOS 网络最终修复源码 `d27e681` 的 CI 38186025262 全部 8 个任务成功：macOS CLI/C 各实读 11 条 Sysctl 统计且名称脱敏，能力 Partial；公开统计对普通应用可能取整和回绕。三平台源码及独立消费者各 105/103/102 项 Rust 测试（Windows/Linux/macOS）、十个各至少 60 秒 fuzz 通过。首轮 CI 的 harness 来源断言失败与修复分别保留，见 [macOS 验证](../macos-network-validation.md)。
+
 增强研究依据：[Win32安装内存](https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getphysicallyinstalledsystemmemory)、[电源状态](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getsystempowerstatus)、[WMI Next timeout](https://learn.microsoft.com/en-us/windows/win32/api/wbemcli/nf-wbemcli-ienumwbemclassobject-next)、[DXGI适配器](https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgifactory-enumadapters)、[Linux sysfs ABI](https://docs.kernel.org/admin-guide/abi-testing.html)、[hwmon单位](https://docs.kernel.org/hwmon/sysfs-interface.html)、[Apple sysctl](https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man3/sysctlbyname.3.html)、[IOKit](https://developer.apple.com/documentation/iokit)。文档是选型依据，不能代替编译或设备实验。
 
 选择普通用户的小范围增强以避免WMI永久阻塞；不引入wmi/udev/Metal依赖。Linux无DMI、WSL、容器、安全策略按真实ErrorKind降级；不根据文件exists断言能力。macOS仅公开sysctl只读查询。后续引入扫描器必须加资源/权限/错误隔离测试。

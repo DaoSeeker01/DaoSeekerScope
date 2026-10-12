@@ -1,0 +1,53 @@
+{
+  "source_commit": "69b9c4ef7eed97fdad7951983c6cb84fe4ddedc6",
+  "run_id": 38095804975,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38095804975",
+  "overall": "failure",
+  "jobs_succeeded": 7,
+  "job_failed": "fuzz-smoke",
+  "fuzz_targets_completed": 9,
+  "target_failed": "macos_network",
+  "failure_location": "fuzz_targets/common.rs:4",
+  "actual_source": "sysctl",
+  "incorrect_expected_source": "procfs",
+  "cause": "Harness reused a procfs-specific assertion for the Darwin parser.",
+  "failure_class": "test harness integration error; not infrastructure rejection or parser panic",
+  "reproducer": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "description": "empty byte slice"
+  },
+  "failed_job_log_sha256": "fb07675a91afc99d4a1945adf7bf70eb84d1e5c6bbc224d49c84bf4837ef3bbc",
+  "fix_source_commit": "d27e681b87cc64f5ed55c11218752b3c70268f0a",
+  "fix": "Explicit per-target expected Source; unchanged availability/value/time/reason invariants.",
+  "new_regression_tests": 2,
+  "local_command": "cargo test --locked --manifest-path fuzz/Cargo.toml --lib",
+  "local_result": "2 passed; wrong-source assertion still rejects mismatch",
+  "native_macos_benchmark": {
+    "profile": "bench (optimized)",
+    "default_features": true,
+    "first_collect_us": 136,
+    "refresh_n": 100,
+    "p50_us": 19,
+    "p95_us": 24,
+    "max_us": 35,
+    "synthetic_collect_us": 515,
+    "synthetic_json_bytes": 373541,
+    "log_sha256": "e2d364a118f812b1b8c3fb5281eb921a7245db739a2a970d1ed686131a1acff3",
+    "limits": "Native job succeeded in an overall failed run; shared runner, not an isolated syscall benchmark."
+  },
+  "native_macos_first_run": {
+    "cli_network_entries": 11,
+    "c_abi_network_entries": 11,
+    "original_report_sha256": "f2918738cba51608a38b7f65212a6e071d1b9dd63ff659bea261f793b7e8a315",
+    "checks": {
+      "cli": "passed",
+      "c_abi": "passed",
+      "python_ffi": "passed"
+    },
+    "execution_platform": {
+      "os": "Darwin",
+      "architecture": "arm64"
+    }
+  }
+}
