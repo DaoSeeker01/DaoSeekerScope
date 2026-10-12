@@ -1,6 +1,6 @@
 # Fuzz 目标
 
-第十一个目标 `storage_capacity` 检查生产 sysfs size 的 512 字节换算、128 字节上限、零值与溢出，七个合成种子；不枚举设备或执行权限测试。来源固定 Sysfs，复用明确指定来源的共享检查。实际执行结果待本轮 CI；见[存储契约](../docs/adr/0013-storage-capacity.md)。
+第十一个目标 `storage_capacity` 检查生产 sysfs size 的 512 字节换算、128 字节上限、零值与溢出，七个合成种子；不枚举设备或执行权限测试。来源固定 Sysfs，复用明确指定来源的共享检查。源码 2b19e8d 的 CI 38188243470 全部十一个目标各至少 60 秒通过；本目标为 61 秒、37,258,518 次，无崩溃正常结束。两项 harness 回归也通过；见[存储验证](../docs/storage-validation.md)和[契约](../docs/adr/0013-storage-capacity.md)。
 
 ```sh
 cargo +nightly-2026-10-08 fuzz run storage_capacity -- -seed=20261012 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512

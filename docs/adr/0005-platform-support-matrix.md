@@ -17,7 +17,7 @@
 | 电池 | D/N GetSystemPowerStatus | D/P power_supply、Partial，CI枚举/权限fixture通过 | U，IOKit候选 | Linux capacity/Mains online受控枚举；原生runner无条目，USB拓扑/真实电池未验 |
 | 温度 | U，WMI质量不一 | D/P hwmon、Partial | U，公开接口不足 | coretemp、k10temp Tdie；NVMe1..9路由本机/三平台CI和47项合成内核观察通过，原生runner无条目，设备计算值不等于物理点；[验收](../nvme-temperature-validation.md) |
 | GPU/显存 | U，DXGI候选 | U，PCI/DRM候选 | U，Metal/IOKit候选 | 最小模型，Unsupported集合 |
-| 存储设备容量 | U，Win32候选 | 实现待原生验证 Sysfs、Partial | U，IOKit候选 | Linux /sys/block 一级整块设备，含虚拟对象，不代表文件系统可用空间或物理总量；[契约](0013-storage-capacity.md)，名称默认脱敏、serial不采集 |
+| 存储设备容量 | U，Win32候选 | D/P Sysfs、Partial | U，IOKit候选 | Linux /sys/block 一级整块设备，含虚拟对象，不代表文件系统可用空间或物理总量；[契约](0013-storage-capacity.md)及[验证](../storage-validation.md)，名称默认脱敏、serial不采集 |
 | 网络累计字节数 | D/P Win32、Partial | D/P procfs、Supported | D/P Sysctl、Partial | Windows 有界枚举、不保证所有逻辑接口；[Windows 验证](../windows-network-validation.md)。Linux 仅当前网络命名空间；[Linux 验证](../network-validation.md)。macOS 可能取整/回绕；[契约](0012-macos-network-counters.md)。名称默认脱敏；Windows/macOS 临时原始缓冲仍含未解析保存的标识 |
 | 显示器 | U，SetupAPI/Win32候选 | U，DRM候选 | U，公开Apple API候选 | 后续 |
 | 原始SMBIOS/磁盘底层探测 | A/P | A/P | P/U | 不选默认路径 |
@@ -28,6 +28,8 @@
 2026-10-11 Windows 网络切片源码 `5e43fdd` 的 CI 38094160512 全部 8 个任务成功：Windows CLI/C 各实读 18 条 Win32 统计且名称脱敏，能力 Partial；本机未提升权限进程读到 43 条，并实际验证 1 条限额拒绝、CPU/内存隔离。三平台源码及独立消费者各 97/95/94 项 Rust 测试（Windows/Linux/macOS）通过；macOS 网络仍 Unsupported。系统临时缓冲确实含标识，不解析保存不等于从未进入内存，详见 [Windows 契约与证据](../windows-network-validation.md)。
 
 2026-10-12 macOS 网络最终修复源码 `d27e681` 的 CI 38186025262 全部 8 个任务成功：macOS CLI/C 各实读 11 条 Sysctl 统计且名称脱敏，能力 Partial；公开统计对普通应用可能取整和回绕。三平台源码及独立消费者各 105/103/102 项 Rust 测试（Windows/Linux/macOS）、十个各至少 60 秒 fuzz 通过。首轮 CI 的 harness 来源断言失败与修复分别保留，见 [macOS 验证](../macos-network-validation.md)。
+
+2026-10-12 Linux 存储切片源码 `2b19e8d` 的 CI 38188243470 全部 8 个任务成功：CLI/C 各读 9 个整块对象（含虚拟设备），一项正容量及八项内核报告零值，名称全部脱敏；21 项非 root 合成 sysfs/缓存观察通过。三平台源码与独立消费者各 111/109/108 项测试，十一个各至少 60 秒 fuzz 通过。Windows/macOS 存储仍 Unsupported；[验证范围](../storage-validation.md)不将虚拟对象相加为物理容量。
 
 增强研究依据：[Win32安装内存](https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getphysicallyinstalledsystemmemory)、[电源状态](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getsystempowerstatus)、[WMI Next timeout](https://learn.microsoft.com/en-us/windows/win32/api/wbemcli/nf-wbemcli-ienumwbemclassobject-next)、[DXGI适配器](https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgifactory-enumadapters)、[Linux sysfs ABI](https://docs.kernel.org/admin-guide/abi-testing.html)、[hwmon单位](https://docs.kernel.org/hwmon/sysfs-interface.html)、[Apple sysctl](https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man3/sysctlbyname.3.html)、[IOKit](https://developer.apple.com/documentation/iokit)。文档是选型依据，不能代替编译或设备实验。
 

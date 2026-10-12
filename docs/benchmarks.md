@@ -1,5 +1,20 @@
 # 性能基线
 
+## Linux 存储容量切片（2026-10-12）
+
+源码 `2b19e8d1cd50c9277753941a16807e1143a97c35`；Ubuntu 24.04 x64 CI 虚拟机，kernel 6.17.0-1022-azure，OS 报告 AMD EPYC 7763 64-Core Processor、2 逻辑 CPU、可用总内存 8328298496 bytes（不推断物理核数或安装内存）。Rust 1.96、bench 优化 profile、门面默认 serde、sysinfo system/apple-app-store，普通用户默认隐私/max_entries=128，9 个整块对象含虚拟设备；容量静态缓存。
+
+复现 `cargo bench --locked -p daoseeker-scope --bench collect`；首次不含 Hardware 构造、100 次动态刷新、300 ms 后检查 CPU。合成测试另外注入 100 传感器/1024 网络条目并用 max_entries=1024。
+
+| 指标 | 单进程共享 runner 样本 |
+|---|---|
+| 首次 collect | 687 µs |
+| 100 次动态刷新 p50 / p95 / max | 114 / 139 / 151 µs |
+| CPU 样本状态 | Available |
+| 合成 collect / JSON | 278 µs / 373541 bytes |
+
+完整 collector 包含 CPU/内存/网络等路径；存储首次采集后缓存，不能将刷新延迟描述为磁盘扫描或 IO 性能。没有测峰值分配、硬件插拔或坏驱动阻塞；不能与其他平台/旧版非配对样本比较为性能提升，见[验证范围](storage-validation.md)和[原始日志哈希/参数](evidence/storage-ci-38188243470.json)。
+
 ## macOS 网络切片基准（2026-10-12 修复验收）
 
 修复源码 `d27e681b87cc64f5ed55c11218752b3c70268f0a`，macOS 26.6.2 / Darwin 25.6.0 arm64 CI 虚拟机；OS 报告 Apple M2 Pro (Virtual)、5 逻辑核、14 GiB。Rust 1.96，bench 优化 profile，门面默认 serde、sysinfo system/apple-app-store；原生默认 max_entries=128、11 条 Sysctl 网络统计、名称脱敏，macOS 能力 Partial（数值可能取整/回绕）。
