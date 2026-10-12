@@ -1,5 +1,11 @@
 # Fuzz 目标
 
+第十一个目标 `storage_capacity` 检查生产 sysfs size 的 512 字节换算、128 字节上限、零值与溢出，七个合成种子；不枚举设备或执行权限测试。来源固定 Sysfs，复用明确指定来源的共享检查。实际执行结果待本轮 CI；见[存储契约](../docs/adr/0013-storage-capacity.md)。
+
+```sh
+cargo +nightly-2026-10-08 fuzz run storage_capacity -- -seed=20261012 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512
+```
+
 第十个目标 `macos_network` 复用生产 Darwin 路由字节解析器，检查消息边界、512 KiB/8192 消息/接口条数上限、默认脱敏和字段状态。四个合成种子覆盖有效 u64、截断、零索引和超大输入；不执行 macOS sysctl，Linux fuzz 不能代替 macOS 原生读取。首轮 CI 38095804975 在空输入时因共享断言误要求 Procfs 而失败；修复改为各目标显式要求自身来源，新增两项 harness 回归，保留全部断言。修复源码 d27e681 的 CI 38186025262 全部十个目标各至少 60 秒通过；macos_network 为 61 秒、5,057,654 次，无崩溃正常结束。两个 harness 回归也在 Linux CI 通过，见 [独立验收与失败记录](../docs/macos-network-validation.md)，契约见 [ADR 0012](../docs/adr/0012-macos-network-counters.md)。
 
 ```sh

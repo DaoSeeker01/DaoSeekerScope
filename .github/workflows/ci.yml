@@ -68,6 +68,9 @@ jobs:
       - name: macOS collection benchmark
         if: runner.os == 'macOS'
         run: cargo bench --locked -p daoseeker-scope --bench collect > target/macos-collect-benchmark.log
+      - name: Linux storage collection benchmark
+        if: runner.os == 'Linux'
+        run: cargo bench --locked -p daoseeker-scope --bench collect > target/linux-collect-benchmark.log
       - name: Human readable sensor observations
         run: cargo run --locked --quiet -p daoseeker-scope-cli -- sensors
       - name: Preserve native evidence
@@ -78,6 +81,7 @@ jobs:
           path: |
             target/native-evidence.json
             target/macos-collect-benchmark.log
+            target/linux-collect-benchmark.log
           if-no-files-found: ignore
           retention-days: 14
   linux-container:
@@ -97,6 +101,8 @@ jobs:
         run: python scripts/linux_memory_smoke.py
       - name: Battery enumeration failure and recovery
         run: python scripts/linux_battery_smoke.py
+      - name: Static block capacity permission and cache semantics
+        run: python scripts/linux_storage_smoke.py
       - name: Hwmon unit routing failure and recovery
         run: python scripts/linux_hwmon_smoke.py
       - name: Preserve container evidence
@@ -110,6 +116,7 @@ jobs:
             target/linux-memory-evidence.json
             target/linux-battery-evidence.json
             target/linux-hwmon-evidence.json
+            target/linux-storage-evidence.json
           if-no-files-found: ignore
           retention-days: 14
   supply-chain:
@@ -162,6 +169,10 @@ jobs:
         run: |
           set -o pipefail
           cargo +nightly-2026-10-08 fuzz run macos_network -- -seed=20261011 -max_total_time=60 -max_len=524289 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/macos_network.log
+      - name: Fuzz checked block sector conversion
+        run: |
+          set -o pipefail
+          cargo +nightly-2026-10-08 fuzz run storage_capacity -- -seed=20261012 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/storage_capacity.log
       - name: Preserve procfs fuzz logs and failure reproducers
         # Includes hwmon temperature parsing alongside procfs/power_supply.
         if: always()
@@ -177,6 +188,7 @@ jobs:
             fuzz/artifacts/hwmon_temperature/
             fuzz/artifacts/network_dev/
             fuzz/artifacts/macos_network/
+            fuzz/artifacts/storage_capacity/
           if-no-files-found: ignore
           retention-days: 14
   miri:

@@ -12,6 +12,7 @@ pub mod fuzzing;
 mod hwmon;
 mod network;
 mod procfs;
+mod storage;
 
 fn failure<T>(error: io::Error) -> Observed<T> {
     match error.kind() {
@@ -49,6 +50,7 @@ pub struct LinuxBackend {
     proc_root: PathBuf,
     power_root: PathBuf,
     hwmon_root: PathBuf,
+    block_root: PathBuf,
     cpu: cpu::CpuSampler,
     cached_total: Option<u64>,
 }
@@ -64,6 +66,7 @@ impl LinuxBackend {
             proc_root: PathBuf::from("/proc"),
             power_root: PathBuf::from("/sys/class/power_supply"),
             hwmon_root: PathBuf::from("/sys/class/hwmon"),
+            block_root: PathBuf::from("/sys/block"),
             cpu: cpu::CpuSampler::default(),
             cached_total: None,
         }
@@ -122,6 +125,11 @@ impl Backend for LinuxBackend {
             CapabilityLevel::Partial,
             Source::Hwmon,
         ));
+        capabilities.push(Capability::new(
+            "storage",
+            CapabilityLevel::Partial,
+            Source::Sysfs,
+        ));
         capabilities
     }
     fn collect_static(&mut self, context: &CollectContext) -> Result<StaticSnapshot, ScopeError> {
@@ -142,6 +150,7 @@ impl Backend for LinuxBackend {
         } else {
             Observed::restricted(Source::Sysfs, ReasonCode::PrivacyRedacted)
         };
+        result.storage = storage::collect(&self.block_root, context)?;
         Ok(result)
     }
     fn refresh_dynamic(&mut self, context: &CollectContext) -> Result<DynamicSnapshot, ScopeError> {

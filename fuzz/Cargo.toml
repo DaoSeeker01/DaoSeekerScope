@@ -81,3 +81,10 @@ path = "fuzz_targets/macos_network.rs"
 test = false
 doc = false
 bench = false
+
+[[bin]]
+name = "storage_capacity"
+path = "fuzz_targets/storage_capacity.rs"
+test = false
+doc = false
+bench = false

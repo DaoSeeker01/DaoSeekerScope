@@ -537,6 +537,10 @@ fn collect_static(
                 }
                 if let Some(entries) = &mut next.storage.value {
                     for item in entries {
+                        if !context.options.privacy.permits_sensitive() {
+                            item.name =
+                                Observed::restricted(item.name.source, ReasonCode::PrivacyRedacted);
+                        }
                         limit_string(&mut item.name);
                     }
                 }

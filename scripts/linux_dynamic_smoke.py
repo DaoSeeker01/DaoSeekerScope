@@ -112,6 +112,7 @@ def execute(
     | None = None,
     power_supply: bool = False,
     hwmon: bool = False,
+    storage: bool = False,
 ) -> None:
     if platform.system() != "Linux" or platform.machine() not in ("x86_64", "AMD64"):
         raise ValidationFailure("platform: linux_amd64_required")
@@ -155,6 +156,9 @@ def execute(
         if hwmon:
             paths["hwmon"] = root / "sys/class/hwmon"
             paths["hwmon"].mkdir(parents=True, mode=0o755)
+        if storage:
+            paths["block"] = root / "sys/block"
+            paths["block"].mkdir(parents=True, mode=0o755)
         command = [
             "docker",
             "create",
@@ -183,12 +187,12 @@ def execute(
             "--mount",
             f"type=bind,source={probe},target=/opt/probe,readonly",
         ]
-        if power_supply or hwmon:
+        if power_supply or hwmon or storage:
             command.extend(
                 ["--mount", f"type=bind,source={root / 'sys'},target=/sys,readonly"]
             )
         for file, path in paths.items():
-            if file in ("power_supply", "hwmon"):
+            if file in ("power_supply", "hwmon", "block"):
                 continue
             command.extend(
                 ["--mount", f"type=bind,source={path},target=/proc/{file},readonly"]

@@ -5,7 +5,7 @@ use daoseeker_scope::{Hardware, Timestamp, to_json};
 use std::io::{self, BufRead, Read, Write};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let hardware = Hardware::new()?;
+    let mut hardware = Hardware::new()?;
     let mut snapshot = hardware.collect()?;
     println!("{}", to_json(&snapshot)?);
     io::stdout().flush()?;
@@ -18,6 +18,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
         if command == "quit\n" {
             return Ok(());
+        }
+        if command == "rebuild\n" {
+            hardware = Hardware::new()?;
+            snapshot = hardware.collect()?;
+            println!("{}", to_json(&snapshot)?);
+            io::stdout().flush()?;
+            continue;
         }
         if command != "refresh\n" {
             return Err("invalid probe command".into());

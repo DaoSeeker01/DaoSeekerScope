@@ -35,6 +35,67 @@ fn available<T>(value: T) -> Observed<T> {
 }
 
 #[test]
+fn custom_storage_names_require_both_privacy_options_without_hiding_capacity() {
+    let create = |options| {
+        let mut item = StorageInfo::default();
+        item.name = available("private-volume-name".to_owned());
+        item.capacity_bytes = available(0);
+        let mut backend = Fixture::default();
+        backend.static_info.storage = available(vec![item]);
+        HardwareBuilder::new(options)
+            .with_backend(0, backend)
+            .build()
+    };
+    for privacy in [
+        PrivacyOptions::default(),
+        PrivacyOptions {
+            include_sensitive: false,
+            caller_authorized: true,
+        },
+    ] {
+        let snapshot = create(Options {
+            privacy,
+            ..Options::default()
+        })
+        .expect("hardware")
+        .collect()
+        .expect("collect");
+        let item = &snapshot.static_info.storage.value().expect("storage")[0];
+        assert_eq!(item.name.reason(), Some(ReasonCode::PrivacyRedacted));
+        assert!(item.name.value().is_none());
+        assert_eq!(item.capacity_bytes.value(), Some(&0));
+    }
+    let privacy = PrivacyOptions {
+        include_sensitive: true,
+        caller_authorized: true,
+    };
+    let snapshot = create(Options {
+        privacy,
+        ..Options::default()
+    })
+    .expect("hardware")
+    .collect()
+    .expect("collect");
+    assert_eq!(
+        snapshot.static_info.storage.value().expect("storage")[0]
+            .name
+            .value()
+            .map(String::as_str),
+        Some("private-volume-name")
+    );
+    assert!(
+        create(Options {
+            privacy: PrivacyOptions {
+                include_sensitive: true,
+                caller_authorized: false
+            },
+            ..Options::default()
+        })
+        .is_err()
+    );
+}
+
+#[test]
 fn zero_counts_and_capacity_are_isolated() {
     let mut backend = Fixture::default();
     backend.static_info.system.cpu.logical_count = available(0);

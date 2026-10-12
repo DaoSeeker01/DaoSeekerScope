@@ -70,6 +70,19 @@ def check_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
         ):
             raise ValidationFailure("snapshot: privacy_violation")
         selected["device.serial_number"] = serial
+        if "storage" in snapshot["static_info"]:
+            storage = snapshot["static_info"]["storage"]
+            if storage["availability"] == "available":
+                for entry in storage["value"]:
+                    name = entry["name"]
+                    if (
+                        name["value"] is not None
+                        or name["availability"] != "restricted"
+                        or name["reason"] != "privacy_redacted"
+                        or name["observed_at"] is not None
+                    ):
+                        raise ValidationFailure("storage: privacy_violation")
+            selected["static.storage"] = storage
         # Optional observations retain their actual missing/restricted states;
         # they are not promoted to success by the minimum-read gate.
         for group, name in [
@@ -142,6 +155,34 @@ def check_real_network(observations: dict[str, Any], source: str) -> None:
                 raise ValidationFailure("network: invalid_real_counter")
 
 
+def check_real_storage(observations: dict[str, Any]) -> None:
+    """Require a positive OS-reported block capacity; zero alone is insufficient."""
+    storage = observations.get("static.storage", {})
+    if (
+        storage.get("availability") != "available"
+        or storage.get("source") != "sysfs"
+        or not storage.get("value")
+    ):
+        raise ValidationFailure("storage: minimum_read_unavailable")
+    positive = False
+    for entry in storage["value"]:
+        field = entry["capacity_bytes"]
+        if field["availability"] == "available":
+            value = field["value"]
+            if (
+                type(value) is not int
+                or not 0 <= value <= 2**64 - 1
+                or value % 512
+                or field["source"] != "sysfs"
+                or type(field["observed_at"]) is not int
+                or field["reason"] is not None
+            ):
+                raise ValidationFailure("storage: invalid_real_capacity")
+            positive |= value > 0
+    if not positive:
+        raise ValidationFailure("storage: minimum_read_unavailable")
+
+
 def digest(path: Path) -> str:
     hasher = hashlib.sha256()
     with path.open("rb") as stream:
@@ -201,6 +242,8 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
         }.get(platform.system())
         if expected_source is not None:
             check_real_network(observations, expected_source)
+        if platform.system() == "Linux":
+            check_real_storage(observations)
         report["observations"][label] = observations
         report["checks"][label] = "passed"
     report["checks"]["python_ffi"] = "running"

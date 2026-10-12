@@ -1,5 +1,7 @@
 # 锁定依赖许可证清单
 
+2026-10-12 Linux 存储容量切片仅使用标准库与现有 core；无新依赖、锁定版本或许可证变化，sysinfo disk feature 仍关闭。复用既有 Linux fuzzing feature，没有新增默认 feature。
+
 由 cargo metadata --locked --all-features 生成，含三个目标的传递依赖；构建/开发工具 cargo-deny、jsonschema、libFuzzer 不属于运行时依赖。
 项目自身采用 MIT；上游保留各自许可证，分发时仍需保留版权与许可证。清单不是法律结论。
 

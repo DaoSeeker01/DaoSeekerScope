@@ -1,6 +1,11 @@
 //! Opt-in test hooks for the production parsers. Synthetic timestamps only.
 use daoseeker_scope_core::Observed;
 
+/// Production bounded 512-byte-sector conversion; synthetic time, no files.
+pub fn storage_capacity(data: &[u8]) -> Observed<u64> {
+    super::storage::capacity(data, daoseeker_scope_core::Timestamp(0))
+}
+
 /// Bounded production /proc/net/dev parser; synthetic timestamp, no files.
 pub fn network_dev(
     data: &[u8],

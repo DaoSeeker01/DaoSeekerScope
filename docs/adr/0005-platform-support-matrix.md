@@ -17,7 +17,7 @@
 | 电池 | D/N GetSystemPowerStatus | D/P power_supply、Partial，CI枚举/权限fixture通过 | U，IOKit候选 | Linux capacity/Mains online受控枚举；原生runner无条目，USB拓扑/真实电池未验 |
 | 温度 | U，WMI质量不一 | D/P hwmon、Partial | U，公开接口不足 | coretemp、k10temp Tdie；NVMe1..9路由本机/三平台CI和47项合成内核观察通过，原生runner无条目，设备计算值不等于物理点；[验收](../nvme-temperature-validation.md) |
 | GPU/显存 | U，DXGI候选 | U，PCI/DRM候选 | U，Metal/IOKit候选 | 最小模型，Unsupported集合 |
-| 存储 | U，SetupAPI候选 | U，udev/NVMe候选 | U，IOKit候选 | 后续受控枚举；serial不采集 |
+| 存储设备容量 | U，Win32候选 | 实现待原生验证 Sysfs、Partial | U，IOKit候选 | Linux /sys/block 一级整块设备，含虚拟对象，不代表文件系统可用空间或物理总量；[契约](0013-storage-capacity.md)，名称默认脱敏、serial不采集 |
 | 网络累计字节数 | D/P Win32、Partial | D/P procfs、Supported | D/P Sysctl、Partial | Windows 有界枚举、不保证所有逻辑接口；[Windows 验证](../windows-network-validation.md)。Linux 仅当前网络命名空间；[Linux 验证](../network-validation.md)。macOS 可能取整/回绕；[契约](0012-macos-network-counters.md)。名称默认脱敏；Windows/macOS 临时原始缓冲仍含未解析保存的标识 |
 | 显示器 | U，SetupAPI/Win32候选 | U，DRM候选 | U，公开Apple API候选 | 后续 |
 | 原始SMBIOS/磁盘底层探测 | A/P | A/P | P/U | 不选默认路径 |
