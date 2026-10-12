@@ -2,6 +2,8 @@
 #[cfg(target_os = "windows")]
 mod network;
 #[cfg(target_os = "windows")]
+mod storage;
+#[cfg(target_os = "windows")]
 mod native {
     use daoseeker_scope_core::*;
     use windows_sys::Win32::{
@@ -36,6 +38,11 @@ mod native {
                 CapabilityLevel::Partial,
                 Source::Win32,
             ));
+            capabilities.push(Capability::new(
+                "storage",
+                CapabilityLevel::Partial,
+                Source::Setupapi,
+            ));
             capabilities
         }
         fn collect_static(
@@ -57,6 +64,7 @@ mod native {
             context.check()?;
             let mut result = StaticSnapshot::default();
             result.system.memory.installed_bytes = observation;
+            result.storage = crate::storage::collect(context)?;
             Ok(result)
         }
         fn refresh_dynamic(

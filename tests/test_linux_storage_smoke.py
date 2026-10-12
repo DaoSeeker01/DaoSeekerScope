@@ -86,6 +86,29 @@ class StorageGuards(unittest.TestCase):
         }
         storage.verify(self.snapshot, storage.DENIED)
 
+    def test_windows_geometry_keeps_exact_bytes_and_distinct_sources(self) -> None:
+        collection = self.snapshot["static_info"]["storage"]
+        collection["source"] = "setupapi"
+        self.entry["name"]["source"] = "win32"
+        self.entry["capacity_bytes"]["source"] = "win32"
+        self.entry["capacity_bytes"]["value"] = 1
+        observations = {"static.storage": collection}
+        native_smoke.check_real_storage(observations, "win32")
+        for invalid in [0, True, -1, 2**63]:
+            self.entry["capacity_bytes"]["value"] = invalid
+            with self.assertRaises(native_smoke.ValidationFailure):
+                native_smoke.check_real_storage(observations, "win32")
+        self.entry["capacity_bytes"]["value"] = 4096
+        for wrong_source in ["custom", "win32", "sysfs"]:
+            collection["source"] = wrong_source
+            with self.assertRaises(native_smoke.ValidationFailure):
+                native_smoke.check_real_storage(observations, "win32")
+        collection["source"] = "setupapi"
+        with self.assertRaises(native_smoke.ValidationFailure):
+            native_smoke.check_real_storage(observations)
+        with self.assertRaises(native_smoke.ValidationFailure):
+            native_smoke.check_real_storage(observations, "custom")
+
 
 if __name__ == "__main__":
     unittest.main()

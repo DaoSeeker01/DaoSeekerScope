@@ -63,7 +63,7 @@ Linux 的 `dscope network` 显示当前网络命名空间内的累计接收/发�
 
 macOS 使用公开 Sysctl，能力 Partial：普通应用的值可能按 1 KiB 向下取整，并转换为 32 位有效范围，因此可回绕，不承诺精确或完整累计量。保留系统返回值，不补算。默认不查询名称；临时缓冲仍包含未解析的链路地址元数据。详见 [macOS 网络契约](adr/0012-macos-network-counters.md)，原生读取验证另列。
 
-Linux 的 `dscope disk` 读取 `/sys/block` 一级整块设备容量，包含虚拟设备，不表示文件系统可用空间、分区或可相加的物理总容量。容量在首次采集后缓存，扩容、插拔和失败恢复需新建 Hardware；动态刷新保留原值和原时间。默认名称隐藏，只有显式请求并声明授权才显示 OS 设备名；core 对自定义 backend 同样脱敏，这是默认隐私行为的收紧。字段/签名、Schema 1、C ABI 1 不变，详见[存储契约](adr/0013-storage-capacity.md)。Windows/macOS 存储仍 Unsupported。
+`dscope disk` 读取 OS 暴露的整块设备容量，包含虚拟设备，不表示文件系统可用空间、分区或可相加的物理总容量。Linux 读取 `/sys/block` 一级条目；Windows 通过 SetupAPI 枚举整盘接口，以零读写权限句柄查询 Win32 DiskSize，能力 Partial，沙盒或驱动可以拒绝访问。容量在首次采集后缓存，扩容、插拔和失败恢复需新建 Hardware；动态刷新保留原值和原时间。默认名称隐藏，只有显式请求并声明授权才显示 OS 设备名；Windows 授权后查询设备编号形成 PhysicalDriveN，不解析符号接口路径。core 对自定义 backend 同样脱敏。Windows 临时接口路径缓冲含标识，但不保存到模型或日志。字段/签名、Schema 1、C ABI 1 不变，详见[存储契约](adr/0013-storage-capacity.md)和 [Windows 决策](adr/0014-windows-storage-capacity.md)。macOS 存储仍 Unsupported。
 
 Linux 温度仅路由 coretemp、k10temp 的 Tdie 和 NVMe 通道 1..9，默认不读标签；NVMe Composite 可以是设备计算值。Windows/macOS 的 sysinfo 动态值仍有上游缓存与错误表达限制，能力标为 Partial。
 

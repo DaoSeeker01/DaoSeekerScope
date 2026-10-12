@@ -21,6 +21,8 @@
 
 [存储容量决策](adr/0013-storage-capacity.md) · [Linux 存储验证](storage-validation.md)
 
+[Windows 存储决策](adr/0014-windows-storage-capacity.md) · [Windows 存储验证](windows-storage-validation.md)
+
 [JSON Schema v1](schema/snapshot-v1.schema.json) · [黄金样例](../tests/fixtures/snapshot-v1.json)
 
 ## 验证记录
