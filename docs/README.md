@@ -27,6 +27,8 @@
 
 [存储 CLI 文本输出验证](storage-text-validation.md)
 
+[CLI 字段状态与来源验证](cli-text-validation.md)
+
 [JSON Schema v1](schema/snapshot-v1.schema.json) · [黄金样例](../tests/fixtures/snapshot-v1.json)
 
 ## 验证记录

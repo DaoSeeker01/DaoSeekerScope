@@ -12,8 +12,11 @@ class StorageText(unittest.TestCase):
     def text(
         self, source: str, capacity: str = "4.00 KiB (4096 bytes; Sysfs)"
     ) -> bytes:
+        collection_source = {"Win32": "Setupapi", "Iokit": "Iokit", "Sysfs": "Sysfs"}[
+            source
+        ]
         return (
-            "Storage: 2 entries\n"
+            f"Storage: 2 entries ({collection_source})\n"
             "Storage entry 1\n"
             f"Name: Restricted ({source}, Some(PrivacyRedacted))\n"
             f"Capacity: Restricted ({source}, Some(PermissionDenied))\n"
@@ -64,7 +67,7 @@ class StorageText(unittest.TestCase):
     def test_zero_empty_missing_and_oversize_are_not_real_read_evidence(self) -> None:
         for data in [
             self.text("Sysfs", "0 B (0 bytes; Sysfs)"),
-            b"Storage: 0 entries\nNo storage entries visible to this backend.\n",
+            b"Storage: 0 entries (Sysfs)\nNo storage entries visible to this backend.\n",
             b"Storage: Unsupported (Custom, Some(NotSupported))\n",
             b"x" * (smoke.MAX_JSON_BYTES + 1),
         ]:

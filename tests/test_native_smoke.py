@@ -187,6 +187,7 @@ class EvidenceGuards(unittest.TestCase):
                     "c_abi": "not_run",
                     "python_ffi": "not_run",
                     "storage_text": "not_run",
+                    "cli_text": "not_run",
                 },
             )
 

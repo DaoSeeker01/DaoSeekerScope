@@ -7,6 +7,41 @@ fn cli(args: &[&str]) -> std::process::Output {
 }
 
 #[test]
+fn every_text_command_keeps_metadata_and_json_roundtrips() {
+    for command in [
+        "cpu",
+        "memory",
+        "gpu",
+        "disk",
+        "network",
+        "battery",
+        "sensors",
+        "system",
+        "capabilities",
+    ] {
+        let output = cli(&[command]);
+        assert!(output.status.success(), "{command}");
+        assert!(output.stderr.is_empty(), "{command}");
+        let text = String::from_utf8(output.stdout).expect("UTF-8");
+        assert!(!text.is_empty() && text.ends_with('\n'), "{command}");
+        for line in text.lines().filter(|line| line.contains(": ")) {
+            // Values, empty collections and missing states all carry provenance.
+            assert!(
+                line.ends_with(')') && line.contains(" ("),
+                "{command}: {line}"
+            );
+        }
+        let json = cli(&[command, "--json"]);
+        assert!(json.status.success() && json.stderr.is_empty(), "{command}");
+        assert!(
+            daoseeker_scope::from_json(&json.stdout).is_ok(),
+            "{command}"
+        );
+        // The two processes may see different values or device membership.
+    }
+}
+
+#[test]
 fn network_text_and_json_preserve_states_and_privacy() {
     let text = cli(&["network"]);
     let json = cli(&["network", "--json"]);

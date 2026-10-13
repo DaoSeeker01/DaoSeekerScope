@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import platform
 import re
 import subprocess
@@ -19,6 +20,9 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 MAX_JSON_BYTES = 1024 * 1024
+TEXT_SOURCES = r"(?:Sysinfo|Wmi|Win32|Setupapi|Dxgi|Smbios|Sysfs|Procfs|Udev|Hwmon|Pci|Drm|Iokit|Sysctl|AppleApi|AndroidApi|WebApi|Hal|Custom)"
+TEXT_REASONS = r"(?:PermissionDenied|Sandbox|NotSupported|NotPresent|Timeout|InvalidData|PrivacyRedacted|TemporarilyUnavailable|Unknown)"
+TEXT_MISSING = r"(?:Unavailable|Restricted|Unsupported|NotApplicable)"
 
 
 class ValidationFailure(Exception):
@@ -196,7 +200,16 @@ def check_storage_text(data: bytes, expected_source: str) -> dict[str, Any]:
         if len(data) > MAX_JSON_BYTES:
             raise ValidationFailure("storage_text: output_limit")
         lines = data.decode("utf-8").splitlines()
-        header = re.fullmatch(r"Storage: (\d+) entries", lines[0]) if lines else None
+        collection_source = {"Win32": "Setupapi", "Sysfs": "Sysfs", "Iokit": "Iokit"}[
+            expected_source
+        ]
+        header = (
+            re.fullmatch(
+                r"Storage: (\d+) entries \(" + collection_source + r"\)", lines[0]
+            )
+            if lines
+            else None
+        )
         if header is None:
             raise ValidationFailure("storage_text: minimum_read_unavailable")
         count = int(header[1])
@@ -249,6 +262,184 @@ def check_storage_text(data: bytes, expected_source: str) -> dict[str, Any]:
         }
     except (UnicodeError, ValueError, IndexError) as error:
         raise ValidationFailure("storage_text: malformed") from error
+
+
+def check_cli_text(command: str, data: bytes) -> dict[str, Any]:
+    """Presentation guard for stock commands, not a stable/public text parser.
+
+    Missing/empty device collections validate presentation, not device support.
+    Each process is checked independently; no cross-process value comparison.
+    """
+    try:
+        if len(data) > MAX_JSON_BYTES:
+            raise ValidationFailure("cli_text: output_limit")
+        text = data.decode("utf-8")
+        if not text.endswith("\n") or any(
+            ord(char) < 32 and char not in "\r\n" for char in text
+        ):
+            raise ValidationFailure("cli_text: malformed")
+        lines = text.splitlines()
+        available = 0
+        missing = 0
+
+        def field(line: str, label: str) -> None:
+            nonlocal available, missing
+            if not line.startswith(label + ": "):
+                raise ValidationFailure("cli_text: malformed")
+            value = line[len(label) + 2 :]
+            if re.fullmatch(
+                TEXT_MISSING
+                + r" \("
+                + TEXT_SOURCES
+                + r", Some\("
+                + TEXT_REASONS
+                + r"\)\)",
+                value,
+            ):
+                missing += 1
+                return
+            observed = re.fullmatch(r"(.+) \((" + TEXT_SOURCES + r")\)", value)
+            if observed is None:
+                raise ValidationFailure("cli_text: missing_source")
+            value = observed[1]
+            if label in (
+                "Received cumulative bytes",
+                "Transmitted cumulative bytes",
+                "OS usable total bytes",
+                "Installed bytes",
+                "Available bytes",
+                "Dedicated memory bytes",
+                "Uptime seconds",
+                "Logical CPUs",
+                "Physical cores",
+            ):
+                if re.fullmatch(r"[0-9]+", value) is None or int(value) > 2**64 - 1:
+                    raise ValidationFailure("cli_text: invalid_value")
+            elif label in ("Usage percent", "Charge percent", "Temperature Celsius"):
+                number = float(value)
+                if not math.isfinite(number) or (
+                    label != "Temperature Celsius" and not 0 <= number <= 100
+                ):
+                    raise ValidationFailure("cli_text: invalid_value")
+            elif label == "AC power" and value not in ("true", "false"):
+                raise ValidationFailure("cli_text: invalid_value")
+            elif not value.strip():
+                raise ValidationFailure("cli_text: invalid_value")
+            available += 1
+
+        scalar_fields = {
+            "cpu": [
+                "CPU",
+                "Architecture",
+                "Logical CPUs",
+                "Physical cores",
+                "Usage percent",
+            ],
+            "memory": ["OS usable total bytes", "Installed bytes", "Available bytes"],
+            "system": [
+                "OS",
+                "OS version",
+                "Kernel",
+                "CPU",
+                "OS usable total bytes",
+                "Device model",
+                "Uptime seconds",
+            ],
+        }
+        entry_count: int | None = None
+        collection_state: str | None = None
+        if command in scalar_fields:
+            labels = scalar_fields[command]
+            if len(lines) != len(labels):
+                raise ValidationFailure("cli_text: malformed")
+            for line, label in zip(lines, labels, strict=True):
+                field(line, label)
+        elif command == "capabilities":
+            if (
+                not lines
+                or len(lines) > 1024
+                or any(
+                    re.fullmatch(
+                        r"[a-z_][a-z0-9_.]*: (?:Supported|Partial|Unsupported|Restricted|NotApplicable) \("
+                        + TEXT_SOURCES
+                        + r"(?:, "
+                        + TEXT_REASONS
+                        + r")?\)",
+                        line,
+                    )
+                    is None
+                    for line in lines
+                )
+            ):
+                raise ValidationFailure("cli_text: malformed")
+        else:
+            collections = {
+                "gpu": ("GPU", "GPU", ["Name", "Dedicated memory bytes"]),
+                "network": (
+                    "Network",
+                    "Interface",
+                    [
+                        "Name",
+                        "Received cumulative bytes",
+                        "Transmitted cumulative bytes",
+                    ],
+                ),
+                "battery": ("Batteries", "Battery", ["Charge percent", "AC power"]),
+                "sensors": ("Sensors", "Sensor", ["Label", "Temperature Celsius"]),
+            }
+            header_label, entry_label, labels = collections[command]
+            header = (
+                re.fullmatch(
+                    header_label + r": ([0-9]+) entries \(" + TEXT_SOURCES + r"\)",
+                    lines[0],
+                )
+                if lines
+                else None
+            )
+            if header is None:
+                if len(lines) != 1:
+                    raise ValidationFailure("cli_text: malformed")
+                field(lines[0], header_label)
+                if available:
+                    raise ValidationFailure("cli_text: malformed")
+                collection_state = lines[0].split(": ", 1)[1].split(" ", 1)[0]
+            else:
+                entry_count = int(header[1])
+                if entry_count > 1024 or len(lines) != 1 + entry_count * (
+                    1 + len(labels)
+                ):
+                    raise ValidationFailure("cli_text: malformed")
+                collection_state = "Available"
+                for index in range(entry_count):
+                    position = 1 + index * (1 + len(labels))
+                    if lines[position] != f"{entry_label} entry {index + 1}":
+                        raise ValidationFailure("cli_text: malformed")
+                    for offset, label in enumerate(labels, 1):
+                        line = lines[position + offset]
+                        if (command == "network" and label == "Name") or (
+                            command == "sensors" and label == "Label"
+                        ):
+                            if (
+                                re.fullmatch(
+                                    label
+                                    + r": Restricted \("
+                                    + TEXT_SOURCES
+                                    + r", Some\(PrivacyRedacted\)\)",
+                                    line,
+                                )
+                                is None
+                            ):
+                                raise ValidationFailure("cli_text: privacy_violation")
+                        field(line, label)
+        return {
+            "available_fields": available,
+            "missing_fields": missing,
+            "entry_count": entry_count,
+            "collection_state": collection_state,
+            "output_sha256": hashlib.sha256(data).hexdigest(),
+        }
+    except (UnicodeError, ValueError, KeyError, IndexError) as error:
+        raise ValidationFailure("cli_text: malformed") from error
 
 
 def digest(path: Path) -> str:
@@ -329,6 +520,21 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
         run([str(cli), "disk"], "storage_text"), source
     )
     report["checks"]["storage_text"] = "passed"
+    report["checks"]["cli_text"] = "running"
+    report["observations"]["cli_text"] = {
+        command: check_cli_text(command, run([str(cli), command], "cli_text"))
+        for command in (
+            "cpu",
+            "memory",
+            "system",
+            "gpu",
+            "network",
+            "battery",
+            "sensors",
+            "capabilities",
+        )
+    }
+    report["checks"]["cli_text"] = "passed"
 
 
 def main() -> int:
@@ -352,6 +558,7 @@ def main() -> int:
             "c_abi": "not_run",
             "python_ffi": "not_run",
             "storage_text": "not_run",
+            "cli_text": "not_run",
         },
         "observations": {},
     }
