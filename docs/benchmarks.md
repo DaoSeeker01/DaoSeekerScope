@@ -1,5 +1,19 @@
 # 性能基线
 
+## 2026-10-13 Windows 存储切片本机
+
+源码 `ecf4a4c3f7cbc5a2f07248ec4b72470c0496fd92`，干净工作区；Windows 11 build 26300 x64、OS 报告 i7-9750H、12 逻辑 CPU/6 物理核、安装 16 GiB，非提升权限。Rust 1.96/MSVC、bench 优化 profile、门面默认 serde、sysinfo system/apple-app-store、Windows SDK 增强；默认 max_entries=128、名称脱敏，一项整盘对象容量 1000204886016 bytes。复现 `cargo bench --locked -p daoseeker-scope --bench collect`。
+
+| 单进程样本 | 实际结果 |
+|---|---|
+| 首次完整 collect（不含 Hardware 构造） | 444645 µs |
+| 100 次动态刷新 p50 / p95 / max | 2222 / 2910 / 3470 µs |
+| 等待 300 ms 后 CPU 状态 | Available |
+| 合成 100 传感器、1024 网络条目 collect | 344 µs |
+| 合成快照 JSON | 373541 bytes |
+
+存储仅首次静态读取并缓存，动态刷新不重复扫描。该样本测量整个 collector，不隔离 SetupAPI/驱动耗时，不是磁盘吞吐、峰值分配或延迟 SLA；首次采集明显慢于动态刷新。合成部分单独注入自定义 backend/max_entries=1024，不能当作 100 个真实传感器。另有 10 次预热后的 100 次新 Hardware 原生 FFI 查询，进程句柄 269 → 269，仅说明此短测无句柄净增长，不是内存/长期泄漏证明。证据见 [Windows 存储验证](windows-storage-validation.md)。
+
 ## Linux 存储容量切片（2026-10-12）
 
 源码 `2b19e8d1cd50c9277753941a16807e1143a97c35`；Ubuntu 24.04 x64 CI 虚拟机，kernel 6.17.0-1022-azure，OS 报告 AMD EPYC 7763 64-Core Processor、2 逻辑 CPU、可用总内存 8328298496 bytes（不推断物理核数或安装内存）。Rust 1.96、bench 优化 profile、门面默认 serde、sysinfo system/apple-app-store，普通用户默认隐私/max_entries=128，9 个整块对象含虚拟设备；容量静态缓存。

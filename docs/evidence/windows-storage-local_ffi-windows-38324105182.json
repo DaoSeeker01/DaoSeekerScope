@@ -1,0 +1,18 @@
+{
+  "source_commit": "ecf4a4c3f7cbc5a2f07248ec4b72470c0496fd92",
+  "git_dirty": false,
+  "token_elevated": false,
+  "warmup_collects": 10,
+  "ffi_collect_free_cycles": 100,
+  "non_null_options": true,
+  "fresh_hardware_per_call": true,
+  "device_counts": [
+    1
+  ],
+  "process_handles_before": 269,
+  "process_handles_after": 269,
+  "net_process_handle_increase": 0,
+  "overall": "passed",
+  "ffi_sha256": "de58b10675b0fad950a1238d1cd53056adbc4823bcb13ccdde4581e8b9e7b243",
+  "limit": "Short whole-process handle observation, not long-term native heap/leak proof."
+}
