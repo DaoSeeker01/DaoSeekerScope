@@ -10,6 +10,7 @@ import argparse
 import hashlib
 import json
 import platform
+import re
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -189,6 +190,67 @@ def check_real_storage(
         raise ValidationFailure("storage: minimum_read_unavailable")
 
 
+def check_storage_text(data: bytes, expected_source: str) -> dict[str, Any]:
+    """Validate a real default disk presentation; never retain names/raw text."""
+    try:
+        if len(data) > MAX_JSON_BYTES:
+            raise ValidationFailure("storage_text: output_limit")
+        lines = data.decode("utf-8").splitlines()
+        header = re.fullmatch(r"Storage: (\d+) entries", lines[0]) if lines else None
+        if header is None:
+            raise ValidationFailure("storage_text: minimum_read_unavailable")
+        count = int(header[1])
+        if not 1 <= count <= 1024 or len(lines) != 2 + count * 3:
+            raise ValidationFailure("storage_text: malformed")
+        if (
+            lines[-1]
+            != "Entries are OS objects, including virtual devices; capacities may overlap."
+        ):
+            raise ValidationFailure("storage_text: malformed")
+        capacities = []
+        for index in range(count):
+            position = 1 + index * 3
+            if lines[position] != f"Storage entry {index + 1}":
+                raise ValidationFailure("storage_text: malformed")
+            if (
+                lines[position + 1]
+                != f"Name: Restricted ({expected_source}, Some(PrivacyRedacted))"
+            ):
+                raise ValidationFailure("storage_text: privacy_violation")
+            field = lines[position + 2]
+            match = re.fullmatch(
+                r"Capacity: \d+(?:\.\d{2})? (?:B|KiB|MiB|GiB|TiB|PiB|EiB) \((\d+) bytes; (\w+)\)",
+                field,
+            )
+            if match:
+                value = int(match[1])
+                maximum = 2**64 - 1 if expected_source == "Sysfs" else 2**63 - 1
+                if not 0 <= value <= maximum or match[2] != expected_source:
+                    raise ValidationFailure("storage_text: invalid_capacity")
+                capacities.append(value)
+            elif (
+                re.fullmatch(
+                    r"Capacity: (?:Unavailable|Restricted|Unsupported|NotApplicable) \("
+                    + re.escape(expected_source)
+                    + r", Some\(\w+\)\)",
+                    field,
+                )
+                is None
+            ):
+                raise ValidationFailure("storage_text: malformed")
+        if not any(value > 0 for value in capacities):
+            raise ValidationFailure("storage_text: minimum_read_unavailable")
+        return {
+            "entry_count": count,
+            "available_capacity_bytes": capacities,
+            "source": expected_source,
+            "names_redacted": True,
+            "output_sha256": hashlib.sha256(data).hexdigest(),
+        }
+    except (UnicodeError, ValueError, IndexError) as error:
+        raise ValidationFailure("storage_text: malformed") from error
+
+
 def digest(path: Path) -> str:
     hasher = hashlib.sha256()
     with path.open("rb") as stream:
@@ -259,6 +321,14 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
     report["checks"]["python_ffi"] = "running"
     run([sys.executable, str(ROOT / "examples/collect.py"), str(library)], "python_ffi")
     report["checks"]["python_ffi"] = "passed"
+    report["checks"]["storage_text"] = "running"
+    source = {"Windows": "Win32", "Linux": "Sysfs", "Darwin": "Iokit"}[
+        platform.system()
+    ]
+    report["observations"]["storage_text"] = check_storage_text(
+        run([str(cli), "disk"], "storage_text"), source
+    )
+    report["checks"]["storage_text"] = "passed"
 
 
 def main() -> int:
@@ -277,7 +347,12 @@ def main() -> int:
         },
         "python_version": platform.python_version(),
         "overall": "incomplete",
-        "checks": {"cli": "not_run", "c_abi": "not_run", "python_ffi": "not_run"},
+        "checks": {
+            "cli": "not_run",
+            "c_abi": "not_run",
+            "python_ffi": "not_run",
+            "storage_text": "not_run",
+        },
         "observations": {},
     }
     # Replace any previous success before starting processes. An interruption

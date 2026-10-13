@@ -182,7 +182,12 @@ class EvidenceGuards(unittest.TestCase):
             self.assertEqual(report["overall"], "failed")
             self.assertEqual(
                 report["checks"],
-                {"cli": "failed", "c_abi": "not_run", "python_ffi": "not_run"},
+                {
+                    "cli": "failed",
+                    "c_abi": "not_run",
+                    "python_ffi": "not_run",
+                    "storage_text": "not_run",
+                },
             )
 
     def test_interruption_replaces_previous_success_with_incomplete(self) -> None:

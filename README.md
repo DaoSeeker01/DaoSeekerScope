@@ -6,7 +6,7 @@
 
 ## 能做什么
 
-- 查看 CPU 型号、核数、占用率、内存和操作系统信息。
+- 查看 CPU 型号、核数、占用率、内存、存储容量和操作系统信息。
 - 读取部分平台的设备型号、电池和温度信息。
 - 输出文本或 JSON，方便展示、记录和接入其他程序。
 - 读不到数据时说明原因；序列号等敏感信息默认隐藏。
@@ -33,6 +33,7 @@ GPU、文件系统可用空间和显示器信息尚未实现。网络与存储�
 ```sh
 cargo run --locked -p daoseeker-scope-cli -- cpu
 cargo run --locked -p daoseeker-scope-cli -- memory
+cargo run --locked -p daoseeker-scope-cli -- disk
 cargo run --locked -p daoseeker-scope-cli -- --json
 ```
 

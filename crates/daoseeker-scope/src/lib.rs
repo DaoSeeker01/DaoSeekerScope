@@ -14,7 +14,7 @@ pub use daoseeker_scope_core::{
     FirmwareInfo, GpuInfo, HardwareBuilder, MAX_JSON_BYTES, MemoryInfo, MergeEvent,
     MotherboardInfo, NetworkInfo, Observed, Options, OsInfo, PrivacyOptions, ReasonCode,
     RuntimeInfo, SCHEMA_VERSION, ScopeError, SensorInfo, Snapshot, Source, StaticSnapshot,
-    SystemInfo, Timestamp,
+    StorageInfo, SystemInfo, Timestamp,
 };
 pub struct Hardware(daoseeker_scope_core::Hardware);
 impl Hardware {

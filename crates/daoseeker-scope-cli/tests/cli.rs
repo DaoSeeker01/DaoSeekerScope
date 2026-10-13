@@ -31,6 +31,31 @@ fn network_text_and_json_preserve_states_and_privacy() {
     }
 }
 #[test]
+fn storage_text_and_json_preserve_capacity_states_and_privacy() {
+    let text = cli(&["disk"]);
+    let json = cli(&["disk", "--json"]);
+    assert!(text.status.success() && json.status.success());
+    assert!(text.stderr.is_empty() && json.stderr.is_empty());
+    let snapshot = daoseeker_scope::from_json(&json.stdout).expect("snapshot");
+    let text = String::from_utf8(text.stdout).expect("text");
+    assert!(text.starts_with("Storage: "));
+    // Separate processes can see different membership; do not compare counts
+    // or capacities across snapshots during real hotplug.
+    if let Some(entries) = snapshot.static_info.storage.value() {
+        for entry in entries {
+            assert!(entry.name.value().is_none());
+            assert_eq!(
+                entry.name.reason(),
+                Some(daoseeker_scope::ReasonCode::PrivacyRedacted)
+            );
+        }
+    }
+    if text.contains("Storage entry ") {
+        assert!(text.contains("Capacity: ") && text.contains("PrivacyRedacted"));
+        assert!(text.contains("capacities may overlap"));
+    }
+}
+#[test]
 fn help_version_and_usage_codes() {
     assert!(cli(&["--help"]).status.success());
     assert!(cli(&["--version"]).status.success());

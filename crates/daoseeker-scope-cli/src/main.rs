@@ -6,7 +6,7 @@ use std::{
     process::ExitCode,
     time::Duration,
 };
-const HELP: &str = "寻道者观微 DaoSeekerScope\nUsage: dscope [cpu|memory|gpu|disk|network|battery|sensors|system|capabilities] [--json]\n  --include-sensitive --authorized   Explicit sensitive access (caller authorization)\n  cpu samples usage over at least 300 ms\n  --version  --help\nExit codes: 0 success, 2 usage, 3 collection error\nUnavailable fields are successful structured results, not process errors.";
+const HELP: &str = "寻道者观微 DaoSeekerScope\nUsage: dscope [cpu|memory|gpu|disk|network|battery|sensors|system|capabilities] [--json]\n  --include-sensitive --authorized   Explicit sensitive access (caller authorization)\n  cpu samples usage over at least 300 ms\n  disk shows whole-device capacity in bytes and IEC units\n  --version  --help\nExit codes: 0 success, 2 usage, 3 collection error\nUnavailable fields are successful structured results, not process errors.";
 fn show<T: Display>(output: &mut String, label: &str, value: &Observed<T>) {
     if let Some(value) = value.value() {
         writeln!(output, "{label}: {value}").expect("string formatting");
@@ -35,6 +35,57 @@ fn list<T>(output: &mut String, label: &str, value: &Observed<Vec<T>>) {
         )
         .expect("string formatting"),
     }
+}
+fn readable_bytes(bytes: u64) -> String {
+    const UNITS: [&str; 7] = ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB"];
+    if bytes < 1024 {
+        return format!("{bytes} B");
+    }
+    let mut unit = 0;
+    let mut divisor = 1u64;
+    while unit + 1 < UNITS.len() && bytes / divisor >= 1024 {
+        divisor *= 1024;
+        unit += 1;
+    }
+    // Integer rounding preserves exact input even above f64's integer precision.
+    // u128 accommodates u64::MAX * 100; the raw byte count is always printed too.
+    let hundredths = (u128::from(bytes) * 100 + u128::from(divisor) / 2) / u128::from(divisor);
+    format!(
+        "{}.{:02} {}",
+        hundredths / 100,
+        hundredths % 100,
+        UNITS[unit]
+    )
+}
+fn storage(output: &mut String, observed: &Observed<Vec<StorageInfo>>) {
+    list(output, "Storage", observed);
+    let Some(entries) = observed.value() else {
+        return;
+    };
+    if entries.is_empty() {
+        writeln!(output, "No storage entries visible to this backend.").expect("string formatting");
+        return;
+    }
+    for (index, entry) in entries.iter().enumerate() {
+        writeln!(output, "Storage entry {}", index + 1).expect("string formatting");
+        show(output, "Name", &entry.name);
+        if let Some(bytes) = entry.capacity_bytes.value() {
+            writeln!(
+                output,
+                "Capacity: {} ({bytes} bytes; {:?})",
+                readable_bytes(*bytes),
+                entry.capacity_bytes.source()
+            )
+            .expect("string formatting");
+        } else {
+            show(output, "Capacity", &entry.capacity_bytes);
+        }
+    }
+    writeln!(
+        output,
+        "Entries are OS objects, including virtual devices; capacities may overlap."
+    )
+    .expect("string formatting");
 }
 fn run(args: &[String]) -> Result<String, (u8, String)> {
     let mut output = String::new();
@@ -123,7 +174,7 @@ fn run(args: &[String]) -> Result<String, (u8, String)> {
             );
         }
         Command::Gpu => list(&mut output, "GPU", &snapshot.static_info.gpus),
-        Command::Disk => list(&mut output, "Storage", &snapshot.static_info.storage),
+        Command::Disk => storage(&mut output, &snapshot.static_info.storage),
         Command::Network => {
             list(&mut output, "Network", &snapshot.dynamic.networks);
             if let Some(items) = snapshot.dynamic.networks.value() {
@@ -207,5 +258,114 @@ fn main() -> ExitCode {
             let _ = writeln!(io::stderr().lock(), "dscope: {text}");
             ExitCode::from(code)
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    fn entry(capacity: Observed<u64>) -> StorageInfo {
+        let mut entry = StorageInfo::default();
+        entry.name = Observed::restricted(Source::Win32, ReasonCode::PrivacyRedacted);
+        entry.capacity_bytes = capacity;
+        entry
+    }
+    fn render(observed: Observed<Vec<StorageInfo>>) -> String {
+        let mut output = String::new();
+        storage(&mut output, &observed);
+        output
+    }
+    #[test]
+    fn exact_bytes_and_iec_rounding_cover_zero_boundaries_and_u64_max() {
+        for (bytes, expected) in [
+            (0, "0 B"),
+            (1023, "1023 B"),
+            (1024, "1.00 KiB"),
+            (1536, "1.50 KiB"),
+            (1048575, "1024.00 KiB"),
+            (1048576, "1.00 MiB"),
+            (1000204886016, "931.51 GiB"),
+            (u64::MAX, "16.00 EiB"),
+        ] {
+            let output = render(Observed::available(
+                vec![entry(Observed::available(
+                    bytes,
+                    Source::Win32,
+                    Timestamp(1),
+                ))],
+                Source::Setupapi,
+                Timestamp(1),
+            ));
+            assert!(
+                output.contains(&format!("Capacity: {expected} ({bytes} bytes; Win32)")),
+                "{output}"
+            );
+            assert!(output.contains("Name: Restricted (Win32, Some(PrivacyRedacted))"));
+            assert!(!output.contains("PhysicalDrive"));
+        }
+        for unit in ["GiB", "TiB", "PiB", "EiB"] {
+            let power = match unit {
+                "GiB" => 30,
+                "TiB" => 40,
+                "PiB" => 50,
+                _ => 60,
+            };
+            assert_eq!(readable_bytes(1u64 << power), format!("1.00 {unit}"));
+        }
+    }
+    #[test]
+    fn empty_and_each_missing_state_never_gain_a_capacity_or_entry() {
+        let empty = render(Observed::available(vec![], Source::Iokit, Timestamp(1)));
+        assert_eq!(
+            empty,
+            "Storage: 0 entries\nNo storage entries visible to this backend.\n"
+        );
+        for (availability, reason) in [
+            (Availability::Unavailable, ReasonCode::NotPresent),
+            (Availability::Restricted, ReasonCode::PermissionDenied),
+            (Availability::Unsupported, ReasonCode::NotSupported),
+            (Availability::NotApplicable, ReasonCode::NotPresent),
+        ] {
+            let output =
+                render(Observed::missing(availability, Source::Iokit, reason).expect("missing"));
+            assert!(output.contains(&format!(
+                "Storage: {availability:?} (Iokit, Some({reason:?}))"
+            )));
+            assert!(
+                !output.contains("Storage entry")
+                    && !output.contains("0 entries")
+                    && !output.contains("Capacity:")
+            );
+        }
+    }
+    #[test]
+    fn field_failures_preserve_other_capacities_and_authorized_names() {
+        let mut named = entry(Observed::available(4096, Source::Sysfs, Timestamp(1)));
+        named.name = Observed::available("测试 disk7".to_owned(), Source::Sysfs, Timestamp(1));
+        let output = render(Observed::available(
+            vec![
+                entry(Observed::unavailable(
+                    Source::Sysfs,
+                    ReasonCode::InvalidData,
+                )),
+                entry(Observed::restricted(
+                    Source::Sysfs,
+                    ReasonCode::PermissionDenied,
+                )),
+                named,
+            ],
+            Source::Sysfs,
+            Timestamp(1),
+        ));
+        assert!(output.contains("Storage: 3 entries"));
+        assert!(output.contains("Capacity: Unavailable (Sysfs, Some(InvalidData))"));
+        assert!(output.contains("Capacity: Restricted (Sysfs, Some(PermissionDenied))"));
+        assert!(
+            output.contains(
+                "Storage entry 3\nName: 测试 disk7\nCapacity: 4.00 KiB (4096 bytes; Sysfs)"
+            )
+        );
+        assert!(!output.contains("Capacity: 0"));
+        assert!(output.contains("capacities may overlap"));
     }
 }
