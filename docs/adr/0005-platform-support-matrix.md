@@ -17,7 +17,7 @@
 | 电池 | D/N GetSystemPowerStatus | D/P power_supply、Partial，CI枚举/权限fixture通过 | U，IOKit候选 | Linux capacity/Mains online受控枚举；原生runner无条目，USB拓扑/真实电池未验 |
 | 温度 | U，WMI质量不一 | D/P hwmon、Partial | U，公开接口不足 | coretemp、k10temp Tdie；NVMe1..9路由本机/三平台CI和47项合成内核观察通过，原生runner无条目，设备计算值不等于物理点；[验收](../nvme-temperature-validation.md) |
 | GPU/显存 | U，DXGI候选 | U，PCI/DRM候选 | U，Metal/IOKit候选 | 最小模型，Unsupported集合 |
-| 存储设备容量 | D/P Setupapi/Win32、Partial | D/P Sysfs、Partial | U，IOKit候选 | 整块设备含虚拟对象，不代表文件系统可用空间或物理总量；[Linux 契约](0013-storage-capacity.md)与[验证](../storage-validation.md)、[Windows 契约](0014-windows-storage-capacity.md)与[验证](../windows-storage-validation.md)，名称默认脱敏、serial不采集 |
+| 存储设备容量 | D/P Setupapi/Win32、Partial | D/P Sysfs、Partial | D/P Iokit、Partial | 整块设备含虚拟对象，不代表文件系统可用空间或物理总量；[Linux 契约](0013-storage-capacity.md)与[验证](../storage-validation.md)、[Windows 契约](0014-windows-storage-capacity.md)与[验证](../windows-storage-validation.md)、[macOS 契约](0015-macos-storage-capacity.md)与[验证](../macos-storage-validation.md)，名称默认脱敏、serial/UUID不查询 |
 | 网络累计字节数 | D/P Win32、Partial | D/P procfs、Supported | D/P Sysctl、Partial | Windows 有界枚举、不保证所有逻辑接口；[Windows 验证](../windows-network-validation.md)。Linux 仅当前网络命名空间；[Linux 验证](../network-validation.md)。macOS 可能取整/回绕；[契约](0012-macos-network-counters.md)。名称默认脱敏；Windows/macOS 临时原始缓冲仍含未解析保存的标识 |
 | 显示器 | U，SetupAPI/Win32候选 | U，DRM候选 | U，公开Apple API候选 | 后续 |
 | 原始SMBIOS/磁盘底层探测 | A/P | A/P | P/U | 不选默认路径 |
@@ -32,6 +32,8 @@
 2026-10-12 Linux 存储切片源码 `2b19e8d` 的 CI 38188243470 全部 8 个任务成功：CLI/C 各读 9 个整块对象（含虚拟设备），一项正容量及八项内核报告零值，名称全部脱敏；21 项非 root 合成 sysfs/缓存观察通过。三平台源码与独立消费者各 111/109/108 项测试，十一个各至少 60 秒 fuzz 通过。Windows/macOS 存储仍 Unsupported；[验证范围](../storage-validation.md)不将虚拟对象相加为物理容量。
 
 2026-10-13 Windows 存储切片源码 `ecf4a4c` 的 CI 38324105182 全部 8 个任务成功：Windows CLI/C 各读 2 个 Setupapi 整盘对象，容量 Source Win32、能力 Partial、名称脱敏；本机 token 未提升实读一个对象，100 次新 Hardware 查询句柄无净增长。三平台源码及独立消费者各 119/109/108 项测试，十一已有 fuzz 目标各至少 60 秒通过，Linux 存储和容器回归不变，macOS storage 仍 Unsupported。详见[Windows 契约](0014-windows-storage-capacity.md)与[验收范围](../windows-storage-validation.md)，不承诺所有驱动、沙盒、热插拔或长期泄漏已验证。
+
+2026-10-13 macOS 存储切片源码 `99e9479` 的 CI 38326748121 全部 8 个任务成功：macOS CLI/C 各读 7 个 Iokit Whole 对象，名称脱敏、能力 Partial；普通账户 SDK 探针完成 110 次扫描，末次 23 个媒体/7 个整盘，CF 类型转换原生测试通过。三平台源码及独立消费者各 127/117/117 项测试，十一既有 fuzz 目标各至少 60 秒通过；Windows 2/Linux 9 个存储对象及容器回归通过。见[macOS 契约](0015-macos-storage-capacity.md)与[范围](../macos-storage-validation.md)，虚拟 runner 不是实物盘、sandbox、热插拔或原生长期泄漏证明。
 
 增强研究依据：[Win32安装内存](https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getphysicallyinstalledsystemmemory)、[电源状态](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getsystempowerstatus)、[WMI Next timeout](https://learn.microsoft.com/en-us/windows/win32/api/wbemcli/nf-wbemcli-ienumwbemclassobject-next)、[DXGI适配器](https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgifactory-enumadapters)、[Linux sysfs ABI](https://docs.kernel.org/admin-guide/abi-testing.html)、[hwmon单位](https://docs.kernel.org/hwmon/sysfs-interface.html)、[Apple sysctl](https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man3/sysctlbyname.3.html)、[IOKit](https://developer.apple.com/documentation/iokit)。文档是选型依据，不能代替编译或设备实验。
 

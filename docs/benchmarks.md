@@ -1,5 +1,20 @@
 # 性能基线
 
+## 2026-10-13 macOS 存储切片原生 CI
+
+源码 `99e9479829283fcfee91ef102e6b8fd348b37e96`；macOS 26.6.2 / Darwin 25.6.0 arm64 虚拟 runner，OS 报告 Apple M2 Pro (Virtual)、5 逻辑 CPU、14 GiB 可用总内存。Rust 1.96、bench 优化 profile、门面默认 serde、sysinfo system/apple-app-store 与公开 IOKit 增强，默认 max_entries=128、名称脱敏。实际扫描 23 个媒体并返回 7 个 Whole 对象，容量静态缓存；不推断底层物理磁盘数量。
+
+复现 `cargo bench --locked -p daoseeker-scope --bench collect`，单进程首次 collect 不含 Hardware 构造，100 次动态刷新、300 ms 后检查 CPU；合成部分另外注入 100 传感器/1024 网络条目并使用 max_entries=1024。
+
+| 样本 | 实际结果 |
+|---|---|
+| 首次完整 collect | 474 µs |
+| 100 次刷新 p50 / p95 / max | 28 / 62 / 123 µs |
+| CPU 二次样本 | Available |
+| 合成 collect / JSON | 114 µs / 373541 bytes |
+
+完整 collector 的共享 CI 样本，不隔离 IOKit/属性查询时间，不是磁盘吞吐、峰值分配或延迟 SLA；动态刷新不重新扫描存储。独立 C SDK 的 110 次扫描没有记录单次时间或分配，不能冒充 Rust/native heap/leak 基准。见[存储验证](macos-storage-validation.md)。
+
 ## 2026-10-13 Windows 存储切片本机
 
 源码 `ecf4a4c3f7cbc5a2f07248ec4b72470c0496fd92`，干净工作区；Windows 11 build 26300 x64、OS 报告 i7-9750H、12 逻辑 CPU/6 物理核、安装 16 GiB，非提升权限。Rust 1.96/MSVC、bench 优化 profile、门面默认 serde、sysinfo system/apple-app-store、Windows SDK 增强；默认 max_entries=128、名称脱敏，一项整盘对象容量 1000204886016 bytes。复现 `cargo bench --locked -p daoseeker-scope --bench collect`。

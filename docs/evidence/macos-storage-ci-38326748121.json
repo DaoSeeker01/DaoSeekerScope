@@ -1,0 +1,177 @@
+{
+  "source_commit": "99e9479829283fcfee91ef102e6b8fd348b37e96",
+  "run_id": 38326748121,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38326748121",
+  "ci_jobs_passed": 8,
+  "native": {
+    "Linux": {
+      "path": "macos-storage-native-linux-38326748121.json",
+      "sha256": "8a175d8837a300ab08493601c1a6c89ac453aec4d1c858485e6c48c5b32e24ea",
+      "original_report_sha256": "8a175d8837a300ab08493601c1a6c89ac453aec4d1c858485e6c48c5b32e24ea",
+      "storage_counts": {
+        "cli": 9,
+        "c_abi": 9
+      }
+    },
+    "macOS": {
+      "path": "macos-storage-native-macos-38326748121.json",
+      "sha256": "810f6e343a13877a22529d301ee02a03f7f9047f1867664df134b7fa43405163",
+      "original_report_sha256": "810f6e343a13877a22529d301ee02a03f7f9047f1867664df134b7fa43405163",
+      "storage_counts": {
+        "cli": 7,
+        "c_abi": 7
+      }
+    },
+    "Windows": {
+      "path": "macos-storage-native-windows-38326748121.json",
+      "sha256": "3915b7433c7565ec5cb49cc73eb1ed4c640ad27490c20d6b2991affb72e270be",
+      "original_report_sha256": "64b0c07b27f751b7729cc3e9090eb2a1edcfb4fb4be1d56058a381f21ca3aef3",
+      "storage_counts": {
+        "cli": 2,
+        "c_abi": 2
+      }
+    }
+  },
+  "packages": {
+    "Linux": {
+      "path": "macos-storage-package-linux-38326748121.json",
+      "sha256": "26816153d5a04aa97afeb2d0052f0d899ae7daa9029e24a863a1fa2084892e06",
+      "original_report_sha256": "26816153d5a04aa97afeb2d0052f0d899ae7daa9029e24a863a1fa2084892e06",
+      "rust_tests_including_doctests": 117
+    },
+    "macOS": {
+      "path": "macos-storage-package-macos-38326748121.json",
+      "sha256": "26816153d5a04aa97afeb2d0052f0d899ae7daa9029e24a863a1fa2084892e06",
+      "original_report_sha256": "26816153d5a04aa97afeb2d0052f0d899ae7daa9029e24a863a1fa2084892e06",
+      "rust_tests_including_doctests": 117
+    },
+    "Windows": {
+      "path": "macos-storage-package-windows-38326748121.json",
+      "sha256": "01389ea6995ce33901a1b9447d6bb44d47e82684a4ff66d7d8f97f7e7c31eff1",
+      "original_report_sha256": "95c07c7f82b450d47e273c7553d2f894658354de2cc47f4fed2ae3114eb58830",
+      "rust_tests_including_doctests": 127
+    }
+  },
+  "fuzz": {
+    "cpu_stat": {
+      "runs": 1270001,
+      "seconds": 61,
+      "log_sha256": "9caf10a92bf2224dedcc4a614e9625f03ba67ccdb8034eff8d2599851118d820"
+    },
+    "meminfo": {
+      "runs": 2099516,
+      "seconds": 61,
+      "log_sha256": "d401fcaf2f13d75a5101e40c56ff455db6fde4054c313045677796c78c8e70dc"
+    },
+    "uptime": {
+      "runs": 18970405,
+      "seconds": 61,
+      "log_sha256": "5d0d9ea6c4c76f0f1dd126f67007702d51c7d1f4a392d80978e6c9a2a766d37e"
+    },
+    "power_supply": {
+      "runs": 18382861,
+      "seconds": 61,
+      "log_sha256": "d1a1b9eda7310c93e73134091e4859bdb2751561a521b7f5b427e893905f1974"
+    },
+    "hwmon_temperature": {
+      "runs": 18436984,
+      "seconds": 61,
+      "log_sha256": "f149434413337a89a83db0982eed144132b4e3bb3a63ba89249746dd4696d6ad"
+    },
+    "network_dev": {
+      "runs": 1713916,
+      "seconds": 61,
+      "log_sha256": "74ace5a6c250bbdd273af1d285f8e2eb5c159e3a0aea499c3c9730ec7b3ef2a9"
+    },
+    "macos_network": {
+      "runs": 4852082,
+      "seconds": 61,
+      "log_sha256": "f95c4570c1362e8398a66ad6b3daa1196d58f5a99a4ff2bebd0798836bc2c7f2"
+    },
+    "storage_capacity": {
+      "runs": 28095696,
+      "seconds": 61,
+      "log_sha256": "5818f07df1b34ec3356af4ee654c4045561c1aa56878c959157cb49b15578dff"
+    }
+  },
+  "schema_version": 1,
+  "c_abi_version": 1,
+  "license": "MIT",
+  "third_party_versions_changed": false,
+  "public_api_shape_changed": false,
+  "privacy_behavior_change": false,
+  "features_added": [
+    "macOS explicit target deps: objc2-core-foundation 0.3.2 (std/CFBase/CFDictionary/CFNumber/CFString), objc2-io-kit 0.3.2 (std/libc), both default-features=false"
+  ],
+  "lock_change": "Only workspace macOS dependency edges; no new packages or locked versions",
+  "python_tests_per_desktop": 41,
+  "limits": [
+    "Linux whole block objects include virtual/stacked devices; capacities must not be summed as physical storage",
+    "Static capacity/membership/missing observations cached; new Hardware required after changes",
+    "No physical Mac, macOS sandbox or native x86_64 evidence; VM devices can include virtual layers",
+    "No serial/UUID/label/backing file, filesystem free space or raw block IO; macOS unsafe confined to public IOKit bindings",
+    "Sync OS calls cannot be forcibly interrupted; IOKit/CF internal allocations lack caller hard quotas",
+    "21 nonroot container observations use synthetic sysfs, not physical drives",
+    "No native disk hotplug, faulty-driver blocking, peak-allocation profiler, long fuzz campaign or registry publication"
+  ],
+  "hash_contract": "sha256 covers archived LF report bytes; original_report_sha256 covers original report bytes; log hashes cover original captured logs.",
+  "container_storage": {
+    "path": "macos-storage-container-linux-38326748121.json",
+    "sha256": "b412bd6b417bfd2c141ab3616fe93a12b78d4e0f2a0e576de8b1ac14f5e3038b",
+    "original_report_sha256": "b412bd6b417bfd2c141ab3616fe93a12b78d4e0f2a0e576de8b1ac14f5e3038b",
+    "samples_passed": 21
+  },
+  "fuzz_targets_completed": 11,
+  "source_tests_including_doctests": {
+    "Windows": 127,
+    "Linux": 117,
+    "macOS": 117
+  },
+  "fuzz_harness_regression_tests": 2,
+  "all_jobs_log_sha256": "8f5eee34adec525434f93ed1cfb134499d03bd351b7dcf79f0666e6e00124ed0",
+  "ci_jobs": {
+    "ffi-asan": "success",
+    "fuzz-smoke": "success",
+    "desktop (windows-latest)": "success",
+    "linux-container": "success",
+    "miri": "success",
+    "desktop (macos-latest)": "success",
+    "supply-chain": "success",
+    "desktop (ubuntu-24.04)": "success"
+  },
+  "local_package": {
+    "path": "macos-storage-package-local-windows-38326748121.json",
+    "sha256": "ab95c87dd0af8f8daccd55b0fc45de1b4dfabee6473fb3680d272562306b5e59",
+    "original_report_sha256": "6c22bd18e02266aad873a462992083eeb6b1306c599e782f79fbc65187fcc598"
+  },
+  "benchmark": {
+    "execution_platform": "macOS CI runner, same source as native report",
+    "profile": "bench (optimized)",
+    "first_collect_us": 474,
+    "refresh_n": 100,
+    "p50_us": 28,
+    "p95_us": 62,
+    "max_us": 123,
+    "synthetic_collect_us": 114,
+    "synthetic_json_bytes": 373541,
+    "log_sha256": "74be7f765eb66049fc9ae7fc07fdfba11092b0f73623bb633374a67401fcaa13",
+    "limits": "Whole collector in shared runner; static storage is cached; not disk IO or peak allocation measurement."
+  },
+  "sdk_probe": {
+    "path": "macos-storage-sdk-probe-macos-38326748121.json",
+    "sha256": "7451c748918aa158e87731fc911dea3cda4d85260167ab59b93885432b85bd16",
+    "original_report_sha256": "7451c748918aa158e87731fc911dea3cda4d85260167ab59b93885432b85bd16",
+    "bound_source_commit": "99e9479829283fcfee91ef102e6b8fd348b37e96"
+  },
+  "native_cf_test_passed": true,
+  "sdk_probe_source_sha256": "8b9efd3006c14cab59974ec10a1dfdb4ec8cc33787417f0efcdbd6f3e4a30314",
+  "parser_seed_hashes": {
+    "max": "4bdd79c2ae0c8a69e0e0c815ef6637e80e9fc6033ab0187ccae023b9ec7aae89",
+    "negative": "1bad6b8cf97131fceab8543e81f7757195fbb1d36b376ee994ad1cf17699c464",
+    "overflow": "5492a8ba665c81a5fa5419ccdcbfb3cbf3ba6088cd7e9a9f16dd8f69b750939a",
+    "oversize": "beab3966389f2ad495c7db4f9dc029f16aae31c76af3ebefd9754faf0e6ddcb4",
+    "units": "ee0b5a57e82f02a327158238bcc8cb8dea2902accbdbab4795eaa9430891cd98",
+    "valid": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3",
+    "zero": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+  }
+}
