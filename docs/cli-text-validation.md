@@ -11,3 +11,5 @@
 本机运行 `scripts/check.ps1 -Cross`，fmt/Clippy、135 项 Rust 测试（含 doctest）、no-default-features、doc 拒绝警告、CLI/FFI 构建和 Linux/macOS 交叉构建通过。Python Ruff format/check、mypy --no-incremental（22 文件）、47 项 unittest、Schema/generated/golden、项目数据与文档链接检查通过。`scripts/build_c_example.ps1` 的 C 生命周期检查及 `native_smoke.py` 的 CLI/C/Python、存储文本和新增 cli_text gate 通过；实际执行 `--help`、`--version`。这是本机工作区预检，三平台原生验收和干净提交打包尚待执行，完成后补齐绑定源码的报告。
 
 本轮未改变采集器、超时或缓存语义，也未新增硬件性能、实体设备或长期 fuzz 验证。
+
+首次打包发现新增 Rust 测试以相对路径引用仓库根目录 fixture；正常源码测试通过，独立 `.crate` 解包测试编译失败（macOS CI 38486186159 与本机均复现）。修正为测试内自包含 JSON 输入，不复制黄金样例，不依赖归档外文件，也不降低独立测试门禁；首次失败不计入成功验收。

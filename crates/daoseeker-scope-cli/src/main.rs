@@ -268,7 +268,15 @@ fn main() -> ExitCode {
 mod tests {
     use super::*;
     fn fixture() -> Snapshot {
-        from_json(include_bytes!("../../../tests/fixtures/snapshot-v1.json")).expect("fixture")
+        // Self-contained so tests also compile from an extracted .crate archive.
+        let mut snapshot = from_json(br#"{"schema_version":1,"collected_at":1,"static_info":{},"dynamic":{},"capabilities":[],"conflicts":[],"issues":[]}"#).expect("fixture");
+        snapshot.static_info.system.cpu.brand =
+            Observed::available("Fixture CPU".into(), Source::Custom, Timestamp(1));
+        snapshot.static_info.system.cpu.logical_count =
+            Observed::available(4, Source::Custom, Timestamp(1));
+        snapshot.static_info.system.memory.total_usable_bytes =
+            Observed::available(8589934592, Source::Custom, Timestamp(1));
+        snapshot
     }
     fn text(command: Command, snapshot: &Snapshot) -> String {
         let mut output = String::new();
