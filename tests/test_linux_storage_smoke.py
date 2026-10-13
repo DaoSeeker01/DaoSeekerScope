@@ -109,6 +109,23 @@ class StorageGuards(unittest.TestCase):
         with self.assertRaises(native_smoke.ValidationFailure):
             native_smoke.check_real_storage(observations, "custom")
 
+    def test_iokit_source_and_signed_scalar_range_are_checked(self) -> None:
+        collection = self.snapshot["static_info"]["storage"]
+        collection["source"] = "iokit"
+        self.entry["name"]["source"] = "iokit"
+        self.entry["capacity_bytes"]["source"] = "iokit"
+        self.entry["capacity_bytes"]["value"] = 1
+        observations = {"static.storage": collection}
+        native_smoke.check_real_storage(observations, "iokit")
+        for invalid in [0, True, -1, 2**63]:
+            self.entry["capacity_bytes"]["value"] = invalid
+            with self.assertRaises(native_smoke.ValidationFailure):
+                native_smoke.check_real_storage(observations, "iokit")
+        self.entry["capacity_bytes"]["value"] = 4096
+        self.entry["capacity_bytes"]["source"] = "sysfs"
+        with self.assertRaises(native_smoke.ValidationFailure):
+            native_smoke.check_real_storage(observations, "iokit")
+
 
 if __name__ == "__main__":
     unittest.main()

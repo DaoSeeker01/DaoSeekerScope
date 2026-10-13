@@ -65,6 +65,11 @@ jobs:
           cc -Wall -Wextra -Werror examples/collect.c -Ltarget/debug -ldaoseeker_scope_ffi -Wl,-rpath,"$PWD/target/debug" -o target/debug/c-example
       - name: Native smoke evidence
         run: python scripts/native_smoke.py
+      - name: macOS public IOMedia SDK probe
+        if: runner.os == 'macOS'
+        run: |
+          cc -Wall -Wextra -Werror -std=c11 docs/research/iomedia_probe.c -framework IOKit -framework CoreFoundation -o target/iomedia-probe
+          target/iomedia-probe > target/macos-iomedia-probe.json
       - name: macOS collection benchmark
         if: runner.os == 'macOS'
         run: cargo bench --locked -p daoseeker-scope --bench collect > target/macos-collect-benchmark.log
@@ -81,6 +86,7 @@ jobs:
           path: |
             target/native-evidence.json
             target/macos-collect-benchmark.log
+            target/macos-iomedia-probe.json
             target/linux-collect-benchmark.log
           if-no-files-found: ignore
           retention-days: 14

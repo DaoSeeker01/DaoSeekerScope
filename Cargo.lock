@@ -57,6 +57,8 @@ version = "0.1.0"
 dependencies = [
  "daoseeker-scope-core",
  "libc",
+ "objc2-core-foundation",
+ "objc2-io-kit",
 ]
 
 [[package]]

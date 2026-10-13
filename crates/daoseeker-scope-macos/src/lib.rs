@@ -1,4 +1,4 @@
-//! macOS public sysctl queries; no private IOKit sensor interfaces.
+//! macOS public sysctl and IOMedia metadata; no private sensor interfaces.
 #[cfg(feature = "fuzzing")]
 #[doc(hidden)]
 pub mod fuzzing;
@@ -6,6 +6,8 @@ pub mod fuzzing;
 mod network;
 #[cfg(any(target_os = "macos", test, feature = "fuzzing"))]
 mod network_wire;
+#[cfg(any(target_os = "macos", test))]
+mod storage;
 #[cfg(target_os = "macos")]
 mod native {
     use daoseeker_scope_core::*;
@@ -36,6 +38,11 @@ mod native {
                 "networks",
                 CapabilityLevel::Partial,
                 Source::Sysctl,
+            ));
+            capabilities.push(Capability::new(
+                "storage",
+                CapabilityLevel::Partial,
+                Source::Iokit,
             ));
             capabilities
         }
@@ -94,6 +101,7 @@ mod native {
                 Observed::available(bytes, Source::Sysctl, Timestamp::now()?)
             };
             context.check()?;
+            result.storage = crate::storage::collect(context)?;
             Ok(result)
         }
         fn refresh_dynamic(
