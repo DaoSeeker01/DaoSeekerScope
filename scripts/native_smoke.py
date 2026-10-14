@@ -237,6 +237,93 @@ def check_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
         raise ValidationFailure("snapshot: malformed") from error
 
 
+def check_windows_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
+    """Validate DXGI metadata, retaining counts/capacities but no product names."""
+    try:
+        observed = snapshot["static_info"]["gpus"]
+        state = observed["availability"]
+        source = observed["source"]
+        if source != "dxgi" and not (state == "unsupported" and source == "custom"):
+            raise ValidationFailure("gpu: source")
+        summary: dict[str, Any] = {
+            "availability": state,
+            "source": source,
+            "observed_at": observed["observed_at"],
+            "reason": observed["reason"],
+        }
+        if state != "available":
+            allowed = {
+                "restricted": {"permission_denied"},
+                "unsupported": {"not_supported"},
+                "unavailable": {
+                    "invalid_data",
+                    "temporarily_unavailable",
+                    "timeout",
+                    "unknown",
+                },
+            }
+            if (
+                observed["value"] is not None
+                or observed["observed_at"] is not None
+                or observed["reason"] not in allowed.get(state, set())
+            ):
+                raise ValidationFailure("gpu: missing_metadata")
+            return summary
+        entries = observed["value"]
+        if (
+            not isinstance(entries, list)
+            or len(entries) > 128
+            or type(observed["observed_at"]) is not int
+            or observed["reason"] is not None
+        ):
+            raise ValidationFailure("gpu: collection_metadata")
+        name_count = 0
+        capacities = []
+        for entry in entries:
+            name = entry["name"]
+            memory = entry["dedicated_memory_bytes"]
+            for field in (name, memory):
+                if field["source"] != "dxgi":
+                    raise ValidationFailure("gpu: field_source")
+            if name["availability"] == "available":
+                value = name["value"]
+                if (
+                    not isinstance(value, str)
+                    or not value.strip()
+                    or len(value.encode("utf-16-le")) > 254
+                    or any(ord(char) < 32 or 127 <= ord(char) <= 159 for char in value)
+                    or type(name["observed_at"]) is not int
+                    or name["reason"] is not None
+                ):
+                    raise ValidationFailure("gpu: name_metadata")
+                name_count += 1
+            elif (
+                name["availability"] != "unavailable"
+                or name["value"] is not None
+                or name["observed_at"] is not None
+                or name["reason"] != "invalid_data"
+            ):
+                raise ValidationFailure("gpu: name_metadata")
+            value = memory["value"]
+            if (
+                memory["availability"] != "available"
+                or type(value) is not int
+                or not 0 <= value <= 2**64 - 1
+                or type(memory["observed_at"]) is not int
+                or memory["reason"] is not None
+            ):
+                raise ValidationFailure("gpu: memory_metadata")
+            capacities.append(value)
+        summary.update(
+            entries=len(entries),
+            names_available=name_count,
+            dedicated_video_memory_bytes=capacities,
+        )
+        return summary
+    except (KeyError, TypeError, UnicodeError) as error:
+        raise ValidationFailure("gpu: malformed") from error
+
+
 def decode(data: bytes) -> dict[str, Any]:
     if len(data) > MAX_JSON_BYTES:
         raise ValidationFailure("snapshot: input_limit")
@@ -634,6 +721,7 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
             check_real_storage(observations)
         elif platform.system() == "Windows":
             check_real_storage(observations, "win32")
+            observations["static.gpu_summary"] = check_windows_gpu(snapshot)
         elif platform.system() == "Darwin":
             check_real_storage(observations, "iokit")
         report["observations"][label] = observations

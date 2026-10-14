@@ -16,7 +16,7 @@
 | 设备serial | U | P，显式授权后 sysfs | U（IOKit候选） | 默认 Restricted/PrivacyRedacted |
 | 电池 | D/N GetSystemPowerStatus | D/P power_supply、Partial，CI枚举/权限fixture通过 | U，IOKit候选 | Linux capacity/Mains online受控枚举；原生runner无条目，USB拓扑/真实电池未验 |
 | 温度 | U，WMI质量不一 | D/P hwmon、Partial | U，公开接口不足 | coretemp、k10temp Tdie；NVMe1..9路由本机/三平台CI和47项合成内核观察通过，原生runner无条目，设备计算值不等于物理点；[验收](../nvme-temperature-validation.md) |
-| GPU/显存 | U，DXGI候选 | U，PCI/DRM候选 | U，Metal/IOKit候选 | 最小模型，Unsupported集合 |
+| GPU/独占显存 | D/P，Partial DXGI | U，PCI/DRM候选 | U，Metal/IOKit候选 | Windows 非软件适配器产品描述/独占字节数；不是物理卡数、共享显存或预算 |
 | 存储设备容量 | D/P Setupapi/Win32、Partial | D/P Sysfs、Partial | D/P Iokit、Partial | 整块设备含虚拟对象，不代表文件系统可用空间或物理总量；[Linux 契约](0013-storage-capacity.md)与[验证](../storage-validation.md)、[Windows 契约](0014-windows-storage-capacity.md)与[验证](../windows-storage-validation.md)、[macOS 契约](0015-macos-storage-capacity.md)与[验证](../macos-storage-validation.md)，名称默认脱敏、serial/UUID不查询 |
 | 网络累计字节数 | D/P Win32、Partial | D/P procfs、Supported | D/P Sysctl、Partial | Windows 有界枚举、不保证所有逻辑接口；[Windows 验证](../windows-network-validation.md)。Linux 仅当前网络命名空间；[Linux 验证](../network-validation.md)。macOS 可能取整/回绕；[契约](0012-macos-network-counters.md)。名称默认脱敏；Windows/macOS 临时原始缓冲仍含未解析保存的标识 |
 | 显示器 | U，SetupAPI/Win32候选 | U，DRM候选 | U，公开Apple API候选 | 后续 |

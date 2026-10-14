@@ -1,5 +1,7 @@
 # 发布与迁移路线
 
+2026-10-15 开发版 Windows GPU 增强：gpus 从默认 Unsupported 转为 Partial/Dxgi，采集非软件适配器名称与独占显存字节数。静态缓存不随动态刷新重扫；零值可为真实报告，空集合不证明物理无显卡。新增既有 SDK 的 Windows target 依赖边与 features，锁定包版本和许可证不变。Rust 模型形状、签名、ABI1/Schema1 不变，仅补充 Schema 描述；Windows 字段可用性行为改变，消费方仍须逐字段检查。见[ADR](adr/0016-windows-gpu.md)。
+
 当前 0.1.0 为开发版本，尚未发布。当前构建与检查结果见[项目检查报告](project-review-2026-10-11.md)和 [CI 工作流](https://github.com/DaoSeeker01/DaoSeekerScope/actions/workflows/ci.yml)；下面的日期记录属于对应历史版本。创建私有仓库、推送和 CI 已获授权，crates.io 发布或 release 制品分发仍需单独授权。
 
 2026-10-14 设备验证安排：维护者当前有 Windows 笔记本和 Android 手机。实体 Linux/macOS、真实 Linux 电池/温度及其他缺少设备的测试推迟到设备可用后，不阻塞当前开发；保持待验证状态，不能以 CI/模拟测试替代这些设备证据。三平台原生 CI、容器、Schema、FFI、fuzz 与打包门禁继续执行。Android 适配属于后续独立阶段，持有手机不代表当前库已经支持 Android。

@@ -138,7 +138,29 @@ fn closed_output_pipe_does_not_panic() {
 fn unsupported_is_visible_and_sensitive_warning_is_stderr() {
     let output = cli(&["gpu"]);
     assert!(output.status.success());
+    #[cfg(not(target_os = "windows"))]
     assert!(String::from_utf8_lossy(&output.stdout).contains("Unsupported"));
+    #[cfg(target_os = "windows")]
+    {
+        let snapshot = cli(&["gpu", "--json"]);
+        assert!(snapshot.status.success());
+        let snapshot = daoseeker_scope::from_json(&snapshot.stdout).expect("snapshot");
+        let gpus = snapshot.static_info.gpus;
+        if let Some(entries) = gpus.value() {
+            assert_eq!(gpus.source(), daoseeker_scope::Source::Dxgi);
+            assert!(String::from_utf8_lossy(&output.stdout).contains("(Dxgi)"));
+            for entry in entries {
+                assert_eq!(
+                    entry.dedicated_memory_bytes.source(),
+                    daoseeker_scope::Source::Dxgi
+                );
+                assert!(entry.dedicated_memory_bytes.value().is_some());
+            }
+        } else {
+            assert!(gpus.reason().is_some());
+            assert!(String::from_utf8_lossy(&output.stdout).contains("GPU: "));
+        }
+    }
     let output = cli(&["--json", "--include-sensitive", "--authorized"]);
     assert!(output.status.success());
     assert!(String::from_utf8_lossy(&output.stderr).contains("Warning"));

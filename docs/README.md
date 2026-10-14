@@ -3,6 +3,7 @@
 ## 使用与开发
 
 - [使用指南](usage.md)：Rust、CLI、JSON、C/Python、刷新与隐私。
+- [剩余工作](progress.md)：首版工作包、延期设备验证与后续扩展。
 - [开发指南](../CONTRIBUTING.md)：构建、检查、跨语言、fuzz 和性能命令。
 - [平台能力矩阵](adr/0005-platform-support-matrix.md)：逐字段来源和支持范围。
 - [项目检查与修复](project-review-2026-10-11.md)：2026-10-11 全项目审查结果。
@@ -24,6 +25,8 @@
 [Windows 存储决策](adr/0014-windows-storage-capacity.md) · [Windows 存储验证](windows-storage-validation.md)
 
 [macOS 存储决策](adr/0015-macos-storage-capacity.md) · [macOS 存储验证](macos-storage-validation.md)
+
+[Windows GPU 决策](adr/0016-windows-gpu.md)
 
 [存储 CLI 文本输出验证](storage-text-validation.md)
 

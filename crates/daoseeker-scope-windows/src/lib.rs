@@ -1,4 +1,6 @@
 //! Ordinary-user Windows enhancement, compiled only on Windows.
+#[cfg(any(target_os = "windows", test))]
+mod gpu;
 #[cfg(target_os = "windows")]
 mod network;
 #[cfg(target_os = "windows")]
@@ -43,6 +45,11 @@ mod native {
                 CapabilityLevel::Partial,
                 Source::Setupapi,
             ));
+            capabilities.push(Capability::new(
+                "gpus",
+                CapabilityLevel::Partial,
+                Source::Dxgi,
+            ));
             capabilities
         }
         fn collect_static(
@@ -65,6 +72,7 @@ mod native {
             let mut result = StaticSnapshot::default();
             result.system.memory.installed_bytes = observation;
             result.storage = crate::storage::collect(context)?;
+            result.gpus = crate::gpu::collect(context)?;
             Ok(result)
         }
         fn refresh_dynamic(

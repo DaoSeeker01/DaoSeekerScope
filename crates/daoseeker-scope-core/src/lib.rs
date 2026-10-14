@@ -316,7 +316,10 @@ pub struct MemoryInfo {
 )]
 #[cfg_attr(feature = "schema", derive(schemars::JsonSchema))]
 pub struct GpuInfo {
+    /// Adapter product description, not a stable device identifier. Cached static data.
     pub name: Observed<String>,
+    /// Dedicated video memory in bytes, excluding CPU-shared memory. Not usage or a budget.
+    /// A reported zero is valid. Cached until a new Hardware instance is constructed.
     pub dedicated_memory_bytes: Observed<u64>,
 }
 #[derive(Debug, Clone, PartialEq, Default)]

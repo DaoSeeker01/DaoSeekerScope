@@ -322,7 +322,8 @@
             "reason": "not_supported",
             "source": "custom",
             "value": null
-          }
+          },
+          "description": "Dedicated video memory in bytes, excluding CPU-shared memory. Not usage or a budget.\nA reported zero is valid. Cached until a new Hardware instance is constructed."
         },
         "name": {
           "$ref": "#/$defs/Observed",
@@ -332,7 +333,8 @@
             "reason": "not_supported",
             "source": "custom",
             "value": null
-          }
+          },
+          "description": "Adapter product description, not a stable device identifier. Cached static data."
         }
       },
       "type": "object"
