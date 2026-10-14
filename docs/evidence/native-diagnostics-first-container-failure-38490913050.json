@@ -1,0 +1,39 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-14T00:25:57.284409+00:00",
+  "execution_platform": {
+    "os": "Linux",
+    "architecture": "x86_64"
+  },
+  "overall": "failed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "scenarios": {
+    "readable_dmi": {
+      "status": "not_run"
+    },
+    "missing_dmi": {
+      "status": "not_run"
+    },
+    "denied_dmi": {
+      "status": "not_run"
+    },
+    "mixed_dmi": {
+      "status": "not_run"
+    },
+    "authorized_serial": {
+      "status": "not_run"
+    },
+    "denied_serial": {
+      "status": "not_run"
+    },
+    "empty_proc_inputs": {
+      "status": "not_run"
+    }
+  },
+  "runtime_probes": {},
+  "artifact_sha256": {
+    "cli": "43ec1b6f2588c0fb5dac9d452989147548bafe1ede8e2e11736501ed36ba6e66",
+    "cargo_lock": "916abec483b6d98b836d12314723776a0a9ecf2d44b8457c76e1b16bd651e03e"
+  },
+  "failure": "process: invalid_label"
+}

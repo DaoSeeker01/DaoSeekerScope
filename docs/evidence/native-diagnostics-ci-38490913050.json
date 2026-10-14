@@ -1,0 +1,100 @@
+{
+  "source_commit": "7cb7ce3618889b7b346989de18c8eb4bfdfe2752",
+  "run_id": 38490913050,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38490913050",
+  "ci_jobs": {
+    "miri": "success",
+    "fuzz-smoke": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "desktop (macos-latest)": "success",
+    "ffi-asan": "success",
+    "linux-container": "success",
+    "supply-chain": "success",
+    "desktop (windows-latest)": "success"
+  },
+  "native": {
+    "linux": {
+      "path": "native-diagnostics-linux-38490913050.json",
+      "sha256": "7253ecf0f21aa9a41b50c156018afd6545c230830ecb77bf7345c441003d0b66",
+      "original_report_sha256": "7253ecf0f21aa9a41b50c156018afd6545c230830ecb77bf7345c441003d0b66"
+    },
+    "darwin": {
+      "path": "native-diagnostics-darwin-38490913050.json",
+      "sha256": "e7a7ca4ac930bb86e77c62a70a2b2c0d27a4a8e89d1a1ab7501e59aea20e1355",
+      "original_report_sha256": "e7a7ca4ac930bb86e77c62a70a2b2c0d27a4a8e89d1a1ab7501e59aea20e1355"
+    },
+    "windows": {
+      "path": "native-diagnostics-windows-38490913050.json",
+      "sha256": "a35206fcf021c8ff1bf5b3e44675eef55dd1f1baacfedd0a25634ad9ba3319e8",
+      "original_report_sha256": "8ff208ad997f20a18b54b7a810babe789ce2634127c7830ebdc0bd059b72cf38"
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "report_sha256": "a624f9a5518298fbb94c8257c2ed742466902cdd9752a642a5a38a30493caff4",
+      "archives_verified": 8,
+      "rust_tests_including_doctests": 125
+    },
+    "package-evidence-macOS-ARM64": {
+      "report_sha256": "a624f9a5518298fbb94c8257c2ed742466902cdd9752a642a5a38a30493caff4",
+      "archives_verified": 8,
+      "rust_tests_including_doctests": 125
+    },
+    "package-evidence-Windows-X64": {
+      "report_sha256": "a7e43424b05d74e0ed750e6c8bdc1dff04f12aee78bf90ac449dcc5b9ff39541",
+      "archives_verified": 8,
+      "rust_tests_including_doctests": 135
+    }
+  },
+  "snapshot_schema_version": 1,
+  "c_abi_version": 1,
+  "native_report_version": 1,
+  "license": "MIT",
+  "rust_api_changed": false,
+  "dependency_features_lock_changed": false,
+  "local_native": {
+    "path": "native-diagnostics-local-windows-38490913050.json",
+    "sha256": "8ae714fd301fa6d0bed4820668ecf69df4da957c612d6592c5086b4fb7bb2dfa",
+    "original_report_sha256": "13ca45ba3c6f98fbcc1f0efc9bfa52ab092530cb9711ba1090e3e37ea58ce696"
+  },
+  "python_tests_per_desktop": 55,
+  "fuzz_targets_completed": 11,
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "87e5aa97692bc699fa5516aa50e4798bf90da33b90b4b4509172b512fd73386c",
+  "container": {
+    "report_sha256": "17fdc550d3870d675bb7622d4fe6de9872ecce0ec42bc9aaff9a5037302eef91",
+    "scenario_states": {
+      "readable_dmi": "passed",
+      "missing_dmi": "passed",
+      "denied_dmi": "passed",
+      "mixed_dmi": "passed",
+      "authorized_serial": "passed",
+      "denied_serial": "passed",
+      "empty_proc_inputs": "passed"
+    },
+    "runtime_probe": "not_run"
+  },
+  "first_attempt_failure": {
+    "source_commit": "9006575defe3fef0389cb831e4c51de6011761f5",
+    "run_id": 38490099315,
+    "job_id": 115613000718,
+    "status": "failed",
+    "cause": "Fixed-label whitelist omitted existing shared helper callers",
+    "fix_commit": "7cb7ce3618889b7b346989de18c8eb4bfdfe2752",
+    "failed_job_log_sha256": "d1b58fc83f355048d5a53b2e4684f63ade4e0358342c4cab3bc1dbcbda79bfc9",
+    "path": "native-diagnostics-first-container-failure-38490913050.json",
+    "sha256": "a9570f71ea24bf9a8aa001773e5637ce47ea8fa77d0d39e27766fe5d6b5492ff",
+    "original_report_sha256": "a9570f71ea24bf9a8aa001773e5637ce47ea8fa77d0d39e27766fe5d6b5492ff",
+    "failure": "process: invalid_label",
+    "report_git_revision": null,
+    "report_git_dirty": null
+  },
+  "limits": [
+    "Physical Linux/macOS device testing deferred by user; CI and synthetic evidence remain distinct",
+    "Previous local CLI subprocess failure cannot be retrospectively diagnosed without its original stderr",
+    "Subprocess output size is checked after capture; no hostile program hard memory quota",
+    "Scope error is a child-reported code, not independently established driver/API root cause",
+    "No new production Rust code, hardware backend or GPU support; no registry publication"
+  ]
+}
