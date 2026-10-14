@@ -16,32 +16,132 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, NoReturn
 
 ROOT = Path(__file__).resolve().parent.parent
 MAX_JSON_BYTES = 1024 * 1024
 TEXT_SOURCES = r"(?:Sysinfo|Wmi|Win32|Setupapi|Dxgi|Smbios|Sysfs|Procfs|Udev|Hwmon|Pci|Drm|Iokit|Sysctl|AppleApi|AndroidApi|WebApi|Hal|Custom)"
 TEXT_REASONS = r"(?:PermissionDenied|Sandbox|NotSupported|NotPresent|Timeout|InvalidData|PrivacyRedacted|TemporarilyUnavailable|Unknown)"
 TEXT_MISSING = r"(?:Unavailable|Restricted|Unsupported|NotApplicable)"
+TEXT_COMMANDS = (
+    "cpu",
+    "memory",
+    "system",
+    "gpu",
+    "network",
+    "battery",
+    "sensors",
+    "capabilities",
+)
+PROCESS_LABELS = frozenset(
+    {
+        "rustc",
+        "git_revision",
+        "git_status",
+        "cli",
+        "c_abi",
+        "python_ffi",
+        "storage_text",
+    }
+    | {f"cli_text_{command}" for command in TEXT_COMMANDS}
+)
+SCOPE_ERRORS = {
+    b"InvalidArgument": "invalid_argument",
+    b"UnsupportedPlatform": "unsupported_platform",
+    b"Timeout": "timeout",
+    b"Cancelled": "cancelled",
+    b"Busy": "busy",
+    b"BackendFailure": "backend_failure",
+    b"ResourceLimit": "resource_limit",
+    b"Panic": "panic",
+    b"InvalidBuffer": "invalid_buffer",
+}
+C_ERRORS = {
+    code.replace("_", " ").encode("ascii"): code for code in SCOPE_ERRORS.values()
+}
 
 
 class ValidationFailure(Exception):
     """Fixed error codes; never echo arguments, system errors, or raw output."""
 
 
-def run(command: list[str], label: str) -> bytes:
+class ProcessFailure(ValidationFailure):
+    """Diagnostic payload omits child output and executable arguments."""
+
+    def __init__(self, label: str, category: str, diagnostic: dict[str, Any]) -> None:
+        super().__init__(f"{label}: {category}")
+        self.diagnostic = diagnostic
+
+
+def scope_error(label: str, return_code: int, stderr: bytes) -> str | None:
+    # Match the entire bounded message, not a token buried in arbitrary output.
+    # A process timeout is distinct from the library's caller-wait Timeout.
+    if len(stderr) > 512:
+        return None
+    line = stderr.removesuffix(b"\n").removesuffix(b"\r")
+    if (
+        label == "cli" or label == "storage_text" or label.startswith("cli_text_")
+    ) and return_code == 3:
+        prefix = b"dscope: collection error: "
+        return (
+            SCOPE_ERRORS.get(line[len(prefix) :]) if line.startswith(prefix) else None
+        )
+    if label == "c_abi" and return_code == 2:
+        return C_ERRORS.get(line)
+    return None
+
+
+def run(
+    command: list[str], label: str, processes: dict[str, Any] | None = None
+) -> bytes:
+    if label not in PROCESS_LABELS:
+        raise ValidationFailure("process: invalid_label")
+    diagnostic: dict[str, Any] = {
+        "status": "running",
+        "command": label,
+        "return_code": None,
+        "scope_error": None,
+        "stdout_bytes": None,
+        "stderr_bytes": None,
+    }
+    if processes is not None:
+        processes[label] = diagnostic
+
+    def fail(category: str) -> NoReturn:
+        diagnostic.update(status="failed", failure_category=category)
+        raise ProcessFailure(label, category, diagnostic) from None
+
+    result: subprocess.CompletedProcess[bytes] | None = None
+    failure_category = "process_unavailable"
     try:
         result = subprocess.run(
             command, cwd=ROOT, capture_output=True, check=False, timeout=60
         )
     except subprocess.TimeoutExpired as error:
-        raise ValidationFailure(f"{label}: timeout") from error
+        diagnostic["stdout_bytes"] = (
+            len(error.stdout) if isinstance(error.stdout, bytes) else None
+        )
+        diagnostic["stderr_bytes"] = (
+            len(error.stderr) if isinstance(error.stderr, bytes) else None
+        )
+        failure_category = "timeout"
     except OSError as error:
-        raise ValidationFailure(f"{label}: process_unavailable") from error
+        diagnostic["os_errno"] = error.errno
+    # Raise outside the handler so the exception does not retain the original
+    # OSError/TimeoutExpired (which can contain paths, arguments and raw output).
+    if result is None:
+        fail(failure_category)
+    diagnostic.update(
+        return_code=result.returncode,
+        stdout_bytes=len(result.stdout),
+        stderr_bytes=len(result.stderr),
+    )
+    if len(result.stdout) > MAX_JSON_BYTES + 1 or len(result.stderr) > MAX_JSON_BYTES:
+        fail("output_limit")
     if result.returncode != 0:
-        raise ValidationFailure(f"{label}: process_failed")
-    if len(result.stdout) > MAX_JSON_BYTES + 1:
-        raise ValidationFailure(f"{label}: output_limit")
+        diagnostic["scope_error"] = scope_error(label, result.returncode, result.stderr)
+        fail("process_failed")
+    diagnostic["status"] = "passed"
     return result.stdout
 
 
@@ -450,6 +550,16 @@ def digest(path: Path) -> str:
     return hasher.hexdigest()
 
 
+def collect_cli_text(cli: Path, report: dict[str, Any]) -> None:
+    report["checks"]["cli_text"] = "running"
+    observations: dict[str, Any] = {}
+    report["observations"]["cli_text"] = observations
+    for command in TEXT_COMMANDS:
+        output = run([str(cli), command], f"cli_text_{command}", report["processes"])
+        observations[command] = check_cli_text(command, output)
+    report["checks"]["cli_text"] = "passed"
+
+
 def collect(build_dir: Path, report: dict[str, Any]) -> None:
     names = {
         "Windows": ("dscope.exe", "c-example.exe", "daoseeker_scope_ffi.dll"),
@@ -467,16 +577,23 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
         "ffi": digest(library),
         "cargo_lock": digest(ROOT / "Cargo.lock"),
     }
-    report["available_rustc"] = run(["rustc", "-vV"], "rustc").decode("utf-8").strip()
+    processes = report["processes"]
+    report["available_rustc"] = (
+        run(["rustc", "-vV"], "rustc", processes).decode("utf-8").strip()
+    )
     # No hostname/account/device UUID/path is written into the report.
     try:
         report["git_revision"] = (
-            run(["git", "rev-parse", "HEAD"], "git").decode().strip()
+            run(["git", "rev-parse", "HEAD"], "git_revision", processes)
+            .decode()
+            .strip()
         )
     except ValidationFailure:
         report["git_revision"] = None
     try:
-        report["git_dirty"] = bool(run(["git", "status", "--porcelain"], "git"))
+        report["git_dirty"] = bool(
+            run(["git", "status", "--porcelain"], "git_status", processes)
+        )
     except ValidationFailure:
         report["git_dirty"] = None
     import jsonschema
@@ -488,7 +605,7 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
     validator = jsonschema.Draft202012Validator(schema)
     for label, command in [("cli", [str(cli), "--json"]), ("c_abi", [str(c_example)])]:
         report["checks"][label] = "running"
-        snapshot = decode(run(command, label).strip())
+        snapshot = decode(run(command, label, processes).strip())
         try:
             validator.validate(snapshot)
         except jsonschema.ValidationError as error:
@@ -510,31 +627,21 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
         report["observations"][label] = observations
         report["checks"][label] = "passed"
     report["checks"]["python_ffi"] = "running"
-    run([sys.executable, str(ROOT / "examples/collect.py"), str(library)], "python_ffi")
+    run(
+        [sys.executable, str(ROOT / "examples/collect.py"), str(library)],
+        "python_ffi",
+        processes,
+    )
     report["checks"]["python_ffi"] = "passed"
     report["checks"]["storage_text"] = "running"
     source = {"Windows": "Win32", "Linux": "Sysfs", "Darwin": "Iokit"}[
         platform.system()
     ]
     report["observations"]["storage_text"] = check_storage_text(
-        run([str(cli), "disk"], "storage_text"), source
+        run([str(cli), "disk"], "storage_text", processes), source
     )
     report["checks"]["storage_text"] = "passed"
-    report["checks"]["cli_text"] = "running"
-    report["observations"]["cli_text"] = {
-        command: check_cli_text(command, run([str(cli), command], "cli_text"))
-        for command in (
-            "cpu",
-            "memory",
-            "system",
-            "gpu",
-            "network",
-            "battery",
-            "sensors",
-            "capabilities",
-        )
-    }
-    report["checks"]["cli_text"] = "passed"
+    collect_cli_text(cli, report)
 
 
 def main() -> int:
@@ -561,6 +668,7 @@ def main() -> int:
             "cli_text": "not_run",
         },
         "observations": {},
+        "processes": {label: {"status": "not_run"} for label in sorted(PROCESS_LABELS)},
     }
     # Replace any previous success before starting processes. An interruption
     # must leave an incomplete report, never stale success from an earlier run.
@@ -578,13 +686,21 @@ def main() -> int:
             if isinstance(error, ValidationFailure)
             else "prerequisite_failed"
         )
+        if isinstance(error, ProcessFailure):
+            report["failure_detail"] = error.diagnostic
         for label, status in report["checks"].items():
             if status == "running":
                 report["checks"][label] = "failed"
-    args.output.write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
-    print(f"native smoke: {report['overall']}")
+    finally:
+        # Keep partial progress on interruption; the overall result stays incomplete.
+        for process in report["processes"].values():
+            if process["status"] == "running":
+                process["status"] = "interrupted"
+        args.output.write_text(
+            json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+    suffix = f" ({report['failure']})" if report["overall"] == "failed" else ""
+    print(f"native smoke: {report['overall']}{suffix}")
     return 0 if report["overall"] == "passed" else 1
 
 
