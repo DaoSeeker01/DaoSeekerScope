@@ -1,0 +1,18 @@
+{
+  "report_version": 1,
+  "overall": "failed",
+  "source_commit": "9379940c07708eac9675429e065e2ad1c423eed4",
+  "run_id": 38486186159,
+  "job_id": 115600295563,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38486186159",
+  "stage": "isolated_archive_tests",
+  "cause": "CLI unit fixture referenced a repository file outside the crate archive",
+  "macos_job_log_sha256": "0643a798bac4c6a3e3e9300a422cbad6ae059abf4ce6885e30f572704e53e3b2",
+  "local_windows_log_sha256": "e4f54eb200cd6d3c13ad5b6ebc067bf862e30f73513cf3ad6f86027266f3ee17",
+  "local_windows_cargo_exit_code": 101,
+  "fixture_reference": "src/../../../tests/fixtures/snapshot-v1.json",
+  "fix_commit": "a04d533aece5f56a4518a42d65314ae113959d01",
+  "resolution": "Use self-contained inline JSON; keep isolated archive tests enabled",
+  "superseded_ci_cancelled": true,
+  "limits": "Failure diagnosis from retained logs; this record is not a successful hardware or package validation."
+}

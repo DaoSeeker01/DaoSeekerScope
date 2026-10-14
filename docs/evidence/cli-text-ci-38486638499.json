@@ -1,0 +1,422 @@
+{
+  "source_commit": "a04d533aece5f56a4518a42d65314ae113959d01",
+  "run_id": 38486638499,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38486638499",
+  "ci_jobs_passed": 8,
+  "native": {
+    "Linux": {
+      "path": "cli-text-native-linux-38486638499.json",
+      "sha256": "da47baed8fdce6fa7bb6f86bce553a86335c18204db0277235454ea8b512030a",
+      "original_report_sha256": "da47baed8fdce6fa7bb6f86bce553a86335c18204db0277235454ea8b512030a",
+      "storage_counts": {
+        "cli": 9,
+        "c_abi": 9
+      },
+      "storage_text": {
+        "entry_count": 9,
+        "available_capacity_bytes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          80530636800
+        ],
+        "source": "Sysfs",
+        "names_redacted": true,
+        "output_sha256": "853bfdb38f33cc325f6b13ea45e1ad09150e466579400a865c241cc6ef9618b5"
+      },
+      "cli_text": {
+        "cpu": {
+          "available_fields": 5,
+          "missing_fields": 0,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "db8bbddb2dec466e7da9597f305a725f8b34db2f6f4d589e3ce4c7432d134232"
+        },
+        "memory": {
+          "available_fields": 2,
+          "missing_fields": 1,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "cd23b3aa38d5c260dc020d3494972eeca6999a723acb848255442033378c7b7a"
+        },
+        "system": {
+          "available_fields": 7,
+          "missing_fields": 0,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "9f57d08a06016c581b5cbb7db745f7df61685e52be133ca8526e6fe840693341"
+        },
+        "gpu": {
+          "available_fields": 0,
+          "missing_fields": 1,
+          "entry_count": null,
+          "collection_state": "Unsupported",
+          "output_sha256": "56a31adc6db2b7a2957ac8766c2576e3f6c8528beaa22ca917f4a236eaec3a72"
+        },
+        "network": {
+          "available_fields": 8,
+          "missing_fields": 4,
+          "entry_count": 4,
+          "collection_state": "Available",
+          "output_sha256": "0e646a0ea01b3300a170f56fa3d7ab497d132404b4563893f625690566b958a9"
+        },
+        "battery": {
+          "available_fields": 0,
+          "missing_fields": 0,
+          "entry_count": 0,
+          "collection_state": "Available",
+          "output_sha256": "1b555f41d1fac87f8a32a8371c1e0cbc638d8efbde801088f671be44caa90beb"
+        },
+        "sensors": {
+          "available_fields": 0,
+          "missing_fields": 0,
+          "entry_count": 0,
+          "collection_state": "Available",
+          "output_sha256": "c93d3800b3125e0e6860bb05e9e90a4462701e87f68f22b8b15a871b736633b1"
+        },
+        "capabilities": {
+          "available_fields": 0,
+          "missing_fields": 0,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "e01a7167dd0c1893ca240f611ff05ec4ed3a4e69a17425a101dd5f26ea05bfe7"
+        }
+      }
+    },
+    "macOS": {
+      "path": "cli-text-native-macos-38486638499.json",
+      "sha256": "d395d4e3cc3a4bf4bd5251e901b4c5c7ab54999aea9bcccb2a76ba4e2edf6b79",
+      "original_report_sha256": "d395d4e3cc3a4bf4bd5251e901b4c5c7ab54999aea9bcccb2a76ba4e2edf6b79",
+      "storage_counts": {
+        "cli": 7,
+        "c_abi": 7
+      },
+      "storage_text": {
+        "entry_count": 7,
+        "available_capacity_bytes": [
+          348966092800,
+          343073095680,
+          524288000,
+          545259520,
+          4194304,
+          545259520,
+          4194304
+        ],
+        "source": "Iokit",
+        "names_redacted": true,
+        "output_sha256": "16b30381fc0d0b3becbd69a04efdec857ddb43ab1a52be52e06b5722f4598ec2"
+      },
+      "cli_text": {
+        "cpu": {
+          "available_fields": 5,
+          "missing_fields": 0,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "697926637c518eb158e7298e044a844405c8f2079f34f27091770487ef8cf17c"
+        },
+        "memory": {
+          "available_fields": 3,
+          "missing_fields": 0,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "df46fbed66eead782d6cac8d998821b5ddff0237a6a37356f2cb74022d8d40c7"
+        },
+        "system": {
+          "available_fields": 7,
+          "missing_fields": 0,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "58bb0468eda9c18e7b14ea8cf3fadb359256dbf873a0454ab9f600cec5d95c9d"
+        },
+        "gpu": {
+          "available_fields": 0,
+          "missing_fields": 1,
+          "entry_count": null,
+          "collection_state": "Unsupported",
+          "output_sha256": "56a31adc6db2b7a2957ac8766c2576e3f6c8528beaa22ca917f4a236eaec3a72"
+        },
+        "network": {
+          "available_fields": 22,
+          "missing_fields": 11,
+          "entry_count": 11,
+          "collection_state": "Available",
+          "output_sha256": "a757b58f73cfe34b03420a9644028569170f0b8ebecdae843fa15bad9cd1791d"
+        },
+        "battery": {
+          "available_fields": 0,
+          "missing_fields": 1,
+          "entry_count": null,
+          "collection_state": "Unsupported",
+          "output_sha256": "125338c415cb73ed1451cb039cccc82313ee6517440131de7e004050335221dc"
+        },
+        "sensors": {
+          "available_fields": 0,
+          "missing_fields": 1,
+          "entry_count": null,
+          "collection_state": "Unsupported",
+          "output_sha256": "e9f8faa0ccc47012dcf2776bfd1366b00153335f2508299d38429f1c76b31c25"
+        },
+        "capabilities": {
+          "available_fields": 0,
+          "missing_fields": 0,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "50de4167d43e01d825519aa5acd091e89f23e98fbed1ed7af1ce2edcac8b54ab"
+        }
+      }
+    },
+    "Windows": {
+      "path": "cli-text-native-windows-38486638499.json",
+      "sha256": "c5eb0050f4c8f684e905234d41507341dec975bc16af7f7899deac6921180734",
+      "original_report_sha256": "63f35930f0083c73900e091fe40c4f3fd4f14ef3d00c3ca5d2c2af56654837b9",
+      "storage_counts": {
+        "cli": 2,
+        "c_abi": 2
+      },
+      "storage_text": {
+        "entry_count": 2,
+        "available_capacity_bytes": [
+          161061273600,
+          118111600640
+        ],
+        "source": "Win32",
+        "names_redacted": true,
+        "output_sha256": "8c353bfca5d670c9a7029d98f0aa8d04a005df0b681634d770f32292860a5ebd"
+      },
+      "cli_text": {
+        "cpu": {
+          "available_fields": 5,
+          "missing_fields": 0,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "d6da80fb4f85e9027c8f11ffc25d64a95d478706874da451037f51bafb43c189"
+        },
+        "memory": {
+          "available_fields": 3,
+          "missing_fields": 0,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "de272756af6bac1c3f6ae7db4972c6da13d0a517d174d23ee7eefb4b5a1217f3"
+        },
+        "system": {
+          "available_fields": 6,
+          "missing_fields": 1,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "50535b3be0c9ebfdb9190bb1d8a728d6e146dba103000e3316b4938dafdf65a4"
+        },
+        "gpu": {
+          "available_fields": 0,
+          "missing_fields": 1,
+          "entry_count": null,
+          "collection_state": "Unsupported",
+          "output_sha256": "56a31adc6db2b7a2957ac8766c2576e3f6c8528beaa22ca917f4a236eaec3a72"
+        },
+        "network": {
+          "available_fields": 36,
+          "missing_fields": 18,
+          "entry_count": 18,
+          "collection_state": "Available",
+          "output_sha256": "017a4427d9b911f3d707bd575f55e3b06c90fcab9675c22fb72d1bbad038ac05"
+        },
+        "battery": {
+          "available_fields": 0,
+          "missing_fields": 1,
+          "entry_count": null,
+          "collection_state": "NotApplicable",
+          "output_sha256": "f64ff45042405879d7c34efe2dae8e5ff5aeeddde81fc6daa93ccca509a07ead"
+        },
+        "sensors": {
+          "available_fields": 0,
+          "missing_fields": 1,
+          "entry_count": null,
+          "collection_state": "Unsupported",
+          "output_sha256": "e9f8faa0ccc47012dcf2776bfd1366b00153335f2508299d38429f1c76b31c25"
+        },
+        "capabilities": {
+          "available_fields": 0,
+          "missing_fields": 0,
+          "entry_count": null,
+          "collection_state": null,
+          "output_sha256": "0f57c34917e445043d0fa94194fccf81f9285e53f2f4bdaa91a14ebef0a061c7"
+        }
+      }
+    }
+  },
+  "packages": {
+    "Linux": {
+      "path": "cli-text-package-linux-38486638499.json",
+      "sha256": "5d83f152d2e1dc584cbc62a439cbbb9ecdb8308a638500a46ca3e7b2d67654bb",
+      "original_report_sha256": "5d83f152d2e1dc584cbc62a439cbbb9ecdb8308a638500a46ca3e7b2d67654bb",
+      "rust_tests_including_doctests": 125
+    },
+    "macOS": {
+      "path": "cli-text-package-macos-38486638499.json",
+      "sha256": "5d83f152d2e1dc584cbc62a439cbbb9ecdb8308a638500a46ca3e7b2d67654bb",
+      "original_report_sha256": "5d83f152d2e1dc584cbc62a439cbbb9ecdb8308a638500a46ca3e7b2d67654bb",
+      "rust_tests_including_doctests": 125
+    },
+    "Windows": {
+      "path": "cli-text-package-windows-38486638499.json",
+      "sha256": "26198ddfd61bd47ccaacd34cca2ef826655ea5681f18b7e4b44000d3df268e26",
+      "original_report_sha256": "17edb822e819df83cc714de6c5abaa7cee36c786f2da3fb0baf3de744493a4cb",
+      "rust_tests_including_doctests": 135
+    }
+  },
+  "fuzz": {
+    "cpu_stat": {
+      "runs": 1252907,
+      "seconds": 61,
+      "log_sha256": "09161fb8ccdb5806128c782e5825d24f22b9b0b46ca9ac06620b632e6b1e2a18"
+    },
+    "meminfo": {
+      "runs": 3133253,
+      "seconds": 61,
+      "log_sha256": "afe2c7406e53e49e6a157622479a0b4ed9c5727f9b55314b4853e1182dcb9e53"
+    },
+    "uptime": {
+      "runs": 20153864,
+      "seconds": 61,
+      "log_sha256": "846097288e866d994d323343910c87d919bd1e89f7aafaaa79119d16d614f769"
+    },
+    "power_supply": {
+      "runs": 18391816,
+      "seconds": 61,
+      "log_sha256": "a881b5f29ad83ef9c6570464d05826507b9f31ae6a11d992fb1f1359f629ffaa"
+    },
+    "hwmon_temperature": {
+      "runs": 17831453,
+      "seconds": 61,
+      "log_sha256": "0112328913e2ee73717fce7f4d54e96ebbf9451bac96684f903e04173ea87a6a"
+    },
+    "network_dev": {
+      "runs": 3471247,
+      "seconds": 61,
+      "log_sha256": "c843cf963f71dd1e3ca250f8fe5a7523b39e0328fa32a8145dab994f190a6ef8"
+    },
+    "macos_network": {
+      "runs": 4673171,
+      "seconds": 61,
+      "log_sha256": "4fffa55ff08bef18a3fcaaebeb7b70559ef8aa2aee474f9ab419714ef7c89241"
+    },
+    "storage_capacity": {
+      "runs": 27849684,
+      "seconds": 61,
+      "log_sha256": "9d23aea1ea51c2b6a22605463939d35f8a174d87a5fe4db0069be61f81c98fbf"
+    }
+  },
+  "schema_version": 1,
+  "c_abi_version": 1,
+  "license": "MIT",
+  "third_party_versions_changed": false,
+  "public_api_shape_changed": false,
+  "privacy_behavior_change": false,
+  "features_added": [],
+  "lock_change": false,
+  "public_api_additions": [],
+  "cli_text_change": "Sources on available scalars and collection counts; capability reasons; numbered battery/sensor/GPU fields",
+  "python_tests_per_desktop": 47,
+  "limits": [
+    "Linux whole block objects include virtual/stacked devices; capacities must not be summed as physical storage",
+    "Static capacity/membership/missing observations cached; new Hardware required after changes",
+    "No physical Mac, macOS sandbox or native x86_64 evidence; VM devices can include virtual layers",
+    "No serial/UUID/label/backing file, filesystem free space or raw block IO; macOS unsafe confined to public IOKit bindings",
+    "Sync OS calls cannot be forcibly interrupted; IOKit/CF internal allocations lack caller hard quotas",
+    "21 nonroot container observations use synthetic sysfs, not physical drives",
+    "No native disk hotplug, faulty-driver blocking, peak-allocation profiler, long fuzz campaign or registry publication",
+    "One local CLI text subprocess failure; cause not identified and original stderr not retained. Failed report preserved; independent command rerun and subsequent full native run passed."
+  ],
+  "hash_contract": "sha256 covers archived LF report bytes; original_report_sha256 covers original report bytes; log hashes cover original captured logs.",
+  "container_storage": {
+    "path": "cli-text-container-linux-38486638499.json",
+    "sha256": "d2e5e4ae4049bca5850c941911e07a42c1fcddf0b1f98244c073a2bd71495479",
+    "original_report_sha256": "d2e5e4ae4049bca5850c941911e07a42c1fcddf0b1f98244c073a2bd71495479",
+    "samples_passed": 21
+  },
+  "fuzz_targets_completed": 11,
+  "source_tests_including_doctests": {
+    "Windows": 135,
+    "Linux": 125,
+    "macOS": 125
+  },
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "fuzz_harness_regression_tests": 2,
+  "all_jobs_log_sha256": "8b5e560eaf02596ff3fd43d76ee3209d77012475b479fbb074046c74d764cfae",
+  "ci_jobs": {
+    "fuzz-smoke": "success",
+    "linux-container": "success",
+    "desktop (windows-latest)": "success",
+    "supply-chain": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "miri": "success",
+    "ffi-asan": "success",
+    "desktop (macos-latest)": "success"
+  },
+  "local_package": {
+    "path": "cli-text-package-local-windows-38486638499.json",
+    "sha256": "c2f97ea443f2c9eae15aa1d7c2c890330c6834f1fec24210d42efdd06428dd91",
+    "original_report_sha256": "402ac8ff8991e0011d75eb31e66df75cce1e27565765007a2df33d702bd69291"
+  },
+  "benchmark": {
+    "execution_platform": "macOS CI runner, same source as native report",
+    "profile": "bench (optimized)",
+    "first_collect_us": 369,
+    "refresh_n": 100,
+    "p50_us": 20,
+    "p95_us": 22,
+    "max_us": 39,
+    "synthetic_collect_us": 222,
+    "synthetic_json_bytes": 373541,
+    "log_sha256": "6700bf8678e0353a79a663ea8cafce25783935916b94d711a23e82542180ad03",
+    "limits": "Whole collector in shared runner; static storage is cached; not disk IO or peak allocation measurement."
+  },
+  "sdk_probe": {
+    "path": "cli-text-sdk-probe-macos-38486638499.json",
+    "sha256": "7451c748918aa158e87731fc911dea3cda4d85260167ab59b93885432b85bd16",
+    "original_report_sha256": "7451c748918aa158e87731fc911dea3cda4d85260167ab59b93885432b85bd16",
+    "bound_source_commit": "a04d533aece5f56a4518a42d65314ae113959d01"
+  },
+  "native_cf_test_passed": true,
+  "sdk_probe_source_sha256": "8b9efd3006c14cab59974ec10a1dfdb4ec8cc33787417f0efcdbd6f3e4a30314",
+  "local_native": {
+    "path": "cli-text-native-local-windows-38486638499.json",
+    "sha256": "6d58d1b360d1f0cff65b2dc595bf8324e3b48de56efa141683825927ff95e882",
+    "original_report_sha256": "7008c701f8b6e49b92b7cc91f6ce650b1635fae51596e879d839ae1bb193a2d3"
+  },
+  "container_empty_proc_probe": {
+    "status": "not_run",
+    "process_started": false,
+    "failure_category": "runtime_mount_error",
+    "ci_artifact": "linux-container-evidence",
+    "original_report_sha256": "4e4696f34ab8fbacda7e2b800f401515a0c85294e3a6a77910ba9e1be2c51b20"
+  },
+  "first_attempt_failure": {
+    "path": "cli-text-failure-first-attempt-38486638499.json",
+    "sha256": "ed72b6af2047616bfcffa87f2ef85d059dcd35356b9ce7313411ef6757964ce1",
+    "original_report_sha256": "ed72b6af2047616bfcffa87f2ef85d059dcd35356b9ce7313411ef6757964ce1"
+  },
+  "local_native_first_failure": {
+    "path": "cli-text-native-failure-local-windows-38486638499.json",
+    "sha256": "ec96217a0652d4533d5bae9c65070234629be8a133bfad789bd875292793a5be",
+    "original_report_sha256": "adf394529f095a86ae212ec8713e3e90e4fa14d250e12cdf4316884e6e4ab5da",
+    "failure": "cli_text: process_failed",
+    "cause": "not_identified",
+    "subsequent_full_native_run": "passed, separate report",
+    "independent_commands_recheck": "8 commands returned exit 0; values not compared"
+  },
+  "parser_seed_hashes": {
+    "max": "4bdd79c2ae0c8a69e0e0c815ef6637e80e9fc6033ab0187ccae023b9ec7aae89",
+    "negative": "1bad6b8cf97131fceab8543e81f7757195fbb1d36b376ee994ad1cf17699c464",
+    "overflow": "5492a8ba665c81a5fa5419ccdcbfb3cbf3ba6088cd7e9a9f16dd8f69b750939a",
+    "oversize": "beab3966389f2ad495c7db4f9dc029f16aae31c76af3ebefd9754faf0e6ddcb4",
+    "units": "ee0b5a57e82f02a327158238bcc8cb8dea2902accbdbab4795eaa9430891cd98",
+    "valid": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3",
+    "zero": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+  }
+}
