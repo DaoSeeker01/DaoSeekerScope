@@ -56,6 +56,18 @@ SCOPE_ERRORS = {
     b"Panic": "panic",
     b"InvalidBuffer": "invalid_buffer",
 }
+# Other smoke scripts import run(); preserve their existing fixed-label contract.
+SHARED_PROCESS_LABELS = frozenset(
+    {
+        "git",
+        "docker",
+        "image_pull",
+        "image_inspect",
+        "container_create",
+        "container_inspect",
+        "container_state",
+    }
+)
 C_ERRORS = {
     code.replace("_", " ").encode("ascii"): code for code in SCOPE_ERRORS.values()
 }
@@ -94,7 +106,7 @@ def scope_error(label: str, return_code: int, stderr: bytes) -> str | None:
 def run(
     command: list[str], label: str, processes: dict[str, Any] | None = None
 ) -> bytes:
-    if label not in PROCESS_LABELS:
+    if label not in PROCESS_LABELS | SHARED_PROCESS_LABELS:
         raise ValidationFailure("process: invalid_label")
     diagnostic: dict[str, Any] = {
         "status": "running",

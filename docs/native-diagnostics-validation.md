@@ -8,6 +8,8 @@
 
 失败时命令只执行一次，返回非零，后续命令保持 not_run；中断时 finally 保存部分进度及 interrupted 子进程状态，overall 仍为 incomplete。不会用自动重试覆盖失败，也不能从这次增强倒推出上次未保存的 stderr 或失败命令；上次原因未定位的记录继续保留。
 
-新增七项测试，覆盖全部九个 CLI/C ABI 固定错误码、完整匹配与不同退出码、坏编码/超长消息、未知 stderr 脱敏、超时/缺失程序及异常上下文、stdout/stderr 超限、未知标签拒绝、实际 Python 子进程的模拟失败、部分进度、后续未执行和中断覆盖旧成功。模拟 Timeout 消息不代表真实硬件超时，也不属于真机证据。Ruff format/check、mypy（23 文件）、54 项 Python unittest 已通过；完整本机 smoke、干净源码及 CI 结果完成后补充。
+新增八项测试，覆盖全部九个 CLI/C ABI 固定错误码、完整匹配与不同退出码、坏编码/超长消息、未知 stderr 脱敏、超时/缺失程序及异常上下文、stdout/stderr 超限、未知标签拒绝、实际 Python 子进程的模拟失败、部分进度、后续未执行、中断覆盖旧成功和现有共享调用标签兼容。模拟 Timeout 消息不代表真实硬件超时，也不属于真机证据。Ruff format/check、mypy（23 文件）、55 项 Python unittest 的最终结果与 CI 完成后补充。
+
+首轮 CI 38490099315 中 Linux/macOS 桌面通过，Linux 容器失败：新标签白名单漏掉了两个现有容器脚本复用 run() 的 git/docker/容器标签。补齐七个固定共享标签，并通过扫描实际调用位置的回归测试保护导入边界；保持未知标签拒绝。首次失败与后续验收分别记录，不归因为设备不可用。
 
 Rust、采集器、CLI 命令与输出、FFI、Cargo 依赖/锁、feature、MIT 均未改变。本轮不重复运行本机 Rust/Miri/fuzz/性能门禁；三平台现有 CI 保留全部回归任务。设备测试按维护者安排：现有 Windows 笔记本可继续验收，Android 后续适配；其他实体设备测试延期，保持待验证，不冒充通过。

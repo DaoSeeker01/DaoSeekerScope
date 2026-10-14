@@ -1,5 +1,6 @@
 """Synthetic subprocess failures validate diagnostics, never hardware support."""
 
+import ast
 import io
 import json
 from pathlib import Path
@@ -15,6 +16,24 @@ import native_smoke as smoke
 
 
 class ProcessDiagnostics(unittest.TestCase):
+    def test_existing_container_callers_keep_accepted_fixed_labels(self) -> None:
+        labels: set[str] = set()
+        for name in ("linux_container_smoke.py", "linux_dynamic_smoke.py"):
+            tree = ast.parse((smoke.ROOT / "scripts" / name).read_text("utf-8"))
+            for node in ast.walk(tree):
+                if (
+                    isinstance(node, ast.Call)
+                    and isinstance(node.func, ast.Name)
+                    and node.func.id == "run"
+                ):
+                    label = ast.literal_eval(node.args[1])
+                    self.assertIsInstance(label, str)
+                    labels.add(label)
+        result = subprocess.CompletedProcess([], 0, b"unit", b"")
+        for label in labels:
+            with patch.object(smoke.subprocess, "run", return_value=result):
+                self.assertEqual(smoke.run(["unit-command"], label), b"unit")
+
     def test_cli_codes_require_exact_bounded_messages_and_expected_exit(self) -> None:
         for token, code in smoke.SCOPE_ERRORS.items():
             message = b"dscope: collection error: " + token + b"\r\n"
