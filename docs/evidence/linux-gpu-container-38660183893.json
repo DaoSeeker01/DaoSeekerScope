@@ -1,0 +1,426 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-15T00:28:48.606876+00:00",
+  "overall": "passed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "synthetic_drm_devices": true,
+  "samples": {
+    "initial_empty": {
+      "status": "passed",
+      "new_hardware": false,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024128944,
+        "entries": 0,
+        "names_available": 0,
+        "name_metadata": []
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "deduplicated_alias_and_connector": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129042,
+        "entries": 1,
+        "names_available": 1,
+        "name_metadata": [
+          {
+            "availability": "available",
+            "source": "sysfs",
+            "reason": null,
+            "observed_at": 1792024129042
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "dynamic_keeps_static_name": {
+      "status": "passed",
+      "new_hardware": false,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129042,
+        "entries": 1,
+        "names_available": 1,
+        "name_metadata": [
+          {
+            "availability": "available",
+            "source": "sysfs",
+            "reason": null,
+            "observed_at": 1792024129042
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "new_hardware_reads_name": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129097,
+        "entries": 1,
+        "names_available": 1,
+        "name_metadata": [
+          {
+            "availability": "available",
+            "source": "sysfs",
+            "reason": null,
+            "observed_at": 1792024129097
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "invalid_utf8": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129124,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "invalid_data",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "placeholder": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129151,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "invalid_data",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "control_character": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129178,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "invalid_data",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "oversize": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129209,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "invalid_data",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "missing_product": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129237,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "not_present",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "permission_denied": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129264,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "restricted",
+            "source": "sysfs",
+            "reason": "permission_denied",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "fifo_rejected": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129292,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "invalid_data",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "attribute_link_rejected": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129319,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "invalid_data",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "unsupported_driver_isolated": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129347,
+        "entries": 2,
+        "names_available": 1,
+        "name_metadata": [
+          {
+            "availability": "available",
+            "source": "sysfs",
+            "reason": null,
+            "observed_at": 1792024129347
+          },
+          {
+            "availability": "unsupported",
+            "source": "drm",
+            "reason": "not_supported",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "directory_denied": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "restricted",
+        "source": "drm",
+        "reason": "permission_denied",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "directory_recovered": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129401,
+        "entries": 2,
+        "names_available": 1,
+        "name_metadata": [
+          {
+            "availability": "available",
+            "source": "sysfs",
+            "reason": null,
+            "observed_at": 1792024129401
+          },
+          {
+            "availability": "unsupported",
+            "source": "drm",
+            "reason": "not_supported",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "broken_identity_no_prefix": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "unavailable",
+        "source": "drm",
+        "reason": "not_present",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "directory_missing": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "unavailable",
+        "source": "drm",
+        "reason": "not_present",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "restored_empty": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129483,
+        "entries": 0,
+        "names_available": 0,
+        "name_metadata": []
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "count_limit": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "unavailable",
+        "source": "drm",
+        "reason": "invalid_data",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "final_empty_recovery": {
+      "status": "passed",
+      "new_hardware": true,
+      "gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792024129556,
+        "entries": 0,
+        "names_available": 0,
+        "name_metadata": []
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    }
+  },
+  "git_revision": "b039c18da4521cde087e8e3d76f1c69b40c0c7dd",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "probe": "725a49d36eb9b00fccff05b9350d26c75835c96437c4d909352287f1fb370839",
+    "cargo_lock": "e0b8dd9d571d21cd52b6092a749f47bc7c41bdec73b9fc8b3206bb6415cf1e14"
+  },
+  "docker_version": "28.0.4",
+  "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+  "configuration": {
+    "user": "65534:65534",
+    "ReadonlyRootfs": true,
+    "NetworkMode": "none",
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges=true"
+    ],
+    "Memory": 268435456,
+    "MemorySwap": 268435456,
+    "PidsLimit": 32,
+    "NanoCpus": 1000000000
+  },
+  "docker_exit_code": 0,
+  "process_exit_code": 0,
+  "process_started": true
+}

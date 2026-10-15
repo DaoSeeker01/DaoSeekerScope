@@ -1,0 +1,174 @@
+{
+  "source_commit": "b039c18da4521cde087e8e3d76f1c69b40c0c7dd",
+  "run_id": 38660183893,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38660183893",
+  "ci_jobs": {
+    "desktop (ubuntu-24.04)": "success",
+    "linux-container": "success",
+    "fuzz-smoke": "success",
+    "desktop (windows-latest)": "success",
+    "desktop (macos-latest)": "success",
+    "miri": "success",
+    "supply-chain": "success",
+    "ffi-asan": "success"
+  },
+  "native": {
+    "linux": {
+      "path": "linux-gpu-linux-38660183893.json",
+      "sha256": "ee05f5ae10818aed80fe7fd14b38875eed81123c850fca67a25ed2946c62164c",
+      "original_report_sha256": "ee05f5ae10818aed80fe7fd14b38875eed81123c850fca67a25ed2946c62164c"
+    },
+    "darwin": {
+      "path": "linux-gpu-darwin-38660183893.json",
+      "sha256": "89ccbc6b74732093a4fd2df9dd606d1e9fcb2cd5547be6aecc34fe5b744b70e6",
+      "original_report_sha256": "89ccbc6b74732093a4fd2df9dd606d1e9fcb2cd5547be6aecc34fe5b744b70e6"
+    },
+    "windows": {
+      "path": "linux-gpu-windows-38660183893.json",
+      "sha256": "06e02a137e3f18411fa022d322b0344b0285d1f94c7d3aff252f35384ffb1d16",
+      "original_report_sha256": "aa171ee8c08836e28efec098a778c4f1cbe54784ad6cbf09ff358e16b55eaa92"
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "linux-gpu-package-evidence-linux-x64-38660183893.json",
+      "sha256": "e52726876f56f5d8d71b6fb2d351254b0d856032a310d79ffc4a3d52a016b828",
+      "original_report_sha256": "e52726876f56f5d8d71b6fb2d351254b0d856032a310d79ffc4a3d52a016b828"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "linux-gpu-package-evidence-macos-arm64-38660183893.json",
+      "sha256": "e52726876f56f5d8d71b6fb2d351254b0d856032a310d79ffc4a3d52a016b828",
+      "original_report_sha256": "e52726876f56f5d8d71b6fb2d351254b0d856032a310d79ffc4a3d52a016b828"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "linux-gpu-package-evidence-windows-x64-38660183893.json",
+      "sha256": "fc64ee16b36981526211cafe88d7cc213e312d6048c6851a99456c5fc2a57253",
+      "original_report_sha256": "27467a0ca396de9f73be1fc4d5f59a820b1f629a43b4c5c8dc2a769d8e23a7ec"
+    }
+  },
+  "snapshot_schema_version": 1,
+  "c_abi_version": 1,
+  "native_report_version": 1,
+  "license": "MIT",
+  "public_model_shape_changed": false,
+  "dependency_features_lock_changed": false,
+  "unstable_fuzz_hook_added": true,
+  "native_linux_gpu": {
+    "cli": {
+      "availability": "available",
+      "source": "drm",
+      "reason": null,
+      "observed_at": 1792024213821,
+      "entries": 1,
+      "names_available": 0,
+      "name_metadata": [
+        {
+          "availability": "unsupported",
+          "source": "drm",
+          "reason": "not_supported",
+          "observed_at": null
+        }
+      ]
+    },
+    "c_abi": {
+      "availability": "available",
+      "source": "drm",
+      "reason": null,
+      "observed_at": 1792024213838,
+      "entries": 1,
+      "names_available": 0,
+      "name_metadata": [
+        {
+          "availability": "unsupported",
+          "source": "drm",
+          "reason": "not_supported",
+          "observed_at": null
+        }
+      ]
+    }
+  },
+  "local_native": {
+    "path": "linux-gpu-local-windows-38660183893.json",
+    "sha256": "2efab636b78ec55f972e38592058a0d820ec46b24ec7b9846f1667f0ffe24ee4",
+    "original_report_sha256": "638c770ae999e75dca178e2ec52b0b48a35eb756e1d3a48b8a403e86dcf5ed44"
+  },
+  "local_packages": {
+    "path": "linux-gpu-local-packages-38660183893.json",
+    "sha256": "7bee7678370fbae2c3bd12eb842db50cac4e3a3bf48d46bf446208350ef07ab3",
+    "original_report_sha256": "375bbc149ad44cfee94308b6eb76f1871aed46cfa3cf4eb8f6faae0992266f67"
+  },
+  "gpu_container": {
+    "path": "linux-gpu-container-38660183893.json",
+    "sha256": "3a283555f5016f5bd4af780ed9591ecb6e437411003b0833a36e420888ff8c7f",
+    "original_report_sha256": "3a283555f5016f5bd4af780ed9591ecb6e437411003b0833a36e420888ff8c7f",
+    "samples_passed": 20,
+    "configuration": {
+      "user": "65534:65534",
+      "ReadonlyRootfs": true,
+      "NetworkMode": "none",
+      "CapDrop": [
+        "ALL"
+      ],
+      "SecurityOpt": [
+        "no-new-privileges=true"
+      ],
+      "Memory": 268435456,
+      "MemorySwap": 268435456,
+      "PidsLimit": 32,
+      "NanoCpus": 1000000000
+    },
+    "sample_states": {
+      "initial_empty": "passed",
+      "deduplicated_alias_and_connector": "passed",
+      "dynamic_keeps_static_name": "passed",
+      "new_hardware_reads_name": "passed",
+      "invalid_utf8": "passed",
+      "placeholder": "passed",
+      "control_character": "passed",
+      "oversize": "passed",
+      "missing_product": "passed",
+      "permission_denied": "passed",
+      "fifo_rejected": "passed",
+      "attribute_link_rejected": "passed",
+      "unsupported_driver_isolated": "passed",
+      "directory_denied": "passed",
+      "directory_recovered": "passed",
+      "broken_identity_no_prefix": "passed",
+      "directory_missing": "passed",
+      "restored_empty": "passed",
+      "count_limit": "passed",
+      "final_empty_recovery": "passed"
+    }
+  },
+  "other_container_regression": {
+    "report_sha256": "4a15ec84ca035f2c6ce90c161cb04b549b7fdb0408944e677d12d63764a802d7",
+    "scenario_states": {
+      "readable_dmi": "passed",
+      "missing_dmi": "passed",
+      "denied_dmi": "passed",
+      "mixed_dmi": "passed",
+      "authorized_serial": "passed",
+      "denied_serial": "passed",
+      "empty_proc_inputs": "passed"
+    },
+    "runtime_probe": "not_run"
+  },
+  "rust_tests_including_doctests": {
+    "windows": 150,
+    "linux": 146,
+    "macos": 146
+  },
+  "python_tests_per_desktop": 65,
+  "fuzz_targets_completed": 11,
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "2425535d315c478781241b2605de665aa161bc8c9335391824c89679878cb9bd",
+  "limits": [
+    "DRM view includes display-only, software and virtual devices; not physical GPU count",
+    "Real AMDGPU/NVIDIA device names and driver behavior not tested; device validation deferred by user",
+    "Dedicated GPU memory remains Unsupported on Linux; no VRAM/GTT inference",
+    "No forced interruption or adversarial filesystem TOCTOU sandbox",
+    "No DRM enumeration fuzz or GPU-specific native leak/latency campaign",
+    "No registry publication or release distribution"
+  ]
+}

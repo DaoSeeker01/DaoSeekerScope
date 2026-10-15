@@ -1,5 +1,18 @@
 # 性能基线
 
+## 2026-10-15 Linux DRM 视图切片原生 CI
+
+源码 `b039c18da4521cde087e8e3d76f1c69b40c0c7dd`，Ubuntu 24.04 / Linux 6.17.0-1022-azure x64 runner；OS 报告 AMD EPYC 7763、2 逻辑 CPU、8323969024 字节可用总内存。Rust 1.96、bench 优化 profile，默认 serde/sysinfo system/apple-app-store 和 Linux procfs/sysfs/DRM 增强；max_entries=128，敏感字段默认脱敏。真实视图包含 1 个 DRM 设备，名称和独占显存均 Unsupported，不是 AMD/NVIDIA 名称读取基准。复现 `cargo bench --locked -p daoseeker-scope --bench collect`。
+
+| 单进程样本 | 实际结果 |
+|---|---|
+| 首次完整 collect（不含 Hardware 构造） | 731 µs |
+| 100 次动态刷新 p50 / p95 / max | 113 / 146 / 160 µs |
+| 等待采样间隔后的 CPU 状态 | Available |
+| 合成 100 传感器、1024 网络条目 collect / JSON | 267 µs / 373541 bytes |
+
+共享 CI 上的一次完整采集测量，不是独立 DRM/驱动延迟、峰值分配或性能提升证明。动态刷新不重扫 GPU；合成条目规模不代表实体硬件数量。来源与验证边界见[Linux GPU 验收](linux-gpu-validation.md)。
+
 ## 2026-10-15 Windows GPU 切片本机
 
 源码 `19f20a53a1293fd4de0b8ed585c2615bf1499fe4`，干净工作区，Windows 11 build 26300 x64、i7-9750H、12 逻辑 CPU/6 物理核、安装 16 GiB；Rust 1.96/MSVC、bench 优化 profile、默认 serde/sysinfo system/apple-app-store、Windows SDK 增强，max_entries=128、敏感字段脱敏；DXGI 返回 2 个非软件适配器。复现 `cargo bench --locked -p daoseeker-scope --bench collect`。

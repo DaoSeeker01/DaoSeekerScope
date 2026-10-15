@@ -28,7 +28,7 @@
 
 [Windows GPU 决策](adr/0016-windows-gpu.md) · [Windows GPU 验收](windows-gpu-validation.md)
 
-[Linux GPU 决策](adr/0017-linux-gpu.md)
+[Linux GPU 决策](adr/0017-linux-gpu.md) · [Linux GPU 验收](linux-gpu-validation.md)
 
 [存储 CLI 文本输出验证](storage-text-validation.md)
 
