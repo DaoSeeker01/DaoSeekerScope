@@ -1,0 +1,27 @@
+{
+  "source_commit": "2b0ea7604ca64684d6693459ef81e070516f2c19",
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "remote_push": "not_run_approval_rejected",
+  "native_macos": "not_run",
+  "sdk_metal_probe": "not_run",
+  "rust_tests_windows_including_doctests": 157,
+  "python_tests": 70,
+  "fuzz_smoke": "not_run",
+  "reports": {
+    "native-local-windows": {
+      "path": "macos-gpu-native-local-windows-2b0ea76.json",
+      "sha256": "085220380ae7b6df7e8820e3470b30905062f0414a078974c1e73263904a6069",
+      "original_report_sha256": "eeb0be00a591a547d02be2c55e8563d9df15825467b68b107a8378306be03fd3"
+    },
+    "package-local-windows": {
+      "path": "macos-gpu-package-local-windows-2b0ea76.json",
+      "sha256": "ecfa0e284fa2b4534f355df8119a79d325a4fa47ffe99761ff40702d99d4080a",
+      "original_report_sha256": "5b5d67879e4364996ae81dd15f93b9b25deec59e17e15e7b981ba7ccec9b8d24"
+    }
+  },
+  "rust_gate_log_sha256": "0fe1f4d81ce6df68a2e27ed46d74b7dc7100983db7040bcbe80621dd8ad8d0fb",
+  "macos_cross_clippy_log_sha256": "cb1868d760f37079737a961a68106d1076bae7a14e1b5fc9bb2b76b8a496d231",
+  "fuzz_harness_log_sha256": "f5751eb5b54f51800de668475102c4208f83b163117bf44d9139d93ed1b00402",
+  "packages_log_sha256": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202"
+}

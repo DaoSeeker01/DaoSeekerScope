@@ -1,0 +1,62 @@
+{
+  "overall": "passed",
+  "git_revision": "2b0ea7604ca64684d6693459ef81e070516f2c19",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "rust_tests_including_doctests": 157,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "0065f785dde4fe3faf1e0766c85cab7d181be15cd8e4f3cb51c36b0bec271f78",
+      "files": 16
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "7427a4ba1d48e868090e371d436918b65203467867bf5be883142eb108d2db76",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "b79bb05d73bf3f2a60a527175fa9fb5323fe4e118422c5c1dc5861230af5bd8e",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "b0bb67d6dd925bd07a28d87d3e43aa7d98b58710855159f9295dc4881307547e",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "b4ddf731db06394094f5a1ff93bb96c094311d9272eb55858fd0476b8a1561f6",
+      "files": 11
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "9198cef053c512fde21730b35bd78c5dafd5771ebac4fcef52cc8f581129ed49",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "6d66d2808001f5575f43fb65603355e0a611f774acc928a2068f99a69307794f",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "6919d78818d115b184cd7dee606a8b9d25bf2336ee0affad7e4afa383f98001c",
+      "files": 7
+    }
+  ]
+}
