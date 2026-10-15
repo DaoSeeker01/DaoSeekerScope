@@ -14,6 +14,9 @@ fuzzing = []
 [dependencies]
 daoseeker-scope-core.workspace = true
 [target.'cfg(target_os = "macos")'.dependencies]
+objc2 = { version = "0.6", default-features = false, features = ["std"] }
+objc2-foundation = { version = "=0.3.2", default-features = false, features = ["std", "NSArray", "NSString", "NSObject"] }
+objc2-metal = { version = "=0.3.2", default-features = false, features = ["std", "MTLDevice"] }
 libc.workspace = true
 objc2-core-foundation = { version = "0.3.2", default-features = false, features = ["std", "CFBase", "CFDictionary", "CFNumber", "CFString"] }
 objc2-io-kit = { version = "0.3.2", default-features = false, features = ["std", "libc"] }

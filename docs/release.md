@@ -1,5 +1,7 @@
 # 发布与迁移路线
 
+2026-10-16 macOS GPU 开发增量：通过公开 Metal API 读取设备名称，gpus 为 Partial/AppleApi；统一内存设备的独占显存为 NotApplicable，其他情况 Unsupported。名称、状态与静态失败均缓存，动态刷新不重扫。不使用工作集预算作为容量。沿用 Rust 模型、C ABI 1/Schema 1；新增四个 macOS 专用锁定依赖，许可证可选 MIT，默认公共 features 不变。扩展既有 dmi_text fuzz 目标和隐藏测试入口。见 [ADR 0018](adr/0018-macos-gpu.md)；原生 CI 结果另行归档，实体 Mac 验证延期。
+
 2026-10-15 Linux GPU 开发增量：gpus 从 Unsupported 转为有限 DRM 视图，Partial/Drm；card/render 节点按同一设备去重，名称只支持有文档的 AMDGPU product_name 和 NVIDIA 首行 Model。没有可靠名称的驱动保持字段 Unsupported，缺失/权限/格式失败单列；独占显存仍 Unsupported，不把 VRAM/GTT 填入。静态成功和失败均缓存。Rust 模型形状、签名、C ABI1/Schema1、依赖、锁、许可证与默认 features 不变；复用隐藏 fuzzing 入口扩展既有 dmi_text 目标。见[ADR](adr/0017-linux-gpu.md)，实体 GPU 验证仍延期。
 
 2026-10-15 开发版 Windows GPU 增强：gpus 从默认 Unsupported 转为 Partial/Dxgi，采集非软件适配器名称与独占显存字节数。静态缓存不随动态刷新重扫；零值可为真实报告，空集合不证明物理无显卡。新增既有 SDK 的 Windows target 依赖边与 features，锁定包版本和许可证不变。Rust 模型形状、签名、ABI1/Schema1 不变，仅补充 Schema 描述；Windows 字段可用性行为改变，消费方仍须逐字段检查。见[ADR](adr/0016-windows-gpu.md)。

@@ -6,9 +6,11 @@ libfuzzer_sys::fuzz_target!(|data: &[u8]| {
         assert!(!value.chars().any(char::is_control));
     }
     let (amd, nvidia) = daoseeker_scope_linux::fuzzing::gpu_names(data);
+    let metal = daoseeker_scope_macos::fuzzing::gpu_name(data);
     for (item, source) in [
         (amd, daoseeker_scope::Source::Sysfs),
         (nvidia, daoseeker_scope::Source::Procfs),
+        (metal, daoseeker_scope::Source::AppleApi),
     ] {
         assert_eq!(item.source(), source);
         if let Some(value) = item.value() {

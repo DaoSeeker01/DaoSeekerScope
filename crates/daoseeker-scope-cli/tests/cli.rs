@@ -138,8 +138,28 @@ fn closed_output_pipe_does_not_panic() {
 fn unsupported_is_visible_and_sensitive_warning_is_stderr() {
     let output = cli(&["gpu"]);
     assert!(output.status.success());
-    #[cfg(not(any(target_os = "windows", target_os = "linux")))]
+    #[cfg(not(any(target_os = "windows", target_os = "linux", target_os = "macos")))]
     assert!(String::from_utf8_lossy(&output.stdout).contains("Unsupported"));
+    #[cfg(target_os = "macos")]
+    {
+        let snapshot = cli(&["gpu", "--json"]);
+        assert!(snapshot.status.success());
+        let snapshot = daoseeker_scope::from_json(&snapshot.stdout).expect("snapshot");
+        let gpus = snapshot.static_info.gpus;
+        assert_eq!(gpus.source(), daoseeker_scope::Source::AppleApi);
+        for entry in gpus.value().expect("Metal enumeration") {
+            assert_eq!(entry.name.source(), daoseeker_scope::Source::AppleApi);
+            let memory = &entry.dedicated_memory_bytes;
+            assert_eq!(memory.source(), daoseeker_scope::Source::AppleApi);
+            assert!(memory.value().is_none() && memory.observed_at().is_none());
+            assert!(matches!(
+                memory.availability(),
+                daoseeker_scope::Availability::NotApplicable
+                    | daoseeker_scope::Availability::Unsupported
+            ));
+        }
+        assert!(String::from_utf8_lossy(&output.stdout).contains("(AppleApi)"));
+    }
     #[cfg(target_os = "linux")]
     {
         let snapshot = cli(&["gpu", "--json"]);

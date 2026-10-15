@@ -1,6 +1,10 @@
 //! Pure parser validation hooks; not a stable consumption API. No native I/O.
 use daoseeker_scope_core::*;
 
+pub fn gpu_name(data: &[u8]) -> Observed<String> {
+    crate::gpu::fuzz_name(data)
+}
+
 pub fn network_route(data: &[u8], max_entries: usize) -> Observed<Vec<NetworkInfo>> {
     match crate::network_wire::parse(data, max_entries) {
         Ok(rows) => {

@@ -54,3 +54,12 @@ macOS 网络切片沿用 libc 0.2.190，不新增依赖或许可证；macOS crat
 | windows-sys | 0.61.2 | MIT OR Apache-2.0 |
 | windows-threading | 0.2.1 | MIT OR Apache-2.0 |
 | zmij | 1.0.23 | MIT |
+
+2026-10-16 macOS Metal GPU：新增以下 target 专用依赖（默认 features 关闭，按 SDK 模块启用）。原有包版本不变；Windows/Linux 不编译这些新增包。第三方多选许可证均可采用 MIT，无须扩大 cargo-deny 允许列表；项目仍为 MIT。
+
+| crate | version | SPDX license |
+|---|---|---|
+| objc2 | 0.6.5 | MIT |
+| objc2-encode | 4.1.0 | MIT |
+| objc2-foundation | 0.3.2 | MIT |
+| objc2-metal | 0.3.2 | Zlib OR Apache-2.0 OR MIT |

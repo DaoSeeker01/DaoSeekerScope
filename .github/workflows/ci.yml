@@ -73,6 +73,11 @@ jobs:
       - name: macOS collection benchmark
         if: runner.os == 'macOS'
         run: cargo bench --locked -p daoseeker-scope --bench collect > target/macos-collect-benchmark.log
+      - name: macOS public Metal SDK probe
+        if: runner.os == 'macOS'
+        run: |
+          clang -Wall -Wextra -Werror -fobjc-arc docs/research/metal_probe.m -framework Metal -framework Foundation -o target/metal-probe
+          target/metal-probe > target/macos-metal-probe.json
       - name: Linux storage collection benchmark
         if: runner.os == 'Linux'
         run: cargo bench --locked -p daoseeker-scope --bench collect > target/linux-collect-benchmark.log
@@ -87,6 +92,7 @@ jobs:
             target/native-evidence.json
             target/macos-collect-benchmark.log
             target/macos-iomedia-probe.json
+            target/macos-metal-probe.json
             target/linux-collect-benchmark.log
           if-no-files-found: ignore
           retention-days: 14

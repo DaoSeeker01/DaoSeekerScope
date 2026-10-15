@@ -2,6 +2,8 @@
 #[cfg(feature = "fuzzing")]
 #[doc(hidden)]
 pub mod fuzzing;
+#[cfg(any(target_os = "macos", test, feature = "fuzzing"))]
+mod gpu;
 #[cfg(any(target_os = "macos", test))]
 mod network;
 #[cfg(any(target_os = "macos", test, feature = "fuzzing"))]
@@ -43,6 +45,11 @@ mod native {
                 "storage",
                 CapabilityLevel::Partial,
                 Source::Iokit,
+            ));
+            capabilities.push(Capability::new(
+                "gpus",
+                CapabilityLevel::Partial,
+                Source::AppleApi,
             ));
             capabilities
         }
@@ -102,6 +109,7 @@ mod native {
             };
             context.check()?;
             result.storage = crate::storage::collect(context)?;
+            result.gpus = crate::gpu::collect(context)?;
             Ok(result)
         }
         fn refresh_dynamic(

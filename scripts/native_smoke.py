@@ -326,6 +326,82 @@ def check_linux_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
         raise ValidationFailure("gpu: malformed") from error
 
 
+def check_macos_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
+    """Metal view: retain only counts and field states, never product names."""
+    try:
+        collection = snapshot["static_info"]["gpus"]
+        if collection["source"] != "apple_api":
+            raise ValidationFailure("gpu: collection_source")
+        summary = {
+            key: collection[key]
+            for key in ("availability", "source", "reason", "observed_at")
+        }
+        if collection["availability"] != "available":
+            if not (
+                collection["availability"] == "unavailable"
+                and collection["reason"] == "invalid_data"
+                and collection["value"] is None
+                and collection["observed_at"] is None
+            ):
+                raise ValidationFailure("gpu: missing_metadata")
+            return summary
+        entries = collection["value"]
+        if (
+            not isinstance(entries, list)
+            or len(entries) > 128
+            or type(collection["observed_at"]) is not int
+            or collection["reason"] is not None
+        ):
+            raise ValidationFailure("gpu: collection_metadata")
+        names_available = unified = 0
+        for entry in entries:
+            name = entry["name"]
+            if name["source"] != "apple_api":
+                raise ValidationFailure("gpu: name_source")
+            if name["availability"] == "available":
+                value = name["value"]
+                if (
+                    not isinstance(value, str)
+                    or not value.strip()
+                    or len(value.encode("utf-16-le")) > 2048
+                    or len(value.encode("utf-8")) > 4096
+                    or any(ord(c) < 32 or 127 <= ord(c) <= 159 for c in value)
+                    or type(name["observed_at"]) is not int
+                    or name["reason"] is not None
+                ):
+                    raise ValidationFailure("gpu: name_metadata")
+                names_available += 1
+            elif not (
+                name["availability"] == "unavailable"
+                and name["reason"] == "invalid_data"
+                and name["value"] is None
+                and name["observed_at"] is None
+            ):
+                raise ValidationFailure("gpu: name_metadata")
+            memory = entry["dedicated_memory_bytes"]
+            if (
+                memory["source"] != "apple_api"
+                or memory["value"] is not None
+                or memory["observed_at"] is not None
+                or (memory["availability"], memory["reason"])
+                not in {
+                    ("not_applicable", "not_present"),
+                    ("unsupported", "not_supported"),
+                }
+            ):
+                raise ValidationFailure("gpu: fabricated_memory")
+            unified += memory["availability"] == "not_applicable"
+        summary.update(
+            entries=len(entries),
+            names_available=names_available,
+            unified_memory=unified,
+            dedicated_memory_unsupported=len(entries) - unified,
+        )
+        return summary
+    except (KeyError, TypeError, UnicodeError) as error:
+        raise ValidationFailure("gpu: malformed") from error
+
+
 def check_windows_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
     """Validate DXGI metadata, retaining counts/capacities but no product names."""
     try:
@@ -814,6 +890,7 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
             observations["static.gpu_summary"] = check_windows_gpu(snapshot)
         elif platform.system() == "Darwin":
             check_real_storage(observations, "iokit")
+            observations["static.gpu_summary"] = check_macos_gpu(snapshot)
         report["observations"][label] = observations
         report["checks"][label] = "passed"
     report["checks"]["python_ffi"] = "running"
