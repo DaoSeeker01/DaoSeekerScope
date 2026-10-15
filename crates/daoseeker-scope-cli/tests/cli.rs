@@ -138,8 +138,28 @@ fn closed_output_pipe_does_not_panic() {
 fn unsupported_is_visible_and_sensitive_warning_is_stderr() {
     let output = cli(&["gpu"]);
     assert!(output.status.success());
-    #[cfg(not(target_os = "windows"))]
+    #[cfg(not(any(target_os = "windows", target_os = "linux")))]
     assert!(String::from_utf8_lossy(&output.stdout).contains("Unsupported"));
+    #[cfg(target_os = "linux")]
+    {
+        let snapshot = cli(&["gpu", "--json"]);
+        assert!(snapshot.status.success());
+        let snapshot = daoseeker_scope::from_json(&snapshot.stdout).expect("snapshot");
+        let gpus = snapshot.static_info.gpus;
+        assert_eq!(gpus.source(), daoseeker_scope::Source::Drm);
+        if let Some(entries) = gpus.value() {
+            assert!(String::from_utf8_lossy(&output.stdout).contains("(Drm)"));
+            for entry in entries {
+                assert_eq!(
+                    entry.dedicated_memory_bytes.availability(),
+                    daoseeker_scope::Availability::Unsupported
+                );
+                assert!(entry.dedicated_memory_bytes.value().is_none());
+            }
+        } else {
+            assert!(gpus.reason().is_some());
+        }
+    }
     #[cfg(target_os = "windows")]
     {
         let snapshot = cli(&["gpu", "--json"]);

@@ -5,4 +5,18 @@ libfuzzer_sys::fuzz_target!(|data: &[u8]| {
         assert!(!value.is_empty() && value.len() <= 4096);
         assert!(!value.chars().any(char::is_control));
     }
+    let (amd, nvidia) = daoseeker_scope_linux::fuzzing::gpu_names(data);
+    for (item, source) in [
+        (amd, daoseeker_scope::Source::Sysfs),
+        (nvidia, daoseeker_scope::Source::Procfs),
+    ] {
+        assert_eq!(item.source(), source);
+        if let Some(value) = item.value() {
+            assert!(!value.is_empty() && value.len() <= 4096);
+            assert!(!value.chars().any(char::is_control));
+            assert!(item.observed_at().is_some() && item.reason().is_none());
+        } else {
+            assert!(item.observed_at().is_none() && item.reason().is_some());
+        }
+    }
 });

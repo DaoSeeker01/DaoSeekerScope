@@ -9,6 +9,7 @@ mod cpu;
 #[cfg(feature = "fuzzing")]
 #[doc(hidden)]
 pub mod fuzzing;
+mod gpu;
 mod hwmon;
 mod network;
 mod procfs;
@@ -51,6 +52,8 @@ pub struct LinuxBackend {
     power_root: PathBuf,
     hwmon_root: PathBuf,
     block_root: PathBuf,
+    drm_root: PathBuf,
+    nvidia_root: PathBuf,
     cpu: cpu::CpuSampler,
     cached_total: Option<u64>,
 }
@@ -67,6 +70,8 @@ impl LinuxBackend {
             power_root: PathBuf::from("/sys/class/power_supply"),
             hwmon_root: PathBuf::from("/sys/class/hwmon"),
             block_root: PathBuf::from("/sys/block"),
+            drm_root: PathBuf::from("/sys/class/drm"),
+            nvidia_root: PathBuf::from("/proc/driver/nvidia/gpus"),
             cpu: cpu::CpuSampler::default(),
             cached_total: None,
         }
@@ -130,6 +135,11 @@ impl Backend for LinuxBackend {
             CapabilityLevel::Partial,
             Source::Sysfs,
         ));
+        capabilities.push(Capability::new(
+            "gpus",
+            CapabilityLevel::Partial,
+            Source::Drm,
+        ));
         capabilities
     }
     fn collect_static(&mut self, context: &CollectContext) -> Result<StaticSnapshot, ScopeError> {
@@ -151,6 +161,7 @@ impl Backend for LinuxBackend {
             Observed::restricted(Source::Sysfs, ReasonCode::PrivacyRedacted)
         };
         result.storage = storage::collect(&self.block_root, context)?;
+        result.gpus = gpu::collect(&self.drm_root, &self.nvidia_root, context)?;
         Ok(result)
     }
     fn refresh_dynamic(&mut self, context: &CollectContext) -> Result<DynamicSnapshot, ScopeError> {

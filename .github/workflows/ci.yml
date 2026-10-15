@@ -109,6 +109,8 @@ jobs:
         run: python scripts/linux_battery_smoke.py
       - name: Static block capacity permission and cache semantics
         run: python scripts/linux_storage_smoke.py
+      - name: DRM device names permission and static cache
+        run: python scripts/linux_gpu_smoke.py
       - name: Hwmon unit routing failure and recovery
         run: python scripts/linux_hwmon_smoke.py
       - name: Preserve container evidence
@@ -123,6 +125,7 @@ jobs:
             target/linux-battery-evidence.json
             target/linux-hwmon-evidence.json
             target/linux-storage-evidence.json
+            target/linux-gpu-evidence.json
           if-no-files-found: ignore
           retention-days: 14
   supply-chain:

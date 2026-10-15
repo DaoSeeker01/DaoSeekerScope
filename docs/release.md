@@ -1,5 +1,7 @@
 # 发布与迁移路线
 
+2026-10-15 Linux GPU 开发增量：gpus 从 Unsupported 转为有限 DRM 视图，Partial/Drm；card/render 节点按同一设备去重，名称只支持有文档的 AMDGPU product_name 和 NVIDIA 首行 Model。没有可靠名称的驱动保持字段 Unsupported，缺失/权限/格式失败单列；独占显存仍 Unsupported，不把 VRAM/GTT 填入。静态成功和失败均缓存。Rust 模型形状、签名、C ABI1/Schema1、依赖、锁、许可证与默认 features 不变；复用隐藏 fuzzing 入口扩展既有 dmi_text 目标。见[ADR](adr/0017-linux-gpu.md)，实体 GPU 验证仍延期。
+
 2026-10-15 开发版 Windows GPU 增强：gpus 从默认 Unsupported 转为 Partial/Dxgi，采集非软件适配器名称与独占显存字节数。静态缓存不随动态刷新重扫；零值可为真实报告，空集合不证明物理无显卡。新增既有 SDK 的 Windows target 依赖边与 features，锁定包版本和许可证不变。Rust 模型形状、签名、ABI1/Schema1 不变，仅补充 Schema 描述；Windows 字段可用性行为改变，消费方仍须逐字段检查。见[ADR](adr/0016-windows-gpu.md)。
 
 当前 0.1.0 为开发版本，尚未发布。当前构建与检查结果见[项目检查报告](project-review-2026-10-11.md)和 [CI 工作流](https://github.com/DaoSeeker01/DaoSeekerScope/actions/workflows/ci.yml)；下面的日期记录属于对应历史版本。创建私有仓库、推送和 CI 已获授权，crates.io 发布或 release 制品分发仍需单独授权。

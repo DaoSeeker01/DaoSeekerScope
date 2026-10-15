@@ -113,6 +113,7 @@ def execute(
     power_supply: bool = False,
     hwmon: bool = False,
     storage: bool = False,
+    gpu: bool = False,
 ) -> None:
     if platform.system() != "Linux" or platform.machine() not in ("x86_64", "AMD64"):
         raise ValidationFailure("platform: linux_amd64_required")
@@ -159,6 +160,11 @@ def execute(
         if storage:
             paths["block"] = root / "sys/block"
             paths["block"].mkdir(parents=True, mode=0o755)
+        if gpu:
+            paths["drm"] = root / "sys/class/drm"
+            paths["drm"].mkdir(parents=True, mode=0o755)
+            paths["gpu_devices"] = root / "sys/devices"
+            paths["gpu_devices"].mkdir(parents=True, mode=0o755)
         command = [
             "docker",
             "create",
@@ -187,12 +193,12 @@ def execute(
             "--mount",
             f"type=bind,source={probe},target=/opt/probe,readonly",
         ]
-        if power_supply or hwmon or storage:
+        if power_supply or hwmon or storage or gpu:
             command.extend(
                 ["--mount", f"type=bind,source={root / 'sys'},target=/sys,readonly"]
             )
         for file, path in paths.items():
-            if file in ("power_supply", "hwmon", "block"):
+            if file in ("power_supply", "hwmon", "block", "drm", "gpu_devices"):
                 continue
             command.extend(
                 ["--mount", f"type=bind,source={path},target=/proc/{file},readonly"]
@@ -335,7 +341,10 @@ def execute(
                 for file, path in paths.items():
                     if path.exists():
                         path.chmod(
-                            0o755 if file in ("power_supply", "hwmon") else 0o644
+                            0o755
+                            if file
+                            in ("power_supply", "hwmon", "block", "drm", "gpu_devices")
+                            else 0o644
                         )
             finally:
                 try:

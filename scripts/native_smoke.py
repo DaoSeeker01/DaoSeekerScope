@@ -237,6 +237,95 @@ def check_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
         raise ValidationFailure("snapshot: malformed") from error
 
 
+def check_linux_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
+    """DRM view metadata; no product descriptions or internal device locations retained."""
+    try:
+        observed = snapshot["static_info"]["gpus"]
+        state = observed["availability"]
+        if observed["source"] != "drm":
+            raise ValidationFailure("gpu: collection_source")
+        allowed = {
+            "unavailable": {
+                "not_present",
+                "invalid_data",
+                "unknown",
+                "timeout",
+                "temporarily_unavailable",
+            },
+            "restricted": {"permission_denied"},
+            "unsupported": {"not_supported"},
+        }
+        summary: dict[str, Any] = {
+            key: observed[key]
+            for key in ("availability", "source", "reason", "observed_at")
+        }
+        if state != "available":
+            if (
+                observed["value"] is not None
+                or observed["observed_at"] is not None
+                or observed["reason"] not in allowed.get(state, set())
+            ):
+                raise ValidationFailure("gpu: missing_metadata")
+            return summary
+        entries = observed["value"]
+        if (
+            not isinstance(entries, list)
+            or len(entries) > 128
+            or type(observed["observed_at"]) is not int
+            or observed["reason"] is not None
+        ):
+            raise ValidationFailure("gpu: collection_metadata")
+        names = []
+        for entry in entries:
+            memory = entry["dedicated_memory_bytes"]
+            expected_memory = dict(
+                value=None,
+                availability="unsupported",
+                source="drm",
+                reason="not_supported",
+                observed_at=None,
+            )
+            if any(memory[key] != value for key, value in expected_memory.items()):
+                raise ValidationFailure("gpu: fabricated_memory")
+            name = entry["name"]
+            name_state = name["availability"]
+            if name["source"] not in {"sysfs", "procfs", "drm"}:
+                raise ValidationFailure("gpu: name_source")
+            if name_state == "available":
+                value = name["value"]
+                if (
+                    name["source"] not in {"sysfs", "procfs"}
+                    or not isinstance(value, str)
+                    or not value.strip()
+                    or len(value.encode("utf-8")) > 4096
+                    or any(ord(char) < 32 or 127 <= ord(char) <= 159 for char in value)
+                    or type(name["observed_at"]) is not int
+                    or name["reason"] is not None
+                ):
+                    raise ValidationFailure("gpu: name_metadata")
+            elif (
+                name["value"] is not None
+                or name["observed_at"] is not None
+                or name["reason"] not in allowed.get(name_state, set())
+                or (name_state == "unsupported" and name["source"] != "drm")
+            ):
+                raise ValidationFailure("gpu: name_metadata")
+            names.append(
+                {
+                    key: name[key]
+                    for key in ("availability", "source", "reason", "observed_at")
+                }
+            )
+        summary.update(
+            entries=len(entries),
+            names_available=sum(name["availability"] == "available" for name in names),
+            name_metadata=names,
+        )
+        return summary
+    except (KeyError, TypeError, UnicodeError) as error:
+        raise ValidationFailure("gpu: malformed") from error
+
+
 def check_windows_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
     """Validate DXGI metadata, retaining counts/capacities but no product names."""
     try:
@@ -719,6 +808,7 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
             check_real_network(observations, expected_source)
         if platform.system() == "Linux":
             check_real_storage(observations)
+            observations["static.gpu_summary"] = check_linux_gpu(snapshot)
         elif platform.system() == "Windows":
             check_real_storage(observations, "win32")
             observations["static.gpu_summary"] = check_windows_gpu(snapshot)

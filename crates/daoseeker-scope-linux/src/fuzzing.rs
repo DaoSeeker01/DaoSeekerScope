@@ -1,6 +1,18 @@
 //! Opt-in test hooks for the production parsers. Synthetic timestamps only.
 use daoseeker_scope_core::Observed;
 
+/// Production GPU text parsers only; synthetic time, no device paths or reads.
+pub fn gpu_names(data: &[u8]) -> (Observed<String>, Observed<String>) {
+    (
+        super::gpu::product_name(
+            data,
+            daoseeker_scope_core::Source::Sysfs,
+            daoseeker_scope_core::Timestamp(0),
+        ),
+        super::gpu::nvidia_name(data, daoseeker_scope_core::Timestamp(0)),
+    )
+}
+
 /// Production bounded 512-byte-sector conversion; synthetic time, no files.
 pub fn storage_capacity(data: &[u8]) -> Observed<u64> {
     super::storage::capacity(data, daoseeker_scope_core::Timestamp(0))

@@ -1,5 +1,7 @@
 # Fuzz 目标
 
+2026-10-15 Linux GPU 增量复用 `dmi_text` 目标，另外调用生产 AMDGPU 产品文本和 NVIDIA 首行 Model 解析器，检查 4096 字节上限、UTF-8/控制字符及状态/来源/时间/原因。两个合成种子扩展该 corpus；默认关闭的 fuzzing 入口不读文件、不证明驱动或设备可用。目标总数仍为 11，不包含 DRM 枚举/权限 fuzz，见[ADR](../docs/adr/0017-linux-gpu.md)。
+
 第十一个目标 `storage_capacity` 检查生产 sysfs size 的 512 字节换算、128 字节上限、零值与溢出，七个合成种子；不枚举设备或执行权限测试。来源固定 Sysfs，复用明确指定来源的共享检查。源码 2b19e8d 的 CI 38188243470 全部十一个目标各至少 60 秒通过；本目标为 61 秒、37,258,518 次，无崩溃正常结束。两项 harness 回归也通过；见[存储验证](../docs/storage-validation.md)和[契约](../docs/adr/0013-storage-capacity.md)。
 
 ```sh
