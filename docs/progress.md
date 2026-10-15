@@ -4,7 +4,7 @@
 
 | 工作包 | 已完成部分 | 剩余部分 |
 |---|---|---|
-| GPU | 公共模型、文本输出；Windows DXGI 本机读取与回归通过 | Windows 新切片原生 CI/归档验收；Linux/macOS 采集待实现 |
+| GPU | 公共模型、文本输出；Windows DXGI 本机读取、回归、三平台 CI/归档验收通过 | Linux/macOS 采集待实现 |
 | 显示器 | 公共模型 | 三平台最小采集、限制与验证 |
 | 平台增强 | Linux 部分 DMI/电池/温度、macOS 设备型号、Windows 电池摘要 | 设备/主板/固件增强，其他平台电池/传感器的可靠来源评估；不可可靠读取的字段明确不支持 |
 | 动态数据可靠性 | Linux CPU/内存/网络读取与失败回归；Windows/macOS 网络 | Windows/macOS CPU、内存的新鲜度与失败行为验证 |

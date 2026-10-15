@@ -26,7 +26,7 @@
 
 [macOS 存储决策](adr/0015-macos-storage-capacity.md) · [macOS 存储验证](macos-storage-validation.md)
 
-[Windows GPU 决策](adr/0016-windows-gpu.md)
+[Windows GPU 决策](adr/0016-windows-gpu.md) · [Windows GPU 验收](windows-gpu-validation.md)
 
 [存储 CLI 文本输出验证](storage-text-validation.md)
 

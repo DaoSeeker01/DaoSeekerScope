@@ -1,5 +1,18 @@
 # 性能基线
 
+## 2026-10-15 Windows GPU 切片本机
+
+源码 `19f20a53a1293fd4de0b8ed585c2615bf1499fe4`，干净工作区，Windows 11 build 26300 x64、i7-9750H、12 逻辑 CPU/6 物理核、安装 16 GiB；Rust 1.96/MSVC、bench 优化 profile、默认 serde/sysinfo system/apple-app-store、Windows SDK 增强，max_entries=128、敏感字段脱敏；DXGI 返回 2 个非软件适配器。复现 `cargo bench --locked -p daoseeker-scope --bench collect`。
+
+| 单进程样本 | 实际结果 |
+|---|---|
+| 首次完整 collect（不含 Hardware 构造） | 434116 µs |
+| 100 次动态刷新 p50 / p95 / max | 2230 / 2705 / 3159 µs |
+| 等待采样间隔后的 CPU 状态 | Available |
+| 合成 100 传感器、1024 网络条目 collect / JSON | 393 µs / 373541 bytes |
+
+完整 collector 的单次基线，不是独立 DXGI 延迟、GPU 吞吐、峰值分配或性能提升证明；动态刷新不重新枚举 GPU。原生上下文与投影见[GPU 验收](windows-gpu-validation.md)，其 benchmark 与合成模型不能混为真实设备规模。
+
 ## 2026-10-13 macOS 存储切片原生 CI
 
 源码 `99e9479829283fcfee91ef102e6b8fd348b37e96`；macOS 26.6.2 / Darwin 25.6.0 arm64 虚拟 runner，OS 报告 Apple M2 Pro (Virtual)、5 逻辑 CPU、14 GiB 可用总内存。Rust 1.96、bench 优化 profile、门面默认 serde、sysinfo system/apple-app-store 与公开 IOKit 增强，默认 max_entries=128、名称脱敏。实际扫描 23 个媒体并返回 7 个 Whole 对象，容量静态缓存；不推断底层物理磁盘数量。

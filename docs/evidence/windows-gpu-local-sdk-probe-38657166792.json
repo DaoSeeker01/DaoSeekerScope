@@ -1,0 +1,18 @@
+{
+  "source": "dxgi",
+  "enumeration_complete": true,
+  "adapters_seen": 3,
+  "non_software_adapters": 2,
+  "software_skipped": 1,
+  "description_present_count": 2,
+  "identifiers_retained": false,
+  "token_elevated": false,
+  "dedicated_video_memory_bytes": [
+    4126146560,
+    134217728
+  ],
+  "probe_source_sha256": "384ef0cc211c2b56cac3cee8cbf35bc564b4ec2a6d56550d60e670cbf4a7b855",
+  "probe_executable_sha256": "cd906c210a757b819d9d7f0378d51095aa3d9f4e5a03428f8a79ee4d590278d5",
+  "source_commit": "19f20a53a1293fd4de0b8ed585c2615bf1499fe4",
+  "recorded_at_utc": "2026-10-14T23:57:39.548371+00:00"
+}

@@ -1,0 +1,149 @@
+{
+  "source_commit": "19f20a53a1293fd4de0b8ed585c2615bf1499fe4",
+  "run_id": 38657166792,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38657166792",
+  "ci_jobs": {
+    "linux-container": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "supply-chain": "success",
+    "miri": "success",
+    "fuzz-smoke": "success",
+    "desktop (windows-latest)": "success",
+    "desktop (macos-latest)": "success",
+    "ffi-asan": "success"
+  },
+  "native": {
+    "linux": {
+      "path": "windows-gpu-linux-38657166792.json",
+      "sha256": "aa12a88dda43b8a6bf49f8244a960c82eac9e4224bf239e8c535a2fc5656993c",
+      "original_report_sha256": "aa12a88dda43b8a6bf49f8244a960c82eac9e4224bf239e8c535a2fc5656993c"
+    },
+    "darwin": {
+      "path": "windows-gpu-darwin-38657166792.json",
+      "sha256": "f6fc5008e4956b50dba6abc2cd27a08e0a70151ad374c75a289fb8a32f4a7cb9",
+      "original_report_sha256": "f6fc5008e4956b50dba6abc2cd27a08e0a70151ad374c75a289fb8a32f4a7cb9"
+    },
+    "windows": {
+      "path": "windows-gpu-windows-38657166792.json",
+      "sha256": "6599230fb44199040af6bad15f196148c3c379f397d0ae524ca761d4f92b6608",
+      "original_report_sha256": "edc42ea048e157cc8ab59954ce6f2e52d23263b7bf0ad5ac3affa650cea4f527"
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "windows-gpu-package-evidence-linux-x64-38657166792.json",
+      "sha256": "65170c0f0d51aaed108599de352c7ec004361472e302231946bae5b8029d2e25",
+      "original_report_sha256": "65170c0f0d51aaed108599de352c7ec004361472e302231946bae5b8029d2e25"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "windows-gpu-package-evidence-macos-arm64-38657166792.json",
+      "sha256": "65170c0f0d51aaed108599de352c7ec004361472e302231946bae5b8029d2e25",
+      "original_report_sha256": "65170c0f0d51aaed108599de352c7ec004361472e302231946bae5b8029d2e25"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "windows-gpu-package-evidence-windows-x64-38657166792.json",
+      "sha256": "e795b59ce21979ecf33ed496c8e3c5f1b9e5fc064b1b9d3478736c649e082737",
+      "original_report_sha256": "5ebee2732b929b22be720e7cabd8000c5b85843b8fb940ed289870b01030eb68"
+    }
+  },
+  "snapshot_schema_version": 1,
+  "c_abi_version": 1,
+  "native_report_version": 1,
+  "license": "MIT",
+  "public_model_shape_changed": false,
+  "dependency_versions_changed": false,
+  "windows_target_sdk_dependency_added": true,
+  "ci_windows_gpu": {
+    "cli": {
+      "availability": "available",
+      "source": "dxgi",
+      "observed_at": 1792022870493,
+      "reason": null,
+      "entries": 1,
+      "names_available": 1,
+      "dedicated_video_memory_bytes": [
+        0
+      ]
+    },
+    "c_abi": {
+      "availability": "available",
+      "source": "dxgi",
+      "observed_at": 1792022870924,
+      "reason": null,
+      "entries": 1,
+      "names_available": 1,
+      "dedicated_video_memory_bytes": [
+        0
+      ]
+    }
+  },
+  "local_native": {
+    "path": "windows-gpu-local-windows-38657166792.json",
+    "sha256": "5d19050c77e4aefceb7ede68716967b7a03e873f395e1353d15173138f148009",
+    "original_report_sha256": "053548390d6faa424cf44b10b45223b558f3b54d55fff59acff174591220bfbf"
+  },
+  "local_sdk_probe": {
+    "path": "windows-gpu-local-sdk-probe-38657166792.json",
+    "sha256": "fe49636b8df8ac9820f8aadab1acc6e5626c4e66194e58ef250b131d73678a20",
+    "original_report_sha256": "48b3d9ccaa164196dba4244a58a66598608b8ed9a8ed530cc340f20ff26e924d"
+  },
+  "local_gpu": {
+    "availability": "available",
+    "source": "dxgi",
+    "observed_at": 1792022260068,
+    "reason": null,
+    "entries": 2,
+    "names_available": 2,
+    "dedicated_video_memory_bytes": [
+      4126146560,
+      134217728
+    ]
+  },
+  "local_packages": {
+    "path": "windows-gpu-local-packages-38657166792.json",
+    "sha256": "19d20d3784da67fbcd352bc09e863fbb191b646fba2e8172b13315a565f59429",
+    "original_report_sha256": "07e16d8d5e2637a2c0dbc31bc1fcb10e0514c8ae51c7cb601edf282c4fd118cd"
+  },
+  "rust_tests_including_doctests": {
+    "windows": 144,
+    "linux": 134,
+    "macos": 134
+  },
+  "python_tests_per_desktop": 60,
+  "fuzz_targets_completed": 11,
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "904b897597c4cc7f98ecd9f1b579c333b55cd858c30be6694a5b9db451c02fec",
+  "container": {
+    "report_sha256": "3c7983fb322344f4593ce0dc02a699047828fcce422ca4a6079a075d06db271f",
+    "scenario_states": {
+      "readable_dmi": "passed",
+      "missing_dmi": "passed",
+      "denied_dmi": "passed",
+      "mixed_dmi": "passed",
+      "authorized_serial": "passed",
+      "denied_serial": "passed",
+      "empty_proc_inputs": "passed"
+    },
+    "runtime_probe": "not_run"
+  },
+  "benchmark": {
+    "log_sha256": "5f65dce4b8c2d0b21b146e8bc5ad0ba0745ebdc147aa3faa313104d7a929acca",
+    "first_collect_us": 434116,
+    "refresh_samples": 100,
+    "p50_us": 2230,
+    "p95_us": 2705,
+    "max_us": 3159,
+    "synthetic_collect_us": 393,
+    "synthetic_json_bytes": 373541
+  },
+  "limits": [
+    "GPU objects are visible non-software adapters, not physical GPU count",
+    "Only Windows GPU backend implemented; Linux/macOS GPU remain Unsupported",
+    "Physical Linux/macOS device testing deferred by user",
+    "No forced interruption of synchronous driver calls or GPU-specific native leak campaign",
+    "No GPU-specific fuzz target; existing eleven regression targets only",
+    "Single whole-collector benchmark, not isolated DXGI latency or peak heap profile",
+    "No registry publication or release distribution"
+  ]
+}
