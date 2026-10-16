@@ -1,0 +1,74 @@
+{
+  "source_commit": "cac01919f8df9747c78a76ae97645b3a67df8a9d",
+  "execution_platform": {
+    "os": "Windows",
+    "architecture": "AMD64"
+  },
+  "license": "MIT",
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "public_model_shape_changed": false,
+  "public_api_signatures_changed": false,
+  "lock_files_unchanged": true,
+  "dependency_changes": false,
+  "new_features": false,
+  "native": {
+    "path": "linux-display-native-windows-local-cac0191.json",
+    "sha256": "9dfc1ae3dbf94405b0bd11af6aefff58cd04329e06dde4e883463ef12e97f8e2",
+    "original_report_sha256": "4f4dcd529b14d2fe42e2fd6c97f9ee063db145846710df38df84b26911c07fbf"
+  },
+  "packages": {
+    "path": "linux-display-packages-windows-local-cac0191.json",
+    "sha256": "facc832d3d166f4d3571c60864dfe0b773dc8991f1f6abe17eba550694d4ab89",
+    "original_report_sha256": "a77629c64c98a1e9dd4276126f314454e049ac70d653d907e728d4e215a6c0f5"
+  },
+  "results": {
+    "rust_tests_including_doctests": 176,
+    "linux_crate_parallel_unit_tests": 57,
+    "linux_crate_parallel_integration_tests": 6,
+    "python_tests": 80,
+    "python_source_files": 30,
+    "local_fuzz_harness_library_tests": 2,
+    "packages": 8
+  },
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "cargo test --locked -p daoseeker-scope-linux --all-features",
+    "cargo clippy --locked -p daoseeker-scope-linux --all-targets --all-features -- -D warnings",
+    "ruff format --check scripts tests examples/collect.py",
+    "ruff check scripts tests examples/collect.py",
+    "mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+    "python -m unittest discover -s tests -p test_*.py",
+    "python scripts/check_schema.py",
+    "python scripts/check_project.py",
+    "cargo fmt --manifest-path fuzz/Cargo.toml --check",
+    "cargo test --locked --offline --manifest-path fuzz/Cargo.toml --lib",
+    "pwsh -NoProfile -File scripts/build_c_example.ps1",
+    "python scripts/native_smoke.py --output target/linux-display-native-local-windows.json",
+    "python scripts/check_packages.py --offline"
+  ],
+  "command_notes": [
+    "Python checks use uv's fixed jsonschema 4.25.1, ruff 0.14.13 and mypy 1.19.1; child Python uses sys.executable to avoid Windows shim escape.",
+    "The full gate preceded a test-only addition for 1025 disconnected candidates; Linux parallel tests, target Clippy and fmt were rerun after it; isolated package tests cover final source.",
+    "All local reports execute on Windows. Linux fixture parsing does not prove physical Linux monitors or nonroot permission behavior."
+  ],
+  "logs": {
+    "linux-display-check.log": "38c0aa62361dba362b66edd3b4dc385f47462e8b4db5e494c114a3510287e353",
+    "linux-display-parallel.log": "4a8f7e472b5a831df795dadffef9a23a94d90707d88d40123a950a65bfd89138",
+    "linux-display-python-local.log": "559fab83eccde784c708d11985c05dd0f6269cc15d381376e651bae859efc9fa",
+    "linux-display-fuzz-local.log": "4b2c0d45a7d6e246f744aff11288ed13d9a879140eab36f0eaef10ad5948b75f",
+    "linux-display-c-local.log": "7fc7a69c094230f05e89488ca5466b3fe24e7514d28139411815ba1bc23d9806",
+    "linux-display-native-local.log": "117cb7016d4e1aa4caf801508aef87c4898074ee346c9228370963e4f0ca5a5d",
+    "linux-display-packages-local.log": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202"
+  },
+  "not_run": [
+    "New-source three-platform native CI",
+    "Linux nonroot display container campaign (26 prepared cases)",
+    "Actual libFuzzer campaigns",
+    "New-source Miri/ASan/cargo-deny",
+    "Linux display benchmark",
+    "Physical Linux monitors, hotplug, MST, multiple displays and active resolution",
+    "Physical macOS verification",
+    "Registry publication"
+  ]
+}
