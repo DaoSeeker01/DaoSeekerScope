@@ -5,7 +5,7 @@
 | 工作包 | 已完成部分 | 剩余部分 |
 |---|---|---|
 | GPU | Windows DXGI、Linux 有限 DRM 枚举/名称已验收；macOS Metal 名称/内存状态通过三平台 CI 与独立 SDK 探针 | Linux 独占显存及更多名称来源；实体 Mac/AMD/NVIDIA 验证延期 |
-| 显示器 | Windows 活动路径/信号像素最小实现，本机 SDK 对照通过 | Windows 三平台回归待运行；Linux/macOS 最小采集、文本展示与更多设备验证 |
+| 显示器 | Windows 活动路径/信号像素通过本机 SDK 对照与三平台 CI；CI 名称可读、尺寸失败按字段隔离 | Linux/macOS 最小采集、文本展示及实体多屏等验证 |
 | 平台增强 | Linux 部分 DMI/电池/温度、macOS 设备型号、Windows 电池摘要 | 设备/主板/固件增强，其他平台电池/传感器的可靠来源评估；不可可靠读取的字段明确不支持 |
 | 动态数据可靠性 | Linux CPU/内存/网络读取与失败回归；Windows/macOS 网络 | Windows/macOS CPU、内存的新鲜度与失败行为验证 |
 | 深入质量验证 | 单元、负向、原生 CI、容器、短 fuzz、Miri/ASan | 长期 fuzz、更多故障场景、峰值内存与性能测量 |

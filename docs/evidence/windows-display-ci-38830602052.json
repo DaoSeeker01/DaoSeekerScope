@@ -1,0 +1,241 @@
+{
+  "source_commit": "69ec44a2b1f45be803755ae11c9c1b0852916d23",
+  "implementation_commit": "7bd5b197b11d2c7b1010391f902b61e9a3af7ee3",
+  "implementation_to_ci_changes": [
+    "docs/README.md",
+    "docs/benchmarks.md",
+    "docs/evidence/windows-display-benchmark-local-7bd5b19.json",
+    "docs/evidence/windows-display-local-7bd5b19.json",
+    "docs/evidence/windows-display-native-local-7bd5b19.json",
+    "docs/evidence/windows-display-package-local-7bd5b19.json",
+    "docs/evidence/windows-display-sdk-probe-local-7bd5b19.json",
+    "docs/windows-display-validation.md"
+  ],
+  "run_id": 38830602052,
+  "event": "workflow_dispatch",
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38830602052",
+  "ci_jobs": {
+    "desktop (ubuntu-24.04)": "success",
+    "miri": "success",
+    "desktop (windows-latest)": "success",
+    "desktop (macos-latest)": "success",
+    "linux-container": "success",
+    "fuzz-smoke": "success",
+    "supply-chain": "success",
+    "ffi-asan": "success"
+  },
+  "native": {
+    "linux": {
+      "path": "windows-display-native-linux-38830602052.json",
+      "sha256": "f4f3b4c694784e65cd73f895df03e7cc3671bf3344d57e3cafa6f77eac1e56be",
+      "original_report_sha256": "f4f3b4c694784e65cd73f895df03e7cc3671bf3344d57e3cafa6f77eac1e56be"
+    },
+    "darwin": {
+      "path": "windows-display-native-darwin-38830602052.json",
+      "sha256": "b83d53ce91e64ae1c16b8dbf5a417d94c9afaf778c87772af2f97caed71d8f7b",
+      "original_report_sha256": "b83d53ce91e64ae1c16b8dbf5a417d94c9afaf778c87772af2f97caed71d8f7b"
+    },
+    "windows": {
+      "path": "windows-display-native-windows-38830602052.json",
+      "sha256": "26d586bc8d9cc8a91ffaca4ad45f6a2d20d7dc13fd20f3ce961ba809ab9b624e",
+      "original_report_sha256": "029256d518d14bd83c34a49d3ac82f87c7b84e3612389d06713481d033f818ce"
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "windows-display-package-evidence-linux-x64-38830602052.json",
+      "sha256": "19e381a59a0e5f2ff3505b07e71366a58cdbf56890ae76bde79bf14895f95580",
+      "original_report_sha256": "19e381a59a0e5f2ff3505b07e71366a58cdbf56890ae76bde79bf14895f95580"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "windows-display-package-evidence-macos-arm64-38830602052.json",
+      "sha256": "19e381a59a0e5f2ff3505b07e71366a58cdbf56890ae76bde79bf14895f95580",
+      "original_report_sha256": "19e381a59a0e5f2ff3505b07e71366a58cdbf56890ae76bde79bf14895f95580"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "windows-display-package-evidence-windows-x64-38830602052.json",
+      "sha256": "12de75a220bbff5be066d1aad53b130843aa9c46ffbca9973cacb8fed801992c",
+      "original_report_sha256": "208ca0d05147a513b6dbf5b5383c56fb8bdc2c0c609cb58bcd113d039453aba6"
+    }
+  },
+  "snapshot_schema_version": 1,
+  "c_abi_version": 1,
+  "native_report_version": 1,
+  "license": "MIT",
+  "public_model_shape_changed": false,
+  "schema_description_changed": true,
+  "lock_files_unchanged": true,
+  "new_packages": false,
+  "added_target_feature": "windows-sys/Win32_Devices_Display",
+  "local_evidence_index": "windows-display-local-7bd5b19.json",
+  "local_evidence_source_commit": "7bd5b197b11d2c7b1010391f902b61e9a3af7ee3",
+  "windows_displays": {
+    "cli": {
+      "availability": "available",
+      "source": "win32",
+      "reason": null,
+      "observed_at": 1792111706872,
+      "entries": 1,
+      "names_available": 1,
+      "name_metadata": [
+        {
+          "availability": "available",
+          "source": "win32",
+          "reason": null,
+          "observed_at": 1792111706872
+        }
+      ],
+      "dimensions": [
+        {
+          "width_pixels": {
+            "value": null,
+            "availability": "unavailable",
+            "source": "win32",
+            "observed_at": null,
+            "reason": "invalid_data"
+          },
+          "height_pixels": {
+            "value": null,
+            "availability": "unavailable",
+            "source": "win32",
+            "observed_at": null,
+            "reason": "invalid_data"
+          }
+        }
+      ]
+    },
+    "c_abi": {
+      "availability": "available",
+      "source": "win32",
+      "reason": null,
+      "observed_at": 1792111707147,
+      "entries": 1,
+      "names_available": 1,
+      "name_metadata": [
+        {
+          "availability": "available",
+          "source": "win32",
+          "reason": null,
+          "observed_at": 1792111707147
+        }
+      ],
+      "dimensions": [
+        {
+          "width_pixels": {
+            "value": null,
+            "availability": "unavailable",
+            "source": "win32",
+            "observed_at": null,
+            "reason": "invalid_data"
+          },
+          "height_pixels": {
+            "value": null,
+            "availability": "unavailable",
+            "source": "win32",
+            "observed_at": null,
+            "reason": "invalid_data"
+          }
+        }
+      ]
+    }
+  },
+  "sdk_probe": {
+    "path": "windows-display-sdk-probe-38830602052.json",
+    "sha256": "f3c468a4ba361384ac85878a4e00f86b502ab7b1da68bab7d97c185399d98103",
+    "original_report_sha256": "8895f6b296e9fde773bf4ec7d34cb5eac4dd14b35e33432ffa029dd283955494",
+    "summary": {
+      "status": 0,
+      "entries": 1,
+      "names_available": 1,
+      "dimensions_available": 0,
+      "dimensions": [
+        null
+      ]
+    },
+    "comparison": "SDK/CLI/C path and name-availability counts match; this runner yields no valid signal pixel pairs. Rust CLI/C preserve names and return Unavailable/InvalidData for both dimensions. SDK probe did not record detailed invalid-mode reason codes; sequential observations, not atomic topology proof.",
+    "source_commit": "69ec44a2b1f45be803755ae11c9c1b0852916d23",
+    "c_source_git_blob_sha256": "ff768d38c64090fbff4b00100a4aff4531e301d565b1300cb0a6401006aab15a",
+    "positive_dimension_read_verified_in_ci": false,
+    "positive_name_read_verified_in_ci": true,
+    "detailed_invalid_mode_reason_recorded": false
+  },
+  "gpu_container": {
+    "path": "windows-display-linux-container-38830602052.json",
+    "sha256": "6d8d6114b8fcb6133bc87c1d27921b7c0d12acb170df748f25e3891f06d9358e",
+    "original_report_sha256": "6d8d6114b8fcb6133bc87c1d27921b7c0d12acb170df748f25e3891f06d9358e",
+    "samples_passed": 20,
+    "configuration": {
+      "user": "65534:65534",
+      "ReadonlyRootfs": true,
+      "NetworkMode": "none",
+      "CapDrop": [
+        "ALL"
+      ],
+      "SecurityOpt": [
+        "no-new-privileges=true"
+      ],
+      "Memory": 268435456,
+      "MemorySwap": 268435456,
+      "PidsLimit": 32,
+      "NanoCpus": 1000000000
+    },
+    "sample_states": {
+      "initial_empty": "passed",
+      "deduplicated_alias_and_connector": "passed",
+      "dynamic_keeps_static_name": "passed",
+      "new_hardware_reads_name": "passed",
+      "invalid_utf8": "passed",
+      "placeholder": "passed",
+      "control_character": "passed",
+      "oversize": "passed",
+      "missing_product": "passed",
+      "permission_denied": "passed",
+      "fifo_rejected": "passed",
+      "attribute_link_rejected": "passed",
+      "unsupported_driver_isolated": "passed",
+      "directory_denied": "passed",
+      "directory_recovered": "passed",
+      "broken_identity_no_prefix": "passed",
+      "directory_missing": "passed",
+      "restored_empty": "passed",
+      "count_limit": "passed",
+      "final_empty_recovery": "passed"
+    }
+  },
+  "other_container_regression": {
+    "report_sha256": "baa2ef898248a07942583026a3fd018e6f3df4017027cafc148da59bc6ad1e8b",
+    "scenario_states": {
+      "readable_dmi": "passed",
+      "missing_dmi": "passed",
+      "denied_dmi": "passed",
+      "mixed_dmi": "passed",
+      "authorized_serial": "passed",
+      "denied_serial": "passed",
+      "empty_proc_inputs": "passed"
+    },
+    "runtime_probe": "not_run"
+  },
+  "rust_tests_including_doctests": {
+    "windows": 168,
+    "linux": 164,
+    "macos": 164
+  },
+  "python_tests_per_desktop": 75,
+  "python_source_files": 28,
+  "fuzz_targets_completed": 11,
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "bcd1317cc767584e0779b1aa10d4ec41c1a16c17a2bea0725d0bb93949a0a064",
+  "limits": [
+    "Local real display signal size is verified separately; CI session may be Restricted",
+    "No EDID-name positive read on maintainer laptop",
+    "Signal active size is not native panel resolution, preferred mode or logical DPI coordinates",
+    "Linux/macOS displays remain Unsupported",
+    "Native multi-monitor, mirror, rotation, DPI, remote, hotplug and long heap/leak campaigns not run",
+    "Existing fuzz targets do not fuzz Windows CCD native memory boundary",
+    "No forced termination of native drivers or hard cap on OS-internal allocation",
+    "No registry publication or release distribution"
+  ],
+  "archived_on_local_date": "2026-10-17",
+  "archive_timezone": "Asia/Shanghai"
+}
