@@ -32,7 +32,7 @@
 
 [macOS GPU 决策](adr/0018-macos-gpu.md) · [macOS GPU 验证](macos-gpu-validation.md)
 
-[Windows 显示器决策](adr/0019-windows-display.md)
+[Windows 显示器决策](adr/0019-windows-display.md) · [Windows 显示器验证](windows-display-validation.md)
 
 [存储 CLI 文本输出验证](storage-text-validation.md)
 

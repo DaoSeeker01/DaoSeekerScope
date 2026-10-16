@@ -1,0 +1,47 @@
+{
+  "source_commit": "7bd5b197b11d2c7b1010391f902b61e9a3af7ee3",
+  "native": {
+    "path": "windows-display-native-local-7bd5b19.json",
+    "sha256": "5b4ea66bb2170c8466189cad6fc7c2f4d3a15ef7271bbceae26354fdaf737409",
+    "original_report_sha256": "3ca9059a518c85a3776b7377f4653f3b1badd562a8b6d5bf0b5f3e0f2384986a"
+  },
+  "packages": {
+    "path": "windows-display-package-local-7bd5b19.json",
+    "sha256": "74db4bb636e30e59a71ef73332472e51709830587abe0d1ecd01e367a6eafdf1",
+    "original_report_sha256": "0d4825c98132dae60f246d4a8feababba3a527b7485080a08e480f8ec6971589"
+  },
+  "sdk_probe": {
+    "path": "windows-display-sdk-probe-local-7bd5b19.json",
+    "sha256": "43393ff0a27af1353cdd0bf9e8b5068d6c58371d2264a17a1d0d96d8c05e0bcf",
+    "original_report_sha256": "06ab0617d09cb1925bd279757884fe4f920b305869665df9dd0d456710755b08",
+    "source_commit": "7bd5b197b11d2c7b1010391f902b61e9a3af7ee3",
+    "c_source_git_blob_sha256": "ff768d38c64090fbff4b00100a4aff4531e301d565b1300cb0a6401006aab15a",
+    "binary_sha256": "d828e4a987fddb1537b28b3e8ddc0860b586dde5b6393519ced964a786bd225e",
+    "comparison": "CLI/C path count, name availability count and pixel pairs match; sequential reads, not atomic topology proof"
+  },
+  "benchmark": {
+    "path": "windows-display-benchmark-local-7bd5b19.json",
+    "sha256": "1138eac4ed4f20457c5f5bade5156447135a2ea5ff6ce2294e7d309cf50e04d4",
+    "original_report_sha256": "24c31802a9c85c720165090e5b31b86c541de59738da18041473b7d0b72d6829"
+  },
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "public_model_shape_changed": false,
+  "schema_description_changed": true,
+  "license": "MIT",
+  "lock_files_unchanged": true,
+  "new_packages": false,
+  "added_target_feature": "windows-sys/Win32_Devices_Display",
+  "rust_tests_windows_including_doctests": 168,
+  "python_tests": 75,
+  "python_source_files": 28,
+  "native_checks": 5,
+  "native_processes": 15,
+  "ci_status": "not_run",
+  "fuzz_smoke": "not_run",
+  "miri": "not_run",
+  "asan": "not_run",
+  "cargo_deny": "not_run",
+  "rust_gate_log_sha256": "c784f45ae2f8af66f94d6a016039412d67afa3a7a1884494b898aa12464b79b6",
+  "packages_log_sha256": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202"
+}

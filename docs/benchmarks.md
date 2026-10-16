@@ -156,3 +156,20 @@ CI 源码 `9d30f3b1489502fbb199812d527bb79708651dda`（实现 `2b0ea76`，两者
 | 合成快照 UTF-8 JSON | 373541 bytes |
 
 [环境、参数、原始输出及日志 SHA-256](evidence/macos-gpu-benchmark-38826444216.json)与[同轮原生报告](evidence/macos-gpu-native-darwin-38826444216.json)绑定。默认原生 max_entries=128；合成 backend 另设 1024。原生 CLI/C 读到一个 Metal 可见设备，名称可用且统一内存；基准为整个采集调用，不单独测 Metal 枚举、系统 API 预算或峰值内存。动态刷新使用静态 GPU 缓存，没有重扫；未与旧代码做配对性能测量，不据此宣称性能改善/退化或提供 SLA。单次探针与短 fuzz 不验证原生长期泄漏、失控驱动或实体多 GPU 延迟。
+
+
+## Windows 显示器切片基准（2026-10-16）
+
+源码 `7bd5b197b11d2c7b1010391f902b61e9a3af7ee3`，干净工作区，打包结束后单进程执行 `cargo bench --locked -p daoseeker-scope --bench collect`；Rust 1.96/MSVC、bench 优化 profile、门面默认 serde，原生 max_entries=128；合成 backend 单独设 1024。
+
+本机环境自报：Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz，12 逻辑/6 物理核，x86_64；Windows 11 (26300)、内核 26300；OS 可用总内存 17009004544 bytes，安装内存 17179869184 bytes。本机 CLI/C 与 C SDK 均读一条活动路径、1920×1080，名称 NotPresent；该结果不证明面板原生分辨率、多个实体显示器或 EDID 名称的可用性。
+
+| 指标 | 单进程结果 |
+|---|---|
+| 首次 collect（不含构造） | 436664 µs |
+| 100 次动态刷新 p50 / p95 / max | 2255 / 3058 / 3938 µs |
+| CPU 第二样本状态 | Available |
+| 合成 100 传感器/1024 网络条目 collect | 360 µs |
+| 合成快照 UTF-8 JSON | 373541 bytes |
+
+[参数、环境、原始指标与日志 SHA-256](evidence/windows-display-benchmark-local-7bd5b19.json)对应本轮实现。该基准为整个后端组合，未隔离显示器 API 开销，也未与旧版本做配对测量；不宣称性能改善/退化，不测峰值内存、长期泄漏或驱动强制中止。显示器属于静态缓存，动态刷新不重新读取显示路径。

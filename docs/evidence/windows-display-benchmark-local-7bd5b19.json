@@ -1,0 +1,31 @@
+{
+  "source_commit": "7bd5b197b11d2c7b1010391f902b61e9a3af7ee3",
+  "git_dirty": false,
+  "command": "cargo bench --locked -p daoseeker-scope --bench collect",
+  "profile": "bench optimized",
+  "features": "facade default serde",
+  "native_max_entries": 128,
+  "synthetic_max_entries": 1024,
+  "samples": 100,
+  "synthetic_sensors": 100,
+  "synthetic_networks": 1024,
+  "first_collect_us": 436664,
+  "refresh_p50_us": 2255,
+  "refresh_p95_us": 3058,
+  "refresh_max_us": 3938,
+  "synthetic_collect_us": 360,
+  "synthetic_serialized_bytes": 373541,
+  "environment": {
+    "cpu.brand": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+    "cpu.logical_count": 12,
+    "cpu.physical_count": 6,
+    "cpu.architecture": "x86_64",
+    "os.version": "11 (26300)",
+    "os.kernel_version": "26300",
+    "memory.total_usable_bytes": 17009004544,
+    "memory.installed_bytes": 17179869184
+  },
+  "raw_metrics": "first_collect_us=436664\nrefresh_n=100 p50_us=2255 p95_us=3058 max_us=3938\ncpu_usage_state=Available\nsynthetic_sensors=100 synthetic_networks=1024 collect_us=360 serialized_bytes=373541",
+  "log_sha256": "aaabd54e954c7f0a82f5bd54af8908a8046ba38ad6155d62c44ffb30ca12b9a4",
+  "scope": "single process after package build; whole collect excluding constructor; not per-display API latency, native heap/leak or SLA"
+}
