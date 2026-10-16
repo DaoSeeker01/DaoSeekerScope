@@ -1,0 +1,25 @@
+{
+  "source_commit": "9d30f3b1489502fbb199812d527bb79708651dda",
+  "command": "cargo bench --locked -p daoseeker-scope --bench collect",
+  "profile": "bench optimized",
+  "facade_features": "default serde",
+  "samples": 100,
+  "synthetic_sensors": 100,
+  "synthetic_networks": 1024,
+  "first_collect_us": 7220,
+  "refresh_p50_us": 19,
+  "refresh_p95_us": 26,
+  "refresh_max_us": 51,
+  "synthetic_collect_us": 172,
+  "synthetic_serialized_bytes": 373541,
+  "log_sha256": "65e6749cd2f116f3de756dba7217f84db0630c3694e193b0d0a8fe90e23b1eb5",
+  "environment": {
+    "cpu.brand": "Apple M2 Pro (Virtual)",
+    "cpu.logical_count": 5,
+    "cpu.architecture": "arm64",
+    "os.version": "26.6.2",
+    "os.kernel_version": "25.6.0",
+    "memory.total_usable_bytes": 15032385536
+  },
+  "raw_log": "first_collect_us=7220\nrefresh_n=100 p50_us=19 p95_us=26 max_us=51\ncpu_usage_state=Available\nsynthetic_sensors=100 synthetic_networks=1024 collect_us=172 serialized_bytes=373541\n"
+}

@@ -1,0 +1,187 @@
+{
+  "source_commit": "9d30f3b1489502fbb199812d527bb79708651dda",
+  "implementation_commit": "2b0ea7604ca64684d6693459ef81e070516f2c19",
+  "implementation_to_ci_changes": [
+    "docs/README.md",
+    "docs/evidence/macos-gpu-local-2b0ea76.json",
+    "docs/evidence/macos-gpu-native-local-windows-2b0ea76.json",
+    "docs/evidence/macos-gpu-package-local-windows-2b0ea76.json",
+    "docs/macos-gpu-validation.md"
+  ],
+  "run_id": 38826444216,
+  "event": "workflow_dispatch",
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38826444216",
+  "ci_jobs": {
+    "fuzz-smoke": "success",
+    "linux-container": "success",
+    "ffi-asan": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "desktop (windows-latest)": "success",
+    "desktop (macos-latest)": "success",
+    "supply-chain": "success",
+    "miri": "success"
+  },
+  "native": {
+    "linux": {
+      "path": "macos-gpu-native-linux-38826444216.json",
+      "sha256": "d21f73c06cb291c128ec12fb873e4d518ab5b9868835df78c118581a6c30fac7",
+      "original_report_sha256": "d21f73c06cb291c128ec12fb873e4d518ab5b9868835df78c118581a6c30fac7"
+    },
+    "darwin": {
+      "path": "macos-gpu-native-darwin-38826444216.json",
+      "sha256": "95d3ae4587f5f1d86f800922d2783541ec11e43e5554c98c9d4916223243cf4a",
+      "original_report_sha256": "95d3ae4587f5f1d86f800922d2783541ec11e43e5554c98c9d4916223243cf4a"
+    },
+    "windows": {
+      "path": "macos-gpu-native-windows-38826444216.json",
+      "sha256": "73391cb547f05c581f1a5e31fbdb2e4f4cb7ac9fbcfd89055dd085e30c59f8ac",
+      "original_report_sha256": "62427ed7132e1778efdbff5cafca729c51967c080deb9ae8f562fa4740b70d36"
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "macos-gpu-package-evidence-linux-x64-38826444216.json",
+      "sha256": "1aa67ac79b15c98edbd13178589282d8f9a26a4913c7d2ff2158b854d1cce475",
+      "original_report_sha256": "1aa67ac79b15c98edbd13178589282d8f9a26a4913c7d2ff2158b854d1cce475"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "macos-gpu-package-evidence-windows-x64-38826444216.json",
+      "sha256": "7e840213686ed68c7b642dbd5cc3eca626323053af764bb870b67045d1151e45",
+      "original_report_sha256": "12e756f10466c0f10f49dab438536a06b1806e166228aaf0048b3bc646d62922"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "macos-gpu-package-evidence-macos-arm64-38826444216.json",
+      "sha256": "1aa67ac79b15c98edbd13178589282d8f9a26a4913c7d2ff2158b854d1cce475",
+      "original_report_sha256": "1aa67ac79b15c98edbd13178589282d8f9a26a4913c7d2ff2158b854d1cce475"
+    }
+  },
+  "snapshot_schema_version": 1,
+  "c_abi_version": 1,
+  "native_report_version": 1,
+  "license": "MIT",
+  "public_model_shape_changed": false,
+  "dependency_features_lock_changed": true,
+  "new_dependencies": {
+    "objc2": "0.6.5",
+    "objc2-encode": "4.1.0",
+    "objc2-foundation": "0.3.2",
+    "objc2-metal": "0.3.2"
+  },
+  "local_evidence_index": "macos-gpu-local-2b0ea76.json",
+  "local_evidence_source_commit": "2b0ea7604ca64684d6693459ef81e070516f2c19",
+  "unstable_fuzz_hook_added": true,
+  "macos_gpu": {
+    "cli": {
+      "availability": "available",
+      "source": "apple_api",
+      "reason": null,
+      "observed_at": 1792108599928,
+      "entries": 1,
+      "names_available": 1,
+      "unified_memory": 1,
+      "dedicated_memory_unsupported": 0
+    },
+    "c_abi": {
+      "availability": "available",
+      "source": "apple_api",
+      "reason": null,
+      "observed_at": 1792108599954,
+      "entries": 1,
+      "names_available": 1,
+      "unified_memory": 1,
+      "dedicated_memory_unsupported": 0
+    }
+  },
+  "sdk_probe": {
+    "path": "macos-gpu-sdk-probe-38826444216.json",
+    "sha256": "87d0e75add6e925d79ae129eb0af9dd4e19646e687f80ccefcd3ecf939f5df16",
+    "original_report_sha256": "87d0e75add6e925d79ae129eb0af9dd4e19646e687f80ccefcd3ecf939f5df16",
+    "summary": {
+      "entries": 1,
+      "names_available": 1,
+      "unified_memory": 1,
+      "dedicated_memory_unsupported": 0
+    },
+    "comparison": "CLI/C counts and memory states match public SDK probe; sequential observations"
+  },
+  "gpu_container": {
+    "path": "macos-gpu-linux-container-38826444216.json",
+    "sha256": "e2fdcba19afd2c0bb2ec57e58989d8ece847e2b61b4480f0f8dd0baf807e9047",
+    "original_report_sha256": "e2fdcba19afd2c0bb2ec57e58989d8ece847e2b61b4480f0f8dd0baf807e9047",
+    "samples_passed": 20,
+    "configuration": {
+      "user": "65534:65534",
+      "ReadonlyRootfs": true,
+      "NetworkMode": "none",
+      "CapDrop": [
+        "ALL"
+      ],
+      "SecurityOpt": [
+        "no-new-privileges=true"
+      ],
+      "Memory": 268435456,
+      "MemorySwap": 268435456,
+      "PidsLimit": 32,
+      "NanoCpus": 1000000000
+    },
+    "sample_states": {
+      "initial_empty": "passed",
+      "deduplicated_alias_and_connector": "passed",
+      "dynamic_keeps_static_name": "passed",
+      "new_hardware_reads_name": "passed",
+      "invalid_utf8": "passed",
+      "placeholder": "passed",
+      "control_character": "passed",
+      "oversize": "passed",
+      "missing_product": "passed",
+      "permission_denied": "passed",
+      "fifo_rejected": "passed",
+      "attribute_link_rejected": "passed",
+      "unsupported_driver_isolated": "passed",
+      "directory_denied": "passed",
+      "directory_recovered": "passed",
+      "broken_identity_no_prefix": "passed",
+      "directory_missing": "passed",
+      "restored_empty": "passed",
+      "count_limit": "passed",
+      "final_empty_recovery": "passed"
+    }
+  },
+  "other_container_regression": {
+    "report_sha256": "1ed7ba1d4b0cfa303622241a61116eb634ad242db6fc072329b4ca01fdbf8175",
+    "scenario_states": {
+      "readable_dmi": "passed",
+      "missing_dmi": "passed",
+      "denied_dmi": "passed",
+      "mixed_dmi": "passed",
+      "authorized_serial": "passed",
+      "denied_serial": "passed",
+      "empty_proc_inputs": "passed"
+    },
+    "runtime_probe": "not_run"
+  },
+  "benchmark": {
+    "path": "macos-gpu-benchmark-38826444216.json",
+    "sha256": "52ee5015353b7a848f5334a3bae98c5b881a96710368947a04e1a5c29af7d11b",
+    "original_report_sha256": "d6b8d0942114ae4be7900fda87e0203b9f3b8475d36091ee5d87d1b48b460313"
+  },
+  "rust_tests_including_doctests": {
+    "windows": 157,
+    "linux": 153,
+    "macos": 153
+  },
+  "python_tests_per_desktop": 70,
+  "fuzz_targets_completed": 11,
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "ef5edac717ac6311ae7e3cc194a4a8a5556aa3f99e5a3ec0e41f7a25e4451da7",
+  "limits": [
+    "Hosted macOS ARM64 VM is not physical Mac validation",
+    "Metal-visible devices are not a physical GPU inventory",
+    "No dedicated VRAM capacity source on macOS: unified is NotApplicable, other architectures Unsupported",
+    "No forced termination of native driver calls or hard cap on platform-internal enumeration allocation",
+    "No native Objective-C heap/leak, hotplug, sandbox or multi-GPU campaign",
+    "Actual AMD/NVIDIA devices and physical Mac tests deferred",
+    "No registry publication or release distribution"
+  ]
+}

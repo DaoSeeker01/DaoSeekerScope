@@ -1,0 +1,1191 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-15T23:56:39.784474+00:00",
+  "execution_platform": {
+    "os": "Darwin",
+    "architecture": "arm64"
+  },
+  "python_version": "3.14.8",
+  "overall": "passed",
+  "checks": {
+    "cli": "passed",
+    "c_abi": "passed",
+    "python_ffi": "passed",
+    "storage_text": "passed",
+    "cli_text": "passed"
+  },
+  "observations": {
+    "cli": {
+      "os.name": {
+        "value": "Darwin",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599919,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "Apple M2 Pro (Virtual)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599919,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 5,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599919,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 15032385536,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599919,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "static.storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 348966092800,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599920,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 343073095680,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599920,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 524288000,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599920,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 545259520,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599920,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 4194304,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599920,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 545259520,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599920,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 4194304,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599920,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "iokit",
+        "observed_at": 1792108599920,
+        "reason": null
+      },
+      "os.version": {
+        "value": "26.6.2",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599919,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "25.6.0",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599919,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "arm64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599919,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 5,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599919,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": 15032385536,
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1792108599919,
+        "reason": null
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysinfo",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "dynamic.batteries": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.sensors": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.networks": {
+        "value": [
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 139264,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 139264,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 168107008,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 2462720,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599928,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1792108599928,
+        "reason": null
+      },
+      "static.gpu_summary": {
+        "availability": "available",
+        "source": "apple_api",
+        "reason": null,
+        "observed_at": 1792108599928,
+        "entries": 1,
+        "names_available": 1,
+        "unified_memory": 1,
+        "dedicated_memory_unsupported": 0
+      }
+    },
+    "c_abi": {
+      "os.name": {
+        "value": "Darwin",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599945,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "Apple M2 Pro (Virtual)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599945,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 5,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599945,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 15032385536,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599945,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "static.storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 348966092800,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599945,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 343073095680,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599945,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 524288000,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599945,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 545259520,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599945,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 4194304,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599945,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 545259520,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599945,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "iokit",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 4194304,
+              "availability": "available",
+              "source": "iokit",
+              "observed_at": 1792108599945,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "iokit",
+        "observed_at": 1792108599945,
+        "reason": null
+      },
+      "os.version": {
+        "value": "26.6.2",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599945,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "25.6.0",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599945,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "arm64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599945,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 5,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792108599945,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": 15032385536,
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1792108599945,
+        "reason": null
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysinfo",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "dynamic.batteries": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.sensors": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.networks": {
+        "value": [
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 139264,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 139264,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 168107008,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 2465792,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysctl",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysctl",
+              "observed_at": 1792108599954,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1792108599954,
+        "reason": null
+      },
+      "static.gpu_summary": {
+        "availability": "available",
+        "source": "apple_api",
+        "reason": null,
+        "observed_at": 1792108599954,
+        "entries": 1,
+        "names_available": 1,
+        "unified_memory": 1,
+        "dedicated_memory_unsupported": 0
+      }
+    },
+    "storage_text": {
+      "entry_count": 7,
+      "available_capacity_bytes": [
+        348966092800,
+        343073095680,
+        524288000,
+        545259520,
+        4194304,
+        545259520,
+        4194304
+      ],
+      "source": "Iokit",
+      "names_redacted": true,
+      "output_sha256": "16b30381fc0d0b3becbd69a04efdec857ddb43ab1a52be52e06b5722f4598ec2"
+    },
+    "cli_text": {
+      "cpu": {
+        "available_fields": 5,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "3350f15c74fc0511c0d1ec41ea70d519b424eb2b1575fa0d9540028321e23839"
+      },
+      "memory": {
+        "available_fields": 3,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "8b4b62928ae87711d89cf1ad338691be995b7eb3e6d481d53b31e8183a7e60cb"
+      },
+      "system": {
+        "available_fields": 7,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "bbbbb7bc0c546a9321b8d2929388958ea7ccd63f2fcb8e672ba5dd4947e6b546"
+      },
+      "gpu": {
+        "available_fields": 1,
+        "missing_fields": 1,
+        "entry_count": 1,
+        "collection_state": "Available",
+        "output_sha256": "1908c4de23f48f73be36ded7935a24fbba2822ff3fe4e3c721dcc015409b4327"
+      },
+      "network": {
+        "available_fields": 22,
+        "missing_fields": 11,
+        "entry_count": 11,
+        "collection_state": "Available",
+        "output_sha256": "0d9d3809b471ba7e0bd4a02b8317b59e4585c5b169a54e2c52d11a668691af19"
+      },
+      "battery": {
+        "available_fields": 0,
+        "missing_fields": 1,
+        "entry_count": null,
+        "collection_state": "Unsupported",
+        "output_sha256": "125338c415cb73ed1451cb039cccc82313ee6517440131de7e004050335221dc"
+      },
+      "sensors": {
+        "available_fields": 0,
+        "missing_fields": 1,
+        "entry_count": null,
+        "collection_state": "Unsupported",
+        "output_sha256": "e9f8faa0ccc47012dcf2776bfd1366b00153335f2508299d38429f1c76b31c25"
+      },
+      "capabilities": {
+        "available_fields": 0,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "18288e4cf9d36066a5265ea33b56a887245ad90dae056c78abdc0a9dbd146b94"
+      }
+    }
+  },
+  "processes": {
+    "c_abi": {
+      "status": "passed",
+      "command": "c_abi",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 11367,
+      "stderr_bytes": 0
+    },
+    "cli": {
+      "status": "passed",
+      "command": "cli",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 11368,
+      "stderr_bytes": 0
+    },
+    "cli_text_battery": {
+      "status": "passed",
+      "command": "cli_text_battery",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 52,
+      "stderr_bytes": 0
+    },
+    "cli_text_capabilities": {
+      "status": "passed",
+      "command": "cli_text_capabilities",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 1147,
+      "stderr_bytes": 0
+    },
+    "cli_text_cpu": {
+      "status": "passed",
+      "command": "cli_text_cpu",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 165,
+      "stderr_bytes": 0
+    },
+    "cli_text_gpu": {
+      "status": "passed",
+      "command": "cli_text_gpu",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 147,
+      "stderr_bytes": 0
+    },
+    "cli_text_memory": {
+      "status": "passed",
+      "command": "cli_text_memory",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 122,
+      "stderr_bytes": 0
+    },
+    "cli_text_network": {
+      "status": "passed",
+      "command": "cli_text_network",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 1661,
+      "stderr_bytes": 0
+    },
+    "cli_text_sensors": {
+      "status": "passed",
+      "command": "cli_text_sensors",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 50,
+      "stderr_bytes": 0
+    },
+    "cli_text_system": {
+      "status": "passed",
+      "command": "cli_text_system",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 225,
+      "stderr_bytes": 0
+    },
+    "git_revision": {
+      "status": "passed",
+      "command": "git_revision",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    "git_status": {
+      "status": "passed",
+      "command": "git_status",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    "python_ffi": {
+      "status": "passed",
+      "command": "python_ffi",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 86,
+      "stderr_bytes": 0
+    },
+    "rustc": {
+      "status": "passed",
+      "command": "rustc",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 192,
+      "stderr_bytes": 0
+    },
+    "storage_text": {
+      "status": "passed",
+      "command": "storage_text",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 870,
+      "stderr_bytes": 0
+    }
+  },
+  "artifact_sha256": {
+    "cli": "d20476fe656099b6c7c5180a0b71fe89008691ee88873cf5481588786297b03c",
+    "c_example": "0019e7abcec8ffbc566b7163a8f94f8922276677c081604393afd5d6cb7ce18f",
+    "ffi": "31dc408896a296887d7734dba425b56083212ac5e3102590d4db221a7c45b308",
+    "cargo_lock": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae"
+  },
+  "available_rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: aarch64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "git_revision": "9d30f3b1489502fbb199812d527bb79708651dda",
+  "git_dirty": false
+}

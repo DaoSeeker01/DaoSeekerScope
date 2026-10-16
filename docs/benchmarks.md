@@ -141,3 +141,18 @@
 | 合成快照 JSON | 373541 bytes |
 
 首次样本与本机打包构建并行：首次 539955 µs，刷新 p50/p95/max 3283/4127/11038 µs。为减少并发编译的干扰，在打包结束后重新执行，表格采用后一次结果，[两个日志哈希及参数](evidence/windows-network-extra-local-windows-38094160512.json)均保留。没有与旧版本在相同条件下做配对测试，不能据此宣称总体性能提升或退化；逐接口原生查询增加了工作量。没有测原生峰值内存、Windows 泄漏、坏驱动的阻塞时长，或 Linux/macOS 性能；这是单机样本，不是性能 SLA。
+
+
+## macOS Metal GPU 切片基准（2026-10-16）
+
+CI 源码 `9d30f3b1489502fbb199812d527bb79708651dda`（实现 `2b0ea76`，两者之间只有验证文档/报告）；复现 `cargo bench --locked -p daoseeker-scope --bench collect`，Rust 1.96、bench 优化 profile、门面默认 serde。托管 macOS ARM64 VM 报告 Apple M2 Pro (Virtual)、5 逻辑/物理核、OS 26.6.2/内核 25.6.0、15032385536 bytes OS 可用总内存。它是 runner 自报的虚拟环境摘要，不代表实体 Mac 配置。
+
+| 指标 | 单进程样本 |
+|---|---|
+| 首次 collect（不含构造） | 7220 µs |
+| 100 次动态刷新 p50 / p95 / max | 19 / 26 / 51 µs |
+| CPU 第二样本状态 | Available |
+| 合成 100 传感器 / 1024 网络条目 collect | 172 µs |
+| 合成快照 UTF-8 JSON | 373541 bytes |
+
+[环境、参数、原始输出及日志 SHA-256](evidence/macos-gpu-benchmark-38826444216.json)与[同轮原生报告](evidence/macos-gpu-native-darwin-38826444216.json)绑定。默认原生 max_entries=128；合成 backend 另设 1024。原生 CLI/C 读到一个 Metal 可见设备，名称可用且统一内存；基准为整个采集调用，不单独测 Metal 枚举、系统 API 预算或峰值内存。动态刷新使用静态 GPU 缓存，没有重扫；未与旧代码做配对性能测量，不据此宣称性能改善/退化或提供 SLA。单次探针与短 fuzz 不验证原生长期泄漏、失控驱动或实体多 GPU 延迟。

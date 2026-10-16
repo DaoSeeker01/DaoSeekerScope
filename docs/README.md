@@ -30,7 +30,7 @@
 
 [Linux GPU 决策](adr/0017-linux-gpu.md) · [Linux GPU 验收](linux-gpu-validation.md)
 
-[macOS GPU 决策](adr/0018-macos-gpu.md) · [macOS GPU 本地验证与待验收项](macos-gpu-validation.md)
+[macOS GPU 决策](adr/0018-macos-gpu.md) · [macOS GPU 验证](macos-gpu-validation.md)
 
 [存储 CLI 文本输出验证](storage-text-validation.md)
 
