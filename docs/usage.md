@@ -49,6 +49,8 @@ println!("{:?}", dynamic.cpu_usage_percent.value());
 
 Rust 使用 `to_json` / `from_json` 交换 Schema v1。输入和展开后的输出均限制为 1 MiB。未知对象字段忽略，未知枚举值或错误版本拒绝；字符串、集合、数值和内存关系还有领域校验。[JSON Schema](schema/snapshot-v1.schema.json)不能替代这些检查。
 
+Windows 的 `static_info.displays` 目前通过 Rust API、C ABI JSON 或 `dscope --json` 查看。返回活动路径的 EDID 友好名称（可能 NotPresent）和当前目标信号活动像素宽高；不是面板原生/首选分辨率、DPI 逻辑尺寸或桌面旋转后的坐标。数据缓存到当前 Hardware，模式/连接变化后需新建实例；动态刷新不重扫。远程或无控制台访问时可 Restricted/PermissionDenied，不能据此认为没有显示器。Linux/macOS 显示器仍 Unsupported；专用文本命令尚未增加。
+
 ## C 与 Python
 
 构建共享库：`cargo build --locked -p daoseeker-scope-ffi`。从[头文件](../bindings/daoseeker_scope.h)和[C 示例](../examples/collect.c)开始。Windows 可以用 `pwsh -NoProfile -File scripts/build_c_example.ps1` 构建并验证示例；Linux/macOS 编译命令见[开发指南](../CONTRIBUTING.md)。

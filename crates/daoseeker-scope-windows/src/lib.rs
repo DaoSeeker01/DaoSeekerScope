@@ -1,5 +1,7 @@
 //! Ordinary-user Windows enhancement, compiled only on Windows.
 #[cfg(any(target_os = "windows", test))]
+mod display;
+#[cfg(any(target_os = "windows", test))]
 mod gpu;
 #[cfg(target_os = "windows")]
 mod network;
@@ -50,6 +52,11 @@ mod native {
                 CapabilityLevel::Partial,
                 Source::Dxgi,
             ));
+            capabilities.push(Capability::new(
+                "displays",
+                CapabilityLevel::Partial,
+                Source::Win32,
+            ));
             capabilities
         }
         fn collect_static(
@@ -73,6 +80,7 @@ mod native {
             result.system.memory.installed_bytes = observation;
             result.storage = crate::storage::collect(context)?;
             result.gpus = crate::gpu::collect(context)?;
+            result.displays = crate::display::collect(context)?;
             Ok(result)
         }
         fn refresh_dynamic(

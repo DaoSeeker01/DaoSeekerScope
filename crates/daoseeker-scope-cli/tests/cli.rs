@@ -7,6 +7,37 @@ fn cli(args: &[&str]) -> std::process::Output {
 }
 
 #[test]
+fn display_json_keeps_real_states_without_fabricating_resolution() {
+    let output = cli(&["--json"]);
+    assert!(output.status.success() && output.stderr.is_empty());
+    let snapshot = daoseeker_scope::from_json(&output.stdout).expect("snapshot");
+    let displays = snapshot.static_info.displays;
+    #[cfg(target_os = "windows")]
+    if displays.availability() != daoseeker_scope::Availability::Unsupported {
+        assert_eq!(displays.source(), daoseeker_scope::Source::Win32);
+        if let Some(entries) = displays.value() {
+            for entry in entries {
+                assert_eq!(entry.name.source(), daoseeker_scope::Source::Win32);
+                assert_eq!(entry.width_pixels.source(), daoseeker_scope::Source::Win32);
+                assert_eq!(entry.height_pixels.source(), daoseeker_scope::Source::Win32);
+                match (entry.width_pixels.value(), entry.height_pixels.value()) {
+                    (Some(w), Some(h)) => assert!(*w > 0 && *h > 0),
+                    (None, None) => assert!(entry.width_pixels.reason().is_some()),
+                    _ => panic!("partial dimension pair"),
+                }
+            }
+        } else {
+            assert!(displays.reason().is_some() && displays.observed_at().is_none());
+        }
+    }
+    #[cfg(not(target_os = "windows"))]
+    assert_eq!(
+        displays.availability(),
+        daoseeker_scope::Availability::Unsupported
+    );
+}
+
+#[test]
 fn every_text_command_keeps_metadata_and_json_roundtrips() {
     for command in [
         "cpu",

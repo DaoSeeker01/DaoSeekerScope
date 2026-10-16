@@ -55,6 +55,10 @@ jobs:
           if errorlevel 1 exit /b 1
           cl /nologo /W4 /WX /std:c11 /Fetarget\debug\c-example.exe /Fotarget\debug\c-example.obj examples\collect.c target\debug\daoseeker_scope_ffi.dll.lib
           if errorlevel 1 exit /b 1
+          cl /nologo /W4 /WX /std:c11 /Fetarget\display-probe.exe /Fotarget\display-probe.obj docs\research\display_probe.c user32.lib
+          if errorlevel 1 exit /b 1
+          target\display-probe.exe > target\windows-display-probe.json
+          if errorlevel 1 exit /b 1
       - name: Build C example on Linux
         if: runner.os == 'Linux'
         run: |
@@ -90,6 +94,7 @@ jobs:
           name: native-evidence-${{ runner.os }}-${{ runner.arch }}
           path: |
             target/native-evidence.json
+            target/windows-display-probe.json
             target/macos-collect-benchmark.log
             target/macos-iomedia-probe.json
             target/macos-metal-probe.json

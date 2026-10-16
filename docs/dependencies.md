@@ -63,3 +63,5 @@ macOS 网络切片沿用 libc 0.2.190，不新增依赖或许可证；macOS crat
 | objc2-encode | 4.1.0 | MIT |
 | objc2-foundation | 0.3.2 | MIT |
 | objc2-metal | 0.3.2 | Zlib OR Apache-2.0 OR MIT |
+
+2026-10-16 Windows 显示器切片为已锁定 windows-sys 0.61.2 增加 `Win32_Devices_Display` feature，仅 Windows target 启用。两个 Cargo.lock 包版本、checksum 和依赖边不变，无新增 crate/许可证；项目 MIT、sysinfo features、公共 crate 默认 features 均不变。

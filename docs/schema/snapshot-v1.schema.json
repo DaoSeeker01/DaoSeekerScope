@@ -181,7 +181,8 @@
             "reason": "not_supported",
             "source": "custom",
             "value": null
-          }
+          },
+          "description": "Cached pixel height, using the same platform extent as `width_pixels`."
         },
         "name": {
           "$ref": "#/$defs/Observed",
@@ -191,7 +192,8 @@
             "reason": "not_supported",
             "source": "custom",
             "value": null
-          }
+          },
+          "description": "Backend-reported product description, not a stable device identifier."
         },
         "width_pixels": {
           "$ref": "#/$defs/Observed2",
@@ -201,7 +203,8 @@
             "reason": "not_supported",
             "source": "custom",
             "value": null
-          }
+          },
+          "description": "Cached pixel width; Windows CCD reports the target signal's active size.\nThis is not a promise of panel-native resolution or logical DPI coordinates."
         }
       },
       "type": "object"

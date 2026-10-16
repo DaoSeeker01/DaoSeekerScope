@@ -402,6 +402,108 @@ def check_macos_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
         raise ValidationFailure("gpu: malformed") from error
 
 
+def check_windows_displays(snapshot: dict[str, Any]) -> dict[str, Any]:
+    """CCD path metadata and pixel sizes, without product names or native IDs."""
+    try:
+        collection = snapshot["static_info"]["displays"]
+        state = collection["availability"]
+        if collection["source"] != "win32" and not (
+            state == "unsupported" and collection["source"] == "custom"
+        ):
+            raise ValidationFailure("display: collection_source")
+        allowed = {
+            "restricted": {"permission_denied"},
+            "unsupported": {"not_supported"},
+            "unavailable": {
+                "invalid_data",
+                "timeout",
+                "temporarily_unavailable",
+                "unknown",
+            },
+        }
+
+        def missing(item: dict[str, Any], field: bool = False) -> bool:
+            reasons = allowed.get(item["availability"], set())
+            if field and item["availability"] == "unavailable":
+                reasons = reasons | {"not_present"}
+            return (
+                item["value"] is None
+                and item["observed_at"] is None
+                and item["reason"] in reasons
+            )
+
+        summary = {
+            key: collection[key]
+            for key in ("availability", "source", "reason", "observed_at")
+        }
+        if state != "available":
+            if not missing(collection):
+                raise ValidationFailure("display: missing_metadata")
+            return summary
+        entries = collection["value"]
+        if (
+            not isinstance(entries, list)
+            or len(entries) > 128
+            or type(collection["observed_at"]) is not int
+            or collection["reason"] is not None
+        ):
+            raise ValidationFailure("display: collection_metadata")
+        names = []
+        dimensions = []
+        for entry in entries:
+            name = entry["name"]
+            if name["source"] != "win32":
+                raise ValidationFailure("display: field_source")
+            if name["availability"] == "available":
+                value = name["value"]
+                if (
+                    not isinstance(value, str)
+                    or not value.strip()
+                    or len(value.encode("utf-16-le")) > 126
+                    or any(ord(c) < 32 or 127 <= ord(c) <= 159 for c in value)
+                    or type(name["observed_at"]) is not int
+                    or name["reason"] is not None
+                ):
+                    raise ValidationFailure("display: name_metadata")
+            elif not missing(name, True):
+                raise ValidationFailure("display: name_metadata")
+            names.append(
+                {
+                    key: name[key]
+                    for key in ("availability", "source", "reason", "observed_at")
+                }
+            )
+            pair = {key: entry[key] for key in ("width_pixels", "height_pixels")}
+            for item in pair.values():
+                if item["source"] != "win32":
+                    raise ValidationFailure("display: field_source")
+                if item["availability"] == "available":
+                    if (
+                        type(item["value"]) is not int
+                        or not 1 <= item["value"] <= 0xFFFFFFFF
+                        or type(item["observed_at"]) is not int
+                        or item["reason"] is not None
+                    ):
+                        raise ValidationFailure("display: dimension_metadata")
+                elif not missing(item, True):
+                    raise ValidationFailure("display: dimension_metadata")
+            w, h = pair.values()
+            if any(
+                w[key] != h[key] for key in ("availability", "reason", "observed_at")
+            ):
+                raise ValidationFailure("display: partial_dimensions")
+            dimensions.append(pair)
+        summary.update(
+            entries=len(entries),
+            names_available=sum(n["availability"] == "available" for n in names),
+            name_metadata=names,
+            dimensions=dimensions,
+        )
+        return summary
+    except (KeyError, TypeError, UnicodeError) as error:
+        raise ValidationFailure("display: malformed") from error
+
+
 def check_windows_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
     """Validate DXGI metadata, retaining counts/capacities but no product names."""
     try:
@@ -888,6 +990,7 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
         elif platform.system() == "Windows":
             check_real_storage(observations, "win32")
             observations["static.gpu_summary"] = check_windows_gpu(snapshot)
+            observations["static.display_summary"] = check_windows_displays(snapshot)
         elif platform.system() == "Darwin":
             check_real_storage(observations, "iokit")
             observations["static.gpu_summary"] = check_macos_gpu(snapshot)
