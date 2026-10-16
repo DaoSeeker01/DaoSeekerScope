@@ -65,3 +65,5 @@ macOS 网络切片沿用 libc 0.2.190，不新增依赖或许可证；macOS crat
 | objc2-metal | 0.3.2 | Zlib OR Apache-2.0 OR MIT |
 
 2026-10-16 Windows 显示器切片为已锁定 windows-sys 0.61.2 增加 `Win32_Devices_Display` feature，仅 Windows target 启用。两个 Cargo.lock 包版本、checksum 和依赖边不变，无新增 crate/许可证；项目 MIT、sysinfo features、公共 crate 默认 features 均不变。
+
+2026-10-17 Linux DRM 连接/授权 EDID 名称切片只使用标准库和现有 core，无新增依赖、许可证、锁定版本或默认 features。复用隐藏 fuzzing feature 扩展 dmi_text；格式事实参考内核公开接口，独立实现并使用自行生成的合成 EDID，不复制 GPL 内核或 edid-decode 实现。项目仍 MIT。

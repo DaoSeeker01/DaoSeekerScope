@@ -1,6 +1,11 @@
 //! Opt-in test hooks for the production parsers. Synthetic timestamps only.
 use daoseeker_scope_core::Observed;
 
+/// EDID base-block name projection, no files or real identifiers.
+pub fn display_name(data: &[u8]) -> Observed<String> {
+    super::display::edid_name(data, daoseeker_scope_core::Timestamp(0))
+}
+
 /// Production GPU text parsers only; synthetic time, no device paths or reads.
 pub fn gpu_names(data: &[u8]) -> (Observed<String>, Observed<String>) {
     (

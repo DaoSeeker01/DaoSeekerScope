@@ -5,6 +5,7 @@ use std::io::{self, Read};
 use std::path::PathBuf;
 mod battery;
 mod cpu;
+mod display;
 /// Internal, synthetic-input test hooks. No platform reads; no stability promise.
 #[cfg(feature = "fuzzing")]
 #[doc(hidden)]
@@ -140,6 +141,11 @@ impl Backend for LinuxBackend {
             CapabilityLevel::Partial,
             Source::Drm,
         ));
+        capabilities.push(Capability::new(
+            "displays",
+            CapabilityLevel::Partial,
+            Source::Drm,
+        ));
         capabilities
     }
     fn collect_static(&mut self, context: &CollectContext) -> Result<StaticSnapshot, ScopeError> {
@@ -162,6 +168,7 @@ impl Backend for LinuxBackend {
         };
         result.storage = storage::collect(&self.block_root, context)?;
         result.gpus = gpu::collect(&self.drm_root, &self.nvidia_root, context)?;
+        result.displays = display::collect(&self.drm_root, context)?;
         Ok(result)
     }
     fn refresh_dynamic(&mut self, context: &CollectContext) -> Result<DynamicSnapshot, ScopeError> {
@@ -197,13 +204,16 @@ pub fn parse_dmi_text(bytes: &[u8]) -> Observed<String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::sync::atomic::{AtomicU64, Ordering};
+    static NEXT_FIXTURE: AtomicU64 = AtomicU64::new(0);
     struct Fixture(PathBuf);
     impl Fixture {
         fn new(memory: &[u8]) -> Self {
             let path = std::env::temp_dir().join(format!(
-                "dscope-memory-{}-{}",
+                "dscope-memory-{}-{}-{}",
                 std::process::id(),
-                Timestamp::now().expect("clock").0
+                Timestamp::now().expect("clock").0,
+                NEXT_FIXTURE.fetch_add(1, Ordering::Relaxed)
             ));
             std::fs::create_dir(&path).expect("create fixture");
             let fixture = Self(path);

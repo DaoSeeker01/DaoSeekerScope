@@ -34,6 +34,8 @@
 
 [Windows 显示器决策](adr/0019-windows-display.md) · [Windows 显示器验证](windows-display-validation.md)
 
+[Linux 显示连接与 EDID 隐私决策](adr/0020-linux-display.md)
+
 [存储 CLI 文本输出验证](storage-text-validation.md)
 
 [CLI 字段状态与来源验证](cli-text-validation.md)

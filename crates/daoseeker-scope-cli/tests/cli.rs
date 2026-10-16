@@ -30,7 +30,28 @@ fn display_json_keeps_real_states_without_fabricating_resolution() {
             assert!(displays.reason().is_some() && displays.observed_at().is_none());
         }
     }
-    #[cfg(not(target_os = "windows"))]
+    #[cfg(target_os = "linux")]
+    {
+        assert_eq!(displays.source(), daoseeker_scope::Source::Drm);
+        if let Some(entries) = displays.value() {
+            for entry in entries {
+                assert_eq!(
+                    entry.name.reason(),
+                    Some(daoseeker_scope::ReasonCode::PrivacyRedacted)
+                );
+                assert_eq!(
+                    entry.width_pixels.availability(),
+                    daoseeker_scope::Availability::Unsupported
+                );
+                assert!(
+                    entry.width_pixels.value().is_none() && entry.height_pixels.value().is_none()
+                );
+            }
+        } else {
+            assert!(displays.reason().is_some());
+        }
+    }
+    #[cfg(target_os = "macos")]
     assert_eq!(
         displays.availability(),
         daoseeker_scope::Availability::Unsupported

@@ -402,6 +402,106 @@ def check_macos_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
         raise ValidationFailure("gpu: malformed") from error
 
 
+def check_linux_displays(
+    snapshot: dict[str, Any], sensitive: bool = False
+) -> dict[str, Any]:
+    """Connected view only: retain counts/states, never names or raw EDID."""
+    try:
+        observed = snapshot["static_info"]["displays"]
+        allowed = {
+            "restricted": {"permission_denied"},
+            "unavailable": {
+                "not_present",
+                "invalid_data",
+                "temporarily_unavailable",
+                "timeout",
+                "unknown",
+            },
+        }
+        if observed["source"] != "drm":
+            raise ValidationFailure("display: collection_source")
+        summary = {
+            k: observed[k] for k in ("availability", "source", "reason", "observed_at")
+        }
+        if observed["availability"] != "available":
+            if (
+                observed["value"] is not None
+                or observed["observed_at"] is not None
+                or observed["reason"]
+                not in allowed.get(observed["availability"], set())
+            ):
+                raise ValidationFailure("display: missing_metadata")
+            return summary
+        entries = observed["value"]
+        if (
+            not isinstance(entries, list)
+            or len(entries) > 128
+            or type(observed["observed_at"]) is not int
+            or observed["reason"] is not None
+        ):
+            raise ValidationFailure("display: collection_metadata")
+        names = []
+        for entry in entries:
+            for key in ("width_pixels", "height_pixels"):
+                item = entry[key]
+                expected = dict(
+                    value=None,
+                    availability="unsupported",
+                    source="drm",
+                    observed_at=None,
+                    reason="not_supported",
+                )
+                if any(item[k] != v for k, v in expected.items()):
+                    raise ValidationFailure("display: fabricated_resolution")
+            item = entry["name"]
+            if item["source"] != "sysfs":
+                raise ValidationFailure("display: name_source")
+            if not sensitive:
+                expected = dict(
+                    value=None,
+                    availability="restricted",
+                    source="sysfs",
+                    observed_at=None,
+                    reason="privacy_redacted",
+                )
+                if any(item[k] != v for k, v in expected.items()):
+                    raise ValidationFailure("display: privacy")
+            elif item["availability"] == "available":
+                value = item["value"]
+                if (
+                    not isinstance(value, str)
+                    or not value.strip()
+                    or len(value) > 13
+                    or any(not 32 <= ord(c) <= 126 for c in value)
+                    or type(item["observed_at"]) is not int
+                    or item["reason"] is not None
+                ):
+                    raise ValidationFailure("display: name_metadata")
+            elif (
+                item["value"] is not None
+                or item["observed_at"] is not None
+                or item["reason"]
+                not in {**allowed, "unsupported": {"not_supported"}}.get(
+                    item["availability"], set()
+                )
+            ):
+                raise ValidationFailure("display: name_metadata")
+            names.append(
+                {
+                    k: item[k]
+                    for k in ("availability", "source", "reason", "observed_at")
+                }
+            )
+        summary.update(
+            entries=len(entries),
+            names_available=sum(n["availability"] == "available" for n in names),
+            name_metadata=names,
+        )
+        return summary
+    except (KeyError, TypeError) as error:
+        raise ValidationFailure("display: malformed") from error
+
+
 def check_windows_displays(snapshot: dict[str, Any]) -> dict[str, Any]:
     """CCD path metadata and pixel sizes, without product names or native IDs."""
     try:
@@ -987,6 +1087,7 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
         if platform.system() == "Linux":
             check_real_storage(observations)
             observations["static.gpu_summary"] = check_linux_gpu(snapshot)
+            observations["static.display_summary"] = check_linux_displays(snapshot)
         elif platform.system() == "Windows":
             check_real_storage(observations, "win32")
             observations["static.gpu_summary"] = check_windows_gpu(snapshot)
