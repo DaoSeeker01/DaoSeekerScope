@@ -1,0 +1,72 @@
+{
+  "source_commit": "2cf273658cec2993b9c85cb2a1d1f4cf6f4b44cf",
+  "execution_platform": {
+    "os": "Windows",
+    "architecture": "AMD64"
+  },
+  "license": "MIT",
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "public_model_shape_changed": false,
+  "public_api_signatures_changed": false,
+  "schema_description_changed": true,
+  "lock_files_unchanged": true,
+  "dependency_changes": false,
+  "new_features": false,
+  "native": {
+    "path": "macos-display-native-windows-local-2cf2736.json",
+    "sha256": "8e6409a697d8b6ba2881db9afb9a37e5c7da7b2e3e69659d1538400e117c669c",
+    "original_report_sha256": "cb505aba4f6d638955b1ea4410c72477b78af74b4aaad6a60c453ddce7405d4e"
+  },
+  "packages": {
+    "path": "macos-display-packages-windows-local-2cf2736.json",
+    "sha256": "4e7da7a4ae2a82b8b0b711fc2e7d20b4a1e6f2e38b39035aebd9b76a8c7acf84",
+    "original_report_sha256": "8f349a34f7c842f63aa808dcae13dd103a8b53d126ca27b18735a27b2a1d365f"
+  },
+  "results": {
+    "rust_tests_including_doctests": 184,
+    "macos_crate_parallel_tests": 31,
+    "added_macos_display_tests": 8,
+    "python_tests": 86,
+    "python_source_files": 32,
+    "local_fuzz_harness_library_tests": 2,
+    "packages": 8
+  },
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "cargo test --locked -p daoseeker-scope-macos --all-features",
+    "ruff format scripts tests examples/collect.py",
+    "ruff check scripts tests examples/collect.py",
+    "mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+    "python -m unittest discover -s tests -p test_*.py",
+    "python scripts/check_schema.py",
+    "python scripts/check_project.py",
+    "cargo fmt --manifest-path fuzz/Cargo.toml --check",
+    "cargo test --locked --offline --manifest-path fuzz/Cargo.toml --lib",
+    "pwsh -NoProfile -File scripts/build_c_example.ps1",
+    "python scripts/native_smoke.py --output target/macos-display-native-local-windows.json",
+    "python scripts/check_packages.py --offline"
+  ],
+  "command_notes": [
+    "Python via uv fixed jsonschema 4.25.1, ruff 0.14.13 and mypy 1.19.1; child interpreter uses sys.executable.",
+    "Expected negative SDK-comparison unittest prints failed, then unittest exits successfully; it is not a native macOS probe.",
+    "The first cross-check found a private re-export visibility error; corrected and full check.ps1 -Cross rerun successfully without weakened gates.",
+    "All local commands execute on Windows; macOS cross-check proves compilation only."
+  ],
+  "logs": {
+    "macos-display-check.log": "b7def643557b98106d829b4310dcfe9fa4c09b3b3bb5833c6151ea7905ecbaf9",
+    "macos-display-unit.log": "f175d3b775003c47ec8737feabe2edebe55dcb9f0c7b3db1a1284d763c55c74b",
+    "macos-display-python.log": "17d47824315ed05aaee2c9d27f7126a76849e07834e204898f360a52f4536409",
+    "macos-display-fuzz-local.log": "f33861ccb094f0113ea7a39d6f908e8e0b8f2ac8af027f37fb1a83fdbbb1cce5",
+    "macos-display-c-local.log": "7fc7a69c094230f05e89488ca5466b3fe24e7514d28139411815ba1bc23d9806",
+    "macos-display-native-local.log": "117cb7016d4e1aa4caf801508aef87c4898074ee346c9228370963e4f0ca5a5d",
+    "macos-display-packages-local.log": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202"
+  },
+  "not_run": [
+    "New-source three-platform native CI",
+    "macOS C SDK header/static_assert/link/runtime and native SDK/CLI/C comparison",
+    "New-source actual libFuzzer, Miri, ASan, cargo-deny and macOS benchmark",
+    "Physical Mac, Retina/scaling, multiple displays, mirroring, hotplug, remote/sandbox and long native leak/peak memory",
+    "Registry publication"
+  ]
+}

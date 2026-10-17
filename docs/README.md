@@ -36,7 +36,7 @@
 
 [Linux 显示连接与 EDID 隐私决策](adr/0020-linux-display.md) · [Linux 显示器验证](linux-display-validation.md)
 
-[macOS 活动显示与模式像素决策](adr/0021-macos-display.md)
+[macOS 活动显示与模式像素决策](adr/0021-macos-display.md) · [macOS 显示器验证](macos-display-validation.md)
 
 [存储 CLI 文本输出验证](storage-text-validation.md)
 
