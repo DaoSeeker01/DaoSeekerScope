@@ -44,3 +44,5 @@
 2026-10-10 [内存/uptime切片](../memory-refresh-validation.md)实际CI运行38008554490对源码6d0a377全部8任务成功。Linux非root容器26个连续观测验证清空、损坏、内核权限拒绝/恢复、合法0及总量变化；数据为合成Fixture，真实最小读取由三平台desktop独立验证。当前Linux内存/uptime来源Procfs、Supported，空meminfo为InvalidData；此前历史sysinfo Partial描述保留为当轮结果。Windows/macOS不增加新鲜度声明，完全缺失procfs的运行时探针仍not_run。
 
 2026-10-10 [电池切片](../battery-validation.md)源码15ef5c1的CI38047435339全部8任务成功，Linux非root内核权限/热插拔/两类资源限额等30个生产观测通过；新属性fuzz执行19,744,677次正常结束。Linux实际原生枚举Available空集合，Windows runner仍NotApplicable/NotPresent，macOS仍Unsupported；不把空集合当作真实电池字段成功。原生Windows本机Win32电量100%/AC=true是独立机器读值。Linux能力Partial、SourceSysfs，128字节属性/256个供应设备上限、默认128电池上限；USB充电不推断AC，未验证真实Linux电池或完整电源拓扑。
+
+2026-10-17 Linux 显示器切片：三平台 [CI 38983994614](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38983994614) 全部 8 个任务成功。Linux CLI/C 各确认一条 connected 连接视图，默认名称 PrivacyRedacted、尺寸 Unsupported；26 项非 root 合成 DRM/EDID 场景通过，授权合成名称可读。它不是实体显示器计数、实际扫描输出或真实 EDID 名称读取证明；Linux 当前像素和实体设备验证仍待完成，macOS 显示器未实现。见[契约](0020-linux-display.md)与[验收](../linux-display-validation.md)。

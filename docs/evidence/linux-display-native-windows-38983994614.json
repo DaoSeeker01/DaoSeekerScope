@@ -1,0 +1,1418 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-17T00:03:46.303750+00:00",
+  "execution_platform": {
+    "os": "Windows",
+    "architecture": "AMD64"
+  },
+  "python_version": "3.12.10",
+  "overall": "passed",
+  "checks": {
+    "cli": "passed",
+    "c_abi": "passed",
+    "python_ffi": "passed",
+    "storage_text": "passed",
+    "cli_text": "passed"
+  },
+  "observations": {
+    "cli": {
+      "os.name": {
+        "value": "Windows",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426661,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "AMD EPYC 9V74 80-Core Processor",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426661,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 2,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426661,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 8584425472,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426661,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "static.storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 161061273600,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426663,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 118111600640,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426663,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "setupapi",
+        "observed_at": 1792195426663,
+        "reason": null
+      },
+      "os.version": {
+        "value": "11 (26100)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426661,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "26100",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426661,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "x86_64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426661,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 1,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426661,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": 8589934592,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792195426662,
+        "reason": null
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysinfo",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "dynamic.batteries": {
+        "value": null,
+        "availability": "not_applicable",
+        "source": "win32",
+        "observed_at": null,
+        "reason": "not_present"
+      },
+      "dynamic.sensors": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.networks": {
+        "value": [
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 3636,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 3636,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 3636,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 235423715,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 4045234,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 235423715,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 4045234,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 235423715,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 4045234,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 235379364,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 4160484,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 235423715,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 4045234,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 3636,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426882,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792195426882,
+        "reason": null
+      },
+      "static.gpu_summary": {
+        "availability": "available",
+        "source": "dxgi",
+        "observed_at": 1792195426668,
+        "reason": null,
+        "entries": 1,
+        "names_available": 1,
+        "dedicated_video_memory_bytes": [
+          0
+        ]
+      },
+      "static.display_summary": {
+        "availability": "available",
+        "source": "win32",
+        "reason": null,
+        "observed_at": 1792195426668,
+        "entries": 1,
+        "names_available": 1,
+        "name_metadata": [
+          {
+            "availability": "available",
+            "source": "win32",
+            "reason": null,
+            "observed_at": 1792195426668
+          }
+        ],
+        "dimensions": [
+          {
+            "width_pixels": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "invalid_data"
+            },
+            "height_pixels": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ]
+      }
+    },
+    "c_abi": {
+      "os.name": {
+        "value": "Windows",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426919,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "AMD EPYC 9V74 80-Core Processor",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426919,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 2,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426919,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 8584425472,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426919,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "static.storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 161061273600,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426920,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 118111600640,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195426920,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "setupapi",
+        "observed_at": 1792195426920,
+        "reason": null
+      },
+      "os.version": {
+        "value": "11 (26100)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426919,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "26100",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426919,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "x86_64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426919,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 1,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792195426919,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": 8589934592,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792195426919,
+        "reason": null
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysinfo",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "dynamic.batteries": {
+        "value": null,
+        "availability": "not_applicable",
+        "source": "win32",
+        "observed_at": null,
+        "reason": "not_present"
+      },
+      "dynamic.sensors": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.networks": {
+        "value": [
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 3636,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 3636,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 3636,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 235425698,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 4051888,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 235425698,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 4051888,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 235425698,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 4051888,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 235381347,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 4167366,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 235425698,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 4051888,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 3636,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792195427151,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792195427151,
+        "reason": null
+      },
+      "static.gpu_summary": {
+        "availability": "available",
+        "source": "dxgi",
+        "observed_at": 1792195426925,
+        "reason": null,
+        "entries": 1,
+        "names_available": 1,
+        "dedicated_video_memory_bytes": [
+          0
+        ]
+      },
+      "static.display_summary": {
+        "availability": "available",
+        "source": "win32",
+        "reason": null,
+        "observed_at": 1792195426925,
+        "entries": 1,
+        "names_available": 1,
+        "name_metadata": [
+          {
+            "availability": "available",
+            "source": "win32",
+            "reason": null,
+            "observed_at": 1792195426925
+          }
+        ],
+        "dimensions": [
+          {
+            "width_pixels": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "invalid_data"
+            },
+            "height_pixels": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "win32",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ]
+      }
+    },
+    "storage_text": {
+      "entry_count": 2,
+      "available_capacity_bytes": [
+        161061273600,
+        118111600640
+      ],
+      "source": "Win32",
+      "names_redacted": true,
+      "output_sha256": "8c353bfca5d670c9a7029d98f0aa8d04a005df0b681634d770f32292860a5ebd"
+    },
+    "cli_text": {
+      "cpu": {
+        "available_fields": 5,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "07e7ee7f528d87490b80597b28ff6acb85e33e295d5334eb7ceaa14cab590a5e"
+      },
+      "memory": {
+        "available_fields": 3,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "e5c5dd08b96db5008fc001afb025436941a93ace270e09d4caa9472de0616194"
+      },
+      "system": {
+        "available_fields": 6,
+        "missing_fields": 1,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "02e040024bc2d78331e22df9fa3dfebc45a449415e4a60ce36e679cb39ec2dc1"
+      },
+      "gpu": {
+        "available_fields": 2,
+        "missing_fields": 0,
+        "entry_count": 1,
+        "collection_state": "Available",
+        "output_sha256": "15b85cb00befafa4b807cfd8889c9a633666263b95cf5903fd8dd5e373722c75"
+      },
+      "network": {
+        "available_fields": 36,
+        "missing_fields": 18,
+        "entry_count": 18,
+        "collection_state": "Available",
+        "output_sha256": "9520005f99b203d652ce71e59a0595492f832827cf8874e5c3c8300aba5e9402"
+      },
+      "battery": {
+        "available_fields": 0,
+        "missing_fields": 1,
+        "entry_count": null,
+        "collection_state": "NotApplicable",
+        "output_sha256": "f64ff45042405879d7c34efe2dae8e5ff5aeeddde81fc6daa93ccca509a07ead"
+      },
+      "sensors": {
+        "available_fields": 0,
+        "missing_fields": 1,
+        "entry_count": null,
+        "collection_state": "Unsupported",
+        "output_sha256": "e9f8faa0ccc47012dcf2776bfd1366b00153335f2508299d38429f1c76b31c25"
+      },
+      "capabilities": {
+        "available_fields": 0,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "7712138f56ff49c9f2c8f87d5aa7b3767793602a5b2011b6e786ae77695a3c54"
+      }
+    }
+  },
+  "processes": {
+    "c_abi": {
+      "status": "passed",
+      "command": "c_abi",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 13046,
+      "stderr_bytes": 0
+    },
+    "cli": {
+      "status": "passed",
+      "command": "cli",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 13047,
+      "stderr_bytes": 0
+    },
+    "cli_text_battery": {
+      "status": "passed",
+      "command": "cli_text_battery",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 51,
+      "stderr_bytes": 0
+    },
+    "cli_text_capabilities": {
+      "status": "passed",
+      "command": "cli_text_capabilities",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 1140,
+      "stderr_bytes": 0
+    },
+    "cli_text_cpu": {
+      "status": "passed",
+      "command": "cli_text_cpu",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 176,
+      "stderr_bytes": 0
+    },
+    "cli_text_gpu": {
+      "status": "passed",
+      "command": "cli_text_gpu",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 110,
+      "stderr_bytes": 0
+    },
+    "cli_text_memory": {
+      "status": "passed",
+      "command": "cli_text_memory",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 118,
+      "stderr_bytes": 0
+    },
+    "cli_text_network": {
+      "status": "passed",
+      "command": "cli_text_network",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 2693,
+      "stderr_bytes": 0
+    },
+    "cli_text_sensors": {
+      "status": "passed",
+      "command": "cli_text_sensors",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 50,
+      "stderr_bytes": 0
+    },
+    "cli_text_system": {
+      "status": "passed",
+      "command": "cli_text_system",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 255,
+      "stderr_bytes": 0
+    },
+    "git_revision": {
+      "status": "passed",
+      "command": "git_revision",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    "git_status": {
+      "status": "passed",
+      "command": "git_status",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    "python_ffi": {
+      "status": "passed",
+      "command": "python_ffi",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 87,
+      "stderr_bytes": 0
+    },
+    "rustc": {
+      "status": "passed",
+      "command": "rustc",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 194,
+      "stderr_bytes": 0
+    },
+    "storage_text": {
+      "status": "passed",
+      "command": "storage_text",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 331,
+      "stderr_bytes": 0
+    }
+  },
+  "artifact_sha256": {
+    "cli": "e1a4e3504233848ca64638f77a028109eb20f15232fb88536c3bb87352bc68eb",
+    "c_example": "e9fff41cf38fb40005211a35e2ee6d56a6bfdc8975091bf5ca9290fd3e0ff0b7",
+    "ffi": "2832bc359e4944ed7adff9a00908d24602dbd1df7a9f2bebe7529bca8be0e0f4",
+    "cargo_lock": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae"
+  },
+  "available_rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "git_revision": "a348614c3256f11b0af18678323bb578d37673fa",
+  "git_dirty": false
+}

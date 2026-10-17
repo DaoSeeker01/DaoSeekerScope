@@ -13,9 +13,32 @@
 
 [本地汇总](evidence/linux-display-local-cac0191.json)绑定源码、日志哈希及两份报告：[Windows 原生](evidence/linux-display-native-windows-local-cac0191.json)、[八包](evidence/linux-display-packages-windows-local-cac0191.json)。报告均记录干净源码，归档统一 LF 并保留原始/归档字节 SHA-256。
 
-## 待执行与边界
+## 三平台 CI（2026-10-17）
 
-本轮尚未执行三平台原生 CI、26 项非 root Linux 容器场景、实际 libFuzzer、Miri/ASan、cargo-deny 与 Linux 基准。旧 CI 不替代本轮验收。容器脚本使用合成 DRM/EDID、只读挂载、非 root UID 65534、移除全部 capabilities、禁网及资源限额，准备覆盖授权名称、权限拒绝、FIFO/链接拒绝、缓存/恢复和超限；准备完成不算运行通过。CI 若无连接器，应记录可读空集合，不能称为名称读取成功。
+用户授权推送与后续验收归档后，工作流运行于 `a348614c3256f11b0af18678323bb578d37673fa`，与实现 `cac0191` 之间只有本地验收文档/报告。[CI 38983994614](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38983994614)和[汇总](evidence/linux-display-ci-38983994614.json)绑定同一源码，最终 8/8 个任务全部成功。
+
+托管 Linux runner 的 CLI 与 C ABI 各读取一条 connected 连接器，名称均 Restricted/PrivacyRedacted、Source Sysfs；宽高由原生守卫验证为 Unsupported/NotSupported、Source Drm。不是实体显示器计数或实际扫描输出证明，没有读取真实 EDID 名称。与合成名称阳性场景分开记录。
+
+Linux 非 root 容器的 26 个场景全部 passed：默认名称始终脱敏，坏 EDID、权限拒绝和 FIFO 不影响默认读取；显式授权后可解析合成产品名称，拒绝校验错误、FIFO 和属性链接。名称失败保留连接条目、宽高始终 Unsupported；状态未知、损坏或拒绝时不会返回成功前缀。静态成功与失败缓存、重新构造恢复、没有名称描述符的基础块及 129 条输出限额均通过。正常内存读值与 Schema 同时检查，合成数字序列号/0xff 描述符没有被导出。合成名称阳性证据不等于实体 Linux 显示器读取。
+
+容器实际配置为 UID/GID 65534:65534、只读 rootfs/fixture、禁网、drop ALL capabilities、no-new-privileges、256 MiB 内存、1 CPU、32 PID、64 FD。[原始容器报告](evidence/linux-display-container-38983994614.json)保留配置、镜像、进程退出码、状态与名称可用性，不保存名称或原始 EDID。
+
+| 门禁 | 实际结果 |
+|---|---|
+| Windows x64 / Linux x64 / macOS ARM64 | 源码与隔离消费者各 176 / 172 / 172 项 Rust 测试（含 doctest），fmt/Clippy/doc 拒绝警告与 no-default-features 通过 |
+| 三平台八包与安装 | 真实归档、原生 Cargo 验证、MIT/头文件、隔离消费者与 CLI 安装通过，第三方锁定内容未变 |
+| 三平台 CLI/C/Python | 各五组检查、15 个进程通过，含 Python 默认 100 次 collect/free |
+| Python / Schema | 各平台 80 项 unittest、30 文件 Ruff/mypy、Schema generated/golden/不变量与项目检查通过 |
+| Linux 容器回归 | 本轮显示器 26 项及既有 CPU 15、内存 26、电池 30、hwmon 47、存储 21、GPU 20 和 DMI/输入 7 场景通过；完整 /proc 覆盖仍由 OCI 拒绝，not_run |
+| 实际 fuzz | 11 个既有目标各至少 60 秒并正常 DONE；dmi_text 含 EDID 纯解析及合成种子，不覆盖原生驱动边界 |
+| 内存与供应链 | Miri 8 项、Linux FFI ASan 10 项、cargo-deny 通过；不是 Linux 真实显示设备长期泄漏证明 |
+
+[Linux 原生报告](evidence/linux-display-native-linux-38983994614.json)、[Linux 八包报告](evidence/linux-display-package-evidence-linux-x64-38983994614.json)及本轮其他平台报告由汇总绑定原始/归档 SHA-256。汇总另保留完整工作流日志哈希与同源码的基准。文档归档提交不重跑源码 CI；本地 Windows 报告仍绑定实现提交，不能混作本轮 Linux 原生结果。
+
+
+同轮 Linux 基准首次 collect（不含构造）911 µs，100 次动态刷新 p50/p95/max 105/129/169 µs；合成 100 传感器/1024 网络条目 collect 238 µs、JSON 373541 bytes。环境、profile、参数和边界见[性能报告](benchmarks.md)与[原始基准](evidence/linux-display-benchmark-38983994614.json)，不当作 EDID 专项耗时或性能 SLA。
+
+## 兼容与验证边界
 
 默认名称 Restricted/PrivacyRedacted，不检查/打开 EDID。仅 `PrivacyOptions` 的 include_sensitive 与 caller_authorized 同时为 true 才读取缓存 EDID 基础块；操作系统权限仍然生效。只解析 EDID 1.3/1.4 header/checksum 及 0xfc 名称，忽略扩展块和序列号，不能称为完整 EDID 验证或物理身份认证。项目采用独立解析和合成 fixture，没有复制 GPL 内核实现。
 

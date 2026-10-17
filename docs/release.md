@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-2026-10-17 Linux 显示器有限增量：提供 DRM connected 连接视图，默认不读取 EDID、名称为 PrivacyRedacted；仅双重显式授权后读取基础块产品名称。当前像素宽高仍 Unsupported，不使用 modes/EDID 时序冒充当前分辨率。静态缓存、错误/限额与隐私契约见 [ADR 0020](adr/0020-linux-display.md)。公共模型、Schema 1、C ABI 1、依赖和锁不变；隐藏 fuzzing 入口扩展既有 dmi_text。动态示例仅为合成 fixture 增加 authorize 指令，不是生产授权协议。测试临时目录加原子序号，修复并发毫秒命名碰撞。
+2026-10-17 Linux 显示器有限增量：提供 DRM connected 连接视图，默认不读取 EDID、名称为 PrivacyRedacted；仅双重显式授权后读取基础块产品名称。当前像素宽高仍 Unsupported，不使用 modes/EDID 时序冒充当前分辨率。静态缓存、错误/限额与隐私契约见 [ADR 0020](adr/0020-linux-display.md)。公共模型、Schema 1、C ABI 1、依赖和锁不变；隐藏 fuzzing 入口扩展既有 dmi_text。动态示例仅为合成 fixture 增加 authorize 指令，不是生产授权协议。测试临时目录加原子序号，修复并发毫秒命名碰撞。[本轮验证](linux-display-validation.md)完成三平台 CI、26 项非 root 显示器场景及既有 fuzz/内存/打包回归；原生 runner 只确认连接视图，实体 Linux/EDID 名称阳性仍待设备验证。
 
 2026-10-16 Windows 显示器开发增量：通过公开 CCD API 提供活动路径的 EDID 友好名称及目标信号活动像素尺寸，能力 Partial/Win32。静态缓存、三次缓冲竞争重试、条目/模式上限及会话权限状态见 [ADR 0019](adr/0019-windows-display.md)。既有 `--json` 输出即可消费，没有增加 CLI 命令枚举变体。Rust 模型/签名、C ABI 1/Schema 1 形状不变；Schema 仅补充像素语义说明。windows-sys 0.61.2 增加 Windows target feature，包/锁定版本/许可证不变。名称不是稳定标识，信号尺寸不承诺面板原生分辨率。[本轮三平台验证](windows-display-validation.md)全部通过；本机与 CI 的尺寸/名称可用性分别保留，不用受限或无效字段伪造成功读取。
 

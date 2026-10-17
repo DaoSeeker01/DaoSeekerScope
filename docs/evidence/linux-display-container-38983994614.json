@@ -1,0 +1,516 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-16T23:57:12.487661+00:00",
+  "overall": "passed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "synthetic_drm_connectors": true,
+  "synthetic_edid": true,
+  "samples": {
+    "initial_empty": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195032740,
+        "entries": 0,
+        "names_available": 0,
+        "name_metadata": []
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "connected_default": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195032881,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "restricted",
+            "source": "sysfs",
+            "reason": "privacy_redacted",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "default_ignores_bad_edid": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195032910,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "restricted",
+            "source": "sysfs",
+            "reason": "privacy_redacted",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "authorized_name": {
+      "status": "passed",
+      "sensitive_requested": true,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195032938,
+        "entries": 1,
+        "names_available": 1,
+        "name_metadata": [
+          {
+            "availability": "available",
+            "source": "sysfs",
+            "reason": null,
+            "observed_at": 1792195032938
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "dynamic_keeps_static_name": {
+      "status": "passed",
+      "sensitive_requested": true,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195032938,
+        "entries": 1,
+        "names_available": 1,
+        "name_metadata": [
+          {
+            "availability": "available",
+            "source": "sysfs",
+            "reason": null,
+            "observed_at": 1792195032938
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "new_authorized_reads_name": {
+      "status": "passed",
+      "sensitive_requested": true,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195032992,
+        "entries": 1,
+        "names_available": 1,
+        "name_metadata": [
+          {
+            "availability": "available",
+            "source": "sysfs",
+            "reason": null,
+            "observed_at": 1792195032992
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "edid_permission_denied": {
+      "status": "passed",
+      "sensitive_requested": true,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033020,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "restricted",
+            "source": "sysfs",
+            "reason": "permission_denied",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "default_ignores_denied_edid": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033047,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "restricted",
+            "source": "sysfs",
+            "reason": "privacy_redacted",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "default_does_not_open_fifo": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033075,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "restricted",
+            "source": "sysfs",
+            "reason": "privacy_redacted",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "authorized_rejects_fifo": {
+      "status": "passed",
+      "sensitive_requested": true,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033106,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "invalid_data",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "authorized_rejects_attribute_link": {
+      "status": "passed",
+      "sensitive_requested": true,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033133,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "invalid_data",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "invalid_checksum": {
+      "status": "passed",
+      "sensitive_requested": true,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033161,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "invalid_data",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "valid_base_without_name": {
+      "status": "passed",
+      "sensitive_requested": true,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033188,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unavailable",
+            "source": "sysfs",
+            "reason": "not_present",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "status_unknown": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "unavailable",
+        "source": "drm",
+        "reason": "temporarily_unavailable",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "status_invalid": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "unavailable",
+        "source": "drm",
+        "reason": "invalid_data",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "status_permission_denied": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "restricted",
+        "source": "drm",
+        "reason": "permission_denied",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "cached_failure_after_permission_recovery": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "restricted",
+        "source": "drm",
+        "reason": "permission_denied",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "new_hardware_after_recovery": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033323,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "restricted",
+            "source": "sysfs",
+            "reason": "privacy_redacted",
+            "observed_at": null
+          }
+        ]
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "disconnected_empty": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033356,
+        "entries": 0,
+        "names_available": 0,
+        "name_metadata": []
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "status_missing_no_prefix": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "unavailable",
+        "source": "drm",
+        "reason": "temporarily_unavailable",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "status_fifo_rejected": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "unavailable",
+        "source": "drm",
+        "reason": "invalid_data",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "directory_denied": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "restricted",
+        "source": "drm",
+        "reason": "permission_denied",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "directory_missing": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "unavailable",
+        "source": "drm",
+        "reason": "not_present",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "restored_empty": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033514,
+        "entries": 0,
+        "names_available": 0,
+        "name_metadata": []
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "count_limit_no_prefix": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "unavailable",
+        "source": "drm",
+        "reason": "invalid_data",
+        "observed_at": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    },
+    "final_empty_recovery": {
+      "status": "passed",
+      "sensitive_requested": false,
+      "display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792195033622,
+        "entries": 0,
+        "names_available": 0,
+        "name_metadata": []
+      },
+      "healthy_memory": true,
+      "schema_validated": true,
+      "synthetic_serial_not_exported": true
+    }
+  },
+  "git_revision": "a348614c3256f11b0af18678323bb578d37673fa",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "probe": "0cf14f95cf16326b904a1778e10be3fde831355920f2bdf8a0bfb567484cf5b8",
+    "cargo_lock": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae"
+  },
+  "docker_version": "28.0.4",
+  "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+  "configuration": {
+    "user": "65534:65534",
+    "ReadonlyRootfs": true,
+    "NetworkMode": "none",
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges=true"
+    ],
+    "Memory": 268435456,
+    "MemorySwap": 268435456,
+    "PidsLimit": 32,
+    "NanoCpus": 1000000000
+  },
+  "docker_exit_code": 0,
+  "process_exit_code": 0,
+  "process_started": true
+}

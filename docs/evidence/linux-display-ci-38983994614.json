@@ -1,0 +1,280 @@
+{
+  "source_commit": "a348614c3256f11b0af18678323bb578d37673fa",
+  "implementation_commit": "cac01919f8df9747c78a76ae97645b3a67df8a9d",
+  "implementation_to_ci_changes": [
+    "docs/README.md",
+    "docs/evidence/linux-display-local-cac0191.json",
+    "docs/evidence/linux-display-native-windows-local-cac0191.json",
+    "docs/evidence/linux-display-packages-windows-local-cac0191.json",
+    "docs/linux-display-validation.md"
+  ],
+  "run_id": 38983994614,
+  "event": "workflow_dispatch",
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38983994614",
+  "ci_jobs": {
+    "desktop (ubuntu-24.04)": "success",
+    "desktop (macos-latest)": "success",
+    "supply-chain": "success",
+    "linux-container": "success",
+    "desktop (windows-latest)": "success",
+    "fuzz-smoke": "success",
+    "ffi-asan": "success",
+    "miri": "success"
+  },
+  "native": {
+    "linux": {
+      "path": "linux-display-native-linux-38983994614.json",
+      "sha256": "f0e0250aab4421574101167597965f64568d66929952f8527d6737963c7d583d",
+      "original_report_sha256": "f0e0250aab4421574101167597965f64568d66929952f8527d6737963c7d583d"
+    },
+    "darwin": {
+      "path": "linux-display-native-darwin-38983994614.json",
+      "sha256": "bd633776981c3625b01ac46275a08ec43e7a3b8061bc074407b8782039c8e864",
+      "original_report_sha256": "bd633776981c3625b01ac46275a08ec43e7a3b8061bc074407b8782039c8e864"
+    },
+    "windows": {
+      "path": "linux-display-native-windows-38983994614.json",
+      "sha256": "1e73a52e095b98445763d2bd3c80c1e7fd90bfe56a78f12e654f26afa3931ed8",
+      "original_report_sha256": "476b3cbc9292b2f5853ee2459efc44a503cec62aa15ec57fffba5f73f9e49834"
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "linux-display-package-evidence-linux-x64-38983994614.json",
+      "sha256": "6e4cf389d0ea0c7cfa4f72cbcd11c77ae7eb037b2f82d2a54f0405303cf990ae",
+      "original_report_sha256": "6e4cf389d0ea0c7cfa4f72cbcd11c77ae7eb037b2f82d2a54f0405303cf990ae"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "linux-display-package-evidence-macos-arm64-38983994614.json",
+      "sha256": "6e4cf389d0ea0c7cfa4f72cbcd11c77ae7eb037b2f82d2a54f0405303cf990ae",
+      "original_report_sha256": "6e4cf389d0ea0c7cfa4f72cbcd11c77ae7eb037b2f82d2a54f0405303cf990ae"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "linux-display-package-evidence-windows-x64-38983994614.json",
+      "sha256": "78eb4800b9b1dd267cad6c109522464193904932b98bf102c9fb9b369a1a8f71",
+      "original_report_sha256": "0ae3bcdc986c9fafacda4eedd00336a39960b1d78604c23bc7867cf1457248eb"
+    }
+  },
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "license": "MIT",
+  "public_model_shape_changed": false,
+  "public_api_signatures_changed": false,
+  "lock_files_unchanged": true,
+  "dependency_changes": false,
+  "new_features": false,
+  "local_evidence_index": "linux-display-local-cac0191.json",
+  "linux_displays": {
+    "cli": {
+      "availability": "available",
+      "source": "drm",
+      "reason": null,
+      "observed_at": 1792195119953,
+      "entries": 1,
+      "names_available": 0,
+      "name_metadata": [
+        {
+          "availability": "restricted",
+          "source": "sysfs",
+          "reason": "privacy_redacted",
+          "observed_at": null
+        }
+      ]
+    },
+    "c_abi": {
+      "availability": "available",
+      "source": "drm",
+      "reason": null,
+      "observed_at": 1792195119968,
+      "entries": 1,
+      "names_available": 0,
+      "name_metadata": [
+        {
+          "availability": "restricted",
+          "source": "sysfs",
+          "reason": "privacy_redacted",
+          "observed_at": null
+        }
+      ]
+    }
+  },
+  "display_container": {
+    "path": "linux-display-container-38983994614.json",
+    "sha256": "40d5c14710b57ab64d84cb649a3cd04e6855866bb5c24f1c3863b780733c6143",
+    "original_report_sha256": "40d5c14710b57ab64d84cb649a3cd04e6855866bb5c24f1c3863b780733c6143",
+    "samples_passed": 26,
+    "configuration": {
+      "user": "65534:65534",
+      "ReadonlyRootfs": true,
+      "NetworkMode": "none",
+      "CapDrop": [
+        "ALL"
+      ],
+      "SecurityOpt": [
+        "no-new-privileges=true"
+      ],
+      "Memory": 268435456,
+      "MemorySwap": 268435456,
+      "PidsLimit": 32,
+      "NanoCpus": 1000000000
+    },
+    "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+    "sample_states": {
+      "initial_empty": "passed",
+      "connected_default": "passed",
+      "default_ignores_bad_edid": "passed",
+      "authorized_name": "passed",
+      "dynamic_keeps_static_name": "passed",
+      "new_authorized_reads_name": "passed",
+      "edid_permission_denied": "passed",
+      "default_ignores_denied_edid": "passed",
+      "default_does_not_open_fifo": "passed",
+      "authorized_rejects_fifo": "passed",
+      "authorized_rejects_attribute_link": "passed",
+      "invalid_checksum": "passed",
+      "valid_base_without_name": "passed",
+      "status_unknown": "passed",
+      "status_invalid": "passed",
+      "status_permission_denied": "passed",
+      "cached_failure_after_permission_recovery": "passed",
+      "new_hardware_after_recovery": "passed",
+      "disconnected_empty": "passed",
+      "status_missing_no_prefix": "passed",
+      "status_fifo_rejected": "passed",
+      "directory_denied": "passed",
+      "directory_missing": "passed",
+      "restored_empty": "passed",
+      "count_limit_no_prefix": "passed",
+      "final_empty_recovery": "passed"
+    }
+  },
+  "container_regression": {
+    "linux-battery-evidence.json": {
+      "sha256": "7eb7bf05ebe02ecc96a0965a122236cc7928ef3f3930427bf5ad08088686cd37",
+      "samples_passed": 30
+    },
+    "linux-container-evidence.json": {
+      "sha256": "92bda0d70c73ab258df81d9c45eecf59d7f84cd0609b4cc2a30b7d0a74696a77",
+      "runtime_probes": {
+        "empty_proc": {
+          "status": "not_run",
+          "configuration": {
+            "user": "65534:65534",
+            "ReadonlyRootfs": true,
+            "NetworkMode": "none",
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges=true"
+            ],
+            "Memory": 268435456,
+            "MemorySwap": 268435456,
+            "PidsLimit": 32,
+            "NanoCpus": 1000000000
+          },
+          "exit_code": 128,
+          "docker_start_exit_code": 1,
+          "process_started": false,
+          "failure_category": "runtime_mount_error",
+          "probe_result": "runtime_rejected_mount"
+        }
+      }
+    },
+    "linux-display-evidence.json": {
+      "sha256": "40d5c14710b57ab64d84cb649a3cd04e6855866bb5c24f1c3863b780733c6143",
+      "samples_passed": 26
+    },
+    "linux-dynamic-evidence.json": {
+      "sha256": "ce6f28e467f70e5485e6e7f030e964e9d1a45f3aaa0ebc25efee2c535a12bbb0",
+      "samples_passed": 15
+    },
+    "linux-gpu-evidence.json": {
+      "sha256": "523eb919d506b875002cabaed9c64d1f5b9afe4476e5457f28f6f1cee153ae13",
+      "samples_passed": 20
+    },
+    "linux-hwmon-evidence.json": {
+      "sha256": "4d1736d720a47ff01d4d3667dea1c7ebd606891945944f739b53abbea750402c",
+      "samples_passed": 47
+    },
+    "linux-memory-evidence.json": {
+      "sha256": "eb0ec67007f688ddcbde8295afca879fda64029fb6bcdf2cd4d3cf24dbba7b3b",
+      "samples_passed": 26
+    },
+    "linux-storage-evidence.json": {
+      "sha256": "3e7e56248d701b8388fabe88a578a8e28375bd88a4ab88849bfb41130635f42b",
+      "samples_passed": 21
+    }
+  },
+  "fuzz_campaigns": {
+    "Run cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512": {
+      "runs": 402095,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 5070901,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 19502880,
+      "elapsed_seconds": 61
+    },
+    "Fuzz CPU state and bounded stat parsing": {
+      "runs": 1049878,
+      "elapsed_seconds": 61
+    },
+    "Fuzz meminfo parsing and field isolation": {
+      "runs": 2980566,
+      "elapsed_seconds": 61
+    },
+    "Fuzz uptime parsing and numeric boundaries": {
+      "runs": 20425046,
+      "elapsed_seconds": 61
+    },
+    "Fuzz power supply attribute boundaries": {
+      "runs": 19585909,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded hwmon millidegrees": {
+      "runs": 19630845,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded network counters and privacy": {
+      "runs": 3568891,
+      "elapsed_seconds": 61
+    },
+    "Fuzz Darwin routing message boundaries": {
+      "runs": 4923276,
+      "elapsed_seconds": 61
+    },
+    "Fuzz checked block sector conversion": {
+      "runs": 30087751,
+      "elapsed_seconds": 61
+    }
+  },
+  "rust_tests_including_doctests": {
+    "windows": 176,
+    "linux": 172,
+    "macos": 172
+  },
+  "python_tests_per_desktop": 80,
+  "python_source_files": 30,
+  "fuzz_targets_completed": 11,
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "c259cbf456f3ebc30891a082585fc6f792cf61b811b20132ae23ded72e4d9597",
+  "benchmark": {
+    "path": "linux-display-benchmark-38983994614.json",
+    "sha256": "ff9490d5ae957ea91fd25e2129efed951081ae551795fed6dd044f48b680a5b1",
+    "original_report_sha256": "a1dd371f4567ced442e457984007f7daa156f6fd43dbc2b73ff1c51db83f724a"
+  },
+  "limits": [
+    "Linux connected connector view is not physical monitor count or active scan-out",
+    "Linux dimensions remain Unsupported; default never reads EDID",
+    "Positive EDID name evidence is synthetic; physical Linux monitors, hotplug, MST and multiple displays deferred",
+    "macOS displays remain Unsupported",
+    "No forced termination of blocked native drivers or hostile-filesystem TOCTOU guarantee",
+    "Fuzz includes EDID pure parser but does not prove native driver safety or long leak/peak-memory behavior",
+    "No registry publication or release distribution"
+  ]
+}

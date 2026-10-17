@@ -173,3 +173,18 @@ CI 源码 `9d30f3b1489502fbb199812d527bb79708651dda`（实现 `2b0ea76`，两者
 | 合成快照 UTF-8 JSON | 373541 bytes |
 
 [参数、环境、原始指标与日志 SHA-256](evidence/windows-display-benchmark-local-7bd5b19.json)对应本轮实现。该基准为整个后端组合，未隔离显示器 API 开销，也未与旧版本做配对测量；不宣称性能改善/退化，不测峰值内存、长期泄漏或驱动强制中止。显示器属于静态缓存，动态刷新不重新读取显示路径。
+
+
+## Linux 显示连接视图切片基准（2026-10-17）
+
+CI 源码 `a348614c3256f11b0af18678323bb578d37673fa`，实现 `cac0191`，中间仅文档/报告变更。命令 `cargo bench --locked -p daoseeker-scope --bench collect`；Rust 1.96、bench 优化 profile、门面默认 serde；原生 max_entries=128，合成 backend 另设 1024。托管 Linux x64 runner 自报的硬件和系统摘要见[完整环境及原始指标](evidence/linux-display-benchmark-38983994614.json)。该环境不是维护者的实体 Linux 电脑。runner 自报 Ubuntu 24.04、内核 6.17.0-1022-azure，AMD EPYC 9V74 80-Core Processor、2 逻辑核、x86_64，OS 可用总内存 8323969024 bytes；CPU 产品字符串不代表 runner 获配了 80 个核。
+
+| 指标 | 单进程样本 |
+|---|---|
+| 首次 collect（不含构造） | 911 µs |
+| 100 次动态刷新 p50 / p95 / max | 105 / 129 / 169 µs |
+| CPU 第二样本状态 | Available |
+| 合成 100 传感器、1024 网络条目 collect | 238 µs |
+| 合成快照 UTF-8 JSON | 373541 bytes |
+
+同轮 CLI/C 各确认一条 connected 连接视图，默认名称 PrivacyRedacted、宽高 Unsupported。基准为整个组合采集器，不是显示器枚举/EDID 的单独延迟，且默认不读取 EDID。动态刷新使用静态缓存，不重扫连接器。未与旧代码做配对测量，不据此宣称性能改善/退化，不测驱动强制中止、峰值内存、真实显示器热插拔或长期泄漏；这不是性能 SLA。
