@@ -52,10 +52,33 @@ fn display_json_keeps_real_states_without_fabricating_resolution() {
         }
     }
     #[cfg(target_os = "macos")]
-    assert_eq!(
-        displays.availability(),
-        daoseeker_scope::Availability::Unsupported
-    );
+    {
+        assert_eq!(displays.source(), daoseeker_scope::Source::AppleApi);
+        if let Some(entries) = displays.value() {
+            for entry in entries {
+                assert_eq!(
+                    entry.name.availability(),
+                    daoseeker_scope::Availability::Unsupported
+                );
+                assert_eq!(entry.name.source(), daoseeker_scope::Source::AppleApi);
+                assert_eq!(
+                    entry.width_pixels.source(),
+                    daoseeker_scope::Source::AppleApi
+                );
+                assert_eq!(
+                    entry.height_pixels.source(),
+                    daoseeker_scope::Source::AppleApi
+                );
+                match (entry.width_pixels.value(), entry.height_pixels.value()) {
+                    (Some(w), Some(h)) => assert!(*w > 0 && *h > 0),
+                    (None, None) => assert!(entry.width_pixels.reason().is_some()),
+                    _ => panic!("partial dimension pair"),
+                }
+            }
+        } else {
+            assert!(displays.reason().is_some());
+        }
+    }
 }
 
 #[test]

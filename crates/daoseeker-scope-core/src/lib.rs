@@ -421,6 +421,7 @@ pub struct DisplayInfo {
     /// Backend-reported product description, not a stable device identifier.
     pub name: Observed<String>,
     /// Cached pixel width; Windows CCD reports the target signal's active size.
+    /// macOS reports the current CGDisplayMode pixel extent, not logical points.
     /// This is not a promise of panel-native resolution or logical DPI coordinates.
     pub width_pixels: Observed<u32>,
     /// Cached pixel height, using the same platform extent as `width_pixels`.

@@ -19,7 +19,7 @@
 | GPU/独占显存 | D/P，Partial DXGI | D/P，Partial DRM 视图；部分 AMD/NVIDIA 名称，显存 U | D/P，Partial Metal 名称；显存 N/U | 不是物理卡数；Linux 不覆盖未绑定 DRM 的 GPU，不将 VRAM/GTT 推断成独占显存 |
 | 存储设备容量 | D/P Setupapi/Win32、Partial | D/P Sysfs、Partial | D/P Iokit、Partial | 整块设备含虚拟对象，不代表文件系统可用空间或物理总量；[Linux 契约](0013-storage-capacity.md)与[验证](../storage-validation.md)、[Windows 契约](0014-windows-storage-capacity.md)与[验证](../windows-storage-validation.md)、[macOS 契约](0015-macos-storage-capacity.md)与[验证](../macos-storage-validation.md)，名称默认脱敏、serial/UUID不查询 |
 | 网络累计字节数 | D/P Win32、Partial | D/P procfs、Supported | D/P Sysctl、Partial | Windows 有界枚举、不保证所有逻辑接口；[Windows 验证](../windows-network-validation.md)。Linux 仅当前网络命名空间；[Linux 验证](../network-validation.md)。macOS 可能取整/回绕；[契约](0012-macos-network-counters.md)。名称默认脱敏；Windows/macOS 临时原始缓冲仍含未解析保存的标识 |
-| 显示器 | D/P，Partial Win32 活动路径 | D/P，Partial DRM 连接视图；授权 EDID 名称，尺寸 U | U，公开Apple API候选 | Windows 信号活动像素、可用 EDID 友好名称；会话可受限，不是面板原生分辨率或全部物理显示器 |
+| 显示器 | D/P，Partial Win32 活动路径 | D/P，Partial DRM 连接视图；授权 EDID 名称，尺寸 U | D/P，Partial AppleApi 活动视图/模式像素；名称 U，CI 待验 | Windows 信号活动像素、可用 EDID 友好名称；会话可受限，不是面板原生分辨率或全部物理显示器 |
 | 原始SMBIOS/磁盘底层探测 | A/P | A/P | P/U | 不选默认路径 |
 | 移动/Web/no_std/MCU | U | U | U | 独立后续发布计划，无crate空壳 |
 

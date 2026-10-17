@@ -82,6 +82,12 @@ jobs:
         run: |
           clang -Wall -Wextra -Werror -fobjc-arc docs/research/metal_probe.m -framework Metal -framework Foundation -o target/metal-probe
           target/metal-probe > target/macos-metal-probe.json
+      - name: macOS active display SDK probe
+        if: runner.os == 'macOS'
+        run: |
+          cc -Wall -Wextra -Werror -std=c11 docs/research/macos_display_probe.c -framework CoreGraphics -o target/macos-display-probe
+          target/macos-display-probe > target/macos-display-probe.json
+          python scripts/macos_display_probe.py
       - name: Linux storage collection benchmark
         if: runner.os == 'Linux'
         run: cargo bench --locked -p daoseeker-scope --bench collect > target/linux-collect-benchmark.log
@@ -98,6 +104,8 @@ jobs:
             target/macos-collect-benchmark.log
             target/macos-iomedia-probe.json
             target/macos-metal-probe.json
+            target/macos-display-probe.json
+            target/macos-display-comparison.json
             target/linux-collect-benchmark.log
           if-no-files-found: ignore
           retention-days: 14

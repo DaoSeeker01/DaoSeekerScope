@@ -49,7 +49,7 @@ println!("{:?}", dynamic.cpu_usage_percent.value());
 
 Rust 使用 `to_json` / `from_json` 交换 Schema v1。输入和展开后的输出均限制为 1 MiB。未知对象字段忽略，未知枚举值或错误版本拒绝；字符串、集合、数值和内存关系还有领域校验。[JSON Schema](schema/snapshot-v1.schema.json)不能替代这些检查。
 
-Windows 的 `static_info.displays` 目前通过 Rust API、C ABI JSON 或 `dscope --json` 查看。返回活动路径的 EDID 友好名称（可能 NotPresent）和当前目标信号活动像素宽高；不是面板原生/首选分辨率、DPI 逻辑尺寸或桌面旋转后的坐标。数据缓存到当前 Hardware，模式/连接变化后需新建实例；动态刷新不重扫。远程或无控制台访问时可 Restricted/PermissionDenied，不能据此认为没有显示器。Linux 的 displays 只统计 DRM status=connected 的连接视图，不保证当前活动，也不等于物理显示器数量。默认不读取含标识的 EDID，name 为 Restricted/PrivacyRedacted；显式 --include-sensitive --authorized 后仅解析 EDID 1.3/1.4 基础块的产品名称，OS 权限仍生效，序列号不导出。Linux 宽高仍 Unsupported，绝不把 modes 列表或 EDID 时序当作当前模式；状态 unknown/无法完整枚举时不会返回成功空表。Linux 同样静态缓存，变化后需新建实例。macOS 显示器仍 Unsupported；专用文本命令尚未增加。
+Windows 的 `static_info.displays` 目前通过 Rust API、C ABI JSON 或 `dscope --json` 查看。返回活动路径的 EDID 友好名称（可能 NotPresent）和当前目标信号活动像素宽高；不是面板原生/首选分辨率、DPI 逻辑尺寸或桌面旋转后的坐标。数据缓存到当前 Hardware，模式/连接变化后需新建实例；动态刷新不重扫。远程或无控制台访问时可 Restricted/PermissionDenied，不能据此认为没有显示器。Linux 的 displays 只统计 DRM status=connected 的连接视图，不保证当前活动，也不等于物理显示器数量。默认不读取含标识的 EDID，name 为 Restricted/PrivacyRedacted；显式 --include-sensitive --authorized 后仅解析 EDID 1.3/1.4 基础块的产品名称，OS 权限仍生效，序列号不导出。Linux 宽高仍 Unsupported，绝不把 modes 列表或 EDID 时序当作当前模式；状态 unknown/无法完整枚举时不会返回成功空表。Linux 同样静态缓存，变化后需新建实例。macOS 新增公开 Core Graphics 活动视图，宽高来自当前显示模式的 pixelWidth/pixelHeight，不是逻辑 points、面板原生分辨率或 Windows 信号尺寸。硬件镜像可能只列主显示，不作为物理显示器计数。名称保持 Unsupported，不查询 EDID/稳定标识；本轮原生 CI 尚待验证。各平台都没有显示器专用文本命令，见 [macOS 契约](adr/0021-macos-display.md)。
 
 ## C 与 Python
 

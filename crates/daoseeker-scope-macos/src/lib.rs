@@ -1,4 +1,6 @@
 //! macOS public sysctl and IOMedia metadata; no private sensor interfaces.
+#[cfg(any(target_os = "macos", test))]
+mod display;
 #[cfg(feature = "fuzzing")]
 #[doc(hidden)]
 pub mod fuzzing;
@@ -48,6 +50,11 @@ mod native {
             ));
             capabilities.push(Capability::new(
                 "gpus",
+                CapabilityLevel::Partial,
+                Source::AppleApi,
+            ));
+            capabilities.push(Capability::new(
+                "displays",
                 CapabilityLevel::Partial,
                 Source::AppleApi,
             ));
@@ -110,6 +117,7 @@ mod native {
             context.check()?;
             result.storage = crate::storage::collect(context)?;
             result.gpus = crate::gpu::collect(context)?;
+            result.displays = crate::display::collect(context)?;
             Ok(result)
         }
         fn refresh_dynamic(

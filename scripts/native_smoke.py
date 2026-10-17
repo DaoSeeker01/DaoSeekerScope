@@ -502,6 +502,96 @@ def check_linux_displays(
         raise ValidationFailure("display: malformed") from error
 
 
+def check_macos_display_dimensions(pair: dict[str, Any]) -> None:
+    for key in ("width_pixels", "height_pixels"):
+        item = pair[key]
+        if item["source"] != "apple_api":
+            raise ValidationFailure("display: field_source")
+        if item["availability"] == "available":
+            if (
+                type(item["value"]) is not int
+                or not 1 <= item["value"] <= 0xFFFFFFFF
+                or type(item["observed_at"]) is not int
+                or item["observed_at"] < 0
+                or item["reason"] is not None
+            ):
+                raise ValidationFailure("display: dimension_metadata")
+        elif (
+            item["availability"] != "unavailable"
+            or item["value"] is not None
+            or item["observed_at"] is not None
+            or item["reason"] not in ("invalid_data", "temporarily_unavailable")
+        ):
+            raise ValidationFailure("display: dimension_metadata")
+    width, height = pair["width_pixels"], pair["height_pixels"]
+    if any(width[k] != height[k] for k in ("availability", "reason", "observed_at")):
+        raise ValidationFailure("display: partial_dimensions")
+
+
+def check_macos_displays(snapshot: dict[str, Any]) -> dict[str, Any]:
+    """Active CG mode pixels; no names, IDs, physical-count or panel inference."""
+    try:
+        observed = snapshot["static_info"]["displays"]
+        if observed["source"] != "apple_api":
+            raise ValidationFailure("display: collection_source")
+        summary = {
+            k: observed[k] for k in ("availability", "source", "reason", "observed_at")
+        }
+        if observed["availability"] != "available":
+            allowed = {
+                "unsupported": {"not_supported"},
+                "unavailable": {
+                    "invalid_data",
+                    "temporarily_unavailable",
+                    "not_present",
+                    "unknown",
+                },
+            }
+            if (
+                observed["value"] is not None
+                or observed["observed_at"] is not None
+                or observed["reason"]
+                not in allowed.get(observed["availability"], set())
+            ):
+                raise ValidationFailure("display: missing_metadata")
+            return summary
+        entries = observed["value"]
+        if (
+            not isinstance(entries, list)
+            or len(entries) > 128
+            or type(observed["observed_at"]) is not int
+            or observed["observed_at"] < 0
+            or observed["reason"] is not None
+        ):
+            raise ValidationFailure("display: collection_metadata")
+        dimensions = []
+        for entry in entries:
+            name = entry["name"]
+            expected = dict(
+                value=None,
+                availability="unsupported",
+                source="apple_api",
+                observed_at=None,
+                reason="not_supported",
+            )
+            if any(name[k] != value for k, value in expected.items()):
+                raise ValidationFailure("display: fabricated_name")
+            pair = {k: entry[k] for k in ("width_pixels", "height_pixels")}
+            check_macos_display_dimensions(pair)
+            dimensions.append(pair)
+        summary.update(
+            entries=len(entries),
+            names_available=0,
+            dimensions_available=sum(
+                p["width_pixels"]["availability"] == "available" for p in dimensions
+            ),
+            dimensions=dimensions,
+        )
+        return summary
+    except (KeyError, TypeError) as error:
+        raise ValidationFailure("display: malformed") from error
+
+
 def check_windows_displays(snapshot: dict[str, Any]) -> dict[str, Any]:
     """CCD path metadata and pixel sizes, without product names or native IDs."""
     try:
@@ -1095,6 +1185,7 @@ def collect(build_dir: Path, report: dict[str, Any]) -> None:
         elif platform.system() == "Darwin":
             check_real_storage(observations, "iokit")
             observations["static.gpu_summary"] = check_macos_gpu(snapshot)
+            observations["static.display_summary"] = check_macos_displays(snapshot)
         report["observations"][label] = observations
         report["checks"][label] = "passed"
     report["checks"]["python_ffi"] = "running"

@@ -204,7 +204,7 @@
             "source": "custom",
             "value": null
           },
-          "description": "Cached pixel width; Windows CCD reports the target signal's active size.\nThis is not a promise of panel-native resolution or logical DPI coordinates."
+          "description": "Cached pixel width; Windows CCD reports the target signal's active size.\nmacOS reports the current CGDisplayMode pixel extent, not logical points.\nThis is not a promise of panel-native resolution or logical DPI coordinates."
         }
       },
       "type": "object"
