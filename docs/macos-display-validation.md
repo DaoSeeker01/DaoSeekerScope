@@ -13,11 +13,33 @@
 
 [本地汇总](evidence/macos-display-local-2cf2736.json)绑定源码、日志哈希及两份报告：[Windows 原生](evidence/macos-display-native-windows-local-2cf2736.json)、[八包](evidence/macos-display-packages-windows-local-2cf2736.json)。报告记录干净源码，归档 LF 并保留原始/归档字节 SHA-256。
 
-## 待执行与限制
+## 三平台 CI（2026-10-18）
+
+用户授权本轮提交、必要修复与验收归档后，工作流运行于 `1231088bc97d005a7e3c516d865db14362baf8ed`，包含实现 `2cf2736`、本地归档和 Unsupported/Custom 严格缺失状态的验收守卫修正。底层采集、SDK C 源码、核心模型与 Schema 描述没有在守卫修正中改变。[CI 39081392549](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39081392549) 最终 8/8 个任务全部成功，[汇总](evidence/macos-display-ci-39081392549.json)绑定源码、实际变更列表与完整日志哈希。
+
+独立 C SDK 探针返回 status=0、活动条目 1、有效模式尺寸 1。Rust CLI/C 的数量及像素/缺失状态多重集合与 SDK 相同。本轮可读模式像素为 1024×768。这是托管 runner 的活动模式，不能推断实体面板原生分辨率。
+
+名称保持 Unsupported/NotSupported、Source AppleApi；宽高使用同一模式对象且成对验证。SDK/CLI/C 为顺序调用、按像素与缺失状态多重集合对照，不证明原子拓扑、物理设备数量、镜像关系或 ID 稳定性。不捕获屏幕、不请求权限、不读取名称/EDID/稳定标识。
+
+| 门禁 | 实际结果 |
+|---|---|
+| Windows x64 / Linux x64 / macOS ARM64 | 源码与隔离消费者各 184 / 180 / 180 项 Rust 测试（含 doctest），fmt/Clippy/doc 拒绝警告与 no-default-features 通过 |
+| 三平台八包 / CLI 安装 | 实际归档、原生 Cargo 验证、MIT/头文件、隔离消费者与安装通过，第三方锁定内容未变 |
+| 三平台 CLI/C/Python | 各五组检查、15 个进程通过，含 Python 默认 100 次 collect/free |
+| Python / Schema | 各平台 86 项 unittest、32 文件 Ruff/mypy、Schema generated/golden/不变量与项目检查通过 |
+| macOS C SDK | cc C11/Wall/Wextra/Werror、公开头文件 static_assert、CoreGraphics 链接、原生执行及同源码 SDK/CLI/C 对照通过 |
+| Linux 回归 | 显示器 26、GPU 20、存储 21、hwmon 47、电池 30、内存 26、CPU 15 及 DMI/输入 7 场景通过；完整 /proc 覆盖仍由 OCI 拒绝、not_run |
+| 实际 fuzz | 11 个既有目标各至少 60 秒并正常 DONE；不覆盖 Core Graphics 原生内存或驱动边界 |
+| 内存与供应链 | Miri 8 项、Linux FFI ASan 10 项和 cargo-deny 通过；不是原生 CGMode 长期泄漏证明 |
+
+[macOS 原生报告](evidence/macos-display-native-darwin-39081392549.json)、[独立 C SDK 探针](evidence/macos-display-sdk-probe-39081392549.json)、[对照结果](evidence/macos-display-sdk-comparison-39081392549.json)及[macOS 八包报告](evidence/macos-display-package-evidence-macos-arm64-39081392549.json)属于同一 CI 源码。汇总绑定九份报告的原始/归档 SHA-256、SDK C 源码 Git blob 与完整工作流日志哈希。较早本机两份报告仍绑定实现提交，不混作 macOS 原生结果；随后纯文档归档提交没有重跑源码 CI。
+
+同轮基准首次 collect（不含构造）12509 µs，100 次动态刷新 p50/p95/max 24/28/76 µs。这是整个采集器，环境、参数、profile 和原始输出见[性能报告](benchmarks.md)及[基准归档](evidence/macos-display-benchmark-39081392549.json)，不作为 CG 枚举专项性能或 SLA。
+
 
 授权启动的先行 [CI 39080974981](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39080974981) 运行于 `5af71a1`，其中 macOS 原生任务及 SDK/CLI/C 对照成功，观察到一条活动视图、1024×768 模式像素。错误路径复核随后发现新守卫未兼容既有组合器保留 Unsupported/Custom 的行为；修正仅限严格缺失状态，不接受 Available/Custom 或伪造数值，也不修改采集代码/组合策略。先行 CI 的剩余任务被主动取消，由修正后源码的完整 CI 取代；不把先行任务成功当作整轮 CI 验收。
 
-上述本地阶段没有运行这些原生门禁；当前修正后源码的完整三平台 CI、实际 fuzz/Miri/ASan/cargo-deny 与 macOS 基准尚待重跑。原生 CI 使用 `cc -Wall -Wextra -Werror -std=c11 docs/research/macos_display_probe.c -framework CoreGraphics`，SDK static_assert 检查标量宽度/错误码，运行后与同源码 CLI/C 的数量、模式像素与缺失状态多重集合比较；顺序调用不是原子拓扑证明。SDK 报错、空视图或无模式时保留状态，不能称作尺寸读取成功。
+## 兼容与验证边界
 
 枚举固定 1025 槽位，1025 条拒绝，以便检测截断；另受默认 128/最大 1024 输出限额限制。前后 ID 集合变化最多重试三轮，失败为 TemporarilyUnavailable；模式 Copy 为 NULL 只影响该条目的尺寸对，不猜权限错误。零或溢出像素 InvalidData。通用 WindowServer 错误不等于 PermissionDenied 或 Sandbox，不读取残留 errno。
 

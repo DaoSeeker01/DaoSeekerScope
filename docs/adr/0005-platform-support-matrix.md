@@ -19,7 +19,7 @@
 | GPU/独占显存 | D/P，Partial DXGI | D/P，Partial DRM 视图；部分 AMD/NVIDIA 名称，显存 U | D/P，Partial Metal 名称；显存 N/U | 不是物理卡数；Linux 不覆盖未绑定 DRM 的 GPU，不将 VRAM/GTT 推断成独占显存 |
 | 存储设备容量 | D/P Setupapi/Win32、Partial | D/P Sysfs、Partial | D/P Iokit、Partial | 整块设备含虚拟对象，不代表文件系统可用空间或物理总量；[Linux 契约](0013-storage-capacity.md)与[验证](../storage-validation.md)、[Windows 契约](0014-windows-storage-capacity.md)与[验证](../windows-storage-validation.md)、[macOS 契约](0015-macos-storage-capacity.md)与[验证](../macos-storage-validation.md)，名称默认脱敏、serial/UUID不查询 |
 | 网络累计字节数 | D/P Win32、Partial | D/P procfs、Supported | D/P Sysctl、Partial | Windows 有界枚举、不保证所有逻辑接口；[Windows 验证](../windows-network-validation.md)。Linux 仅当前网络命名空间；[Linux 验证](../network-validation.md)。macOS 可能取整/回绕；[契约](0012-macos-network-counters.md)。名称默认脱敏；Windows/macOS 临时原始缓冲仍含未解析保存的标识 |
-| 显示器 | D/P，Partial Win32 活动路径 | D/P，Partial DRM 连接视图；授权 EDID 名称，尺寸 U | D/P，Partial AppleApi 活动视图/模式像素；名称 U，CI 待验 | Windows 信号活动像素、可用 EDID 友好名称；会话可受限，不是面板原生分辨率或全部物理显示器 |
+| 显示器 | D/P，Partial Win32 活动路径 | D/P，Partial DRM 连接视图；授权 EDID 名称，尺寸 U | D/P，Partial AppleApi 活动视图/模式像素；名称 U，CI/SDK 状态对照已验 | Windows 信号活动像素、可用 EDID 友好名称；会话可受限，不是面板原生分辨率或全部物理显示器 |
 | 原始SMBIOS/磁盘底层探测 | A/P | A/P | P/U | 不选默认路径 |
 | 移动/Web/no_std/MCU | U | U | U | 独立后续发布计划，无crate空壳 |
 
@@ -46,3 +46,5 @@
 2026-10-10 [电池切片](../battery-validation.md)源码15ef5c1的CI38047435339全部8任务成功，Linux非root内核权限/热插拔/两类资源限额等30个生产观测通过；新属性fuzz执行19,744,677次正常结束。Linux实际原生枚举Available空集合，Windows runner仍NotApplicable/NotPresent，macOS仍Unsupported；不把空集合当作真实电池字段成功。原生Windows本机Win32电量100%/AC=true是独立机器读值。Linux能力Partial、SourceSysfs，128字节属性/256个供应设备上限、默认128电池上限；USB充电不推断AC，未验证真实Linux电池或完整电源拓扑。
 
 2026-10-17 Linux 显示器切片：三平台 [CI 38983994614](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38983994614) 全部 8 个任务成功。Linux CLI/C 各确认一条 connected 连接视图，默认名称 PrivacyRedacted、尺寸 Unsupported；26 项非 root 合成 DRM/EDID 场景通过，授权合成名称可读。它不是实体显示器计数、实际扫描输出或真实 EDID 名称读取证明；Linux 当前像素和实体设备验证仍待完成，macOS 显示器未实现。见[契约](0020-linux-display.md)与[验收](../linux-display-validation.md)。
+
+2026-10-18 macOS 显示器切片：[CI 39081392549](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39081392549) 全部 8 个任务成功。独立 C SDK 探针返回 status=0、活动条目 1、有效模式尺寸 1。Rust CLI/C 的数量及像素/缺失状态多重集合与 SDK 相同。本轮可读模式像素为 1024×768。这是托管 runner 的活动模式，不能推断实体面板原生分辨率。 名称仍 Unsupported，不查询 EDID/稳定标识；实体 Mac、多屏、Retina/缩放、镜像和热插拔延期，见[契约](0021-macos-display.md)与[验收](../macos-display-validation.md)。

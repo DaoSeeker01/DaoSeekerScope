@@ -1,6 +1,6 @@
 # ADR 0021：macOS 活动显示视图与模式像素
 
-状态：开发版实现契约，等待本轮原生 CI；实体 Mac 验证按设备安排延期。
+状态：开发版有限实现，本轮三平台原生 CI 与独立 C SDK 状态对照已完成，见[验证记录](../macos-display-validation.md)；实体 Mac 验证按设备安排延期。
 
 使用公开 Core Graphics CGGetActiveDisplayList，只返回 active-for-drawing 视图。硬件镜像可能只列主显示，软件镜像可列多个活动对象；不把条目数称为物理显示器数量。能力 Partial/AppleApi。通过 CGDisplayCopyDisplayMode 和 CGDisplayModeGetPixelWidth/Height 取得当前模式的像素宽高，不使用 CGDisplayBounds、逻辑 width/height、毫米尺寸或候选模式来填充。它不是面板原生分辨率、Windows 的信号 activeSize 或最终物理扫描输出保证。
 

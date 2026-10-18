@@ -188,3 +188,18 @@ CI 源码 `a348614c3256f11b0af18678323bb578d37673fa`，实现 `cac0191`，中间
 | 合成快照 UTF-8 JSON | 373541 bytes |
 
 同轮 CLI/C 各确认一条 connected 连接视图，默认名称 PrivacyRedacted、宽高 Unsupported。基准为整个组合采集器，不是显示器枚举/EDID 的单独延迟，且默认不读取 EDID。动态刷新使用静态缓存，不重扫连接器。未与旧代码做配对测量，不据此宣称性能改善/退化，不测驱动强制中止、峰值内存、真实显示器热插拔或长期泄漏；这不是性能 SLA。
+
+
+## macOS 活动显示切片基准（2026-10-18）
+
+CI 源码 `1231088bc97d005a7e3c516d865db14362baf8ed`，采集实现 `2cf2736`；中间增加本地归档和验收守卫修正，底层采集与基准代码未变。命令 `cargo bench --locked -p daoseeker-scope --bench collect`；Rust 1.96、bench 优化 profile、门面默认 serde；原生 max_entries=128，合成 backend 另设 1024。托管 runner 自报 Darwin 26.6.2、内核 25.6.0，CPU Apple M2 Pro (Virtual)、5 逻辑核、arm64，OS 可用总内存 15032385536 bytes。它不是维护者的实体 Mac 环境。
+
+| 指标 | 单进程样本 |
+|---|---|
+| 首次 collect（不含构造） | 12509 µs |
+| 100 次动态刷新 p50 / p95 / max | 24 / 28 / 76 µs |
+| CPU 第二样本状态 | Available |
+| 合成 100 传感器、1024 网络条目 collect | 447 µs |
+| 合成快照 UTF-8 JSON | 373541 bytes |
+
+[环境、参数及原始日志](evidence/macos-display-benchmark-39081392549.json)与[原生报告](evidence/macos-display-native-darwin-39081392549.json)绑定。该基准为整个组合采集器，不隔离 Core Graphics 的 Copy/Get/Release、WindowServer IPC 或真实多屏时延；动态刷新使用静态缓存，不重扫显示器。未与旧代码做配对测量，不据此宣称性能改善/退化，不测驱动强制中止、峰值内存、长期原生泄漏或实体面板效果；这不是性能 SLA。

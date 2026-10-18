@@ -1,0 +1,296 @@
+{
+  "source_commit": "1231088bc97d005a7e3c516d865db14362baf8ed",
+  "implementation_commit": "2cf273658cec2993b9c85cb2a1d1f4cf6f4b44cf",
+  "implementation_to_ci_changes": [
+    "crates/daoseeker-scope-cli/tests/cli.rs",
+    "docs/README.md",
+    "docs/adr/0021-macos-display.md",
+    "docs/evidence/macos-display-local-2cf2736.json",
+    "docs/evidence/macos-display-native-windows-local-2cf2736.json",
+    "docs/evidence/macos-display-packages-windows-local-2cf2736.json",
+    "docs/macos-display-validation.md",
+    "scripts/macos_display_probe.py",
+    "scripts/native_smoke.py",
+    "tests/test_macos_display_evidence.py"
+  ],
+  "run_id": 39081392549,
+  "event": "push",
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39081392549",
+  "ci_jobs": {
+    "ffi-asan": "success",
+    "supply-chain": "success",
+    "fuzz-smoke": "success",
+    "desktop (windows-latest)": "success",
+    "linux-container": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "desktop (macos-latest)": "success",
+    "miri": "success"
+  },
+  "native": {
+    "linux": {
+      "path": "macos-display-native-linux-39081392549.json",
+      "sha256": "e1319f7aba6e7762204b61db35e875f2fd2df6f0932f3c12d9e1afa49e6a9452",
+      "original_report_sha256": "e1319f7aba6e7762204b61db35e875f2fd2df6f0932f3c12d9e1afa49e6a9452"
+    },
+    "darwin": {
+      "path": "macos-display-native-darwin-39081392549.json",
+      "sha256": "37f19fb6bb4818d0c628509a67e5c9a86748de4b868df07b153521c6876bd8dd",
+      "original_report_sha256": "37f19fb6bb4818d0c628509a67e5c9a86748de4b868df07b153521c6876bd8dd"
+    },
+    "windows": {
+      "path": "macos-display-native-windows-39081392549.json",
+      "sha256": "9b33286b3a4ad963c71e2b2b0a988446df6176a073edfa603e9538474178c918",
+      "original_report_sha256": "cc80555f8f2d49e36e9cf7df7838199b3f6b96004b5551e2048c79e41846d291"
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "macos-display-package-evidence-linux-x64-39081392549.json",
+      "sha256": "ac2b278f65bc5cd8f2919dcf78b6874508e04c78a938a222ea41e00f93f9ad3a",
+      "original_report_sha256": "ac2b278f65bc5cd8f2919dcf78b6874508e04c78a938a222ea41e00f93f9ad3a"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "macos-display-package-evidence-macos-arm64-39081392549.json",
+      "sha256": "ac2b278f65bc5cd8f2919dcf78b6874508e04c78a938a222ea41e00f93f9ad3a",
+      "original_report_sha256": "ac2b278f65bc5cd8f2919dcf78b6874508e04c78a938a222ea41e00f93f9ad3a"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "macos-display-package-evidence-windows-x64-39081392549.json",
+      "sha256": "7bd3b5dee2e893354c2253f5f7e5133c5f25824e434cae566e363647b38772a4",
+      "original_report_sha256": "9cb5f32082316b393e5faf56abd7fab7778c00e2c8be6a0038166afddaba0294"
+    }
+  },
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "license": "MIT",
+  "public_model_shape_changed": false,
+  "public_api_signatures_changed": false,
+  "schema_description_changed": true,
+  "lock_files_unchanged": true,
+  "dependency_changes": false,
+  "new_features": false,
+  "local_evidence_index": "macos-display-local-2cf2736.json",
+  "guard_fix_commit": "1231088bc97d005a7e3c516d865db14362baf8ed",
+  "native_collection_and_sdk_c_unchanged_since_implementation": true,
+  "superseded_run": {
+    "run_id": 39080974981,
+    "source_commit": "5af71a14aec62d79a4c4e8f8bb1b7096fb8cc8b3",
+    "conclusion": "cancelled",
+    "reason": "Superseded by strict Unsupported/Custom verification compatibility; not final acceptance"
+  },
+  "guard_fix_local_validation": {
+    "rust_tests_including_doctests": 184,
+    "python_tests": 86,
+    "check_log_sha256": "47d4f85050ae91bc148dff76ee8b07b8dc5729cde07ec20fdbb55176b074870f",
+    "python_log_sha256": "e0f84733e8f5ce413c846bb56e8d421fa38d4f43a46ff40070d588b19e693894"
+  },
+  "macos_displays": {
+    "cli": {
+      "availability": "available",
+      "source": "apple_api",
+      "reason": null,
+      "observed_at": 1792281927959,
+      "entries": 1,
+      "names_available": 0,
+      "dimensions_available": 1,
+      "dimensions": [
+        {
+          "width_pixels": {
+            "value": 1024,
+            "availability": "available",
+            "source": "apple_api",
+            "observed_at": 1792281927959,
+            "reason": null
+          },
+          "height_pixels": {
+            "value": 768,
+            "availability": "available",
+            "source": "apple_api",
+            "observed_at": 1792281927959,
+            "reason": null
+          }
+        }
+      ]
+    },
+    "c_abi": {
+      "availability": "available",
+      "source": "apple_api",
+      "reason": null,
+      "observed_at": 1792281927983,
+      "entries": 1,
+      "names_available": 0,
+      "dimensions_available": 1,
+      "dimensions": [
+        {
+          "width_pixels": {
+            "value": 1024,
+            "availability": "available",
+            "source": "apple_api",
+            "observed_at": 1792281927983,
+            "reason": null
+          },
+          "height_pixels": {
+            "value": 768,
+            "availability": "available",
+            "source": "apple_api",
+            "observed_at": 1792281927983,
+            "reason": null
+          }
+        }
+      ]
+    }
+  },
+  "sdk_probe": {
+    "path": "macos-display-sdk-probe-39081392549.json",
+    "sha256": "be3f11903d2d39b3d47445ab613d91b3072faaa0893cc30588dc4219fd5562b4",
+    "original_report_sha256": "be3f11903d2d39b3d47445ab613d91b3072faaa0893cc30588dc4219fd5562b4",
+    "summary": {
+      "status": 0,
+      "entries": 1,
+      "dimensions": [
+        {
+          "width": 1024,
+          "height": 768,
+          "reason": null
+        }
+      ]
+    },
+    "source_commit": "1231088bc97d005a7e3c516d865db14362baf8ed",
+    "c_source_git_blob_sha256": "2a50c3fc49c83c79338520b4e3552f409e19e2544fdf78dfd7014d8733f4a83b"
+  },
+  "sdk_comparison": {
+    "path": "macos-display-sdk-comparison-39081392549.json",
+    "sha256": "7ea745f6b4a0d544ec751245b8d0b131c92364853e826ec388d3928ece3b4fac",
+    "original_report_sha256": "7ea745f6b4a0d544ec751245b8d0b131c92364853e826ec388d3928ece3b4fac"
+  },
+  "container_regression": {
+    "linux-battery-evidence.json": {
+      "sha256": "99cd94e741b50c30bbdf85dd9ffdeafef2daff370de96fa85562dca7f1593bc4",
+      "samples_passed": 30
+    },
+    "linux-container-evidence.json": {
+      "sha256": "870b4a44c9c3f8e20a8afada221cd714e15085c45eae9b8c4ecb86f23f87c1a4",
+      "runtime_probes": {
+        "empty_proc": {
+          "status": "not_run",
+          "configuration": {
+            "user": "65534:65534",
+            "ReadonlyRootfs": true,
+            "NetworkMode": "none",
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges=true"
+            ],
+            "Memory": 268435456,
+            "MemorySwap": 268435456,
+            "PidsLimit": 32,
+            "NanoCpus": 1000000000
+          },
+          "exit_code": 128,
+          "docker_start_exit_code": 1,
+          "process_started": false,
+          "failure_category": "runtime_mount_error",
+          "probe_result": "runtime_rejected_mount"
+        }
+      }
+    },
+    "linux-display-evidence.json": {
+      "sha256": "675eb56beb610fa2afc77582ea5662f3ac2977b72bbf22a2b972f0c0af7906b0",
+      "samples_passed": 26
+    },
+    "linux-dynamic-evidence.json": {
+      "sha256": "d7f665d5926f54352b3869187e80fc08f3865e2dae569c415869f61b96d2dd54",
+      "samples_passed": 15
+    },
+    "linux-gpu-evidence.json": {
+      "sha256": "b2022f05cbb863d99adf9c576dbefcf0c5c697b4f482b7727e73581fcd4f2e42",
+      "samples_passed": 20
+    },
+    "linux-hwmon-evidence.json": {
+      "sha256": "6d9c4a437b5b84dcb51ca5b5c3825112240f9ef1fa929a10315422e176ef20a8",
+      "samples_passed": 47
+    },
+    "linux-memory-evidence.json": {
+      "sha256": "a8671647800d4c03c3f5827627905f08e706f1903370c650b9cd6147dec9c621",
+      "samples_passed": 26
+    },
+    "linux-storage-evidence.json": {
+      "sha256": "11828653f0369b12c237a71a88b9741656e59cf65e9cb5b6694c07398b127f4b",
+      "samples_passed": 21
+    }
+  },
+  "rust_tests_including_doctests": {
+    "windows": 184,
+    "linux": 180,
+    "macos": 180
+  },
+  "python_tests_per_desktop": 86,
+  "python_source_files": 32,
+  "fuzz_targets_completed": 11,
+  "fuzz_campaigns": {
+    "Run cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512": {
+      "runs": 413124,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 6928113,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 18938262,
+      "elapsed_seconds": 61
+    },
+    "Fuzz CPU state and bounded stat parsing": {
+      "runs": 1434782,
+      "elapsed_seconds": 61
+    },
+    "Fuzz meminfo parsing and field isolation": {
+      "runs": 3007417,
+      "elapsed_seconds": 61
+    },
+    "Fuzz uptime parsing and numeric boundaries": {
+      "runs": 19830921,
+      "elapsed_seconds": 61
+    },
+    "Fuzz power supply attribute boundaries": {
+      "runs": 18982274,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded hwmon millidegrees": {
+      "runs": 18568716,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded network counters and privacy": {
+      "runs": 3656047,
+      "elapsed_seconds": 61
+    },
+    "Fuzz Darwin routing message boundaries": {
+      "runs": 4786215,
+      "elapsed_seconds": 61
+    },
+    "Fuzz checked block sector conversion": {
+      "runs": 28166836,
+      "elapsed_seconds": 61
+    }
+  },
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "e954d79550ce0f5bebc70abd81965630f0292d2a031742580bc4401697bedffa",
+  "benchmark": {
+    "path": "macos-display-benchmark-39081392549.json",
+    "sha256": "3b2468683930473c8694abb4613e3994f0c11c0ffa2e2676864b6ae8e6267082",
+    "original_report_sha256": "a9ea89583f22d0c5f64240a139666caba5078d90cd12d5e3a1d5676b57fed571"
+  },
+  "limits": [
+    "CG active-for-drawing view is not a physical display count; hardware mirrors can omit secondary displays",
+    "Current CGDisplayMode pixels are not logical points, panel-native resolution or Windows CCD signal activeSize",
+    "Names remain Unsupported, no EDID/serial/UUID queried",
+    "SDK/CLI/C are sequential observations, not atomic topology or ABA proof",
+    "Physical Mac, Retina/scaling, mirror, hotplug, remote/sandbox, native long leak and peak-memory tests deferred",
+    "No forced termination of blocked synchronous framework/WindowServer calls or hard cap on OS-internal allocation",
+    "Existing fuzz does not directly fuzz Core Graphics native memory/driver boundary",
+    "No registry publication or release distribution"
+  ]
+}
