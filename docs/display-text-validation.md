@@ -14,6 +14,14 @@
 
 本轮新增五项 Rust 测试和两项 Python 测试，既有全命令集成回归也加入 display。合成跨来源文本覆盖 Win32、AppleApi、Drm/Custom 的标签和缺失状态，只证明展示，不证明对应实体设备读取。默认文本与 JSON 不跨进程比较设备数或尺寸。
 
-跨语言及打包的本轮结果在完成后补充。本轮没有启动新的 GitHub CI；Linux/macOS 原生运行、长期 fuzz、Miri/ASan 未重新执行，实体设备验证仍延期。不能引用上一轮通过结果代替本轮验收。
+实现提交为 `560e6f16dd324df30c864988583f0b11a8ea17a3`。后续在该提交的干净工作区完成：
+
+- `pwsh -NoProfile -File scripts/build_c_example.ps1`：MSVC 严格警告构建通过；实际 C collect/free、清零、空释放和陈旧副本拒绝通过。
+- 固定 Python 开发环境运行 `scripts/native_smoke.py`：五组检查、16 个进程通过，包括新的 display 文本守卫；Python 100 次 collect/free 沿用既有 smoke 契约。默认文本有两个可用尺寸字段和一个缺失名称字段，不保存名称/原始文本。CLI 与 C JSON 各自记录状态，不要求不同进程设备数/尺寸相同。
+- `python scripts/check_packages.py --offline`：八个实际 crate 归档、MIT/C 头文件、解包后 189 项测试、独立 CLI 安装和完整 JSON 通过；第三方锁文件保持不变。使用本地 patch 解析未发布的兄弟 crate，不代表 registry 发布验收。
+
+脱敏[原生报告](evidence/display-text-native-windows-560e6f1.json)、[打包报告](evidence/display-text-packages-windows-560e6f1.json)及[本轮索引和哈希](evidence/display-text-local-560e6f1.json)保留原始 source commit。归档时仅补充文档/证据，并移除新增 cli_args 种子的尾换行，避免解析出额外空参数；没有修改已验证的 Rust/平台采集代码。种子最终为 `display\n--json`，与解析单测覆盖的参数相同；这不算实际 fuzzer 运行证据。
+
+本轮没有启动新的 GitHub CI，也没有推送远程。Linux/macOS 原生运行、长期 fuzz、Miri/ASan 未重新执行，实体设备验证仍延期。不能引用上一轮通过结果代替本轮验收。
 
 无依赖或许可证变化；C ABI 1、Schema 1 形状不变。CLI crate 的 `Command::Display` 开发版源兼容性变化见 ADR；核心 API 不变。

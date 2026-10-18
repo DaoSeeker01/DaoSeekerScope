@@ -1,0 +1,86 @@
+{
+  "report_version": 1,
+  "recorded_for_date": "2026-10-19 Asia/Shanghai",
+  "implementation_commit": "560e6f16dd324df30c864988583f0b11a8ea17a3",
+  "verification_platform": {
+    "os": "Windows",
+    "architecture": "AMD64"
+  },
+  "overall": "local_checks_passed_remote_ci_not_run",
+  "commands": {
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross": {
+      "status": "passed",
+      "workspace_tests_including_doctests": 189,
+      "linux_x64_cross_check": "passed_compile_only",
+      "macos_arm64_cross_check": "passed_compile_only"
+    },
+    "Ruff format/check + mypy + Python unittest": {
+      "status": "passed",
+      "python_source_files": 32,
+      "python_tests": 88
+    },
+    "Schema and project documentation checks": "passed",
+    "cargo fmt --manifest-path fuzz/Cargo.toml --check": "passed",
+    "cargo test --locked --offline --manifest-path fuzz/Cargo.toml --lib": {
+      "status": "passed",
+      "tests": 2,
+      "actual_fuzzer_campaign": false
+    },
+    "pwsh -NoProfile -File scripts/build_c_example.ps1": "passed",
+    "native_smoke.py": {
+      "status": "passed",
+      "check_groups": 5,
+      "processes": 16
+    },
+    "check_packages.py --offline": {
+      "status": "passed",
+      "archives": 8,
+      "isolated_tests_including_doctests": 189,
+      "registry_publication_verified": false
+    }
+  },
+  "reports": {
+    "docs/evidence/display-text-native-windows-560e6f1.json": {
+      "sha256": "7133f7004cba703ab7e94a8567580ec10922da7819024185ace35e07a489b1d2"
+    },
+    "docs/evidence/display-text-packages-windows-560e6f1.json": {
+      "sha256": "175d3effde037ee8385a933c1d5b0dc5ea8e3d5771f6ee455835517105051c84"
+    }
+  },
+  "local_log_sha256": {
+    "check": "e366562b507ea75800d540e4f1502d2f35e5f35d5deda59ffa5913a6f542670c",
+    "python": "fc892060a0758b8a8f65cf86da42cbbc0068a62661ce29d85637b83d8cef01ef",
+    "fuzz-local": "f708cdf27638813d99bbda250152c2ba6cf854c7e51fe82a66381effdd82f142",
+    "c": "7fc7a69c094230f05e89488ca5466b3fe24e7514d28139411815ba1bc23d9806",
+    "native": "117cb7016d4e1aa4caf801508aef87c4898074ee346c9228370963e4f0ca5a5d",
+    "packages": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202"
+  },
+  "observed_display_text": {
+    "entry_count": 1,
+    "available_fields": 2,
+    "missing_fields": 1,
+    "signal_width_pixels": 1920,
+    "signal_height_pixels": 1080,
+    "name_availability": "unavailable",
+    "name_reason": "not_present",
+    "output_sha256": "7981d16efaa72600746c5fc60a3e057cf4f4a15b49680135d45eaecb82fa175b",
+    "scope": "single Windows laptop run; not a physical monitor count or panel-native resolution"
+  },
+  "compatibility": {
+    "cli_command_enum_added": "Display; exhaustive matches require new arm in unreleased CLI crate",
+    "core_public_api_changed": false,
+    "c_abi_version": 1,
+    "schema_version": 1,
+    "schema_shape_changed": false,
+    "dependencies_or_features_changed": false,
+    "license": "MIT"
+  },
+  "limitations": [
+    "No new remote CI run or push in this slice.",
+    "Linux/macOS cross-check is compilation, not native execution.",
+    "No new actual libFuzzer/Miri/ASan campaign or benchmark.",
+    "Physical Linux/macOS, multi-monitor/hotplug and Retina validations deferred.",
+    "Two JSON reports were recorded from the clean implementation commit; later evidence/docs and the fuzz seed trailing-newline correction do not change packaged Rust code.",
+    "CLI text is for humans; internal guards are not a stable text protocol."
+  ]
+}
