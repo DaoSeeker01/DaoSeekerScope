@@ -28,6 +28,7 @@ TEXT_COMMANDS = (
     "memory",
     "system",
     "gpu",
+    "display",
     "network",
     "battery",
     "sensors",
@@ -922,12 +923,127 @@ def check_storage_text(data: bytes, expected_source: str) -> dict[str, Any]:
         raise ValidationFailure("storage_text: malformed") from error
 
 
+def check_display_text(data: bytes) -> dict[str, Any]:
+    """Check stock default display text, storing counts/hash rather than names.
+
+    This is an internal presentation regression guard, not a consumer text API.
+    No comparison with another process's potentially different topology.
+    """
+    try:
+        if len(data) > MAX_JSON_BYTES:
+            raise ValidationFailure("display_text: output_limit")
+        text = data.decode("utf-8")
+        if not text.endswith("\n") or any(
+            ord(char) < 32 and char not in "\r\n" for char in text
+        ):
+            raise ValidationFailure("display_text: malformed")
+        lines = text.splitlines()
+        missing_pattern = (
+            r"("
+            + TEXT_MISSING
+            + r") \(("
+            + TEXT_SOURCES
+            + r"), Some\(("
+            + TEXT_REASONS
+            + r")\)\)"
+        )
+        header = re.fullmatch(
+            r"Displays: ([0-9]+) entries \((" + TEXT_SOURCES + r")\)", lines[0]
+        )
+        available = 0
+        missing = 0
+        count: int | None = None
+        state = "Available"
+        if header is None:
+            absent = re.fullmatch(r"Displays: " + missing_pattern, lines[0])
+            if len(lines) != 1 or absent is None:
+                raise ValidationFailure("display_text: malformed")
+            state = absent[1]
+            missing = 1
+        else:
+            count = int(header[1])
+            if count > 1024:
+                raise ValidationFailure("display_text: malformed")
+            if count == 0:
+                if lines[1:] != ["No display entries visible to this backend."]:
+                    raise ValidationFailure("display_text: malformed")
+            else:
+                if len(lines) != 3 + count * 4 or lines[-2:] != [
+                    "Entries are OS display views, not a physical monitor count.",
+                    "Pixel dimensions do not identify panel-native resolution.",
+                ]:
+                    raise ValidationFailure("display_text: malformed")
+                for index in range(count):
+                    pos = 1 + index * 4
+                    if lines[pos] != f"Display entry {index + 1}":
+                        raise ValidationFailure("display_text: malformed")
+                    for offset, axis in enumerate(("Name", "width", "height"), 1):
+                        label, value = lines[pos + offset].split(": ", 1)
+                        absent = re.fullmatch(missing_pattern, value)
+                        present = re.fullmatch(
+                            r"(.+) \((" + TEXT_SOURCES + r")\)", value
+                        )
+                        if absent:
+                            source = absent[2]
+                            missing += 1
+                        elif present:
+                            source = present[2]
+                            available += 1
+                            if not present[1].strip():
+                                raise ValidationFailure("display_text: invalid_value")
+                        else:
+                            raise ValidationFailure("display_text: malformed")
+                        if axis == "Name":
+                            expected = "Name"
+                            if header[2] == "Drm" and not (
+                                absent
+                                and absent.groups()
+                                == ("Restricted", "Sysfs", "PrivacyRedacted")
+                            ):
+                                raise ValidationFailure(
+                                    "display_text: privacy_violation"
+                                )
+                            if header[2] == "AppleApi" and not (
+                                absent
+                                and absent.groups()
+                                == ("Unsupported", "AppleApi", "NotSupported")
+                            ):
+                                raise ValidationFailure("display_text: malformed")
+                        else:
+                            prefix = {"Win32": "Signal ", "AppleApi": "Mode "}.get(
+                                source, ""
+                            )
+                            expected = f"{prefix}{axis if prefix else axis.capitalize()} pixels"
+                            if (
+                                present
+                                and not absent
+                                and (
+                                    re.fullmatch(r"[0-9]+", present[1]) is None
+                                    or not 0 < int(present[1]) <= 2**32 - 1
+                                )
+                            ):
+                                raise ValidationFailure("display_text: invalid_value")
+                        if label != expected:
+                            raise ValidationFailure("display_text: malformed")
+        return {
+            "available_fields": available,
+            "missing_fields": missing,
+            "entry_count": count,
+            "collection_state": state,
+            "output_sha256": hashlib.sha256(data).hexdigest(),
+        }
+    except (UnicodeError, ValueError, IndexError) as error:
+        raise ValidationFailure("display_text: malformed") from error
+
+
 def check_cli_text(command: str, data: bytes) -> dict[str, Any]:
     """Presentation guard for stock commands, not a stable/public text parser.
 
     Missing/empty device collections validate presentation, not device support.
     Each process is checked independently; no cross-process value comparison.
     """
+    if command == "display":
+        return check_display_text(data)
     try:
         if len(data) > MAX_JSON_BYTES:
             raise ValidationFailure("cli_text: output_limit")

@@ -26,7 +26,7 @@
 | 电池 | 支持 | 部分支持 | 未实现 |
 | 温度 | 未实现 | 部分 hwmon 驱动 | 未实现 |
 
-文件系统可用空间尚未实现。显示器数据目前通过 JSON 查看：Windows 提供活动路径的信号像素，Linux 提供连接视图、授权后读取名称，当前像素尺寸未实现。macOS 提供活动视图的模式像素，名称暂未实现。信号/模式尺寸不代表面板原生分辨率。网络与存储设备名称默认隐藏；Windows GPU 不含共享显存和实时使用量，Linux GPU 显存尚未实现。Windows 网络不保证所有逻辑隧道接口，Linux 网络统计限当前命名空间，macOS 的计数可能取整和回绕。Linux 电池、温度、GPU 和显示器，以及 macOS 显示器的实体设备验证仍待补充。完整范围见[平台能力矩阵](docs/adr/0005-platform-support-matrix.md)。
+文件系统可用空间尚未实现。显示器可用 `dscope display` 或 JSON 查看：Windows 提供活动路径的信号像素，Linux 提供连接视图、授权后读取名称，当前像素尺寸未实现。macOS 提供活动视图的模式像素，名称暂未实现。信号/模式尺寸不代表面板原生分辨率。网络与存储设备名称默认隐藏；Windows GPU 不含共享显存和实时使用量，Linux GPU 显存尚未实现。Windows 网络不保证所有逻辑隧道接口，Linux 网络统计限当前命名空间，macOS 的计数可能取整和回绕。Linux 电池、温度、GPU 和显示器，以及 macOS 显示器的实体设备验证仍待补充。完整范围见[平台能力矩阵](docs/adr/0005-platform-support-matrix.md)。
 
 ## 快速上手
 
@@ -36,6 +36,7 @@
 cargo run --locked -p daoseeker-scope-cli -- cpu
 cargo run --locked -p daoseeker-scope-cli -- memory
 cargo run --locked -p daoseeker-scope-cli -- disk
+cargo run --locked -p daoseeker-scope-cli -- display
 cargo run --locked -p daoseeker-scope-cli -- --json
 ```
 

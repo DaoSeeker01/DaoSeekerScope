@@ -6,7 +6,7 @@ use std::{
     process::ExitCode,
     time::Duration,
 };
-const HELP: &str = "寻道者观微 DaoSeekerScope\nUsage: dscope [cpu|memory|gpu|disk|network|battery|sensors|system|capabilities] [--json]\n  --include-sensitive --authorized   Explicit sensitive access (caller authorization)\n  cpu samples usage over at least 300 ms\n  disk shows whole-device capacity in bytes and IEC units\n  --version  --help\nExit codes: 0 success, 2 usage, 3 collection error\nUnavailable fields are successful structured results, not process errors.";
+const HELP: &str = "寻道者观微 DaoSeekerScope\nUsage: dscope [cpu|memory|gpu|disk|display|network|battery|sensors|system|capabilities] [--json]\n  --include-sensitive --authorized   Explicit sensitive access (caller authorization)\n  cpu samples usage over at least 300 ms\n  disk shows whole-device capacity in bytes and IEC units\n  display shows OS display views and pixel field states\n  --version  --help\nExit codes: 0 success, 2 usage, 3 collection error\nUnavailable fields are successful structured results, not process errors.";
 fn show<T: Display>(output: &mut String, label: &str, value: &Observed<T>) {
     if let Some(observed) = value.value() {
         writeln!(output, "{label}: {observed} ({:?})", value.source()).expect("string formatting");
@@ -91,6 +91,46 @@ fn storage(output: &mut String, observed: &Observed<Vec<StorageInfo>>) {
     )
     .expect("string formatting");
 }
+fn displays(output: &mut String, observed: &Observed<Vec<DisplayInfo>>) {
+    list(output, "Displays", observed);
+    let Some(entries) = observed.value() else {
+        return;
+    };
+    if entries.is_empty() {
+        writeln!(output, "No display entries visible to this backend.").expect("string formatting");
+        return;
+    }
+    for (index, entry) in entries.iter().enumerate() {
+        writeln!(output, "Display entry {}", index + 1).expect("string formatting");
+        show(output, "Name", &entry.name);
+        // The field's provenance, rather than this executable's target OS,
+        // determines the meaning even for injected/composed backends.
+        for (axis, value) in [
+            ("width", &entry.width_pixels),
+            ("height", &entry.height_pixels),
+        ] {
+            let label = match (value.source(), axis) {
+                (Source::Win32, "width") => "Signal width pixels",
+                (Source::Win32, _) => "Signal height pixels",
+                (Source::AppleApi, "width") => "Mode width pixels",
+                (Source::AppleApi, _) => "Mode height pixels",
+                (_, "width") => "Width pixels",
+                _ => "Height pixels",
+            };
+            show(output, label, value);
+        }
+    }
+    writeln!(
+        output,
+        "Entries are OS display views, not a physical monitor count."
+    )
+    .expect("string formatting");
+    writeln!(
+        output,
+        "Pixel dimensions do not identify panel-native resolution."
+    )
+    .expect("string formatting");
+}
 fn run(args: &[String]) -> Result<String, (u8, String)> {
     let mut output = String::new();
     let (command, json, options) = match parse_args(args).map_err(|text| (2, text.to_owned()))? {
@@ -172,6 +212,7 @@ fn render_text(output: &mut String, command: Command, snapshot: &Snapshot) {
             }
         }
         Command::Disk => storage(output, &snapshot.static_info.storage),
+        Command::Display => displays(output, &snapshot.static_info.displays),
         Command::Network => {
             list(output, "Network", &snapshot.dynamic.networks);
             if let Some(items) = snapshot.dynamic.networks.value() {
@@ -304,6 +345,104 @@ mod tests {
         assert!(system.contains("Device model: Restricted (Wmi, Some(PermissionDenied))"));
         assert!(system.contains("Uptime seconds: Unavailable (Procfs, Some(InvalidData))"));
         assert!(!system.contains("Uptime seconds: 0"));
+    }
+    #[test]
+    fn display_sources_define_pixel_semantics_without_target_os_guesses() {
+        let mut snapshot = fixture();
+        let mut entries = Vec::new();
+        for source in [Source::Win32, Source::AppleApi, Source::Custom] {
+            let mut entry = DisplayInfo::default();
+            entry.name = Observed::available("Fixture 屏幕".into(), source, Timestamp(1));
+            entry.width_pixels = Observed::available(1920, source, Timestamp(1));
+            entry.height_pixels = Observed::available(1080, source, Timestamp(1));
+            entries.push(entry);
+        }
+        snapshot.static_info.displays = Observed::available(entries, Source::Custom, Timestamp(1));
+        let output = text(Command::Display, &snapshot);
+        assert!(output.starts_with("Displays: 3 entries (Custom)\n"));
+        for (prefix, source) in [("Signal ", "Win32"), ("Mode ", "AppleApi"), ("", "Custom")] {
+            let width = if prefix.is_empty() {
+                "Width".into()
+            } else {
+                format!("{prefix}width")
+            };
+            let height = if prefix.is_empty() {
+                "Height".into()
+            } else {
+                format!("{prefix}height")
+            };
+            assert!(output.contains(&format!("{width} pixels: 1920 ({source})")));
+            assert!(output.contains(&format!("{height} pixels: 1080 ({source})")));
+        }
+        assert_eq!(output.matches("Name: Fixture 屏幕").count(), 3);
+        assert!(
+            output.contains("physical monitor count") && output.contains("panel-native resolution")
+        );
+    }
+    #[test]
+    fn display_empty_and_missing_collections_have_distinct_results() {
+        let mut snapshot = fixture();
+        snapshot.static_info.displays = Observed::available(vec![], Source::Drm, Timestamp(1));
+        assert_eq!(
+            text(Command::Display, &snapshot),
+            "Displays: 0 entries (Drm)\nNo display entries visible to this backend.\n"
+        );
+        for (availability, reason) in [
+            (
+                Availability::Unavailable,
+                ReasonCode::TemporarilyUnavailable,
+            ),
+            (Availability::Restricted, ReasonCode::PermissionDenied),
+            (Availability::Unsupported, ReasonCode::NotSupported),
+            (Availability::NotApplicable, ReasonCode::NotPresent),
+        ] {
+            snapshot.static_info.displays =
+                Observed::missing(availability, Source::Custom, reason).expect("missing");
+            assert_eq!(
+                text(Command::Display, &snapshot),
+                format!("Displays: {availability:?} (Custom, Some({reason:?}))\n")
+            );
+        }
+    }
+    #[test]
+    fn display_field_failures_preserve_privacy_and_other_entries() {
+        let mut snapshot = fixture();
+        let mut linux = DisplayInfo::default();
+        linux.name = Observed::restricted(Source::Sysfs, ReasonCode::PrivacyRedacted);
+        linux.width_pixels = Observed::missing(
+            Availability::Unsupported,
+            Source::Drm,
+            ReasonCode::NotSupported,
+        )
+        .expect("unsupported");
+        linux.height_pixels = Observed::missing(
+            Availability::Unsupported,
+            Source::Drm,
+            ReasonCode::NotSupported,
+        )
+        .expect("unsupported");
+        let mut failed = DisplayInfo::default();
+        failed.name = Observed::unavailable(Source::Win32, ReasonCode::NotPresent);
+        failed.width_pixels = Observed::unavailable(Source::Win32, ReasonCode::InvalidData);
+        failed.height_pixels = Observed::unavailable(Source::Win32, ReasonCode::InvalidData);
+        let mut mac = DisplayInfo::default();
+        mac.name = Observed::missing(
+            Availability::Unsupported,
+            Source::AppleApi,
+            ReasonCode::NotSupported,
+        )
+        .expect("unsupported");
+        mac.width_pixels = Observed::available(1024, Source::AppleApi, Timestamp(1));
+        mac.height_pixels = Observed::available(768, Source::AppleApi, Timestamp(1));
+        snapshot.static_info.displays =
+            Observed::available(vec![linux, failed, mac], Source::Custom, Timestamp(1));
+        let output = text(Command::Display, &snapshot);
+        assert!(output.contains("Name: Restricted (Sysfs, Some(PrivacyRedacted))"));
+        assert!(output.contains("Width pixels: Unsupported (Drm, Some(NotSupported))"));
+        assert!(output.contains("Signal width pixels: Unavailable (Win32, Some(InvalidData))"));
+        assert!(output.contains("Name: Unsupported (AppleApi, Some(NotSupported))\nMode width pixels: 1024 (AppleApi)\nMode height pixels: 768 (AppleApi)"));
+        assert!(!output.contains("pixels: 0") && !output.contains("1920x1080"));
+        assert_eq!(output.matches("Display entry ").count(), 3);
     }
     #[test]
     fn numbered_entries_isolate_bad_fields_and_keep_zero_false_and_negative_values() {

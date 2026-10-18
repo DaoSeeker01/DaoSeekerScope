@@ -16,6 +16,8 @@ pub enum Command {
     Sensors,
     System,
     Capabilities,
+    /// Display views reported by the OS, not a physical monitor count.
+    Display,
 }
 
 #[derive(Debug)]
@@ -55,6 +57,7 @@ pub fn parse_args(args: &[String]) -> Result<Invocation, &'static str> {
             "sensors" => Command::Sensors,
             "system" => Command::System,
             "capabilities" => Command::Capabilities,
+            "display" => Command::Display,
             "--json" if !json => {
                 json = true;
                 continue;
@@ -99,6 +102,7 @@ mod tests {
             "sensors",
             "system",
             "capabilities",
+            "display",
         ] {
             let Invocation::Collect { json, options, .. } =
                 parse(&[command, "--json"]).expect("command")
@@ -153,5 +157,32 @@ mod tests {
                 options.validate().expect("validated options");
             }
         }
+    }
+    #[test]
+    fn display_selection_preserves_json_and_explicit_privacy_contract() {
+        for args in [vec!["display"], vec!["--json", "display"]] {
+            let Invocation::Collect {
+                command,
+                json,
+                options,
+            } = parse(&args).expect("display")
+            else {
+                panic!("collect")
+            };
+            assert_eq!(command, Command::Display);
+            assert_eq!(json, args.contains(&"--json"));
+            assert!(!options.privacy.permits_sensitive());
+        }
+        assert!(parse(&["display", "display"]).is_err());
+        assert!(parse(&["display", "cpu"]).is_err());
+        assert!(parse(&["display", "--include-sensitive"]).is_err());
+        let Invocation::Collect {
+            command, options, ..
+        } = parse(&["display", "--include-sensitive", "--authorized"]).expect("authorized")
+        else {
+            panic!("collect")
+        };
+        assert_eq!(command, Command::Display);
+        assert!(options.privacy.permits_sensitive());
     }
 }

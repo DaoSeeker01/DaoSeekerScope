@@ -39,7 +39,7 @@ println!("{:?}", dynamic.cpu_usage_percent.value());
 
 ## CLI 与 JSON
 
-`dscope` 提供 `cpu`、`memory`、`gpu`、`disk`、`network`、`battery`、`sensors`、`system` 和 `capabilities`。文本模式显示所选类别；所有 `--json` 命令输出完整快照。`cpu` 会等待至少 300 ms 完成第二次采样；其他命令保留首次 CPU 暂不可用状态。
+`dscope` 提供 `cpu`、`memory`、`gpu`、`disk`、`display`、`network`、`battery`、`sensors`、`system` 和 `capabilities`。文本模式显示所选类别；所有 `--json` 命令输出完整快照。`cpu` 会等待至少 300 ms 完成第二次采样；其他命令保留首次 CPU 暂不可用状态。
 
 退出码：0 表示命令成功（结果可以包含不可用字段），2 表示参数错误，3 表示采集或输出错误。输出管道接收端关闭时正常结束。
 
@@ -49,7 +49,7 @@ println!("{:?}", dynamic.cpu_usage_percent.value());
 
 Rust 使用 `to_json` / `from_json` 交换 Schema v1。输入和展开后的输出均限制为 1 MiB。未知对象字段忽略，未知枚举值或错误版本拒绝；字符串、集合、数值和内存关系还有领域校验。[JSON Schema](schema/snapshot-v1.schema.json)不能替代这些检查。
 
-Windows 的 `static_info.displays` 目前通过 Rust API、C ABI JSON 或 `dscope --json` 查看。返回活动路径的 EDID 友好名称（可能 NotPresent）和当前目标信号活动像素宽高；不是面板原生/首选分辨率、DPI 逻辑尺寸或桌面旋转后的坐标。数据缓存到当前 Hardware，模式/连接变化后需新建实例；动态刷新不重扫。远程或无控制台访问时可 Restricted/PermissionDenied，不能据此认为没有显示器。Linux 的 displays 只统计 DRM status=connected 的连接视图，不保证当前活动，也不等于物理显示器数量。默认不读取含标识的 EDID，name 为 Restricted/PrivacyRedacted；显式 --include-sensitive --authorized 后仅解析 EDID 1.3/1.4 基础块的产品名称，OS 权限仍生效，序列号不导出。Linux 宽高仍 Unsupported，绝不把 modes 列表或 EDID 时序当作当前模式；状态 unknown/无法完整枚举时不会返回成功空表。Linux 同样静态缓存，变化后需新建实例。macOS 新增公开 Core Graphics 活动视图，宽高来自当前显示模式的 pixelWidth/pixelHeight，不是逻辑 points、面板原生分辨率或 Windows 信号尺寸。硬件镜像可能只列主显示，不作为物理显示器计数。名称保持 Unsupported，不查询 EDID/稳定标识；本轮原生 CI 与独立 SDK 对照已完成，实际状态见[验证记录](macos-display-validation.md)。各平台都没有显示器专用文本命令，见 [macOS 契约](adr/0021-macos-display.md)。
+`dscope display` 逐条显示名称、像素字段及状态/来源。Windows 标为 Signal width/height pixels，macOS 标为 Mode width/height pixels；按字段来源选择标签，编号不代表物理显示器。空表和不可用状态分别展示。`display --json` 输出完整快照，含采集时间；文本不作为程序接口。Windows 的 `static_info.displays` 同时可通过 Rust API、C ABI JSON 或 `dscope --json` 查看。返回活动路径的 EDID 友好名称（可能 NotPresent）和当前目标信号活动像素宽高；不是面板原生/首选分辨率、DPI 逻辑尺寸或桌面旋转后的坐标。数据缓存到当前 Hardware，模式/连接变化后需新建实例；动态刷新不重扫。远程或无控制台访问时可 Restricted/PermissionDenied，不能据此认为没有显示器。Linux 的 displays 只统计 DRM status=connected 的连接视图，不保证当前活动，也不等于物理显示器数量。默认不读取含标识的 EDID，name 为 Restricted/PrivacyRedacted；显式 --include-sensitive --authorized 后仅解析 EDID 1.3/1.4 基础块的产品名称，OS 权限仍生效，序列号不导出。Linux 宽高仍 Unsupported，绝不把 modes 列表或 EDID 时序当作当前模式；状态 unknown/无法完整枚举时不会返回成功空表。Linux 同样静态缓存，变化后需新建实例。macOS 新增公开 Core Graphics 活动视图，宽高来自当前显示模式的 pixelWidth/pixelHeight，不是逻辑 points、面板原生分辨率或 Windows 信号尺寸。硬件镜像可能只列主显示，不作为物理显示器计数。名称保持 Unsupported，不查询 EDID/稳定标识；本轮原生 CI 与独立 SDK 对照已完成，实际状态见[验证记录](macos-display-validation.md)。文本命令契约见 [ADR 0022](adr/0022-display-cli.md)，[本轮验证](display-text-validation.md)与各平台历史设备证据分开记录。
 
 ## C 与 Python
 

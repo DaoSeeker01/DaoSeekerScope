@@ -1,5 +1,7 @@
 # 发布与迁移路线
 
+2026-10-19 新增 `dscope display`：文本读取现有快照，区分 Windows 信号像素、macOS 模式像素与字段缺失状态；不改变采集或隐私规则。CLI crate 的公开 `Command` 新增 `Display`，开发版穷举匹配调用方须补分支；核心 Rust API、C ABI 1/Schema 1、依赖、feature 与 MIT 不变。见 [ADR 0022](adr/0022-display-cli.md) 和[本轮验证](display-text-validation.md)。仓库同日经维护者授权改为公开；这不等于 crates.io 或 release 制品已发布。
+
 2026-10-18 macOS 显示器开发增量：通过公开 Core Graphics 枚举 active-for-drawing 视图和当前模式像素，名称 Unsupported，不查询名称/EDID/稳定标识。固定 1025 槽位防止截断成功、最多三轮拓扑复核、Copy/Release RAII 与字段隔离见 [ADR 0021](adr/0021-macos-display.md)。Rust 模型/签名、C ABI 1、Schema 1 形状不变，仅补充像素字段描述；无新依赖、锁或公开 feature 变化，仍 MIT。[本轮验证](macos-display-validation.md)完成独立 C SDK/CLI/C 对照、三平台 CI、八包、fuzz/内存与基准归档；实体 Mac 验证延期。
 
 2026-10-17 Linux 显示器有限增量：提供 DRM connected 连接视图，默认不读取 EDID、名称为 PrivacyRedacted；仅双重显式授权后读取基础块产品名称。当前像素宽高仍 Unsupported，不使用 modes/EDID 时序冒充当前分辨率。静态缓存、错误/限额与隐私契约见 [ADR 0020](adr/0020-linux-display.md)。公共模型、Schema 1、C ABI 1、依赖和锁不变；隐藏 fuzzing 入口扩展既有 dmi_text。动态示例仅为合成 fixture 增加 authorize 指令，不是生产授权协议。测试临时目录加原子序号，修复并发毫秒命名碰撞。[本轮验证](linux-display-validation.md)完成三平台 CI、26 项非 root 显示器场景及既有 fuzz/内存/打包回归；原生 runner 只确认连接视图，实体 Linux/EDID 名称阳性仍待设备验证。

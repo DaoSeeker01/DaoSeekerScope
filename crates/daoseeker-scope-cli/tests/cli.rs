@@ -92,6 +92,7 @@ fn every_text_command_keeps_metadata_and_json_roundtrips() {
         "memory",
         "gpu",
         "disk",
+        "display",
         "network",
         "battery",
         "sensors",
@@ -171,11 +172,44 @@ fn storage_text_and_json_preserve_capacity_states_and_privacy() {
 }
 #[test]
 fn help_version_and_usage_codes() {
-    assert!(cli(&["--help"]).status.success());
+    let help = cli(&["--help"]);
+    assert!(help.status.success());
+    assert!(String::from_utf8_lossy(&help.stdout).contains("display"));
     assert!(cli(&["--version"]).status.success());
     assert_eq!(cli(&["bad"]).status.code(), Some(2));
     assert_eq!(cli(&["--include-sensitive"]).status.code(), Some(2));
     assert_eq!(cli(&["--json", "--json"]).status.code(), Some(2));
+}
+
+#[test]
+fn display_text_uses_public_snapshot_states_and_explicit_sensitive_warning() {
+    let output = cli(&["display"]);
+    assert!(output.status.success() && output.stderr.is_empty());
+    let text = String::from_utf8(output.stdout).expect("text");
+    assert!(text.starts_with("Displays: "));
+    if text.contains("Display entry ") {
+        assert!(text.contains("Name: ") && text.contains("physical monitor count"));
+        assert!(text.contains("panel-native resolution"));
+        #[cfg(target_os = "windows")]
+        assert!(text.contains("Signal width pixels: ") && text.contains("Signal height pixels: "));
+        #[cfg(target_os = "macos")]
+        assert!(text.contains("Mode width pixels: ") && text.contains("Mode height pixels: "));
+        #[cfg(target_os = "linux")]
+        {
+            assert!(text.contains("Name: Restricted (Sysfs, Some(PrivacyRedacted))"));
+            assert!(text.contains("Width pixels: Unsupported (Drm, Some(NotSupported))"));
+        }
+    }
+    // New processes can observe topology changes; never compare their counts.
+    let output = cli(&["display", "--json"]);
+    assert!(output.status.success() && output.stderr.is_empty());
+    assert!(daoseeker_scope::from_json(&output.stdout).is_ok());
+    let denied = cli(&["display", "--include-sensitive"]);
+    assert_eq!(denied.status.code(), Some(2));
+    assert!(denied.stdout.is_empty());
+    let authorized = cli(&["display", "--include-sensitive", "--authorized"]);
+    assert!(authorized.status.success());
+    assert!(String::from_utf8_lossy(&authorized.stderr).contains("Warning"));
 }
 #[test]
 fn json_is_full_roundtrippable_and_redacted() {
