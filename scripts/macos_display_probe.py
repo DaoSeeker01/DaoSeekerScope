@@ -65,7 +65,10 @@ def compare(probe: dict[str, Any], report: dict[str, Any]) -> dict[str, Any]:
             raise ValidationFailure("sdk: error_with_values")
         for label in ("cli", "c_abi"):
             observed = report["observations"][label]["static.display_summary"]
-            if observed["source"] != "apple_api":
+            if observed["source"] != "apple_api" and not (
+                observed["source"] == "custom"
+                and observed["availability"] == "unsupported"
+            ):
                 raise ValidationFailure("sdk: source")
             if probe["status"] != 0:
                 if (
@@ -106,7 +109,11 @@ def compare(probe: dict[str, Any], report: dict[str, Any]) -> dict[str, Any]:
             sdk_status=probe["status"],
             entries=probe["entries"],
             dimensions=probe["dimensions"],
-            comparison="separate SDK/CLI/C active-view counts and mode-pixel/state multisets match; sequential calls, not atomic topology proof",
+            comparison=(
+                "separate SDK/CLI/C active-view counts and mode-pixel/state multisets match; sequential calls, not atomic topology proof"
+                if probe["status"] == 0
+                else "SDK error and CLI/C missing states match; default Unsupported/Custom may be preserved by composition; no successful native read inferred"
+            ),
         )
     except (KeyError, TypeError) as exc:
         raise ValidationFailure("sdk: malformed") from exc

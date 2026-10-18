@@ -16,6 +16,8 @@
 
 验收包括纯接口的空集合、计数/限额、错误映射、成对尺寸、字段隔离、三次拓扑重试、取消与静态缓存；独立 C SDK 探针、三平台构建/CLI/C/Python、Schema、八包、fuzz/内存回归。C 探针仅输出数量、像素和缺失状态，不输出 ID。CI 无活动对象或无模式时如实记录，不冒充尺寸阳性；实体 Retina/缩放、多屏、镜像、热插拔、远程/沙盒、峰值内存和长期原生泄漏仍待验证。
 
+统一组合器可能保留默认 Unsupported/Custom（例如原生返回 NotImplemented 时）；该状态没有列表/尺寸值，不代表成功调用或可用设备。守卫仅允许这种严格的缺失状态，拒绝 Available/Custom、伪造零值及错误元数据；不修改组合器优先级或公共 API。
+
 ## 官方依据
 
 - [活动显示列表和镜像语义](https://developer.apple.com/documentation/coregraphics/cggetactivedisplaylist(_:_:_:))。

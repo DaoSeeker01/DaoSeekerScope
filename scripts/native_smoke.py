@@ -532,7 +532,9 @@ def check_macos_displays(snapshot: dict[str, Any]) -> dict[str, Any]:
     """Active CG mode pixels; no names, IDs, physical-count or panel inference."""
     try:
         observed = snapshot["static_info"]["displays"]
-        if observed["source"] != "apple_api":
+        if observed["source"] != "apple_api" and not (
+            observed["availability"] == "unsupported" and observed["source"] == "custom"
+        ):
             raise ValidationFailure("display: collection_source")
         summary = {
             k: observed[k] for k in ("availability", "source", "reason", "observed_at")

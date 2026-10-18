@@ -95,6 +95,20 @@ class MacosDisplayGuards(unittest.TestCase):
             self.assertNotIn("entries", check_macos_displays(self.snapshot))
             probe = dict(status=code, entries=None, dimensions=None)
             self.assertEqual(compare(probe, self.report())["status"], "passed")
+        self.snapshot["static_info"]["displays"] = missing(
+            "not_supported", "unsupported"
+        )
+        self.snapshot["static_info"]["displays"]["source"] = "custom"
+        self.assertNotIn("entries", check_macos_displays(self.snapshot))
+        self.assertEqual(
+            compare(dict(status=1006, entries=None, dimensions=None), self.report())[
+                "status"
+            ],
+            "passed",
+        )
+        self.snapshot["static_info"]["displays"]["availability"] = "available"
+        with self.assertRaises(ValidationFailure):
+            check_macos_displays(self.snapshot)
 
     def test_independent_sdk_comparison_rejects_mismatch_and_extra_identifiers(
         self,

@@ -15,7 +15,9 @@
 
 ## 待执行与限制
 
-本轮尚未执行三平台原生 CI、实际 fuzz/Miri/ASan/cargo-deny、macOS 基准与独立 C SDK 探针。已准备 `cc -Wall -Wextra -Werror -std=c11 docs/research/macos_display_probe.c -framework CoreGraphics`，SDK static_assert 检查标量宽度/错误码，运行后与同源码 CLI/C 的数量、模式像素与缺失状态多重集合比较；顺序调用不是原子拓扑证明。SDK 报错、空视图或无模式时保留状态，不能称作尺寸读取成功。
+授权启动的先行 [CI 39080974981](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39080974981) 运行于 `5af71a1`，其中 macOS 原生任务及 SDK/CLI/C 对照成功，观察到一条活动视图、1024×768 模式像素。错误路径复核随后发现新守卫未兼容既有组合器保留 Unsupported/Custom 的行为；修正仅限严格缺失状态，不接受 Available/Custom 或伪造数值，也不修改采集代码/组合策略。先行 CI 的剩余任务被主动取消，由修正后源码的完整 CI 取代；不把先行任务成功当作整轮 CI 验收。
+
+上述本地阶段没有运行这些原生门禁；当前修正后源码的完整三平台 CI、实际 fuzz/Miri/ASan/cargo-deny 与 macOS 基准尚待重跑。原生 CI 使用 `cc -Wall -Wextra -Werror -std=c11 docs/research/macos_display_probe.c -framework CoreGraphics`，SDK static_assert 检查标量宽度/错误码，运行后与同源码 CLI/C 的数量、模式像素与缺失状态多重集合比较；顺序调用不是原子拓扑证明。SDK 报错、空视图或无模式时保留状态，不能称作尺寸读取成功。
 
 枚举固定 1025 槽位，1025 条拒绝，以便检测截断；另受默认 128/最大 1024 输出限额限制。前后 ID 集合变化最多重试三轮，失败为 TemporarilyUnavailable；模式 Copy 为 NULL 只影响该条目的尺寸对，不猜权限错误。零或溢出像素 InvalidData。通用 WindowServer 错误不等于 PermissionDenied 或 Sandbox，不读取残留 errno。
 

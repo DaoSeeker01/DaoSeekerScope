@@ -53,7 +53,11 @@ fn display_json_keeps_real_states_without_fabricating_resolution() {
     }
     #[cfg(target_os = "macos")]
     {
-        assert_eq!(displays.source(), daoseeker_scope::Source::AppleApi);
+        assert!(
+            displays.source() == daoseeker_scope::Source::AppleApi
+                || (displays.availability() == daoseeker_scope::Availability::Unsupported
+                    && displays.source() == daoseeker_scope::Source::Custom)
+        );
         if let Some(entries) = displays.value() {
             for entry in entries {
                 assert_eq!(
