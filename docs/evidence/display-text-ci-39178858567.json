@@ -1,0 +1,452 @@
+{
+  "report_version": 1,
+  "source_commit": "7da6f60c836ade85c70604215e3f0a79ad44bcff",
+  "implementation_commit": "560e6f16dd324df30c864988583f0b11a8ea17a3",
+  "implementation_to_ci_changes": [
+    "docs/display-text-validation.md",
+    "docs/evidence/display-text-local-560e6f1.json",
+    "docs/evidence/display-text-native-windows-560e6f1.json",
+    "docs/evidence/display-text-packages-windows-560e6f1.json",
+    "fuzz/corpus/cli_args/display-json"
+  ],
+  "run_id": 39178858567,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39178858567",
+  "event": "workflow_dispatch",
+  "ci_jobs": {
+    "linux-container": "success",
+    "miri": "success",
+    "fuzz-smoke": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "ffi-asan": "success",
+    "supply-chain": "success",
+    "desktop (windows-latest)": "success",
+    "desktop (macos-latest)": "success"
+  },
+  "native": {
+    "linux": {
+      "report": "display-text-native-linux-39178858567.json",
+      "display_text": {
+        "available_fields": 0,
+        "missing_fields": 3,
+        "entry_count": 1,
+        "collection_state": "Available",
+        "output_sha256": "fe4c869965015e232ec836caf7490fd966317858e97bb2c40c4b53e36b56cf63"
+      },
+      "displays": {
+        "cli": {
+          "availability": "available",
+          "source": "drm",
+          "reason": null,
+          "observed_at": 1792368137835,
+          "entries": 1,
+          "names_available": 0,
+          "name_metadata": [
+            {
+              "availability": "restricted",
+              "source": "sysfs",
+              "reason": "privacy_redacted",
+              "observed_at": null
+            }
+          ]
+        },
+        "c_abi": {
+          "availability": "available",
+          "source": "drm",
+          "reason": null,
+          "observed_at": 1792368137847,
+          "entries": 1,
+          "names_available": 0,
+          "name_metadata": [
+            {
+              "availability": "restricted",
+              "source": "sysfs",
+              "reason": "privacy_redacted",
+              "observed_at": null
+            }
+          ]
+        }
+      }
+    },
+    "darwin": {
+      "report": "display-text-native-darwin-39178858567.json",
+      "display_text": {
+        "available_fields": 2,
+        "missing_fields": 1,
+        "entry_count": 1,
+        "collection_state": "Available",
+        "output_sha256": "a2d9e413cc4ad096c273368908b8c6120e5f05200466107158adc9dec519b3dd"
+      },
+      "displays": {
+        "cli": {
+          "availability": "available",
+          "source": "apple_api",
+          "reason": null,
+          "observed_at": 1792368161939,
+          "entries": 1,
+          "names_available": 0,
+          "dimensions_available": 1,
+          "dimensions": [
+            {
+              "width_pixels": {
+                "value": 1024,
+                "availability": "available",
+                "source": "apple_api",
+                "observed_at": 1792368161939,
+                "reason": null
+              },
+              "height_pixels": {
+                "value": 768,
+                "availability": "available",
+                "source": "apple_api",
+                "observed_at": 1792368161939,
+                "reason": null
+              }
+            }
+          ]
+        },
+        "c_abi": {
+          "availability": "available",
+          "source": "apple_api",
+          "reason": null,
+          "observed_at": 1792368161974,
+          "entries": 1,
+          "names_available": 0,
+          "dimensions_available": 1,
+          "dimensions": [
+            {
+              "width_pixels": {
+                "value": 1024,
+                "availability": "available",
+                "source": "apple_api",
+                "observed_at": 1792368161974,
+                "reason": null
+              },
+              "height_pixels": {
+                "value": 768,
+                "availability": "available",
+                "source": "apple_api",
+                "observed_at": 1792368161974,
+                "reason": null
+              }
+            }
+          ]
+        }
+      }
+    },
+    "windows": {
+      "report": "display-text-native-windows-39178858567.json",
+      "display_text": {
+        "available_fields": 1,
+        "missing_fields": 2,
+        "entry_count": 1,
+        "collection_state": "Available",
+        "output_sha256": "ae71bc2e2f4e90c7130c4e5b8ff719232bb764bcb9e149ec75985417aadf2564"
+      },
+      "displays": {
+        "cli": {
+          "availability": "available",
+          "source": "win32",
+          "reason": null,
+          "observed_at": 1792368421839,
+          "entries": 1,
+          "names_available": 1,
+          "name_metadata": [
+            {
+              "availability": "available",
+              "source": "win32",
+              "reason": null,
+              "observed_at": 1792368421838
+            }
+          ],
+          "dimensions": [
+            {
+              "width_pixels": {
+                "value": null,
+                "availability": "unavailable",
+                "source": "win32",
+                "observed_at": null,
+                "reason": "invalid_data"
+              },
+              "height_pixels": {
+                "value": null,
+                "availability": "unavailable",
+                "source": "win32",
+                "observed_at": null,
+                "reason": "invalid_data"
+              }
+            }
+          ]
+        },
+        "c_abi": {
+          "availability": "available",
+          "source": "win32",
+          "reason": null,
+          "observed_at": 1792368422122,
+          "entries": 1,
+          "names_available": 1,
+          "name_metadata": [
+            {
+              "availability": "available",
+              "source": "win32",
+              "reason": null,
+              "observed_at": 1792368422122
+            }
+          ],
+          "dimensions": [
+            {
+              "width_pixels": {
+                "value": null,
+                "availability": "unavailable",
+                "source": "win32",
+                "observed_at": null,
+                "reason": "invalid_data"
+              },
+              "height_pixels": {
+                "value": null,
+                "availability": "unavailable",
+                "source": "win32",
+                "observed_at": null,
+                "reason": "invalid_data"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "display-text-package-evidence-linux-x64-39178858567.json",
+      "sha256": "066f0295bd4f26ec55d766c36bf6752f89fc9e8ce3bee48e3c4a89a2a22b4692",
+      "original_report_sha256": "066f0295bd4f26ec55d766c36bf6752f89fc9e8ce3bee48e3c4a89a2a22b4692"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "display-text-package-evidence-macos-arm64-39178858567.json",
+      "sha256": "066f0295bd4f26ec55d766c36bf6752f89fc9e8ce3bee48e3c4a89a2a22b4692",
+      "original_report_sha256": "066f0295bd4f26ec55d766c36bf6752f89fc9e8ce3bee48e3c4a89a2a22b4692"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "display-text-package-evidence-windows-x64-39178858567.json",
+      "sha256": "0a649548ac524219107d04b0980f47fdb650405dc57e2e605c708c0c55f57fd6",
+      "original_report_sha256": "eef53d095f98a12424c6330d66931001dcf711ba6349f9ff083f0e07c3fa5b1c"
+    }
+  },
+  "benchmarks": {
+    "linux": {
+      "path": "display-text-benchmark-linux-39178858567.json",
+      "sha256": "f728e244a81ed41a535aac3654a1593df23605065eb2bc29c690555e3e7eff15",
+      "original_report_sha256": "51c775a53071fbacfde398059602491e0ef1119f0cf0e2b9245ea1b0a4aae9b9"
+    },
+    "darwin": {
+      "path": "display-text-benchmark-darwin-39178858567.json",
+      "sha256": "6307ecf970f1957d6b7572b69af2792956f09bd1fc03467e223217e3990fc6c0",
+      "original_report_sha256": "cd5dc615fee1160cfb876b4ae9ce1c35b9bd640ee3bad3a4feabc588272ef98c"
+    }
+  },
+  "containers": {
+    "linux-battery-evidence.json": {
+      "sha256": "ea40ba3f5a4a2d15ecbad254d4af3afc50ba7e72b2fd3b572c80b09dec117b1f",
+      "samples_passed": 30
+    },
+    "linux-container-evidence.json": {
+      "sha256": "2018c51c5b5962bc5d17f94943c386de967f9818bfab26f75baaedd384455ea2",
+      "runtime_probes": {
+        "empty_proc": {
+          "status": "not_run",
+          "configuration": {
+            "user": "65534:65534",
+            "ReadonlyRootfs": true,
+            "NetworkMode": "none",
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges=true"
+            ],
+            "Memory": 268435456,
+            "MemorySwap": 268435456,
+            "PidsLimit": 32,
+            "NanoCpus": 1000000000
+          },
+          "exit_code": 128,
+          "docker_start_exit_code": 1,
+          "process_started": false,
+          "failure_category": "runtime_mount_error",
+          "probe_result": "runtime_rejected_mount"
+        }
+      }
+    },
+    "linux-display-evidence.json": {
+      "sha256": "1ba2f93f3acd5c246872fa2bf622d022d964ef2acbaf661767e4259b6f00cb7f",
+      "samples_passed": 26
+    },
+    "linux-dynamic-evidence.json": {
+      "sha256": "9def9bc9bd1c8fcb6765ca36e9189f152c14f73265bf0821d5ac4a585c12509d",
+      "samples_passed": 15
+    },
+    "linux-gpu-evidence.json": {
+      "sha256": "7c2d925f94f43792c34e99088902821ec56e4c677b41a697ea7cf6c2f6431190",
+      "samples_passed": 20
+    },
+    "linux-hwmon-evidence.json": {
+      "sha256": "429dfe93a6bb4ae73dc5580dab38d713c5a3c7078b9c56b43c5252fecfa455af",
+      "samples_passed": 47
+    },
+    "linux-memory-evidence.json": {
+      "sha256": "ccb60b1dc72017797ea48d71d415d54e13cdc3a5835a53cfd5dd2deac5245fca",
+      "samples_passed": 26
+    },
+    "linux-storage-evidence.json": {
+      "sha256": "54f0776342b0b769ed6e433e259f34634d0edbce5cc80e9485bb2460154b84f5",
+      "samples_passed": 21
+    }
+  },
+  "reports": {
+    "display-text-native-linux-39178858567.json": {
+      "path": "display-text-native-linux-39178858567.json",
+      "sha256": "63ae34975519c452876be65e098cd71abc02cd005d20620af1d764d90c4ca28c",
+      "original_report_sha256": "63ae34975519c452876be65e098cd71abc02cd005d20620af1d764d90c4ca28c"
+    },
+    "display-text-native-darwin-39178858567.json": {
+      "path": "display-text-native-darwin-39178858567.json",
+      "sha256": "9d86abd12de873eeed6ee1363d2f1978fbb390de43375637176205f29f3c451c",
+      "original_report_sha256": "9d86abd12de873eeed6ee1363d2f1978fbb390de43375637176205f29f3c451c"
+    },
+    "display-text-native-windows-39178858567.json": {
+      "path": "display-text-native-windows-39178858567.json",
+      "sha256": "1e01d757fd5664f6b0b6fa7649648a708dce0de9a323e453ecaac83149139ffe",
+      "original_report_sha256": "074dee37e0ad6aa7f221ec29ba0bdd9d40132217715ff982be40687276169349"
+    },
+    "display-text-package-evidence-linux-x64-39178858567.json": {
+      "path": "display-text-package-evidence-linux-x64-39178858567.json",
+      "sha256": "066f0295bd4f26ec55d766c36bf6752f89fc9e8ce3bee48e3c4a89a2a22b4692",
+      "original_report_sha256": "066f0295bd4f26ec55d766c36bf6752f89fc9e8ce3bee48e3c4a89a2a22b4692"
+    },
+    "display-text-package-evidence-macos-arm64-39178858567.json": {
+      "path": "display-text-package-evidence-macos-arm64-39178858567.json",
+      "sha256": "066f0295bd4f26ec55d766c36bf6752f89fc9e8ce3bee48e3c4a89a2a22b4692",
+      "original_report_sha256": "066f0295bd4f26ec55d766c36bf6752f89fc9e8ce3bee48e3c4a89a2a22b4692"
+    },
+    "display-text-package-evidence-windows-x64-39178858567.json": {
+      "path": "display-text-package-evidence-windows-x64-39178858567.json",
+      "sha256": "0a649548ac524219107d04b0980f47fdb650405dc57e2e605c708c0c55f57fd6",
+      "original_report_sha256": "eef53d095f98a12424c6330d66931001dcf711ba6349f9ff083f0e07c3fa5b1c"
+    },
+    "display-text-sdk-probe-39178858567.json": {
+      "path": "display-text-sdk-probe-39178858567.json",
+      "sha256": "be3f11903d2d39b3d47445ab613d91b3072faaa0893cc30588dc4219fd5562b4",
+      "original_report_sha256": "be3f11903d2d39b3d47445ab613d91b3072faaa0893cc30588dc4219fd5562b4"
+    },
+    "display-text-sdk-comparison-39178858567.json": {
+      "path": "display-text-sdk-comparison-39178858567.json",
+      "sha256": "2ac9f0217502d3df6a3701044bb3beb8860fe6e67b8fb769ae1b5e51b1705dcb",
+      "original_report_sha256": "2ac9f0217502d3df6a3701044bb3beb8860fe6e67b8fb769ae1b5e51b1705dcb"
+    },
+    "display-text-benchmark-linux-39178858567.json": {
+      "path": "display-text-benchmark-linux-39178858567.json",
+      "sha256": "f728e244a81ed41a535aac3654a1593df23605065eb2bc29c690555e3e7eff15",
+      "original_report_sha256": "51c775a53071fbacfde398059602491e0ef1119f0cf0e2b9245ea1b0a4aae9b9"
+    },
+    "display-text-benchmark-darwin-39178858567.json": {
+      "path": "display-text-benchmark-darwin-39178858567.json",
+      "sha256": "6307ecf970f1957d6b7572b69af2792956f09bd1fc03467e223217e3990fc6c0",
+      "original_report_sha256": "cd5dc615fee1160cfb876b4ae9ce1c35b9bd640ee3bad3a4feabc588272ef98c"
+    }
+  },
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "license": "MIT",
+  "dependencies_or_features_changed": false,
+  "schema_shape_changed": false,
+  "core_api_changed": false,
+  "cli_enum_added": "Command::Display; unreleased CLI crate exhaustive match requires new arm",
+  "local_evidence_index": "display-text-local-560e6f1.json",
+  "sdk_probe": {
+    "path": "display-text-sdk-probe-39178858567.json",
+    "sha256": "be3f11903d2d39b3d47445ab613d91b3072faaa0893cc30588dc4219fd5562b4",
+    "original_report_sha256": "be3f11903d2d39b3d47445ab613d91b3072faaa0893cc30588dc4219fd5562b4"
+  },
+  "sdk_comparison": {
+    "path": "display-text-sdk-comparison-39178858567.json",
+    "sha256": "2ac9f0217502d3df6a3701044bb3beb8860fe6e67b8fb769ae1b5e51b1705dcb",
+    "original_report_sha256": "2ac9f0217502d3df6a3701044bb3beb8860fe6e67b8fb769ae1b5e51b1705dcb"
+  },
+  "windows_sdk_probe": {
+    "summary": {
+      "status": 0,
+      "entries": 1,
+      "names_available": 1,
+      "dimensions_available": 0,
+      "dimensions": [
+        null
+      ]
+    },
+    "sha256": "8895f6b296e9fde773bf4ec7d34cb5eac4dd14b35e33432ffa029dd283955494",
+    "source_commit": "7da6f60c836ade85c70604215e3f0a79ad44bcff"
+  },
+  "rust_tests_including_doctests": {
+    "windows": 189,
+    "linux": 185,
+    "macos": 185
+  },
+  "python_tests_per_desktop": 88,
+  "python_source_files": 32,
+  "fuzz_targets_completed": 11,
+  "fuzz_campaigns": {
+    "Run cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512": {
+      "runs": 1053506,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 14697023,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 33116128,
+      "elapsed_seconds": 61
+    },
+    "Fuzz CPU state and bounded stat parsing": {
+      "runs": 2111203,
+      "elapsed_seconds": 61
+    },
+    "Fuzz meminfo parsing and field isolation": {
+      "runs": 5745571,
+      "elapsed_seconds": 61
+    },
+    "Fuzz uptime parsing and numeric boundaries": {
+      "runs": 33545002,
+      "elapsed_seconds": 61
+    },
+    "Fuzz power supply attribute boundaries": {
+      "runs": 33923413,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded hwmon millidegrees": {
+      "runs": 32107683,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded network counters and privacy": {
+      "runs": 6029676,
+      "elapsed_seconds": 61
+    },
+    "Fuzz Darwin routing message boundaries": {
+      "runs": 8552818,
+      "elapsed_seconds": 61
+    },
+    "Fuzz checked block sector conversion": {
+      "runs": 48797067,
+      "elapsed_seconds": 61
+    }
+  },
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "9b2016fcc59c7606f943f8a0b7cceccc894e2920ed99129b8eeab05d3ee147ff",
+  "limits": [
+    "CI is hosted OS runtime evidence, not physical Linux/Mac or monitor-count/panel-native resolution verification",
+    "Text and JSON processes observe independently; counts/values are not atomic comparisons",
+    "Text metadata does not prove a missing field was read successfully",
+    "Linux current pixels remain Unsupported and default EDID name redacted; macOS name Unsupported",
+    "No physical multi-monitor/mirror/Retina/hotplug acceptance or long fuzz/native leak/peak-memory measurement",
+    "No registry publication or release distribution"
+  ]
+}

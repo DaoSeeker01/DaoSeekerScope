@@ -1,6 +1,6 @@
 # ADR 0022：显示器命令行文本
 
-状态：开发版实施；本轮本机验证及未执行项见[验证记录](../display-text-validation.md)。
+状态：开发版实施，本机和三平台 CI 验收完成；实体设备等未执行项见[验证记录](../display-text-validation.md)。
 
 增加 `dscope display`。解析、限额、隐私选项、退出码沿用已有命令；`display --json` 仍输出完整 Schema v1 快照。文本只消费 `Snapshot.static_info.displays`，不查询原生 API、不读取 EDID、不改变缓存或采集范围。
 

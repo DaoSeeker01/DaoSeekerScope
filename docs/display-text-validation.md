@@ -22,6 +22,33 @@
 
 脱敏[原生报告](evidence/display-text-native-windows-560e6f1.json)、[打包报告](evidence/display-text-packages-windows-560e6f1.json)及[本轮索引和哈希](evidence/display-text-local-560e6f1.json)保留原始 source commit。归档时仅补充文档/证据，并移除新增 cli_args 种子的尾换行，避免解析出额外空参数；没有修改已验证的 Rust/平台采集代码。种子最终为 `display\n--json`，与解析单测覆盖的参数相同；这不算实际 fuzzer 运行证据。
 
-本轮没有启动新的 GitHub CI，也没有推送远程。Linux/macOS 原生运行、长期 fuzz、Miri/ASan 未重新执行，实体设备验证仍延期。不能引用上一轮通过结果代替本轮验收。
+以上是推送前的本机阶段记录；随后经维护者明确授权推送并执行了下述本轮 CI。实体设备验证仍按设备安排延期。
 
 无依赖或许可证变化；C ABI 1、Schema 1 形状不变。CLI crate 的 `Command::Display` 开发版源兼容性变化见 ADR；核心 API 不变。
+
+## 三平台 CI（2026-10-19）
+
+[运行 39178858567](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39178858567)，事件 workflow_dispatch，源码 `7da6f60c836ade85c70604215e3f0a79ad44bcff`，全部 8 项任务通过；没有 CI 修复或重跑。实现至 CI 之间只有本地验证归档和 cli_args 种子尾换行修正，Rust 展示/采集代码不变。
+
+| 平台 | Rust workspace / 八包独立测试（含 doctest） | Python 单测 | 原生 CLI/C/Python |
+|---|---|---|---|
+| Windows x64 | 189 / 189 | 88 | 五组检查、16 个进程通过 |
+| Linux x64 | 185 / 185 | 88 | 五组检查、16 个进程通过 |
+| macOS ARM64 | 185 / 185 | 88 | 五组检查、16 个进程通过 |
+
+三平台 fmt、clippy、无默认 feature、doc、Ruff/mypy（32 源文件）、Schema、文档、归档许可/头文件及安装均通过。Python 各执行 100 次默认 collect/free。记录见[本轮证据索引](evidence/display-text-ci-39178858567.json)，保留源码、各报告 SHA-256、完整工作流日志 SHA-256 和实际命令结果。
+
+显示器文本每平台成功展示一条 OS 视图，既不是实体显示器计数，也不代表所有字段都可用：
+
+- Windows：文本可用字段 1、缺失字段 2；CLI JSON 集合为 available/win32，名称状态单独保留于[原生报告](evidence/display-text-native-windows-39178858567.json)。本轮名称 Available，信号宽高均 Unavailable/InvalidData；不将缺失值补零，也不猜具体原生失败条件。不同进程的 JSON、文本和 SDK 是独立观测，不承诺拓扑原子一致。
+- Linux：文本可用字段 0、缺失字段 3；CLI JSON 集合为 available/drm，名称状态单独保留于[原生报告](evidence/display-text-native-linux-39178858567.json)。默认名称 Restricted/PrivacyRedacted；当前宽高 Unsupported，不把 modes/EDID 时序当作成功尺寸。不同进程的 JSON、文本和 SDK 是独立观测，不承诺拓扑原子一致。
+- macOS：文本可用字段 2、缺失字段 1；CLI JSON 集合为 available/apple_api，名称状态单独保留于[原生报告](evidence/display-text-native-darwin-39178858567.json)。本轮模式像素 1024×768，名称 Unsupported；[独立 C SDK 比较](evidence/display-text-sdk-comparison-39178858567.json)通过。不同进程的 JSON、文本和 SDK 是独立观测，不承诺拓扑原子一致。
+
+
+Linux 的八份容器回归报告通过，覆盖 CPU 15、内存/运行时长 26、电池 30、hwmon 47、整块存储 21、GPU 20、显示器 26 项及既有 DMI/输入检查。完整空 `/proc` 挂载仍被 OCI 拒绝，明确为 not_run，不是该场景已通过。
+
+本轮 11 个实际 libFuzzer 目标各运行至少 60 秒，包含新增 display 参数种子；Miri 8 项、Linux Rust FFI ASan 10 项和 cargo-deny 通过。短 campaign 不证明长期无漏洞，也不直接验证 Core Graphics/Win32 驱动内存边界。
+
+CI 还执行了 Linux/macOS 的整库采集基准；[性能记录](benchmarks.md)与索引中的原始日志保留实际参数和结果，不将它称为 CLI 启动/渲染性能。
+
+实体 Linux/macOS、多屏/镜像/Retina/热插拔、长期 fuzz/原生泄漏及峰值内存验证仍未完成；托管 runner 与合成容器不能替代这些设备证据。本轮没有 registry 发布或 release 制品分发。

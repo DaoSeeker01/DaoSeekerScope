@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "source_commit": "7da6f60c836ade85c70604215e3f0a79ad44bcff",
+  "sdk_status": 0,
+  "entries": 1,
+  "dimensions": [
+    {
+      "width": 1024,
+      "height": 768,
+      "reason": null
+    }
+  ],
+  "comparison": "separate SDK/CLI/C active-view counts and mode-pixel/state multisets match; sequential calls, not atomic topology proof"
+}

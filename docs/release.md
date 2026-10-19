@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-2026-10-19 新增 `dscope display`：文本读取现有快照，区分 Windows 信号像素、macOS 模式像素与字段缺失状态；不改变采集或隐私规则。CLI crate 的公开 `Command` 新增 `Display`，开发版穷举匹配调用方须补分支；核心 Rust API、C ABI 1/Schema 1、依赖、feature 与 MIT 不变。见 [ADR 0022](adr/0022-display-cli.md) 和[本轮验证](display-text-validation.md)。仓库同日经维护者授权改为公开；这不等于 crates.io 或 release 制品已发布。
+2026-10-19 新增 `dscope display`：文本读取现有快照，区分 Windows 信号像素、macOS 模式像素与字段缺失状态；不改变采集或隐私规则。CLI crate 的公开 `Command` 新增 `Display`，开发版穷举匹配调用方须补分支；核心 Rust API、C ABI 1/Schema 1、依赖、feature 与 MIT 不变。见 [ADR 0022](adr/0022-display-cli.md) 和[本轮验证](display-text-validation.md)，三平台原生 CI、八包、短 fuzz 和内存回归已通过。仓库同日经维护者授权改为公开；这不等于 crates.io 或 release 制品已发布。
 
 2026-10-18 macOS 显示器开发增量：通过公开 Core Graphics 枚举 active-for-drawing 视图和当前模式像素，名称 Unsupported，不查询名称/EDID/稳定标识。固定 1025 槽位防止截断成功、最多三轮拓扑复核、Copy/Release RAII 与字段隔离见 [ADR 0021](adr/0021-macos-display.md)。Rust 模型/签名、C ABI 1、Schema 1 形状不变，仅补充像素字段描述；无新依赖、锁或公开 feature 变化，仍 MIT。[本轮验证](macos-display-validation.md)完成独立 C SDK/CLI/C 对照、三平台 CI、八包、fuzz/内存与基准归档；实体 Mac 验证延期。
 

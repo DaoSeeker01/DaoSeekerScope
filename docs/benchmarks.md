@@ -203,3 +203,15 @@ CI 源码 `1231088bc97d005a7e3c516d865db14362baf8ed`，采集实现 `2cf2736`；
 | 合成快照 UTF-8 JSON | 373541 bytes |
 
 [环境、参数及原始日志](evidence/macos-display-benchmark-39081392549.json)与[原生报告](evidence/macos-display-native-darwin-39081392549.json)绑定。该基准为整个组合采集器，不隔离 Core Graphics 的 Copy/Get/Release、WindowServer IPC 或真实多屏时延；动态刷新使用静态缓存，不重扫显示器。未与旧代码做配对测量，不据此宣称性能改善/退化，不测驱动强制中止、峰值内存、长期原生泄漏或实体面板效果；这不是性能 SLA。
+
+
+## 显示器 CLI 切片的整库回归基准（2026-10-19）
+
+源码 `7da6f60c836ade85c70604215e3f0a79ad44bcff`，命令 `cargo bench --locked -p daoseeker-scope --bench collect`；Rust 1.96、bench 优化 profile、门面默认 serde；原生 max_entries=128，合成 backend 另设 1024、100 个传感器/1024 个网络条目。两个托管 runner 各执行一次采集基准；没有测量 CLI 启动或文本渲染。
+
+| 平台 | 首次 collect µs | 刷新 p50 / p95 / max µs（100 次） | 合成 collect µs / JSON bytes | 环境和原始日志 |
+|---|---|---|---|---|
+| Linux x64 | 1141 | 298 / 364 / 901 | 234 / 373541 | [完整记录](evidence/display-text-benchmark-linux-39178858567.json) |
+| macOS ARM64 | 12830 | 24 / 38 / 95 | 371 / 373541 | [完整记录](evidence/display-text-benchmark-darwin-39178858567.json) |
+
+上述为整个组合采集器，首次 collect 不含构造、动态刷新不重扫静态显示器。完整环境见各报告，CPU 产品字符串不是 runner 获配核数的证明。没有旧版配对样本，不据此宣称性能改善/退化；不测峰值内存、长期泄漏、原生调用强制中止或实体显示器，不是 SLA。
