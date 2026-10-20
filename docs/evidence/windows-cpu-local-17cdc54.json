@@ -1,0 +1,91 @@
+{
+  "source_revision": "17cdc547fc7557871ac5ab44b1857123cfdcd7b3",
+  "evidence_scope": "Windows x64 local single-group CPU; remote CI not run",
+  "overall": "passed",
+  "rust_workspace_and_isolated_tests_each": 208,
+  "python_tests": 94,
+  "python_static_files": 36,
+  "fuzz_harness_unit_tests": 2,
+  "real_fuzz_campaign": "not_run",
+  "cross_compile_only": [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-apple-darwin"
+  ],
+  "native_groups": 5,
+  "native_processes": 16,
+  "cpu_additional_child_processes": 2,
+  "cpu_sdk_samples": 4,
+  "cpu_rust_valid_dynamic_samples": 3,
+  "crate_archives": 8,
+  "registry_publication_verified": false,
+  "abi_version": 1,
+  "schema_version": 1,
+  "license": "MIT",
+  "new_dependency_packages": 0,
+  "binding_feature_added": "windows-sys/Win32_System_Threading",
+  "public_backend_added": "WindowsCpuBackend::new / Default",
+  "cpu_probe_git_blob": "7eecc7de2b9d8890707b863c192247fb319ca812",
+  "gate_scope": "Full Rust/Python gate ran on precommit code; committed Rust/Python files unchanged afterwards; clean-source native and isolated package validation then ran at source_revision.",
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "Ruff format/check, mypy --no-incremental --ignore-missing-imports, Python unittest discover, check_schema.py, check_project.py",
+    "cargo fmt --manifest-path fuzz/Cargo.toml --check",
+    "cargo test --locked --offline --manifest-path fuzz/Cargo.toml --lib",
+    "cargo build --locked -p daoseeker-scope --example dynamic_probe",
+    "pwsh -NoProfile -File scripts/build_c_example.ps1 -CpuProbe",
+    "python scripts/windows_cpu_smoke.py --output target/windows-cpu-clean.json",
+    "python scripts/native_smoke.py --output target/windows-cpu-native-clean.json",
+    "python scripts/check_packages.py --offline"
+  ],
+  "limitations": [
+    "single active processor group only; multi-group and hotplug untested",
+    "real API errors untested; injected failures tested separately",
+    "SDK and Rust intervals differ; no equality or causal load assertion",
+    "cooperative checks cannot interrupt a blocked native API",
+    "Linux/macOS compile-only in this round; no new remote CI or physical devices",
+    "CPU sampling overlapped local package compilation; not a load or performance benchmark",
+    "No process affinity changes; multi-group field Unsupported may retain Custom source under existing core merge policy",
+    "Partial capability describes implementation subset; consumers must inspect actual field availability",
+    "No long fuzz, peak-memory profiling, publication, or release distribution"
+  ],
+  "reports": {
+    "docs/evidence/windows-cpu-sdk-windows-17cdc54.json": {
+      "sha256_lf": "ec545a1c13d14a0f3d9adbe343ffc3c20a60c778145175d5dd249721a442ae90",
+      "bytes_lf": 2722
+    },
+    "docs/evidence/windows-cpu-native-windows-17cdc54.json": {
+      "sha256_lf": "5c47ba40ad626711d51dcf6592ae22fe5f66fb58410eaba8e8d234d75534e410",
+      "bytes_lf": 77563
+    },
+    "docs/evidence/windows-cpu-packages-windows-17cdc54.json": {
+      "sha256_lf": "dd93200e9eabf2d9311ca558cc022cd4aeba2f898492fbb9cd3a93be24b74c81",
+      "bytes_lf": 1926
+    }
+  },
+  "local_log_hashes": {
+    "windows-cpu-check.log": {
+      "sha256": "5c981883308bc4378ce146781ff977c50e7365b8f6b1860cade7fb6e416ec773",
+      "bytes": 24864
+    },
+    "windows-cpu-python.log": {
+      "sha256": "77c4a8987b30d9369c4a9105274f7e114dc6a6961254f8470a9fe5630669d5d2",
+      "bytes": 782
+    },
+    "windows-cpu-c.log": {
+      "sha256": "e694feeebaf47d44ec57e376a96de5d57ca431783a896e2af8d68f0392f07670",
+      "bytes": 165
+    },
+    "windows-cpu-fuzz-local.log": {
+      "sha256": "e224fbb2fd4a7c4cd7a311eb341f85c798eb688a640bfb1f34cec131ef656064",
+      "bytes": 968
+    },
+    "windows-cpu-packages.log": {
+      "sha256": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202",
+      "bytes": 49
+    },
+    "windows-cpu-native-clean.log": {
+      "sha256": "117cb7016d4e1aa4caf801508aef87c4898074ee346c9228370963e4f0ca5a5d",
+      "bytes": 82
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # ADR 0024：Windows CPU 直接采样与失败恢复
 
-状态：已实现并通过本机开发验证；本轮尚未执行三平台原生 CI。验证边界见[记录](../windows-cpu-validation.md)。
+状态：源码 17cdc54 已通过本机 SDK/完整门禁/八包独立验收；本轮尚未执行三平台原生 CI。验证边界见[记录](../windows-cpu-validation.md)。
 
 sysinfo 0.39.6 的 Windows PDH 路径在 Query::get 格式化失败时返回 Some(0)，refresh 失败也没有向适配层返回状态。这里是源码确认的错误传播缺口，不是真机复现了 PDH 故障。
 
