@@ -1,0 +1,92 @@
+{
+  "report_version": 1,
+  "implementation_commit": "eeb12da2d0b7633969e1dcc4ddedacdf06e7375a",
+  "recorded_for_date": "2026-10-20 Asia/Shanghai",
+  "overall": "local_checks_passed_remote_ci_not_run",
+  "verification_platform": {
+    "os": "Windows",
+    "architecture": "AMD64"
+  },
+  "reports": {
+    "windows-memory-native-windows-eeb12da.json": {
+      "sha256": "b1bd1e8166b8ae2c4d7437100972f5003825034cd2bb01d3ef07c0183f7b425f",
+      "original_report_sha256": "43e0ab5df8067d047d3da8435be1299465a0bc1f4bebf3df084546ec8a92c3d1"
+    },
+    "windows-memory-pressure-windows-eeb12da.json": {
+      "sha256": "b8f45292da103e026f3a2a01b39e52181a659df488272166758264a17d96d004",
+      "original_report_sha256": "0c635dd45c7f2c6d7e94df1198ace2b7cafad4d9e4d515d96644ecc002906b85"
+    },
+    "windows-memory-packages-windows-eeb12da.json": {
+      "sha256": "5b530410e1e3c4f88b0e4cba02aed7c26771be342341122f33425d96c8a2f089",
+      "original_report_sha256": "cde2e72ad1773c48de42575d337f52363dfe4185e192f99e6fa55988e17b1e72"
+    }
+  },
+  "logs_sha256": {
+    "check": "85b0c8025cce0963ae2fea3e421211a4f68b57b65212f28653fdfcf9e4c2a02b",
+    "python": "24189f44e5b0040fba5cfdd49c1fca2a0f45067dce4473c87a6ee0181c25c3a7",
+    "fuzz-local": "e552d2d457ee58257cab8d93386048a7522b128239f9f5d3cf12908891c7c279",
+    "c": "1fb7b4acf3ef54d5afdfb1122088309ead0c39b48e07bed5a94a73884b0d959c",
+    "native": "117cb7016d4e1aa4caf801508aef87c4898074ee346c9228370963e4f0ca5a5d",
+    "pressure": "1e78859e1474f61b2f344fedcc28d4be16d104036b1014f66dc4f2bd9f1a6db4",
+    "packages": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202"
+  },
+  "commands": {
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross": {
+      "status": "passed",
+      "rust_tests_including_doctests": 199,
+      "linux_x64": "compile_only",
+      "macos_arm64": "compile_only"
+    },
+    "Ruff format/check + mypy + unittest": {
+      "status": "passed",
+      "python_tests": 91,
+      "python_source_files": 34
+    },
+    "schema and documentation guards": "passed",
+    "fuzz format and local harness": {
+      "status": "passed",
+      "tests": 2,
+      "actual_fuzzer_campaign": false
+    },
+    "C ABI and public SDK probe build": "passed",
+    "native_smoke.py": {
+      "status": "passed",
+      "groups": 5,
+      "processes": 16,
+      "python_collect_free_repetitions": 100
+    },
+    "windows_memory_smoke.py": {
+      "status": "passed",
+      "phases": 3,
+      "pressure_bytes": 67108864,
+      "static_total_cached": true,
+      "available_values_changed": true
+    },
+    "check_packages.py --offline": {
+      "status": "passed",
+      "archives": 8,
+      "isolated_tests_including_doctests": 199,
+      "registry_publication_verified": false
+    }
+  },
+  "compatibility": {
+    "public_backend_added": "WindowsMemoryBackend::new/Default",
+    "facade_signatures_changed": false,
+    "domain_model_changed": false,
+    "windows_memory_source": "win32; standalone SysinfoBackend consumers must register direct backend or use facade",
+    "c_abi_version": 1,
+    "schema_version": 1,
+    "dependencies_or_features_changed": false,
+    "lock_files_unchanged": true,
+    "license": "MIT"
+  },
+  "sdk_c_source_sha256": "5d6cb23e5ad05e7f585f0927a1044b056da1fbac40a05125fd02023f1b9b41b5",
+  "limits": [
+    "Native API failures/permission denial are not induced; error/recovery evidence is synthetic unit tests",
+    "Pressure and general native smoke ran while local package compilation was active; volatile samples are not a causal or fixed-delta benchmark",
+    "SDK and Rust are sequential independent observations, not one atomic snapshot",
+    "No physical DIMM/Job memory limit/CPU freshness/macOS memory validation",
+    "No new three-platform native CI, actual fuzz/Miri/ASan campaign or benchmark",
+    "No remote push, registry publication or release distribution in this local phase"
+  ]
+}
