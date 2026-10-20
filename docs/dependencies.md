@@ -1,5 +1,7 @@
 # 锁定依赖许可证清单
 
+2026-10-20 Windows CPU 直接查询沿用 windows-sys 0.61.2，增加 Windows target 的 Win32_System_Threading 绑定 feature；不增加包、版本或 Cargo.lock 变化，面向用户的 crate feature 集合不变。SDK 绑定仍可选 MIT OR Apache-2.0，项目仍 MIT；公开 C SDK 探针没有复制系统实现。
+
 2026-10-19 Windows 内存直接查询使用已有 windows-sys 0.61.2 和现有 SystemInformation feature；不增加依赖、feature、锁文件或许可证变更。独立 C SDK 探针是开发工具，项目仍 MIT。
 
 2026-10-15 Windows GPU 使用已锁定的 windows 0.62.2，增加为 Windows crate 的显式 target 依赖，关闭默认 features，仅启用 std/Win32_Foundation/Win32_Graphics_Dxgi/Win32_Graphics_Dxgi_Common。两个 Cargo.lock 仅增加依赖边，包和版本不变。SDK 绑定许可证 MIT OR Apache-2.0，项目仍 MIT；sysinfo 的默认 feature 路线不变。

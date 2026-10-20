@@ -1,16 +1,17 @@
 //! Narrow sysinfo adapter. Process/user/device identifier enumeration is disabled.
 #![forbid(unsafe_code)]
 use daoseeker_scope_core::*;
-#[cfg(not(target_os = "linux"))]
+#[cfg(not(any(target_os = "linux", target_os = "windows")))]
 use std::time::Instant;
 
 /// Generic OS/CPU/memory adapter. Linux CPU usage, memory and uptime are
 /// delegated to `daoseeker-scope-linux` for explicit fresh-read failures.
 /// Register both backends, or use the desktop facade, for those Linux fields.
 /// On Windows, physical-memory fields require WindowsMemoryBackend or the facade.
+/// Windows dynamic CPU usage requires WindowsCpuBackend or the facade.
 pub struct SysinfoBackend {
     system: sysinfo::System,
-    #[cfg(not(target_os = "linux"))]
+    #[cfg(not(any(target_os = "linux", target_os = "windows")))]
     last_cpu_sample: Option<Instant>,
 }
 impl Default for SysinfoBackend {
@@ -22,7 +23,7 @@ impl SysinfoBackend {
     pub fn new() -> Self {
         Self {
             system: sysinfo::System::new(),
-            #[cfg(not(target_os = "linux"))]
+            #[cfg(not(any(target_os = "linux", target_os = "windows")))]
             last_cpu_sample: None,
         }
     }
@@ -57,8 +58,10 @@ impl Backend for SysinfoBackend {
         .into_iter()
         .map(|field| Capability::new(field, CapabilityLevel::Partial, Source::Sysinfo))
         .chain({
-            #[cfg(not(target_os = "linux"))]
+            #[cfg(not(any(target_os = "linux", target_os = "windows")))]
             let fields = ["cpu_usage_percent", "runtime.uptime_seconds"];
+            #[cfg(target_os = "windows")]
+            let fields = ["runtime.uptime_seconds"];
             #[cfg(target_os = "linux")]
             let fields: [&str; 0] = [];
             fields
@@ -114,7 +117,7 @@ impl Backend for SysinfoBackend {
         #[cfg(not(any(target_os = "linux", target_os = "windows")))]
         self.system.refresh_memory();
         context.check()?;
-        #[cfg(not(target_os = "linux"))]
+        #[cfg(not(any(target_os = "linux", target_os = "windows")))]
         let cpu_usage_percent = {
             let now = Instant::now();
             let ready = self.last_cpu_sample.is_some_and(|previous| {
@@ -152,7 +155,10 @@ impl Backend for SysinfoBackend {
             }
             result.runtime.uptime_seconds =
                 Observed::available(sysinfo::System::uptime(), Source::Sysinfo, at);
-            result.cpu_usage_percent = cpu_usage_percent;
+            #[cfg(not(target_os = "windows"))]
+            {
+                result.cpu_usage_percent = cpu_usage_percent;
+            }
             result
         };
         Ok(result)
@@ -163,17 +169,25 @@ mod tests {
     use super::*;
     #[cfg(target_os = "windows")]
     #[test]
-    fn standalone_adapter_does_not_mask_direct_memory_failures() {
+    fn standalone_adapter_does_not_mask_direct_memory_or_cpu_failures() {
         let backend = SysinfoBackend::new();
         assert!(!backend.capabilities().iter().any(|c| {
-            ["system.memory.total_usable_bytes", "memory_available_bytes"]
-                .contains(&c.field.as_str())
+            [
+                "system.memory.total_usable_bytes",
+                "memory_available_bytes",
+                "cpu_usage_percent",
+            ]
+            .contains(&c.field.as_str())
         }));
         let hardware = HardwareBuilder::default()
             .with_backend(0, backend)
             .build()
             .expect("build");
         let snapshot = hardware.collect().expect("collect");
+        assert_eq!(
+            snapshot.dynamic.cpu_usage_percent.availability(),
+            Availability::Unsupported
+        );
         assert_eq!(
             snapshot
                 .static_info

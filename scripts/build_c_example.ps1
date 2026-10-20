@@ -2,7 +2,8 @@ param(
     [string]$VcRoot,
     [string]$SdkRoot,
     [string]$SdkVersion,
-    [switch]$MemoryProbe
+    [switch]$MemoryProbe,
+    [switch]$CpuProbe
 )
 $ErrorActionPreference = 'Stop'
 if (!$VcRoot) {
@@ -46,6 +47,11 @@ try {
         & $compiler /nologo /W4 /WX /std:c11 /Fetarget\memory-probe.exe /Fotarget\memory-probe.obj docs\research\memory_probe.c
         if ($LASTEXITCODE -ne 0) { throw "memory SDK probe compile failed: $LASTEXITCODE" }
         Write-Output 'Memory SDK probe compiled (run windows_memory_smoke.py separately)'
+    }
+    if ($CpuProbe) {
+        & $compiler /nologo /W4 /WX /std:c11 /Fetarget\cpu-probe.exe /Fotarget\cpu-probe.obj docs\research\cpu_probe.c
+        if ($LASTEXITCODE -ne 0) { throw "CPU SDK probe compile failed: $LASTEXITCODE" }
+        Write-Output 'CPU SDK probe compiled (run windows_cpu_smoke.py separately)'
     }
 } finally {
     $env:INCLUDE = $oldInclude

@@ -1,5 +1,9 @@
 //! Ordinary-user Windows enhancement, compiled only on Windows.
 #[cfg(any(target_os = "windows", test))]
+mod cpu;
+#[cfg(target_os = "windows")]
+pub use cpu::WindowsCpuBackend;
+#[cfg(any(target_os = "windows", test))]
 mod memory;
 #[cfg(target_os = "windows")]
 pub use memory::WindowsMemoryBackend;

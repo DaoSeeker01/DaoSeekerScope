@@ -26,9 +26,15 @@ fn desktop_minimum_real_read_and_refresh() {
         snapshot.static_info.system.device.serial_number.reason(),
         Some(ReasonCode::PrivacyRedacted)
     );
+    let unsupported_cpu = cfg!(target_os = "windows")
+        && snapshot.dynamic.cpu_usage_percent.availability() == Availability::Unsupported;
     assert_eq!(
         snapshot.dynamic.cpu_usage_percent.reason(),
-        Some(ReasonCode::TemporarilyUnavailable)
+        Some(if unsupported_cpu {
+            ReasonCode::NotSupported
+        } else {
+            ReasonCode::TemporarilyUnavailable
+        })
     );
     std::thread::sleep(std::time::Duration::from_millis(300));
     let dynamic = hardware.refresh_dynamic().expect("refresh");
@@ -36,6 +42,9 @@ fn desktop_minimum_real_read_and_refresh() {
     assert!(dynamic.runtime.uptime_seconds.value().is_some());
     #[cfg(target_os = "windows")]
     {
+        if !unsupported_cpu {
+            assert_eq!(dynamic.cpu_usage_percent.source(), Source::Win32);
+        }
         assert_eq!(dynamic.memory_available_bytes.source(), Source::Win32);
         assert_eq!(
             snapshot
@@ -61,12 +70,20 @@ fn desktop_minimum_real_read_and_refresh() {
             Source::Procfs
         );
     }
-    assert!(
-        dynamic
-            .cpu_usage_percent
-            .value()
-            .is_some_and(|n| n.is_finite() && (0.0..=100.0).contains(n))
-    );
+    if unsupported_cpu {
+        assert_eq!(
+            dynamic.cpu_usage_percent.availability(),
+            Availability::Unsupported
+        );
+        assert!(dynamic.cpu_usage_percent.value().is_none());
+    } else {
+        assert!(
+            dynamic
+                .cpu_usage_percent
+                .value()
+                .is_some_and(|n| n.is_finite() && (0.0..=100.0).contains(n))
+        );
+    }
 }
 #[cfg(feature = "serde")]
 #[test]
