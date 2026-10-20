@@ -23,3 +23,12 @@ SDK 探针每帧获取/释放 host right 和 OOL VM 数组，固定 1024×4 栈�
 CI 已准备公开 SDK 编译、持久刷新及 artifact 保留步骤，**尚未运行本轮远程 CI**。macOS SDK C 编译/符号链接、原生读取/释放、App Sandbox、真实拒绝/故障、处理器数量变化、Intel/Apple Silicon 实体机、长期 tick 绕回与峰值内存均未验证。macOS 物理设备按维护者决定延期；不能用交叉编译替代。sysinfo 仍为静态品牌等字段内部枚举，本轮不承诺其内部 OS 分配有硬上限；新 backend 自有复制/基线分别最多 16 KiB，MIG 的先行 OS 分配不能被本库强行限定。
 
 公共模型、ABI 1/Schema 1、依赖包/版本/features/锁文件与 MIT 不变。新增公开 MacosCpuBackend::new()/Default，门面自动注册；macOS 单独 SysinfoBackend 用户需补注册。核数/利用率来源从 Sysinfo 改为 AppleApi，能力 Partial；不能再依赖失败时的 1 核/0%。
+
+## 干净源码本机归档
+
+源码 `359af7e3008a285154255925182644589728e1aa`，工作区干净。完整[本机证据索引](evidence/macos-cpu-local-359af7e.json)记录上述命令、日志哈希和明确的 not_run 项；不含伪造的 macOS 读取报告。
+
+- [Windows 原生回归](evidence/macos-cpu-native-windows-359af7e.json)：五组、16 个进程通过；CPU/内存仍为本机已有 Win32 路线。这不是 Mac 的 SDK 或资源释放实测。
+- [Windows 八包独立验证](evidence/macos-cpu-packages-windows-359af7e.json)：实际 Cargo 归档、原生验证、218 项独立 Rust 测试、MIT/头文件/锁检查及 dscope 0.1.0 安装/完整 JSON 通过。兄弟包用本地 patch，不代表 registry 验收，更不代表 Mach 符号链接成功。
+
+本轮远程三平台 CI/SDK 仍待运行。下一步先在托管 macOS runner 编译并运行公开 C SDK 和持久 Rust 采样，再单独处理 macOS 内存；实体机验证继续延期。

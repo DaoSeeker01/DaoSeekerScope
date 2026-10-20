@@ -1,0 +1,97 @@
+{
+  "source_commit": "359af7e3008a285154255925182644589728e1aa",
+  "overall": "passed",
+  "scope": "Windows local regression plus macOS compile-only; not macOS native acceptance",
+  "host_rust_tests_including_doctests": 218,
+  "isolated_windows_package_tests": 218,
+  "portable_macos_cpu_tests": 10,
+  "python_tests": 98,
+  "python_source_files": 38,
+  "macos_arm64_all_target_clippy": "passed -D warnings, compile-only",
+  "cross_compile_only": [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-apple-darwin"
+  ],
+  "macos_native_sdk_c_build": "not_run",
+  "macos_native_symbol_linking": "not_run",
+  "macos_native_cpu_reads": "not_run",
+  "macos_x64_compile": "not_run",
+  "real_macos_permission_denial": "not_run",
+  "physical_macos": "deferred by user until equipment available",
+  "native_windows_groups": 5,
+  "native_windows_processes": 16,
+  "native_macos_sdk_probe_processes_run": 0,
+  "actual_fuzz_campaign": "not_run",
+  "fuzz_harness_unit_tests": 2,
+  "miri_asan_benchmark": "not_run",
+  "crate_archives": 8,
+  "registry_publication_verified": false,
+  "c_abi_version": 1,
+  "schema_version": 1,
+  "license": "MIT",
+  "new_packages_features_lock_changes": false,
+  "public_api_added": "MacosCpuBackend::new / Default; facade registers automatically",
+  "migration": "macOS logical count and dynamic CPU move Sysinfo -> AppleApi/Partial; standalone SysinfoBackend must add new backend",
+  "sdk_c_source_sha256": "c24825fa4ee5e4e35d00b0f7c8abb79e7438804eb34e2b7c7ddc2515b5a70a29",
+  "gate_scope": "Full gates ran on precommit code; committed runtime and guard code unchanged afterwards; clean source Windows native and isolated package checks then ran",
+  "reports": {
+    "docs/evidence/macos-cpu-native-windows-359af7e.json": {
+      "sha256_lf": "5b66d80af3d2b665b931b8a551bc5a03053fa59cbd93b6f9e70eb02dd1bb8885",
+      "bytes_lf": 77547
+    },
+    "docs/evidence/macos-cpu-packages-windows-359af7e.json": {
+      "sha256_lf": "35ab9b99debbde09824da9a7c655c7820e8265b706b3e2a8bbb7fe65078433e3",
+      "bytes_lf": 1926
+    }
+  },
+  "local_log_hashes": {
+    "macos-cpu-check.log": {
+      "sha256": "548f55df858856392dedfc31282a077f895ad470b40fb89e9337059753bc98f0",
+      "bytes": 24786
+    },
+    "macos-cpu-cross-clippy.log": {
+      "sha256": "12a6c076dc14ae0ae431b176c5c46c5f8a3c0bef6312bb62dc7f7257bdb88ef5",
+      "bytes": 867
+    },
+    "macos-cpu-python.log": {
+      "sha256": "1130a01ca0d10ef43fcf5f7f30a2ec6234334bf5cadbbfff8c095c127cc02ac5",
+      "bytes": 856
+    },
+    "macos-cpu-fuzz-local.log": {
+      "sha256": "5d023d4957089a114758e677090fa31d58fcd9fcf5c38b5f45a1badbc3e33076",
+      "bytes": 930
+    },
+    "macos-cpu-c.log": {
+      "sha256": "7fc7a69c094230f05e89488ca5466b3fe24e7514d28139411815ba1bc23d9806",
+      "bytes": 90
+    },
+    "macos-cpu-native-clean.log": {
+      "sha256": "117cb7016d4e1aa4caf801508aef87c4898074ee346c9228370963e4f0ca5a5d",
+      "bytes": 82
+    },
+    "macos-cpu-packages.log": {
+      "sha256": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202",
+      "bytes": 49
+    }
+  },
+  "limitations": [
+    "No macOS native result; cross checks cannot verify linking or successful reads/releases",
+    "Mach API errors, topology, counter wrap and release failures use injected portable tests",
+    "VM output is allocated by OS before bounds validation; library copies/baseline each <=16 KiB; old sysinfo metadata allocation not newly bounded",
+    "Per-CPU decreases reset baseline, but same-count reorder/ABA and multiple long-time wraps cannot always be detected",
+    "Cooperative timeout cannot forcibly interrupt kernel calls",
+    "No physical Intel/Apple Silicon, sandbox, long leak/peak-memory or performance proof",
+    "Existing core merge may retain Unsupported/Custom; Partial does not guarantee field availability",
+    "macOS memory freshness remains separate future work"
+  ],
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "cargo clippy --locked --workspace --all-targets --all-features --target aarch64-apple-darwin -- -D warnings",
+    "Ruff format/check; mypy --no-incremental --ignore-missing-imports; Python unittest discover; check_schema.py; check_project.py",
+    "cargo fmt --manifest-path fuzz/Cargo.toml --check",
+    "cargo test --locked --offline --manifest-path fuzz/Cargo.toml --lib",
+    "pwsh -NoProfile -File scripts/build_c_example.ps1",
+    "python scripts/native_smoke.py --output target/macos-cpu-native-clean.json",
+    "python scripts/check_packages.py --offline"
+  ]
+}
