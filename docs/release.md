@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-2026-10-19 Windows 内存增量：新加 `WindowsMemoryBackend::new()` / `Default`，门面自动注册；既有 `WindowsBackend` 单元构造不变。Windows 总内存/可用内存从 sysinfo Partial 迁至直接 Win32 读取，精确处理 BOOL/错误码与总量缓存变化。单独 SysinfoBackend 的 Windows 消费者需迁移。核心模型、C ABI 1/Schema 1、依赖/锁/features 与 MIT 不变；CPU 和 macOS 路径不变，见 [ADR 0023](adr/0023-windows-memory.md) 与[本轮验证](windows-memory-validation.md)。
+2026-10-19 Windows 内存增量：新加 `WindowsMemoryBackend::new()` / `Default`，门面自动注册；既有 `WindowsBackend` 单元构造不变。Windows 总内存/可用内存从 sysinfo Partial 迁至直接 Win32 读取，精确处理 BOOL/错误码与总量缓存变化。单独 SysinfoBackend 的 Windows 消费者需迁移。核心模型、C ABI 1/Schema 1、依赖/锁/features 与 MIT 不变；CPU 和 macOS 路径不变，见 [ADR 0023](adr/0023-windows-memory.md) 与[本轮验证](windows-memory-validation.md)；2026-10-20 三平台 CI、SDK/有界压力实验、八包、短 fuzz/内存回归通过。
 
 2026-10-19 新增 `dscope display`：文本读取现有快照，区分 Windows 信号像素、macOS 模式像素与字段缺失状态；不改变采集或隐私规则。CLI crate 的公开 `Command` 新增 `Display`，开发版穷举匹配调用方须补分支；核心 Rust API、C ABI 1/Schema 1、依赖、feature 与 MIT 不变。见 [ADR 0022](adr/0022-display-cli.md) 和[本轮验证](display-text-validation.md)，三平台原生 CI、八包、短 fuzz 和内存回归已通过。仓库同日经维护者授权改为公开；这不等于 crates.io 或 release 制品已发布。
 

@@ -31,6 +31,35 @@
 
 这轮本机实验与打包编译并行执行，系统其他进程也会影响可用内存。以上是顺序观测，不从变化量推断分配的精确影响，不要求与 C 同值，不是隔离的性能基准。字段每次读 API 的调用次数和错误恢复由独立合成接口测试验证，实际 OS 成功路径由本机实验验证；二者不可混称为真实故障注入。
 
-[本轮索引](evidence/windows-memory-local-eeb12da.json)保留命令、验证边界、报告/日志 SHA-256 和 C SDK 源码 Git blob 哈希。本轮三平台原生 CI、实际 fuzz、Miri/ASan 尚未执行；macOS 内存和 Windows/macOS CPU 新鲜度未解决。没有远程推送、registry 或 release 发布。
+[本轮索引](evidence/windows-memory-local-eeb12da.json)保留命令、验证边界、报告/日志 SHA-256 和 C SDK 源码 Git blob 哈希。以上为本机阶段记录；随后经维护者明确授权完成下述本轮推送及 CI。macOS 内存和 Windows/macOS CPU 新鲜度仍未解决；没有 registry 或 release 发布。
 
 新增公开 backend `WindowsMemoryBackend::new()` / `Default`，主库 Hardware API 与公共模型不变。Windows 两个内存字段来源迁至 Win32，单独 SysinfoBackend 消费方需注册新的 backend 或使用门面；既有 `WindowsBackend` 构造不变。C ABI 1/Schema 1、依赖、锁、feature 与 MIT 不变。
+
+
+## 三平台 CI（2026-10-20）
+
+[运行 39347249649](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39347249649)，事件 workflow_dispatch，源码 `d7d30f27ac646d35a03d316b16ed29a4fc6a6f3f`，8/8 任务成功；一次运行通过，无 CI 修复或重跑。实现提交至 CI 仅本机验收文档/报告变更，采集代码、SDK C 和测试守卫未变。
+
+| 平台 | workspace / 八包独立测试（含 doctest） | Python 单测 | 原生 CLI/C/Python |
+|---|---|---|---|
+| Windows x64 | 199 / 199 | 91 | 五组检查、16 个进程通过 |
+| Linux x64 | 193 / 193 | 91 | 五组检查、16 个进程通过 |
+| macOS ARM64 | 193 / 193 | 91 | 五组检查、16 个进程通过 |
+
+fmt、clippy、无默认 feature、doc、Ruff/mypy（34 源文件）、Schema/文档、实际 Cargo package、归档许可证/头文件及独立 CLI 安装均通过。Python 各运行 100 次默认 collect/free。完整索引见[本轮证据](evidence/windows-memory-ci-39347249649.json)，包含源码和原始报告/日志 SHA-256。
+
+Windows 另外执行[公开 C SDK 和 Rust 持久刷新实验](evidence/windows-memory-pressure-39347249649.json)。探针结构为 64 字节、三次 SDK 调用成功，分配上限 67108864 bytes；Rust 同一 Hardware 的静态总量及时间保持缓存，动态三次成功字段均为 Win32、新观测时间。这个 CI 实验在 Windows 打包结束后执行，仍不是隔离性能基准。
+
+| CI 阶段 | Rust 静态总量 bytes | Rust 可用 bytes | C SDK 可用 bytes |
+|---|---|---|---|
+| baseline | 17174360064 | 13617782784 | 13617852416 |
+| held | 17174360064 | 13552971776 | 13552922624 |
+| released | 17174360064 | 13617557504 | 13619179520 |
+
+系统其他进程会改变全局可用内存，两进程顺序读取不要求同值或固定的分配影响。该成功路径不替代合成错误码/恢复/总量变化测试，也没有在 runner 制造真实权限拒绝。Linux/macOS 报告只证明当前原生构建和读取回归，不将 Windows 增强推广成 macOS 新鲜度已解决。
+
+Linux 八份容器报告通过，包含 CPU 15、内存/uptime 26、电池 30、hwmon 47、存储 21、GPU 20、显示器 26 项及既有 DMI/输入检查。完整空 `/proc` 挂载仍被 OCI 拒绝，为 not_run，不能计作通过。
+
+11 个实际 libFuzzer 目标各运行至少 60 秒；Miri 8 项、Linux Rust FFI ASan 10 项、cargo-deny 通过。这些 fuzz/内存检查不直接验证 Win32 内核内存指针边界，不是长期无漏洞证明。Linux/macOS 的常规整库采集基准也执行并归档于索引，不是 Windows 内存 API 延迟或该实验的性能测量。
+
+本轮验收归档不改运行时代码。核心模型/入口、C ABI 1、Schema 1、依赖/锁/features 和 MIT 不变；新增公开 WindowsMemoryBackend 的迁移要求仍适用。实体 Linux/macOS、真实 OS 拒绝/故障、CPU 新鲜度、macOS 内存、长期 native 泄漏和峰值内存测量仍待后续；不发布 registry 或 release 制品。

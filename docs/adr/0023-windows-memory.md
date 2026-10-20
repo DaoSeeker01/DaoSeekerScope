@@ -1,6 +1,6 @@
 # ADR 0023：Windows 内存刷新与可报告错误的直接读取
 
-状态：开发版实施，本轮验证见[记录](../windows-memory-validation.md)。
+状态：开发版实施，本机/三平台 CI 验收完成，真实 API 拒绝/故障未执行；本轮验证见[记录](../windows-memory-validation.md)。
 
 锁定的 sysinfo 0.39.6 Windows `refresh_memory_specifics` 每次将 MEMORYSTATUSEX 清零并调用 GlobalMemoryStatusEx，但忽略 BOOL 返回值后复制输出。这里没有证明 Windows 复用了旧内存值；实际缺口是调用成功/错误码被隐藏，适配层只能给 Unknown，不能证明字段对应一次成功读取。CPU 使用率和 macOS 路径另行验收，本轮不修改。
 

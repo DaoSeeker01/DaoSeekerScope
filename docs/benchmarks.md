@@ -215,3 +215,15 @@ CI 源码 `1231088bc97d005a7e3c516d865db14362baf8ed`，采集实现 `2cf2736`；
 | macOS ARM64 | 12830 | 24 / 38 / 95 | 371 / 373541 | [完整记录](evidence/display-text-benchmark-darwin-39178858567.json) |
 
 上述为整个组合采集器，首次 collect 不含构造、动态刷新不重扫静态显示器。完整环境见各报告，CPU 产品字符串不是 runner 获配核数的证明。没有旧版配对样本，不据此宣称性能改善/退化；不测峰值内存、长期泄漏、原生调用强制中止或实体显示器，不是 SLA。
+
+
+## Windows 内存切片的常规整库回归基准（2026-10-20）
+
+源码 `d7d30f27ac646d35a03d316b16ed29a4fc6a6f3f`，命令 `cargo bench --locked -p daoseeker-scope --bench collect`；Rust 1.96、bench 优化 profile、默认 serde；原生 max_entries=128，合成单独设 1024（100 传感器/1024 网络）。只有 Linux/macOS 托管 runner 执行该基准，不用于说明 Windows 内存 API、CPU 或文本输出性能。
+
+| 平台 | 首次 collect µs | 刷新 p50 / p95 / max µs（100 次） | 合成 collect µs / JSON bytes | 完整环境及原始日志 |
+|---|---|---|---|---|
+| Linux x64 | 886 | 107 / 144 / 174 | 280 / 373541 | [完整记录](evidence/windows-memory-benchmark-linux-39347249649.json) |
+| macOS ARM64 | 15705 | 25 / 46 / 79 | 385 / 373541 | [完整记录](evidence/windows-memory-benchmark-darwin-39347249649.json) |
+
+首次 collect 不含构造；动态刷新使用静态缓存。未做旧版配对，不宣称性能改善/退化，也未测峰值内存、长期泄漏、内核调用强制中止或物理设备效果，不是 SLA。独立 Windows 64 MiB 实验为功能验证，存在其他进程干扰，不是该表中的合成基准或精确可用内存因果测量。

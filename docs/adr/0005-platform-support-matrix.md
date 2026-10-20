@@ -9,7 +9,7 @@
 | 字段 | Windows | Linux | macOS | 本切片路线 |
 |---|---|---|---|---|
 | OS/静态CPU摘要 | D/P | D/P，procfs容器可缺 | D/P | sysinfo system；错误模型 Partial |
-| OS可用总量/可用内存 | D/P，Win32 Supported，本轮原生 CI 待执行 | D/P，procfs Supported | D/P，sysinfo Partial | Windows/Linux 直接读取并区分失败；总量缓存、总量变化时动态暂不可用 |
+| OS可用总量/可用内存 | D/P，Win32 Supported，本机/原生 CI 验收通过 | D/P，procfs Supported | D/P，sysinfo Partial | Windows/Linux 直接读取并区分失败；总量缓存、总量变化时动态暂不可用 |
 | uptime | D/P，sysinfo Partial | D/P，procfs Supported | D/P，sysinfo Partial | Windows/macOS 的新鲜度及失败行为未由本轮验收 |
 | 动态CPU占用率 | D/P，sysinfo Partial | D/P，procfs Supported | D/P，sysinfo Partial | Linux直接有界两样本采集；故障清基线，独立于静态CPU |
 | 安装物理内存 | D，SMBIOS可损坏 | U | D/P hw.memsize | Win32 / sysctl；与 OS 可用总量分开 |
@@ -49,3 +49,5 @@
 2026-10-17 Linux 显示器切片：三平台 [CI 38983994614](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38983994614) 全部 8 个任务成功。Linux CLI/C 各确认一条 connected 连接视图，默认名称 PrivacyRedacted、尺寸 Unsupported；26 项非 root 合成 DRM/EDID 场景通过，授权合成名称可读。它不是实体显示器计数、实际扫描输出或真实 EDID 名称读取证明；Linux 当前像素和实体设备验证仍待完成，macOS 显示器未实现。见[契约](0020-linux-display.md)与[验收](../linux-display-validation.md)。
 
 2026-10-18 macOS 显示器切片：[CI 39081392549](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39081392549) 全部 8 个任务成功。独立 C SDK 探针返回 status=0、活动条目 1、有效模式尺寸 1。Rust CLI/C 的数量及像素/缺失状态多重集合与 SDK 相同。本轮可读模式像素为 1024×768。这是托管 runner 的活动模式，不能推断实体面板原生分辨率。 名称仍 Unsupported，不查询 EDID/稳定标识；实体 Mac、多屏、Retina/缩放、镜像和热插拔延期，见[契约](0021-macos-display.md)与[验收](../macos-display-validation.md)。
+
+2026-10-20 Windows 内存切片：[本轮 CI 与 SDK/压力实验](../windows-memory-validation.md)通过，Win32 total_usable_bytes / memory_available_bytes 已转直接读取和显式错误映射；CPU 与 macOS 内存保持原有 Partial 路线，真实 OS 拒绝仍为未执行项。

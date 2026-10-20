@@ -1,0 +1,541 @@
+{
+  "report_version": 1,
+  "source_commit": "d7d30f27ac646d35a03d316b16ed29a4fc6a6f3f",
+  "implementation_commit": "eeb12da2d0b7633969e1dcc4ddedacdf06e7375a",
+  "implementation_to_ci_changes": [
+    "docs/evidence/windows-memory-local-eeb12da.json",
+    "docs/evidence/windows-memory-native-windows-eeb12da.json",
+    "docs/evidence/windows-memory-packages-windows-eeb12da.json",
+    "docs/evidence/windows-memory-pressure-windows-eeb12da.json",
+    "docs/windows-memory-validation.md"
+  ],
+  "run_id": 39347249649,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39347249649",
+  "event": "workflow_dispatch",
+  "ci_jobs": {
+    "desktop (windows-latest)": "success",
+    "miri": "success",
+    "linux-container": "success",
+    "fuzz-smoke": "success",
+    "supply-chain": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "ffi-asan": "success",
+    "desktop (macos-latest)": "success"
+  },
+  "native": {
+    "linux": {
+      "report": "windows-memory-native-linux-39347249649.json",
+      "memory_text": {
+        "available_fields": 2,
+        "missing_fields": 1,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "8bf02648671f144db65f25aea6a0c467d44ade0014e2b705c98243b5dd863e17"
+      },
+      "memory": {
+        "cli": {
+          "memory.total_usable_bytes": {
+            "value": 16766414848,
+            "availability": "available",
+            "source": "procfs",
+            "observed_at": 1792455851549,
+            "reason": null
+          },
+          "memory.installed_bytes": {
+            "value": null,
+            "availability": "unsupported",
+            "source": "custom",
+            "observed_at": null,
+            "reason": "not_supported"
+          }
+        },
+        "c_abi": {
+          "memory.total_usable_bytes": {
+            "value": 16766414848,
+            "availability": "available",
+            "source": "procfs",
+            "observed_at": 1792455851568,
+            "reason": null
+          },
+          "memory.installed_bytes": {
+            "value": null,
+            "availability": "unsupported",
+            "source": "custom",
+            "observed_at": null,
+            "reason": "not_supported"
+          }
+        }
+      }
+    },
+    "darwin": {
+      "report": "windows-memory-native-darwin-39347249649.json",
+      "memory_text": {
+        "available_fields": 3,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "34a41a7954624afd3659bf906f5f872726ed22e7fa9f99e85646deee3cdd4ef9"
+      },
+      "memory": {
+        "cli": {
+          "memory.total_usable_bytes": {
+            "value": 7516192768,
+            "availability": "available",
+            "source": "sysinfo",
+            "observed_at": 1792455862839,
+            "reason": null
+          },
+          "memory.installed_bytes": {
+            "value": 7516192768,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792455862839,
+            "reason": null
+          }
+        },
+        "c_abi": {
+          "memory.total_usable_bytes": {
+            "value": 7516192768,
+            "availability": "available",
+            "source": "sysinfo",
+            "observed_at": 1792455862880,
+            "reason": null
+          },
+          "memory.installed_bytes": {
+            "value": 7516192768,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792455862880,
+            "reason": null
+          }
+        }
+      }
+    },
+    "windows": {
+      "report": "windows-memory-native-windows-39347249649.json",
+      "memory_text": {
+        "available_fields": 3,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "fb3dde097a6908a0bb757737a9de88feb3315be76cab51ebc21e65ade4826909"
+      },
+      "memory": {
+        "cli": {
+          "memory.total_usable_bytes": {
+            "value": 17174360064,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792456188826,
+            "reason": null
+          },
+          "memory.installed_bytes": {
+            "value": 17179869184,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792456188818,
+            "reason": null
+          }
+        },
+        "c_abi": {
+          "memory.total_usable_bytes": {
+            "value": 17174360064,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792456189187,
+            "reason": null
+          },
+          "memory.installed_bytes": {
+            "value": 17179869184,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792456189178,
+            "reason": null
+          }
+        }
+      }
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "windows-memory-package-evidence-linux-x64-39347249649.json",
+      "sha256": "5a2766c3e6832718f77463bb27dbf9f1c76af8f5c4ac7ea030052f080f93b2fc",
+      "original_report_sha256": "5a2766c3e6832718f77463bb27dbf9f1c76af8f5c4ac7ea030052f080f93b2fc"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "windows-memory-package-evidence-macos-arm64-39347249649.json",
+      "sha256": "5a2766c3e6832718f77463bb27dbf9f1c76af8f5c4ac7ea030052f080f93b2fc",
+      "original_report_sha256": "5a2766c3e6832718f77463bb27dbf9f1c76af8f5c4ac7ea030052f080f93b2fc"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "windows-memory-package-evidence-windows-x64-39347249649.json",
+      "sha256": "8f850bce50174f2755ecf1cf6168c9a8d1afec1d12b5cdb43022da8181169943",
+      "original_report_sha256": "01e7d63e8ea0566bbfa28c0bef7557953e4f1e2bfab485e4ba6c4b24faf88195"
+    }
+  },
+  "benchmarks": {
+    "linux": {
+      "path": "windows-memory-benchmark-linux-39347249649.json",
+      "sha256": "e49a391c19c2226b84f3edd343593164a8ea49c97bf1ab325dcb1667197f7205",
+      "original_report_sha256": "22a2aca3310e22b086732253762d50dc5ebae3bdb10c9bc3b039786b350b97ba"
+    },
+    "darwin": {
+      "path": "windows-memory-benchmark-darwin-39347249649.json",
+      "sha256": "3c064e5aa84952bb121ae6fed4009320d092bc2de6b0731d1383d57c8755f737",
+      "original_report_sha256": "0742da95c94ff32333a851fb911d2cd86d603871d1240b5dd81e2b78aadca0cc"
+    }
+  },
+  "containers": {
+    "linux-battery-evidence.json": {
+      "sha256": "5d048dc98448eb210bce5e4aefb38d59286981540fd3a521e061d48f9676c797",
+      "samples_passed": 30
+    },
+    "linux-container-evidence.json": {
+      "sha256": "cf80e35cf0cd06adef9160fc1990a355197ada3c9f25c7c92d626c374e945605",
+      "runtime_probes": {
+        "empty_proc": {
+          "status": "not_run",
+          "configuration": {
+            "user": "65534:65534",
+            "ReadonlyRootfs": true,
+            "NetworkMode": "none",
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges=true"
+            ],
+            "Memory": 268435456,
+            "MemorySwap": 268435456,
+            "PidsLimit": 32,
+            "NanoCpus": 1000000000
+          },
+          "exit_code": 128,
+          "docker_start_exit_code": 1,
+          "process_started": false,
+          "failure_category": "runtime_mount_error",
+          "probe_result": "runtime_rejected_mount"
+        }
+      }
+    },
+    "linux-display-evidence.json": {
+      "sha256": "a4e1775d21bd0d69446f9e3d13bc4454aae594a83a6077209f18bd69b41d8672",
+      "samples_passed": 26
+    },
+    "linux-dynamic-evidence.json": {
+      "sha256": "4926033aa2a2a805862828a26e0711d34648445d1c85c5066385fe16f903a6d9",
+      "samples_passed": 15
+    },
+    "linux-gpu-evidence.json": {
+      "sha256": "1cc1c1effcbbc9ab52fb99b783654e208a6c06091fa7deaec3e4db42ca352aa8",
+      "samples_passed": 20
+    },
+    "linux-hwmon-evidence.json": {
+      "sha256": "eac5dbf6fb2715dd1ac0c711ed3a359d85e424944c9603e695c35b9891f3a034",
+      "samples_passed": 47
+    },
+    "linux-memory-evidence.json": {
+      "sha256": "27b8e035b859b81f8e48009240caf9941c1e89e4f718d9a4fe9f8b8414e4a220",
+      "samples_passed": 26
+    },
+    "linux-storage-evidence.json": {
+      "sha256": "c84213195a14336275ecc95fd696739dfda486b416b61d9ed16973963633ad94",
+      "samples_passed": 21
+    }
+  },
+  "reports": {
+    "windows-memory-native-linux-39347249649.json": {
+      "path": "windows-memory-native-linux-39347249649.json",
+      "sha256": "82b1689bd67ebce8afb9adbd76482258bdf11f963ab84374e6de181d69a53d58",
+      "original_report_sha256": "82b1689bd67ebce8afb9adbd76482258bdf11f963ab84374e6de181d69a53d58"
+    },
+    "windows-memory-native-darwin-39347249649.json": {
+      "path": "windows-memory-native-darwin-39347249649.json",
+      "sha256": "2497030e1e785c0ac17483b9b5d71130c1b9941a02f73fede826d839597cb863",
+      "original_report_sha256": "2497030e1e785c0ac17483b9b5d71130c1b9941a02f73fede826d839597cb863"
+    },
+    "windows-memory-native-windows-39347249649.json": {
+      "path": "windows-memory-native-windows-39347249649.json",
+      "sha256": "83f0b2e1e236d3a74d178bb7f797405193b812c1a54231d192c381284e1b64d8",
+      "original_report_sha256": "72f136c78dfc3b798486654235739903859555ded9ed6494a14337a3536e295e"
+    },
+    "windows-memory-package-evidence-linux-x64-39347249649.json": {
+      "path": "windows-memory-package-evidence-linux-x64-39347249649.json",
+      "sha256": "5a2766c3e6832718f77463bb27dbf9f1c76af8f5c4ac7ea030052f080f93b2fc",
+      "original_report_sha256": "5a2766c3e6832718f77463bb27dbf9f1c76af8f5c4ac7ea030052f080f93b2fc"
+    },
+    "windows-memory-package-evidence-macos-arm64-39347249649.json": {
+      "path": "windows-memory-package-evidence-macos-arm64-39347249649.json",
+      "sha256": "5a2766c3e6832718f77463bb27dbf9f1c76af8f5c4ac7ea030052f080f93b2fc",
+      "original_report_sha256": "5a2766c3e6832718f77463bb27dbf9f1c76af8f5c4ac7ea030052f080f93b2fc"
+    },
+    "windows-memory-package-evidence-windows-x64-39347249649.json": {
+      "path": "windows-memory-package-evidence-windows-x64-39347249649.json",
+      "sha256": "8f850bce50174f2755ecf1cf6168c9a8d1afec1d12b5cdb43022da8181169943",
+      "original_report_sha256": "01e7d63e8ea0566bbfa28c0bef7557953e4f1e2bfab485e4ba6c4b24faf88195"
+    },
+    "windows-memory-pressure-39347249649.json": {
+      "path": "windows-memory-pressure-39347249649.json",
+      "sha256": "f0d0f2a99b1b126612098f53efc484e4f0b6aa36babc642f9c73e857ed588bed",
+      "original_report_sha256": "981cc32f154189b91308689f609652759fc1523d4904434bdf7032155cf37294",
+      "phases": {
+        "baseline": {
+          "rust": {
+            "total": {
+              "value": 17174360064,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792456187458,
+              "reason": null
+            },
+            "available": {
+              "value": 13617782784,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792456187810,
+              "reason": null
+            }
+          },
+          "sdk": {
+            "status": 0,
+            "struct_size": 64,
+            "calls": 1,
+            "held_bytes": 0,
+            "total": 17174360064,
+            "available": 13617852416
+          },
+          "status": "passed"
+        },
+        "held": {
+          "rust": {
+            "total": {
+              "value": 17174360064,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792456187458,
+              "reason": null
+            },
+            "available": {
+              "value": 13552971776,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792456187841,
+              "reason": null
+            }
+          },
+          "sdk": {
+            "status": 0,
+            "struct_size": 64,
+            "calls": 2,
+            "held_bytes": 67108864,
+            "total": 17174360064,
+            "available": 13552922624
+          },
+          "status": "passed"
+        },
+        "released": {
+          "rust": {
+            "total": {
+              "value": 17174360064,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792456187458,
+              "reason": null
+            },
+            "available": {
+              "value": 13617557504,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792456187868,
+              "reason": null
+            }
+          },
+          "sdk": {
+            "status": 0,
+            "struct_size": 64,
+            "calls": 3,
+            "held_bytes": 0,
+            "total": 17174360064,
+            "available": 13619179520
+          },
+          "status": "passed"
+        }
+      },
+      "available_values_changed": true,
+      "sdk_source_git_blob_sha256": "5d6cb23e5ad05e7f585f0927a1044b056da1fbac40a05125fd02023f1b9b41b5"
+    },
+    "windows-memory-benchmark-linux-39347249649.json": {
+      "path": "windows-memory-benchmark-linux-39347249649.json",
+      "sha256": "e49a391c19c2226b84f3edd343593164a8ea49c97bf1ab325dcb1667197f7205",
+      "original_report_sha256": "22a2aca3310e22b086732253762d50dc5ebae3bdb10c9bc3b039786b350b97ba"
+    },
+    "windows-memory-benchmark-darwin-39347249649.json": {
+      "path": "windows-memory-benchmark-darwin-39347249649.json",
+      "sha256": "3c064e5aa84952bb121ae6fed4009320d092bc2de6b0731d1383d57c8755f737",
+      "original_report_sha256": "0742da95c94ff32333a851fb911d2cd86d603871d1240b5dd81e2b78aadca0cc"
+    }
+  },
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "license": "MIT",
+  "dependencies_or_features_changed": false,
+  "schema_shape_changed": false,
+  "core_api_changed": false,
+  "public_backend_added": "WindowsMemoryBackend::new/Default; standalone Windows SysinfoBackend users must register it or use facade",
+  "local_evidence_index": "windows-memory-local-eeb12da.json",
+  "windows_memory_pressure": {
+    "path": "windows-memory-pressure-39347249649.json",
+    "sha256": "f0d0f2a99b1b126612098f53efc484e4f0b6aa36babc642f9c73e857ed588bed",
+    "original_report_sha256": "981cc32f154189b91308689f609652759fc1523d4904434bdf7032155cf37294",
+    "phases": {
+      "baseline": {
+        "rust": {
+          "total": {
+            "value": 17174360064,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792456187458,
+            "reason": null
+          },
+          "available": {
+            "value": 13617782784,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792456187810,
+            "reason": null
+          }
+        },
+        "sdk": {
+          "status": 0,
+          "struct_size": 64,
+          "calls": 1,
+          "held_bytes": 0,
+          "total": 17174360064,
+          "available": 13617852416
+        },
+        "status": "passed"
+      },
+      "held": {
+        "rust": {
+          "total": {
+            "value": 17174360064,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792456187458,
+            "reason": null
+          },
+          "available": {
+            "value": 13552971776,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792456187841,
+            "reason": null
+          }
+        },
+        "sdk": {
+          "status": 0,
+          "struct_size": 64,
+          "calls": 2,
+          "held_bytes": 67108864,
+          "total": 17174360064,
+          "available": 13552922624
+        },
+        "status": "passed"
+      },
+      "released": {
+        "rust": {
+          "total": {
+            "value": 17174360064,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792456187458,
+            "reason": null
+          },
+          "available": {
+            "value": 13617557504,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792456187868,
+            "reason": null
+          }
+        },
+        "sdk": {
+          "status": 0,
+          "struct_size": 64,
+          "calls": 3,
+          "held_bytes": 0,
+          "total": 17174360064,
+          "available": 13619179520
+        },
+        "status": "passed"
+      }
+    },
+    "available_values_changed": true,
+    "sdk_source_git_blob_sha256": "5d6cb23e5ad05e7f585f0927a1044b056da1fbac40a05125fd02023f1b9b41b5"
+  },
+  "rust_tests_including_doctests": {
+    "windows": 199,
+    "linux": 193,
+    "macos": 193
+  },
+  "python_tests_per_desktop": 91,
+  "python_source_files": 34,
+  "fuzz_targets_completed": 11,
+  "fuzz_campaigns": {
+    "Run cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512": {
+      "runs": 532767,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 6944238,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 18892862,
+      "elapsed_seconds": 61
+    },
+    "Fuzz CPU state and bounded stat parsing": {
+      "runs": 1381074,
+      "elapsed_seconds": 61
+    },
+    "Fuzz meminfo parsing and field isolation": {
+      "runs": 4161993,
+      "elapsed_seconds": 61
+    },
+    "Fuzz uptime parsing and numeric boundaries": {
+      "runs": 19987420,
+      "elapsed_seconds": 61
+    },
+    "Fuzz power supply attribute boundaries": {
+      "runs": 19622590,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded hwmon millidegrees": {
+      "runs": 19151773,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded network counters and privacy": {
+      "runs": 2450766,
+      "elapsed_seconds": 61
+    },
+    "Fuzz Darwin routing message boundaries": {
+      "runs": 5096802,
+      "elapsed_seconds": 61
+    },
+    "Fuzz checked block sector conversion": {
+      "runs": 28947426,
+      "elapsed_seconds": 61
+    }
+  },
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "07caa97ec0021c64afc78d64ceb8df8a6834556341f5570a9fc2af558d1ac9f4",
+  "limits": [
+    "Native SDK/Rust pressure run verifies success path; API error/recovery and total-change cases are synthetic Rust tests",
+    "Sequential volatile observations, not atomic or fixed allocation delta benchmark",
+    "Windows CPU and macOS CPU/memory freshness are not fixed by this slice",
+    "Hosted runner is not physical DIMM/Job-limit verification; actual permission denial not induced",
+    "No long native leak/peak-memory/blocked-kernel forced termination proof",
+    "No registry publication or release distribution"
+  ]
+}
