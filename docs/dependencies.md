@@ -1,5 +1,7 @@
 # 锁定依赖许可证清单
 
+2026-10-19 Windows 内存直接查询使用已有 windows-sys 0.61.2 和现有 SystemInformation feature；不增加依赖、feature、锁文件或许可证变更。独立 C SDK 探针是开发工具，项目仍 MIT。
+
 2026-10-15 Windows GPU 使用已锁定的 windows 0.62.2，增加为 Windows crate 的显式 target 依赖，关闭默认 features，仅启用 std/Win32_Foundation/Win32_Graphics_Dxgi/Win32_Graphics_Dxgi_Common。两个 Cargo.lock 仅增加依赖边，包和版本不变。SDK 绑定许可证 MIT OR Apache-2.0，项目仍 MIT；sysinfo 的默认 feature 路线不变。
 
 2026-10-13 macOS 存储切片把已有 objc2-core-foundation 0.3.2、objc2-io-kit 0.3.2 增加为 macOS crate 的显式 target 依赖；关闭默认 features，限定 std/CFBase/CFDictionary/CFNumber/CFString 及 IOKit libc。Cargo.lock 仅增加该 crate 的依赖边，不新增包或版本；两者原有 Zlib OR Apache-2.0 OR MIT 许可证不变。Apple 公开 API/SDK 是接口依据，没有复制 APSL 实现；项目仍 MIT。sysinfo disk feature 仍关闭，公共模型不泄漏 CF/IOKit 类型。

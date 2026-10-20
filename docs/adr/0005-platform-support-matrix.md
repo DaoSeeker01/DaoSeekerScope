@@ -9,7 +9,8 @@
 | 字段 | Windows | Linux | macOS | 本切片路线 |
 |---|---|---|---|---|
 | OS/静态CPU摘要 | D/P | D/P，procfs容器可缺 | D/P | sysinfo system；错误模型 Partial |
-| OS可用总量/可用内存/uptime | D/P，sysinfo Partial | D/P，procfs Supported | D/P，sysinfo Partial | Linux有界读取并区分失败；总量缓存、总量变化时动态暂不可用 |
+| OS可用总量/可用内存 | D/P，Win32 Supported，本轮原生 CI 待执行 | D/P，procfs Supported | D/P，sysinfo Partial | Windows/Linux 直接读取并区分失败；总量缓存、总量变化时动态暂不可用 |
+| uptime | D/P，sysinfo Partial | D/P，procfs Supported | D/P，sysinfo Partial | Windows/macOS 的新鲜度及失败行为未由本轮验收 |
 | 动态CPU占用率 | D/P，sysinfo Partial | D/P，procfs Supported | D/P，sysinfo Partial | Linux直接有界两样本采集；故障清基线，独立于静态CPU |
 | 安装物理内存 | D，SMBIOS可损坏 | U | D/P hw.memsize | Win32 / sysctl；与 OS 可用总量分开 |
 | 设备model/vendor、主板、固件 | U，WMI/SMBIOS候选 | D/P sysfs DMI | D/P hw.model（仅model） | Linux 固定 DMI 文件；macOS sysctl |

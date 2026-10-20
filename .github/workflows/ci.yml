@@ -59,6 +59,14 @@ jobs:
           if errorlevel 1 exit /b 1
           target\display-probe.exe > target\windows-display-probe.json
           if errorlevel 1 exit /b 1
+          cl /nologo /W4 /WX /std:c11 /Fetarget\memory-probe.exe /Fotarget\memory-probe.obj docs\research\memory_probe.c
+          if errorlevel 1 exit /b 1
+      - name: Windows fresh memory SDK and bounded pressure experiment
+        if: runner.os == 'Windows'
+        run: |
+          cargo build --locked -p daoseeker-scope --example dynamic_probe
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/windows_memory_smoke.py
       - name: Build C example on Linux
         if: runner.os == 'Linux'
         run: |
@@ -101,6 +109,7 @@ jobs:
           path: |
             target/native-evidence.json
             target/windows-display-probe.json
+            target/windows-memory-evidence.json
             target/macos-collect-benchmark.log
             target/macos-iomedia-probe.json
             target/macos-metal-probe.json

@@ -15,3 +15,5 @@ sysinfo字段observed_at指适配层读值的时间，无法证明上游内部�
 ## 2026-10-10 Linux 内存与 uptime 决策补充
 
 内存与uptime由LinuxBackend直接有界procfs读取，SysinfoBackend在Linux不再提供总内存/可用内存/uptime；门面自动组合，单独sysinfo消费者需迁移注册。上游缓存及静默回退实查、字段级错误、合法零值、旧内核缺MemAvailable、总量变化与静态缓存契约见[内存刷新报告](../memory-refresh-validation.md)。公共类型/feature/依赖/ABI1/Schema1不变。Windows/macOS保持Partial路线。旧源码回归已失败，新源码6d0a377的运行38008554490全部8任务成功，原生与容器报告单列归档，不以文档替代验收。
+
+2026-10-19 Windows 内存增量：停止在 SysinfoBackend 提供 total_usable_bytes / memory_available_bytes，由门面注册的 WindowsMemoryBackend 直接检查 GlobalMemoryStatusEx 返回值和错误码。上游 Windows 代码实际为每次清零后忽略 BOOL，并非本轮证明了旧值缓存；CPU/uptime 与 macOS 动态路径仍 Partial、待独立验收。单独 sysinfo 消费者须注册新 backend 或使用门面；见 [ADR 0023](0023-windows-memory.md) 和[验证](../windows-memory-validation.md)。

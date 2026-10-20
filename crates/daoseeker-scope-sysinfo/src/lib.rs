@@ -7,6 +7,7 @@ use std::time::Instant;
 /// Generic OS/CPU/memory adapter. Linux CPU usage, memory and uptime are
 /// delegated to `daoseeker-scope-linux` for explicit fresh-read failures.
 /// Register both backends, or use the desktop facade, for those Linux fields.
+/// On Windows, physical-memory fields require WindowsMemoryBackend or the facade.
 pub struct SysinfoBackend {
     system: sysinfo::System,
     #[cfg(not(target_os = "linux"))]
@@ -57,13 +58,17 @@ impl Backend for SysinfoBackend {
         .map(|field| Capability::new(field, CapabilityLevel::Partial, Source::Sysinfo))
         .chain({
             #[cfg(not(target_os = "linux"))]
-            let fields = [
-                "cpu_usage_percent",
-                "system.memory.total_usable_bytes",
-                "runtime.uptime_seconds",
-                "memory_available_bytes",
-            ];
+            let fields = ["cpu_usage_percent", "runtime.uptime_seconds"];
             #[cfg(target_os = "linux")]
+            let fields: [&str; 0] = [];
+            fields
+                .into_iter()
+                .map(|field| Capability::new(field, CapabilityLevel::Partial, Source::Sysinfo))
+        })
+        .chain({
+            #[cfg(not(any(target_os = "linux", target_os = "windows")))]
+            let fields = ["system.memory.total_usable_bytes", "memory_available_bytes"];
+            #[cfg(any(target_os = "linux", target_os = "windows"))]
             let fields: [&str; 0] = [];
             fields
                 .into_iter()
@@ -79,7 +84,7 @@ impl Backend for SysinfoBackend {
         self.system
             .refresh_cpu_list(sysinfo::CpuRefreshKind::nothing());
         context.check()?;
-        #[cfg(not(target_os = "linux"))]
+        #[cfg(not(any(target_os = "linux", target_os = "windows")))]
         self.system.refresh_memory();
         context.check()?;
         let at = Timestamp::now()?;
@@ -98,7 +103,7 @@ impl Backend for SysinfoBackend {
                 Some(n) => nonzero(n, at),
                 None => Observed::unavailable(Source::Sysinfo, ReasonCode::Unknown),
             };
-        #[cfg(not(target_os = "linux"))]
+        #[cfg(not(any(target_os = "linux", target_os = "windows")))]
         {
             result.system.memory.total_usable_bytes = nonzero(self.system.total_memory(), at);
         }
@@ -106,7 +111,7 @@ impl Backend for SysinfoBackend {
     }
     fn refresh_dynamic(&mut self, context: &CollectContext) -> Result<DynamicSnapshot, ScopeError> {
         context.check()?;
-        #[cfg(not(target_os = "linux"))]
+        #[cfg(not(any(target_os = "linux", target_os = "windows")))]
         self.system.refresh_memory();
         context.check()?;
         #[cfg(not(target_os = "linux"))]
@@ -135,13 +140,16 @@ impl Backend for SysinfoBackend {
         let result = {
             let at = Timestamp::now()?;
             let mut result = result;
-            result.memory_available_bytes = if self.system.total_memory() == 0 {
-                Observed::unavailable(Source::Sysinfo, ReasonCode::Unknown)
-            } else if self.system.available_memory() > self.system.total_memory() {
-                Observed::unavailable(Source::Sysinfo, ReasonCode::InvalidData)
-            } else {
-                Observed::available(self.system.available_memory(), Source::Sysinfo, at)
-            };
+            #[cfg(not(target_os = "windows"))]
+            {
+                result.memory_available_bytes = if self.system.total_memory() == 0 {
+                    Observed::unavailable(Source::Sysinfo, ReasonCode::Unknown)
+                } else if self.system.available_memory() > self.system.total_memory() {
+                    Observed::unavailable(Source::Sysinfo, ReasonCode::InvalidData)
+                } else {
+                    Observed::available(self.system.available_memory(), Source::Sysinfo, at)
+                };
+            }
             result.runtime.uptime_seconds =
                 Observed::available(sysinfo::System::uptime(), Source::Sysinfo, at);
             result.cpu_usage_percent = cpu_usage_percent;
@@ -153,6 +161,33 @@ impl Backend for SysinfoBackend {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[cfg(target_os = "windows")]
+    #[test]
+    fn standalone_adapter_does_not_mask_direct_memory_failures() {
+        let backend = SysinfoBackend::new();
+        assert!(!backend.capabilities().iter().any(|c| {
+            ["system.memory.total_usable_bytes", "memory_available_bytes"]
+                .contains(&c.field.as_str())
+        }));
+        let hardware = HardwareBuilder::default()
+            .with_backend(0, backend)
+            .build()
+            .expect("build");
+        let snapshot = hardware.collect().expect("collect");
+        assert_eq!(
+            snapshot
+                .static_info
+                .system
+                .memory
+                .total_usable_bytes
+                .availability(),
+            Availability::Unsupported
+        );
+        assert_eq!(
+            snapshot.dynamic.memory_available_bytes.availability(),
+            Availability::Unsupported
+        );
+    }
     #[cfg(target_os = "linux")]
     #[test]
     fn standalone_adapter_never_offers_a_stale_procfs_fallback() {

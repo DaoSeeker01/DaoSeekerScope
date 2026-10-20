@@ -34,6 +34,19 @@ fn desktop_minimum_real_read_and_refresh() {
     let dynamic = hardware.refresh_dynamic().expect("refresh");
     assert!(dynamic.memory_available_bytes.value().is_some());
     assert!(dynamic.runtime.uptime_seconds.value().is_some());
+    #[cfg(target_os = "windows")]
+    {
+        assert_eq!(dynamic.memory_available_bytes.source(), Source::Win32);
+        assert_eq!(
+            snapshot
+                .static_info
+                .system
+                .memory
+                .total_usable_bytes
+                .source(),
+            Source::Win32
+        );
+    }
     #[cfg(target_os = "linux")]
     {
         assert_eq!(dynamic.memory_available_bytes.source(), Source::Procfs);

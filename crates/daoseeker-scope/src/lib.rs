@@ -30,7 +30,9 @@ impl Hardware {
             let builder = HardwareBuilder::new(options)
                 .with_backend(0, daoseeker_scope_sysinfo::SysinfoBackend::new());
             #[cfg(target_os = "windows")]
-            let builder = builder.with_backend(100, daoseeker_scope_windows::WindowsBackend);
+            let builder = builder
+                .with_backend(100, daoseeker_scope_windows::WindowsBackend)
+                .with_backend(100, daoseeker_scope_windows::WindowsMemoryBackend::new());
             #[cfg(target_os = "linux")]
             let builder = builder.with_backend(100, daoseeker_scope_linux::LinuxBackend::new());
             #[cfg(target_os = "macos")]

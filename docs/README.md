@@ -40,6 +40,8 @@
 
 [显示器 CLI 决策](adr/0022-display-cli.md) · [显示器 CLI 验证](display-text-validation.md)
 
+[Windows 内存刷新决策](adr/0023-windows-memory.md) · [Windows 内存验证](windows-memory-validation.md)
+
 [存储 CLI 文本输出验证](storage-text-validation.md)
 
 [CLI 字段状态与来源验证](cli-text-validation.md)

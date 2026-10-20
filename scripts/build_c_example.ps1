@@ -1,7 +1,8 @@
 param(
     [string]$VcRoot,
     [string]$SdkRoot,
-    [string]$SdkVersion
+    [string]$SdkVersion,
+    [switch]$MemoryProbe
 )
 $ErrorActionPreference = 'Stop'
 if (!$VcRoot) {
@@ -41,6 +42,11 @@ try {
     & .\target\debug\c-example.exe | Out-Null
     if ($LASTEXITCODE -ne 0) { throw "C ABI smoke failed: $LASTEXITCODE" }
     Write-Output 'C ABI: real collect/free, zeroing, empty free and stale copy rejection passed'
+    if ($MemoryProbe) {
+        & $compiler /nologo /W4 /WX /std:c11 /Fetarget\memory-probe.exe /Fotarget\memory-probe.obj docs\research\memory_probe.c
+        if ($LASTEXITCODE -ne 0) { throw "memory SDK probe compile failed: $LASTEXITCODE" }
+        Write-Output 'Memory SDK probe compiled (run windows_memory_smoke.py separately)'
+    }
 } finally {
     $env:INCLUDE = $oldInclude
     $env:LIB = $oldLib

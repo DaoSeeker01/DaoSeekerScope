@@ -23,6 +23,8 @@ println!("{:?}", dynamic.cpu_usage_percent.value());
 
 `collect()` 首次采集静态信息，之后使用缓存并刷新动态字段。`refresh_dynamic()` 需要先成功调用一次 `collect()`。型号和核数属于静态信息；占用率、可用内存、运行时长、电量和温度属于动态信息。静态失败也会缓存；权限或内存容量变化后，重建 `Hardware` 重新采集。一次快照包含多个系统调用，不承诺所有字段同一时刻的原子一致性。
 
+Windows 总内存和可用内存通过公开 Win32 API 读取，来源 `Win32`；每次动态刷新重新检查成功/失败。总量变化后可用内存为暂不可用，需重建 `Hardware`。直接使用 backend crate 时，需同时注册 `WindowsMemoryBackend::new()`，单独 `SysinfoBackend` 不再提供这两个 Windows 字段。CPU 与 uptime 仍走原有 sysinfo/Partial，详见 [Windows 内存契约](adr/0023-windows-memory.md)。
+
 ## 如何判断一个字段
 
 重要字段使用 `Observed<T>`，包含值、状态、来源、采集时间和原因。先检查状态，再使用值。
