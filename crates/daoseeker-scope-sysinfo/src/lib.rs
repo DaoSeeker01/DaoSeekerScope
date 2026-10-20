@@ -1,18 +1,15 @@
 //! Narrow sysinfo adapter. Process/user/device identifier enumeration is disabled.
 #![forbid(unsafe_code)]
 use daoseeker_scope_core::*;
-#[cfg(not(any(target_os = "linux", target_os = "windows")))]
-use std::time::Instant;
 
 /// Generic OS/CPU/memory adapter. Linux CPU usage, memory and uptime are
 /// delegated to `daoseeker-scope-linux` for explicit fresh-read failures.
 /// Register both backends, or use the desktop facade, for those Linux fields.
 /// On Windows, physical-memory fields require WindowsMemoryBackend or the facade.
 /// Windows dynamic CPU usage requires WindowsCpuBackend or the facade.
+/// macOS CPU usage and logical count require MacosCpuBackend or the facade.
 pub struct SysinfoBackend {
     system: sysinfo::System,
-    #[cfg(not(any(target_os = "linux", target_os = "windows")))]
-    last_cpu_sample: Option<Instant>,
 }
 impl Default for SysinfoBackend {
     fn default() -> Self {
@@ -23,8 +20,6 @@ impl SysinfoBackend {
     pub fn new() -> Self {
         Self {
             system: sysinfo::System::new(),
-            #[cfg(not(any(target_os = "linux", target_os = "windows")))]
-            last_cpu_sample: None,
         }
     }
 }
@@ -52,15 +47,14 @@ impl Backend for SysinfoBackend {
             "system.os.kernel_version",
             "system.cpu.brand",
             "system.cpu.architecture",
+            #[cfg(not(target_os = "macos"))]
             "system.cpu.logical_count",
             "system.cpu.physical_count",
         ]
         .into_iter()
         .map(|field| Capability::new(field, CapabilityLevel::Partial, Source::Sysinfo))
         .chain({
-            #[cfg(not(any(target_os = "linux", target_os = "windows")))]
-            let fields = ["cpu_usage_percent", "runtime.uptime_seconds"];
-            #[cfg(target_os = "windows")]
+            #[cfg(not(target_os = "linux"))]
             let fields = ["runtime.uptime_seconds"];
             #[cfg(target_os = "linux")]
             let fields: [&str; 0] = [];
@@ -97,10 +91,13 @@ impl Backend for SysinfoBackend {
         result.system.os.kernel_version = text(sysinfo::System::kernel_version().as_deref(), at);
         result.system.cpu.architecture = text(Some(&sysinfo::System::cpu_arch()), at);
         result.system.cpu.brand = text(self.system.cpus().first().map(|cpu| cpu.brand()), at);
-        result.system.cpu.logical_count = match u32::try_from(self.system.cpus().len()) {
-            Ok(n) => nonzero(n, at),
-            Err(_) => Observed::unavailable(Source::Sysinfo, ReasonCode::InvalidData),
-        };
+        #[cfg(not(target_os = "macos"))]
+        {
+            result.system.cpu.logical_count = match u32::try_from(self.system.cpus().len()) {
+                Ok(n) => nonzero(n, at),
+                Err(_) => Observed::unavailable(Source::Sysinfo, ReasonCode::InvalidData),
+            };
+        }
         result.system.cpu.physical_count =
             match sysinfo::System::physical_core_count().and_then(|n| u32::try_from(n).ok()) {
                 Some(n) => nonzero(n, at),
@@ -117,26 +114,6 @@ impl Backend for SysinfoBackend {
         #[cfg(not(any(target_os = "linux", target_os = "windows")))]
         self.system.refresh_memory();
         context.check()?;
-        #[cfg(not(any(target_os = "linux", target_os = "windows")))]
-        let cpu_usage_percent = {
-            let now = Instant::now();
-            let ready = self.last_cpu_sample.is_some_and(|previous| {
-                now.duration_since(previous) >= sysinfo::MINIMUM_CPU_UPDATE_INTERVAL
-            });
-            if ready || self.last_cpu_sample.is_none() {
-                self.system.refresh_cpu_usage();
-                self.last_cpu_sample = Some(now);
-            }
-            if ready {
-                Observed::available(
-                    f64::from(self.system.global_cpu_usage()),
-                    Source::Sysinfo,
-                    Timestamp::now()?,
-                )
-            } else {
-                Observed::unavailable(Source::Sysinfo, ReasonCode::TemporarilyUnavailable)
-            }
-        };
         context.check()?;
         let result = DynamicSnapshot::default();
         #[cfg(not(target_os = "linux"))]
@@ -155,10 +132,6 @@ impl Backend for SysinfoBackend {
             }
             result.runtime.uptime_seconds =
                 Observed::available(sysinfo::System::uptime(), Source::Sysinfo, at);
-            #[cfg(not(target_os = "windows"))]
-            {
-                result.cpu_usage_percent = cpu_usage_percent;
-            }
             result
         };
         Ok(result)
@@ -167,6 +140,27 @@ impl Backend for SysinfoBackend {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[cfg(target_os = "macos")]
+    #[test]
+    fn standalone_adapter_never_masks_mach_cpu_errors_or_invents_one_logical_cpu() {
+        let backend = SysinfoBackend::new();
+        assert!(!backend.capabilities().iter().any(|c| {
+            ["system.cpu.logical_count", "cpu_usage_percent"].contains(&c.field.as_str())
+        }));
+        let hardware = HardwareBuilder::default()
+            .with_backend(0, backend)
+            .build()
+            .expect("build");
+        let snapshot = hardware.collect().expect("collect");
+        assert_eq!(
+            snapshot.static_info.system.cpu.logical_count.availability(),
+            Availability::Unsupported
+        );
+        assert_eq!(
+            snapshot.dynamic.cpu_usage_percent.availability(),
+            Availability::Unsupported
+        );
+    }
     #[cfg(target_os = "windows")]
     #[test]
     fn standalone_adapter_does_not_mask_direct_memory_or_cpu_failures() {

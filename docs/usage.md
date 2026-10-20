@@ -25,7 +25,9 @@ println!("{:?}", dynamic.cpu_usage_percent.value());
 
 Windows 总内存和可用内存通过公开 Win32 API 读取，来源 `Win32`；每次动态刷新重新检查成功/失败。总量变化后可用内存为暂不可用，需重建 `Hardware`。直接使用 backend crate 时，需同时注册 `WindowsMemoryBackend::new()`，详见 [Windows 内存契约](adr/0023-windows-memory.md)。
 
-Windows CPU 用量由 `WindowsCpuBackend::new()` 提供，门面自动注册，单独 `SysinfoBackend` 不再提供该字段。每次读取新计数；首次/过早刷新暂不可用，失败后重新预热。当前仅支持单活动处理器组，多组明确不支持；来源 `Win32`，能力 `Partial`，需要检查实际字段状态，见 [CPU 契约](adr/0024-windows-cpu.md)。Windows uptime 与 macOS 动态 CPU/内存仍走 sysinfo/Partial。
+Windows CPU 用量由 `WindowsCpuBackend::new()` 提供，门面自动注册，单独 `SysinfoBackend` 不再提供该字段。每次读取新计数；首次/过早刷新暂不可用，失败后重新预热。当前仅支持单活动处理器组，多组明确不支持；来源 `Win32`，能力 `Partial`，需要检查实际字段状态，见 [CPU 契约](adr/0024-windows-cpu.md)。
+
+macOS 逻辑核数与 CPU 用量改由 `MacosCpuBackend::new()` 提供，门面自动注册，来源 `AppleApi`、能力 `Partial`；首次/失败恢复需重新取得 300 ms 有效采样对。核数仍静态缓存，数量变化需重建 `Hardware`。单独 `SysinfoBackend` 不再提供这两个 macOS 字段。当前实现仅完成 Windows 纯逻辑验证和 macOS 交叉编译，原生 CI 待验，见[验证边界](macos-cpu-validation.md)。Windows/macOS uptime 与 macOS 内存保持 sysinfo/Partial。
 
 ## 如何判断一个字段
 

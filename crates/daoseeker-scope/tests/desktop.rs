@@ -70,6 +70,14 @@ fn desktop_minimum_real_read_and_refresh() {
             Source::Procfs
         );
     }
+    #[cfg(target_os = "macos")]
+    {
+        assert_eq!(
+            snapshot.static_info.system.cpu.logical_count.source(),
+            Source::AppleApi
+        );
+        assert_eq!(dynamic.cpu_usage_percent.source(), Source::AppleApi);
+    }
     if unsupported_cpu {
         assert_eq!(
             dynamic.cpu_usage_percent.availability(),

@@ -1,5 +1,7 @@
 # 发布与迁移路线
 
+2026-10-21 macOS CPU 开发增量：新增 MacosCpuBackend::new()/Default、门面自动注册，保留 MacosBackend 单元构造。逻辑核数与动态利用率转为直接 Mach 读取、AppleApi/Partial，拒绝静默 1 核/0% 回退；首次/失败恢复需两次 300 ms 有效样本，数量变化需重建 Hardware。单独 SysinfoBackend 用户须补注册。模型、ABI 1/Schema 1、包/版本/features/锁文件与 MIT 不变。见 [ADR 0025](adr/0025-macos-cpu.md) 和[本轮验证](macos-cpu-validation.md)，原生 CI/SDK 待验。回滚须同步恢复 sysinfo 的两个字段。
+
 2026-10-20 Windows CPU 开发增量：新增 WindowsCpuBackend::new()/Default，门面自动注册，既有 WindowsBackend 单元构造不变。CPU 动态来源由 Sysinfo 转为 Win32，失败后清基线、重新预热；仅覆盖一个活动处理器组，多组明确不支持，能力 Partial，单独 SysinfoBackend 用户须补注册。新增 windows-sys Threading 绑定 feature，包/版本/锁文件、公共模型、ABI 1/Schema 1 和 MIT 不变。见 [ADR 0024](adr/0024-windows-cpu.md) 与[本轮验证](windows-cpu-validation.md)；三平台原生 CI 39350478223、SDK/八包、短 fuzz/Miri/ASan 已通过。回滚必须同步恢复 Windows sysinfo CPU 字段，不能仅移除新 backend。
 
 2026-10-19 Windows 内存增量：新加 `WindowsMemoryBackend::new()` / `Default`，门面自动注册；既有 `WindowsBackend` 单元构造不变。Windows 总内存/可用内存从 sysinfo Partial 迁至直接 Win32 读取，精确处理 BOOL/错误码与总量缓存变化。单独 SysinfoBackend 的 Windows 消费者需迁移。核心模型、C ABI 1/Schema 1、依赖/锁/features 与 MIT 不变；CPU 和 macOS 路径不变，见 [ADR 0023](adr/0023-windows-memory.md) 与[本轮验证](windows-memory-validation.md)；2026-10-20 三平台 CI、SDK/有界压力实验、八包、短 fuzz/内存回归通过。

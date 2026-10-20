@@ -1,5 +1,9 @@
 //! macOS public sysctl and IOMedia metadata; no private sensor interfaces.
 #[cfg(any(target_os = "macos", test))]
+mod cpu;
+#[cfg(target_os = "macos")]
+pub use cpu::MacosCpuBackend;
+#[cfg(any(target_os = "macos", test))]
 mod display;
 #[cfg(feature = "fuzzing")]
 #[doc(hidden)]

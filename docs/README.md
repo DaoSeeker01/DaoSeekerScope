@@ -44,6 +44,8 @@
 
 [Windows CPU 刷新决策](adr/0024-windows-cpu.md) · [Windows CPU 验证](windows-cpu-validation.md)
 
+[macOS CPU 与逻辑核数决策](adr/0025-macos-cpu.md) · [macOS CPU 验证](macos-cpu-validation.md)
+
 [存储 CLI 文本输出验证](storage-text-validation.md)
 
 [CLI 字段状态与来源验证](cli-text-validation.md)

@@ -87,6 +87,12 @@ jobs:
         run: |
           cc -Wall -Wextra -Werror -std=c11 docs/research/iomedia_probe.c -framework IOKit -framework CoreFoundation -o target/iomedia-probe
           target/iomedia-probe > target/macos-iomedia-probe.json
+      - name: macOS fresh CPU public SDK and persistent refresh
+        if: runner.os == 'macOS'
+        run: |
+          cc -Wall -Wextra -Werror -std=c11 docs/research/macos_cpu_probe.c -o target/macos-cpu-probe
+          cargo build --locked -p daoseeker-scope --example dynamic_probe
+          python scripts/macos_cpu_smoke.py
       - name: macOS collection benchmark
         if: runner.os == 'macOS'
         run: cargo bench --locked -p daoseeker-scope --bench collect > target/macos-collect-benchmark.log
@@ -118,6 +124,7 @@ jobs:
             target/windows-cpu-evidence.json
             target/macos-collect-benchmark.log
             target/macos-iomedia-probe.json
+            target/macos-cpu-evidence.json
             target/macos-metal-probe.json
             target/macos-display-probe.json
             target/macos-display-comparison.json
