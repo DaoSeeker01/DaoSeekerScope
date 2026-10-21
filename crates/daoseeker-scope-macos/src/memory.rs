@@ -29,7 +29,7 @@ impl Failure {
         Observed::missing(state, source, reason).expect("missing observation")
     }
 }
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 struct Pages {
     size: u64,
     active: u32,
@@ -242,6 +242,12 @@ mod native {
                     &mut count,
                 )
             })?;
+            #[cfg(test)]
+            eprintln!(
+                "memory SDK metadata: buffer_bytes={} requested_words={} returned_words={count} page_size={page_size}",
+                mem::size_of::<libc::vm_statistics64>(),
+                libc::HOST_VM_INFO64_COUNT
+            );
             let result = vm_count(count).map(|()| Pages {
                 size: page_size as u64,
                 active: stats.active_count,
@@ -288,6 +294,17 @@ mod native {
         ) -> Result<DynamicSnapshot, ScopeError> {
             self.0.refresh_dynamic(context)
         }
+    }
+    #[test]
+    fn public_vm_memory_read_matches_rust_sdk_contract() {
+        let mut api = NativeApi;
+        let total = api.total().expect("native total");
+        let pages = api.pages().expect("native VM query");
+        let result = available(pages, total);
+        assert!(
+            result.is_ok(),
+            "total={total} pages={pages:?} result={result:?}"
+        );
     }
     #[test]
     fn public_vm_rev1_layout_matches_requested_buffer() {

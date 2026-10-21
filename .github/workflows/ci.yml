@@ -24,6 +24,7 @@ jobs:
           mkdir -p target
           cc -Wall -Wextra -Werror -std=c11 docs/research/macos_memory_probe.c -o target/macos-memory-probe
           target/macos-memory-probe < /dev/null | tee target/macos-memory-initial-sdk.json
+          cargo test --locked -p daoseeker-scope-macos public_vm_memory_read_matches_rust_sdk_contract -- --nocapture
           cargo build --locked -p daoseeker-scope --example dynamic_probe
           target/debug/examples/dynamic_probe < /dev/null > target/macos-memory-initial-rust.json
       - run: cargo test --locked --workspace --all-features -- --test-threads=1
