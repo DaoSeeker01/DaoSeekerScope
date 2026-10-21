@@ -34,3 +34,13 @@ Python 固定 Ruff 0.14.13/mypy 1.19.1 检查 40 个源文件，103 项单测和
 CLI 按来源展示 `Physical total proxy bytes` / `Non-compressed estimate bytes`，memory 与 system 总量一致，不把 macOS 估计标成普通立即可用量；缺失状态仍原样保留。文本不是稳定程序协议，JSON 字段名保持 Schema 1。
 
 现有 Windows C ABI collect/free、归零/空释放/旧副本拒绝通过；fuzz 格式和两个现有 harness 单元测试通过。没有执行本轮实际 libFuzzer、Miri、ASan、性能基准或 macOS C SDK。一次沙盒 doctest 因临时目录拒绝写 executable 失败，正常本机权限重跑成功；新 Python 测试的嵌套字典类型标注已修正，最终静态检查没有放宽。
+
+
+## 干净源码验收归档
+
+实现源码 `57500a6f1e6fde0b98cc3258919cb88bcf5cf87d`，执行时工作区干净。[完整本机索引](evidence/macos-memory-local-57500a6.json)绑定命令、日志哈希、源码与明确的 not_run 项。
+
+- [Windows 原生回归](evidence/macos-memory-native-windows-57500a6.json)：五组、16 个 CLI/C/Python 进程通过，Python 100 次默认 collect/free。它验证 Windows 回归，不是 Mac 内存读取或 Mach 资源实测。
+- [八包独立验收](evidence/macos-memory-packages-windows-57500a6.json)：实际 Cargo 归档/原生验证、提取后独立 workspace 的 229 项 Rust 测试、MIT/头文件/锁文件及 dscope 0.1.0 安装/完整 JSON 通过。第三方锁不变，未发布兄弟包由本地 patch 提供，不代表 registry 发布验收。
+
+macOS 原生 CI/SDK 尚待本轮推送后执行，实体设备仍按既定安排延期。归档不修改运行时代码。

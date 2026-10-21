@@ -1,6 +1,6 @@
 # ADR 0026：macOS 内存错误隔离与公开统计边界
 
-状态：2026-10-22 已实现并通过 Windows 完整门禁及 macOS arm64 交叉 Clippy；尚无本轮 macOS 原生证据。
+状态：源码 57500a6 已实现并通过 Windows 完整门禁、干净源码原生/八包独立验收及 macOS arm64 交叉 Clippy；尚无本轮 macOS 原生证据，见[记录](../macos-memory-validation.md)。
 
 锁定的 sysinfo 0.39.6 Apple refresh_memory_specifics 在 host_statistics64 失败时不清除 mem_available，且仅在 mem_total<1 时重读总量。适配层无法区分失败与旧成功值。本轮新增 MacosMemoryBackend::new()/Default，门面自动注册；保留 MacosBackend 单元构造，sysinfo 在 macOS 停止提供这两个字段。单独 SysinfoBackend 用户需补注册或使用门面。CPU、installed_bytes 与 uptime 路线不变。
 

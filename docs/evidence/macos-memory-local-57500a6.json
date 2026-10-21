@@ -1,0 +1,104 @@
+{
+  "source_commit": "57500a6f1e6fde0b98cc3258919cb88bcf5cf87d",
+  "overall": "passed",
+  "scope": "Windows local regression plus macOS compile-only; not macOS native acceptance",
+  "host_rust_tests_including_doctests": 229,
+  "isolated_windows_package_tests": 229,
+  "portable_macos_memory_tests": 10,
+  "new_memory_source_cli_tests": 1,
+  "python_tests": 103,
+  "python_source_files": 40,
+  "macos_arm64_all_target_clippy": "passed -D warnings, compile-only",
+  "cross_compile_only": [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-apple-darwin"
+  ],
+  "macos_native_sdk_c_build": "not_run",
+  "macos_native_symbol_linking": "not_run",
+  "macos_native_memory_reads_and_release": "not_run",
+  "macos_x64_compile": "not_run",
+  "real_macos_permission_denial": "not_run",
+  "physical_macos": "deferred by user until equipment available",
+  "native_windows_groups": 5,
+  "native_windows_processes": 16,
+  "native_macos_sdk_probe_processes_run": 0,
+  "actual_fuzz_campaign": "not_run",
+  "fuzz_harness_unit_tests": 2,
+  "miri_asan_benchmark": "not_run",
+  "crate_archives": 8,
+  "registry_publication_verified": false,
+  "c_abi_version": 1,
+  "schema_version": 1,
+  "license": "MIT",
+  "new_packages_features_lock_changes": false,
+  "public_api_added": "MacosMemoryBackend::new / Default; facade registers automatically",
+  "migration": "macOS total Sysinfo -> Sysctl/Partial, available estimate Sysinfo -> AppleApi/Partial; standalone SysinfoBackend must add new backend; CLI labels clarify estimates",
+  "sdk_c_source_sha256": "2316f0c0f7707a013e03203eec37ca59cfa0b146b31d429979370288b33f55b0",
+  "gate_scope": "Full final gates ran precommit; committed runtime and guard code unchanged; clean source Windows native and isolated package checks then ran",
+  "verification_adjustments": [
+    "Sandbox doctest executable write was denied in its temp directory; normal host permissions rerun passed without skipping tests",
+    "Nested Python test dictionary annotation corrected; final static checks were not weakened"
+  ],
+  "reports": {
+    "docs/evidence/macos-memory-native-windows-57500a6.json": {
+      "sha256_lf": "468bd9b2ccc63115171fa73d61cfb7f925a1e8e079251399d8423e4cf4d0f095",
+      "bytes_lf": 90162
+    },
+    "docs/evidence/macos-memory-packages-windows-57500a6.json": {
+      "sha256_lf": "c04e75b0c460fae0a7a99aafaae51c93435eb09cadd27bf9930505ea874ee390",
+      "bytes_lf": 1926
+    }
+  },
+  "local_log_hashes": {
+    "macos-memory-check.log": {
+      "sha256": "c0d607d64b44553281c159d4b8770eb999cf1662f1a31dfb1f7edacffdf7a2f7",
+      "bytes": 27670
+    },
+    "macos-memory-cross-clippy.log": {
+      "sha256": "87927fa08c38d4c1c91f46828abf24ebcd06ea7315a1aff1f91803cedda44818",
+      "bytes": 562
+    },
+    "macos-memory-python.log": {
+      "sha256": "29f7fa50b544318a7c3eec8f37210b0516d68a29528d292a15d0bafab7ea7c1f",
+      "bytes": 710
+    },
+    "macos-memory-fuzz-local.log": {
+      "sha256": "dad7d1f8847ab44d0a6e6d14ee4cbbb66c00dc86e3bfe9da5404c233379b238b",
+      "bytes": 2569
+    },
+    "macos-memory-c.log": {
+      "sha256": "7fc7a69c094230f05e89488ca5466b3fe24e7514d28139411815ba1bc23d9806",
+      "bytes": 90
+    },
+    "macos-memory-native-clean.log": {
+      "sha256": "117cb7016d4e1aa4caf801508aef87c4898074ee346c9228370963e4f0ca5a5d",
+      "bytes": 82
+    },
+    "macos-memory-packages.log": {
+      "sha256": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202",
+      "bytes": 49
+    }
+  },
+  "limitations": [
+    "No macOS native result; cross checks cannot verify linking or successful reads/releases",
+    "Fresh public API invocation does not guarantee fresh kernel counters: host_statistics64 may be cached/rate-limited by OS; no maximum age claim",
+    "Observed time means successful call completion, not kernel counter update time",
+    "hw.memsize is a physical-memory proxy, not proof of reservation-adjusted usable memory or process quota",
+    "active+inactive+free estimate includes active pages and excludes compressor; not immediately allocatable or memory pressure",
+    "libc rev1 buffer is 152 bytes/38 words; current SDK may be larger; only requested prefix is consumed",
+    "errno, Mach, reply shape, arithmetic and cleanup faults use injected portable tests, not real API fault experiments",
+    "Cooperative timeout cannot forcibly interrupt kernel calls; no OS-internal allocation limit or long native leak proof",
+    "No physical Intel/Apple Silicon, native Intel, sandbox, peak-memory or performance proof",
+    "Existing core merge may retain Unsupported/Custom; Partial does not guarantee current field availability"
+  ],
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "cargo clippy --locked --workspace --all-targets --all-features --target aarch64-apple-darwin -- -D warnings",
+    "Ruff 0.14.13 format/check; mypy 1.19.1 --no-incremental --ignore-missing-imports; Python unittest discover; jsonschema 4.25.1 check_schema.py; check_project.py",
+    "cargo fmt --manifest-path fuzz/Cargo.toml --check",
+    "cargo test --locked --manifest-path fuzz/Cargo.toml --lib",
+    "pwsh -NoProfile -File scripts/build_c_example.ps1",
+    "python scripts/native_smoke.py --output target/macos-memory-native-clean.json",
+    "python scripts/check_packages.py --offline"
+  ]
+}
