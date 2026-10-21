@@ -4,6 +4,10 @@ mod cpu;
 #[cfg(target_os = "macos")]
 pub use cpu::MacosCpuBackend;
 #[cfg(any(target_os = "macos", test))]
+mod memory;
+#[cfg(target_os = "macos")]
+pub use memory::MacosMemoryBackend;
+#[cfg(any(target_os = "macos", test))]
 mod display;
 #[cfg(feature = "fuzzing")]
 #[doc(hidden)]

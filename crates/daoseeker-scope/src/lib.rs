@@ -39,7 +39,8 @@ impl Hardware {
             #[cfg(target_os = "macos")]
             let builder = builder
                 .with_backend(100, daoseeker_scope_macos::MacosBackend)
-                .with_backend(100, daoseeker_scope_macos::MacosCpuBackend::new());
+                .with_backend(100, daoseeker_scope_macos::MacosCpuBackend::new())
+                .with_backend(100, daoseeker_scope_macos::MacosMemoryBackend::new());
             Ok(Self(builder.build()?))
         }
     }

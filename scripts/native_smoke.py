@@ -1061,6 +1061,15 @@ def check_cli_text(command: str, data: bytes) -> dict[str, Any]:
             if not line.startswith(label + ": "):
                 raise ValidationFailure("cli_text: malformed")
             value = line[len(label) + 2 :]
+            for special, source in (
+                ("Physical total proxy bytes", "Sysctl"),
+                ("Non-compressed estimate bytes", "AppleApi"),
+            ):
+                if (
+                    label == special
+                    and re.search(r"\(" + source + r"(?:\)|, Some\()", value) is None
+                ):
+                    raise ValidationFailure("cli_text: memory_source")
             if re.fullmatch(
                 TEXT_MISSING
                 + r" \("
@@ -1080,6 +1089,8 @@ def check_cli_text(command: str, data: bytes) -> dict[str, Any]:
                 "Received cumulative bytes",
                 "Transmitted cumulative bytes",
                 "OS usable total bytes",
+                "Physical total proxy bytes",
+                "Non-compressed estimate bytes",
                 "Installed bytes",
                 "Available bytes",
                 "Dedicated memory bytes",
@@ -1101,6 +1112,16 @@ def check_cli_text(command: str, data: bytes) -> dict[str, Any]:
                 raise ValidationFailure("cli_text: invalid_value")
             available += 1
 
+        total_label = (
+            "Physical total proxy bytes"
+            if any(line.startswith("Physical total proxy bytes: ") for line in lines)
+            else "OS usable total bytes"
+        )
+        available_label = (
+            "Non-compressed estimate bytes"
+            if any(line.startswith("Non-compressed estimate bytes: ") for line in lines)
+            else "Available bytes"
+        )
         scalar_fields = {
             "cpu": [
                 "CPU",
@@ -1109,13 +1130,13 @@ def check_cli_text(command: str, data: bytes) -> dict[str, Any]:
                 "Physical cores",
                 "Usage percent",
             ],
-            "memory": ["OS usable total bytes", "Installed bytes", "Available bytes"],
+            "memory": [total_label, "Installed bytes", available_label],
             "system": [
                 "OS",
                 "OS version",
                 "Kernel",
                 "CPU",
-                "OS usable total bytes",
+                total_label,
                 "Device model",
                 "Uptime seconds",
             ],

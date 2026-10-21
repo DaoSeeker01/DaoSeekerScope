@@ -96,6 +96,12 @@ jobs:
       - name: macOS collection benchmark
         if: runner.os == 'macOS'
         run: cargo bench --locked -p daoseeker-scope --bench collect > target/macos-collect-benchmark.log
+      - name: macOS checked memory public SDK and persistent refresh
+        if: runner.os == 'macOS'
+        run: |
+          cc -Wall -Wextra -Werror -std=c11 docs/research/macos_memory_probe.c -o target/macos-memory-probe
+          cargo build --locked -p daoseeker-scope --example dynamic_probe
+          python scripts/macos_memory_smoke.py
       - name: macOS public Metal SDK probe
         if: runner.os == 'macOS'
         run: |
@@ -125,6 +131,7 @@ jobs:
             target/macos-collect-benchmark.log
             target/macos-iomedia-probe.json
             target/macos-cpu-evidence.json
+            target/macos-memory-evidence.json
             target/macos-metal-probe.json
             target/macos-display-probe.json
             target/macos-display-comparison.json

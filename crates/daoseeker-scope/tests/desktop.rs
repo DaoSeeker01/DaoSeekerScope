@@ -72,6 +72,16 @@ fn desktop_minimum_real_read_and_refresh() {
     }
     #[cfg(target_os = "macos")]
     {
+        assert_eq!(dynamic.memory_available_bytes.source(), Source::AppleApi);
+        assert_eq!(
+            snapshot
+                .static_info
+                .system
+                .memory
+                .total_usable_bytes
+                .source(),
+            Source::Sysctl
+        );
         assert_eq!(
             snapshot.static_info.system.cpu.logical_count.source(),
             Source::AppleApi

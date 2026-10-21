@@ -9,7 +9,7 @@
 | 字段 | Windows | Linux | macOS | 本切片路线 |
 |---|---|---|---|---|
 | OS/静态CPU摘要 | D/P | D/P，procfs容器可缺 | D/P；逻辑核数改为 Mach，ARM64 原生 CI/SDK 通过 | 其他摘要 sysinfo Partial；macOS 逻辑数 AppleApi Partial，无失败 1 核回退 |
-| OS可用总量/可用内存 | D/P，Win32 Supported，本机/原生 CI 验收通过 | D/P，procfs Supported | D/P，sysinfo Partial | Windows/Linux 直接读取并区分失败；总量缓存、总量变化时动态暂不可用 |
+| OS可用总量/可用内存 | D/P，Win32 Supported，本机/原生 CI 验收通过 | D/P，procfs Supported | Sysctl/AppleApi Partial 已实现，原生 CI 待验 | 三平台总量缓存；macOS 总量为物理代理，动态为非压缩估计且 OS 可缓存；[契约](0026-macos-memory.md) |
 | uptime | D/P，sysinfo Partial | D/P，procfs Supported | D/P，sysinfo Partial | Windows/macOS 的新鲜度及失败行为未由本轮验收 |
 | 动态CPU占用率 | D/P，单处理器组 Win32 Partial，本机/原生 CI 验收通过 | D/P，procfs Supported | Mach AppleApi Partial，ARM64 原生 CI/SDK 通过 | 三平台路线均需两有效样本；Windows 多组不支持，macOS 实体机与真实故障仍未验证 |
 | 安装物理内存 | D，SMBIOS可损坏 | U | D/P hw.memsize | Win32 / sysctl；与 OS 可用总量分开 |

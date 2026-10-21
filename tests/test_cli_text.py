@@ -9,6 +9,17 @@ import native_smoke as smoke
 
 
 class CliText(unittest.TestCase):
+    def test_mac_memory_labels_do_not_claim_immediate_availability(self) -> None:
+        data = b"Physical total proxy bytes: 8192 (Sysctl)\nInstalled bytes: Unsupported (Custom, Some(NotSupported))\nNon-compressed estimate bytes: 0 (AppleApi)\n"
+        self.assertEqual(smoke.check_cli_text("memory", data)["available_fields"], 2)
+        for bad in (
+            data.replace(b"(AppleApi)", b"(Sysinfo)"),
+            data.replace(b"8192", b"-1"),
+            data.replace(b"(Sysctl)", b"(Custom)"),
+        ):
+            with self.assertRaises(smoke.ValidationFailure):
+                smoke.check_cli_text("memory", bad)
+
     def test_display_pixel_meaning_and_redacted_evidence(self) -> None:
         footer = (
             "Entries are OS display views, not a physical monitor count.\n"

@@ -7,6 +7,20 @@ use std::{
     time::Duration,
 };
 const HELP: &str = "寻道者观微 DaoSeekerScope\nUsage: dscope [cpu|memory|gpu|disk|display|network|battery|sensors|system|capabilities] [--json]\n  --include-sensitive --authorized   Explicit sensitive access (caller authorization)\n  cpu samples usage over at least 300 ms\n  disk shows whole-device capacity in bytes and IEC units\n  display shows OS display views and pixel field states\n  --version  --help\nExit codes: 0 success, 2 usage, 3 collection error\nUnavailable fields are successful structured results, not process errors.";
+fn total_memory_label(source: Source) -> &'static str {
+    if source == Source::Sysctl {
+        "Physical total proxy bytes"
+    } else {
+        "OS usable total bytes"
+    }
+}
+fn available_memory_label(source: Source) -> &'static str {
+    if source == Source::AppleApi {
+        "Non-compressed estimate bytes"
+    } else {
+        "Available bytes"
+    }
+}
 fn show<T: Display>(output: &mut String, label: &str, value: &Observed<T>) {
     if let Some(observed) = value.value() {
         writeln!(output, "{label}: {observed} ({:?})", value.source()).expect("string formatting");
@@ -187,13 +201,13 @@ fn render_text(output: &mut String, command: Command, snapshot: &Snapshot) {
         Command::Memory => {
             show(
                 output,
-                "OS usable total bytes",
+                total_memory_label(system.memory.total_usable_bytes.source()),
                 &system.memory.total_usable_bytes,
             );
             show(output, "Installed bytes", &system.memory.installed_bytes);
             show(
                 output,
-                "Available bytes",
+                available_memory_label(snapshot.dynamic.memory_available_bytes.source()),
                 &snapshot.dynamic.memory_available_bytes,
             );
         }
@@ -268,7 +282,7 @@ fn render_text(output: &mut String, command: Command, snapshot: &Snapshot) {
             show(output, "CPU", &system.cpu.brand);
             show(
                 output,
-                "OS usable total bytes",
+                total_memory_label(system.memory.total_usable_bytes.source()),
                 &system.memory.total_usable_bytes,
             );
             show(output, "Device model", &system.device.model);
@@ -345,6 +359,28 @@ mod tests {
         assert!(system.contains("Device model: Restricted (Wmi, Some(PermissionDenied))"));
         assert!(system.contains("Uptime seconds: Unavailable (Procfs, Some(InvalidData))"));
         assert!(!system.contains("Uptime seconds: 0"));
+    }
+    #[test]
+    fn macos_memory_estimates_are_labeled_by_source_in_memory_and_system_views() {
+        let mut snapshot = fixture();
+        snapshot.static_info.system.memory.total_usable_bytes =
+            Observed::available(8192, Source::Sysctl, Timestamp(1));
+        snapshot.dynamic.memory_available_bytes =
+            Observed::available(0, Source::AppleApi, Timestamp(2));
+        let memory = text(Command::Memory, &snapshot);
+        assert!(memory.contains("Physical total proxy bytes: 8192 (Sysctl)"));
+        assert!(memory.contains("Non-compressed estimate bytes: 0 (AppleApi)"));
+        assert!(!memory.contains("OS usable total") && !memory.contains("Available bytes:"));
+        assert!(
+            text(Command::System, &snapshot).contains("Physical total proxy bytes: 8192 (Sysctl)")
+        );
+        snapshot.dynamic.memory_available_bytes =
+            Observed::unavailable(Source::AppleApi, ReasonCode::InvalidData);
+        assert!(
+            text(Command::Memory, &snapshot).contains(
+                "Non-compressed estimate bytes: Unavailable (AppleApi, Some(InvalidData))"
+            )
+        );
     }
     #[test]
     fn display_sources_define_pixel_semantics_without_target_os_guesses() {

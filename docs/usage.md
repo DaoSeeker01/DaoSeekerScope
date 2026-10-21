@@ -27,7 +27,9 @@ Windows 总内存和可用内存通过公开 Win32 API 读取，来源 `Win32`�
 
 Windows CPU 用量由 `WindowsCpuBackend::new()` 提供，门面自动注册，单独 `SysinfoBackend` 不再提供该字段。每次读取新计数；首次/过早刷新暂不可用，失败后重新预热。当前仅支持单活动处理器组，多组明确不支持；来源 `Win32`，能力 `Partial`，需要检查实际字段状态，见 [CPU 契约](adr/0024-windows-cpu.md)。
 
-macOS 逻辑核数与 CPU 用量改由 `MacosCpuBackend::new()` 提供，门面自动注册，来源 `AppleApi`、能力 `Partial`；首次/失败恢复需重新取得 300 ms 有效采样对。核数仍静态缓存，数量变化需重建 `Hardware`。单独 `SysinfoBackend` 不再提供这两个 macOS 字段。当前实现已通过三平台 CI 与 macOS ARM64 公开 SDK/持久刷新；实体 Mac、Intel 原生和真实 Mach 故障仍待验证，见[验证边界](macos-cpu-validation.md)。Windows/macOS uptime 与 macOS 内存保持 sysinfo/Partial。
+macOS 逻辑核数与 CPU 用量改由 `MacosCpuBackend::new()` 提供，门面自动注册，来源 `AppleApi`、能力 `Partial`；首次/失败恢复需重新取得 300 ms 有效采样对。核数仍静态缓存，数量变化需重建 `Hardware`。单独 `SysinfoBackend` 不再提供这两个 macOS 字段。当前实现已通过三平台 CI 与 macOS ARM64 公开 SDK/持久刷新；实体 Mac、Intel 原生和真实 Mach 故障仍待验证，见[验证边界](macos-cpu-validation.md)。Windows/macOS uptime 保持 sysinfo/Partial。
+
+macOS 内存由 `MacosMemoryBackend::new()` 提供，门面自动注册；单独 `SysinfoBackend` 用户须补注册。总量 `Sysctl/Partial` 沿用 `hw.memsize` 物理内存代理口径，不保证扣除所有保留区域；动态 `AppleApi/Partial` 为 `(active+inactive+free) * page_size` 非压缩内存估计，含 active，free 已含 speculative，不是立即可分配量、进程配额或压力指标。每次刷新发起新调用，OS 仍可能返回缓存计数；采集时间是调用完成时间，不是内核计数更新时间。错误不保留旧值；总量变化需新建 `Hardware`。CLI 按来源标为 `Physical total proxy bytes` / `Non-compressed estimate bytes`；文本不作程序协议。本轮 macOS 原生 CI/SDK 待验，见[契约](adr/0026-macos-memory.md)与[验证](macos-memory-validation.md)。
 
 ## 如何判断一个字段
 
