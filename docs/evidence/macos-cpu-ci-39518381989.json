@@ -1,0 +1,1051 @@
+{
+  "report_version": 1,
+  "source_commit": "ac9baff0d90b59c3639ae49e3dbd782a9c024b03",
+  "implementation_commit": "359af7e3008a285154255925182644589728e1aa",
+  "implementation_to_ci_changes": [
+    "docs/adr/0025-macos-cpu.md",
+    "docs/evidence/macos-cpu-local-359af7e.json",
+    "docs/evidence/macos-cpu-native-windows-359af7e.json",
+    "docs/evidence/macos-cpu-packages-windows-359af7e.json",
+    "docs/macos-cpu-validation.md"
+  ],
+  "run_id": 39518381989,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39518381989",
+  "event": "workflow_dispatch",
+  "ci_jobs": {
+    "linux-container": "success",
+    "fuzz-smoke": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "desktop (windows-latest)": "success",
+    "supply-chain": "success",
+    "miri": "success",
+    "ffi-asan": "success",
+    "desktop (macos-latest)": "success"
+  },
+  "native": {
+    "linux": {
+      "report": "macos-cpu-native-linux-39518381989.json",
+      "cpu_text": {
+        "available_fields": 5,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "9b515bae1543a55d7f9e2c308aefe676ee04a1ecb89fa6c1acbeeb6ca1a844c7"
+      },
+      "cpu": {
+        "cli": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "procfs",
+          "observed_at": null,
+          "reason": "temporarily_unavailable"
+        },
+        "c_abi": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "procfs",
+          "observed_at": null,
+          "reason": "temporarily_unavailable"
+        }
+      }
+    },
+    "darwin": {
+      "report": "macos-cpu-native-darwin-39518381989.json",
+      "cpu_text": {
+        "available_fields": 5,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "2dc7836c87a91cd3d4271b715c9eb50030108bcacef0eaad9c971f8f99991003"
+      },
+      "cpu": {
+        "cli": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "apple_api",
+          "observed_at": null,
+          "reason": "temporarily_unavailable"
+        },
+        "c_abi": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "apple_api",
+          "observed_at": null,
+          "reason": "temporarily_unavailable"
+        }
+      }
+    },
+    "windows": {
+      "report": "macos-cpu-native-windows-39518381989.json",
+      "cpu_text": {
+        "available_fields": 5,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "7d4974c25aeddbc01e7ad17942969693c5c3ee6c660626d8fef52745eac6068c"
+      },
+      "cpu": {
+        "cli": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "win32",
+          "observed_at": null,
+          "reason": "temporarily_unavailable"
+        },
+        "c_abi": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "win32",
+          "observed_at": null,
+          "reason": "temporarily_unavailable"
+        }
+      }
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "macos-cpu-package-evidence-linux-x64-39518381989.json",
+      "sha256": "aaabb52beb7d1ac73145a93538f73c9eea7f19199c8677e31e0170d53abf3fa7",
+      "original_report_sha256": "aaabb52beb7d1ac73145a93538f73c9eea7f19199c8677e31e0170d53abf3fa7"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "macos-cpu-package-evidence-macos-arm64-39518381989.json",
+      "sha256": "4077595ddd8b81ec31717e6e37d3059379e04739576d5c90375cd347bf470a38",
+      "original_report_sha256": "4077595ddd8b81ec31717e6e37d3059379e04739576d5c90375cd347bf470a38"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "macos-cpu-package-evidence-windows-x64-39518381989.json",
+      "sha256": "6bfab26e19df8da5165298f29d5e480214de607f7bb57a589960e03a3b126021",
+      "original_report_sha256": "140c0ef33e3cd65b915182798398152413b6e49420efcd9c92c25ec36ebbbae8"
+    }
+  },
+  "benchmarks": {
+    "linux": {
+      "path": "macos-cpu-benchmark-linux-39518381989.json",
+      "sha256": "d902dd29a6c1aafbf43052e9d47b2ec5efac6440a0ce6bcbdd08f1c763271201",
+      "original_report_sha256": "d2843472b41fe273422adaf043a918b8d477c6af867e3ae9932eededa077304d"
+    },
+    "darwin": {
+      "path": "macos-cpu-benchmark-darwin-39518381989.json",
+      "sha256": "6ed6920724eea43ce26c3a07c6cc0c701281aeaed04dd537354c950a3654f208",
+      "original_report_sha256": "5847560d6a4bfc3f963cfa554decb27b8b2cd4f7cc7980fd0a030ce78f15c811"
+    }
+  },
+  "containers": {
+    "linux-battery-evidence.json": {
+      "sha256": "a55b570727b330d158e910c34cd568f06172699e8160a173aa76a44051df6a07",
+      "samples_passed": 30
+    },
+    "linux-container-evidence.json": {
+      "sha256": "9730e2a8b81a461c66ccb6bba5a654c3110ecfbd346be386822757c44791eebf",
+      "runtime_probes": {
+        "empty_proc": {
+          "status": "not_run",
+          "configuration": {
+            "user": "65534:65534",
+            "ReadonlyRootfs": true,
+            "NetworkMode": "none",
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges=true"
+            ],
+            "Memory": 268435456,
+            "MemorySwap": 268435456,
+            "PidsLimit": 32,
+            "NanoCpus": 1000000000
+          },
+          "exit_code": 128,
+          "docker_start_exit_code": 1,
+          "process_started": false,
+          "failure_category": "runtime_mount_error",
+          "probe_result": "runtime_rejected_mount"
+        }
+      }
+    },
+    "linux-display-evidence.json": {
+      "sha256": "a3fab41b389050e70065018c9b71d841cd04a491774d11941cf72454ef9941cb",
+      "samples_passed": 26
+    },
+    "linux-dynamic-evidence.json": {
+      "sha256": "4b983c489c141b910c7e89f72a594cccdf0b0820d8ce58be3dea141312e4e061",
+      "samples_passed": 15
+    },
+    "linux-gpu-evidence.json": {
+      "sha256": "1b6e50d3c281962de6e8594f8218c517c44455c3e7b4b4a148858a1d0bd79795",
+      "samples_passed": 20
+    },
+    "linux-hwmon-evidence.json": {
+      "sha256": "f9010fba7ad76ed55ae75808f6569fa8cb61058306022ccd35f8438c4e7c8bfa",
+      "samples_passed": 47
+    },
+    "linux-memory-evidence.json": {
+      "sha256": "b8191dc7dedb1f93458025e5c8c2d0e994ae40163d7dd25bc91d4c9938006e41",
+      "samples_passed": 26
+    },
+    "linux-storage-evidence.json": {
+      "sha256": "eed6994fb3fe2030efa86316b9514bdf8ad577d8b1de086b498b26583f54b2f6",
+      "samples_passed": 21
+    }
+  },
+  "reports": {
+    "macos-cpu-native-linux-39518381989.json": {
+      "path": "macos-cpu-native-linux-39518381989.json",
+      "sha256": "9423521ffd8c52b29f83bbae1001b1c40885357d32632eb1840d8a0c3f66f9cc",
+      "original_report_sha256": "9423521ffd8c52b29f83bbae1001b1c40885357d32632eb1840d8a0c3f66f9cc"
+    },
+    "macos-cpu-native-darwin-39518381989.json": {
+      "path": "macos-cpu-native-darwin-39518381989.json",
+      "sha256": "435ef5197771467b89079426a097a97f164672bff1a9bcec6acb287f231cb66f",
+      "original_report_sha256": "435ef5197771467b89079426a097a97f164672bff1a9bcec6acb287f231cb66f"
+    },
+    "macos-cpu-native-windows-39518381989.json": {
+      "path": "macos-cpu-native-windows-39518381989.json",
+      "sha256": "a7d140f7e2eabeece0ad3abca6c6ae73bc58408a409ab55e213f3d49f7c7a138",
+      "original_report_sha256": "3ffca6f6df101a5607fa8e9443f6170887f595496981a4625c089a43af711913"
+    },
+    "macos-cpu-package-evidence-linux-x64-39518381989.json": {
+      "path": "macos-cpu-package-evidence-linux-x64-39518381989.json",
+      "sha256": "aaabb52beb7d1ac73145a93538f73c9eea7f19199c8677e31e0170d53abf3fa7",
+      "original_report_sha256": "aaabb52beb7d1ac73145a93538f73c9eea7f19199c8677e31e0170d53abf3fa7"
+    },
+    "macos-cpu-package-evidence-macos-arm64-39518381989.json": {
+      "path": "macos-cpu-package-evidence-macos-arm64-39518381989.json",
+      "sha256": "4077595ddd8b81ec31717e6e37d3059379e04739576d5c90375cd347bf470a38",
+      "original_report_sha256": "4077595ddd8b81ec31717e6e37d3059379e04739576d5c90375cd347bf470a38"
+    },
+    "macos-cpu-package-evidence-windows-x64-39518381989.json": {
+      "path": "macos-cpu-package-evidence-windows-x64-39518381989.json",
+      "sha256": "6bfab26e19df8da5165298f29d5e480214de607f7bb57a589960e03a3b126021",
+      "original_report_sha256": "140c0ef33e3cd65b915182798398152413b6e49420efcd9c92c25ec36ebbbae8"
+    },
+    "macos-cpu-pressure-39518381989.json": {
+      "path": "macos-cpu-pressure-39518381989.json",
+      "sha256": "570168a410458e6b50e8ef85af5889898b5979a8320079b71c15b989da5f3e45",
+      "original_report_sha256": "6e2078ee04ff597812f9f917a9e5236ed15c99aeb4d75712f6837593a14618f8",
+      "phases": {
+        "baseline": {
+          "rust": {
+            "total": {
+              "value": 17174360064,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792541098353,
+              "reason": null
+            },
+            "available": {
+              "value": 13620097024,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792541098381,
+              "reason": null
+            }
+          },
+          "sdk": {
+            "status": 0,
+            "struct_size": 64,
+            "calls": 1,
+            "held_bytes": 0,
+            "total": 17174360064,
+            "available": 13623234560
+          },
+          "status": "passed"
+        },
+        "held": {
+          "rust": {
+            "total": {
+              "value": 17174360064,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792541098353,
+              "reason": null
+            },
+            "available": {
+              "value": 13549342720,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792541098413,
+              "reason": null
+            }
+          },
+          "sdk": {
+            "status": 0,
+            "struct_size": 64,
+            "calls": 2,
+            "held_bytes": 67108864,
+            "total": 17174360064,
+            "available": 13549367296
+          },
+          "status": "passed"
+        },
+        "released": {
+          "rust": {
+            "total": {
+              "value": 17174360064,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792541098353,
+              "reason": null
+            },
+            "available": {
+              "value": 13613002752,
+              "availability": "available",
+              "source": "win32",
+              "observed_at": 1792541098439,
+              "reason": null
+            }
+          },
+          "sdk": {
+            "status": 0,
+            "struct_size": 64,
+            "calls": 3,
+            "held_bytes": 0,
+            "total": 17174360064,
+            "available": 13615493120
+          },
+          "status": "passed"
+        }
+      },
+      "available_values_changed": true,
+      "sdk_source_sha256": "5d6cb23e5ad05e7f585f0927a1044b056da1fbac40a05125fd02023f1b9b41b5"
+    },
+    "macos-cpu-benchmark-linux-39518381989.json": {
+      "path": "macos-cpu-benchmark-linux-39518381989.json",
+      "sha256": "d902dd29a6c1aafbf43052e9d47b2ec5efac6440a0ce6bcbdd08f1c763271201",
+      "original_report_sha256": "d2843472b41fe273422adaf043a918b8d477c6af867e3ae9932eededa077304d"
+    },
+    "macos-cpu-benchmark-darwin-39518381989.json": {
+      "path": "macos-cpu-benchmark-darwin-39518381989.json",
+      "sha256": "6ed6920724eea43ce26c3a07c6cc0c701281aeaed04dd537354c950a3654f208",
+      "original_report_sha256": "5847560d6a4bfc3f963cfa554decb27b8b2cd4f7cc7980fd0a030ce78f15c811"
+    },
+    "macos-cpu-windows-sdk-39518381989.json": {
+      "path": "macos-cpu-windows-sdk-39518381989.json",
+      "sha256": "5aa6b272ff442ce888abf4183515488765b9d77adb96c3d14127ff165fad7360",
+      "original_report_sha256": "5268432ec1956f042e2fb4841035c9f6ef369dfdddfd64757d0d0852378514a7",
+      "initial": {
+        "cpu": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "win32",
+          "observed_at": null,
+          "reason": "temporarily_unavailable"
+        },
+        "sdk": {
+          "status": "passed",
+          "groups": 1,
+          "processors": 4,
+          "calls": 1,
+          "struct_size": 8,
+          "idle": 28094218750,
+          "kernel": 31417968750,
+          "user": 8424218750
+        }
+      },
+      "observations": [
+        {
+          "cpu": {
+            "value": 7.608695652173914,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792541099415,
+            "reason": null
+          },
+          "sdk": {
+            "status": "passed",
+            "groups": 1,
+            "processors": 4,
+            "calls": 2,
+            "struct_size": 8,
+            "idle": 28107500000,
+            "kernel": 31432031250,
+            "user": 8424531250
+          },
+          "sdk_usage_percent": 7.608695652173913
+        },
+        {
+          "cpu": {
+            "value": 4.3478260869565215,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792541099769,
+            "reason": null
+          },
+          "sdk": {
+            "status": "passed",
+            "groups": 1,
+            "processors": 4,
+            "calls": 3,
+            "struct_size": 8,
+            "idle": 28120937500,
+            "kernel": 31445781250,
+            "user": 8424843750
+          },
+          "sdk_usage_percent": 4.444444444444445
+        },
+        {
+          "cpu": {
+            "value": 6.8181818181818175,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792541100124,
+            "reason": null
+          },
+          "sdk": {
+            "status": "passed",
+            "groups": 1,
+            "processors": 4,
+            "calls": 4,
+            "struct_size": 8,
+            "idle": 28134062500,
+            "kernel": 31459375000,
+            "user": 8425312500
+          },
+          "sdk_usage_percent": 6.666666666666667
+        }
+      ],
+      "rebuilt": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "win32",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "sdk_source_sha256": "747bc8df1720d29e65bf7a6c19d7f1655c0c4d763d411947fa763ed8763d9926"
+    },
+    "macos-cpu-sdk-39518381989.json": {
+      "path": "macos-cpu-sdk-39518381989.json",
+      "sha256": "89337764086c6449cc75cf3d9aa8a314af8d772bc160d7bfdb144ee33cbf9ab9",
+      "original_report_sha256": "89337764086c6449cc75cf3d9aa8a314af8d772bc160d7bfdb144ee33cbf9ab9",
+      "initial": {
+        "cpu": {
+          "value": null,
+          "availability": "unavailable",
+          "source": "apple_api",
+          "observed_at": null,
+          "reason": "temporarily_unavailable"
+        },
+        "logical_count": {
+          "value": 3,
+          "availability": "available",
+          "source": "apple_api",
+          "observed_at": 1792540858666,
+          "reason": null
+        },
+        "sdk": {
+          "status": "passed",
+          "calls": 1,
+          "processors": 3,
+          "word_count": 12,
+          "word_size": 4,
+          "pointer_size": 8,
+          "released_array": true,
+          "released_host": true,
+          "ticks": [
+            [
+              13613,
+              7617,
+              3367,
+              0
+            ],
+            [
+              13979,
+              6598,
+              4023,
+              0
+            ],
+            [
+              13863,
+              6448,
+              4290,
+              0
+            ]
+          ]
+        }
+      },
+      "observations": [
+        {
+          "status": "passed",
+          "cpu": {
+            "value": 49.6124031007752,
+            "availability": "available",
+            "source": "apple_api",
+            "observed_at": 1792540859092,
+            "reason": null
+          },
+          "sdk": {
+            "status": "passed",
+            "calls": 2,
+            "processors": 3,
+            "word_count": 12,
+            "word_size": 4,
+            "pointer_size": 8,
+            "released_array": true,
+            "released_host": true,
+            "ticks": [
+              [
+                13629,
+                7625,
+                3388,
+                0
+              ],
+              [
+                13993,
+                6604,
+                4048,
+                0
+              ],
+              [
+                13881,
+                6456,
+                4309,
+                0
+              ]
+            ]
+          },
+          "sdk_usage_percent": 51.851851851851855
+        },
+        {
+          "status": "passed",
+          "cpu": {
+            "value": 76.47058823529412,
+            "availability": "available",
+            "source": "apple_api",
+            "observed_at": 1792540859495,
+            "reason": null
+          },
+          "sdk": {
+            "status": "passed",
+            "calls": 3,
+            "processors": 3,
+            "word_count": 12,
+            "word_size": 4,
+            "pointer_size": 8,
+            "released_array": true,
+            "released_host": true,
+            "ticks": [
+              [
+                13645,
+                7640,
+                3397,
+                0
+              ],
+              [
+                14011,
+                6616,
+                4057,
+                0
+              ],
+              [
+                13897,
+                6470,
+                4319,
+                0
+              ]
+            ]
+          },
+          "sdk_usage_percent": 76.47058823529412
+        },
+        {
+          "status": "passed",
+          "cpu": {
+            "value": 75.67567567567568,
+            "availability": "available",
+            "source": "apple_api",
+            "observed_at": 1792540859866,
+            "reason": null
+          },
+          "sdk": {
+            "status": "passed",
+            "calls": 4,
+            "processors": 3,
+            "word_count": 12,
+            "word_size": 4,
+            "pointer_size": 8,
+            "released_array": true,
+            "released_host": true,
+            "ticks": [
+              [
+                13661,
+                7652,
+                3405,
+                0
+              ],
+              [
+                14024,
+                6629,
+                4069,
+                0
+              ],
+              [
+                13914,
+                6483,
+                4326,
+                0
+              ]
+            ]
+          },
+          "sdk_usage_percent": 75.67567567567568
+        }
+      ],
+      "rebuilt": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "apple_api",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "sdk_source_sha256": "c24825fa4ee5e4e35d00b0f7c8abb79e7438804eb34e2b7c7ddc2515b5a70a29"
+    }
+  },
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "license": "MIT",
+  "new_dependency_packages": false,
+  "binding_features_added": [],
+  "schema_shape_changed": false,
+  "core_api_changed": false,
+  "public_backend_added": "MacosCpuBackend::new/Default; macOS logical_count and cpu_usage_percent move from Sysinfo to AppleApi; standalone SysinfoBackend users must register it or use facade",
+  "local_evidence_index": "macos-cpu-local-359af7e.json",
+  "windows_memory_pressure": {
+    "path": "macos-cpu-pressure-39518381989.json",
+    "sha256": "570168a410458e6b50e8ef85af5889898b5979a8320079b71c15b989da5f3e45",
+    "original_report_sha256": "6e2078ee04ff597812f9f917a9e5236ed15c99aeb4d75712f6837593a14618f8",
+    "phases": {
+      "baseline": {
+        "rust": {
+          "total": {
+            "value": 17174360064,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792541098353,
+            "reason": null
+          },
+          "available": {
+            "value": 13620097024,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792541098381,
+            "reason": null
+          }
+        },
+        "sdk": {
+          "status": 0,
+          "struct_size": 64,
+          "calls": 1,
+          "held_bytes": 0,
+          "total": 17174360064,
+          "available": 13623234560
+        },
+        "status": "passed"
+      },
+      "held": {
+        "rust": {
+          "total": {
+            "value": 17174360064,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792541098353,
+            "reason": null
+          },
+          "available": {
+            "value": 13549342720,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792541098413,
+            "reason": null
+          }
+        },
+        "sdk": {
+          "status": 0,
+          "struct_size": 64,
+          "calls": 2,
+          "held_bytes": 67108864,
+          "total": 17174360064,
+          "available": 13549367296
+        },
+        "status": "passed"
+      },
+      "released": {
+        "rust": {
+          "total": {
+            "value": 17174360064,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792541098353,
+            "reason": null
+          },
+          "available": {
+            "value": 13613002752,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792541098439,
+            "reason": null
+          }
+        },
+        "sdk": {
+          "status": 0,
+          "struct_size": 64,
+          "calls": 3,
+          "held_bytes": 0,
+          "total": 17174360064,
+          "available": 13615493120
+        },
+        "status": "passed"
+      }
+    },
+    "available_values_changed": true,
+    "sdk_source_sha256": "5d6cb23e5ad05e7f585f0927a1044b056da1fbac40a05125fd02023f1b9b41b5"
+  },
+  "rust_tests_including_doctests": {
+    "windows": 218,
+    "linux": 211,
+    "macos": 213
+  },
+  "python_tests_per_desktop": 98,
+  "python_source_files": 38,
+  "fuzz_targets_completed": 11,
+  "fuzz_campaigns": {
+    "Run cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512": {
+      "runs": 586386,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 9894598,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 20512516,
+      "elapsed_seconds": 61
+    },
+    "Fuzz CPU state and bounded stat parsing": {
+      "runs": 1200678,
+      "elapsed_seconds": 61
+    },
+    "Fuzz meminfo parsing and field isolation": {
+      "runs": 3329890,
+      "elapsed_seconds": 61
+    },
+    "Fuzz uptime parsing and numeric boundaries": {
+      "runs": 23622930,
+      "elapsed_seconds": 61
+    },
+    "Fuzz power supply attribute boundaries": {
+      "runs": 22066935,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded hwmon millidegrees": {
+      "runs": 21888143,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded network counters and privacy": {
+      "runs": 4158232,
+      "elapsed_seconds": 61
+    },
+    "Fuzz Darwin routing message boundaries": {
+      "runs": 4996668,
+      "elapsed_seconds": 61
+    },
+    "Fuzz checked block sector conversion": {
+      "runs": 33768192,
+      "elapsed_seconds": 61
+    }
+  },
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "2fcffcf6868078509b7c52b5140c53cb3f18a93916dd46d71cd999f534914d72",
+  "windows_cpu_sdk": {
+    "path": "macos-cpu-windows-sdk-39518381989.json",
+    "sha256": "5aa6b272ff442ce888abf4183515488765b9d77adb96c3d14127ff165fad7360",
+    "original_report_sha256": "5268432ec1956f042e2fb4841035c9f6ef369dfdddfd64757d0d0852378514a7",
+    "initial": {
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "win32",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "sdk": {
+        "status": "passed",
+        "groups": 1,
+        "processors": 4,
+        "calls": 1,
+        "struct_size": 8,
+        "idle": 28094218750,
+        "kernel": 31417968750,
+        "user": 8424218750
+      }
+    },
+    "observations": [
+      {
+        "cpu": {
+          "value": 7.608695652173914,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792541099415,
+          "reason": null
+        },
+        "sdk": {
+          "status": "passed",
+          "groups": 1,
+          "processors": 4,
+          "calls": 2,
+          "struct_size": 8,
+          "idle": 28107500000,
+          "kernel": 31432031250,
+          "user": 8424531250
+        },
+        "sdk_usage_percent": 7.608695652173913
+      },
+      {
+        "cpu": {
+          "value": 4.3478260869565215,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792541099769,
+          "reason": null
+        },
+        "sdk": {
+          "status": "passed",
+          "groups": 1,
+          "processors": 4,
+          "calls": 3,
+          "struct_size": 8,
+          "idle": 28120937500,
+          "kernel": 31445781250,
+          "user": 8424843750
+        },
+        "sdk_usage_percent": 4.444444444444445
+      },
+      {
+        "cpu": {
+          "value": 6.8181818181818175,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792541100124,
+          "reason": null
+        },
+        "sdk": {
+          "status": "passed",
+          "groups": 1,
+          "processors": 4,
+          "calls": 4,
+          "struct_size": 8,
+          "idle": 28134062500,
+          "kernel": 31459375000,
+          "user": 8425312500
+        },
+        "sdk_usage_percent": 6.666666666666667
+      }
+    ],
+    "rebuilt": {
+      "value": null,
+      "availability": "unavailable",
+      "source": "win32",
+      "observed_at": null,
+      "reason": "temporarily_unavailable"
+    },
+    "sdk_source_sha256": "747bc8df1720d29e65bf7a6c19d7f1655c0c4d763d411947fa763ed8763d9926"
+  },
+  "macos_cpu_sdk": {
+    "path": "macos-cpu-sdk-39518381989.json",
+    "sha256": "89337764086c6449cc75cf3d9aa8a314af8d772bc160d7bfdb144ee33cbf9ab9",
+    "original_report_sha256": "89337764086c6449cc75cf3d9aa8a314af8d772bc160d7bfdb144ee33cbf9ab9",
+    "initial": {
+      "cpu": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "apple_api",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "logical_count": {
+        "value": 3,
+        "availability": "available",
+        "source": "apple_api",
+        "observed_at": 1792540858666,
+        "reason": null
+      },
+      "sdk": {
+        "status": "passed",
+        "calls": 1,
+        "processors": 3,
+        "word_count": 12,
+        "word_size": 4,
+        "pointer_size": 8,
+        "released_array": true,
+        "released_host": true,
+        "ticks": [
+          [
+            13613,
+            7617,
+            3367,
+            0
+          ],
+          [
+            13979,
+            6598,
+            4023,
+            0
+          ],
+          [
+            13863,
+            6448,
+            4290,
+            0
+          ]
+        ]
+      }
+    },
+    "observations": [
+      {
+        "status": "passed",
+        "cpu": {
+          "value": 49.6124031007752,
+          "availability": "available",
+          "source": "apple_api",
+          "observed_at": 1792540859092,
+          "reason": null
+        },
+        "sdk": {
+          "status": "passed",
+          "calls": 2,
+          "processors": 3,
+          "word_count": 12,
+          "word_size": 4,
+          "pointer_size": 8,
+          "released_array": true,
+          "released_host": true,
+          "ticks": [
+            [
+              13629,
+              7625,
+              3388,
+              0
+            ],
+            [
+              13993,
+              6604,
+              4048,
+              0
+            ],
+            [
+              13881,
+              6456,
+              4309,
+              0
+            ]
+          ]
+        },
+        "sdk_usage_percent": 51.851851851851855
+      },
+      {
+        "status": "passed",
+        "cpu": {
+          "value": 76.47058823529412,
+          "availability": "available",
+          "source": "apple_api",
+          "observed_at": 1792540859495,
+          "reason": null
+        },
+        "sdk": {
+          "status": "passed",
+          "calls": 3,
+          "processors": 3,
+          "word_count": 12,
+          "word_size": 4,
+          "pointer_size": 8,
+          "released_array": true,
+          "released_host": true,
+          "ticks": [
+            [
+              13645,
+              7640,
+              3397,
+              0
+            ],
+            [
+              14011,
+              6616,
+              4057,
+              0
+            ],
+            [
+              13897,
+              6470,
+              4319,
+              0
+            ]
+          ]
+        },
+        "sdk_usage_percent": 76.47058823529412
+      },
+      {
+        "status": "passed",
+        "cpu": {
+          "value": 75.67567567567568,
+          "availability": "available",
+          "source": "apple_api",
+          "observed_at": 1792540859866,
+          "reason": null
+        },
+        "sdk": {
+          "status": "passed",
+          "calls": 4,
+          "processors": 3,
+          "word_count": 12,
+          "word_size": 4,
+          "pointer_size": 8,
+          "released_array": true,
+          "released_host": true,
+          "ticks": [
+            [
+              13661,
+              7652,
+              3405,
+              0
+            ],
+            [
+              14024,
+              6629,
+              4069,
+              0
+            ],
+            [
+              13914,
+              6483,
+              4326,
+              0
+            ]
+          ]
+        },
+        "sdk_usage_percent": 75.67567567567568
+      }
+    ],
+    "rebuilt": {
+      "value": null,
+      "availability": "unavailable",
+      "source": "apple_api",
+      "observed_at": null,
+      "reason": "temporarily_unavailable"
+    },
+    "sdk_source_sha256": "c24825fa4ee5e4e35d00b0f7c8abb79e7438804eb34e2b7c7ddc2515b5a70a29"
+  },
+  "source_change_checks": {
+    "core_schema_ffi_linux_windows_crates_unchanged": true,
+    "lock_files_unchanged": true
+  },
+  "limits": [
+    "Windows CPU covers one active processor group only; multi-group is Unsupported and remains unverified on real hardware",
+    "CPU API errors, resets and topology changes use synthetic Rust tests, not real denied/hotplug experiments",
+    "Windows CPU SDK and Rust use distinct sampling intervals; no value equality, load or latency benchmark claim",
+    "Existing core merge may retain Unsupported/Custom for a multi-group field; Partial capability does not imply actual availability",
+    "Native memory pressure success path passed again; real API errors/total changes remain synthetic",
+    "macOS memory freshness remains a separate pending slice; physical Mac, native Intel, App Sandbox and real Mach failure paths remain unverified",
+    "Hosted runners are not physical Linux/macOS validation; complete empty procfs still OCI rejected/not_run",
+    "No long native leak/peak-memory/blocked-kernel forced termination proof; Mach OOL allocation occurs before the library copy limit; long tick wrap and same-count topology changes remain ambiguous",
+    "No registry publication or release distribution"
+  ]
+}

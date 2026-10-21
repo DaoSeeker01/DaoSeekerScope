@@ -21,3 +21,5 @@ sysinfo字段observed_at指适配层读值的时间，无法证明上游内部�
 2026-10-20 Windows CPU 增量：SysinfoBackend 停止提供 Windows CPU 用量，由门面自动注册 WindowsCpuBackend 直接检查 GetSystemTimes。首样本/过早刷新暂不可用，读取失败清基线；只覆盖单活动处理器组，多组明确不支持。静态 CPU 与 Windows uptime 不变；包/锁/ABI1/Schema1 不变，Windows 绑定增加 Threading feature。见 [ADR 0024](0024-windows-cpu.md) 和[本轮验证](../windows-cpu-validation.md)。
 
 2026-10-21 macOS CPU 增量：update_cpu_usage 在 Mach 读取失败后写入默认 0，init_cpus 在 HW_NCPU 失败后回退为 1；均为源码检查结论而非真机故障复现。MacosCpuBackend 接管逻辑核数和动态 CPU，SysinfoBackend 不再提供两字段；内存/uptime 等仍保持原路线。见 [ADR 0025](0025-macos-cpu.md) 和[验证](../macos-cpu-validation.md)，本机纯逻辑与交叉编译已过，原生 CI/SDK 待验。
+
+2026-10-21 macOS CPU 验收：实现 359af7e / CI 源码 ac9baff 的[三平台 CI](../macos-cpu-validation.md)运行 39518381989 全部八项通过，ARM64 公开 SDK 与持久采样成功。仅验证本切片 CPU/逻辑核数；macOS 内存与 Windows/macOS uptime 保持原有 Partial 路线。

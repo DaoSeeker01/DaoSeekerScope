@@ -239,3 +239,15 @@ CI 源码 `1231088bc97d005a7e3c516d865db14362baf8ed`，采集实现 `2cf2736`；
 | macOS ARM64 | 54648 | 41 / 91 / 1021 | 154 / 373541 | [完整记录](evidence/windows-cpu-benchmark-darwin-39350478223.json) |
 
 首次 collect 不含构造，动态刷新使用静态缓存。没有旧版配对，不宣称性能改善/退化；没有峰值内存、长期泄漏、内核调用强制中止或物理设备测量，不是 SLA。Windows CPU SDK 实验是功能验证，不作为该表的性能样本。
+
+
+## macOS CPU 切片的整库回归基准（2026-10-21）
+
+源码 `ac9baff0d90b59c3639ae49e3dbd782a9c024b03`，命令 `cargo bench --locked -p daoseeker-scope --bench collect`，Rust 1.96、bench 优化 profile、默认 serde。原生 max_entries=128；合成独立设置 1024，包含 100 个传感器和 1024 个网络条目。以下来自托管 runner，不是物理设备、Mach 单次调用或 CLI 启动延迟。
+
+| 平台 | 首次 collect µs | 刷新 p50 / p95 / max µs（100 次） | 合成 collect µs / JSON bytes | 完整环境与原始日志 |
+|---|---|---|---|---|
+| Linux x64 | 1254 | 348 / 542 / 843 | 227 / 373541 | [完整记录](evidence/macos-cpu-benchmark-linux-39518381989.json) |
+| macOS ARM64 | 42576 | 36 / 135 / 232 | 119 / 373541 | [完整记录](evidence/macos-cpu-benchmark-darwin-39518381989.json) |
+
+首次 collect 不含构造，刷新使用静态缓存。没有旧版配对，不宣称性能改善/退化；没有峰值内存、长期泄漏、内核调用强制中止或实体设备测量，不是 SLA。SDK 短采样是功能证据，不并入本表作为性能样本。

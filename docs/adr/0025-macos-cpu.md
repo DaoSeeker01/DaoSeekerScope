@@ -1,6 +1,6 @@
 # ADR 0025：macOS CPU 新读、核数与 Mach 资源所有权
 
-状态：源码 359af7e 已实现，Windows 纯逻辑/原生回归/八包独立验证及 macOS arm64 交叉检查通过；本轮没有 macOS 本机或 CI 运行证据，交叉编译不等于原生读取。见[验证](../macos-cpu-validation.md)。
+状态：实现 359af7e / CI 源码 ac9baff 已通过三平台原生 CI 39518381989、macOS ARM64 公开 SDK/链接/采样与八包验收；真实 API 故障、Intel 原生和实体 Mac 仍未验证。见[验证](../macos-cpu-validation.md)。
 
 锁定 sysinfo 0.39.6 的 Apple update_cpu_usage 在 host_processor_info 失败时仍写入初始 0%；init_cpus 的 HW_NCPU 查询失败还会使用 1。以上是源码确认的静默回退，未在实体 Mac 诱发故障。动态 CPU 与静态逻辑核数由新 MacosCpuBackend::new()/Default 直接处理，门面自动注册；保留原 MacosBackend 单元结构。Mac 的 SysinfoBackend 停止提供这两个字段，避免替代来源掩盖直接读取失败；品牌/架构/物理核数、内存与 uptime 保持原路线。
 

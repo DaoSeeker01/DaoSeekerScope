@@ -1,0 +1,1028 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-20T23:59:34.765268+00:00",
+  "execution_platform": {
+    "os": "Linux",
+    "architecture": "x86_64"
+  },
+  "python_version": "3.12.3",
+  "overall": "passed",
+  "checks": {
+    "cli": "passed",
+    "c_abi": "passed",
+    "python_ffi": "passed",
+    "storage_text": "passed",
+    "cli_text": "passed"
+  },
+  "observations": {
+    "cli": {
+      "os.name": {
+        "value": "Ubuntu",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774917,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "AMD EPYC 9V45 96-Core Processor",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774917,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 4,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774917,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 16760344576,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1792540774917,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "static.storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774917,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774917,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774917,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774917,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774917,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774917,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774917,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774917,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 161061273600,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774917,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1792540774917,
+        "reason": null
+      },
+      "os.version": {
+        "value": "24.04",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774917,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "7.0.0-1017-azure",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774917,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "x86_64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774917,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 2,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774917,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "dynamic.batteries": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1792540774917,
+        "reason": null
+      },
+      "dynamic.sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": 49.85,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1792540774918,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1792540774918,
+        "reason": null
+      },
+      "dynamic.networks": {
+        "value": [
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "procfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 29540,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774918,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 29540,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774918,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "procfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 169681566,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774918,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 1858333,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774918,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "procfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 176635547,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774918,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 1869105,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774918,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "procfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774918,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774918,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1792540774918,
+        "reason": null
+      },
+      "static.gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792540774917,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unsupported",
+            "source": "drm",
+            "reason": "not_supported",
+            "observed_at": null
+          }
+        ]
+      },
+      "static.display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792540774917,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "restricted",
+            "source": "sysfs",
+            "reason": "privacy_redacted",
+            "observed_at": null
+          }
+        ]
+      }
+    },
+    "c_abi": {
+      "os.name": {
+        "value": "Ubuntu",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774928,
+        "reason": null
+      },
+      "cpu.brand": {
+        "value": "AMD EPYC 9V45 96-Core Processor",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774928,
+        "reason": null
+      },
+      "cpu.logical_count": {
+        "value": 4,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774928,
+        "reason": null
+      },
+      "memory.total_usable_bytes": {
+        "value": 16760344576,
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1792540774928,
+        "reason": null
+      },
+      "device.serial_number": {
+        "value": null,
+        "availability": "restricted",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "privacy_redacted"
+      },
+      "static.storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774928,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774928,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774928,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774928,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774928,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774928,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774928,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774928,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 161061273600,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1792540774928,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1792540774928,
+        "reason": null
+      },
+      "os.version": {
+        "value": "24.04",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774928,
+        "reason": null
+      },
+      "os.kernel_version": {
+        "value": "7.0.0-1017-azure",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774928,
+        "reason": null
+      },
+      "cpu.architecture": {
+        "value": "x86_64",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774928,
+        "reason": null
+      },
+      "cpu.physical_count": {
+        "value": 2,
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1792540774928,
+        "reason": null
+      },
+      "memory.installed_bytes": {
+        "value": null,
+        "availability": "unsupported",
+        "source": "custom",
+        "observed_at": null,
+        "reason": "not_supported"
+      },
+      "dynamic.cpu_usage_percent": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "procfs",
+        "observed_at": null,
+        "reason": "temporarily_unavailable"
+      },
+      "dynamic.batteries": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1792540774928,
+        "reason": null
+      },
+      "dynamic.sensors": {
+        "value": [
+          {
+            "label": {
+              "value": null,
+              "availability": "restricted",
+              "source": "hwmon",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "temperature_celsius": {
+              "value": 49.85,
+              "availability": "available",
+              "source": "hwmon",
+              "observed_at": 1792540774929,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "hwmon",
+        "observed_at": 1792540774929,
+        "reason": null
+      },
+      "dynamic.networks": {
+        "value": [
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "procfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 29540,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774929,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 29540,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774929,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "procfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 169681566,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774929,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 1858333,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774929,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "procfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 176635547,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774929,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 1869105,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774929,
+              "reason": null
+            }
+          },
+          {
+            "interface_name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "procfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "received_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774929,
+              "reason": null
+            },
+            "transmitted_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "procfs",
+              "observed_at": 1792540774929,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "procfs",
+        "observed_at": 1792540774929,
+        "reason": null
+      },
+      "static.gpu_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792540774928,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "unsupported",
+            "source": "drm",
+            "reason": "not_supported",
+            "observed_at": null
+          }
+        ]
+      },
+      "static.display_summary": {
+        "availability": "available",
+        "source": "drm",
+        "reason": null,
+        "observed_at": 1792540774928,
+        "entries": 1,
+        "names_available": 0,
+        "name_metadata": [
+          {
+            "availability": "restricted",
+            "source": "sysfs",
+            "reason": "privacy_redacted",
+            "observed_at": null
+          }
+        ]
+      }
+    },
+    "storage_text": {
+      "entry_count": 9,
+      "available_capacity_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        161061273600
+      ],
+      "source": "Sysfs",
+      "names_redacted": true,
+      "output_sha256": "ed98a0139beb13f5cd40c83a1a6e00af4d38ba3e31ee73cc9467dc167cf1c207"
+    },
+    "cli_text": {
+      "cpu": {
+        "available_fields": 5,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "9b515bae1543a55d7f9e2c308aefe676ee04a1ecb89fa6c1acbeeb6ca1a844c7"
+      },
+      "memory": {
+        "available_fields": 2,
+        "missing_fields": 1,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "bca37bb2240494e8665fbec897b90de15fcef164d39a383d63021e7163310cc9"
+      },
+      "system": {
+        "available_fields": 7,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "9d113e4637d5d1a130e77bf160bd12ad795b75c56e984f0bedb5b46f77c89095"
+      },
+      "gpu": {
+        "available_fields": 0,
+        "missing_fields": 2,
+        "entry_count": 1,
+        "collection_state": "Available",
+        "output_sha256": "a3eddb36c52d0e444b89b40d89a7ef33e4ac27d011f7f3b1f5fcb8ed8efc41a7"
+      },
+      "display": {
+        "available_fields": 0,
+        "missing_fields": 3,
+        "entry_count": 1,
+        "collection_state": "Available",
+        "output_sha256": "fe4c869965015e232ec836caf7490fd966317858e97bb2c40c4b53e36b56cf63"
+      },
+      "network": {
+        "available_fields": 8,
+        "missing_fields": 4,
+        "entry_count": 4,
+        "collection_state": "Available",
+        "output_sha256": "6aacf0b56118014de5e5237e964196859d8ed856b03f06713d508a15516198a9"
+      },
+      "battery": {
+        "available_fields": 0,
+        "missing_fields": 0,
+        "entry_count": 0,
+        "collection_state": "Available",
+        "output_sha256": "1b555f41d1fac87f8a32a8371c1e0cbc638d8efbde801088f671be44caa90beb"
+      },
+      "sensors": {
+        "available_fields": 1,
+        "missing_fields": 1,
+        "entry_count": 1,
+        "collection_state": "Available",
+        "output_sha256": "b0142b845ef764c506a70c53b853dc0c548ec31d35f8d4cce07ad8fd99d73a5d"
+      },
+      "capabilities": {
+        "available_fields": 0,
+        "missing_fields": 0,
+        "entry_count": null,
+        "collection_state": null,
+        "output_sha256": "aa82528d2092b5b4e367fb643162dc97ca6bedbad904eb2d476aace7954f591a"
+      }
+    }
+  },
+  "processes": {
+    "c_abi": {
+      "status": "passed",
+      "command": "c_abi",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 9765,
+      "stderr_bytes": 0
+    },
+    "cli": {
+      "status": "passed",
+      "command": "cli",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 9766,
+      "stderr_bytes": 0
+    },
+    "cli_text_battery": {
+      "status": "passed",
+      "command": "cli_text_battery",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 29,
+      "stderr_bytes": 0
+    },
+    "cli_text_capabilities": {
+      "status": "passed",
+      "command": "cli_text_capabilities",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 1019,
+      "stderr_bytes": 0
+    },
+    "cli_text_cpu": {
+      "status": "passed",
+      "command": "cli_text_cpu",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 158,
+      "stderr_bytes": 0
+    },
+    "cli_text_display": {
+      "status": "passed",
+      "command": "cli_text_display",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 313,
+      "stderr_bytes": 0
+    },
+    "cli_text_gpu": {
+      "status": "passed",
+      "command": "cli_text_gpu",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 139,
+      "stderr_bytes": 0
+    },
+    "cli_text_memory": {
+      "status": "passed",
+      "command": "cli_text_memory",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 140,
+      "stderr_bytes": 0
+    },
+    "cli_text_network": {
+      "status": "passed",
+      "command": "cli_text_network",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 648,
+      "stderr_bytes": 0
+    },
+    "cli_text_sensors": {
+      "status": "passed",
+      "command": "cli_text_sensors",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 126,
+      "stderr_bytes": 0
+    },
+    "cli_text_system": {
+      "status": "passed",
+      "command": "cli_text_system",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 242,
+      "stderr_bytes": 0
+    },
+    "git_revision": {
+      "status": "passed",
+      "command": "git_revision",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    "git_status": {
+      "status": "passed",
+      "command": "git_status",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    "python_ffi": {
+      "status": "passed",
+      "command": "python_ffi",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 86,
+      "stderr_bytes": 0
+    },
+    "rustc": {
+      "status": "passed",
+      "command": "rustc",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 196,
+      "stderr_bytes": 0
+    },
+    "storage_text": {
+      "status": "passed",
+      "command": "storage_text",
+      "return_code": 0,
+      "scope_error": null,
+      "stdout_bytes": 975,
+      "stderr_bytes": 0
+    }
+  },
+  "artifact_sha256": {
+    "cli": "3c4ec2d654140cae1f6e3565e08ed7d321c8704fc957eea8fee03dd6b1f9e449",
+    "c_example": "b7c5310d4042a14fac07cce756e6d08aa0786219353a00e90f61a6bef47b38df",
+    "ffi": "aa234408bd19ff53f317f051a9912639b3801599cea071e403544670cff0a91b",
+    "cargo_lock": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae"
+  },
+  "available_rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "git_revision": "ac9baff0d90b59c3639ae49e3dbd782a9c024b03",
+  "git_dirty": false
+}
