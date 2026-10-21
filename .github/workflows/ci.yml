@@ -18,6 +18,14 @@ jobs:
         run: rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy
       - run: cargo fmt --all --check
       - run: cargo clippy --locked --workspace --all-targets --all-features -- -D warnings
+      - name: macOS memory SDK preflight
+        if: runner.os == 'macOS'
+        run: |
+          mkdir -p target
+          cc -Wall -Wextra -Werror -std=c11 docs/research/macos_memory_probe.c -o target/macos-memory-probe
+          target/macos-memory-probe < /dev/null | tee target/macos-memory-initial-sdk.json
+          cargo build --locked -p daoseeker-scope --example dynamic_probe
+          target/debug/examples/dynamic_probe < /dev/null > target/macos-memory-initial-rust.json
       - run: cargo test --locked --workspace --all-features -- --test-threads=1
       - run: cargo check --locked -p daoseeker-scope-core --no-default-features
       - run: cargo check --locked -p daoseeker-scope --no-default-features
@@ -132,6 +140,8 @@ jobs:
             target/macos-iomedia-probe.json
             target/macos-cpu-evidence.json
             target/macos-memory-evidence.json
+            target/macos-memory-initial-sdk.json
+            target/macos-memory-initial-rust.json
             target/macos-metal-probe.json
             target/macos-display-probe.json
             target/macos-display-comparison.json

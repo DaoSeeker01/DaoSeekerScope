@@ -44,3 +44,7 @@ CLI 按来源展示 `Physical total proxy bytes` / `Non-compressed estimate byte
 - [八包独立验收](evidence/macos-memory-packages-windows-57500a6.json)：实际 Cargo 归档/原生验证、提取后独立 workspace 的 229 项 Rust 测试、MIT/头文件/锁文件及 dscope 0.1.0 安装/完整 JSON 通过。第三方锁不变，未发布兄弟包由本地 patch 提供，不代表 registry 发布验收。
 
 macOS 原生 CI/SDK 尚待本轮推送后执行，实体设备仍按既定安排延期。归档不修改运行时代码。
+
+## 首轮 CI 失败（诊断中）
+
+运行 39695461224，源码 cd06481：macOS 的 desktop_minimum_real_read_and_refresh 在动态内存缺值断言失败。保留严格最小读取要求，不改为允许缺失；补充失败字段及独立 SDK 的安全状态/形状/单位诊断，并提前执行 SDK preflight，使测试失败仍保留观测。首轮其余未完成任务已申请停止，不能记为全套验收通过。原因与最终重跑结果随后补充。

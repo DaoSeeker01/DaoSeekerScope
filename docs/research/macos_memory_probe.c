@@ -35,12 +35,26 @@ static int sample(unsigned calls) {
                                      (host_info64_t)&stats, &count);
     }
     kern_return_t released = mach_port_deallocate(mach_task_self(), host);
-    if (page_result != KERN_SUCCESS || vm_result != KERN_SUCCESS ||
-        released != KERN_SUCCESS || count != HOST_VM_INFO64_REV1_COUNT ||
-        page_size == 0 || (page_size & (page_size - 1)) != 0 ||
-        stats.speculative_count > stats.free_count) return 3;
+    if (page_result != KERN_SUCCESS || vm_result != KERN_SUCCESS || released != KERN_SUCCESS) {
+        printf("{\"status\":\"failed\",\"stage\":\"api\",\"page_status\":%d,\"vm_status\":%d,\"release_status\":%d}\n",
+               page_result, vm_result, released);
+        return 3;
+    }
+    if (count != HOST_VM_INFO64_REV1_COUNT) {
+        printf("{\"status\":\"failed\",\"stage\":\"shape\",\"received_words\":%u,\"requested_words\":%u}\n",
+               (unsigned)count, (unsigned)HOST_VM_INFO64_REV1_COUNT);
+        return 3;
+    }
+    if (page_size == 0 || (page_size & (page_size - 1)) != 0 || stats.speculative_count > stats.free_count) {
+        printf("{\"status\":\"failed\",\"stage\":\"units\",\"page_size\":%" PRIu64 ",\"free\":%u,\"speculative\":%u}\n",
+               (uint64_t)page_size, (unsigned)stats.free_count, (unsigned)stats.speculative_count);
+        return 3;
+    }
     uint64_t pages = (uint64_t)stats.active_count + stats.inactive_count + stats.free_count;
-    if (pages > UINT64_MAX / page_size || pages * page_size > total) return 3;
+    if (pages > UINT64_MAX / page_size || pages * page_size > total) {
+        printf("{\"status\":\"failed\",\"stage\":\"bounds\",\"total\":%" PRIu64 ",\"pages\":%" PRIu64 ",\"page_size\":%" PRIu64 "}\n", total, pages, (uint64_t)page_size);
+        return 3;
+    }
     printf("{\"status\":\"passed\",\"calls\":%u,\"total\":%" PRIu64
            ",\"page_size\":%" PRIu64 ",\"active\":%u,\"inactive\":%u,"
            "\"free\":%u,\"speculative\":%u,\"available\":%" PRIu64

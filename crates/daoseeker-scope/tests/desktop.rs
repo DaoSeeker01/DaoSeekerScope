@@ -38,7 +38,11 @@ fn desktop_minimum_real_read_and_refresh() {
     );
     std::thread::sleep(std::time::Duration::from_millis(300));
     let dynamic = hardware.refresh_dynamic().expect("refresh");
-    assert!(dynamic.memory_available_bytes.value().is_some());
+    assert!(
+        dynamic.memory_available_bytes.value().is_some(),
+        "{:?}",
+        dynamic.memory_available_bytes
+    );
     assert!(dynamic.runtime.uptime_seconds.value().is_some());
     #[cfg(target_os = "windows")]
     {
