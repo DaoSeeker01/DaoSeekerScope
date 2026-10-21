@@ -76,4 +76,4 @@ macOS 网络切片沿用 libc 0.2.190，不新增依赖或许可证；macOS crat
 
 2026-10-18 macOS 显示器切片仅增加 macOS 内部 CoreGraphics 系统 framework 链接及五个私有 C 声明，使用现有 std/core，无新 Rust 包、feature、锁定版本或许可证变化。独立 C SDK 探针校验宽度与 CGError 常量，不复制 Apple 实现。项目仍 MIT。
 
-2026-10-22 macOS 内存切片复用 libc 0.2.186 的 sysctl/VM rev1 结构和三个局部公开 Mach 声明，无新增包、feature、锁定版本、系统 framework 或许可证。SDK 探针与业务代码独立实现，不复制 Apple APSL 内核实现。MIT、ABI 1、Schema 1 不变。
+2026-10-22 macOS 内存切片复用当前已锁定 libc 0.2.190 的 sysctl/VM 结构和三个局部公开 Mach 声明，仅请求稳定 rev1 前缀，无新增包、feature、锁定版本、系统 framework 或许可证。SDK 探针与业务代码独立实现，不复制 Apple APSL 内核实现。MIT、ABI 1、Schema 1 不变。

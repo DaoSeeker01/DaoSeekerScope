@@ -1,5 +1,6 @@
 //! Checked public memory queries; OS VM statistics may be rate-limited/cached.
 use daoseeker_scope_core::*;
+const VM_REV1_WORDS: u32 = 38;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum Failure {
@@ -38,7 +39,7 @@ struct Pages {
     speculative: u32,
 }
 fn vm_count(count: u32) -> Result<(), Failure> {
-    if count == 38 {
+    if count == VM_REV1_WORDS {
         Ok(())
     } else {
         Err(Failure::Invalid)
@@ -168,6 +169,21 @@ impl<F: FnMut(u32) -> Result<(), Failure>> Drop for HostRight<F> {
 mod native {
     use super::*;
     use std::{io, mem, ptr};
+    // The binding may contain fields newer than the running kernel/SDK. Request
+    // only this stable prefix and verify its layout at compile time, including
+    // cross builds where native assertions cannot run.
+    const _: () = {
+        assert!(mem::size_of::<libc::integer_t>() == 4);
+        assert!(mem::size_of::<libc::vm_statistics64>() >= VM_REV1_WORDS as usize * 4);
+        assert!(mem::offset_of!(libc::vm_statistics64, free_count) == 0);
+        assert!(mem::offset_of!(libc::vm_statistics64, speculative_count) == 92);
+        assert!(
+            mem::offset_of!(
+                libc::vm_statistics64,
+                total_uncompressed_pages_in_compressor
+            ) == 144
+        );
+    };
     unsafe extern "C" {
         static mach_task_self_: libc::mach_port_t;
         fn mach_host_self() -> libc::mach_port_t;
@@ -230,10 +246,11 @@ mod native {
             status(unsafe { host_page_size(host, &mut page_size) })?;
             // SAFETY: the SDK structure is plain integer fields, all-zero valid.
             let mut stats: libc::vm_statistics64 = unsafe { mem::zeroed() };
-            // libc exposes rev1, not the potentially larger current SDK structure.
-            let mut count = libc::HOST_VM_INFO64_COUNT;
-            // SAFETY: correctly aligned initialized rev1 buffer; count is its exact
-            // capacity in integer_t words. No OOL arrays; only success is consumed.
+            // Do not request the full binding struct: it can be newer/larger
+            // than the kernel. Only consume the explicitly requested rev1 prefix.
+            let mut count = VM_REV1_WORDS;
+            // SAFETY: initialized binding buffer contains the compile-checked
+            // prefix; count limits writes to 152 bytes. Only success is consumed.
             status(unsafe {
                 libc::host_statistics64(
                     host,
@@ -244,9 +261,10 @@ mod native {
             })?;
             #[cfg(test)]
             eprintln!(
-                "memory SDK metadata: buffer_bytes={} requested_words={} returned_words={count} page_size={page_size}",
+                "memory SDK metadata: buffer_bytes={} binding_words={} requested_words={} returned_words={count} page_size={page_size}",
                 mem::size_of::<libc::vm_statistics64>(),
-                libc::HOST_VM_INFO64_COUNT
+                libc::HOST_VM_INFO64_COUNT,
+                VM_REV1_WORDS
             );
             let result = vm_count(count).map(|()| Pages {
                 size: page_size as u64,
@@ -310,8 +328,8 @@ mod native {
     fn public_vm_rev1_layout_matches_requested_buffer() {
         assert_eq!(mem::size_of::<libc::integer_t>(), 4);
         assert_eq!(mem::size_of::<libc::vm_size_t>(), 8);
-        assert_eq!(mem::size_of::<libc::vm_statistics64>(), 152);
-        assert_eq!(libc::HOST_VM_INFO64_COUNT, 38);
+        assert!(mem::size_of::<libc::vm_statistics64>() >= 152);
+        assert_eq!(VM_REV1_WORDS, 38);
         assert_eq!(mem::offset_of!(libc::vm_statistics64, free_count), 0);
         assert_eq!(
             mem::offset_of!(libc::vm_statistics64, speculative_count),
@@ -335,7 +353,7 @@ mod tests {
     #[test]
     fn truncated_or_oversized_vm_reply_is_not_a_successful_zero_sample() {
         assert_eq!(vm_count(38), Ok(()));
-        for count in [0, 26, 37, 39, 40, u32::MAX] {
+        for count in [0, 26, 37, 39, 40, 62, 104, u32::MAX] {
             assert_eq!(vm_count(count), Err(Failure::Invalid));
         }
         assert_eq!(total_reply(u64::MAX, 8), Ok(u64::MAX));
