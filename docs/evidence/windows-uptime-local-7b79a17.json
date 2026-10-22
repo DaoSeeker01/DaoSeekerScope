@@ -1,0 +1,93 @@
+{
+  "source_commit": "7b79a17c1476beda09c4ae100685f7ca1ef1c5c0",
+  "overall": "passed",
+  "scope": "Windows x64 local runtime and package acceptance; Linux/macOS compile-only",
+  "host_rust_tests_including_doctests": 232,
+  "isolated_windows_package_tests": 232,
+  "portable_uptime_tests": 3,
+  "python_tests": 106,
+  "python_source_files": 42,
+  "native_windows_groups": 5,
+  "native_windows_processes": 16,
+  "uptime_sdk_processes": 2,
+  "uptime_bracketed_observations": 5,
+  "crate_archives": 8,
+  "cross_compile_only": [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-apple-darwin"
+  ],
+  "macos_arm64_all_target_clippy": "passed -D warnings, compile-only",
+  "three_platform_ci": "not_run",
+  "actual_fuzz_campaign": "not_run",
+  "fuzz_harness_unit_tests": 2,
+  "miri_asan_benchmark": "not_run",
+  "registry_publication_verified": false,
+  "c_abi_version": 1,
+  "schema_version": 1,
+  "license": "MIT",
+  "dependency_feature_lock_changes": false,
+  "new_public_types_or_signatures": false,
+  "migration": "Windows uptime Source Sysinfo -> Win32/Partial; standalone SysinfoBackend must add existing WindowsBackend or use facade",
+  "prior_behavior": "Pinned sysinfo 0.39.6 already calls GetTickCount64 per read; no cache or swallowed-error bug found",
+  "gate_scope": "Full Rust and final Python gates precommit; runtime/guard sources unchanged after commit; clean-source runtime and isolated packages then executed",
+  "sdk_c_source_sha256": "f0aa719559d6a5da12ccbff7e2b7d1742a01588be716fb87eb9c306ade29f9ad",
+  "reports": {
+    "docs/evidence/windows-uptime-native-7b79a17.json": {
+      "sha256_lf": "29abd24ce15c9cb3c6875aa2e66cef59d91781c53956db2b1fd658898a47b9b7",
+      "bytes_lf": 77525
+    },
+    "docs/evidence/windows-uptime-packages-7b79a17.json": {
+      "sha256_lf": "69fa58f716d206f37a5107d3e637b4037c48a174cb60aa10f759b05a5858141d",
+      "bytes_lf": 1926
+    },
+    "docs/evidence/windows-uptime-sdk-7b79a17.json": {
+      "sha256_lf": "abb94164518aff22edb04be6aae539f8d9b39fb3ff5968760b6a7ddc7655e5fa",
+      "bytes_lf": 2122
+    }
+  },
+  "local_log_hashes": {
+    "windows-uptime-check.log": {
+      "sha256": "65c9a193f906034ce8fd2d33ea090eadc9b5b30fad5b064f6eb225b6dd7b9188",
+      "bytes": 28648
+    },
+    "windows-uptime-python.log": {
+      "sha256": "fa37045b6c8c1579d0dec631b745faeabac032393b407f62db7dcec9080e4e65",
+      "bytes": 1021
+    },
+    "windows-uptime-macos-clippy.log": {
+      "sha256": "a1c363478283cf77b30fe243ba8159d4805eb33020504ed72aec23bd77cbc903",
+      "bytes": 667
+    },
+    "windows-uptime-native-clean.log": {
+      "sha256": "a4f8ecf90d9c6f4ebbd69982964427fe4cb0be8cba211c2ae2ac47f2dc3463b5",
+      "bytes": 122
+    },
+    "windows-uptime-packages.log": {
+      "sha256": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202",
+      "bytes": 49
+    }
+  },
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "cargo clippy --locked --workspace --all-targets --all-features --target aarch64-apple-darwin -- -D warnings",
+    "Ruff 0.14.13 format/check; mypy 1.19.1 --no-incremental --ignore-missing-imports; Python unittest discover; jsonschema 4.25.1 check_schema.py; check_project.py",
+    "cargo build --locked -p daoseeker-scope --example dynamic_probe",
+    "pwsh -NoProfile -File scripts/build_c_example.ps1 -UptimeProbe",
+    "python scripts/windows_uptime_smoke.py",
+    "python scripts/native_smoke.py --output target/windows-uptime-native-clean.json",
+    "python scripts/check_packages.py --offline",
+    "cargo fmt --manifest-path fuzz/Cargo.toml --check",
+    "cargo test --locked --manifest-path fuzz/Cargo.toml --lib"
+  ],
+  "limitations": [
+    "no sleep, hibernation, reboot, fast-startup or checked-kernel experiment",
+    "GetTickCount64 has no failure sentinel; no fabricated API error test",
+    "SDK brackets validate tick domain, not exact boot time or wall clock",
+    "cooperative cancellation cannot interrupt a blocked native API",
+    "No native Linux/macOS result for this source; cross compilation is not native acceptance",
+    "Physical Linux/macOS validation deferred by user until devices available",
+    "Tick seconds include sleep/hibernation per Microsoft documentation, not experimentally validated here",
+    "Partial retained: system timer granularity, integer flooring and checked-build bias; not exact boot time",
+    "No new performance, long-term fuzz, peak-memory or OS fault evidence"
+  ]
+}

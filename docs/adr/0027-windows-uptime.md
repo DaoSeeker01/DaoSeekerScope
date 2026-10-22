@@ -1,6 +1,6 @@
 # ADR 0027：Windows uptime 的直接来源与刷新契约
 
-状态：已实现并通过 Windows x64 本机门禁与 SDK 夹取；本机验证见 [验收记录](../windows-uptime-validation.md)，三平台 CI 尚未执行。
+状态：实现提交 7b79a17 已通过 Windows x64 本机门禁、SDK 夹取、干净源码八包与 CLI/C/Python；见 [验收记录](../windows-uptime-validation.md)，三平台 CI 尚未执行。
 
 核对 Cargo.lock 的 sysinfo 0.39.6：Windows `System::uptime()` 每次调用 `GetTickCount64() / 1000`。原实现没有缓存或隐藏失败，本轮不把迁移描述为修复已知错误。将相同读取移入现有 WindowsBackend，来源由 Sysinfo 改为 Win32，能力仍为 Partial；不新增 backend 类型、模型或默认 feature。单独 SysinfoBackend 不再提供 Windows uptime，用户需注册 WindowsBackend 或使用门面。
 

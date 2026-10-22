@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "platform": "Windows",
+  "observed_at": "2026-10-22T09:22:54.524513+00:00",
+  "limitations": [
+    "no sleep, hibernation, reboot, fast-startup or checked-kernel experiment",
+    "GetTickCount64 has no failure sentinel; no fabricated API error test",
+    "SDK brackets validate tick domain, not exact boot time or wall clock",
+    "cooperative cancellation cannot interrupt a blocked native API"
+  ],
+  "git_revision": "7b79a17c1476beda09c4ae100685f7ca1ef1c5c0",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "sdk": "4772fc47b45303139dceaf9e3d8de56c8f1b9913bc30bf08f8298c76ff08d5c1",
+    "rust": "3b30a0d6ddf7fee46f74b54cfdd6acaa0cf4e6e4e9bed041febc2800703af92e"
+  },
+  "observations": [
+    {
+      "operation": "collect",
+      "uptime": {
+        "value": 1174,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792660974649,
+        "reason": null
+      },
+      "sdk_before_ms": 1174093,
+      "sdk_after_ms": 1174125
+    },
+    {
+      "operation": "refresh",
+      "uptime": {
+        "value": 1175,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792660975755,
+        "reason": null
+      },
+      "sdk_before_ms": 1175234,
+      "sdk_after_ms": 1175234
+    },
+    {
+      "operation": "refresh",
+      "uptime": {
+        "value": 1176,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792660976861,
+        "reason": null
+      },
+      "sdk_before_ms": 1176343,
+      "sdk_after_ms": 1176343
+    },
+    {
+      "operation": "refresh",
+      "uptime": {
+        "value": 1177,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792660977968,
+        "reason": null
+      },
+      "sdk_before_ms": 1177437,
+      "sdk_after_ms": 1177453
+    },
+    {
+      "operation": "rebuild",
+      "uptime": {
+        "value": 1177,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792660977975,
+        "reason": null
+      },
+      "sdk_before_ms": 1177453,
+      "sdk_after_ms": 1177453
+    }
+  ]
+}
