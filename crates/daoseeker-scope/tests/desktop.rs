@@ -77,6 +77,7 @@ fn desktop_minimum_real_read_and_refresh() {
     }
     #[cfg(target_os = "macos")]
     {
+        assert_eq!(dynamic.runtime.uptime_seconds.source(), Source::Sysctl);
         assert_eq!(dynamic.memory_available_bytes.source(), Source::AppleApi);
         assert_eq!(
             snapshot

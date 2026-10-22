@@ -27,11 +27,13 @@ Windows 总内存和可用内存通过公开 Win32 API 读取，来源 `Win32`�
 
 Windows CPU 用量由 `WindowsCpuBackend::new()` 提供，门面自动注册，单独 `SysinfoBackend` 不再提供该字段。每次读取新计数；首次/过早刷新暂不可用，失败后重新预热。当前仅支持单活动处理器组，多组明确不支持；来源 `Win32`，能力 `Partial`，需要检查实际字段状态，见 [CPU 契约](adr/0024-windows-cpu.md)。
 
-macOS 逻辑核数与 CPU 用量改由 `MacosCpuBackend::new()` 提供，门面自动注册，来源 `AppleApi`、能力 `Partial`；首次/失败恢复需重新取得 300 ms 有效采样对。核数仍静态缓存，数量变化需重建 `Hardware`。单独 `SysinfoBackend` 不再提供这两个 macOS 字段。当前实现已通过三平台 CI 与 macOS ARM64 公开 SDK/持久刷新；实体 Mac、Intel 原生和真实 Mach 故障仍待验证，见[验证边界](macos-cpu-validation.md)。macOS uptime 保持 sysinfo/Partial。
+macOS 逻辑核数与 CPU 用量改由 `MacosCpuBackend::new()` 提供，门面自动注册，来源 `AppleApi`、能力 `Partial`；首次/失败恢复需重新取得 300 ms 有效采样对。核数仍静态缓存，数量变化需重建 `Hardware`。单独 `SysinfoBackend` 不再提供这两个 macOS 字段。当前实现已通过三平台 CI 与 macOS ARM64 公开 SDK/持久刷新；实体 Mac、Intel 原生和真实 Mach 故障仍待验证，见[验证边界](macos-cpu-validation.md)。
 
 macOS 内存由 `MacosMemoryBackend::new()` 提供，门面自动注册；单独 `SysinfoBackend` 用户须补注册。总量 `Sysctl/Partial` 沿用 `hw.memsize` 物理内存代理口径，不保证扣除所有保留区域；动态 `AppleApi/Partial` 为 `(active+inactive+free) * page_size` 非压缩内存估计，含 active，free 已含 speculative，不是立即可分配量、进程配额或压力指标。每次刷新发起新调用，OS 仍可能返回缓存计数；采集时间是调用完成时间，不是内核计数更新时间。错误不保留旧值；总量变化需新建 `Hardware`。CLI 按来源标为 `Physical total proxy bytes` / `Non-compressed estimate bytes`；文本不作程序协议。本轮固定 VM 前缀请求修复后已通过三平台 CI/ARM64 原生 SDK；实体 Mac、Intel 原生和真实故障仍未验证，见[契约](adr/0026-macos-memory.md)与[验证](macos-memory-validation.md)。
 
 Windows uptime 由现有 `WindowsBackend` 直接调用 `GetTickCount64`，来源 `Win32/Partial`；门面自动注册，单独 `SysinfoBackend` 用户需补注册。毫秒向下取秒，包含睡眠/休眠，允许零及连续相同值；不是仅工作时长或启动日期。每次动态刷新重新调用，不更改静态缓存；无失败哨兵，不把零伪装成错误。实现沿用此前 sysinfo 的数值语义，已通过本机及三平台 CI/独立 SDK 夹取；睡眠/休眠/checked kernel 等仍未实验验证，见[契约](adr/0027-windows-uptime.md)与[本轮验证](windows-uptime-validation.md)。
+
+macOS uptime 由现有 `MacosBackend` 读取 `KERN_BOOTTIME` 与 `time()` 并复核启动时间，来源 `Sysctl/Partial`；门面已注册，单独 `SysinfoBackend` 用户须补注册。保持 `now_seconds - boot_seconds` 整秒差，不是单调时钟或精确 elapsed；错误不回退 epoch 或旧值，读取期间启动时间变化为暂不可用。`time()` 的 -1 不用残留 errno 猜权限。当前本机注入测试和交叉编译不代表 Mac 原生成功，见[契约](adr/0028-macos-uptime.md)与[本轮验证](macos-uptime-validation.md)。
 
 ## 如何判断一个字段
 

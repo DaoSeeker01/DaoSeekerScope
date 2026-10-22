@@ -20,6 +20,8 @@ mod network;
 mod network_wire;
 #[cfg(any(target_os = "macos", test))]
 mod storage;
+#[cfg(any(target_os = "macos", test))]
+mod uptime;
 #[cfg(target_os = "macos")]
 mod native {
     use daoseeker_scope_core::*;
@@ -46,6 +48,11 @@ mod native {
                     .into_iter()
                     .map(|field| Capability::new(field, CapabilityLevel::Supported, Source::Sysctl))
                     .collect();
+            capabilities.push(Capability::new(
+                "runtime.uptime_seconds",
+                CapabilityLevel::Partial,
+                Source::Sysctl,
+            ));
             capabilities.push(Capability::new(
                 "networks",
                 CapabilityLevel::Partial,
@@ -134,6 +141,7 @@ mod native {
         ) -> Result<DynamicSnapshot, ScopeError> {
             context.check()?;
             let mut result = DynamicSnapshot::default();
+            result.runtime.uptime_seconds = crate::uptime::collect(context)?;
             result.networks = crate::network::collect(context)?;
             Ok(result)
         }

@@ -68,3 +68,5 @@
 macOS 内存的实现与未验证边界见[ADR 0026](adr/0026-macos-memory.md)与[本轮记录](macos-memory-validation.md)，不将 Windows 纯逻辑或交叉编译写成 Mac 原生成功。
 
 [Windows uptime 契约](adr/0027-windows-uptime.md) · [Windows uptime 验证](windows-uptime-validation.md)
+
+[macOS uptime 契约](adr/0028-macos-uptime.md) · [macOS uptime 验证](macos-uptime-validation.md)

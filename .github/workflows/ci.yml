@@ -27,6 +27,12 @@ jobs:
           cargo test --locked -p daoseeker-scope-macos public_vm_memory_read_matches_rust_sdk_contract -- --nocapture
           cargo build --locked -p daoseeker-scope --example dynamic_probe
           target/debug/examples/dynamic_probe < /dev/null > target/macos-memory-initial-rust.json
+      - name: macOS uptime SDK preflight
+        if: runner.os == 'macOS'
+        run: |
+          cc -Wall -Wextra -Werror -std=c11 docs/research/macos_uptime_probe.c -o target/macos-uptime-probe
+          target/macos-uptime-probe < /dev/null > target/macos-uptime-initial-sdk.json
+          cargo test --locked -p daoseeker-scope-macos public_boot_time_and_time_match_native_sdk_contract -- --nocapture
       - run: cargo test --locked --workspace --all-features -- --test-threads=1
       - run: cargo check --locked -p daoseeker-scope-core --no-default-features
       - run: cargo check --locked -p daoseeker-scope --no-default-features
@@ -116,6 +122,9 @@ jobs:
           cc -Wall -Wextra -Werror -std=c11 docs/research/macos_memory_probe.c -o target/macos-memory-probe
           cargo build --locked -p daoseeker-scope --example dynamic_probe
           python scripts/macos_memory_smoke.py
+      - name: macOS checked uptime SDK bracket and persistent refresh
+        if: runner.os == 'macOS'
+        run: python scripts/macos_uptime_smoke.py
       - name: macOS public Metal SDK probe
         if: runner.os == 'macOS'
         run: |
@@ -149,6 +158,8 @@ jobs:
             target/macos-memory-evidence.json
             target/macos-memory-initial-sdk.json
             target/macos-memory-initial-rust.json
+            target/macos-uptime-initial-sdk.json
+            target/macos-uptime-evidence.json
             target/macos-metal-probe.json
             target/macos-display-probe.json
             target/macos-display-comparison.json
