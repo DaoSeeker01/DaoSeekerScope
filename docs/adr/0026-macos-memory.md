@@ -1,6 +1,6 @@
 # ADR 0026：macOS 内存错误隔离与公开统计边界
 
-状态：57500a6 的本机验收不足以证明 Mach；CI 已暴露并定位请求长度错误，现固定前缀请求，最终三平台回归待执行。见[记录](../macos-memory-validation.md)。
+状态：b8b6383 的三平台 CI 39696658516 全部八项通过，macOS ARM64 SDK/链接/实际读取与八包验收通过；前三次失败及修正保留，实体机/真实故障仍未验证。见[记录](../macos-memory-validation.md)。
 
 锁定的 sysinfo 0.39.6 Apple refresh_memory_specifics 在 host_statistics64 失败时不清除 mem_available，且仅在 mem_total<1 时重读总量。适配层无法区分失败与旧成功值。本轮新增 MacosMemoryBackend::new()/Default，门面自动注册；保留 MacosBackend 单元构造，sysinfo 在 macOS 停止提供这两个字段。单独 SysinfoBackend 用户需补注册或使用门面。CPU、installed_bytes 与 uptime 路线不变。
 

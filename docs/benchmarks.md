@@ -251,3 +251,15 @@ CI 源码 `1231088bc97d005a7e3c516d865db14362baf8ed`，采集实现 `2cf2736`；
 | macOS ARM64 | 42576 | 36 / 135 / 232 | 119 / 373541 | [完整记录](evidence/macos-cpu-benchmark-darwin-39518381989.json) |
 
 首次 collect 不含构造，刷新使用静态缓存。没有旧版配对，不宣称性能改善/退化；没有峰值内存、长期泄漏、内核调用强制中止或实体设备测量，不是 SLA。SDK 短采样是功能证据，不并入本表作为性能样本。
+
+
+## macOS 内存切片的整库回归基准（2026-10-22）
+
+源码 `b8b6383b007a7efe56f4513e3fc786e0406a3901`，命令 `cargo bench --locked -p daoseeker-scope --bench collect`，Rust 1.96、bench 优化 profile、默认 serde。原生 max_entries=128；合成另设 1024，含 100 个传感器和 1024 个网络条目。仅托管 Linux/macOS runner，不是 Mach 单次调用、CLI 启动或物理设备测试。
+
+| 平台 | 首次 collect µs | 刷新 p50 / p95 / max µs（100 次） | 合成 collect µs / JSON bytes | 环境和原始日志 |
+|---|---|---|---|---|
+| Linux x64 | 993 | 268 / 302 / 369 | 150 / 373541 | [完整记录](evidence/macos-memory-benchmark-linux-39696658516.json) |
+| macOS ARM64 | 33392 | 39 / 55 / 68 | 172 / 373541 | [完整记录](evidence/macos-memory-benchmark-darwin-39696658516.json) |
+
+首次 collect 不含构造，刷新使用静态缓存。没有旧版配对，不宣称性能改善/退化；没有峰值内存、长期泄漏、强制中止或物理设备测量，不是 SLA。VM 统计可由 OS 缓存，该表也不能证明每次调用得到新内核计数。

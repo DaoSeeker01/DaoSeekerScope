@@ -1,0 +1,92 @@
+{
+  "report_version": 1,
+  "failed_runs": [
+    {
+      "run_id": 39695461224,
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39695461224",
+      "source_commit": "cd06481006b5bbe69079e2d550d2a8ed8e973150",
+      "run_conclusion": "cancelled",
+      "jobs": {
+        "fuzz-smoke": "cancelled",
+        "ffi-asan": "success",
+        "supply-chain": "success",
+        "desktop (windows-latest)": "cancelled",
+        "desktop (ubuntu-24.04)": "success",
+        "miri": "success",
+        "desktop (macos-latest)": "failure",
+        "linux-container": "success"
+      },
+      "failed_step": [
+        "Run cargo test --locked --workspace --all-features -- --test-threads=1"
+      ],
+      "macos_job_log_sha256": "6746f8f5c08a5c11215e128fb201fa02109b42df7fa1db4979031d0b0d1b7fd0"
+    },
+    {
+      "run_id": 39695983577,
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39695983577",
+      "source_commit": "d8d8eaa7902e277aa2b8452014430bb91d4395dc",
+      "run_conclusion": "cancelled",
+      "jobs": {
+        "supply-chain": "success",
+        "ffi-asan": "success",
+        "linux-container": "success",
+        "miri": "success",
+        "desktop (windows-latest)": "cancelled",
+        "desktop (ubuntu-24.04)": "success",
+        "desktop (macos-latest)": "failure",
+        "fuzz-smoke": "cancelled"
+      },
+      "failed_step": [
+        "Run cargo test --locked --workspace --all-features -- --test-threads=1"
+      ],
+      "macos_job_log_sha256": "38173f6043fc09469d953a35d9cdefa019fe8a634d9c870554c3920e6be33735"
+    },
+    {
+      "run_id": 39696262794,
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39696262794",
+      "source_commit": "d12bdb5ded968708759008b4d17d5610e2f275f3",
+      "run_conclusion": "cancelled",
+      "jobs": {
+        "linux-container": "success",
+        "miri": "success",
+        "ffi-asan": "success",
+        "fuzz-smoke": "cancelled",
+        "desktop (windows-latest)": "cancelled",
+        "desktop (ubuntu-24.04)": "success",
+        "desktop (macos-latest)": "failure",
+        "supply-chain": "cancelled"
+      },
+      "failed_step": [
+        "macOS memory SDK preflight"
+      ],
+      "macos_job_log_sha256": "7d04bb87065967ea11e9ddbe03aa34115cd091889fb54e44897f0dae48180ea3"
+    }
+  ],
+  "root_cause": "Implementation consulted cached libc 0.2.186 rather than actual locked 0.2.190; requested full 416-byte/104-word binding, kernel returned supported 62 words, fixed-38 guard rejected it",
+  "c_sdk_diagnostic": {
+    "status": "passed",
+    "calls": 1,
+    "total": 7516192768,
+    "page_size": 16384,
+    "active": 179944,
+    "inactive": 164532,
+    "free": 38364,
+    "speculative": 18107,
+    "available": 6272450560,
+    "requested_words": 38,
+    "returned_words": 38,
+    "sdk_struct_size": 248,
+    "rev1_prefix_bytes": 152,
+    "released_host": true
+  },
+  "rust_diagnostic": {
+    "binding_bytes": 416,
+    "requested_words": 104,
+    "returned_words": 62,
+    "page_size": 16384
+  },
+  "fix_commit": "b8b6383b007a7efe56f4513e3fc786e0406a3901",
+  "fix": "Request exactly stable rev1 38-word prefix; compile-time capacity/offset checks; retain strict 38-word reply validation and native minimum-read assertion",
+  "remaining_work_cancelled_after_each_failure": true,
+  "dependency_or_lock_upgrade": false
+}

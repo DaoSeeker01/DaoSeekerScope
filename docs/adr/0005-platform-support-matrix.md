@@ -9,7 +9,7 @@
 | 字段 | Windows | Linux | macOS | 本切片路线 |
 |---|---|---|---|---|
 | OS/静态CPU摘要 | D/P | D/P，procfs容器可缺 | D/P；逻辑核数改为 Mach，ARM64 原生 CI/SDK 通过 | 其他摘要 sysinfo Partial；macOS 逻辑数 AppleApi Partial，无失败 1 核回退 |
-| OS可用总量/可用内存 | D/P，Win32 Supported，本机/原生 CI 验收通过 | D/P，procfs Supported | Sysctl/AppleApi Partial 已实现，原生 CI 待验 | 三平台总量缓存；macOS 总量为物理代理，动态为非压缩估计且 OS 可缓存；[契约](0026-macos-memory.md) |
+| OS可用总量/可用内存 | D/P，Win32 Supported，本机/原生 CI 验收通过 | D/P，procfs Supported | Sysctl/AppleApi Partial，ARM64 原生 CI/SDK 通过 | 三平台总量缓存；macOS 总量为物理代理，动态为非压缩估计且 OS 可缓存；[契约](0026-macos-memory.md) |
 | uptime | D/P，sysinfo Partial | D/P，procfs Supported | D/P，sysinfo Partial | Windows/macOS 的新鲜度及失败行为未由本轮验收 |
 | 动态CPU占用率 | D/P，单处理器组 Win32 Partial，本机/原生 CI 验收通过 | D/P，procfs Supported | Mach AppleApi Partial，ARM64 原生 CI/SDK 通过 | 三平台路线均需两有效样本；Windows 多组不支持，macOS 实体机与真实故障仍未验证 |
 | 安装物理内存 | D，SMBIOS可损坏 | U | D/P hw.memsize | Win32 / sysctl；与 OS 可用总量分开 |
@@ -55,3 +55,5 @@
 2026-10-20 Windows CPU 切片：[本轮 CI 与 SDK](../windows-cpu-validation.md)运行 39350478223 全部八项通过；每次新读、失败清基线、单组范围维持 ADR 0024。macOS CPU/内存仍为单独待验路线，不将本轮跨平台回归当作其新鲜度修复。
 
 2026-10-21 macOS CPU 切片：[原生 CI 与公开 SDK](../macos-cpu-validation.md)运行 39518381989 全部八项通过；ARM64 runner 完成逻辑核数、三次动态刷新及 SDK 数组/host right 释放对照。当前核数与 CPU 来源 AppleApi/Partial；实体 Mac、Intel 原生、真实拒绝与 macOS 内存仍待验证。历史条目的待验描述仅对应当轮。
+
+2026-10-22 macOS 内存切片：固定 VM 38-word 前缀后，[CI 39696658516](../macos-memory-validation.md)全部八项通过，ARM64 原生 SDK/持久刷新、八包/短 fuzz/Miri/ASan 完成。总量为物理代理，动态为非压缩估计，OS 仍可缓存；保持 Partial。历史三个失败运行与绑定 416-byte/SDK 248-byte 差异单列，实体与真实故障未验证。
