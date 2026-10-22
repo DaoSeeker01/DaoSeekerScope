@@ -66,3 +66,5 @@
 脱敏 JSON 证据保存在 `docs/evidence/`。模拟输入、内核权限测试和真实设备读取是不同证据；完整替换 `/proc` 的探针曾被 OCI 运行时拒绝，属于 `not_run`。
 
 macOS 内存的实现与未验证边界见[ADR 0026](adr/0026-macos-memory.md)与[本轮记录](macos-memory-validation.md)，不将 Windows 纯逻辑或交叉编译写成 Mac 原生成功。
+
+[Windows uptime 契约](adr/0027-windows-uptime.md) · [Windows uptime 验证](windows-uptime-validation.md)

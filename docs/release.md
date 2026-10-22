@@ -1,5 +1,7 @@
 # 发布与迁移路线
 
+2026-10-22 Windows uptime 开发增量：现有 WindowsBackend 直接读取 GetTickCount64，沿用 sysinfo 0.39.6 的计数与整数秒口径；Source 从 Sysinfo 改为 Win32，能力仍 Partial。单独 SysinfoBackend 不再提供 Windows uptime，需补 WindowsBackend 或使用门面。没有发现原实现缓存/吞错，本轮不声称修复此类缺陷。零合法，包含睡眠/休眠，不是工作时长或启动日期。无新公共类型/依赖/features/锁变更，ABI 1/Schema 1、MIT 不变；回滚须同步恢复 sysinfo 字段。见[ADR 0027](adr/0027-windows-uptime.md)和[验证](windows-uptime-validation.md)。
+
 2026-10-22 macOS 内存增量：新增 MacosMemoryBackend::new()/Default 并由门面注册，SysinfoBackend 停止提供两字段；总量改为 Sysctl/Partial、可用估计改为 AppleApi/Partial。API 失败不返回旧值；保持 hw.memsize 与非压缩估计口径，公开统计仍可能被 OS 缓存，不保证新内核计数。固定前缀请求修复后的三平台 CI 39696658516、ARM64 SDK/持久刷新与八包已通过，失败记录保留，见 [ADR 0026](adr/0026-macos-memory.md) 与[验证](macos-memory-validation.md)。无新增依赖/features/锁文件，模型、ABI 1/Schema 1、MIT 不变；回滚需同步恢复 sysinfo 字段。
 
 2026-10-21 macOS CPU 开发增量：新增 MacosCpuBackend::new()/Default、门面自动注册，保留 MacosBackend 单元构造。逻辑核数与动态利用率转为直接 Mach 读取、AppleApi/Partial，拒绝静默 1 核/0% 回退；首次/失败恢复需两次 300 ms 有效样本，数量变化需重建 Hardware。单独 SysinfoBackend 用户须补注册。模型、ABI 1/Schema 1、包/版本/features/锁文件与 MIT 不变。见 [ADR 0025](adr/0025-macos-cpu.md) 和[本轮验证](macos-cpu-validation.md)，三平台 CI 39518381989、ARM64 原生 SDK/链接/持久刷新与八包验收已通过；实体 Mac、Intel 原生和真实 Mach 故障仍待验证。回滚须同步恢复 sysinfo 的两个字段。

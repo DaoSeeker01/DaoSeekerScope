@@ -5,6 +5,8 @@ mod cpu;
 pub use cpu::WindowsCpuBackend;
 #[cfg(any(target_os = "windows", test))]
 mod memory;
+#[cfg(any(target_os = "windows", test))]
+mod uptime;
 #[cfg(target_os = "windows")]
 pub use memory::WindowsMemoryBackend;
 #[cfg(any(target_os = "windows", test))]
@@ -45,6 +47,11 @@ mod native {
                 .into_iter()
                 .map(|field| Capability::new(field, CapabilityLevel::Supported, Source::Win32))
                 .collect();
+            capabilities.push(Capability::new(
+                "runtime.uptime_seconds",
+                CapabilityLevel::Partial,
+                Source::Win32,
+            ));
             capabilities.push(Capability::new(
                 "networks",
                 CapabilityLevel::Partial,
@@ -124,6 +131,7 @@ mod native {
             };
             context.check()?;
             let mut result = DynamicSnapshot::default();
+            result.runtime.uptime_seconds = crate::uptime::collect(context)?;
             result.batteries = batteries;
             result.networks = crate::network::collect(context)?;
             Ok(result)

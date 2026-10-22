@@ -50,6 +50,7 @@ fn desktop_minimum_real_read_and_refresh() {
             assert_eq!(dynamic.cpu_usage_percent.source(), Source::Win32);
         }
         assert_eq!(dynamic.memory_available_bytes.source(), Source::Win32);
+        assert_eq!(dynamic.runtime.uptime_seconds.source(), Source::Win32);
         assert_eq!(
             snapshot
                 .static_info

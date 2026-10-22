@@ -1,5 +1,7 @@
 # 锁定依赖许可证清单
 
+2026-10-22 Windows uptime 沿用已锁定 windows-sys 0.61.2 的 SystemInformation/GetTickCount64 绑定；没有增加依赖、feature 或修改两个锁文件。绑定仍 MIT OR Apache-2.0 可选，项目 MIT；C SDK 探针仅引用公开接口。
+
 2026-10-21 macOS CPU 采样沿用已有 libc 0.2.186 的 Mach 读取/VM 绑定，局部声明缺失或已在 libc 弃用的公开 host-self/port 释放和 task-self 符号；没有增加 mach2 或其他包/版本/feature，锁文件不变。Apple SDK/公开源码仅用于核验接口和行为，没有复制 APSL 实现；项目仍 MIT。
 
 2026-10-20 Windows CPU 直接查询沿用 windows-sys 0.61.2，增加 Windows target 的 Win32_System_Threading 绑定 feature；不增加包、版本或 Cargo.lock 变化，面向用户的 crate feature 集合不变。SDK 绑定仍可选 MIT OR Apache-2.0，项目仍 MIT；公开 C SDK 探针没有复制系统实现。

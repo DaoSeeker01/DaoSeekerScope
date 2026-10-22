@@ -7,6 +7,7 @@ use daoseeker_scope_core::*;
 /// Register both backends, or use the desktop facade, for those Linux fields.
 /// On Windows, physical-memory fields require WindowsMemoryBackend or the facade.
 /// Windows dynamic CPU usage requires WindowsCpuBackend or the facade.
+/// Windows uptime requires WindowsBackend or the facade.
 /// macOS CPU usage and logical count require MacosCpuBackend or the facade.
 /// macOS memory fields require MacosMemoryBackend or the facade.
 pub struct SysinfoBackend {
@@ -55,9 +56,9 @@ impl Backend for SysinfoBackend {
         .into_iter()
         .map(|field| Capability::new(field, CapabilityLevel::Partial, Source::Sysinfo))
         .chain({
-            #[cfg(not(target_os = "linux"))]
+            #[cfg(not(any(target_os = "linux", target_os = "windows")))]
             let fields = ["runtime.uptime_seconds"];
-            #[cfg(target_os = "linux")]
+            #[cfg(any(target_os = "linux", target_os = "windows"))]
             let fields: [&str; 0] = [];
             fields
                 .into_iter()
@@ -97,7 +98,7 @@ impl Backend for SysinfoBackend {
     fn refresh_dynamic(&mut self, context: &CollectContext) -> Result<DynamicSnapshot, ScopeError> {
         context.check()?;
         let result = DynamicSnapshot::default();
-        #[cfg(not(target_os = "linux"))]
+        #[cfg(not(any(target_os = "linux", target_os = "windows")))]
         let result = {
             let at = Timestamp::now()?;
             let mut result = result;
@@ -153,13 +154,14 @@ mod tests {
     }
     #[cfg(target_os = "windows")]
     #[test]
-    fn standalone_adapter_does_not_mask_direct_memory_or_cpu_failures() {
+    fn standalone_adapter_delegates_windows_memory_cpu_and_uptime() {
         let backend = SysinfoBackend::new();
         assert!(!backend.capabilities().iter().any(|c| {
             [
                 "system.memory.total_usable_bytes",
                 "memory_available_bytes",
                 "cpu_usage_percent",
+                "runtime.uptime_seconds",
             ]
             .contains(&c.field.as_str())
         }));
@@ -168,6 +170,10 @@ mod tests {
             .build()
             .expect("build");
         let snapshot = hardware.collect().expect("collect");
+        assert_eq!(
+            snapshot.dynamic.runtime.uptime_seconds.availability(),
+            Availability::Unsupported
+        );
         assert_eq!(
             snapshot.dynamic.cpu_usage_percent.availability(),
             Availability::Unsupported

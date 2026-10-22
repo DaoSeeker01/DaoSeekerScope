@@ -3,7 +3,8 @@ param(
     [string]$SdkRoot,
     [string]$SdkVersion,
     [switch]$MemoryProbe,
-    [switch]$CpuProbe
+    [switch]$CpuProbe,
+    [switch]$UptimeProbe
 )
 $ErrorActionPreference = 'Stop'
 if (!$VcRoot) {
@@ -52,6 +53,11 @@ try {
         & $compiler /nologo /W4 /WX /std:c11 /Fetarget\cpu-probe.exe /Fotarget\cpu-probe.obj docs\research\cpu_probe.c
         if ($LASTEXITCODE -ne 0) { throw "CPU SDK probe compile failed: $LASTEXITCODE" }
         Write-Output 'CPU SDK probe compiled (run windows_cpu_smoke.py separately)'
+    }
+    if ($UptimeProbe) {
+        & $compiler /nologo /W4 /WX /std:c11 /Fetarget\uptime-probe.exe /Fotarget\uptime-probe.obj docs\research\uptime_probe.c
+        if ($LASTEXITCODE -ne 0) { throw "uptime SDK probe compile failed: $LASTEXITCODE" }
+        Write-Output 'Uptime SDK probe compiled (run windows_uptime_smoke.py separately)'
     }
 } finally {
     $env:INCLUDE = $oldInclude
