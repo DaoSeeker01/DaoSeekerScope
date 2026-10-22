@@ -1,0 +1,419 @@
+{
+  "report_version": 1,
+  "source_commit": "8fce1893765436c57313634fde55c1ea79d6f7da",
+  "implementation_commit": "7b79a17c1476beda09c4ae100685f7ca1ef1c5c0",
+  "run_id": 39755735940,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39755735940",
+  "event": "workflow_dispatch",
+  "ci_jobs": {
+    "linux-container": "success",
+    "ffi-asan": "success",
+    "miri": "success",
+    "desktop (windows-latest)": "success",
+    "fuzz-smoke": "success",
+    "desktop (macos-latest)": "success",
+    "supply-chain": "success",
+    "desktop (ubuntu-24.04)": "success"
+  },
+  "native": {
+    "linux": {
+      "report": "windows-uptime-native-linux-39755735940.json",
+      "groups": 5,
+      "processes": 16
+    },
+    "darwin": {
+      "report": "windows-uptime-native-darwin-39755735940.json",
+      "groups": 5,
+      "processes": 16
+    },
+    "windows": {
+      "report": "windows-uptime-native-windows-39755735940.json",
+      "groups": 5,
+      "processes": 16
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "windows-uptime-package-evidence-linux-x64-39755735940.json",
+      "sha256": "c6d34a6aa99f277772e05997dea37d9badf559145f83f1732b67f92408f77650",
+      "original_report_sha256": "c6d34a6aa99f277772e05997dea37d9badf559145f83f1732b67f92408f77650"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "windows-uptime-package-evidence-macos-arm64-39755735940.json",
+      "sha256": "1a0b48a0ed146cb05b1e75bc79592c9bf39f7db3aafeb403dce2d9098d018c1e",
+      "original_report_sha256": "1a0b48a0ed146cb05b1e75bc79592c9bf39f7db3aafeb403dce2d9098d018c1e"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "windows-uptime-package-evidence-windows-x64-39755735940.json",
+      "sha256": "81649257b328a38c381e32347cac5c68c25b9444da44efc59bc0533384f14607",
+      "original_report_sha256": "180c008e39cd2b1040f379842931292b3b863c6b605b7b4f3b2d3125e4170709"
+    }
+  },
+  "benchmarks": {
+    "linux": {
+      "path": "windows-uptime-benchmark-linux-39755735940.json",
+      "sha256": "9abc528565bc6984a9677d2e5808eda3dfb963677b4b633f48728bc91a2b69c9",
+      "original_report_sha256": "a615a5a0816a4b530798ed70150c090c0e4d1f36e23ac1104bb4f80ad27df775"
+    },
+    "darwin": {
+      "path": "windows-uptime-benchmark-darwin-39755735940.json",
+      "sha256": "cc93a88f8bdac957ba8257c7cd74eacaede929474cbca4013ed67d159950f734",
+      "original_report_sha256": "448485263692095a721d3b0c68ed687a9efce3118846ce7e572488830ec27af3"
+    }
+  },
+  "containers": {
+    "linux-battery-evidence.json": {
+      "sha256": "8e35270ab1e939975ba1986ac9cd490351ebab18867c2297f73c1e0d715f8a0c",
+      "samples_passed": 30
+    },
+    "linux-container-evidence.json": {
+      "sha256": "640f777e75386357ed5ae72618944bb091f1e07d04b1c1b031b32bc13dc14bd6",
+      "runtime_probes": {
+        "empty_proc": {
+          "status": "not_run",
+          "configuration": {
+            "user": "65534:65534",
+            "ReadonlyRootfs": true,
+            "NetworkMode": "none",
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges=true"
+            ],
+            "Memory": 268435456,
+            "MemorySwap": 268435456,
+            "PidsLimit": 32,
+            "NanoCpus": 1000000000
+          },
+          "exit_code": 128,
+          "docker_start_exit_code": 1,
+          "process_started": false,
+          "failure_category": "runtime_mount_error",
+          "probe_result": "runtime_rejected_mount"
+        }
+      }
+    },
+    "linux-display-evidence.json": {
+      "sha256": "6d0b616155b2d60d2f4c1bd00fecd968cf2de18cf4baeeeabab30ba1aec4674c",
+      "samples_passed": 26
+    },
+    "linux-dynamic-evidence.json": {
+      "sha256": "89246e54ce6b8ea74fe8c21dda44e7eeb414c3e9f8bee3c9039420c88a72cb33",
+      "samples_passed": 15
+    },
+    "linux-gpu-evidence.json": {
+      "sha256": "f1bbec5c38a876ee9ec9df97c1f8eaa15c5d691f36823020dd03efe4a7f43430",
+      "samples_passed": 20
+    },
+    "linux-hwmon-evidence.json": {
+      "sha256": "0478c03c46130b51f8aeebad09c10b1dd068af31a19b2b1a08440aa24a962b20",
+      "samples_passed": 47
+    },
+    "linux-memory-evidence.json": {
+      "sha256": "d08f410e46661a417fc2664b0dbd617d60e9876cb5a0d5247916c37c63b592ca",
+      "samples_passed": 26
+    },
+    "linux-storage-evidence.json": {
+      "sha256": "4e1142caa5ae28dde09db50935f64cefc935fc5fd0b748daf80aadb45d76fd1e",
+      "samples_passed": 21
+    }
+  },
+  "reports": {
+    "windows-uptime-native-linux-39755735940.json": {
+      "path": "windows-uptime-native-linux-39755735940.json",
+      "sha256": "026ac1214a087f0a0efec6572c8d6add821b1d87134a2f2009bec658b78faa3d",
+      "original_report_sha256": "026ac1214a087f0a0efec6572c8d6add821b1d87134a2f2009bec658b78faa3d"
+    },
+    "windows-uptime-native-darwin-39755735940.json": {
+      "path": "windows-uptime-native-darwin-39755735940.json",
+      "sha256": "fb79cd2878a9c7d16aadda89f2bdc24d35c2cd1f43de075982e327ca3eb14c74",
+      "original_report_sha256": "fb79cd2878a9c7d16aadda89f2bdc24d35c2cd1f43de075982e327ca3eb14c74"
+    },
+    "windows-uptime-native-windows-39755735940.json": {
+      "path": "windows-uptime-native-windows-39755735940.json",
+      "sha256": "538b1195e83d11c9d242af813b90ea5362575ae19fadf51f48886b80d064c711",
+      "original_report_sha256": "4423412040f8338f44a54d02301dcc1ca1ac3ee247ba85f18c7e330bdcdc403a"
+    },
+    "windows-uptime-package-evidence-linux-x64-39755735940.json": {
+      "path": "windows-uptime-package-evidence-linux-x64-39755735940.json",
+      "sha256": "c6d34a6aa99f277772e05997dea37d9badf559145f83f1732b67f92408f77650",
+      "original_report_sha256": "c6d34a6aa99f277772e05997dea37d9badf559145f83f1732b67f92408f77650"
+    },
+    "windows-uptime-package-evidence-macos-arm64-39755735940.json": {
+      "path": "windows-uptime-package-evidence-macos-arm64-39755735940.json",
+      "sha256": "1a0b48a0ed146cb05b1e75bc79592c9bf39f7db3aafeb403dce2d9098d018c1e",
+      "original_report_sha256": "1a0b48a0ed146cb05b1e75bc79592c9bf39f7db3aafeb403dce2d9098d018c1e"
+    },
+    "windows-uptime-package-evidence-windows-x64-39755735940.json": {
+      "path": "windows-uptime-package-evidence-windows-x64-39755735940.json",
+      "sha256": "81649257b328a38c381e32347cac5c68c25b9444da44efc59bc0533384f14607",
+      "original_report_sha256": "180c008e39cd2b1040f379842931292b3b863c6b605b7b4f3b2d3125e4170709"
+    },
+    "windows-uptime-sdk-39755735940.json": {
+      "path": "windows-uptime-sdk-39755735940.json",
+      "sha256": "efd9ed4a4e06ba86a10bf765bdf9c7af89928571867d9d77eab5d97e100b93f4",
+      "original_report_sha256": "c545d7c1f350cb208050a7a78f0ff19e4eaca1572d8cd494c9f9a6abd98b44c6",
+      "observations": [
+        {
+          "operation": "collect",
+          "uptime": {
+            "value": 499,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792661719116,
+            "reason": null
+          },
+          "sdk_before_ms": 499593,
+          "sdk_after_ms": 499625
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 500,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792661720221,
+            "reason": null
+          },
+          "sdk_before_ms": 500718,
+          "sdk_after_ms": 500734
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 501,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792661721326,
+            "reason": null
+          },
+          "sdk_before_ms": 501828,
+          "sdk_after_ms": 501828
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 502,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792661722430,
+            "reason": null
+          },
+          "sdk_before_ms": 502937,
+          "sdk_after_ms": 502937
+        },
+        {
+          "operation": "rebuild",
+          "uptime": {
+            "value": 502,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792661722436,
+            "reason": null
+          },
+          "sdk_before_ms": 502937,
+          "sdk_after_ms": 502937
+        }
+      ],
+      "sdk_source_sha256": "f0aa719559d6a5da12ccbff7e2b7d1742a01588be716fb87eb9c306ade29f9ad"
+    },
+    "windows-uptime-windows-cpu-sdk-39755735940.json": {
+      "path": "windows-uptime-windows-cpu-sdk-39755735940.json",
+      "sha256": "8036990472041838a90294627f025f8020ae1d64dde11ac4c1a17cb0a6b323f0",
+      "original_report_sha256": "a1e1c2e7eb6cdb502510fcdb2d3db03006661ab29bc6953deded1fdcdc4e5435"
+    },
+    "windows-uptime-macos-cpu-sdk-39755735940.json": {
+      "path": "windows-uptime-macos-cpu-sdk-39755735940.json",
+      "sha256": "0fb8a314c576cd6e803ca7644ad78cbd1d72330bdee106f0ab5e048a34cca4d6",
+      "original_report_sha256": "0fb8a314c576cd6e803ca7644ad78cbd1d72330bdee106f0ab5e048a34cca4d6"
+    },
+    "windows-uptime-windows-memory-sdk-39755735940.json": {
+      "path": "windows-uptime-windows-memory-sdk-39755735940.json",
+      "sha256": "9d4118c0750cd42efeca6b85408647de441bb50b60b9a293720b03ee5f507835",
+      "original_report_sha256": "8203d0cc9d3493e23186f73b331746dd48974359ce21114051fe5336a96b379f"
+    },
+    "windows-uptime-macos-memory-sdk-39755735940.json": {
+      "path": "windows-uptime-macos-memory-sdk-39755735940.json",
+      "sha256": "7da50431c7d43699e30de7f93fe783db55a0df9ff0e5ec523aaf004ce40b7c34",
+      "original_report_sha256": "7da50431c7d43699e30de7f93fe783db55a0df9ff0e5ec523aaf004ce40b7c34"
+    },
+    "windows-uptime-benchmark-linux-39755735940.json": {
+      "path": "windows-uptime-benchmark-linux-39755735940.json",
+      "sha256": "9abc528565bc6984a9677d2e5808eda3dfb963677b4b633f48728bc91a2b69c9",
+      "original_report_sha256": "a615a5a0816a4b530798ed70150c090c0e4d1f36e23ac1104bb4f80ad27df775"
+    },
+    "windows-uptime-benchmark-darwin-39755735940.json": {
+      "path": "windows-uptime-benchmark-darwin-39755735940.json",
+      "sha256": "cc93a88f8bdac957ba8257c7cd74eacaede929474cbca4013ed67d159950f734",
+      "original_report_sha256": "448485263692095a721d3b0c68ed687a9efce3118846ce7e572488830ec27af3"
+    }
+  },
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "license": "MIT",
+  "dependency_feature_lock_changes": false,
+  "new_public_types_or_signatures": false,
+  "migration": "Windows uptime Source Sysinfo -> Win32/Partial; standalone SysinfoBackend requires existing WindowsBackend or facade",
+  "prior_behavior": "Pinned sysinfo 0.39.6 already reads GetTickCount64 per call; no prior cache/error bug found",
+  "local_evidence_index": "windows-uptime-local-7b79a17.json",
+  "windows_uptime_sdk": {
+    "path": "windows-uptime-sdk-39755735940.json",
+    "sha256": "efd9ed4a4e06ba86a10bf765bdf9c7af89928571867d9d77eab5d97e100b93f4",
+    "original_report_sha256": "c545d7c1f350cb208050a7a78f0ff19e4eaca1572d8cd494c9f9a6abd98b44c6",
+    "observations": [
+      {
+        "operation": "collect",
+        "uptime": {
+          "value": 499,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661719116,
+          "reason": null
+        },
+        "sdk_before_ms": 499593,
+        "sdk_after_ms": 499625
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 500,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661720221,
+          "reason": null
+        },
+        "sdk_before_ms": 500718,
+        "sdk_after_ms": 500734
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 501,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661721326,
+          "reason": null
+        },
+        "sdk_before_ms": 501828,
+        "sdk_after_ms": 501828
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 502,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661722430,
+          "reason": null
+        },
+        "sdk_before_ms": 502937,
+        "sdk_after_ms": 502937
+      },
+      {
+        "operation": "rebuild",
+        "uptime": {
+          "value": 502,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661722436,
+          "reason": null
+        },
+        "sdk_before_ms": 502937,
+        "sdk_after_ms": 502937
+      }
+    ],
+    "sdk_source_sha256": "f0aa719559d6a5da12ccbff7e2b7d1742a01588be716fb87eb9c306ade29f9ad"
+  },
+  "windows-cpu-sdk": {
+    "path": "windows-uptime-windows-cpu-sdk-39755735940.json",
+    "sha256": "8036990472041838a90294627f025f8020ae1d64dde11ac4c1a17cb0a6b323f0",
+    "original_report_sha256": "a1e1c2e7eb6cdb502510fcdb2d3db03006661ab29bc6953deded1fdcdc4e5435"
+  },
+  "macos-cpu-sdk": {
+    "path": "windows-uptime-macos-cpu-sdk-39755735940.json",
+    "sha256": "0fb8a314c576cd6e803ca7644ad78cbd1d72330bdee106f0ab5e048a34cca4d6",
+    "original_report_sha256": "0fb8a314c576cd6e803ca7644ad78cbd1d72330bdee106f0ab5e048a34cca4d6"
+  },
+  "windows_memory_sdk": {
+    "path": "windows-uptime-windows-memory-sdk-39755735940.json",
+    "sha256": "9d4118c0750cd42efeca6b85408647de441bb50b60b9a293720b03ee5f507835",
+    "original_report_sha256": "8203d0cc9d3493e23186f73b331746dd48974359ce21114051fe5336a96b379f"
+  },
+  "macos_memory_sdk": {
+    "path": "windows-uptime-macos-memory-sdk-39755735940.json",
+    "sha256": "7da50431c7d43699e30de7f93fe783db55a0df9ff0e5ec523aaf004ce40b7c34",
+    "original_report_sha256": "7da50431c7d43699e30de7f93fe783db55a0df9ff0e5ec523aaf004ce40b7c34"
+  },
+  "rust_tests_including_doctests": {
+    "windows-latest": 232,
+    "ubuntu-24.04": 225,
+    "macos-latest": 229
+  },
+  "python_tests_per_desktop": 106,
+  "python_source_files": 42,
+  "fuzz_targets_completed": 11,
+  "fuzz_campaigns": {
+    "Run cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512": {
+      "runs": 401379,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 8365705,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 19885899,
+      "elapsed_seconds": 61
+    },
+    "Fuzz CPU state and bounded stat parsing": {
+      "runs": 1410226,
+      "elapsed_seconds": 61
+    },
+    "Fuzz meminfo parsing and field isolation": {
+      "runs": 4126677,
+      "elapsed_seconds": 61
+    },
+    "Fuzz uptime parsing and numeric boundaries": {
+      "runs": 20229939,
+      "elapsed_seconds": 61
+    },
+    "Fuzz power supply attribute boundaries": {
+      "runs": 19432325,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded hwmon millidegrees": {
+      "runs": 18524832,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded network counters and privacy": {
+      "runs": 2399561,
+      "elapsed_seconds": 61
+    },
+    "Fuzz Darwin routing message boundaries": {
+      "runs": 5159367,
+      "elapsed_seconds": 61
+    },
+    "Fuzz checked block sector conversion": {
+      "runs": 28817709,
+      "elapsed_seconds": 61
+    }
+  },
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "ac6718f8decf868c72d3f1570a1c38ff73621a3f4476e9ec5fa6be391ca7560d",
+  "limits": [
+    "no sleep, hibernation, reboot, fast-startup or checked-kernel experiment",
+    "GetTickCount64 has no failure sentinel; no fabricated API error test",
+    "SDK brackets validate tick domain, not exact boot time or wall clock",
+    "cooperative cancellation cannot interrupt a blocked native API",
+    "Capability remains Partial; integer seconds and timer granularity allow repeated samples",
+    "SDK brackets validate the reported tick domain; not exact boot time, wall-clock subtraction or cross-platform equivalent semantics",
+    "Windows CPU multi-group, real API faults and topology changes remain unverified; injected tests are distinct",
+    "macOS VM statistics may be cached/rate-limited; physical total proxy and non-compressed estimate retain prior limits",
+    "Native hosted Linux/macOS success does not replace physical device verification deferred by user",
+    "Completely empty procfs was OCI rejected: not_run, not a successful library observation",
+    "No long fuzz, native leak/peak-memory, forced kernel termination or paired performance proof",
+    "No registry publication or release distribution; isolated archives use sibling local patches"
+  ]
+}

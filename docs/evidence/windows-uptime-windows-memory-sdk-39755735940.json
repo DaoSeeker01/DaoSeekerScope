@@ -1,0 +1,108 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-22T09:35:16.552119+00:00",
+  "execution_platform": {
+    "os": "Windows",
+    "architecture": "AMD64"
+  },
+  "overall": "passed",
+  "phases": {
+    "baseline": {
+      "rust": {
+        "total": {
+          "value": 17174360064,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661716723,
+          "reason": null
+        },
+        "available": {
+          "value": 14243155968,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661716751,
+          "reason": null
+        }
+      },
+      "sdk": {
+        "status": 0,
+        "struct_size": 64,
+        "calls": 1,
+        "held_bytes": 0,
+        "total": 17174360064,
+        "available": 14243332096
+      },
+      "status": "passed"
+    },
+    "held": {
+      "rust": {
+        "total": {
+          "value": 17174360064,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661716723,
+          "reason": null
+        },
+        "available": {
+          "value": 14178131968,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661716780,
+          "reason": null
+        }
+      },
+      "sdk": {
+        "status": 0,
+        "struct_size": 64,
+        "calls": 2,
+        "held_bytes": 67108864,
+        "total": 17174360064,
+        "available": 14178152448
+      },
+      "status": "passed"
+    },
+    "released": {
+      "rust": {
+        "total": {
+          "value": 17174360064,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661716723,
+          "reason": null
+        },
+        "available": {
+          "value": 14244220928,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792661716806,
+          "reason": null
+        }
+      },
+      "sdk": {
+        "status": 0,
+        "struct_size": 64,
+        "calls": 3,
+        "held_bytes": 0,
+        "total": 17174360064,
+        "available": 14244319232
+      },
+      "status": "passed"
+    }
+  },
+  "pressure_bytes": 67108864,
+  "read_timeout_seconds": 5,
+  "max_line_bytes": 1048576,
+  "limits": [
+    "Sequential volatile SDK/Rust samples; no available-value equality or fixed pressure delta required",
+    "Native success experiment only; injected failures are separate synthetic Rust tests",
+    "Not physical DIMM, Job limit, peak-memory, or CPU freshness verification"
+  ],
+  "git_revision": "8fce1893765436c57313634fde55c1ea79d6f7da",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "rust_probe": "4eaf6d35021f81fdefb50195668321f63a0720777e7300b218ee8bc1b949d174",
+    "c_sdk_probe": "38cbd61bafee14e01eed6e37bbbed8d8eeffd9c56686646198893bae850b6158"
+  },
+  "static_total_cached": true,
+  "available_values_changed": true
+}

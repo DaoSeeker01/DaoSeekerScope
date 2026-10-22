@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "platform": "Windows",
+  "observed_at": "2026-10-22T09:35:19.006939+00:00",
+  "limitations": [
+    "no sleep, hibernation, reboot, fast-startup or checked-kernel experiment",
+    "GetTickCount64 has no failure sentinel; no fabricated API error test",
+    "SDK brackets validate tick domain, not exact boot time or wall clock",
+    "cooperative cancellation cannot interrupt a blocked native API"
+  ],
+  "git_revision": "8fce1893765436c57313634fde55c1ea79d6f7da",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "sdk": "317fe75839c856cd80899b4532becaed43b8a92770e464e67ec16fd064caad27",
+    "rust": "4eaf6d35021f81fdefb50195668321f63a0720777e7300b218ee8bc1b949d174"
+  },
+  "observations": [
+    {
+      "operation": "collect",
+      "uptime": {
+        "value": 499,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792661719116,
+        "reason": null
+      },
+      "sdk_before_ms": 499593,
+      "sdk_after_ms": 499625
+    },
+    {
+      "operation": "refresh",
+      "uptime": {
+        "value": 500,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792661720221,
+        "reason": null
+      },
+      "sdk_before_ms": 500718,
+      "sdk_after_ms": 500734
+    },
+    {
+      "operation": "refresh",
+      "uptime": {
+        "value": 501,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792661721326,
+        "reason": null
+      },
+      "sdk_before_ms": 501828,
+      "sdk_after_ms": 501828
+    },
+    {
+      "operation": "refresh",
+      "uptime": {
+        "value": 502,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792661722430,
+        "reason": null
+      },
+      "sdk_before_ms": 502937,
+      "sdk_after_ms": 502937
+    },
+    {
+      "operation": "rebuild",
+      "uptime": {
+        "value": 502,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792661722436,
+        "reason": null
+      },
+      "sdk_before_ms": 502937,
+      "sdk_after_ms": 502937
+    }
+  ]
+}
