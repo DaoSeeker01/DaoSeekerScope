@@ -19,7 +19,15 @@ python scripts/check_packages.py --offline
 python scripts/native_smoke.py --output target/macos-uptime-native-clean.json
 ```
 
-2026-10-22 Windows x64 本机门禁通过：fmt、严格 Clippy、240 项 Rust 测试含 doctest、无默认 feature、doc、FFI/CLI 构建、Linux x64/macOS ARM64 交叉检查及 macOS 全 target 严格 Clippy；Ruff 0.14.13 format/check、mypy 1.19.1（44 文件）、109 项 Python 测试、jsonschema 4.25.1 Schema 与项目/链接检查通过。原生 Windows C ABI 收集/释放/清零/重复空释放/旧副本拒绝通过；fuzz 入口 fmt 和两个共享守卫单元测试通过。实现提交后的干净源码原生和八包验收将另行归档。macOS ARM64/Intel 原生、独立 C SDK、持续刷新及三平台 CI 尚未执行。实体 Mac 按维护者设备安排延期。
+2026-10-22 Windows x64 本机门禁通过：fmt、严格 Clippy、240 项 Rust 测试含 doctest、无默认 feature、doc、FFI/CLI 构建、Linux x64/macOS ARM64 交叉检查及 macOS 全 target 严格 Clippy；Ruff 0.14.13 format/check、mypy 1.19.1（44 文件）、109 项 Python 测试、jsonschema 4.25.1 Schema 与项目/链接检查通过。原生 Windows C ABI 收集/释放/清零/重复空释放/旧副本拒绝通过；fuzz 入口 fmt 和两个共享守卫单元测试通过。macOS ARM64/Intel 原生、独立 C SDK、持续刷新及三平台 CI 尚未执行。实体 Mac 按维护者设备安排延期。
+
+实现源码 `bfd28d57729c8e70da57d92623b582623cd7c386` 的工作区干净，已完成以下归档，均不作为 macOS 原生成功证据：
+
+- [完整索引](evidence/macos-uptime-local-bfd28d5.json)：源码、命令、日志/报告哈希和明确的 not_run 项。
+- [八包报告](evidence/macos-uptime-packages-windows-bfd28d5.json)：八个实际归档、原生 Cargo 验证、提取后的独立 workspace 240 项测试及 release profile CLI 安装；本地 patch 解决未发布的相邻 crate，不是 registry 发布验收。
+- [Windows 原生报告](evidence/macos-uptime-native-windows-bfd28d5.json)：CLI/C/Python 五组、16 个进程通过，含 100 次 Python collect/free。
+
+完整 Rust 和 Python 门禁在实现提交前执行，提交后运行代码和守卫未改变；原生与八包报告均绑定同一干净实现提交。随后本轮归档提交只改文档/证据，不追加运行时代码或平台声明。
 
 macOS 原生复现入口（尚未执行）：
 

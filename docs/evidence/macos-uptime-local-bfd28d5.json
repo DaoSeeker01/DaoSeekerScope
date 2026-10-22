@@ -1,0 +1,93 @@
+{
+  "source_commit": "bfd28d57729c8e70da57d92623b582623cd7c386",
+  "overall": "passed",
+  "scope": "Windows local regression and macOS compile-only; macOS native uptime unverified",
+  "host_rust_tests_including_doctests": 240,
+  "isolated_windows_package_tests": 240,
+  "portable_uptime_tests": 8,
+  "python_tests": 109,
+  "python_source_files": 44,
+  "macos_arm64_all_target_clippy": "passed -D warnings, compile-only",
+  "cross_compile_only": [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-apple-darwin"
+  ],
+  "macos_native_sdk_c_build": "not_run",
+  "macos_native_symbol_linking": "not_run",
+  "macos_native_uptime_reads_and_persistent_refresh": "not_run",
+  "macos_intel_compile": "not_run",
+  "real_macos_api_faults_and_clock_changes": "not_run",
+  "physical_macos": "deferred by user until device available",
+  "three_platform_ci": "not_run",
+  "native_windows_groups": 5,
+  "native_windows_processes": 16,
+  "crate_archives": 8,
+  "registry_publication_verified": false,
+  "actual_fuzz_campaign": "not_run",
+  "fuzz_harness_unit_tests": 2,
+  "miri_asan_benchmark": "not_run",
+  "c_abi_version": 1,
+  "schema_version": 1,
+  "license": "MIT",
+  "dependency_feature_lock_changes": false,
+  "new_public_types_or_signatures": false,
+  "migration": "macOS uptime Sysinfo -> Sysctl/Partial; standalone SysinfoBackend needs existing MacosBackend or facade",
+  "sdk_c_source_sha256": "b06b5bc81f54ab1348e1a4ef05edd2de885ad6ebb75195ae169cd12f743eb2e8",
+  "gate_scope": "Full final gates precommit; runtime and guard sources unchanged after implementation commit; clean-source Windows native and isolated packages then executed",
+  "reports": {
+    "docs/evidence/macos-uptime-native-windows-bfd28d5.json": {
+      "sha256_lf": "422b91107e811b466e1f0b51c0cfe7411551eb873d55692c0e206c34bf4c7295",
+      "bytes_lf": 77561
+    },
+    "docs/evidence/macos-uptime-packages-windows-bfd28d5.json": {
+      "sha256_lf": "a9945249c14512ae8e5da85722ea2ce8ba7dc0a1066acf6727d44e1c0b141da9",
+      "bytes_lf": 1926
+    }
+  },
+  "local_log_hashes": {
+    "macos-uptime-check.log": {
+      "sha256": "30da145b67ac1f24afe6fa1752810de8cd2a0c8e7e48950e4e4704c4311f0c62",
+      "bytes": 29030
+    },
+    "macos-uptime-cross-clippy.log": {
+      "sha256": "6e48e02bdc9d89a976e450b72af3726b5088023692c74a643dc33d1cf68b20d2",
+      "bytes": 562
+    },
+    "macos-uptime-python.log": {
+      "sha256": "b43dfe376129c55caa8e4592dda3993b77beaafc0d2d5e7f6873d88d7b35be1b",
+      "bytes": 1101
+    },
+    "macos-uptime-c.log": {
+      "sha256": "7fc7a69c094230f05e89488ca5466b3fe24e7514d28139411815ba1bc23d9806",
+      "bytes": 90
+    },
+    "macos-uptime-native-clean.log": {
+      "sha256": "117cb7016d4e1aa4caf801508aef87c4898074ee346c9228370963e4f0ca5a5d",
+      "bytes": 82
+    },
+    "macos-uptime-packages.log": {
+      "sha256": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202",
+      "bytes": 49
+    }
+  },
+  "limitations": [
+    "No macOS native SDK/link/read success yet; cross compile and portable injection tests are not native evidence",
+    "Calendar-derived whole-second difference ignores boot microseconds in arithmetic to retain prior normal-data semantics; not monotonic or exact elapsed",
+    "Double boot sampling detects some changes but cannot exclude ABA or wall-clock changes between calls",
+    "time(-1) has no guaranteed errno; treated as Unavailable/Unknown, not guessed permission failure",
+    "No real sleep, hibernation, reboot, clock changes, sandbox or API error experiment",
+    "Cooperative checks cannot force interruption of blocked OS calls; no long leak, peak-memory or performance proof",
+    "Existing core merge can retain Unsupported/Custom; capability Partial does not guarantee availability",
+    "No registry or release publication; sibling packages use local patches"
+  ],
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "cargo clippy --locked --workspace --all-targets --all-features --target aarch64-apple-darwin -- -D warnings",
+    "Ruff 0.14.13 format/check; mypy 1.19.1 --no-incremental --ignore-missing-imports; Python unittest discover; jsonschema 4.25.1 check_schema.py; check_project.py",
+    "cargo fmt --manifest-path fuzz/Cargo.toml --check",
+    "cargo test --locked --manifest-path fuzz/Cargo.toml --lib",
+    "pwsh -NoProfile -File scripts/build_c_example.ps1",
+    "python scripts/native_smoke.py --output target/macos-uptime-native-clean.json",
+    "python scripts/check_packages.py --offline"
+  ]
+}

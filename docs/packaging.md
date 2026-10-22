@@ -22,6 +22,8 @@ python scripts/check_packages.py
 
 ## 验证边界
 
+2026-10-22 macOS uptime 实现 `bfd28d5` 在干净 Windows 工作区完成八包实际归档、原生 Cargo 验证、提取后独立 workspace 240 项测试与 CLI 安装；[报告](evidence/macos-uptime-packages-windows-bfd28d5.json)保留包哈希和未发布的本地 patch 边界。本轮 macOS 原生 SDK/链接/采样、三平台 CI 尚未执行。
+
 2026-10-22 Windows uptime 实现 `7b79a17` 在干净工作区完成八个实际归档、原生 Cargo 验证、提取后独立 workspace 232 项测试与 CLI 安装；[报告](evidence/windows-uptime-packages-7b79a17.json)记录每包 SHA-256、锁不变及未验证 registry 的边界。随后源码 8fce189 的三平台 CI 39755735940 也通过各八包/独立安装验收；Windows 232、Linux 225、macOS ARM64 229 项独立测试含 doctest，见[本轮 CI 索引](evidence/windows-uptime-ci-39755735940.json)。未执行 registry 发布安装或 release 制品分发。
 
 本机 Cargo 1.96.0 在原输出目录执行 `cargo package --workspace --locked --offline` 时，在验证第二个包时失败，报 `no hash listed for daoseeker-scope-core v0.1.0` 并标记为 Cargo 内部错误。移除 `--locked` 后也出现相同错误，源锁文件没有变化。使用全新 `--target-dir`、保留 `--locked --offline --all-features` 后，8 个包的完整 Cargo 验证全部通过；再次使用该目录也通过。因此确切根因尚未确定，不能将目录复用本身或平台 backend 判为故障原因。初次失败与后续成功分别保留证据。

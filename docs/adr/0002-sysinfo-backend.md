@@ -29,3 +29,5 @@ sysinfo字段observed_at指适配层读值的时间，无法证明上游内部�
 2026-10-22 macOS 内存验收：b8b6383 修复绑定全长/内核支持长度差异，显式请求 38-word 前缀；[运行 39696658516](../macos-memory-validation.md)三平台全部八项通过。原有错误返回不留旧值，OS 缓存和非压缩估计限制仍在；Windows/macOS uptime 不由本轮验证。
 
 2026-10-22 Windows uptime：现有 WindowsBackend 直接读取 GetTickCount64，来源 Win32/Partial，单独 SysinfoBackend 不再提供此字段；门面无需额外配置。锁定 sysinfo 0.39.6 原已逐次调用相同 API，本轮是明确来源及验收，不声称修复缓存错误。源码 8fce189 的 [CI 39755735940](../windows-uptime-validation.md) 三平台八项及 SDK/八包全部通过；macOS uptime 后续独立验收。
+
+2026-10-22 macOS uptime 失败隔离：bfd28d5 将字段转入现有 MacosBackend，Source Sysctl/Partial，SysinfoBackend 不再提供。保持日历时间整秒差，检查 sysctl 状态/长度/数据和两次启动时间一致性；time(-1) 不使用残留 errno。Windows 本机/交叉及干净源码八包通过，macOS 原生 SDK/链接/采样与三平台 CI 尚未执行，见[契约](0028-macos-uptime.md)及[验证](../macos-uptime-validation.md)。
