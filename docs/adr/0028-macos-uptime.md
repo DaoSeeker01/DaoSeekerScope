@@ -1,6 +1,6 @@
 # ADR 0028：macOS uptime 的失败隔离与时间口径
 
-状态：实现 bfd28d5 及 Windows 本机/交叉门禁、干净源码八包/CLI/C/Python 通过；macOS 原生 SDK/链接/采样尚未执行，本地/交叉验证不能证明原生行为，见[本轮记录](../macos-uptime-validation.md)。
+状态：实现 bfd28d5 通过本机门禁；源码 8500cc8 的三平台 CI 39878588965 全部八项成功，含 macOS ARM64 SDK/链接/实际读取、持久刷新及三平台八包，见[本轮记录](../macos-uptime-validation.md)。实体 Mac、Intel 原生及真实故障仍未验证。
 
 核对锁定 sysinfo 0.39.6：Apple `boot_time()` 在 sysctl 失败时返回 0，`uptime()` 用 `difftime(time(NULL), boot_time)` 转 u64。适配层无法区分正常 uptime、启动时间失败后的 epoch 级大数和负差被转换成零。本轮改由现有 MacosBackend 直接采集，保留单元构造，不增加 backend 类型。单独 SysinfoBackend 的 macOS 用户需补 MacosBackend 或使用门面。
 

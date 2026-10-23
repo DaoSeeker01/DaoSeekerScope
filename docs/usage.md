@@ -33,7 +33,7 @@ macOS 内存由 `MacosMemoryBackend::new()` 提供，门面自动注册；单独
 
 Windows uptime 由现有 `WindowsBackend` 直接调用 `GetTickCount64`，来源 `Win32/Partial`；门面自动注册，单独 `SysinfoBackend` 用户需补注册。毫秒向下取秒，包含睡眠/休眠，允许零及连续相同值；不是仅工作时长或启动日期。每次动态刷新重新调用，不更改静态缓存；无失败哨兵，不把零伪装成错误。实现沿用此前 sysinfo 的数值语义，已通过本机及三平台 CI/独立 SDK 夹取；睡眠/休眠/checked kernel 等仍未实验验证，见[契约](adr/0027-windows-uptime.md)与[本轮验证](windows-uptime-validation.md)。
 
-macOS uptime 由现有 `MacosBackend` 读取 `KERN_BOOTTIME` 与 `time()` 并复核启动时间，来源 `Sysctl/Partial`；门面已注册，单独 `SysinfoBackend` 用户须补注册。保持 `now_seconds - boot_seconds` 整秒差，不是单调时钟或精确 elapsed；错误不回退 epoch 或旧值，读取期间启动时间变化为暂不可用。`time()` 的 -1 不用残留 errno 猜权限。当前本机注入测试和交叉编译不代表 Mac 原生成功，见[契约](adr/0028-macos-uptime.md)与[本轮验证](macos-uptime-validation.md)。
+macOS uptime 由现有 `MacosBackend` 读取 `KERN_BOOTTIME` 与 `time()` 并复核启动时间，来源 `Sysctl/Partial`；门面已注册，单独 `SysinfoBackend` 用户须补注册。保持 `now_seconds - boot_seconds` 整秒差，不是单调时钟或精确 elapsed；错误不回退 epoch 或旧值，读取期间启动时间变化为暂不可用。`time()` 的 -1 不用残留 errno 猜权限。已通过三平台 CI 39878588965 与 macOS ARM64 原生 SDK/持久刷新；实体 Mac、Intel 原生和真实调时/错误仍待验证，见[契约](adr/0028-macos-uptime.md)与[本轮验证](macos-uptime-validation.md)。
 
 ## 如何判断一个字段
 

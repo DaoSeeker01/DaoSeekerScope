@@ -1,0 +1,587 @@
+{
+  "report_version": 1,
+  "source_commit": "8500cc848a72fed9994e7e51bcf7e46db4503bf1",
+  "implementation_commit": "bfd28d57729c8e70da57d92623b582623cd7c386",
+  "run_id": 39878588965,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/39878588965",
+  "event": "workflow_dispatch",
+  "ci_jobs": {
+    "supply-chain": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "miri": "success",
+    "ffi-asan": "success",
+    "desktop (windows-latest)": "success",
+    "desktop (macos-latest)": "success",
+    "linux-container": "success",
+    "fuzz-smoke": "success"
+  },
+  "native": {
+    "linux": {
+      "report": "macos-uptime-native-linux-39878588965.json",
+      "groups": 5,
+      "processes": 16
+    },
+    "darwin": {
+      "report": "macos-uptime-native-darwin-39878588965.json",
+      "groups": 5,
+      "processes": 16
+    },
+    "windows": {
+      "report": "macos-uptime-native-windows-39878588965.json",
+      "groups": 5,
+      "processes": 16
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "macos-uptime-package-evidence-linux-x64-39878588965.json",
+      "sha256": "b54c4fd401bb274f49f35811d4356726b4a4851890ebdf661673f76a17a78d65",
+      "original_report_sha256": "b54c4fd401bb274f49f35811d4356726b4a4851890ebdf661673f76a17a78d65"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "macos-uptime-package-evidence-macos-arm64-39878588965.json",
+      "sha256": "e14be1b7b7e569d47f56f22080d098809dc04c90f66eee43aa729ee991f787a8",
+      "original_report_sha256": "e14be1b7b7e569d47f56f22080d098809dc04c90f66eee43aa729ee991f787a8"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "macos-uptime-package-evidence-windows-x64-39878588965.json",
+      "sha256": "20994c3d6d08f16184b2600a13359c53b88b994af2d3486c3ef2f9365bc9149b",
+      "original_report_sha256": "8f92c6ff1101c1b8421bb71d4750a8ed3cd986b996846b6d13217316a94e68f0"
+    }
+  },
+  "benchmarks": {
+    "linux": {
+      "path": "macos-uptime-benchmark-linux-39878588965.json",
+      "sha256": "649cc498281ea756bf5700a3f29848bdc7e0ca0d43fdf8912224e95752255ba5",
+      "original_report_sha256": "925252b64ada8294447b003d6d725988501075248ed382f53b130212b99441b5"
+    },
+    "darwin": {
+      "path": "macos-uptime-benchmark-darwin-39878588965.json",
+      "sha256": "c5c7f8c71fd7fb7bf8bfe24373c5f637a05b5b4788a11716a1fcaf64c8887b46",
+      "original_report_sha256": "eddfaa8c928440a65ecb6afc5dd7dc849930f7e1019174dad14ffd1df0656593"
+    }
+  },
+  "containers": {
+    "linux-battery-evidence.json": {
+      "sha256": "d48c405709e61b1118b5f8324a5c353f82d64fd3486957dca2c5dc8c9a6d8898",
+      "samples_passed": 30
+    },
+    "linux-container-evidence.json": {
+      "sha256": "d4144a21a91c205a7a542a5d25e08404d8ce7c5d186ad998f3716eebbeeea2c5",
+      "runtime_probes": {
+        "empty_proc": {
+          "status": "not_run",
+          "configuration": {
+            "user": "65534:65534",
+            "ReadonlyRootfs": true,
+            "NetworkMode": "none",
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges=true"
+            ],
+            "Memory": 268435456,
+            "MemorySwap": 268435456,
+            "PidsLimit": 32,
+            "NanoCpus": 1000000000
+          },
+          "exit_code": 128,
+          "docker_start_exit_code": 1,
+          "process_started": false,
+          "failure_category": "runtime_mount_error",
+          "probe_result": "runtime_rejected_mount"
+        }
+      }
+    },
+    "linux-display-evidence.json": {
+      "sha256": "31fb537c6a47a278a1a296cfb4ac7ea982534b4399487508e231a8218f9e31ac",
+      "samples_passed": 26
+    },
+    "linux-dynamic-evidence.json": {
+      "sha256": "91f74ad89553d8a3b7bbac699651413f8a477dc06554f41f5a0efc751fcc5167",
+      "samples_passed": 15
+    },
+    "linux-gpu-evidence.json": {
+      "sha256": "239af4ac296d223717b07472a94660f816e86177b5eb181a5c26d1fcda7004bf",
+      "samples_passed": 20
+    },
+    "linux-hwmon-evidence.json": {
+      "sha256": "ae92b7b433e27bbcb86483557baa19aeed0b2037c0424c2508e80124b329bdae",
+      "samples_passed": 47
+    },
+    "linux-memory-evidence.json": {
+      "sha256": "00a5219efcc5b0d6295fd9d052436c13edb1bc65b0c0fa65ded0644cf29c1949",
+      "samples_passed": 26
+    },
+    "linux-storage-evidence.json": {
+      "sha256": "b4c109dd38381d8c836a8f3ca762816712e43320659a66968fc97ea7d5a0b123",
+      "samples_passed": 21
+    }
+  },
+  "reports": {
+    "macos-uptime-native-linux-39878588965.json": {
+      "path": "macos-uptime-native-linux-39878588965.json",
+      "sha256": "7fe7a189285966782bd78cb941a58fded3606abdd2c2a679ed7d5f700e03fb11",
+      "original_report_sha256": "7fe7a189285966782bd78cb941a58fded3606abdd2c2a679ed7d5f700e03fb11"
+    },
+    "macos-uptime-native-darwin-39878588965.json": {
+      "path": "macos-uptime-native-darwin-39878588965.json",
+      "sha256": "d39cd5aaa55cb6921e5ea798896798dd73ab061d914b6fd0f72e032bb58d40b9",
+      "original_report_sha256": "d39cd5aaa55cb6921e5ea798896798dd73ab061d914b6fd0f72e032bb58d40b9"
+    },
+    "macos-uptime-native-windows-39878588965.json": {
+      "path": "macos-uptime-native-windows-39878588965.json",
+      "sha256": "61ef5e090739ae47a6ef77f812a67fadb8fa05fa4f0b47f59c40b04d7d5617c2",
+      "original_report_sha256": "a0e25b7c8cc45e480349e6a27d0d0cc1af907c2125c4ff47d6a247b69af90b23"
+    },
+    "macos-uptime-package-evidence-linux-x64-39878588965.json": {
+      "path": "macos-uptime-package-evidence-linux-x64-39878588965.json",
+      "sha256": "b54c4fd401bb274f49f35811d4356726b4a4851890ebdf661673f76a17a78d65",
+      "original_report_sha256": "b54c4fd401bb274f49f35811d4356726b4a4851890ebdf661673f76a17a78d65"
+    },
+    "macos-uptime-package-evidence-macos-arm64-39878588965.json": {
+      "path": "macos-uptime-package-evidence-macos-arm64-39878588965.json",
+      "sha256": "e14be1b7b7e569d47f56f22080d098809dc04c90f66eee43aa729ee991f787a8",
+      "original_report_sha256": "e14be1b7b7e569d47f56f22080d098809dc04c90f66eee43aa729ee991f787a8"
+    },
+    "macos-uptime-package-evidence-windows-x64-39878588965.json": {
+      "path": "macos-uptime-package-evidence-windows-x64-39878588965.json",
+      "sha256": "20994c3d6d08f16184b2600a13359c53b88b994af2d3486c3ef2f9365bc9149b",
+      "original_report_sha256": "8f92c6ff1101c1b8421bb71d4750a8ed3cd986b996846b6d13217316a94e68f0"
+    },
+    "macos-uptime-windows-uptime-sdk-39878588965.json": {
+      "path": "macos-uptime-windows-uptime-sdk-39878588965.json",
+      "sha256": "f3326fe6e557a7f0ed4d3ee6d8e7735ecc06eb4bf60559e70a646dc61c406256",
+      "original_report_sha256": "8ad4513b1185379aac14340b25f10a275ecde6c54a17dffce28b4fb44e338c2b",
+      "observations": [
+        {
+          "operation": "collect",
+          "uptime": {
+            "value": 676,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792715850234,
+            "reason": null
+          },
+          "sdk_before_ms": 676890,
+          "sdk_after_ms": 676906
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 678,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792715851338,
+            "reason": null
+          },
+          "sdk_before_ms": 678015,
+          "sdk_after_ms": 678015
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 679,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792715852442,
+            "reason": null
+          },
+          "sdk_before_ms": 679109,
+          "sdk_after_ms": 679109
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 680,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792715853546,
+            "reason": null
+          },
+          "sdk_before_ms": 680218,
+          "sdk_after_ms": 680218
+        },
+        {
+          "operation": "rebuild",
+          "uptime": {
+            "value": 680,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792715853550,
+            "reason": null
+          },
+          "sdk_before_ms": 680218,
+          "sdk_after_ms": 680218
+        }
+      ],
+      "sdk_source_sha256": "f0aa719559d6a5da12ccbff7e2b7d1742a01588be716fb87eb9c306ade29f9ad"
+    },
+    "macos-uptime-sdk-39878588965.json": {
+      "path": "macos-uptime-sdk-39878588965.json",
+      "sha256": "61696a55ee7e1d807eb203821cd430a4b6396f3847f80a2a666ddb41ca26a573",
+      "original_report_sha256": "61696a55ee7e1d807eb203821cd430a4b6396f3847f80a2a666ddb41ca26a573",
+      "observations": [
+        {
+          "operation": "collect",
+          "uptime": {
+            "value": 539,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792715626929,
+            "reason": null
+          },
+          "sdk_before_seconds": 539,
+          "sdk_after_seconds": 539
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 541,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792715628175,
+            "reason": null
+          },
+          "sdk_before_seconds": 541,
+          "sdk_after_seconds": 541
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 542,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792715629283,
+            "reason": null
+          },
+          "sdk_before_seconds": 542,
+          "sdk_after_seconds": 542
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 543,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792715630515,
+            "reason": null
+          },
+          "sdk_before_seconds": 543,
+          "sdk_after_seconds": 543
+        },
+        {
+          "operation": "rebuild",
+          "uptime": {
+            "value": 543,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792715630520,
+            "reason": null
+          },
+          "sdk_before_seconds": 543,
+          "sdk_after_seconds": 543
+        }
+      ],
+      "initial_sdk": {
+        "status": "passed",
+        "calls": 1,
+        "uptime_seconds": 539,
+        "timeval_size": 16,
+        "time_t_size": 8,
+        "boot_stable": true
+      },
+      "preflight_sdk": {
+        "status": "passed",
+        "calls": 1,
+        "uptime_seconds": 423,
+        "timeval_size": 16,
+        "time_t_size": 8,
+        "boot_stable": true
+      },
+      "sdk_source_sha256": "b06b5bc81f54ab1348e1a4ef05edd2de885ad6ebb75195ae169cd12f743eb2e8"
+    },
+    "macos-uptime-windows-cpu-sdk-39878588965.json": {
+      "path": "macos-uptime-windows-cpu-sdk-39878588965.json",
+      "sha256": "450d436f2ffe7ef5ca82525a15e9ad23e9a5be2926b4a34d1b164e5cf80a1bb1",
+      "original_report_sha256": "a8efafb928da8b6b35c83bee09d51cb97779906428c3b5bc6cd81ca9b374c030"
+    },
+    "macos-uptime-macos-cpu-sdk-39878588965.json": {
+      "path": "macos-uptime-macos-cpu-sdk-39878588965.json",
+      "sha256": "9b28b7c217bff47c5350d828e74f3e2a2525a0f9668403570921af83bb1b23ec",
+      "original_report_sha256": "9b28b7c217bff47c5350d828e74f3e2a2525a0f9668403570921af83bb1b23ec"
+    },
+    "macos-uptime-windows-memory-sdk-39878588965.json": {
+      "path": "macos-uptime-windows-memory-sdk-39878588965.json",
+      "sha256": "6b809af2dff4337dc2a5a0b4867e9e40ba808cb87a9f7ee4a3d510e2e1baeaed",
+      "original_report_sha256": "16a94fa2afb386336fefb55cc5ab04453f46a578e6e282b7ff709ca1924fecd0"
+    },
+    "macos-uptime-macos-memory-sdk-39878588965.json": {
+      "path": "macos-uptime-macos-memory-sdk-39878588965.json",
+      "sha256": "b97bb2b2c12006358a538af648b7ef446fc7b980715f413293d27f61495ffad9",
+      "original_report_sha256": "b97bb2b2c12006358a538af648b7ef446fc7b980715f413293d27f61495ffad9"
+    },
+    "macos-uptime-benchmark-linux-39878588965.json": {
+      "path": "macos-uptime-benchmark-linux-39878588965.json",
+      "sha256": "649cc498281ea756bf5700a3f29848bdc7e0ca0d43fdf8912224e95752255ba5",
+      "original_report_sha256": "925252b64ada8294447b003d6d725988501075248ed382f53b130212b99441b5"
+    },
+    "macos-uptime-benchmark-darwin-39878588965.json": {
+      "path": "macos-uptime-benchmark-darwin-39878588965.json",
+      "sha256": "c5c7f8c71fd7fb7bf8bfe24373c5f637a05b5b4788a11716a1fcaf64c8887b46",
+      "original_report_sha256": "eddfaa8c928440a65ecb6afc5dd7dc849930f7e1019174dad14ffd1df0656593"
+    }
+  },
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "license": "MIT",
+  "dependency_feature_lock_changes": false,
+  "new_public_types_or_signatures": false,
+  "migration": "macOS uptime Source Sysinfo -> Sysctl/Partial; standalone SysinfoBackend requires existing MacosBackend or facade",
+  "prior_behavior": "Pinned sysinfo 0.39.6 can use boot epoch zero after Apple sysctl failure; checked API errors and boot consistency now isolate missing fields",
+  "local_evidence_index": "macos-uptime-local-bfd28d5.json",
+  "windows_uptime_sdk": {
+    "path": "macos-uptime-windows-uptime-sdk-39878588965.json",
+    "sha256": "f3326fe6e557a7f0ed4d3ee6d8e7735ecc06eb4bf60559e70a646dc61c406256",
+    "original_report_sha256": "8ad4513b1185379aac14340b25f10a275ecde6c54a17dffce28b4fb44e338c2b",
+    "observations": [
+      {
+        "operation": "collect",
+        "uptime": {
+          "value": 676,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792715850234,
+          "reason": null
+        },
+        "sdk_before_ms": 676890,
+        "sdk_after_ms": 676906
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 678,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792715851338,
+          "reason": null
+        },
+        "sdk_before_ms": 678015,
+        "sdk_after_ms": 678015
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 679,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792715852442,
+          "reason": null
+        },
+        "sdk_before_ms": 679109,
+        "sdk_after_ms": 679109
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 680,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792715853546,
+          "reason": null
+        },
+        "sdk_before_ms": 680218,
+        "sdk_after_ms": 680218
+      },
+      {
+        "operation": "rebuild",
+        "uptime": {
+          "value": 680,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792715853550,
+          "reason": null
+        },
+        "sdk_before_ms": 680218,
+        "sdk_after_ms": 680218
+      }
+    ],
+    "sdk_source_sha256": "f0aa719559d6a5da12ccbff7e2b7d1742a01588be716fb87eb9c306ade29f9ad"
+  },
+  "macos_uptime_sdk": {
+    "path": "macos-uptime-sdk-39878588965.json",
+    "sha256": "61696a55ee7e1d807eb203821cd430a4b6396f3847f80a2a666ddb41ca26a573",
+    "original_report_sha256": "61696a55ee7e1d807eb203821cd430a4b6396f3847f80a2a666ddb41ca26a573",
+    "observations": [
+      {
+        "operation": "collect",
+        "uptime": {
+          "value": 539,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792715626929,
+          "reason": null
+        },
+        "sdk_before_seconds": 539,
+        "sdk_after_seconds": 539
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 541,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792715628175,
+          "reason": null
+        },
+        "sdk_before_seconds": 541,
+        "sdk_after_seconds": 541
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 542,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792715629283,
+          "reason": null
+        },
+        "sdk_before_seconds": 542,
+        "sdk_after_seconds": 542
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 543,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792715630515,
+          "reason": null
+        },
+        "sdk_before_seconds": 543,
+        "sdk_after_seconds": 543
+      },
+      {
+        "operation": "rebuild",
+        "uptime": {
+          "value": 543,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792715630520,
+          "reason": null
+        },
+        "sdk_before_seconds": 543,
+        "sdk_after_seconds": 543
+      }
+    ],
+    "initial_sdk": {
+      "status": "passed",
+      "calls": 1,
+      "uptime_seconds": 539,
+      "timeval_size": 16,
+      "time_t_size": 8,
+      "boot_stable": true
+    },
+    "preflight_sdk": {
+      "status": "passed",
+      "calls": 1,
+      "uptime_seconds": 423,
+      "timeval_size": 16,
+      "time_t_size": 8,
+      "boot_stable": true
+    },
+    "sdk_source_sha256": "b06b5bc81f54ab1348e1a4ef05edd2de885ad6ebb75195ae169cd12f743eb2e8"
+  },
+  "windows-cpu-sdk": {
+    "path": "macos-uptime-windows-cpu-sdk-39878588965.json",
+    "sha256": "450d436f2ffe7ef5ca82525a15e9ad23e9a5be2926b4a34d1b164e5cf80a1bb1",
+    "original_report_sha256": "a8efafb928da8b6b35c83bee09d51cb97779906428c3b5bc6cd81ca9b374c030"
+  },
+  "macos-cpu-sdk": {
+    "path": "macos-uptime-macos-cpu-sdk-39878588965.json",
+    "sha256": "9b28b7c217bff47c5350d828e74f3e2a2525a0f9668403570921af83bb1b23ec",
+    "original_report_sha256": "9b28b7c217bff47c5350d828e74f3e2a2525a0f9668403570921af83bb1b23ec"
+  },
+  "windows_memory_sdk": {
+    "path": "macos-uptime-windows-memory-sdk-39878588965.json",
+    "sha256": "6b809af2dff4337dc2a5a0b4867e9e40ba808cb87a9f7ee4a3d510e2e1baeaed",
+    "original_report_sha256": "16a94fa2afb386336fefb55cc5ab04453f46a578e6e282b7ff709ca1924fecd0"
+  },
+  "macos_memory_sdk": {
+    "path": "macos-uptime-macos-memory-sdk-39878588965.json",
+    "sha256": "b97bb2b2c12006358a538af648b7ef446fc7b980715f413293d27f61495ffad9",
+    "original_report_sha256": "b97bb2b2c12006358a538af648b7ef446fc7b980715f413293d27f61495ffad9"
+  },
+  "rust_tests_including_doctests": {
+    "windows-latest": 240,
+    "ubuntu-24.04": 233,
+    "macos-latest": 238
+  },
+  "python_tests_per_desktop": 109,
+  "python_source_files": 44,
+  "fuzz_targets_completed": 11,
+  "fuzz_campaigns": {
+    "Run cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512": {
+      "runs": 429537,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 8296316,
+      "elapsed_seconds": 61
+    },
+    "Run cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512": {
+      "runs": 19326396,
+      "elapsed_seconds": 61
+    },
+    "Fuzz CPU state and bounded stat parsing": {
+      "runs": 1365185,
+      "elapsed_seconds": 61
+    },
+    "Fuzz meminfo parsing and field isolation": {
+      "runs": 3789109,
+      "elapsed_seconds": 61
+    },
+    "Fuzz uptime parsing and numeric boundaries": {
+      "runs": 19163916,
+      "elapsed_seconds": 61
+    },
+    "Fuzz power supply attribute boundaries": {
+      "runs": 18825264,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded hwmon millidegrees": {
+      "runs": 18605506,
+      "elapsed_seconds": 61
+    },
+    "Fuzz bounded network counters and privacy": {
+      "runs": 1744656,
+      "elapsed_seconds": 61
+    },
+    "Fuzz Darwin routing message boundaries": {
+      "runs": 4990896,
+      "elapsed_seconds": 61
+    },
+    "Fuzz checked block sector conversion": {
+      "runs": 28687899,
+      "elapsed_seconds": 61
+    }
+  },
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "af10fedbd4d304ac82f6023c5997e9943f6dca131b569bf2c0c1ba9abcb474e0",
+  "limits": [
+    "no sleep, hibernation, reboot, clock-adjustment or physical Mac experiment",
+    "real sysctl/time errors and boot changes untested; injection tests are separate",
+    "calendar-derived whole-second difference, not a monotonic clock or exact duration",
+    "cooperative cancellation cannot interrupt a blocked native API",
+    "Capability remains Partial; coarse seconds allow equal values; double boot reads cannot exclude ABA or clock changes",
+    "SDK brackets validate calendar-derived whole-second differences; not monotonic elapsed or cross-platform equivalent semantics",
+    "Windows CPU multi-group, real API faults and topology changes remain unverified; injected tests are distinct",
+    "macOS VM statistics may be cached/rate-limited; physical total proxy and non-compressed estimate retain prior limits",
+    "Native hosted Linux/macOS success does not replace physical device verification deferred by user",
+    "Completely empty procfs was OCI rejected: not_run, not a successful library observation",
+    "No long fuzz, native leak/peak-memory, forced kernel termination or paired performance proof",
+    "No registry publication or release distribution; isolated archives use sibling local patches"
+  ]
+}

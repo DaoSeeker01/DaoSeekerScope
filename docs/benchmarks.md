@@ -275,3 +275,15 @@ CI 源码 `1231088bc97d005a7e3c516d865db14362baf8ed`，采集实现 `2cf2736`；
 | macOS ARM64 | 38357 | 77 / 122 / 327 | 158 / 373541 | [完整记录](evidence/windows-uptime-benchmark-darwin-39755735940.json) |
 
 首次 collect 不含构造，刷新使用静态缓存；没有旧版配对，不声明性能改善/退化、峰值内存或 SLA。macOS VM 统计仍可由 OS 缓存，本表不能证明每次得到新内核计数。
+
+
+## macOS uptime 切片的整库回归基准（2026-10-23）
+
+源码 `8500cc848a72fed9994e7e51bcf7e46db4503bf1`，命令 `cargo bench --locked -p daoseeker-scope --bench collect`，Rust 1.96、bench 优化 profile、默认 serde。原生 max_entries=128；合成为 100 个传感器和 1024 个网络条目，max_entries=1024。仅托管 Linux/macOS 整库回归，不是单次 sysctl/time 调用、CLI 启动或物理设备基准；本轮没有 Windows benchmark。
+
+| 平台 | 首次 collect µs | 刷新 p50 / p95 / max µs（100 次） | 合成 collect µs / JSON bytes | 环境和原始日志 |
+|---|---|---|---|---|
+| Linux x64 | 1150 | 266 / 301 / 458 | 206 / 373541 | [完整记录](evidence/macos-uptime-benchmark-linux-39878588965.json) |
+| macOS ARM64 | 20983 | 36 / 52 / 130 | 480 / 373541 | [完整记录](evidence/macos-uptime-benchmark-darwin-39878588965.json) |
+
+首次 collect 不含构造，刷新使用静态缓存。没有旧版配对，不声明性能改善/退化、峰值内存或 SLA；macOS VM 统计仍可缓存，该表不能证明每次获得新内核计数。

@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-2026-10-22 macOS uptime 开发增量：现有 MacosBackend 直接采集 KERN_BOOTTIME/time/启动时间复核；来源 Sysinfo -> Sysctl/Partial，失败返回缺失而非 epoch 级大数或默认零，不缓存动态值。保持现有日历时间整秒差，非单调 elapsed。单独 SysinfoBackend 用户需补 MacosBackend 或使用门面；回滚须同步恢复 sysinfo 字段。无新公共类型/签名、依赖/features/锁变化，MIT、ABI 1/Schema 1 不变。原生 Mac SDK/链接/采样与三平台 CI 尚未执行，见[ADR 0028](adr/0028-macos-uptime.md)与[验证](macos-uptime-validation.md)。
+2026-10-22 macOS uptime 开发增量：现有 MacosBackend 直接采集 KERN_BOOTTIME/time/启动时间复核；来源 Sysinfo -> Sysctl/Partial，失败返回缺失而非 epoch 级大数或默认零，不缓存动态值。保持现有日历时间整秒差，非单调 elapsed。单独 SysinfoBackend 用户需补 MacosBackend 或使用门面；回滚须同步恢复 sysinfo 字段。无新公共类型/签名、依赖/features/锁变化，MIT、ABI 1/Schema 1 不变。2026-10-23 CI 39878588965 全部八项、macOS ARM64 原生 SDK/链接/采样/持久刷新与三平台八包已通过，见[ADR 0028](adr/0028-macos-uptime.md)与[验证](macos-uptime-validation.md)。
 
 2026-10-22 Windows uptime 开发增量：现有 WindowsBackend 直接读取 GetTickCount64，沿用 sysinfo 0.39.6 的计数与整数秒口径；Source 从 Sysinfo 改为 Win32，能力仍 Partial。单独 SysinfoBackend 不再提供 Windows uptime，需补 WindowsBackend 或使用门面。没有发现原实现缓存/吞错，本轮不声称修复此类缺陷。零合法，包含睡眠/休眠，不是工作时长或启动日期。无新公共类型/依赖/features/锁变更，ABI 1/Schema 1、MIT 不变；回滚须同步恢复 sysinfo 字段。见[ADR 0027](adr/0027-windows-uptime.md)和[验证](windows-uptime-validation.md)；CI 39755735940 全部八项、三平台原生/八包及 Windows SDK 夹取通过，睡眠/休眠等边界仍未实验验证。
 
