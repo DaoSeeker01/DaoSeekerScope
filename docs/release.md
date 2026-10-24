@@ -1,5 +1,7 @@
 # 发布与迁移路线
 
+2026-10-24 Windows CPU 多组开发增量：单组路径不变，64 位多组从固定 Unsupported 改为有界尝试采集，最多 16 组/1024 logical processors；自有线程逐组读取并 join，不改变调用线程亲和性。逐组验证后加权，拓扑变化重新预热，失败不返回部分或旧结果。来源 Win32/Partial、公共消费类型/签名、ABI 1/Schema 1、MIT 不变。新增默认关闭的 Windows `fuzzing` feature，fuzz 锁仅新增直接依赖边，第三方版本/许可证和根锁不变。本机单组 SDK/helper 通过；本轮 CI、实际多组和新 fuzz campaign 待验，见 [ADR 0029](adr/0029-windows-cpu-groups.md)与[记录](windows-cpu-groups-validation.md)。回滚可恢复原有单组路径，多组消费方必须继续检查字段可用性。
+
 2026-10-22 macOS uptime 开发增量：现有 MacosBackend 直接采集 KERN_BOOTTIME/time/启动时间复核；来源 Sysinfo -> Sysctl/Partial，失败返回缺失而非 epoch 级大数或默认零，不缓存动态值。保持现有日历时间整秒差，非单调 elapsed。单独 SysinfoBackend 用户需补 MacosBackend 或使用门面；回滚须同步恢复 sysinfo 字段。无新公共类型/签名、依赖/features/锁变化，MIT、ABI 1/Schema 1 不变。2026-10-23 CI 39878588965 全部八项、macOS ARM64 原生 SDK/链接/采样/持久刷新与三平台八包已通过，见[ADR 0028](adr/0028-macos-uptime.md)与[验证](macos-uptime-validation.md)。
 
 2026-10-22 Windows uptime 开发增量：现有 WindowsBackend 直接读取 GetTickCount64，沿用 sysinfo 0.39.6 的计数与整数秒口径；Source 从 Sysinfo 改为 Win32，能力仍 Partial。单独 SysinfoBackend 不再提供 Windows uptime，需补 WindowsBackend 或使用门面。没有发现原实现缓存/吞错，本轮不声称修复此类缺陷。零合法，包含睡眠/休眠，不是工作时长或启动日期。无新公共类型/依赖/features/锁变更，ABI 1/Schema 1、MIT 不变；回滚须同步恢复 sysinfo 字段。见[ADR 0027](adr/0027-windows-uptime.md)和[验证](windows-uptime-validation.md)；CI 39755735940 全部八项、三平台原生/八包及 Windows SDK 夹取通过，睡眠/休眠等边界仍未实验验证。

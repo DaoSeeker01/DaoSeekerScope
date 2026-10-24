@@ -13,6 +13,7 @@ daoseeker-scope = { path = "../crates/daoseeker-scope" }
 daoseeker-scope-linux = { path = "../crates/daoseeker-scope-linux", features = ["fuzzing"] }
 daoseeker-scope-macos = { path = "../crates/daoseeker-scope-macos", features = ["fuzzing"] }
 daoseeker-scope-cli = { path = "../crates/daoseeker-scope-cli" }
+daoseeker-scope-windows = { path = "../crates/daoseeker-scope-windows", features = ["fuzzing"] }
 [[bin]]
 name = "snapshot_json"
 path = "fuzz_targets/snapshot_json.rs"
@@ -85,6 +86,13 @@ bench = false
 [[bin]]
 name = "storage_capacity"
 path = "fuzz_targets/storage_capacity.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "windows_cpu_groups"
+path = "fuzz_targets/windows_cpu_groups.rs"
 test = false
 doc = false
 bench = false

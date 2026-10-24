@@ -1,24 +1,36 @@
-//! Bounded single-processor-group CPU sampling; no cached percentage fallback.
+//! Bounded CPU time sampling, including isolated multi-group collection.
+use super::cpu_groups::{Check, Counters, Frame};
 use daoseeker_scope_core::*;
 use std::time::{Duration, Instant};
 
 const INTERVAL: Duration = Duration::from_millis(300);
 
 #[derive(Clone, Copy)]
-struct Sample {
-    groups: u16,
-    processors: u32,
-    idle: u64,
-    kernel: u64,
-    user: u64,
+pub(super) struct Sample {
+    pub(super) groups: u16,
+    pub(super) processors: u32,
+    pub(super) idle: u64,
+    pub(super) kernel: u64,
+    pub(super) user: u64,
+    pub(super) frame: Option<Frame>,
 }
 #[derive(Clone, Copy, Debug)]
-enum Failure {
+pub(super) enum Failure {
     Api(u32),
     TopologyChanged,
+    Limit,
 }
 trait Api: Send + 'static {
     fn read(&mut self) -> Result<Sample, Failure>;
+    fn read_checked(
+        &mut self,
+        check: &mut Check<'_>,
+    ) -> Result<Result<Sample, Failure>, ScopeError> {
+        check()?;
+        let result = self.read();
+        check()?;
+        Ok(result)
+    }
 }
 fn missing(reason: ReasonCode) -> Observed<f64> {
     Observed::unavailable(Source::Win32, reason)
@@ -31,6 +43,12 @@ fn failure(error: Failure) -> Observed<f64> {
             missing(ReasonCode::TemporarilyUnavailable)
         }
         Failure::Api(_) => missing(ReasonCode::Unknown),
+        Failure::Limit => Observed::missing(
+            Availability::Unsupported,
+            Source::Win32,
+            ReasonCode::NotSupported,
+        )
+        .expect("limit"),
     }
 }
 #[derive(Default)]
@@ -51,7 +69,7 @@ impl Sampler {
                 return failure(error);
             }
         };
-        if sample.groups > 1 {
+        if sample.groups > 1 && sample.frame.is_none() {
             self.baseline = None;
             return Observed::missing(
                 Availability::Unsupported,
@@ -60,10 +78,19 @@ impl Sampler {
             )
             .expect("unsupported observation");
         }
-        if sample.groups != 1
-            || !(1..=64).contains(&sample.processors)
-            || sample.idle > sample.kernel
-        {
+        let valid = match sample.frame {
+            Some(frame) => {
+                frame.valid()
+                    && frame.topology.count == sample.groups
+                    && frame.topology.processors().ok() == Some(sample.processors)
+            }
+            None => {
+                sample.groups == 1
+                    && (1..=64).contains(&sample.processors)
+                    && sample.idle <= sample.kernel
+            }
+        };
+        if !valid {
             self.baseline = None;
             return missing(ReasonCode::InvalidData);
         }
@@ -71,17 +98,28 @@ impl Sampler {
             self.baseline = Some((sample, now));
             return missing(ReasonCode::TemporarilyUnavailable);
         };
-        if sample.processors != previous.processors {
+        if sample.groups != previous.groups
+            || sample.processors != previous.processors
+            || sample.frame.map(|f| f.topology) != previous.frame.map(|f| f.topology)
+        {
             self.baseline = Some((sample, now));
             return missing(ReasonCode::TemporarilyUnavailable);
         }
-        let deltas = sample
-            .idle
-            .checked_sub(previous.idle)
-            .zip(sample.kernel.checked_sub(previous.kernel))
-            .zip(sample.user.checked_sub(previous.user));
-        let Some(((idle, kernel), user)) = deltas.filter(|((idle, kernel), _)| idle <= kernel)
-        else {
+        let deltas = match (sample.frame, previous.frame) {
+            (Some(current), Some(previous)) => current.delta(&previous),
+            (None, None) => Counters {
+                idle: sample.idle,
+                kernel: sample.kernel,
+                user: sample.user,
+            }
+            .delta(Counters {
+                idle: previous.idle,
+                kernel: previous.kernel,
+                user: previous.user,
+            }),
+            _ => None,
+        };
+        let Some((idle, kernel, user)) = deltas else {
             self.baseline = None;
             return missing(ReasonCode::InvalidData);
         };
@@ -94,12 +132,12 @@ impl Sampler {
             return missing(ReasonCode::TemporarilyUnavailable);
         }
         self.baseline = Some((sample, now));
-        let total = u128::from(kernel) + u128::from(user);
+        let total = kernel + user;
         if total == 0 {
             return missing(ReasonCode::TemporarilyUnavailable);
         }
         Observed::available(
-            100.0 * ((total - u128::from(idle)) as f64 / total as f64),
+            100.0 * ((total - idle) as f64 / total as f64),
             Source::Win32,
             at,
         )
@@ -107,12 +145,10 @@ impl Sampler {
     fn refresh(
         &mut self,
         api: &mut impl Api,
-        mut check: impl FnMut() -> Result<(), ScopeError>,
+        mut check: impl FnMut() -> Result<(), ScopeError> + Send,
     ) -> Result<Observed<f64>, ScopeError> {
         let result = (|| {
-            check()?;
-            let raw = api.read();
-            check()?;
+            let raw = api.read_checked(&mut check)?;
             let now = Instant::now();
             let at = Timestamp::now()?;
             Ok(self.observe(raw, now, at))
@@ -167,61 +203,82 @@ mod native {
         },
     };
     struct NativeApi;
-    fn topology() -> Result<(u16, u32), Failure> {
-        // SAFETY: argument-free synchronous public query, no retained resources.
-        let groups = unsafe { GetActiveProcessorGroupCount() };
-        if groups == 0 {
-            // This API does not document GetLastError; never use a stale error.
-            return Err(Failure::Api(0));
-        }
-        if groups > 1 {
-            return Ok((groups, 0));
-        }
-        // SAFETY: group 0 exists following a successful single-group query.
-        let processors = unsafe { GetActiveProcessorCount(0) };
-        if processors == 0 {
-            // SAFETY: captured immediately after the documented failing API.
-            return Err(Failure::Api(unsafe { GetLastError() }));
-        }
-        Ok((groups, processors))
-    }
     fn ticks(time: FILETIME) -> u64 {
         (u64::from(time.dwHighDateTime) << 32) | u64::from(time.dwLowDateTime)
     }
-    impl Api for NativeApi {
-        fn read(&mut self) -> Result<Sample, Failure> {
-            let (groups, processors) = topology()?;
-            if groups > 1 {
-                return Ok(Sample {
-                    groups,
-                    processors,
-                    idle: 0,
-                    kernel: 0,
-                    user: 0,
-                });
-            }
-            let mut idle = FILETIME::default();
-            let mut kernel = FILETIME::default();
-            let mut user = FILETIME::default();
-            // SAFETY: three distinct initialized, aligned, live SDK output structures;
-            // synchronous API retains no pointers. Failed output is never inspected.
-            if unsafe { GetSystemTimes(&mut idle, &mut kernel, &mut user) } == 0 {
-                // SAFETY: immediate same-thread documented failure status.
-                return Err(Failure::Api(unsafe { GetLastError() }));
-            }
-            if topology()? != (groups, processors) {
-                return Err(Failure::TopologyChanged);
-            }
-            Ok(Sample {
-                groups,
-                processors,
-                idle: ticks(idle),
-                kernel: ticks(kernel),
-                user: ticks(user),
-            })
+    fn group_count() -> Result<u16, Failure> {
+        // SAFETY: argument-free synchronous query. No GetLastError contract.
+        match unsafe { GetActiveProcessorGroupCount() } {
+            0 => Err(Failure::Api(0)),
+            value => Ok(value),
         }
     }
-    /// Fresh single-group Windows CPU percentage; multi-group hosts are unsupported.
+    fn processor_count() -> Result<u32, Failure> {
+        // SAFETY: caller confirmed a single active group; group 0 exists.
+        let count = unsafe { GetActiveProcessorCount(0) };
+        if count == 0 {
+            // SAFETY: immediate documented failure status.
+            Err(Failure::Api(unsafe { GetLastError() }))
+        } else {
+            Ok(count)
+        }
+    }
+    fn system_times() -> Result<Counters, Failure> {
+        let mut idle = FILETIME::default();
+        let mut kernel = FILETIME::default();
+        let mut user = FILETIME::default();
+        // SAFETY: distinct live initialized SDK outputs, retained for this call only.
+        if unsafe { GetSystemTimes(&mut idle, &mut kernel, &mut user) } == 0 {
+            // SAFETY: immediate documented failure status.
+            return Err(Failure::Api(unsafe { GetLastError() }));
+        }
+        Ok(Counters {
+            idle: ticks(idle),
+            kernel: ticks(kernel),
+            user: ticks(user),
+        })
+    }
+    fn read_sample(check: &mut Check<'_>) -> Result<Sample, crate::cpu_groups::ReadError> {
+        use crate::cpu_groups::{ReadError, checked};
+        let groups = checked(group_count, check)?;
+        if groups > 1 {
+            return crate::cpu_groups::read_native(check);
+        }
+        let processors = checked(processor_count, check)?;
+        let counters = checked(system_times, check)?;
+        if checked(group_count, check)? != groups || checked(processor_count, check)? != processors
+        {
+            return Err(ReadError::Field(Failure::TopologyChanged));
+        }
+        Ok(Sample {
+            groups,
+            processors,
+            idle: counters.idle,
+            kernel: counters.kernel,
+            user: counters.user,
+            frame: None,
+        })
+    }
+    impl Api for NativeApi {
+        fn read(&mut self) -> Result<Sample, Failure> {
+            match read_sample(&mut || Ok(())) {
+                Ok(sample) => Ok(sample),
+                Err(crate::cpu_groups::ReadError::Field(error)) => Err(error),
+                Err(crate::cpu_groups::ReadError::Context(_)) => Err(Failure::Api(0)),
+            }
+        }
+        fn read_checked(
+            &mut self,
+            check: &mut Check<'_>,
+        ) -> Result<Result<Sample, Failure>, ScopeError> {
+            match read_sample(check) {
+                Ok(sample) => Ok(Ok(sample)),
+                Err(crate::cpu_groups::ReadError::Field(error)) => Ok(Err(error)),
+                Err(crate::cpu_groups::ReadError::Context(error)) => Err(error),
+            }
+        }
+    }
+    /// Fresh Windows CPU percentage; bounded multi-group reads use a private thread.
     /// The desktop facade registers this automatically. First sample needs 300 ms.
     pub struct WindowsCpuBackend(CpuBackend<NativeApi>);
     impl WindowsCpuBackend {
@@ -291,6 +348,7 @@ mod tests {
             idle,
             kernel,
             user,
+            frame: None,
         })
     }
     fn absent(value: &Observed<f64>, reason: ReasonCode) {
@@ -564,6 +622,84 @@ mod tests {
         absent(
             &sampler.observe(sample(0, 100, 100), Instant::now(), Timestamp(1)),
             ReasonCode::TemporarilyUnavailable,
+        );
+    }
+    fn grouped(values: [(u64, u64, u64); 2], mask: u64) -> Result<Sample, Failure> {
+        use crate::cpu_groups::{MAX_GROUPS, Topology};
+        let mut topology = Topology {
+            count: 2,
+            ..Topology::default()
+        };
+        topology.masks[0] = u64::MAX;
+        topology.masks[1] = mask;
+        let mut frame = Frame {
+            topology,
+            counters: [Counters::default(); MAX_GROUPS],
+        };
+        for (slot, (idle, kernel, user)) in frame.counters.iter_mut().zip(values) {
+            *slot = Counters { idle, kernel, user };
+        }
+        Ok(Sample {
+            groups: 2,
+            processors: 65,
+            idle: 0,
+            kernel: 0,
+            user: 0,
+            frame: Some(frame),
+        })
+    }
+    #[test]
+    fn multi_group_percentage_is_time_weighted_not_average_of_percentages() {
+        let now = Instant::now();
+        let mut sampler = Sampler::default();
+        sampler.observe(grouped([(0, 0, 0); 2], 1), now, Timestamp(0));
+        let value = sampler.observe(
+            grouped([(0, 100, 0), (900, 900, 0)], 1),
+            now + INTERVAL,
+            Timestamp(1),
+        );
+        assert_eq!(value.value(), Some(&10.0));
+        assert_eq!(value.source(), Source::Win32);
+    }
+    #[test]
+    fn group_reset_cannot_hide_behind_growth_in_another_group() {
+        let now = Instant::now();
+        let mut sampler = Sampler::default();
+        sampler.observe(
+            grouped([(20, 100, 100), (0, 100, 100)], 1),
+            now,
+            Timestamp(0),
+        );
+        let value = sampler.observe(
+            grouped([(20, 99, 100), (0, 10000, 10000)], 1),
+            now + INTERVAL,
+            Timestamp(1),
+        );
+        absent(&value, ReasonCode::InvalidData);
+        assert!(sampler.baseline.is_none());
+    }
+    #[test]
+    fn group_mask_change_rewarms_even_when_total_count_is_unchanged() {
+        let now = Instant::now();
+        let mut sampler = Sampler::default();
+        sampler.observe(grouped([(0, 0, 0); 2], 1), now, Timestamp(0));
+        absent(
+            &sampler.observe(
+                grouped([(0, 100, 0), (900, 900, 0)], 2),
+                now + INTERVAL,
+                Timestamp(1),
+            ),
+            ReasonCode::TemporarilyUnavailable,
+        );
+        assert_eq!(
+            sampler
+                .observe(
+                    grouped([(0, 200, 0), (1800, 1800, 0)], 2),
+                    now + INTERVAL * 2,
+                    Timestamp(2)
+                )
+                .value(),
+            Some(&10.0)
         );
     }
 }

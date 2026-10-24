@@ -1,6 +1,13 @@
 //! Ordinary-user Windows enhancement, compiled only on Windows.
 #[cfg(any(target_os = "windows", test))]
 mod cpu;
+#[cfg(any(target_os = "windows", test))]
+mod cpu_groups;
+#[cfg(any(target_os = "windows", test, feature = "fuzzing"))]
+mod cpu_groups_wire;
+#[cfg(feature = "fuzzing")]
+#[doc(hidden)]
+pub mod fuzzing;
 #[cfg(target_os = "windows")]
 pub use cpu::WindowsCpuBackend;
 #[cfg(any(target_os = "windows", test))]

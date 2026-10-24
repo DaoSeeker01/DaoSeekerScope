@@ -10,6 +10,15 @@ mod tests {
     use daoseeker_scope_macos::fuzzing::network_route;
 
     #[test]
+    fn windows_group_wire_seed_uses_win32_without_native_io() {
+        let value = daoseeker_scope_windows::fuzzing::cpu_group_topology(include_bytes!(
+            "../corpus/windows_cpu_groups/valid_group_table"
+        ));
+        common::observed(&value, Source::Win32);
+        assert_eq!(value.value(), Some(&(2, 3)));
+    }
+
+    #[test]
     fn empty_and_binary_darwin_routes_use_sysctl_in_shared_fuzz_checks() {
         for data in [
             &[][..],

@@ -1,5 +1,7 @@
 # Windows CPU 刷新验证
 
+本页为单组首轮历史验收。2026-10-24 多组增量见[独立记录](windows-cpu-groups-validation.md)，不可用下文历史 CI 证明新多组路径。
+
 本轮实现：直接检查公开 GetSystemTimes 的成功状态，每次刷新重新读计数；失败清除基线，恢复需要新的 300 ms 有效采样对。仅支持单活动处理器组；多组返回 Unsupported，不将组内用量当成整机用量。决策与迁移见 [ADR 0024](adr/0024-windows-cpu.md)。
 
 2026-10-20 开发验证：本机 Windows x64，1 组 / 12 个逻辑处理器，独立公开 C SDK 探针与持久 Rust 进程完成初始预热、三次有效刷新、重建后重新预热。静态 CPU 信息保持缓存，动态来源 Win32、时间递增、范围 0..100；两进程采样区间不同，不要求数值相同，不制造负载或注入系统 API。开发报告位于忽略的 target/windows-cpu-local.json，明确 git_dirty=true；可归档的干净提交结果另列于后续验收章节。

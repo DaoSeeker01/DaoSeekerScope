@@ -1,5 +1,7 @@
 # 锁定依赖许可证清单
 
+2026-10-24 Windows CPU 多组采样沿用 windows-sys 0.61.2 已有绑定，无新第三方包、版本或 SDK feature。Windows crate 新增默认关闭的 `fuzzing` feature；fuzz workspace 直接启用该隐藏纯解析入口，fuzz/Cargo.lock 仅新增该依赖边，根 Cargo.lock 不变。项目 MIT、第三方许可证不变；C SDK 探针独立编写，没有复制系统实现。
+
 2026-10-22 macOS uptime 沿用实际锁定的 libc 0.2.190 和公开 sysctl/time 接口；无新包、版本、feature、锁文件或许可证变化。项目 MIT；Apple 手册仅作 API 依据，不复制系统实现。
 
 2026-10-22 Windows uptime 沿用已锁定 windows-sys 0.61.2 的 SystemInformation/GetTickCount64 绑定；没有增加依赖、feature 或修改两个锁文件。绑定仍 MIT OR Apache-2.0 可选，项目 MIT；C SDK 探针仅引用公开接口。

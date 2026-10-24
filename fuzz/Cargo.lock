@@ -66,6 +66,7 @@ dependencies = [
  "daoseeker-scope-cli",
  "daoseeker-scope-linux",
  "daoseeker-scope-macos",
+ "daoseeker-scope-windows",
  "libfuzzer-sys",
 ]
 
