@@ -1,6 +1,6 @@
 # ADR 0029：Windows 多处理器组的 CPU 时间采样
 
-状态：已实现并完成 Windows 本地门禁；三平台 CI 与真实多组硬件尚未验证，验收边界见[记录](../windows-cpu-groups-validation.md)。
+状态：已实现，Windows 本地门禁与三平台 CI 40046393393 全部八项通过（2026-10-24 运行，2026-10-25 归档）。本机和 CI 都只有一个活动组，真实多组硬件仍未验证，验收边界见[记录](../windows-cpu-groups-validation.md)。
 
 GetSystemTimes 在多组系统仅返回调用线程主组的时间。保持单组现有路径；多组使用新建的专用 scoped 采样线程，读取 GetLogicalProcessorInformationEx(RelationGroup) 的活动掩码，逐组 SetThreadGroupAffinity(GetCurrentThread()) 后读取 GetSystemTimes，最后复核完整活动拓扑。调用线程不改变亲和性；专用线程退出即回收，不尝试把 Windows 11 默认跨组亲和性错误地恢复成单组掩码。不使用私有 NT 查询、PDH/频率周期换算、管理员或重启设置。
 

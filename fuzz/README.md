@@ -1,6 +1,6 @@
 # Fuzz 目标
 
-2026-10-24 新增第 12 个目标 `windows_cpu_groups`：使用 Windows crate 默认关闭的 `fuzzing` feature，复用生产的 64 位 RelationGroup 字节解析器；1024-byte 上限、组数/稀疏 mask/状态/确定性检查和合成双组种子。不执行 Windows API，不能证明真实跨组切换。Windows 本地 fmt 与 3 项 harness 单测通过；本轮实际 campaign 尚未运行，CI 配置为 60 秒。
+2026-10-24 新增第 12 个目标 `windows_cpu_groups`：使用 Windows crate 默认关闭的 `fuzzing` feature，复用生产的 64 位 RelationGroup 字节解析器；1024-byte 上限、组数/稀疏 mask/状态/确定性检查和合成双组种子。不执行 Windows API，不能证明真实跨组切换。Windows 本地 fmt/check/严格 Clippy 与 3 项 harness 单测通过；CI 40046393393 在 Linux 实际运行 12 个目标，每个 61 秒，新目标 55,466,941 次，无崩溃正常完成。2026-10-25 [归档索引](../docs/evidence/windows-cpu-groups-ci-40046393393.json)记录逐目标计数和日志哈希，见[验证边界](../docs/windows-cpu-groups-validation.md)。
 
 ```sh
 cargo +nightly-2026-10-08 fuzz run windows_cpu_groups -- -seed=20261024 -max_total_time=60 -max_len=1025 -timeout=2 -rss_limit_mb=512

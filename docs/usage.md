@@ -25,7 +25,7 @@ println!("{:?}", dynamic.cpu_usage_percent.value());
 
 Windows 总内存和可用内存通过公开 Win32 API 读取，来源 `Win32`；每次动态刷新重新检查成功/失败。总量变化后可用内存为暂不可用，需重建 `Hardware`。直接使用 backend crate 时，需同时注册 `WindowsMemoryBackend::new()`，详见 [Windows 内存契约](adr/0023-windows-memory.md)。
 
-Windows CPU 用量由 `WindowsCpuBackend::new()` 提供，门面自动注册，单独 `SysinfoBackend` 不提供该字段。每次读取新计数；首次/过早刷新暂不可用，失败后重新预热。单组保留直接读取，64 位多组使用自有采样线程逐组读取，最多 16 组/1024 logical processors，不改变调用线程亲和性。来源 `Win32`，能力 `Partial`；本机单组已验证，真实多组与本轮 CI 待验证，见 [多组契约](adr/0029-windows-cpu-groups.md)和[验证边界](windows-cpu-groups-validation.md)。
+Windows CPU 用量由 `WindowsCpuBackend::new()` 提供，门面自动注册，单独 `SysinfoBackend` 不提供该字段。每次读取新计数；首次/过早刷新暂不可用，失败后重新预热。单组保留直接读取，64 位多组使用自有采样线程逐组读取，最多 16 组/1024 logical processors，不改变调用线程亲和性。来源 `Win32`，能力 `Partial`；本机单组 helper/SDK 与本轮三平台 CI 已通过，真实多组仍未验证，见 [多组契约](adr/0029-windows-cpu-groups.md)和[验证边界](windows-cpu-groups-validation.md)。
 
 macOS 逻辑核数与 CPU 用量改由 `MacosCpuBackend::new()` 提供，门面自动注册，来源 `AppleApi`、能力 `Partial`；首次/失败恢复需重新取得 300 ms 有效采样对。核数仍静态缓存，数量变化需重建 `Hardware`。单独 `SysinfoBackend` 不再提供这两个 macOS 字段。当前实现已通过三平台 CI 与 macOS ARM64 公开 SDK/持久刷新；实体 Mac、Intel 原生和真实 Mach 故障仍待验证，见[验证边界](macos-cpu-validation.md)。
 

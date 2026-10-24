@@ -1,5 +1,16 @@
 # 性能基线
 
+## Windows CPU 多组切片的整库回归基准（2026-10-24）
+
+源码 `bedd8a7f96403020ee5492ab9cbe7221fc5ecff8`，2026-10-25 归档。命令 `cargo bench --locked -p daoseeker-scope --bench collect`，Rust 1.96、bench 优化 profile、默认 serde 与对应平台增强。原生 max_entries=128；合成为 100 个传感器和 1024 个网络条目，max_entries=1024。仅托管 Linux/macOS 整库回归，没有 Windows 多组/helper 性能测量。
+
+| 平台 | 首次 collect µs | 刷新 p50 / p95 / max µs（100 次） | 合成 collect µs / JSON bytes | 环境和原始日志 |
+|---|---|---|---|---|
+| Linux x64 | 870 | 111 / 145 / 173 | 328 / 373541 | [完整记录](evidence/windows-cpu-groups-benchmark-linux-40046393393.json) |
+| macOS ARM64 | 25463 | 41 / 137 / 197 | 285 / 373541 | [完整记录](evidence/windows-cpu-groups-benchmark-darwin-40046393393.json) |
+
+Linux 为 Ubuntu 24.04 / 6.17.0-1022-azure，OS 报告 AMD EPYC 7763、4 逻辑 CPU、16766414848 字节可用总内存；macOS 26.6.2 / Darwin 25.6.0 报告 Apple M1 (Virtual)、3 逻辑 CPU、7516192768 字节。首次 collect 不含构造，刷新使用静态缓存。没有旧版配对，不声明性能改善/退化、峰值内存、物理设备性能或 SLA；macOS VM 统计仍可能由 OS 缓存。
+
 ## 2026-10-15 Linux DRM 视图切片原生 CI
 
 源码 `b039c18da4521cde087e8e3d76f1c69b40c0c7dd`，Ubuntu 24.04 / Linux 6.17.0-1022-azure x64 runner；OS 报告 AMD EPYC 7763、2 逻辑 CPU、8323969024 字节可用总内存。Rust 1.96、bench 优化 profile，默认 serde/sysinfo system/apple-app-store 和 Linux procfs/sysfs/DRM 增强；max_entries=128，敏感字段默认脱敏。真实视图包含 1 个 DRM 设备，名称和独占显存均 Unsupported，不是 AMD/NVIDIA 名称读取基准。复现 `cargo bench --locked -p daoseeker-scope --bench collect`。

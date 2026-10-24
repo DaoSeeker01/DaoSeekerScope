@@ -1,0 +1,647 @@
+{
+  "report_version": 1,
+  "source_commit": "bedd8a7f96403020ee5492ab9cbe7221fc5ecff8",
+  "implementation_commit": "7fbb19e379e373cd19f3a997f706046b9a566385",
+  "run_id": 40046393393,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40046393393",
+  "event": "workflow_dispatch",
+  "ci_jobs": {
+    "supply-chain": "success",
+    "ffi-asan": "success",
+    "linux-container": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "miri": "success",
+    "desktop (windows-latest)": "success",
+    "fuzz-smoke": "success",
+    "desktop (macos-latest)": "success"
+  },
+  "native": {
+    "linux": {
+      "report": "windows-cpu-groups-native-linux-40046393393.json",
+      "groups": 5,
+      "processes": 16
+    },
+    "darwin": {
+      "report": "windows-cpu-groups-native-darwin-40046393393.json",
+      "groups": 5,
+      "processes": 16
+    },
+    "windows": {
+      "report": "windows-cpu-groups-native-windows-40046393393.json",
+      "groups": 5,
+      "processes": 16
+    }
+  },
+  "packages": {
+    "package-evidence-Linux-X64": {
+      "path": "windows-cpu-groups-package-evidence-linux-x64-40046393393.json",
+      "sha256": "634e5efb5a3a4761caa4055fafffe29173838f3a94d936d2729bad89cf48d2a6",
+      "original_report_sha256": "634e5efb5a3a4761caa4055fafffe29173838f3a94d936d2729bad89cf48d2a6"
+    },
+    "package-evidence-macOS-ARM64": {
+      "path": "windows-cpu-groups-package-evidence-macos-arm64-40046393393.json",
+      "sha256": "ea385fae80b1b03665e2a38b56fa8293e294d890a3abb0306e7d8309d20aad67",
+      "original_report_sha256": "ea385fae80b1b03665e2a38b56fa8293e294d890a3abb0306e7d8309d20aad67"
+    },
+    "package-evidence-Windows-X64": {
+      "path": "windows-cpu-groups-package-evidence-windows-x64-40046393393.json",
+      "sha256": "45c5a5bba493e681149f1fc87127a2a6a429c42405b0028c36eb639fae4fea6f",
+      "original_report_sha256": "637dfce7f9bb38c7015eb4e207490a6595962f99746e9b491d5b0df8328bf99e"
+    }
+  },
+  "benchmarks": {
+    "linux": {
+      "path": "windows-cpu-groups-benchmark-linux-40046393393.json",
+      "sha256": "be08cb7324c732588603585bd49f46a157db437497ceb00186c09b42045bd3b0",
+      "original_report_sha256": "eb474641b722e82c218f1413fd2579220bf43f13a191628a60ae7038a6668d36"
+    },
+    "darwin": {
+      "path": "windows-cpu-groups-benchmark-darwin-40046393393.json",
+      "sha256": "7ae4516bb16e0c0802643a87c53115ee563e7cfe1b804d3e6c3eff654bb6465a",
+      "original_report_sha256": "0b9a5b0cbf38f8a60f66ca03da6648472c11d1afd0323a974136f633b04faebe"
+    }
+  },
+  "containers": {
+    "linux-battery-evidence.json": {
+      "sha256": "82b62b1a07f171c338d4078497cc247dfd6fa4cc5ee23a4639aa77c12f65895c",
+      "samples_passed": 30
+    },
+    "linux-container-evidence.json": {
+      "sha256": "9616d890336c386d68f4c5347bcace2590e28b090a176641fdaea27140781f69",
+      "runtime_probes": {
+        "empty_proc": {
+          "status": "not_run",
+          "configuration": {
+            "user": "65534:65534",
+            "ReadonlyRootfs": true,
+            "NetworkMode": "none",
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges=true"
+            ],
+            "Memory": 268435456,
+            "MemorySwap": 268435456,
+            "PidsLimit": 32,
+            "NanoCpus": 1000000000
+          },
+          "exit_code": 128,
+          "docker_start_exit_code": 1,
+          "process_started": false,
+          "failure_category": "runtime_mount_error",
+          "probe_result": "runtime_rejected_mount"
+        }
+      }
+    },
+    "linux-display-evidence.json": {
+      "sha256": "0d448347805d0fc5b68ad2485be91c54bc18745eea3feb7d7dea6e3755a4f937",
+      "samples_passed": 26
+    },
+    "linux-dynamic-evidence.json": {
+      "sha256": "97a0b90b4bee80add3a66205d2f9d09d65104cb9846cd48cab01eb6eb9f5340e",
+      "samples_passed": 15
+    },
+    "linux-gpu-evidence.json": {
+      "sha256": "c2e78d8ec9fb8d10e5c692f53995afff463126c5735db764dd2479873853142a",
+      "samples_passed": 20
+    },
+    "linux-hwmon-evidence.json": {
+      "sha256": "1820662ccd29ebcc258cf09a79e9bfa4b4e00d35b9153ad088c19a945f441880",
+      "samples_passed": 47
+    },
+    "linux-memory-evidence.json": {
+      "sha256": "2049c287f0755894d2a38a727d68a4b4e80869a8c8c3dff6669c01ab0274cec0",
+      "samples_passed": 26
+    },
+    "linux-storage-evidence.json": {
+      "sha256": "3b8ee00f22737802a4d82dfc60eafd806861a8329f5a81c5b2503deb71465dfc",
+      "samples_passed": 21
+    }
+  },
+  "reports": {
+    "windows-cpu-groups-native-linux-40046393393.json": {
+      "path": "windows-cpu-groups-native-linux-40046393393.json",
+      "sha256": "108d0e943e44d6f166db20e28e7433ede16073d05212c29a41002590e74c6585",
+      "original_report_sha256": "108d0e943e44d6f166db20e28e7433ede16073d05212c29a41002590e74c6585"
+    },
+    "windows-cpu-groups-native-darwin-40046393393.json": {
+      "path": "windows-cpu-groups-native-darwin-40046393393.json",
+      "sha256": "ca5faa2aa6c722f29cd2bf4b6cc78f32fbd928071eef7d15d65735ed4fdf4812",
+      "original_report_sha256": "ca5faa2aa6c722f29cd2bf4b6cc78f32fbd928071eef7d15d65735ed4fdf4812"
+    },
+    "windows-cpu-groups-native-windows-40046393393.json": {
+      "path": "windows-cpu-groups-native-windows-40046393393.json",
+      "sha256": "36de06a58f9e80379621364f4a1e5f0451abbda6a6137063708e2bcd3b20e874",
+      "original_report_sha256": "3a5ed0f8ac8d70474a59ccf285761aa452f19b0f1258f7b801eb90daf485148e"
+    },
+    "windows-cpu-groups-package-evidence-linux-x64-40046393393.json": {
+      "path": "windows-cpu-groups-package-evidence-linux-x64-40046393393.json",
+      "sha256": "634e5efb5a3a4761caa4055fafffe29173838f3a94d936d2729bad89cf48d2a6",
+      "original_report_sha256": "634e5efb5a3a4761caa4055fafffe29173838f3a94d936d2729bad89cf48d2a6"
+    },
+    "windows-cpu-groups-package-evidence-macos-arm64-40046393393.json": {
+      "path": "windows-cpu-groups-package-evidence-macos-arm64-40046393393.json",
+      "sha256": "ea385fae80b1b03665e2a38b56fa8293e294d890a3abb0306e7d8309d20aad67",
+      "original_report_sha256": "ea385fae80b1b03665e2a38b56fa8293e294d890a3abb0306e7d8309d20aad67"
+    },
+    "windows-cpu-groups-package-evidence-windows-x64-40046393393.json": {
+      "path": "windows-cpu-groups-package-evidence-windows-x64-40046393393.json",
+      "sha256": "45c5a5bba493e681149f1fc87127a2a6a429c42405b0028c36eb639fae4fea6f",
+      "original_report_sha256": "637dfce7f9bb38c7015eb4e207490a6595962f99746e9b491d5b0df8328bf99e"
+    },
+    "windows-cpu-groups-windows-uptime-sdk-40046393393.json": {
+      "path": "windows-cpu-groups-windows-uptime-sdk-40046393393.json",
+      "sha256": "d06bad5328f2f18d70374cb8b2022d7ba75efed4647d3f67ed9a6075c1a17c1d",
+      "original_report_sha256": "1eb6ac8939c975bab5171a9145ca4bf5d4f22bcb5be732da9b235d1ae7bd9e42",
+      "observations": [
+        {
+          "operation": "collect",
+          "uptime": {
+            "value": 719,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792803048833,
+            "reason": null
+          },
+          "sdk_before_ms": 719125,
+          "sdk_after_ms": 719156
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 720,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792803049938,
+            "reason": null
+          },
+          "sdk_before_ms": 720250,
+          "sdk_after_ms": 720265
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 721,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792803051043,
+            "reason": null
+          },
+          "sdk_before_ms": 721359,
+          "sdk_after_ms": 721359
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 722,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792803052148,
+            "reason": null
+          },
+          "sdk_before_ms": 722468,
+          "sdk_after_ms": 722468
+        },
+        {
+          "operation": "rebuild",
+          "uptime": {
+            "value": 722,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1792803052154,
+            "reason": null
+          },
+          "sdk_before_ms": 722468,
+          "sdk_after_ms": 722468
+        }
+      ],
+      "sdk_source_sha256": "f0aa719559d6a5da12ccbff7e2b7d1742a01588be716fb87eb9c306ade29f9ad"
+    },
+    "windows-cpu-groups-macos-uptime-sdk-40046393393.json": {
+      "path": "windows-cpu-groups-macos-uptime-sdk-40046393393.json",
+      "sha256": "a8f99edded0fc8046c8cbf490bd1c540cd8932c61831ced51e9aa5572cd8b2a5",
+      "original_report_sha256": "a8f99edded0fc8046c8cbf490bd1c540cd8932c61831ced51e9aa5572cd8b2a5",
+      "observations": [
+        {
+          "operation": "collect",
+          "uptime": {
+            "value": 273,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792802797493,
+            "reason": null
+          },
+          "sdk_before_seconds": 273,
+          "sdk_after_seconds": 273
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 274,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792802798660,
+            "reason": null
+          },
+          "sdk_before_seconds": 274,
+          "sdk_after_seconds": 274
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 275,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792802799794,
+            "reason": null
+          },
+          "sdk_before_seconds": 275,
+          "sdk_after_seconds": 275
+        },
+        {
+          "operation": "refresh",
+          "uptime": {
+            "value": 276,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792802800972,
+            "reason": null
+          },
+          "sdk_before_seconds": 276,
+          "sdk_after_seconds": 276
+        },
+        {
+          "operation": "rebuild",
+          "uptime": {
+            "value": 276,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1792802800975,
+            "reason": null
+          },
+          "sdk_before_seconds": 276,
+          "sdk_after_seconds": 276
+        }
+      ],
+      "initial_sdk": {
+        "status": "passed",
+        "calls": 1,
+        "uptime_seconds": 273,
+        "timeval_size": 16,
+        "time_t_size": 8,
+        "boot_stable": true
+      },
+      "preflight_sdk": {
+        "status": "passed",
+        "calls": 1,
+        "uptime_seconds": 141,
+        "timeval_size": 16,
+        "time_t_size": 8,
+        "boot_stable": true
+      },
+      "sdk_source_sha256": "b06b5bc81f54ab1348e1a4ef05edd2de885ad6ebb75195ae169cd12f743eb2e8"
+    },
+    "windows-cpu-groups-windows-cpu-sdk-40046393393.json": {
+      "path": "windows-cpu-groups-windows-cpu-sdk-40046393393.json",
+      "sha256": "ff4535fd39a51fd01258e8c03a0815ee22f5d65a5809455c743dd2e706522300",
+      "original_report_sha256": "d3f52fc186dc8c3b28ed2fed8db786ff363ef69b32a7cc56bf27498b734b15c1"
+    },
+    "windows-cpu-groups-macos-cpu-sdk-40046393393.json": {
+      "path": "windows-cpu-groups-macos-cpu-sdk-40046393393.json",
+      "sha256": "6ccbfc95cb9d73da61ac22899493ca28848f77803cf0412a91fc9ad0bc649702",
+      "original_report_sha256": "6ccbfc95cb9d73da61ac22899493ca28848f77803cf0412a91fc9ad0bc649702"
+    },
+    "windows-cpu-groups-windows-memory-sdk-40046393393.json": {
+      "path": "windows-cpu-groups-windows-memory-sdk-40046393393.json",
+      "sha256": "b402a418f450fb5dceb8122809ba280d17aba01a43db660e76e127d7d4aead03",
+      "original_report_sha256": "217bf72422cc36eb8a5d411c7c346268d25389cde6ffdbecfd5063fb8475b6b3"
+    },
+    "windows-cpu-groups-macos-memory-sdk-40046393393.json": {
+      "path": "windows-cpu-groups-macos-memory-sdk-40046393393.json",
+      "sha256": "dab22917e524cad1d27c2d7d47af06d413df0ca1f2249d38c8afd2e8b94f8662",
+      "original_report_sha256": "dab22917e524cad1d27c2d7d47af06d413df0ca1f2249d38c8afd2e8b94f8662"
+    },
+    "windows-cpu-groups-sdk-40046393393.json": {
+      "path": "windows-cpu-groups-sdk-40046393393.json",
+      "sha256": "1aa971f2b583ad348aa774066de47c5fbe3a65e314bcd837351c1ef35117a7eb",
+      "original_report_sha256": "9568acacc23b749c057a9096a390f1267ecd904d30d1375834d72d3ef2c7f969",
+      "actual_groups": 1,
+      "actual_processors": 4,
+      "real_multi_group_device": false,
+      "facade_group_path_exercised": false,
+      "sdk_source_sha256": "c2625908e244f9e520213db74e1e4d82ba33e75aca72cd4c1ac9b76940f1ebe6"
+    },
+    "windows-cpu-groups-benchmark-linux-40046393393.json": {
+      "path": "windows-cpu-groups-benchmark-linux-40046393393.json",
+      "sha256": "be08cb7324c732588603585bd49f46a157db437497ceb00186c09b42045bd3b0",
+      "original_report_sha256": "eb474641b722e82c218f1413fd2579220bf43f13a191628a60ae7038a6668d36"
+    },
+    "windows-cpu-groups-benchmark-darwin-40046393393.json": {
+      "path": "windows-cpu-groups-benchmark-darwin-40046393393.json",
+      "sha256": "7ae4516bb16e0c0802643a87c53115ee563e7cfe1b804d3e6c3eff654bb6465a",
+      "original_report_sha256": "0b9a5b0cbf38f8a60f66ca03da6648472c11d1afd0323a974136f633b04faebe"
+    }
+  },
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "license": "MIT",
+  "third_party_versions_and_licenses_changed": false,
+  "root_lock_changed": false,
+  "fuzz_lock_change": "one direct dependency edge to existing Windows crate",
+  "new_default_off_feature": "daoseeker-scope-windows/fuzzing; hidden unstable pure parser hook",
+  "new_public_consumption_types_or_signatures": false,
+  "migration": "64-bit Windows multi-group Unsupported -> bounded attempted Win32/Partial collection; existing single-group path retained",
+  "local_evidence_index": "windows-cpu-groups-local-7fbb19e.json",
+  "windows_uptime_sdk": {
+    "path": "windows-cpu-groups-windows-uptime-sdk-40046393393.json",
+    "sha256": "d06bad5328f2f18d70374cb8b2022d7ba75efed4647d3f67ed9a6075c1a17c1d",
+    "original_report_sha256": "1eb6ac8939c975bab5171a9145ca4bf5d4f22bcb5be732da9b235d1ae7bd9e42",
+    "observations": [
+      {
+        "operation": "collect",
+        "uptime": {
+          "value": 719,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792803048833,
+          "reason": null
+        },
+        "sdk_before_ms": 719125,
+        "sdk_after_ms": 719156
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 720,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792803049938,
+          "reason": null
+        },
+        "sdk_before_ms": 720250,
+        "sdk_after_ms": 720265
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 721,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792803051043,
+          "reason": null
+        },
+        "sdk_before_ms": 721359,
+        "sdk_after_ms": 721359
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 722,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792803052148,
+          "reason": null
+        },
+        "sdk_before_ms": 722468,
+        "sdk_after_ms": 722468
+      },
+      {
+        "operation": "rebuild",
+        "uptime": {
+          "value": 722,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1792803052154,
+          "reason": null
+        },
+        "sdk_before_ms": 722468,
+        "sdk_after_ms": 722468
+      }
+    ],
+    "sdk_source_sha256": "f0aa719559d6a5da12ccbff7e2b7d1742a01588be716fb87eb9c306ade29f9ad"
+  },
+  "macos_uptime_sdk": {
+    "path": "windows-cpu-groups-macos-uptime-sdk-40046393393.json",
+    "sha256": "a8f99edded0fc8046c8cbf490bd1c540cd8932c61831ced51e9aa5572cd8b2a5",
+    "original_report_sha256": "a8f99edded0fc8046c8cbf490bd1c540cd8932c61831ced51e9aa5572cd8b2a5",
+    "observations": [
+      {
+        "operation": "collect",
+        "uptime": {
+          "value": 273,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792802797493,
+          "reason": null
+        },
+        "sdk_before_seconds": 273,
+        "sdk_after_seconds": 273
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 274,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792802798660,
+          "reason": null
+        },
+        "sdk_before_seconds": 274,
+        "sdk_after_seconds": 274
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 275,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792802799794,
+          "reason": null
+        },
+        "sdk_before_seconds": 275,
+        "sdk_after_seconds": 275
+      },
+      {
+        "operation": "refresh",
+        "uptime": {
+          "value": 276,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792802800972,
+          "reason": null
+        },
+        "sdk_before_seconds": 276,
+        "sdk_after_seconds": 276
+      },
+      {
+        "operation": "rebuild",
+        "uptime": {
+          "value": 276,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792802800975,
+          "reason": null
+        },
+        "sdk_before_seconds": 276,
+        "sdk_after_seconds": 276
+      }
+    ],
+    "initial_sdk": {
+      "status": "passed",
+      "calls": 1,
+      "uptime_seconds": 273,
+      "timeval_size": 16,
+      "time_t_size": 8,
+      "boot_stable": true
+    },
+    "preflight_sdk": {
+      "status": "passed",
+      "calls": 1,
+      "uptime_seconds": 141,
+      "timeval_size": 16,
+      "time_t_size": 8,
+      "boot_stable": true
+    },
+    "sdk_source_sha256": "b06b5bc81f54ab1348e1a4ef05edd2de885ad6ebb75195ae169cd12f743eb2e8"
+  },
+  "windows-cpu-sdk": {
+    "path": "windows-cpu-groups-windows-cpu-sdk-40046393393.json",
+    "sha256": "ff4535fd39a51fd01258e8c03a0815ee22f5d65a5809455c743dd2e706522300",
+    "original_report_sha256": "d3f52fc186dc8c3b28ed2fed8db786ff363ef69b32a7cc56bf27498b734b15c1"
+  },
+  "macos-cpu-sdk": {
+    "path": "windows-cpu-groups-macos-cpu-sdk-40046393393.json",
+    "sha256": "6ccbfc95cb9d73da61ac22899493ca28848f77803cf0412a91fc9ad0bc649702",
+    "original_report_sha256": "6ccbfc95cb9d73da61ac22899493ca28848f77803cf0412a91fc9ad0bc649702"
+  },
+  "windows_memory_sdk": {
+    "path": "windows-cpu-groups-windows-memory-sdk-40046393393.json",
+    "sha256": "b402a418f450fb5dceb8122809ba280d17aba01a43db660e76e127d7d4aead03",
+    "original_report_sha256": "217bf72422cc36eb8a5d411c7c346268d25389cde6ffdbecfd5063fb8475b6b3"
+  },
+  "macos_memory_sdk": {
+    "path": "windows-cpu-groups-macos-memory-sdk-40046393393.json",
+    "sha256": "dab22917e524cad1d27c2d7d47af06d413df0ca1f2249d38c8afd2e8b94f8662",
+    "original_report_sha256": "dab22917e524cad1d27c2d7d47af06d413df0ca1f2249d38c8afd2e8b94f8662"
+  },
+  "windows_cpu_groups_sdk": {
+    "path": "windows-cpu-groups-sdk-40046393393.json",
+    "sha256": "1aa971f2b583ad348aa774066de47c5fbe3a65e314bcd837351c1ef35117a7eb",
+    "original_report_sha256": "9568acacc23b749c057a9096a390f1267ecd904d30d1375834d72d3ef2c7f969",
+    "actual_groups": 1,
+    "actual_processors": 4,
+    "real_multi_group_device": false,
+    "facade_group_path_exercised": false,
+    "sdk_source_sha256": "c2625908e244f9e520213db74e1e4d82ba33e75aca72cd4c1ac9b76940f1ebe6"
+  },
+  "rust_tests_including_doctests": {
+    "windows-latest": 252,
+    "ubuntu-24.04": 244,
+    "macos-latest": 249
+  },
+  "python_tests_per_desktop": 112,
+  "python_source_files": 46,
+  "fuzz_targets_completed": 12,
+  "fuzz_harness_unit_tests": 3,
+  "fuzz_campaigns": {
+    "snapshot_json": {
+      "runs": 737449,
+      "elapsed_seconds": 61
+    },
+    "dmi_text": {
+      "runs": 17202232,
+      "elapsed_seconds": 61
+    },
+    "cli_args": {
+      "runs": 33803276,
+      "elapsed_seconds": 61
+    },
+    "cpu_stat": {
+      "runs": 1805809,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "0e42ed9d153525ab0c22c3d5e7faf2ef65429f0d3335d214d784a472c6548fb9"
+    },
+    "meminfo": {
+      "runs": 6155950,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "bc8eb84b4feaf41d0c71fa4b58d446c4fcd753db1ef4b801efbd7badb5b8206c"
+    },
+    "uptime": {
+      "runs": 33155822,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "9293b1e2eff6834158a8ce8de0e600e438c317ffee0b618aa71166ff07774179"
+    },
+    "power_supply": {
+      "runs": 32541165,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "9b813d5a17598889a77334a3aae5b915ecfe9e18a129ac4be15143713ddb3411"
+    },
+    "hwmon_temperature": {
+      "runs": 33425335,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "60dfdae69f58a898852165792a031e684bba42a418d181c1cf8bd14eaa79a3a6"
+    },
+    "network_dev": {
+      "runs": 6197783,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "dc1d99bdce53cc75e769120821e9142a5a5eca8cab415498d8572b48b28ab2e8"
+    },
+    "macos_network": {
+      "runs": 8593913,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "fc3612ded4bac95e3cbab20ffff823ec47fae3d2719ed4e4c187d4dd651034ae"
+    },
+    "storage_capacity": {
+      "runs": 47604467,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "be39dd8b3ab2ffcbd89aa3575ed517d37e4b8da295eabda3b0a1ef03778dbe01"
+    },
+    "windows_cpu_groups": {
+      "runs": 55466941,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "408e9162ef8c7aa09b7d31df0e3e11cc93658f96e69fdb8879d9fb50e9efc621",
+      "raw_log": "warning: use of deprecated method `std::sync::atomic::Atomic::<usize>::fetch_update`: renamed to `try_update` for consistency\n   --> /home/runner/work/DaoSeekerScope/DaoSeekerScope/crates/daoseeker-scope-core/src/hardware.rs:155:14\n    |\n155 |             .fetch_update(Ordering::AcqRel, Ordering::Acquire, |n| {\n    |              ^^^^^^^^^^^^\n    |\n    = note: `#[warn(deprecated)]` on by default\nhelp: replace the use of the deprecated method\n    |\n155 -             .fetch_update(Ordering::AcqRel, Ordering::Acquire, |n| {\n155 +             .try_update(Ordering::AcqRel, Ordering::Acquire, |n| {\n    |\n\nwarning: `daoseeker-scope-core` (lib) generated 1 warning (run `cargo fix --lib -p daoseeker-scope-core` to apply 1 suggestion)\n   Compiling daoseeker-scope-fuzz v0.0.0 (/home/runner/work/DaoSeekerScope/DaoSeekerScope/fuzz)\n    Finished `release` profile [optimized + debuginfo] target(s) in 0.18s\nwarning: use of deprecated method `std::sync::atomic::Atomic::<usize>::fetch_update`: renamed to `try_update` for consistency\n   --> /home/runner/work/DaoSeekerScope/DaoSeekerScope/crates/daoseeker-scope-core/src/hardware.rs:155:14\n    |\n155 |             .fetch_update(Ordering::AcqRel, Ordering::Acquire, |n| {\n    |              ^^^^^^^^^^^^\n    |\n    = note: `#[warn(deprecated)]` on by default\nhelp: replace the use of the deprecated method\n    |\n155 -             .fetch_update(Ordering::AcqRel, Ordering::Acquire, |n| {\n155 +             .try_update(Ordering::AcqRel, Ordering::Acquire, |n| {\n    |\n\nwarning: `daoseeker-scope-core` (lib) generated 1 warning (run `cargo fix --lib -p daoseeker-scope-core` to apply 1 suggestion)\n    Finished `release` profile [optimized + debuginfo] target(s) in 0.01s\n     Running `fuzz/target/x86_64-unknown-linux-gnu/release/windows_cpu_groups -artifact_prefix=/home/runner/work/DaoSeekerScope/DaoSeekerScope/fuzz/artifacts/windows_cpu_groups/ -seed=20261024 -max_total_time=60 -max_len=1025 -timeout=2 -rss_limit_mb=512 /home/runner/work/DaoSeekerScope/DaoSeekerScope/fuzz/corpus/windows_cpu_groups`\nINFO: Running with entropic power schedule (0xFF, 100).\nINFO: Seed: 20261024\nINFO: Loaded 1 modules   (667 inline 8-bit counters): 667 [0x555ded79cdb0, 0x555ded79d04b), \nINFO: Loaded 1 PC tables (667 PCs): 667 [0x555ded79d050,0x555ded79fa00), \nINFO:        1 files found in /home/runner/work/DaoSeekerScope/DaoSeekerScope/fuzz/corpus/windows_cpu_groups\nINFO: seed corpus: files: 1 min: 128b max: 128b total: 128b rss: 39Mb\n#2\tINITED cov: 55 ft: 56 corp: 1/128b exec/s: 0 rss: 42Mb\n#3\tNEW    cov: 64 ft: 70 corp: 2/256b lim: 128 exec/s: 0 rss: 42Mb L: 128/128 MS: 1 CopyPart-\n#6\tNEW    cov: 65 ft: 72 corp: 3/384b lim: 128 exec/s: 0 rss: 42Mb L: 128/128 MS: 3 ChangeBit-ChangeBinInt-CrossOver-\n#8\tNEW    cov: 66 ft: 73 corp: 4/489b lim: 128 exec/s: 0 rss: 42Mb L: 105/128 MS: 2 CopyPart-EraseBytes-\n#15\tREDUCE cov: 66 ft: 73 corp: 4/461b lim: 128 exec/s: 0 rss: 42Mb L: 77/128 MS: 2 ChangeBit-EraseBytes-\n#17\tREDUCE cov: 67 ft: 74 corp: 5/539b lim: 128 exec/s: 0 rss: 42Mb L: 78/128 MS: 2 ChangeBit-InsertByte-\n#18\tNEW    cov: 68 ft: 75 corp: 6/667b lim: 128 exec/s: 0 rss: 42Mb L: 128/128 MS: 1 CrossOver-\n#20\tREDUCE cov: 68 ft: 75 corp: 6/639b lim: 128 exec/s: 0 rss: 42Mb L: 50/128 MS: 2 CopyPart-EraseBytes-\n#35\tNEW    cov: 69 ft: 76 corp: 7/645b lim: 128 exec/s: 0 rss: 42Mb L: 6/128 MS: 5 CopyPart-ChangeBit-CopyPart-ChangeBinInt-CrossOver-\n#53\tREDUCE cov: 69 ft: 76 corp: 7/633b lim: 128 exec/s: 0 rss: 44Mb L: 65/128 MS: 3 CopyPart-InsertByte-EraseBytes-\n#55\tREDUCE cov: 69 ft: 76 corp: 7/632b lim: 128 exec/s: 0 rss: 44Mb L: 5/128 MS: 2 ChangeBit-EraseBytes-\n#123\tREDUCE cov: 69 ft: 76 corp: 7/628b lim: 128 exec/s: 0 rss: 44Mb L: 1/128 MS: 3 ChangeByte-ChangeBinInt-CrossOver-\n#166\tREDUCE cov: 69 ft: 76 corp: 7/609b lim: 128 exec/s: 0 rss: 44Mb L: 46/128 MS: 3 ShuffleBytes-ChangeBinInt-EraseBytes-\n#238\tREDUCE cov: 69 ft: 76 corp: 7/604b lim: 128 exec/s: 0 rss: 44Mb L: 45/128 MS: 2 InsertByte-EraseBytes-\n#251\tNEW    cov: 70 ft: 77 corp: 8/732b lim: 128 exec/s: 0 rss: 44Mb L: 128/128 MS: 3 ChangeByte-ChangeBit-CopyPart-\n#269\tREDUCE cov: 70 ft: 77 corp: 8/727b lim: 128 exec/s: 0 rss: 44Mb L: 40/128 MS: 3 ShuffleBytes-CrossOver-EraseBytes-\n#276\tREDUCE cov: 70 ft: 77 corp: 8/724b lim: 128 exec/s: 0 rss: 44Mb L: 43/128 MS: 2 ChangeByte-EraseBytes-\n#300\tREDUCE cov: 70 ft: 77 corp: 8/715b lim: 128 exec/s: 0 rss: 44Mb L: 34/128 MS: 4 CMP-CopyPart-EraseBytes-EraseBytes- DE: \"\\376\\377\\377\\377\\377\\377\\377\\377\"-\n#316\tNEW    cov: 71 ft: 78 corp: 9/843b lim: 128 exec/s: 0 rss: 44Mb L: 128/128 MS: 1 ChangeBinInt-\n#372\tREDUCE cov: 71 ft: 78 corp: 9/842b lim: 128 exec/s: 0 rss: 44Mb L: 39/128 MS: 1 EraseBytes-\n#439\tNEW    cov: 72 ft: 79 corp: 10/970b lim: 128 exec/s: 0 rss: 44Mb L: 128/128 MS: 2 ChangeBinInt-ChangeBit-\n#603\tREDUCE cov: 72 ft: 79 corp: 10/966b lim: 128 exec/s: 0 rss: 45Mb L: 35/128 MS: 4 ChangeBit-EraseBytes-ChangeBinInt-CopyPart-\n#890\tNEW    cov: 73 ft: 80 corp: 11/1094b lim: 128 exec/s: 0 rss: 45Mb L: 128/128 MS: 2 ChangeBit-PersAutoDict- DE: \"\\376\\377\\377\\377\\377\\377\\377\\377\"-\n#1391\tREDUCE cov: 73 ft: 80 corp: 11/1093b lim: 128 exec/s: 0 rss: 45Mb L: 34/128 MS: 1 EraseBytes-\n#1493\tNEW    cov: 74 ft: 81 corp: 12/1221b lim: 128 exec/s: 0 rss: 45Mb L: 128/128 MS: 2 CopyPart-CrossOver-\n#3181\tNEW    cov: 75 ft: 82 corp: 13/1349b lim: 142 exec/s: 0 rss: 45Mb L: 128/128 MS: 3 ChangeBinInt-ChangeByte-CrossOver-\n#4017\tREDUCE cov: 75 ft: 82 corp: 13/1347b lim: 149 exec/s: 0 rss: 46Mb L: 32/128 MS: 1 EraseBytes-\n#5088\tNEW    cov: 76 ft: 83 corp: 14/1475b lim: 156 exec/s: 0 rss: 46Mb L: 128/128 MS: 1 ChangeBinInt-\n#9869\tREDUCE cov: 76 ft: 83 corp: 14/1474b lim: 198 exec/s: 0 rss: 47Mb L: 33/128 MS: 1 EraseBytes-\n#10721\tNEW    cov: 81 ft: 88 corp: 15/1602b lim: 205 exec/s: 0 rss: 47Mb L: 128/128 MS: 2 PersAutoDict-ChangeBinInt- DE: \"\\376\\377\\377\\377\\377\\377\\377\\377\"-\n#14152\tREDUCE cov: 81 ft: 88 corp: 15/1601b lim: 233 exec/s: 0 rss: 49Mb L: 32/128 MS: 1 EraseBytes-\n#84820\tREDUCE cov: 81 ft: 88 corp: 15/1553b lim: 931 exec/s: 0 rss: 65Mb L: 80/128 MS: 3 EraseBytes-InsertByte-ChangeBinInt-\n#128742\tNEW    cov: 81 ft: 89 corp: 16/1681b lim: 1025 exec/s: 0 rss: 76Mb L: 128/128 MS: 2 PersAutoDict-ChangeByte- DE: \"\\376\\377\\377\\377\\377\\377\\377\\377\"-\n#214950\tREDUCE cov: 81 ft: 89 corp: 16/1640b lim: 1025 exec/s: 0 rss: 96Mb L: 87/128 MS: 3 EraseBytes-InsertByte-ChangeBinInt-\n#423128\tREDUCE cov: 81 ft: 89 corp: 16/1624b lim: 1025 exec/s: 0 rss: 144Mb L: 112/128 MS: 3 CrossOver-EraseBytes-ChangeBinInt-\n#666630\tREDUCE cov: 81 ft: 89 corp: 16/1560b lim: 1025 exec/s: 0 rss: 200Mb L: 64/128 MS: 2 EraseBytes-ChangeByte-\n#744442\tREDUCE cov: 81 ft: 89 corp: 16/1551b lim: 1025 exec/s: 0 rss: 218Mb L: 71/128 MS: 2 EraseBytes-ChangeBinInt-\n#806346\tREDUCE cov: 81 ft: 89 corp: 16/1517b lim: 1025 exec/s: 0 rss: 231Mb L: 37/128 MS: 4 ChangeByte-EraseBytes-InsertByte-ChangeBinInt-\n#905546\tREDUCE cov: 81 ft: 89 corp: 16/1486b lim: 1025 exec/s: 905546 rss: 254Mb L: 81/128 MS: 5 ChangeBinInt-EraseBytes-InsertByte-ShuffleBytes-ChangeBinInt-\n#1096893\tREDUCE cov: 81 ft: 89 corp: 16/1476b lim: 1025 exec/s: 1096893 rss: 295Mb L: 54/128 MS: 2 EraseBytes-ChangeBinInt-\n#1116233\tREDUCE cov: 81 ft: 89 corp: 16/1473b lim: 1025 exec/s: 1116233 rss: 300Mb L: 51/128 MS: 5 ChangeASCIIInt-CopyPart-EraseBytes-InsertByte-InsertByte-\n#1402320\tREDUCE cov: 81 ft: 89 corp: 16/1470b lim: 1025 exec/s: 1402320 rss: 362Mb L: 34/128 MS: 2 EraseBytes-ChangeBinInt-\n#1472755\tREDUCE cov: 81 ft: 89 corp: 16/1462b lim: 1025 exec/s: 1472755 rss: 377Mb L: 43/128 MS: 5 PersAutoDict-EraseBytes-PersAutoDict-ShuffleBytes-ChangeBinInt- DE: \"\\376\\377\\377\\377\\377\\377\\377\\377\"-\"\\376\\377\\377\\377\\377\\377\\377\\377\"-\n#1760648\tREDUCE cov: 81 ft: 89 corp: 16/1453b lim: 1025 exec/s: 880324 rss: 426Mb L: 72/128 MS: 3 ShuffleBytes-EraseBytes-ChangeBinInt-\n#1969382\tREDUCE cov: 81 ft: 89 corp: 16/1444b lim: 1025 exec/s: 984691 rss: 426Mb L: 34/128 MS: 4 EraseBytes-ShuffleBytes-PersAutoDict-ChangeBinInt- DE: \"\\376\\377\\377\\377\\377\\377\\377\\377\"-\n#2014181\tREDUCE cov: 81 ft: 89 corp: 16/1428b lim: 1025 exec/s: 1007090 rss: 426Mb L: 71/128 MS: 4 ShuffleBytes-CopyPart-EraseBytes-ChangeBit-\n#2097152\tpulse  cov: 81 ft: 89 corp: 16/1428b lim: 1025 exec/s: 1048576 rss: 426Mb\n#2145526\tREDUCE cov: 81 ft: 89 corp: 16/1426b lim: 1025 exec/s: 1072763 rss: 426Mb L: 32/128 MS: 5 CopyPart-PersAutoDict-ChangeBit-ChangeByte-EraseBytes- DE: \"\\376\\377\\377\\377\\377\\377\\377\\377\"-\n#2222574\tREDUCE cov: 81 ft: 89 corp: 16/1410b lim: 1025 exec/s: 1111287 rss: 426Mb L: 55/128 MS: 3 EraseBytes-ChangeByte-ChangeBinInt-\n#2260837\tREDUCE cov: 81 ft: 89 corp: 16/1406b lim: 1025 exec/s: 1130418 rss: 426Mb L: 51/128 MS: 3 EraseBytes-InsertRepeatedBytes-ChangeASCIIInt-\n#2338640\tREDUCE cov: 81 ft: 89 corp: 16/1402b lim: 1025 exec/s: 1169320 rss: 426Mb L: 47/128 MS: 3 EraseBytes-InsertByte-ChangeBinInt-\n#3506418\tREDUCE cov: 81 ft: 89 corp: 16/1398b lim: 1025 exec/s: 876604 rss: 426Mb L: 43/128 MS: 3 ChangeByte-EraseBytes-ChangeBinInt-\n#3532775\tREDUCE cov: 81 ft: 89 corp: 16/1363b lim: 1025 exec/s: 883193 rss: 426Mb L: 37/128 MS: 2 EraseBytes-ChangeBinInt-\n#3595247\tREDUCE cov: 81 ft: 89 corp: 16/1362b lim: 1025 exec/s: 898811 rss: 426Mb L: 42/128 MS: 2 EraseBytes-ChangeBit-\n#4011441\tREDUCE cov: 81 ft: 89 corp: 16/1353b lim: 1025 exec/s: 1002860 rss: 426Mb L: 33/128 MS: 4 ChangeBinInt-CopyPart-EraseBytes-ChangeBinInt-\n#4099114\tREDUCE cov: 81 ft: 89 corp: 16/1352b lim: 1025 exec/s: 1024778 rss: 426Mb L: 33/128 MS: 3 ChangeBinInt-EraseBytes-ChangeBinInt-\n#4103866\tREDUCE cov: 81 ft: 89 corp: 16/1347b lim: 1025 exec/s: 1025966 rss: 426Mb L: 32/128 MS: 2 EraseBytes-ChangeBinInt-\n#4194304\tpulse  cov: 81 ft: 89 corp: 16/1347b lim: 1025 exec/s: 1048576 rss: 426Mb\n#4723259\tREDUCE cov: 81 ft: 89 corp: 16/1346b lim: 1025 exec/s: 944651 rss: 426Mb L: 32/128 MS: 3 EraseBytes-ShuffleBytes-ChangeBinInt-\n#6892901\tREDUCE cov: 81 ft: 89 corp: 16/1345b lim: 1025 exec/s: 984700 rss: 426Mb L: 32/128 MS: 2 ChangeBit-EraseBytes-\n#8388608\tpulse  cov: 81 ft: 89 corp: 16/1345b lim: 1025 exec/s: 932067 rss: 426Mb\n#16777216\tpulse  cov: 81 ft: 89 corp: 16/1345b lim: 1025 exec/s: 932067 rss: 426Mb\n#33554432\tpulse  cov: 81 ft: 89 corp: 16/1345b lim: 1025 exec/s: 932067 rss: 426Mb\n#40857781\tNEW    cov: 82 ft: 90 corp: 17/2370b lim: 1025 exec/s: 928585 rss: 426Mb L: 1025/1025 MS: 5 InsertRepeatedBytes-InsertRepeatedBytes-CopyPart-CopyPart-CMP- DE: \"\\376\\377\\377\\377\\377\\377\\377\\377\"-\n#55466941\tDONE   cov: 82 ft: 90 corp: 17/2370b lim: 1025 exec/s: 909294 rss: 426Mb\n###### Recommended dictionary. ######\n\"\\376\\377\\377\\377\\377\\377\\377\\377\" # Uses: 5187403\n###### End of recommended dictionary. ######\nDone 55466941 runs in 61 second(s)\n"
+    }
+  },
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "289b57026b519370487b44bc8a54a1038db679bf1c499929635a8e6adb1780d5",
+  "limits": [
+    "no sleep, hibernation, reboot, clock-adjustment or physical Mac experiment",
+    "real sysctl/time errors and boot changes untested; injection tests are separate",
+    "calendar-derived whole-second difference, not a monotonic clock or exact duration",
+    "cooperative cancellation cannot interrupt a blocked native API",
+    "Capability remains Partial; coarse seconds allow equal values; double boot reads cannot exclude ABA or clock changes",
+    "SDK brackets validate calendar-derived whole-second differences; not monotonic elapsed or cross-platform equivalent semantics",
+    "Actual Windows multi-group hardware, real API faults and topology changes remain unverified; forced single-group helper and injected tests are distinct",
+    "macOS VM statistics may be cached/rate-limited; physical total proxy and non-compressed estimate retain prior limits",
+    "Native hosted Linux/macOS success does not replace physical device verification deferred by user",
+    "Completely empty procfs was OCI rejected: not_run, not a successful library observation",
+    "No long fuzz, native leak/peak-memory, forced kernel termination or paired performance proof",
+    "No registry publication or release distribution; isolated archives use sibling local patches"
+  ],
+  "overall": "passed",
+  "ci_runtime_fixes_required": false,
+  "run_metadata_sha256": "311fb733c8b112186c6e1de321b4949bdea2395474feb8fdd538fe0bd736c4ce",
+  "artifact_inventory_sha256": "cbcd6fa9d598ba12d549bfbfb2b3b3d3596155db814f29bca18fadb87312376b",
+  "windows_group_collection_bounds": {
+    "max_active_groups": 16,
+    "max_processors_per_group": 64,
+    "max_logical_processors": 1024,
+    "topology_buffer_bytes": 1024,
+    "helper_threads_per_active_multi_group_task": 1,
+    "capability": "Partial",
+    "source": "Win32",
+    "native_rust_helper_test_passed": true,
+    "actual_ci_groups": 1,
+    "actual_ci_logical_processors": 4,
+    "public_facade_multi_group_path_exercised": false,
+    "actual_multi_group_hardware_verified": false,
+    "caller_affinity_check": "GetThreadGroupAffinity primary group/mask only; no complete cross-group affinity enumeration",
+    "same_topology_aba_detectable": false
+  },
+  "source_bound_original_reports_verified": 13,
+  "archived_at_local_date": "2026-10-25",
+  "archive_timezone": "Asia/Shanghai"
+}

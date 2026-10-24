@@ -11,7 +11,7 @@
 | OS/静态CPU摘要 | D/P | D/P，procfs容器可缺 | D/P；逻辑核数改为 Mach，ARM64 原生 CI/SDK 通过 | 其他摘要 sysinfo Partial；macOS 逻辑数 AppleApi Partial，无失败 1 核回退 |
 | OS可用总量/可用内存 | D/P，Win32 Supported，本机/原生 CI 验收通过 | D/P，procfs Supported | Sysctl/AppleApi Partial，ARM64 原生 CI/SDK 通过 | 三平台总量缓存；macOS 总量为物理代理，动态为非压缩估计且 OS 可缓存；[契约](0026-macos-memory.md) |
 | uptime | D/P，Win32 Partial，直接 tick 读取 | D/P，procfs Supported | D/P，Sysctl Partial，ARM64 原生 CI/SDK 通过 | Windows 包含睡眠/休眠、整数秒，[CI/SDK 通过](../windows-uptime-validation.md)；macOS 日历时间整秒差、失败隔离，[原生 SDK/CI 通过](../macos-uptime-validation.md) |
-| 动态CPU占用率 | D/P，Win32 Partial；单组本机/既有 CI 通过，多组实现待本轮 CI/真机 | D/P，procfs Supported | Mach AppleApi Partial，ARM64 原生 CI/SDK 通过 | 三平台均需两有效样本；Windows 64 位最多 16 组，单组 helper/SDK 本地通过，[验证边界](../windows-cpu-groups-validation.md)；macOS 实体机与真实故障仍未验证 |
+| 动态CPU占用率 | D/P，Win32 Partial；单组本机/CI helper 与 SDK 通过，真实多组未验 | D/P，procfs Supported | Mach AppleApi Partial，ARM64 原生 CI/SDK 通过 | 三平台均需两有效样本；Windows 64 位最多 16 组，本轮 CI 全部八项通过，[验证边界](../windows-cpu-groups-validation.md)；macOS 实体机与真实故障仍未验证 |
 | 安装物理内存 | D，SMBIOS可损坏 | U | D/P hw.memsize | Win32 / sysctl；与 OS 可用总量分开 |
 | 设备model/vendor、主板、固件 | U，WMI/SMBIOS候选 | D/P sysfs DMI | D/P hw.model（仅model） | Linux 固定 DMI 文件；macOS sysctl |
 | 设备serial | U | P，显式授权后 sysfs | U（IOKit候选） | 默认 Restricted/PrivacyRedacted |
