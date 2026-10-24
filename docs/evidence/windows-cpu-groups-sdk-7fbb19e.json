@@ -1,0 +1,140 @@
+{
+  "status": "passed",
+  "platform": "Windows",
+  "observed_at": "2026-10-24T00:07:30.848126+00:00",
+  "limitations": [
+    "Actual groups recorded; single-group success is not real cross-group evidence",
+    "real multi-group switching, API errors, hotplug and Job constraints need dedicated machines",
+    "SDK and Rust intervals differ; no equality or causal load assertion",
+    "cooperative checks cannot interrupt a blocked native API"
+  ],
+  "git_revision": "7fbb19e379e373cd19f3a997f706046b9a566385",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "rust_probe": "ef5369653d71b0f966cd0148a7bdb8dc44f2233edbc70cfcd5f4eb0e8879e643",
+    "c_sdk_probe": "e7f4f4042df4c4230f965d6aa7399dc166801ad9dbd210d6a146f53cd18b83a3"
+  },
+  "actual_groups": 1,
+  "real_multi_group_device": false,
+  "facade_group_path_exercised": false,
+  "initial": {
+    "cpu": {
+      "value": null,
+      "availability": "unavailable",
+      "source": "win32",
+      "observed_at": null,
+      "reason": "temporarily_unavailable"
+    },
+    "sdk": {
+      "status": "passed",
+      "calls": 1,
+      "groups": 1,
+      "processors": 12,
+      "caller_affinity_unchanged": true,
+      "group_info_size": 48,
+      "group_info_offset": 32,
+      "samples": [
+        {
+          "processors": 12,
+          "mask": 4095,
+          "idle": 224480000000,
+          "kernel": 234927343750,
+          "user": 19894218750
+        }
+      ]
+    }
+  },
+  "observations": [
+    {
+      "cpu": {
+        "value": 23.826714801444044,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792800451321,
+        "reason": null
+      },
+      "sdk": {
+        "status": "passed",
+        "calls": 2,
+        "groups": 1,
+        "processors": 12,
+        "caller_affinity_unchanged": true,
+        "group_info_size": 48,
+        "group_info_offset": 32,
+        "samples": [
+          {
+            "processors": 12,
+            "mask": 4095,
+            "idle": 224514218750,
+            "kernel": 234963125000,
+            "user": 19903437500
+          }
+        ]
+      },
+      "sdk_usage_percent": 23.958333333333332
+    },
+    {
+      "cpu": {
+        "value": 65.57971014492753,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792800451678,
+        "reason": null
+      },
+      "sdk": {
+        "status": "passed",
+        "calls": 3,
+        "groups": 1,
+        "processors": 12,
+        "caller_affinity_unchanged": true,
+        "group_info_size": 48,
+        "group_info_offset": 32,
+        "samples": [
+          {
+            "processors": 12,
+            "mask": 4095,
+            "idle": 224529062500,
+            "kernel": 234984531250,
+            "user": 19925156250
+          }
+        ]
+      },
+      "sdk_usage_percent": 65.57971014492753
+    },
+    {
+      "cpu": {
+        "value": 30.434782608695656,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792800452034,
+        "reason": null
+      },
+      "sdk": {
+        "status": "passed",
+        "calls": 4,
+        "groups": 1,
+        "processors": 12,
+        "caller_affinity_unchanged": true,
+        "group_info_size": 48,
+        "group_info_offset": 32,
+        "samples": [
+          {
+            "processors": 12,
+            "mask": 4095,
+            "idle": 224559062500,
+            "kernel": 235019062500,
+            "user": 19933750000
+          }
+        ]
+      },
+      "sdk_usage_percent": 30.434782608695652
+    }
+  ],
+  "rebuilt": {
+    "value": null,
+    "availability": "unavailable",
+    "source": "win32",
+    "observed_at": null,
+    "reason": "temporarily_unavailable"
+  }
+}

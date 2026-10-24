@@ -1,0 +1,145 @@
+{
+  "source_commit": "7fbb19e379e373cd19f3a997f706046b9a566385",
+  "overall": "passed",
+  "scope": "Windows x64 single-group local acceptance; actual multi-group and this round CI not run",
+  "host_rust_tests_including_doctests": 252,
+  "isolated_windows_package_tests": 252,
+  "python_tests": 112,
+  "python_source_files": 46,
+  "actual_groups": 1,
+  "actual_logical_processors": 12,
+  "native_rust_group_helper_forced": true,
+  "sdk_owned_thread_group_path": true,
+  "public_facade_multi_group_path_exercised": false,
+  "actual_multi_group_hardware_verified": false,
+  "caller_primary_group_and_mask_unchanged": true,
+  "caller_complete_cross_group_affinity_enumerated": false,
+  "native_windows_checks": 5,
+  "native_windows_processes": 16,
+  "crate_archives": 8,
+  "registry_publication_verified": false,
+  "cross_compile_only": [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-apple-darwin"
+  ],
+  "cross_all_target_strict_clippy": "passed on Linux x64 and macOS ARM64; compile-only",
+  "physical_linux_macos": "deferred by user until devices available",
+  "three_platform_ci": "not_run",
+  "actual_fuzz_campaign": "not_run",
+  "configured_fuzz_targets": 12,
+  "fuzz_harness_unit_tests": 3,
+  "fuzz_all_target_check_and_clippy": "passed on Windows; not a libFuzzer campaign",
+  "new_fuzz_target": "windows_cpu_groups",
+  "miri_asan_benchmark": "not_run this round",
+  "c_abi_version": 1,
+  "schema_version": 1,
+  "license": "MIT",
+  "third_party_versions_and_licenses_changed": false,
+  "root_cargo_lock_changed": false,
+  "fuzz_lock_change": "one direct dependency edge from harness to existing Windows crate",
+  "new_default_off_feature": "daoseeker-scope-windows/fuzzing; hidden unstable pure parser hook",
+  "public_consumption_types_or_signatures_changed": false,
+  "migration": "64-bit Windows multi-group changes from fixed Unsupported to bounded attempt; Win32/Partial unchanged",
+  "reports": {
+    "docs/evidence/windows-cpu-groups-native-7fbb19e.json": {
+      "sha256_lf": "cb0a4efe9fbaaa9c1db7180d00d3ada8037d611b08b35ee060ea1b93532f72f0",
+      "bytes_lf": 77545
+    },
+    "docs/evidence/windows-cpu-groups-packages-7fbb19e.json": {
+      "sha256_lf": "c87296bfb7e00bc0557c88b5b2cbc6aa4b99757ab15393df4f1ba7505d610d7c",
+      "bytes_lf": 1926
+    },
+    "docs/evidence/windows-cpu-groups-sdk-7fbb19e.json": {
+      "sha256_lf": "7c5dcbeed92c243c157a75015a0d5e0fe8932c6133c53f5862057589875c7fb5",
+      "bytes_lf": 3661
+    }
+  },
+  "local_log_hashes": {
+    "windows-cpu-groups-check.log": {
+      "sha256": "34cbe318f336c924793b6f6b6815f9440e9eb90de71e71552c6b9b282ab19d80",
+      "bytes": 29032
+    },
+    "windows-cpu-groups-macos-clippy.log": {
+      "sha256": "a46b4cf08e37e9ecf565e134a303a80badc084609d1bcdf570e9c0fbf8243e46",
+      "bytes": 178
+    },
+    "windows-cpu-groups-linux-clippy.log": {
+      "sha256": "ce411850aeffafa9ea545bae5c485c48823194e181a595ccbe735f76c44c6dc6",
+      "bytes": 867
+    },
+    "windows-cpu-groups-python.log": {
+      "sha256": "ed44eb7b87e3d763b1867b62d31a62a63ce47357016b1d682908153b884ebd38",
+      "bytes": 917
+    },
+    "windows-cpu-groups-project.log": {
+      "sha256": "8b79594e627686ec99bc9cd3cecb490adad1f0146df7b43357fe7b4695726e0a",
+      "bytes": 229
+    },
+    "windows-cpu-groups-fuzz-local.log": {
+      "sha256": "d13b310f0fad37dbc9173d08127c4e8916704760afef0c9eeebdf942d46e0c0a",
+      "bytes": 535
+    },
+    "windows-cpu-groups-fuzz-check.log": {
+      "sha256": "b3e715137974e15cbc63d386249610f313e5e5ae8191ffc5d855e604b363e7e0",
+      "bytes": 941
+    },
+    "windows-cpu-groups-fuzz-clippy.log": {
+      "sha256": "642dd039944ec7c4fbb48b0aa29b56fcec34bf42e316cd9c69de3c2ac9275af2",
+      "bytes": 149
+    },
+    "windows-cpu-groups-probe-build.log": {
+      "sha256": "aa805040001f5086e300bf098889c6002151d4e5f254d48fda0188dfe78cb020",
+      "bytes": 162
+    },
+    "windows-cpu-groups-c.log": {
+      "sha256": "2092217d8cd3393e233ca327cd548e73fe0e3ae2a33703aab3f9ff2870ed309b",
+      "bytes": 186
+    },
+    "windows-cpu-groups-sdk-clean.log": {
+      "sha256": "1e03ae24aaa2825d531e8089acc574b94592c5fa99fdbd4e847c22e5b409e483",
+      "bytes": 42
+    },
+    "windows-cpu-groups-helper-clean.log": {
+      "sha256": "5b4720351aa99b29ef077385dcc7825667534e7362d5e13f317ae7f47a614598",
+      "bytes": 589
+    },
+    "windows-cpu-groups-native-clean.log": {
+      "sha256": "117cb7016d4e1aa4caf801508aef87c4898074ee346c9228370963e4f0ca5a5d",
+      "bytes": 82
+    },
+    "windows-cpu-groups-packages.log": {
+      "sha256": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202",
+      "bytes": 49
+    }
+  },
+  "gate_scope": "Final Rust/Python gates before implementation commit; runtime and test sources unchanged afterwards. Native, SDK, forced helper and eight packages ran on clean implementation commit.",
+  "limitations": [
+    "Only one actual processor group: neither forced helper nor C SDK proves real cross-group switching or >64 processors",
+    "Public facade on this host keeps its existing single-group fast path",
+    "GetThreadGroupAffinity comparison observes primary group/mask only; implementation never sets caller/process affinity",
+    "Per-group sequential reads are not an atomic whole-machine snapshot; SDK and Rust sampling intervals differ",
+    "Cooperative cancellation cannot forcibly interrupt blocked OS calls; scoped helper joins and can occupy its bounded parent worker",
+    "Real hotplug, Job/affinity constraints, native API failures, 32-bit compile and physical multi-group hardware not tested",
+    "32-bit multi-group intentionally Unsupported; no 32-bit support evidence claimed",
+    "No long campaign, peak allocation, helper performance, physical Linux/Mac or registry/release acceptance",
+    "Archive consumers use local patches for unpublished sibling crates"
+  ],
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "cargo clippy --locked --workspace --all-targets --all-features --target aarch64-apple-darwin -- -D warnings",
+    "cargo clippy --locked --workspace --all-targets --all-features --target x86_64-unknown-linux-gnu -- -D warnings",
+    "Ruff 0.14.13 format/check; mypy 1.19.1; Python unittest discover; jsonschema 4.25.1; check_project.py",
+    "cargo fmt --manifest-path fuzz/Cargo.toml --check",
+    "cargo test --locked --offline --manifest-path fuzz/Cargo.toml --lib",
+    "cargo check --locked --offline --manifest-path fuzz/Cargo.toml",
+    "cargo clippy --locked --offline --manifest-path fuzz/Cargo.toml --all-targets -- -D warnings",
+    "cargo build --locked -p daoseeker-scope --example dynamic_probe",
+    "pwsh -NoProfile -File scripts/build_c_example.ps1 -CpuGroupsProbe",
+    "python scripts/windows_cpu_groups_smoke.py",
+    "cargo test --locked -p daoseeker-scope-windows native_group_worker_reads_sdk_topology_without_changing_caller_affinity -- --nocapture",
+    "python scripts/native_smoke.py --output target/windows-cpu-groups-native-clean.json",
+    "python scripts/check_packages.py --offline"
+  ],
+  "probe_source_sha256": "c2625908e244f9e520213db74e1e4d82ba33e75aca72cd4c1ac9b76940f1ebe6",
+  "synthetic_seed_sha256": "778f4fa6c9f5bfa1190d5783758b37e592722f1f0db8a41262f70e6c9ebda93a"
+}

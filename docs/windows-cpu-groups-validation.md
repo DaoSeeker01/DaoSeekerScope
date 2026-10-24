@@ -25,7 +25,16 @@ python scripts/native_smoke.py --output target/windows-cpu-groups-native-clean.j
 
 完整 Rust 门禁通过：fmt、严格 Clippy、252 项测试含 doctest、无默认 feature、文档和 FFI/CLI 构建，另有 Linux x64/macOS ARM64 交叉检查及两目标的全 target 严格 Clippy。纯逻辑用例覆盖稀疏 mask、16 组上限、截断/计数/布局损坏、u64 以上加总、逐组复位、同数量 mask 变化、任意调用失败与取消/超时检查。SDK 持久进程对照完成首次预热、三次刷新、重建预热和静态 CPU 缓存检查；不同进程的区间不同，不要求百分比相等，也未注入可控 CPU 负载。
 
-Python Ruff/mypy 46 文件、112 项单测及 Schema 守卫通过。新增守卫拒绝布尔伪整数、错误布局/掩码/计数、单组复位被总和掩盖、同数量 mask 变化；失败报告覆盖旧成功记录，不记录原始系统错误。具体干净源码的打包与跨语言结果将在本轮归档中记录。
+Python Ruff/mypy 46 文件、112 项单测及 Schema/项目守卫通过。新增守卫拒绝布尔伪整数、错误布局/掩码/计数、单组复位被总和掩盖、同数量 mask 变化；失败报告覆盖旧成功记录，不记录原始系统错误。
+
+实现提交 `7fbb19e379e373cd19f3a997f706046b9a566385` 的干净工作区完成：
+
+- [验收索引](evidence/windows-cpu-groups-local-7fbb19e.json)：命令、来源、日志/报告哈希，明确单组与未运行边界。
+- [八包报告](evidence/windows-cpu-groups-packages-7fbb19e.json)：8 个实际归档、原生 Cargo 验证、解包后独立 workspace 252 项测试及 CLI 安装；未发布的相邻 crate 使用本地 patch，不等于 registry 发布。
+- [原生报告](evidence/windows-cpu-groups-native-7fbb19e.json)：CLI/C/Python 等 5 组、16 个进程通过，包括 100 次 Python collect/free。
+- [SDK 报告](evidence/windows-cpu-groups-sdk-7fbb19e.json)：C SDK 自有线程读取和 Rust 持久刷新通过；`actual_groups=1`、`real_multi_group_device=false`、`facade_group_path_exercised=false`。内部原生单测另外强制执行 Rust helper，两帧有效，主组/mask 不变。
+
+通用门禁在实现提交前执行；运行和守卫源码随后未改变。实现提交后重建探针并运行原生、SDK、helper 与八包，报告均绑定同一干净提交。后续本地验收归档仅修改文档和证据。
 
 新增第 12 个 fuzz 目标 `windows_cpu_groups`，调用生产纯解析器，使用合成双组种子。Windows 本地格式、全部目标 check/严格 Clippy 和 3 项 harness 单测通过；尚未执行实际 libFuzzer campaign。新增默认关闭的 Windows `fuzzing` feature，fuzz 锁文件只增加直接依赖边，第三方版本和许可证不变；根锁、公共消费模型/签名、MIT、ABI 1、Schema 1 不变。
 
