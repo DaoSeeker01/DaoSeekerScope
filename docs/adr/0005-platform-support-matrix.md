@@ -13,7 +13,7 @@
 | uptime | D/P，Win32 Partial，直接 tick 读取 | D/P，procfs Supported | D/P，Sysctl Partial，ARM64 原生 CI/SDK 通过 | Windows 包含睡眠/休眠、整数秒，[CI/SDK 通过](../windows-uptime-validation.md)；macOS 日历时间整秒差、失败隔离，[原生 SDK/CI 通过](../macos-uptime-validation.md) |
 | 动态CPU占用率 | D/P，Win32 Partial；单组本机/CI helper 与 SDK 通过，真实多组未验 | D/P，procfs Supported | Mach AppleApi Partial，ARM64 原生 CI/SDK 通过 | 三平台均需两有效样本；Windows 64 位最多 16 组，本轮 CI 全部八项通过，[验证边界](../windows-cpu-groups-validation.md)；macOS 实体机与真实故障仍未验证 |
 | 安装物理内存 | D，SMBIOS可损坏 | U | D/P hw.memsize | Win32 / sysctl；与 OS 可用总量分开 |
-| 设备model/vendor、主板、固件 | U，WMI/SMBIOS候选 | D/P sysfs DMI | D/P hw.model（仅model） | Linux 固定 DMI 文件；macOS sysctl |
+| 设备model/vendor、主板、固件 | D/P，Win32 注册表 Partial；本机六值/SDK 通过，本轮 CI 待验 | D/P sysfs DMI | D/P hw.model（仅model） | Windows 固定六值缓存，不读 serial/UUID，[边界](../windows-hardware-summary-validation.md)；Linux 固定 DMI 文件；macOS sysctl |
 | 设备serial | U | P，显式授权后 sysfs | U（IOKit候选） | 默认 Restricted/PrivacyRedacted |
 | 电池 | D/N GetSystemPowerStatus | D/P power_supply、Partial，CI枚举/权限fixture通过 | U，IOKit候选 | Linux capacity/Mains online受控枚举；原生runner无条目，USB拓扑/真实电池未验 |
 | 温度 | U，WMI质量不一 | D/P hwmon、Partial | U，公开接口不足 | coretemp、k10temp Tdie；NVMe1..9路由本机/三平台CI和47项合成内核观察通过，原生runner无条目，设备计算值不等于物理点；[验收](../nvme-temperature-validation.md) |

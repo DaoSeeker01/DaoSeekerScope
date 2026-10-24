@@ -8,11 +8,20 @@ libfuzzer_sys::fuzz_target!(|data: &[u8]| {
     let (amd, nvidia) = daoseeker_scope_linux::fuzzing::gpu_names(data);
     let metal = daoseeker_scope_macos::fuzzing::gpu_name(data);
     let edid = daoseeker_scope_linux::fuzzing::display_name(data);
+    let registry = daoseeker_scope_windows::fuzzing::bios_registry_text(data);
+    assert_eq!(
+        registry,
+        daoseeker_scope_windows::fuzzing::bios_registry_text(data)
+    );
+    if data.len() > 4096 {
+        assert!(registry.value().is_none());
+    }
     for (item, source) in [
         (amd, daoseeker_scope::Source::Sysfs),
         (nvidia, daoseeker_scope::Source::Procfs),
         (metal, daoseeker_scope::Source::AppleApi),
         (edid, daoseeker_scope::Source::Sysfs),
+        (registry, daoseeker_scope::Source::Win32),
     ] {
         assert_eq!(item.source(), source);
         if let Some(value) = item.value() {

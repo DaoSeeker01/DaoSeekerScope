@@ -10,6 +10,20 @@ mod tests {
     use daoseeker_scope_macos::fuzzing::network_route;
 
     #[test]
+    fn windows_registry_utf16_uses_win32_and_rejects_placeholder() {
+        let value = daoseeker_scope_windows::fuzzing::bios_registry_text(include_bytes!(
+            "../corpus/dmi_text/windows_registry_utf16"
+        ));
+        common::observed(&value, Source::Win32);
+        assert_eq!(value.value().map(String::as_str), Some("观微 Board 🦀"));
+        let invalid = daoseeker_scope_windows::fuzzing::bios_registry_text(include_bytes!(
+            "../corpus/dmi_text/windows_registry_placeholder"
+        ));
+        common::observed(&invalid, Source::Win32);
+        assert!(invalid.value().is_none());
+    }
+
+    #[test]
     fn windows_group_wire_seed_uses_win32_without_native_io() {
         let value = daoseeker_scope_windows::fuzzing::cpu_group_topology(include_bytes!(
             "../corpus/windows_cpu_groups/valid_group_table"

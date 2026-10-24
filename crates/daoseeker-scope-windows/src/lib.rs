@@ -8,6 +8,10 @@ mod cpu_groups_wire;
 #[cfg(feature = "fuzzing")]
 #[doc(hidden)]
 pub mod fuzzing;
+#[cfg(any(target_os = "windows", test))]
+mod hardware_summary;
+#[cfg(any(target_os = "windows", test, feature = "fuzzing"))]
+mod registry_text;
 #[cfg(target_os = "windows")]
 pub use cpu::WindowsCpuBackend;
 #[cfg(any(target_os = "windows", test))]
@@ -79,6 +83,7 @@ mod native {
                 CapabilityLevel::Partial,
                 Source::Win32,
             ));
+            capabilities.extend(crate::hardware_summary::capabilities());
             capabilities
         }
         fn collect_static(
@@ -98,7 +103,7 @@ mod native {
                 }
             };
             context.check()?;
-            let mut result = StaticSnapshot::default();
+            let mut result = crate::hardware_summary::collect(context)?;
             result.system.memory.installed_bytes = observation;
             result.storage = crate::storage::collect(context)?;
             result.gpus = crate::gpu::collect(context)?;

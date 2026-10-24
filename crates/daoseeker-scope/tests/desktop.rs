@@ -51,6 +51,22 @@ fn desktop_minimum_real_read_and_refresh() {
         }
         assert_eq!(dynamic.memory_available_bytes.source(), Source::Win32);
         assert_eq!(dynamic.runtime.uptime_seconds.source(), Source::Win32);
+        for field in [
+            "system.device.vendor",
+            "system.device.model",
+            "system.motherboard.vendor",
+            "system.motherboard.model",
+            "system.firmware.vendor",
+            "system.firmware.version",
+        ] {
+            let cap = snapshot
+                .capabilities
+                .iter()
+                .find(|cap| cap.field == field)
+                .expect("summary capability");
+            assert_eq!(cap.level, CapabilityLevel::Partial);
+            assert_eq!(cap.source, Source::Win32);
+        }
         assert_eq!(
             snapshot
                 .static_info

@@ -27,6 +27,8 @@ Windows 总内存和可用内存通过公开 Win32 API 读取，来源 `Win32`�
 
 Windows CPU 用量由 `WindowsCpuBackend::new()` 提供，门面自动注册，单独 `SysinfoBackend` 不提供该字段。每次读取新计数；首次/过早刷新暂不可用，失败后重新预热。单组保留直接读取，64 位多组使用自有采样线程逐组读取，最多 16 组/1024 logical processors，不改变调用线程亲和性。来源 `Win32`，能力 `Partial`；本机单组 helper/SDK 与本轮三平台 CI 已通过，真实多组仍未验证，见 [多组契约](adr/0029-windows-cpu-groups.md)和[验证边界](windows-cpu-groups-validation.md)。
 
+Windows 设备/主板厂商、型号与固件厂商、版本由现有 `WindowsBackend` 静态读取六个固定注册表值，来源 `Win32/Partial`。成功和缺失均缓存，刷新动态数据不重读，重新采集需重建 `Hardware`。它们是 Windows 报告的 OEM 文本，不是硬件真实性、固件安全或更新状态证明；缺失、权限和占位文本分别处理。本机六值与独立 SDK 对照通过，尚待本轮 CI，见[契约](adr/0030-windows-hardware-summary.md)与[验证](windows-hardware-summary-validation.md)。
+
 macOS 逻辑核数与 CPU 用量改由 `MacosCpuBackend::new()` 提供，门面自动注册，来源 `AppleApi`、能力 `Partial`；首次/失败恢复需重新取得 300 ms 有效采样对。核数仍静态缓存，数量变化需重建 `Hardware`。单独 `SysinfoBackend` 不再提供这两个 macOS 字段。当前实现已通过三平台 CI 与 macOS ARM64 公开 SDK/持久刷新；实体 Mac、Intel 原生和真实 Mach 故障仍待验证，见[验证边界](macos-cpu-validation.md)。
 
 macOS 内存由 `MacosMemoryBackend::new()` 提供，门面自动注册；单独 `SysinfoBackend` 用户须补注册。总量 `Sysctl/Partial` 沿用 `hw.memsize` 物理内存代理口径，不保证扣除所有保留区域；动态 `AppleApi/Partial` 为 `(active+inactive+free) * page_size` 非压缩内存估计，含 active，free 已含 speculative，不是立即可分配量、进程配额或压力指标。每次刷新发起新调用，OS 仍可能返回缓存计数；采集时间是调用完成时间，不是内核计数更新时间。错误不保留旧值；总量变化需新建 `Hardware`。CLI 按来源标为 `Physical total proxy bytes` / `Non-compressed estimate bytes`；文本不作程序协议。本轮固定 VM 前缀请求修复后已通过三平台 CI/ARM64 原生 SDK；实体 Mac、Intel 原生和真实故障仍未验证，见[契约](adr/0026-macos-memory.md)与[验证](macos-memory-validation.md)。

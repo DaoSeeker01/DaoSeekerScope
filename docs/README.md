@@ -72,3 +72,5 @@ macOS 内存的实现与未验证边界见[ADR 0026](adr/0026-macos-memory.md)�
 [macOS uptime 契约](adr/0028-macos-uptime.md) · [macOS uptime 验证](macos-uptime-validation.md)
 
 [Windows 多处理器组 CPU 契约](adr/0029-windows-cpu-groups.md) · [Windows 多组验证](windows-cpu-groups-validation.md)
+
+[Windows 硬件摘要契约](adr/0030-windows-hardware-summary.md) · [Windows 硬件摘要验证](windows-hardware-summary-validation.md)

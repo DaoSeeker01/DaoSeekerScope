@@ -1,5 +1,7 @@
 # Fuzz 目标
 
+2026-10-25 Windows 硬件摘要扩展既有 `dmi_text`，复用生产 REG_SZ 严格 UTF-16 解析器，检查 Win32 来源、确定性、4096-byte 输入/输出上限、控制字符和占位词。两份自制合成种子，不读取注册表或真实设备。目标总数仍为 12，Windows 本地 harness 单测增至 4 项；本轮新解析路径尚未运行实际 campaign，前述历史 CI 不代表本轮新路径已验收，见[ADR 0030](../docs/adr/0030-windows-hardware-summary.md)。
+
 2026-10-24 新增第 12 个目标 `windows_cpu_groups`：使用 Windows crate 默认关闭的 `fuzzing` feature，复用生产的 64 位 RelationGroup 字节解析器；1024-byte 上限、组数/稀疏 mask/状态/确定性检查和合成双组种子。不执行 Windows API，不能证明真实跨组切换。Windows 本地 fmt/check/严格 Clippy 与 3 项 harness 单测通过；CI 40046393393 在 Linux 实际运行 12 个目标，每个 61 秒，新目标 55,466,941 次，无崩溃正常完成。2026-10-25 [归档索引](../docs/evidence/windows-cpu-groups-ci-40046393393.json)记录逐目标计数和日志哈希，见[验证边界](../docs/windows-cpu-groups-validation.md)。
 
 ```sh

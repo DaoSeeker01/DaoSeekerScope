@@ -82,6 +82,8 @@ jobs:
           if errorlevel 1 exit /b 1
           cl /nologo /W4 /WX /std:c11 /Fetarget\cpu-groups-probe.exe /Fotarget\cpu-groups-probe.obj docs\research\cpu_groups_probe.c
           if errorlevel 1 exit /b 1
+          cl /nologo /W4 /WX /std:c11 /Fetarget\hardware-summary-probe.exe /Fotarget\hardware-summary-probe.obj docs\research\hardware_summary_probe.c Advapi32.lib
+          if errorlevel 1 exit /b 1
       - name: Windows fresh memory SDK and bounded pressure experiment
         if: runner.os == 'Windows'
         run: |
@@ -97,6 +99,9 @@ jobs:
       - name: Windows CPU group SDK and persistent facade regression
         if: runner.os == 'Windows'
         run: python scripts/windows_cpu_groups_smoke.py
+      - name: Windows hardware summary SDK and static cache
+        if: runner.os == 'Windows'
+        run: python scripts/windows_hardware_summary_smoke.py
       - name: Build C example on Linux
         if: runner.os == 'Linux'
         run: |
@@ -158,6 +163,7 @@ jobs:
             target/windows-cpu-evidence.json
             target/windows-uptime-evidence.json
             target/windows-cpu-groups-evidence.json
+            target/windows-hardware-summary-evidence.json
             target/macos-collect-benchmark.log
             target/macos-iomedia-probe.json
             target/macos-cpu-evidence.json

@@ -5,7 +5,8 @@ param(
     [switch]$MemoryProbe,
     [switch]$CpuProbe,
     [switch]$UptimeProbe,
-    [switch]$CpuGroupsProbe
+    [switch]$CpuGroupsProbe,
+    [switch]$HardwareSummaryProbe
 )
 $ErrorActionPreference = 'Stop'
 if (!$VcRoot) {
@@ -64,6 +65,11 @@ try {
         & $compiler /nologo /W4 /WX /std:c11 /Fetarget\cpu-groups-probe.exe /Fotarget\cpu-groups-probe.obj docs\research\cpu_groups_probe.c
         if ($LASTEXITCODE -ne 0) { throw "CPU groups SDK probe compile failed: $LASTEXITCODE" }
         Write-Output 'CPU groups SDK probe compiled (run windows_cpu_groups_smoke.py separately)'
+    }
+    if ($HardwareSummaryProbe) {
+        & $compiler /nologo /W4 /WX /std:c11 /Fetarget\hardware-summary-probe.exe /Fotarget\hardware-summary-probe.obj docs\research\hardware_summary_probe.c Advapi32.lib
+        if ($LASTEXITCODE -ne 0) { throw "Hardware summary SDK probe compile failed: $LASTEXITCODE" }
+        Write-Output 'Hardware summary SDK probe compiled (run windows_hardware_summary_smoke.py separately)'
     }
 } finally {
     $env:INCLUDE = $oldInclude

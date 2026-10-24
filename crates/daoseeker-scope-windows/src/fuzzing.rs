@@ -1,6 +1,10 @@
 //! Pure synthetic parser hook, not a stable consumption API or native backend.
 use daoseeker_scope_core::*;
 
+pub fn bios_registry_text(data: &[u8]) -> Observed<String> {
+    crate::registry_text::parse(1, data, Timestamp(0))
+}
+
 pub fn cpu_group_topology(data: &[u8]) -> Observed<(u16, u32)> {
     match crate::cpu_groups_wire::parse(data) {
         Ok(topology) => Observed::available(
