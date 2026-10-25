@@ -1,5 +1,7 @@
 # 打包与安装验证
 
+Windows CLI 二进制候选包另见[离线安装与回滚验证](cli-bundle-validation.md)；本文的八包验证针对 Rust `.crate` 消费者。
+
 ## 验证入口
 
 需要 Python 3.12+（使用 tar 归档安全过滤 API）。在干净的仓库目录运行：

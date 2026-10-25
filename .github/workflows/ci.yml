@@ -62,6 +62,22 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
       - run: python scripts/check_schema.py
+      - name: Windows portable CLI candidate install and rollback
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $bundle = python scripts/cli_bundle.py
+          if ($LASTEXITCODE -ne 0) { throw 'CLI candidate build failed' }
+          python scripts/cli_bundle_smoke.py $bundle
+          if ($LASTEXITCODE -ne 0) { throw 'CLI candidate rehearsal failed' }
+      - name: Preserve Windows CLI candidate evidence
+        if: always() && runner.os == 'Windows'
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: cli-bundle-evidence-Windows-X64
+          path: target/cli-bundle-evidence.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: C FFI on Windows
         if: runner.os == 'Windows'
         shell: cmd

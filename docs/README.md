@@ -9,6 +9,7 @@
 - [项目检查与修复](project-review-2026-10-11.md)：2026-10-11 全项目审查结果。
 - [发布与迁移](release.md)、[依赖许可证](dependencies.md)、[性能基线](benchmarks.md)。
 - [打包与安装验证](packaging.md)：归档内容、MIT/C 头文件、独立构建与验证边界。
+- [Windows CLI 候选包](cli-bundle-validation.md)：离线 ZIP、checksum、临时安装与回滚演练。
 
 ## 设计决策
 
