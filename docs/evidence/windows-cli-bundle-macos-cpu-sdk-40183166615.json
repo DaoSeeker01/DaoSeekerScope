@@ -1,0 +1,195 @@
+{
+  "status": "passed",
+  "platform": "Darwin",
+  "observed_at": "2026-10-25T10:04:52.813700+00:00",
+  "limitations": [
+    "at most 1024 Mach processor entries; physical Intel/Apple Silicon and hotplug untested",
+    "real API errors untested; injected failures tested separately",
+    "SDK and Rust intervals differ; no equality or causal load assertion",
+    "cooperative checks cannot interrupt a blocked native API"
+  ],
+  "git_revision": "2d0a8a1b5ac3f1fb9755f2ff21cfc5674e8b692d",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "rust_probe": "a599301ea8067ee99944b90c4913e3a849ccfecb0cf34ad631de203b92e66e17",
+    "c_sdk_probe": "d2aae67c0ac2db0b2effac1819733f74b69072ec54a55fc4fcbd701787fddd11"
+  },
+  "initial": {
+    "cpu": {
+      "value": null,
+      "availability": "unavailable",
+      "source": "apple_api",
+      "observed_at": null,
+      "reason": "temporarily_unavailable"
+    },
+    "logical_count": {
+      "value": 3,
+      "availability": "available",
+      "source": "apple_api",
+      "observed_at": 1792922692855,
+      "reason": null
+    },
+    "sdk": {
+      "status": "passed",
+      "calls": 1,
+      "processors": 3,
+      "word_count": 12,
+      "word_size": 4,
+      "pointer_size": 8,
+      "released_array": true,
+      "released_host": true,
+      "ticks": [
+        [
+          19211,
+          11610,
+          43469,
+          0
+        ],
+        [
+          17439,
+          9012,
+          47857,
+          0
+        ],
+        [
+          16357,
+          8010,
+          49951,
+          0
+        ]
+      ]
+    }
+  },
+  "observations": [
+    {
+      "status": "passed",
+      "cpu": {
+        "value": 0.0,
+        "availability": "available",
+        "source": "apple_api",
+        "observed_at": 1792922693211,
+        "reason": null
+      },
+      "sdk": {
+        "status": "passed",
+        "calls": 2,
+        "processors": 3,
+        "word_count": 12,
+        "word_size": 4,
+        "pointer_size": 8,
+        "released_array": true,
+        "released_host": true,
+        "ticks": [
+          [
+            19211,
+            11610,
+            43505,
+            0
+          ],
+          [
+            17439,
+            9012,
+            47893,
+            0
+          ],
+          [
+            16357,
+            8011,
+            49987,
+            0
+          ]
+        ]
+      },
+      "sdk_usage_percent": 0.9174311926605505
+    },
+    {
+      "status": "passed",
+      "cpu": {
+        "value": 18.487394957983195,
+        "availability": "available",
+        "source": "apple_api",
+        "observed_at": 1792922693604,
+        "reason": null
+      },
+      "sdk": {
+        "status": "passed",
+        "calls": 3,
+        "processors": 3,
+        "word_count": 12,
+        "word_size": 4,
+        "pointer_size": 8,
+        "released_array": true,
+        "released_host": true,
+        "ticks": [
+          [
+            19218,
+            11613,
+            43535,
+            0
+          ],
+          [
+            17443,
+            9015,
+            47926,
+            0
+          ],
+          [
+            16360,
+            8012,
+            50021,
+            0
+          ]
+        ]
+      },
+      "sdk_usage_percent": 17.796610169491526
+    },
+    {
+      "status": "passed",
+      "cpu": {
+        "value": 1.7857142857142856,
+        "availability": "available",
+        "source": "apple_api",
+        "observed_at": 1792922693980,
+        "reason": null
+      },
+      "sdk": {
+        "status": "passed",
+        "calls": 4,
+        "processors": 3,
+        "word_count": 12,
+        "word_size": 4,
+        "pointer_size": 8,
+        "released_array": true,
+        "released_host": true,
+        "ticks": [
+          [
+            19218,
+            11613,
+            43572,
+            0
+          ],
+          [
+            17444,
+            9015,
+            47962,
+            0
+          ],
+          [
+            16361,
+            8013,
+            50058,
+            0
+          ]
+        ]
+      },
+      "sdk_usage_percent": 2.6548672566371683
+    }
+  ],
+  "rebuilt": {
+    "value": null,
+    "availability": "unavailable",
+    "source": "apple_api",
+    "observed_at": null,
+    "reason": "temporarily_unavailable"
+  }
+}

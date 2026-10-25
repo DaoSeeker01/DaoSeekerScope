@@ -2,7 +2,7 @@
 
 Windows CLI 二进制候选包另见[离线安装与回滚验证](cli-bundle-validation.md)；本文的八包验证针对 Rust `.crate` 消费者。
 
-2026-10-25 Windows CLI 候选源码 `89fd2f9` 的 874211 字节 ZIP、73 项载荷/manifest 校验及临时两槽位六进程演练已在本机通过，未上传二进制。只验证同候选版本的安装选择与回滚；新增 CI、其他平台/FFI 二进制制品和正式分发仍待验收。
+2026-10-25 Windows CLI 候选源码 `89fd2f9` 的 874211 字节 ZIP、73 项载荷/manifest 校验及临时两槽位六进程演练已在本机通过，未上传二进制。只验证同候选版本的安装选择与回滚；随后源码 2d0a8a1 的[三平台 CI 40183166615](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615)通过各八包及 Windows 候选包六进程演练；其他平台/FFI 二进制制品和正式分发仍待验收。
 
 ## 验证入口
 

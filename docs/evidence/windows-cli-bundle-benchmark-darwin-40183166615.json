@@ -1,0 +1,30 @@
+{
+  "source_commit": "2d0a8a1b5ac3f1fb9755f2ff21cfc5674e8b692d",
+  "command": "cargo bench --locked -p daoseeker-scope --bench collect",
+  "profile": "bench optimized",
+  "features": "default serde",
+  "native_max_entries": 128,
+  "samples": 100,
+  "synthetic_sensors": 100,
+  "synthetic_networks": 1024,
+  "synthetic_max_entries": 1024,
+  "first_collect_us": 13669,
+  "refresh_p50_us": 40,
+  "refresh_p95_us": 56,
+  "refresh_max_us": 71,
+  "synthetic_collect_us": 529,
+  "synthetic_serialized_bytes": 373541,
+  "environment": {
+    "os.name": "Darwin",
+    "os.version": "26.6.2",
+    "os.kernel_version": "25.6.0",
+    "cpu.brand": "Apple M1 (Virtual)",
+    "cpu.logical_count": 3,
+    "cpu.architecture": "arm64",
+    "memory.total_usable_bytes": 7516192768
+  },
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: aarch64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "log_sha256": "ec93af4eb4b3a772af658a6a4e6f4ab3100b7ab4a41f01089ba5ad009e418483",
+  "raw_log": "first_collect_us=13669\nrefresh_n=100 p50_us=40 p95_us=56 max_us=71\ncpu_usage_state=Available\nsynthetic_sensors=100 synthetic_networks=1024 collect_us=529 serialized_bytes=373541\n",
+  "limits": "Whole collector hosted-runner sample; not ZIP packaging performance, physical hardware, paired regression, peak memory or SLA"
+}

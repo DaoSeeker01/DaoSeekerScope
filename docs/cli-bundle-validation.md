@@ -37,4 +37,18 @@ ZIP 与 SHA256SUMS 位于脚本返回的 `target/cli-bundles/candidate-*/` 目�
 
 两份 Windows 原始报告通过精确 `.gitattributes -text` 规则保留 CRLF 字节，避免 Git 的 LF 规范化改变索引所记录的原文件哈希；同时核验已提交 blob 的哈希。
 
-新增 Windows CI 步骤尚未执行。Linux/macOS 制品、FFI 动态库发行包、干净 Windows 镜像的运行时依赖、代码签名和正式发布尚未验收。本轮没有修改 Rust 采集/FFI 代码，未重跑八 crate 归档、fuzz、Miri、ASan 或 benchmark；上一轮证据继续保留，不能当作本轮新运行。三平台实体设备验证的延期安排不变。
+新增 Windows CI 步骤已在[本轮三平台运行](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615)通过，具体证据见下一节。Linux/macOS 制品、FFI 动态库发行包、干净 Windows 镜像的运行时依赖、代码签名和正式发布尚未验收。本轮没有修改 Rust 采集/FFI 代码；本机验收阶段未重跑八 crate 归档、fuzz、Miri、ASan 或 benchmark，随后 CI 已重新执行并单独记录。三平台实体设备验证的延期安排不变。
+
+## 三平台 CI 验收（2026-10-25）
+
+源码 `2d0a8a1b5ac3f1fb9755f2ff21cfc5674e8b692d` 的[运行 40183166615](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615)全部 8 个任务通过；只手动启动一次，无运行时修复。Windows 候选报告绑定同一干净源码，73 个载荷文件、六个真实 CLI 进程完成版本/Schema/基础读取/脱敏、损坏更新拒绝和两槽位回滚。候选 ZIP 没有上传；本归档核验下载的报告，未重新下载 ZIP 做第二次独立成员检查。
+
+| 原生平台 | workspace Rust 测试含 doctest | 独立八包消费者测试 | Python 测试 |
+|---|---|---|---|
+| Windows x64 | 262 | 262 | 129 |
+| Linux x64 | 254 | 254 | 129 |
+| macOS ARM64 | 259 | 259 | 129 |
+
+各平台 CLI/C/Python 原生 smoke 的 5 组检查、16 个进程通过（Python 含 100 次 collect/free）。12 个 fuzz 目标各至少 60 秒、4 项 harness、Miri 8 项、Linux FFI ASan 10 项、cargo-deny 和 8 类 Linux 容器报告通过。完整空 /proc 场景仍为运行时拒绝、process 未启动的 not_run。
+
+[CI 验收索引](evidence/windows-cli-bundle-ci-40183166615.json)记录任务、逐目标计数、SDK/包/原生报告、基准及原始/归档哈希；Windows [候选报告](evidence/windows-cli-bundle-candidate-40183166615.json)与本机报告分别保留。CI 不验证 Linux/macOS/FFI 二进制发行包、旧正式版升级、干净 Windows 镜像前提、签名或完整许可评审。MIT、Rust API/features/锁、ABI 1/Schema 1 不变，独立 bundle_format 为 1。没有 registry、GitHub Release 发布或全局安装。

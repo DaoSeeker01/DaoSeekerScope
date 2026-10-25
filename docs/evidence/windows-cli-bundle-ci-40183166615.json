@@ -1,0 +1,424 @@
+{
+  "report_version": 1,
+  "overall": "passed",
+  "source_commit": "2d0a8a1b5ac3f1fb9755f2ff21cfc5674e8b692d",
+  "implementation_commit": "89fd2f99b87ef2594ae93423917c18f8bd1890db",
+  "run_id": 40183166615,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615",
+  "event": "workflow_dispatch",
+  "ci_jobs": {
+    "fuzz-smoke": "success",
+    "desktop (macos-latest)": "success",
+    "linux-container": "success",
+    "supply-chain": "success",
+    "desktop (windows-latest)": "success",
+    "ffi-asan": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "miri": "success"
+  },
+  "ci_runtime_fixes_required": false,
+  "reports": {
+    "windows-cli-bundle-native-windows-40183166615.json": {
+      "path": "windows-cli-bundle-native-windows-40183166615.json",
+      "sha256": "e775b0c5b8430ccb9cc157d287379e0962da14ba2915c65917bbcba5ba77a4e5",
+      "original_report_sha256": "012bc84c7e467a6c37fc57e293ffcc746c93c421ca502aebc476ffd1565fcea5"
+    },
+    "windows-cli-bundle-packages-windows-40183166615.json": {
+      "path": "windows-cli-bundle-packages-windows-40183166615.json",
+      "sha256": "d47badd015029e1e4ba0664c7eb6d40aa5b34cabf09e5db3883fc52c3463f1b1",
+      "original_report_sha256": "ee71cce14642a3ddae59c9dfea94eab18a46a3f0454fd2e0478b0fc4a453867a"
+    },
+    "windows-cli-bundle-windows-uptime-sdk-40183166615.json": {
+      "path": "windows-cli-bundle-windows-uptime-sdk-40183166615.json",
+      "sha256": "8ee7172378c76fcadab9cdb671fa67af27674ed585dd855c472065098d0aa775",
+      "original_report_sha256": "eb36de5e481a8f78c76b13d5af72966802fe56f1ff6d64cd0883c3c41154c3aa"
+    },
+    "windows-cli-bundle-windows-cpu-sdk-40183166615.json": {
+      "path": "windows-cli-bundle-windows-cpu-sdk-40183166615.json",
+      "sha256": "27e22f048ae333b564fb337229b63d3bbb2ebf2d341b2b1fe8773c2a1dad0028",
+      "original_report_sha256": "9806b4f61973363555a92bcb02ba1650128595a71b9ccbc53e9ca7673563ff24"
+    },
+    "windows-cli-bundle-windows-memory-sdk-40183166615.json": {
+      "path": "windows-cli-bundle-windows-memory-sdk-40183166615.json",
+      "sha256": "3151be7156c396da4b96fc9875bff97e66851ccef7e82642c061ec2cdf22016d",
+      "original_report_sha256": "e083067417cf9603d98d150a1aa2a4ad2aff9ee51dafd7936017e8c8f5bb7b8e"
+    },
+    "windows-cli-bundle-windows-cpu-groups-sdk-40183166615.json": {
+      "path": "windows-cli-bundle-windows-cpu-groups-sdk-40183166615.json",
+      "sha256": "e0c3d006fed723453fb094b1e4c375fd61982c74c97d58701353baaae42cc945",
+      "original_report_sha256": "6090cc4468dbffca31841e38d688df80231f0f3ddb7c80446f010c6f4fdf84d4"
+    },
+    "windows-cli-bundle-windows-hardware-summary-sdk-40183166615.json": {
+      "path": "windows-cli-bundle-windows-hardware-summary-sdk-40183166615.json",
+      "sha256": "7bdbe6c717cc9acb11d5cdf16e335ba5628028b0d96d9fbd48c444cde55a0c69",
+      "original_report_sha256": "e923e9586ab15340a7237a4c9ea3411ba817e0362d4e434919d95ac0a610c8f8"
+    },
+    "windows-cli-bundle-native-linux-40183166615.json": {
+      "path": "windows-cli-bundle-native-linux-40183166615.json",
+      "sha256": "deaec0a730b4dd03c329fbc1087db8b34281ee87af29980d677bd7f577647934",
+      "original_report_sha256": "deaec0a730b4dd03c329fbc1087db8b34281ee87af29980d677bd7f577647934"
+    },
+    "windows-cli-bundle-packages-linux-40183166615.json": {
+      "path": "windows-cli-bundle-packages-linux-40183166615.json",
+      "sha256": "531dc443615132f318088d8c8f89948f0ee098cf99daaf95ad859b3285c68b9a",
+      "original_report_sha256": "531dc443615132f318088d8c8f89948f0ee098cf99daaf95ad859b3285c68b9a"
+    },
+    "windows-cli-bundle-native-darwin-40183166615.json": {
+      "path": "windows-cli-bundle-native-darwin-40183166615.json",
+      "sha256": "9b27c8338c18558a1394c62842aa45e84343e9f21cba12a38bd59694d95ec637",
+      "original_report_sha256": "9b27c8338c18558a1394c62842aa45e84343e9f21cba12a38bd59694d95ec637"
+    },
+    "windows-cli-bundle-packages-darwin-40183166615.json": {
+      "path": "windows-cli-bundle-packages-darwin-40183166615.json",
+      "sha256": "00909aa4d8622978307c7001ef435009e1d0e295778e45d3f612a5519adfd63b",
+      "original_report_sha256": "00909aa4d8622978307c7001ef435009e1d0e295778e45d3f612a5519adfd63b"
+    },
+    "windows-cli-bundle-macos-uptime-sdk-40183166615.json": {
+      "path": "windows-cli-bundle-macos-uptime-sdk-40183166615.json",
+      "sha256": "e20c0109cc329818cead33df54d0243d8ad45590032dba499ee79b91f73d5a66",
+      "original_report_sha256": "e20c0109cc329818cead33df54d0243d8ad45590032dba499ee79b91f73d5a66"
+    },
+    "windows-cli-bundle-macos-cpu-sdk-40183166615.json": {
+      "path": "windows-cli-bundle-macos-cpu-sdk-40183166615.json",
+      "sha256": "6f2221754d655f2ea20a9fb524616d41e6ca12f6d3f8dbc6f0f67f5335756792",
+      "original_report_sha256": "6f2221754d655f2ea20a9fb524616d41e6ca12f6d3f8dbc6f0f67f5335756792"
+    },
+    "windows-cli-bundle-macos-memory-sdk-40183166615.json": {
+      "path": "windows-cli-bundle-macos-memory-sdk-40183166615.json",
+      "sha256": "62e6b0fb501cfa7a2fcc4efd75b1b35f2143df0283ba7d790d5cacc53f87732f",
+      "original_report_sha256": "62e6b0fb501cfa7a2fcc4efd75b1b35f2143df0283ba7d790d5cacc53f87732f"
+    },
+    "windows-cli-bundle-candidate-40183166615.json": {
+      "path": "windows-cli-bundle-candidate-40183166615.json",
+      "sha256": "0e364340fe597b62a952662bd82aa64df73b96b83ba78c5c855f3ea7921307ab",
+      "original_report_sha256": "19e61b66afa2c4e90a88f3c615d3a38b577fc1ea8f8b9a6801f0a604488c756a"
+    },
+    "windows-cli-bundle-benchmark-linux-40183166615.json": {
+      "path": "windows-cli-bundle-benchmark-linux-40183166615.json",
+      "sha256": "e8162d7373904ddc5642d01c1d18adc0654c5f812368bd44c28905544ed38f26",
+      "original_report_sha256": "e8162d7373904ddc5642d01c1d18adc0654c5f812368bd44c28905544ed38f26"
+    },
+    "windows-cli-bundle-benchmark-darwin-40183166615.json": {
+      "path": "windows-cli-bundle-benchmark-darwin-40183166615.json",
+      "sha256": "7cc961e0ef44d75c8a3f1ec5e0262d71a549d8fac4b00ed69398b5a2a1bd4407",
+      "original_report_sha256": "7cc961e0ef44d75c8a3f1ec5e0262d71a549d8fac4b00ed69398b5a2a1bd4407"
+    }
+  },
+  "native": {
+    "windows": {
+      "report": {
+        "path": "windows-cli-bundle-native-windows-40183166615.json",
+        "sha256": "e775b0c5b8430ccb9cc157d287379e0962da14ba2915c65917bbcba5ba77a4e5",
+        "original_report_sha256": "012bc84c7e467a6c37fc57e293ffcc746c93c421ca502aebc476ffd1565fcea5"
+      },
+      "groups": 5,
+      "processes": 16
+    },
+    "linux": {
+      "report": {
+        "path": "windows-cli-bundle-native-linux-40183166615.json",
+        "sha256": "deaec0a730b4dd03c329fbc1087db8b34281ee87af29980d677bd7f577647934",
+        "original_report_sha256": "deaec0a730b4dd03c329fbc1087db8b34281ee87af29980d677bd7f577647934"
+      },
+      "groups": 5,
+      "processes": 16
+    },
+    "darwin": {
+      "report": {
+        "path": "windows-cli-bundle-native-darwin-40183166615.json",
+        "sha256": "9b27c8338c18558a1394c62842aa45e84343e9f21cba12a38bd59694d95ec637",
+        "original_report_sha256": "9b27c8338c18558a1394c62842aa45e84343e9f21cba12a38bd59694d95ec637"
+      },
+      "groups": 5,
+      "processes": 16
+    }
+  },
+  "packages": {
+    "windows": {
+      "report": {
+        "path": "windows-cli-bundle-packages-windows-40183166615.json",
+        "sha256": "d47badd015029e1e4ba0664c7eb6d40aa5b34cabf09e5db3883fc52c3463f1b1",
+        "original_report_sha256": "ee71cce14642a3ddae59c9dfea94eab18a46a3f0454fd2e0478b0fc4a453867a"
+      },
+      "rust_tests_including_doctests": 262,
+      "actual_crate_archives": 8
+    },
+    "linux": {
+      "report": {
+        "path": "windows-cli-bundle-packages-linux-40183166615.json",
+        "sha256": "531dc443615132f318088d8c8f89948f0ee098cf99daaf95ad859b3285c68b9a",
+        "original_report_sha256": "531dc443615132f318088d8c8f89948f0ee098cf99daaf95ad859b3285c68b9a"
+      },
+      "rust_tests_including_doctests": 254,
+      "actual_crate_archives": 8
+    },
+    "darwin": {
+      "report": {
+        "path": "windows-cli-bundle-packages-darwin-40183166615.json",
+        "sha256": "00909aa4d8622978307c7001ef435009e1d0e295778e45d3f612a5519adfd63b",
+        "original_report_sha256": "00909aa4d8622978307c7001ef435009e1d0e295778e45d3f612a5519adfd63b"
+      },
+      "rust_tests_including_doctests": 259,
+      "actual_crate_archives": 8
+    }
+  },
+  "sdk_regressions": {
+    "windows-uptime": {
+      "report": {
+        "path": "windows-cli-bundle-windows-uptime-sdk-40183166615.json",
+        "sha256": "8ee7172378c76fcadab9cdb671fa67af27674ed585dd855c472065098d0aa775",
+        "original_report_sha256": "eb36de5e481a8f78c76b13d5af72966802fe56f1ff6d64cd0883c3c41154c3aa"
+      }
+    },
+    "windows-cpu": {
+      "report": {
+        "path": "windows-cli-bundle-windows-cpu-sdk-40183166615.json",
+        "sha256": "27e22f048ae333b564fb337229b63d3bbb2ebf2d341b2b1fe8773c2a1dad0028",
+        "original_report_sha256": "9806b4f61973363555a92bcb02ba1650128595a71b9ccbc53e9ca7673563ff24"
+      }
+    },
+    "windows-memory": {
+      "report": {
+        "path": "windows-cli-bundle-windows-memory-sdk-40183166615.json",
+        "sha256": "3151be7156c396da4b96fc9875bff97e66851ccef7e82642c061ec2cdf22016d",
+        "original_report_sha256": "e083067417cf9603d98d150a1aa2a4ad2aff9ee51dafd7936017e8c8f5bb7b8e"
+      }
+    },
+    "windows-cpu-groups": {
+      "report": {
+        "path": "windows-cli-bundle-windows-cpu-groups-sdk-40183166615.json",
+        "sha256": "e0c3d006fed723453fb094b1e4c375fd61982c74c97d58701353baaae42cc945",
+        "original_report_sha256": "6090cc4468dbffca31841e38d688df80231f0f3ddb7c80446f010c6f4fdf84d4"
+      },
+      "actual_groups": 1,
+      "real_multi_group_device": false,
+      "facade_group_path_exercised": false
+    },
+    "windows-hardware-summary": {
+      "report": {
+        "path": "windows-cli-bundle-windows-hardware-summary-sdk-40183166615.json",
+        "sha256": "7bdbe6c717cc9acb11d5cdf16e335ba5628028b0d96d9fbd48c444cde55a0c69",
+        "original_report_sha256": "e923e9586ab15340a7237a4c9ea3411ba817e0362d4e434919d95ac0a610c8f8"
+      },
+      "available_fields": 6,
+      "token_elevated": true,
+      "ordinary_user_read_verified": false
+    },
+    "macos-uptime": {
+      "report": {
+        "path": "windows-cli-bundle-macos-uptime-sdk-40183166615.json",
+        "sha256": "e20c0109cc329818cead33df54d0243d8ad45590032dba499ee79b91f73d5a66",
+        "original_report_sha256": "e20c0109cc329818cead33df54d0243d8ad45590032dba499ee79b91f73d5a66"
+      }
+    },
+    "macos-cpu": {
+      "report": {
+        "path": "windows-cli-bundle-macos-cpu-sdk-40183166615.json",
+        "sha256": "6f2221754d655f2ea20a9fb524616d41e6ca12f6d3f8dbc6f0f67f5335756792",
+        "original_report_sha256": "6f2221754d655f2ea20a9fb524616d41e6ca12f6d3f8dbc6f0f67f5335756792"
+      }
+    },
+    "macos-memory": {
+      "report": {
+        "path": "windows-cli-bundle-macos-memory-sdk-40183166615.json",
+        "sha256": "62e6b0fb501cfa7a2fcc4efd75b1b35f2143df0283ba7d790d5cacc53f87732f",
+        "original_report_sha256": "62e6b0fb501cfa7a2fcc4efd75b1b35f2143df0283ba7d790d5cacc53f87732f"
+      }
+    }
+  },
+  "containers": {
+    "linux-battery-evidence.json": {
+      "original_report_sha256": "af7644d99880b5e0e13cdc668d2206b65e6b210f808c654e47f8101fb0e7ada5",
+      "samples_passed": 30
+    },
+    "linux-container-evidence.json": {
+      "original_report_sha256": "0201c5e45a428536a15c13fe77260259b3436b53c1cad385ec16ad0e16dcd0f5",
+      "runtime_probes": {
+        "empty_proc": {
+          "status": "not_run",
+          "configuration": {
+            "user": "65534:65534",
+            "ReadonlyRootfs": true,
+            "NetworkMode": "none",
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges=true"
+            ],
+            "Memory": 268435456,
+            "MemorySwap": 268435456,
+            "PidsLimit": 32,
+            "NanoCpus": 1000000000
+          },
+          "exit_code": 128,
+          "docker_start_exit_code": 1,
+          "process_started": false,
+          "failure_category": "runtime_mount_error",
+          "probe_result": "runtime_rejected_mount"
+        }
+      }
+    },
+    "linux-display-evidence.json": {
+      "original_report_sha256": "28f6ae569550cefe5f0b52774028ab087ab4fe405a700626210ab59f58050f0a",
+      "samples_passed": 26
+    },
+    "linux-dynamic-evidence.json": {
+      "original_report_sha256": "76b41230d53fb3b0562120e3fbd1a15b762cbe67a54cc91d5d15ab663ad6d906",
+      "samples_passed": 15
+    },
+    "linux-gpu-evidence.json": {
+      "original_report_sha256": "ea7aa8f17ca22344bc5d7312efee8134bcd00363cd846965296cef9bd620d668",
+      "samples_passed": 20
+    },
+    "linux-hwmon-evidence.json": {
+      "original_report_sha256": "fec3d5cf4fa5770a27bbff1cea7f8fbf31675667d0464469487c8adf0806a916",
+      "samples_passed": 47
+    },
+    "linux-memory-evidence.json": {
+      "original_report_sha256": "541841048c4939d022620107506e25e3f3ba4908f0c1cadf6420ccf6b875dbba",
+      "samples_passed": 26
+    },
+    "linux-storage-evidence.json": {
+      "original_report_sha256": "16860ab98c3eb282de60854a50a97014f49b78d2db07083ed8bd492cb234ed11",
+      "samples_passed": 21
+    }
+  },
+  "benchmarks": {
+    "linux": {
+      "path": "windows-cli-bundle-benchmark-linux-40183166615.json",
+      "sha256": "e8162d7373904ddc5642d01c1d18adc0654c5f812368bd44c28905544ed38f26",
+      "original_report_sha256": "e8162d7373904ddc5642d01c1d18adc0654c5f812368bd44c28905544ed38f26"
+    },
+    "darwin": {
+      "path": "windows-cli-bundle-benchmark-darwin-40183166615.json",
+      "sha256": "7cc961e0ef44d75c8a3f1ec5e0262d71a549d8fac4b00ed69398b5a2a1bd4407",
+      "original_report_sha256": "7cc961e0ef44d75c8a3f1ec5e0262d71a549d8fac4b00ed69398b5a2a1bd4407"
+    }
+  },
+  "license": "MIT",
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "bundle_format": 1,
+  "public_rust_api_changed": false,
+  "dependencies_features_or_locks_changed": false,
+  "windows_cli_candidate": {
+    "report": {
+      "path": "windows-cli-bundle-candidate-40183166615.json",
+      "sha256": "0e364340fe597b62a952662bd82aa64df73b96b83ba78c5c855f3ea7921307ab",
+      "original_report_sha256": "19e61b66afa2c4e90a88f3c615d3a38b577fc1ea8f8b9a6801f0a604488c756a"
+    },
+    "observations": {
+      "overall": "passed",
+      "source_commit": "2d0a8a1b5ac3f1fb9755f2ff21cfc5674e8b692d",
+      "source_dirty": false,
+      "target": "x86_64-pc-windows-msvc",
+      "host": {
+        "system": "Windows",
+        "version": "10.0.26100",
+        "machine": "AMD64"
+      },
+      "version": "0.1.0",
+      "bundle_format": 1,
+      "abi_version": 1,
+      "schema_version": 1,
+      "archive_sha256": "f752c7768e67d22fe6c4b80335e7d952bf5ab653bfda6d6c1886a77bf0124fd3",
+      "cli_sha256": "f5e9737081929c1acc5a7eaffaa4a9c135a7b339a2e7553f692dfc80fbac84eb",
+      "payload_files": 73,
+      "processes": 6,
+      "minimum_read_and_default_privacy": true,
+      "snapshot_schema_validated": true,
+      "corrupt_update_rejected_before_install": true,
+      "same_candidate_two_slot_rollback": true,
+      "older_version_compatibility_tested": false,
+      "published": false,
+      "global_install_or_path_modified": false,
+      "publisher_authenticated": false
+    }
+  },
+  "rust_tests_including_doctests": {
+    "windows-latest": 262,
+    "ubuntu-24.04": 254,
+    "macos-latest": 259
+  },
+  "python_tests_per_desktop": 129,
+  "python_source_files": 51,
+  "fuzz_targets_completed": 12,
+  "fuzz_harness_tests": 4,
+  "fuzz_campaigns": {
+    "snapshot_json": {
+      "runs": 829737,
+      "elapsed_seconds": 61
+    },
+    "dmi_text": {
+      "runs": 13234234,
+      "elapsed_seconds": 61
+    },
+    "cli_args": {
+      "runs": 33640818,
+      "elapsed_seconds": 61
+    },
+    "cpu_stat": {
+      "runs": 2047377,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "177baaf20c0045fdbdd74cac357b9d1eadd6b2c8e49275cddfe364b48d548ae1"
+    },
+    "meminfo": {
+      "runs": 5487372,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "7ac35139b7820252ac34e6e0203661cb1f6fb9c1fbbfe243370effeb6abd8ba3"
+    },
+    "uptime": {
+      "runs": 33604210,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "81f6b8530ee7d89eb9fa8c5c74c67b65309d5b70a91dac1e93303eb7b62a03aa"
+    },
+    "power_supply": {
+      "runs": 32741429,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "29912acce89a6e2fa419117466b0926537265cf9d74f31cf0bb82717890539ce"
+    },
+    "hwmon_temperature": {
+      "runs": 32374056,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "855f9053d707b377cec18f36e027364766c5e593b0dbc7f300bd50d6d3ee248e"
+    },
+    "network_dev": {
+      "runs": 6055226,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "2c8f3fe6a197478b6602c638c4b436a437778ea0bd2276a0d339de9773fc08b7"
+    },
+    "macos_network": {
+      "runs": 8401948,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "f44fd564032ebd34a7b332b7e3c7f91a9d8fa83c98669ce6257fb80ef63b2fff"
+    },
+    "storage_capacity": {
+      "runs": 47543453,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "a023f13ded572286d57413f3c40ea2f1e8f1ffb0a1cbefc3b8609ec0b5969c67"
+    },
+    "windows_cpu_groups": {
+      "runs": 52339341,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "6ca8c55b315fdbf0030c584262f54da8f9e123f9b657000e5aab502c751b1dfb"
+    }
+  },
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "f87383f5610576a1ad0184b49505df16ed433ba50d53e0fd29cf70a04dcacaef",
+  "run_metadata_sha256": "d01f06bbdeb4896881dfecb3170a2804f564d9161806407c094d03ba5bc6f23a",
+  "artifact_list_sha256": "b47436f157465b58cab0987f63119c09278bd611f74472c982e9fe29ce2ba2e5",
+  "limits": [
+    "Windows CLI candidate only: Linux/macOS/FFI binary bundles remain unvalidated",
+    "Candidate ZIP stayed on the Windows runner; this archive independently checks its report, not downloaded ZIP bytes",
+    "The Windows step verifies the full candidate before six real CLI processes; both slots are the same candidate",
+    "No older published-version compatibility, clean Windows image prerequisite, code-signing or publisher-authentication proof",
+    "Discovered upstream/Rust notice copying is not final distribution/license approval",
+    "Native hosted CI does not replace physical Linux/macOS or real multi-group hardware deferred by user",
+    "Completely empty procfs was OCI rejected before process launch: not_run",
+    "Twelve short fuzz campaigns and sanitizer tests are not long fuzz, peak-memory or complete leak proof",
+    "Eight extracted crate consumers use local sibling patches and do not prove registry publication",
+    "No registry/GitHub Release publication, candidate binary upload or global PATH/installation change"
+  ]
+}

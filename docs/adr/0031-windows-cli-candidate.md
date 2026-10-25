@@ -1,6 +1,6 @@
 # ADR 0031：Windows CLI 离线候选包与回滚演练
 
-日期：2026-10-25。状态：实现与 Windows 本机验收通过，见[记录](../cli-bundle-validation.md)；新增 CI 步骤尚待运行。
+日期：2026-10-25。状态：实现、Windows 本机与 CI 验收通过，见[记录](../cli-bundle-validation.md)；其他平台制品与正式分发仍待验收。
 
 ## 范围与选择
 
