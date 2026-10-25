@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-26",
+  "source_commit": "cdd876046b5133d1ce7491c98c7e6d6bd563908a",
+  "source_dirty": false,
+  "overall": "partial",
+  "local_checks": "passed",
+  "implementation": "Linux GNU x64 v2 ZIP mode policy and native CI entry; Windows v1 retained",
+  "native_linux_acceptance": "not_run",
+  "new_three_platform_ci": "not_run",
+  "local_execution_environment": {
+    "host": {
+      "system": "Windows",
+      "version": "10.0.26300",
+      "machine": "AMD64"
+    },
+    "wsl_returncode": 4294967295,
+    "wsl_error_code": "Wsl/0x80070422",
+    "docker_cli_on_path": false
+  },
+  "rust_tests_including_doctests": 262,
+  "python_tests_total": 140,
+  "python_tests_passed": 138,
+  "python_tests_skipped": 2,
+  "skipped_tests": [
+    "test_install_modes_survive_restrictive_umask",
+    "test_installed_mode_corruption_preserves_active_slot"
+  ],
+  "new_linux_bundle_tests_total": 11,
+  "new_linux_bundle_tests_passed_here": 9,
+  "python_source_files": 52,
+  "windows_native_regression": {
+    "status": "passed",
+    "processes": 6,
+    "payload_files": 73,
+    "archive_sha256": "08d34a004769076b7e2900fa329106a49cbe93903aa21346b2de9da2040d8f09",
+    "cli_sha256": "332f303f56611f6717f26f7cf116646dafc51d4db8a7415124805cbb44450133"
+  },
+  "legacy_windows_v1_archive_reader": {
+    "status": "passed",
+    "source_commit": "89fd2f99b87ef2594ae93423917c18f8bd1890db",
+    "archive_sha256": "f64d8383d77f5a89832c3fa743326775757b36a5255832ca35dc2eab63487bb7",
+    "payload_files": 73,
+    "legacy_executable_rerun": false
+  },
+  "reports": {
+    "linux-cli-bundle-windows-local-cdd8760.json": {
+      "sha256": "c76c68bfc2208ca8c9669f1b46f0a3426d5eae6cc40b340e350177c13e1784a3",
+      "original_report_sha256": "3165e742542ec7f3b04b10c5d66b1e998636461871b723e7363792983c24332b"
+    },
+    "linux-cli-bundle-windows-manifest-cdd8760.json": {
+      "sha256": "9304f8db7f5d6d96157c344de72153a10f304a2c1ec419661677287912474c46",
+      "original_report_sha256": "9304f8db7f5d6d96157c344de72153a10f304a2c1ec419661677287912474c46"
+    }
+  },
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "ruff 0.14.13 format --check and check scripts tests examples/collect.py",
+    "mypy 1.19.1 --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+    "python -m unittest discover -s tests -p test_*.py -v (140: 138 passed / 2 skipped)",
+    "python scripts/check_schema.py (jsonschema 4.25.1)",
+    "python scripts/check_project.py",
+    ".tools/actionlint/actionlint.exe (1.7.12)",
+    "python scripts/cli_bundle.py --offline (native Windows only)",
+    "python scripts/cli_bundle_smoke.py <new-Windows-candidate.zip> --output <Windows-report.json>",
+    "verify_bundle against the prior real Windows v1 ZIP and current native Windows ZIP",
+    "wsl --list --quiet (failed: Wsl/0x80070422); shutil.which docker (not on PATH)"
+  ],
+  "local_log_sha256": {
+    "linux-cli-python-clean.log": "b656e15cf886c8b59a55c0c8dc42e51a64408b34975523eb2b843dc1334a0cbb",
+    "linux-cli-rust-clean.log": "40e5566b3889d1cef8c5dee9147a756454dbbcdab4a9a8400b37a383c69a30cb"
+  },
+  "compatibility": {
+    "license": "MIT",
+    "rust_public_api_changed": false,
+    "dependencies_features_or_locks_changed": false,
+    "c_abi_version": 1,
+    "snapshot_schema_version": 1,
+    "windows_bundle_format": 1,
+    "linux_bundle_format": 2
+  },
+  "not_executed": [
+    "Linux native release compile/link, real CLI installation or six-process execution",
+    "Two actual POSIX chmod/umask tests skipped on Windows; no claim of executed Linux permissions",
+    "New three-platform CI, fuzz, Miri, ASan or collection benchmark campaign",
+    "Eight-crate package rerun: Rust crate sources/locks unchanged; prior CI evidence retained separately",
+    "macOS/musl/other architectures/FFI binary bundles and minimum glibc/distribution compatibility",
+    "Older published-version upgrades, code signing, final notice review or release publication"
+  ]
+}

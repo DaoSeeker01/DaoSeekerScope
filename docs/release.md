@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-2026-10-26 Linux CLI 候选实现增量：共享工具新增 GNU x86_64 原生 host 选择、ZIP/manifest 显式 mode、chmod 和激活前复核，Linux 独立 bundle_format 为 2；Windows v1 不变。11 项新增测试包含两项仅 POSIX 可执行的权限测试；Linux 原生步骤已加入 CI，尚未运行，见[记录](linux-cli-bundle-validation.md)及 [ADR 0032](adr/0032-linux-cli-candidate.md)。不改变 Rust API、依赖/features/锁、MIT 或 ABI 1/硬件 Schema 1；不宣称 glibc/发行版最低基线或已正式分发。
+2026-10-26 Linux CLI 候选实现增量：共享工具新增 GNU x86_64 原生 host 选择、ZIP/manifest 显式 mode、chmod 和激活前复核，Linux 独立 bundle_format 为 2；Windows v1 不变。干净提交 cdd8760 的 Windows 六进程回归、262 Rust 与 138 Python 测试通过，另两项 POSIX 权限测试跳过；11 项新增测试在本机通过 9 项。Linux 原生步骤已加入 CI，尚未运行，见[记录](linux-cli-bundle-validation.md)及 [ADR 0032](adr/0032-linux-cli-candidate.md)。不改变 Rust API、依赖/features/锁、MIT 或 ABI 1/硬件 Schema 1；不宣称 glibc/发行版最低基线或已正式分发。
 
 2026-10-25 Windows CLI 候选包增量：独立 release 构建、ZIP/SHA256SUMS/manifest、上游与 Rust 许可文件、临时两槽位安装和回滚已通过干净提交 89fd2f9 的本机验收（262 Rust/129 Python 测试、六个真实 CLI 进程）；三平台 CI 40183166615 全部八项、各八包及 Windows 候选包安装/回滚已通过，见[记录](cli-bundle-validation.md)和 [ADR 0031](adr/0031-windows-cli-candidate.md)。未上传或正式发布；两个槽位使用同一候选，不证明旧版兼容。无 Rust 公共 API、依赖/feature/锁变化，MIT、ABI 1/Schema 1 保持不变；独立 bundle_format 为 1。
 

@@ -1,0 +1,306 @@
+{
+  "abi_version": 1,
+  "bundle_format": 1,
+  "cargo_lock_sha256": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae",
+  "files": {
+    "LICENSE-MIT": {
+      "sha256": "b0008b7d840c2b21a0cfb5cfdc166a045adfbfaba161f8b7a5b2e3cac271edb5",
+      "size": 1084
+    },
+    "README.txt": {
+      "sha256": "65a6ec69547523aa6ccc187fcfe9ae4e2bbc108152d200c475c3e1479c1c09e3",
+      "size": 526
+    },
+    "THIRD_PARTY.md": {
+      "sha256": "5037062255b76cbe94df3d927380b0c97eed55bebd85240b760c8c656af0fbdb",
+      "size": 1392
+    },
+    "bin/dscope.exe": {
+      "sha256": "332f303f56611f6717f26f7cf116646dafc51d4db8a7415124805cbb44450133",
+      "size": 573952
+    },
+    "licenses/itoa-1.0.18/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/itoa-1.0.18/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    },
+    "licenses/libc-0.2.190/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/libc-0.2.190/LICENSE-MIT": {
+      "sha256": "123a331b5dbf04c30097fa43b8f858bc85df671fe776de498d01f3d6b7c1f69e",
+      "size": 1066
+    },
+    "licenses/memchr-2.8.3/COPYING": {
+      "sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f",
+      "size": 126
+    },
+    "licenses/memchr-2.8.3/LICENSE-MIT": {
+      "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f",
+      "size": 1081
+    },
+    "licenses/ntapi-0.4.3/LICENSE-APACHE": {
+      "sha256": "cf90d659de5c1e6418267ab8043b756e65508ee5d8d50b29eb2d2fe444c2c3eb",
+      "size": 11360
+    },
+    "licenses/ntapi-0.4.3/LICENSE-MIT": {
+      "sha256": "11a7964ccc0dd115d16720ab1d826c5d03e52838748ffaba3d21bae8bcacd82a",
+      "size": 1023
+    },
+    "licenses/proc-macro2-1.0.107/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/proc-macro2-1.0.107/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    },
+    "licenses/quote-1.0.47/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/quote-1.0.47/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    },
+    "licenses/rust/Apache-2.0.txt": {
+      "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+      "size": 10280
+    },
+    "licenses/rust/BSD-2-Clause.txt": {
+      "sha256": "f32fb3b417a194167cfad068223fc975ba96c5960513a10f66a3c28720aec1df",
+      "size": 1267
+    },
+    "licenses/rust/CC-BY-SA-4.0.txt": {
+      "sha256": "23ee78c8bae49cf08ea2f0c84945c66b987ebe4520881fb51b3dad4fb43d07c2",
+      "size": 20137
+    },
+    "licenses/rust/COPYRIGHT-library.html": {
+      "sha256": "78c163fcec50e64bfd85fedb850c273595602fafa2b41f30f75d4e410b80ee83",
+      "size": 425651
+    },
+    "licenses/rust/COPYRIGHT.html": {
+      "sha256": "139ebc62da648fa8dfea9d11ca6919ac417e8bfaffa08795341a414097a1fe24",
+      "size": 15404403
+    },
+    "licenses/rust/GCC-exception-3.1.txt": {
+      "sha256": "a3966c9410ef94a1efbfa9ec04e9c1994026a70623fbf0885ce36737bfba3b54",
+      "size": 3320
+    },
+    "licenses/rust/GPL-2.0-only.txt": {
+      "sha256": "54b212ba1f97f6948fa5486239ab505dd820b02e50cbfd296b4062c8609a70af",
+      "size": 17642
+    },
+    "licenses/rust/GPL-3.0-or-later.txt": {
+      "sha256": "05315fce6c35f79b8a35454828995fa26336f235895ac64557abc028f4ffcea2",
+      "size": 34795
+    },
+    "licenses/rust/ISC.txt": {
+      "sha256": "0ff61769b238634e042ab759dddfd104a8e69d091e3600ae3410e401a6164381",
+      "size": 730
+    },
+    "licenses/rust/LLVM-exception.txt": {
+      "sha256": "e34c58338bd89d43e709e226610d8f32b3e3c47f4ad9a99a8dc1d4ac7842488e",
+      "size": 919
+    },
+    "licenses/rust/MIT.txt": {
+      "sha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0",
+      "size": 1078
+    },
+    "licenses/rust/NCSA.txt": {
+      "sha256": "39cb0234065c92b9e6cee3830cbb52b1aa289aa8fe9ba2e66730fec5cf05c630",
+      "size": 1676
+    },
+    "licenses/rust/OFL-1.1.txt": {
+      "sha256": "8eea8287e5876b539670cadb82e99f9a7afddec6f6730811be1daf25d2e9bcfd",
+      "size": 4016
+    },
+    "licenses/rust/Unicode-3.0.txt": {
+      "sha256": "f5062c9a188d81dfe66b56db4182dcf9e4b17c0d9b0d311a8e20b3a1b075c443",
+      "size": 1995
+    },
+    "licenses/serde-1.0.229/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/serde-1.0.229/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    },
+    "licenses/serde_core-1.0.229/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/serde_core-1.0.229/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    },
+    "licenses/serde_derive-1.0.229/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/serde_derive-1.0.229/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    },
+    "licenses/serde_json-1.0.151/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/serde_json-1.0.151/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    },
+    "licenses/syn-2.0.119/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/syn-2.0.119/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    },
+    "licenses/syn-3.0.6/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/syn-3.0.6/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    },
+    "licenses/sysinfo-0.39.6/LICENSE": {
+      "sha256": "1f14f9ce70a5fdedab449bb32cd7d3f20e6e9d18c2a2b74221fc203db8684d43",
+      "size": 1083
+    },
+    "licenses/unicode-ident-1.0.26/LICENSE-APACHE": {
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "size": 9723
+    },
+    "licenses/unicode-ident-1.0.26/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    },
+    "licenses/unicode-ident-1.0.26/LICENSE-UNICODE": {
+      "sha256": "f7db81051789b729fea528a63ec4c938fdcb93d9d61d97dc8cc2e9df6d47f2a1",
+      "size": 1995
+    },
+    "licenses/winapi-0.3.9/LICENSE-APACHE": {
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+      "size": 11357
+    },
+    "licenses/winapi-0.3.9/LICENSE-MIT": {
+      "sha256": "ce7bc3499fee93d5022ef430d5e4201e79a6d9154f3974e42f41349f0569e09b",
+      "size": 1073
+    },
+    "licenses/windows-0.62.2/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-0.62.2/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-collections-0.3.2/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-collections-0.3.2/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-core-0.62.2/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-core-0.62.2/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-future-0.3.2/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-future-0.3.2/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-implement-0.60.2/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-implement-0.60.2/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-interface-0.59.3/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-interface-0.59.3/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-link-0.2.1/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-link-0.2.1/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-numerics-0.3.1/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-numerics-0.3.1/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-result-0.4.1/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-result-0.4.1/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-strings-0.5.1/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-strings-0.5.1/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-sys-0.61.2/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-sys-0.61.2/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/windows-threading-0.2.1/license-apache-2.0": {
+      "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
+      "size": 11351
+    },
+    "licenses/windows-threading-0.2.1/license-mit": {
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "size": 1141
+    },
+    "licenses/zmij-1.0.23/LICENSE-MIT": {
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "size": 1023
+    }
+  },
+  "published": false,
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "schema_version": 1,
+  "source_commit": "cdd876046b5133d1ce7491c98c7e6d6bd563908a",
+  "source_dirty": false,
+  "target": "x86_64-pc-windows-msvc",
+  "version": "0.1.0"
+}

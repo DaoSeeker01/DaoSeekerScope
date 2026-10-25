@@ -9,7 +9,7 @@
 | 平台增强 | Linux 部分 DMI/电池/温度、macOS 设备型号、Windows 电池摘要；Windows 设备/主板/固件六值本机与 CI SDK/缓存通过，[记录](windows-hardware-summary-validation.md) | 更多设备/OEM 与主板/固件来源，其他平台电池/传感器可靠来源评估 |
 | 动态数据可靠性 | Linux CPU/内存/网络读取与失败回归；Windows/macOS 网络；Windows 内存与单组 CPU 通过本机和三平台 CI；macOS CPU/内存/uptime、Windows uptime 已通过原生 SDK/CI/八包；Windows 多组采样实现通过三平台 CI，单组 helper/SDK 在本机和 CI 通过，[记录](windows-cpu-groups-validation.md) | Windows 真实多组、Job/hotplug/真实故障覆盖 |
 | 深入质量验证 | 单元、负向、原生 CI、容器、短 fuzz、Miri/ASan | 长期 fuzz、更多故障场景、峰值内存与性能测量 |
-| 发行制品 | 8 crate 的归档与独立构建检查；Windows CLI ZIP/checksum/隔离安装回滚通过本机与 CI 六进程验收，[记录](cli-bundle-validation.md)；Linux ZIP v2/权限与原生 CI 入口已实现，[本轮状态](linux-cli-bundle-validation.md) | Linux 原生制品验收；macOS 与 FFI 制品、运行时/许可最终评审、旧版回滚；registry 验收另需发布授权 |
+| 发行制品 | 8 crate 的归档与独立构建检查；Windows CLI ZIP/checksum/隔离安装回滚通过本机与 CI 六进程验收，[记录](cli-bundle-validation.md)；Linux ZIP v2/权限及原生 CI 入口已实现，Windows 格式测试/真实 v1 回归通过，[本轮状态](linux-cli-bundle-validation.md) | Linux 原生制品验收与两项 POSIX 权限测试；macOS 与 FFI 制品、运行时/许可最终评审、旧版回滚；registry 验收另需发布授权 |
 | 最终评审与发布准备 | ADR、Schema、头文件与许可证资料 | API/ABI/Schema 最终评审、首版验收收口；公开发布另需授权 |
 
 延期验证：维护者目前只有 Windows 笔记本与 Android 手机，实体 Linux/macOS、电池/温度等缺少设备的真机验证留到有设备后。CI 和模拟测试继续执行；它们不能替代延期的设备证据。
