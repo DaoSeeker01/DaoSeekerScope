@@ -10,6 +10,7 @@
 - [发布与迁移](release.md)、[依赖许可证](dependencies.md)、[性能基线](benchmarks.md)。
 - [打包与安装验证](packaging.md)：归档内容、MIT/C 头文件、独立构建与验证边界。
 - [Windows CLI 候选包](cli-bundle-validation.md)：离线 ZIP、checksum、临时安装与回滚演练。
+- [Linux CLI 候选包](linux-cli-bundle-validation.md)：GNU x86_64 的权限契约、安装回滚与当前验证边界。
 
 ## 设计决策
 

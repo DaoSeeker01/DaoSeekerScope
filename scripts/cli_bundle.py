@@ -1,4 +1,4 @@
-"""Build and verify an unpublished Windows x64 portable CLI candidate.
+"""Build and verify unpublished Windows/Linux x64 portable CLI candidates.
 
 No upload, global install, PATH change, or library/FFI distribution is performed.
 Checksums detect corruption; they do not authenticate the publisher.
@@ -10,6 +10,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path, PurePosixPath
+import platform
 import re
 import stat
 import subprocess
@@ -20,6 +21,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
 TARGET = "x86_64-pc-windows-msvc"
+LINUX_TARGET = "x86_64-unknown-linux-gnu"
+SUPPORTED_TARGETS = frozenset({TARGET, LINUX_TARGET})
 MAX_FILE = 64 * 1024 * 1024
 MAX_TOTAL = 128 * 1024 * 1024
 MAX_ENTRIES = 512
@@ -33,6 +36,37 @@ def require(condition: bool, code: str) -> None:
 
 def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def executable_name(target: str) -> str:
+    require(target in SUPPORTED_TARGETS, "unsupported_target")
+    return "bin/dscope" if target == LINUX_TARGET else "bin/dscope.exe"
+
+
+def file_mode(name: str, target: str) -> int:
+    return (
+        0o755 if target == LINUX_TARGET and name == executable_name(target) else 0o644
+    )
+
+
+def require_runtime_host(
+    target: str, system: str | None = None, machine: str | None = None
+) -> None:
+    require(target in SUPPORTED_TARGETS, "unsupported_target")
+    system = platform.system() if system is None else system
+    machine = platform.machine() if machine is None else machine
+    expected = "Linux" if target == LINUX_TARGET else "Windows"
+    require(
+        system == expected and machine.lower() in ("amd64", "x86_64"),
+        "unsupported_host",
+    )
+
+
+def native_target(rustc: str) -> str:
+    hosts = re.findall(r"^host: ([^\r\n]+)\r?$", rustc, re.M)
+    require(len(hosts) == 1 and hosts[0] in SUPPORTED_TARGETS, "unsupported_host")
+    require_runtime_host(hosts[0])
+    return hosts[0]
 
 
 def safe_name(name: str) -> bool:
@@ -76,11 +110,13 @@ def verify_bundle(archive: Path, expected_sha256: str) -> dict[str, bytes]:
         require(0 < len(entries) <= MAX_ENTRIES, "entry_limit")
         names: set[str] = set()
         payload: dict[str, bytes] = {}
+        modes: dict[str, tuple[int, int]] = {}
         total = 0
         for entry in entries:
             name = entry.filename
             require(safe_name(name) and name.lower() not in names, "unsafe_member")
             names.add(name.lower())
+            modes[name] = (entry.create_system, entry.external_attr >> 16)
             require(not entry.is_dir(), "directory_member")
             require(
                 stat.S_IFMT(entry.external_attr >> 16) in (0, stat.S_IFREG),
@@ -104,12 +140,16 @@ def verify_bundle(archive: Path, expected_sha256: str) -> dict[str, bytes]:
     manifest_bytes = payload.pop("manifest.json")
     manifest = json.loads(manifest_bytes, object_pairs_hook=unique_object)
     require(isinstance(manifest, dict), "manifest_shape")
+    target = manifest.get("target")
+    require(isinstance(target, str) and target in SUPPORTED_TARGETS, "manifest_version")
+    bundle_format = 2 if target == LINUX_TARGET else 1
     require(
         all(
             type(manifest.get(key)) is int and manifest[key] == 1
-            for key in ("bundle_format", "abi_version", "schema_version")
+            for key in ("abi_version", "schema_version")
         )
-        and manifest.get("target") == TARGET
+        and type(manifest.get("bundle_format")) is int
+        and manifest["bundle_format"] == bundle_format
         and type(manifest.get("source_dirty")) is bool
         and isinstance(manifest.get("source_commit"), str)
         and re.fullmatch(r"[0-9a-f]{40}", manifest["source_commit"]) is not None
@@ -119,10 +159,14 @@ def verify_bundle(archive: Path, expected_sha256: str) -> dict[str, bytes]:
     files = manifest.get("files")
     require(isinstance(files, dict) and set(files) == set(payload), "manifest_files")
     require(
-        {"bin/dscope.exe", "LICENSE-MIT", "THIRD_PARTY.md", "README.txt"}
+        {executable_name(target), "LICENSE-MIT", "THIRD_PARTY.md", "README.txt"}
         <= set(payload),
         "missing_required_file",
     )
+    if target == LINUX_TARGET:
+        require(
+            modes["manifest.json"] == (3, stat.S_IFREG | 0o644), "archive_permissions"
+        )
     for name, data in payload.items():
         record = files[name]
         require(
@@ -132,6 +176,15 @@ def verify_bundle(archive: Path, expected_sha256: str) -> dict[str, bytes]:
             and record.get("sha256") == digest(data),
             "payload_checksum",
         )
+        if target == LINUX_TARGET:
+            expected_mode = file_mode(name, target)
+            require(
+                type(record.get("mode")) is int and record["mode"] == expected_mode,
+                "manifest_permissions",
+            )
+            require(
+                modes[name] == (3, stat.S_IFREG | expected_mode), "archive_permissions"
+            )
     payload["manifest.json"] = manifest_bytes
     return payload
 
@@ -206,8 +259,12 @@ def dependency_payload(metadata: dict[str, Any]) -> dict[str, bytes]:
 
 
 def write_bundle(
-    path: Path, payload: dict[str, bytes], provenance: dict[str, Any]
+    path: Path,
+    payload: dict[str, bytes],
+    provenance: dict[str, Any],
+    target: str = TARGET,
 ) -> str:
+    require(target in SUPPORTED_TARGETS, "unsupported_target")
     require("manifest.json" not in payload, "reserved_manifest")
     require(len(payload) + 1 <= MAX_ENTRIES, "entry_limit")
     require(all(safe_name(name) for name in payload), "unsafe_member")
@@ -216,12 +273,16 @@ def write_bundle(
     require(sum(map(len, payload.values())) <= MAX_TOTAL - MAX_MANIFEST, "total_limit")
     manifest = {
         **provenance,
-        "bundle_format": 1,
-        "target": TARGET,
+        "bundle_format": 2 if target == LINUX_TARGET else 1,
+        "target": target,
         "abi_version": 1,
         "schema_version": 1,
         "files": {
-            name: {"size": len(data), "sha256": digest(data)}
+            name: {
+                "size": len(data),
+                "sha256": digest(data),
+                **({"mode": file_mode(name, target)} if target == LINUX_TARGET else {}),
+            }
             for name, data in sorted(payload.items())
         },
     }
@@ -236,7 +297,7 @@ def write_bundle(
         for name, data in sorted(contents.items()):
             info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
             info.create_system = 3
-            info.external_attr = (stat.S_IFREG | 0o644) << 16
+            info.external_attr = (stat.S_IFREG | file_mode(name, target)) << 16
             info.compress_type = zipfile.ZIP_DEFLATED
             bundle.writestr(info, data)
     require(path.stat().st_size <= MAX_TOTAL, "archive_limit")
@@ -251,7 +312,7 @@ def main() -> None:
     parser.add_argument("--allow-dirty", action="store_true")
     options = parser.parse_args()
     rustc = run(["rustc", "-vV"])
-    require(f"host: {TARGET}" in rustc.splitlines(), "unsupported_host")
+    target = native_target(rustc)
     checkout_status = run(["git", "status", "--porcelain"])
     dirty = bool(checkout_status)
     require(not dirty or options.allow_dirty, "dirty_checkout")
@@ -268,7 +329,7 @@ def main() -> None:
                 "--format-version",
                 "1",
                 "--filter-platform",
-                TARGET,
+                target,
                 *offline,
             ]
         )
@@ -297,7 +358,7 @@ def main() -> None:
                 "--locked",
                 "--release",
                 "--target",
-                TARGET,
+                target,
                 "--target-dir",
                 str(build),
                 "-p",
@@ -305,11 +366,11 @@ def main() -> None:
                 *offline,
             ]
         )
-        binary = build / TARGET / "release/dscope.exe"
+        binary = build / target / "release" / Path(executable_name(target)).name
         with binary.open("rb") as source:
-            payload["bin/dscope.exe"] = source.read(MAX_FILE + 1)
+            payload[executable_name(target)] = source.read(MAX_FILE + 1)
     payload["LICENSE-MIT"] = (ROOT / "LICENSE-MIT").read_bytes()
-    payload["README.txt"] = (
+    windows_readme = (
         "DaoSeekerScope unpublished Windows x64 CLI candidate\n"
         "Unzip into a new directory. Run bin\\dscope.exe --help or --json.\n"
         "Keep LICENSE-MIT, THIRD_PARTY.md and licenses/ with the executable.\n"
@@ -318,6 +379,18 @@ def main() -> None:
         "SHA-256 detects corruption, not publisher identity. No code signature is supplied.\n"
         "For rollback retain the complete old directory and select its executable again.\n"
     ).encode()
+    linux_readme = (
+        "DaoSeekerScope unpublished GNU/Linux x86_64 CLI candidate\n"
+        "Verify SHA256SUMS with sha256sum -c, then extract into a new directory.\n"
+        "Set bin/dscope to mode 0755 and regular data files to 0644; some ZIP tools discard permissions.\n"
+        "Run bin/dscope --help or --json. Retain the complete old directory for rollback.\n"
+        "Keep LICENSE-MIT, THIRD_PARTY.md and licenses/ with the executable.\n"
+        "No root install or PATH change is required. Sensitive data is hidden by default.\n"
+        "A compatible GNU/Linux runtime linker and system libraries are prerequisites.\n"
+        "A native build/runner test does not establish a minimum glibc or distribution compatibility floor.\n"
+        "SHA-256 detects corruption, not publisher identity. No signature is supplied.\n"
+    ).encode()
+    payload["README.txt"] = linux_readme if target == LINUX_TARGET else windows_readme
     require((ROOT / "Cargo.lock").read_bytes() == lock, "lock_changed")
     require(run(["git", "rev-parse", "HEAD"]) == revision, "revision_changed")
     require(
@@ -329,7 +402,7 @@ def main() -> None:
     stage_root = ROOT / "target/cli-bundles"
     stage_root.mkdir(parents=True, exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix="candidate-", dir=stage_root))
-    archive = stage / f"dscope-{version}-{TARGET}.zip"
+    archive = stage / f"dscope-{version}-{target}.zip"
     checksum = write_bundle(
         archive,
         payload,
@@ -341,6 +414,7 @@ def main() -> None:
             "rustc": rustc,
             "published": False,
         },
+        target=target,
     )
     (stage / "SHA256SUMS").write_text(f"{checksum}  {archive.name}\n", encoding="ascii")
     print(archive.relative_to(ROOT))

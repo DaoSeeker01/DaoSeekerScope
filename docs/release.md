@@ -1,5 +1,7 @@
 # 发布与迁移路线
 
+2026-10-26 Linux CLI 候选实现增量：共享工具新增 GNU x86_64 原生 host 选择、ZIP/manifest 显式 mode、chmod 和激活前复核，Linux 独立 bundle_format 为 2；Windows v1 不变。11 项新增测试包含两项仅 POSIX 可执行的权限测试；Linux 原生步骤已加入 CI，尚未运行，见[记录](linux-cli-bundle-validation.md)及 [ADR 0032](adr/0032-linux-cli-candidate.md)。不改变 Rust API、依赖/features/锁、MIT 或 ABI 1/硬件 Schema 1；不宣称 glibc/发行版最低基线或已正式分发。
+
 2026-10-25 Windows CLI 候选包增量：独立 release 构建、ZIP/SHA256SUMS/manifest、上游与 Rust 许可文件、临时两槽位安装和回滚已通过干净提交 89fd2f9 的本机验收（262 Rust/129 Python 测试、六个真实 CLI 进程）；三平台 CI 40183166615 全部八项、各八包及 Windows 候选包安装/回滚已通过，见[记录](cli-bundle-validation.md)和 [ADR 0031](adr/0031-windows-cli-candidate.md)。未上传或正式发布；两个槽位使用同一候选，不证明旧版兼容。无 Rust 公共 API、依赖/feature/锁变化，MIT、ABI 1/Schema 1 保持不变；独立 bundle_format 为 1。
 
 2026-10-25 Windows 硬件摘要开发增量：现有 WindowsBackend 静态采集六个固定注册表值，对应既有设备/主板 vendor/model、固件 vendor/version；从 Unsupported 改为 Win32/Partial 有界尝试，不查询序列号/UUID或整份 SMBIOS。成功和缺失均静态缓存，动态刷新不重读，更新需重建 Hardware。没有新消费类型/签名、模型或 JSON 形状，ABI 1/Schema 1、MIT 不变。仅为已锁定 windows-sys 增加 Registry target feature；包/版本/锁不变，复用 dmi_text 解析 fuzz。Windows 本机未提升 token、CI 提升 token 六值/独立 SDK 通过；三平台 CI 40145306966 全部八项、各八包及十二个短 fuzz 已通过，见[ADR 0030](adr/0030-windows-hardware-summary.md)与[记录](windows-hardware-summary-validation.md)。不将注册表报告当作硬件/固件真实性证明；回滚可移除六项读取与能力声明。

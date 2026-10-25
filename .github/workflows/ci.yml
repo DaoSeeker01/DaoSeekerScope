@@ -78,6 +78,21 @@ jobs:
           path: target/cli-bundle-evidence.json
           if-no-files-found: ignore
           retention-days: 14
+      - name: Linux portable CLI candidate install and rollback
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle=$(python scripts/cli_bundle.py)
+          python scripts/cli_bundle_smoke.py "$bundle"
+      - name: Preserve Linux CLI candidate evidence
+        if: always() && runner.os == 'Linux'
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: cli-bundle-evidence-Linux-X64
+          path: target/cli-bundle-evidence.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: C FFI on Windows
         if: runner.os == 'Windows'
         shell: cmd

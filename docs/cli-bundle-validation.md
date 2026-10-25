@@ -1,5 +1,7 @@
 # Windows CLI 候选包验证
 
+2026-10-26 共享工具增加 Linux v2 权限契约，Windows v1 保持；此前实际 Windows ZIP 用新读取器验证通过。新的 Linux 原生执行与 Windows 回归结果分别归档，见[Linux 本轮状态](linux-cli-bundle-validation.md)。以下 2026-10-25 数据属于对应已验收提交。
+
 范围和限制见 [ADR 0031](adr/0031-windows-cli-candidate.md)。这是 Windows x64 CLI 的开发候选包，不是已发布版本。Rust 库、C ABI、Schema 和 MIT 许可证保持不变。
 
 ## 执行

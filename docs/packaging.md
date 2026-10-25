@@ -1,5 +1,7 @@
 # 打包与安装验证
 
+2026-10-26 Linux CLI 候选实现：共享工具新增 GNU/Linux x86_64 的 ZIP v2，显式校验和恢复 Unix 文件权限；Windows ZIP v1 保留。原生 Linux 构建/安装尚待 CI，Windows 格式测试不作为 Linux 设备证据，见[本轮状态](linux-cli-bundle-validation.md)。
+
 Windows CLI 二进制候选包另见[离线安装与回滚验证](cli-bundle-validation.md)；本文的八包验证针对 Rust `.crate` 消费者。
 
 2026-10-25 Windows CLI 候选源码 `89fd2f9` 的 874211 字节 ZIP、73 项载荷/manifest 校验及临时两槽位六进程演练已在本机通过，未上传二进制。只验证同候选版本的安装选择与回滚；随后源码 2d0a8a1 的[三平台 CI 40183166615](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615)通过各八包及 Windows 候选包六进程演练；其他平台/FFI 二进制制品和正式分发仍待验收。

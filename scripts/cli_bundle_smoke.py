@@ -7,32 +7,56 @@ import json
 import os
 from pathlib import Path
 import platform
+import stat
 import subprocess
 import tempfile
 from typing import Any
 
 import jsonschema
 
-from cli_bundle import ROOT, TARGET, digest, require, verify_bundle
+from cli_bundle import (
+    ROOT,
+    TARGET,
+    LINUX_TARGET,
+    digest,
+    executable_name,
+    file_mode,
+    require,
+    require_runtime_host,
+    verify_bundle,
+)
 from native_smoke import check_snapshot
 
 
 def install(archive: Path, checksum: str, destination: Path) -> dict[str, bytes]:
     """A fresh isolated directory only; never overwrite an existing installation."""
     payload = verify_bundle(archive, checksum)
+    manifest = json.loads(payload["manifest.json"])
+    target = manifest["target"]
+    require(target != LINUX_TARGET or os.name == "posix", "posix_permissions_required")
     destination.mkdir()
     for name, data in payload.items():
         path = destination / name
         path.parent.mkdir(parents=True, exist_ok=True)
         with path.open("xb") as output:
             output.write(data)
+        if target == LINUX_TARGET:
+            path.chmod(file_mode(name, target))
     return payload
 
 
 def activate(root: Path, slot: str, payload: dict[str, bytes]) -> None:
     require(slot in ("a", "b"), "invalid_slot")
+    target = json.loads(payload["manifest.json"])["target"]
     for name, data in payload.items():
-        require((root / slot / name).read_bytes() == data, "installed_corruption")
+        installed = root / slot / name
+        require(stat.S_ISREG(installed.lstat().st_mode), "installed_file_type")
+        require(installed.read_bytes() == data, "installed_corruption")
+        if target == LINUX_TARGET:
+            require(
+                stat.S_IMODE(installed.stat().st_mode) == file_mode(name, target),
+                "installed_permissions",
+            )
     pending = root / "pending"
     pending.write_text(slot, encoding="ascii")
     os.replace(pending, root / "active")
@@ -65,28 +89,31 @@ def probe(binary: Path, version: str) -> None:
             check_snapshot(snapshot)
 
 
-def probe_selected(root: Path, expected_slot: str, version: str) -> None:
+def probe_selected(
+    root: Path, expected_slot: str, version: str, target: str = TARGET
+) -> None:
     slot = (root / "active").read_text(encoding="ascii")
     require(slot in ("a", "b") and slot == expected_slot, "active_selection")
-    probe(root / slot / "bin/dscope.exe", version)
+    probe(root / slot / executable_name(target), version)
 
 
 def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
     payload = verify_bundle(archive, checksum)
     manifest = json.loads(payload["manifest.json"])
-    require(manifest["target"] == TARGET and os.name == "nt", "unsupported_host")
+    target = manifest["target"]
+    require_runtime_host(target)
     with tempfile.TemporaryDirectory(
         prefix="cli-install-", dir=ROOT / "target"
     ) as folder:
         root = Path(folder)
         install(archive, checksum, root / "a")
         activate(root, "a", payload)
-        probe_selected(root, "a", manifest["version"])
+        probe_selected(root, "a", manifest["version"], target)
         # Both slots contain the same real candidate: this tests directory selection,
         # not compatibility with an older published version (none exists yet).
         install(archive, checksum, root / "b")
         activate(root, "b", payload)
-        probe_selected(root, "b", manifest["version"])
+        probe_selected(root, "b", manifest["version"], target)
         corrupt = root / "corrupt.zip"
         raw = bytearray(archive.read_bytes())
         raw[len(raw) // 2] ^= 1
@@ -102,27 +129,28 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         require((root / "active").read_text() == "b", "active_changed_on_failure")
         activate(root, "a", payload)
         require((root / "active").read_text() == "a", "rollback_selection")
-        probe_selected(root, "a", manifest["version"])
+        probe_selected(root, "a", manifest["version"], target)
     return {
         "overall": "passed",
         "source_commit": manifest["source_commit"],
         "source_dirty": manifest["source_dirty"],
-        "target": TARGET,
+        "target": target,
         "host": {
             "system": platform.system(),
             "version": platform.version(),
             "machine": platform.machine(),
         },
         "version": manifest["version"],
-        "bundle_format": 1,
+        "bundle_format": manifest["bundle_format"],
         "abi_version": 1,
         "schema_version": 1,
         "archive_sha256": checksum,
-        "cli_sha256": digest(payload["bin/dscope.exe"]),
+        "cli_sha256": digest(payload[executable_name(target)]),
         "payload_files": len(payload) - 1,
         "processes": 6,
         "minimum_read_and_default_privacy": True,
         "snapshot_schema_validated": True,
+        "posix_modes_verified": target == LINUX_TARGET,
         "corrupt_update_rejected_before_install": True,
         "same_candidate_two_slot_rollback": True,
         "older_version_compatibility_tested": False,
