@@ -1,6 +1,6 @@
 # ADR 0032：Linux CLI 候选包与显式文件权限
 
-日期：2026-10-26。状态：已实现，干净提交 cdd8760 的 Windows 本机门禁、格式/负向测试和 Windows v1 回归已通过，见[记录](../linux-cli-bundle-validation.md)；Linux 原生构建、链接和六进程演练待 CI。实体 Linux 设备验证仍延期。
+日期：2026-10-26。状态：已实现，干净提交 cdd8760 的 Windows 本机门禁、格式/负向测试和 Windows v1 回归已通过，见[记录](../linux-cli-bundle-validation.md)；Linux 原生构建、链接、六进程与 POSIX 权限测试已通过 Ubuntu 24.04 的 CI 40245533279。实体 Linux 设备验证仍延期。
 
 ## 范围
 

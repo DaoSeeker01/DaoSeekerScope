@@ -1,5 +1,7 @@
 # 三平台CI验收（2026-10-09，Asia/Shanghai）
 
+2026-10-26 更新：源码 `98172d0` 的[CI 40245533279](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40245533279)全部八项通过。Linux v2 与 Windows v1 候选各六进程通过；Python 为 Windows 138 passed/2 skipped、Linux/macOS 140 passed/0 skipped，两项 POSIX 测试已在后两平台执行。三平台各八包、12 个短 fuzz、Miri/ASan、容器和依赖回归见[记录](linux-cli-bundle-validation.md)与[索引](evidence/linux-cli-bundle-ci-40245533279.json)。以下各节保留原日期结论。
+
 2026-10-25 更新：源码 `2d0a8a1` 的[运行 40183166615](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615)全部 8 个任务通过，Windows CLI 候选包六进程安装/回滚、三平台原生测试/八包、12 项短 fuzz、Miri/ASan、依赖及容器回归完成。见[本轮验收](cli-bundle-validation.md)与[索引](evidence/windows-cli-bundle-ci-40183166615.json)。以下首次运行及“最新源码”的文字均属于对应历史日期，不代表当前版本。
 
 本文保留首次7任务运行的历史证据。最新源码3ec5f6e已在[运行38006382007](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38006382007)通过全部8任务（含7容器场景及15个连续CPU观测），各平台44/45项Rust测试+1doctest、16项Python守卫；详情见[CPU与最新CI验收](cpu-refresh-validation.md)。此前8e0e7d9证据保留于[容器验收](linux-container-validation.md)。新CI已更新Node24 actions；下文首次运行的Node20提示仍作为历史记录保留。

@@ -1,5 +1,17 @@
 # 性能基线
 
+## Linux CLI 制品轮次的整库回归（2026-10-26）
+
+源码 `98172d0afe77f53a8e108d5f02f2b7275ce0f25c`，[CI 40245533279](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40245533279)运行 `cargo bench --locked -p daoseeker-scope --bench collect`，Rust 1.96、bench 优化、默认 serde。原生 max_entries=128、100 次刷新；合成 100 个传感器和 1024 个网络条目、max_entries=1024。OS、CPU、内存及原始日志保存在各记录中。
+
+| 平台 | 首次 collect µs | 刷新 p50 / p95 / max µs | 合成 collect µs / JSON bytes | 环境与日志 |
+|---|---|---|---|---|
+| Linux x64 | 1107 | 262 / 322 / 355 | 188 / 373541 | [记录](evidence/linux-cli-bundle-benchmark-linux-40245533279.json) |
+| macOS ARM64 | 71466 | 48 / 91 / 207 | 142 / 373541 | [记录](evidence/linux-cli-bundle-benchmark-darwin-40245533279.json) |
+
+托管 runner 的整库采样，不是 ZIP 构建/安装性能或最低发行版兼容性测量；不声明配对性能变化、实体设备、峰值内存或 SLA。
+
+
 ## CLI 候选包轮次的整库回归基准（2026-10-25）
 
 源码 `2d0a8a1b5ac3f1fb9755f2ff21cfc5674e8b692d`，[CI 40183166615](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615)运行 `cargo bench --locked -p daoseeker-scope --bench collect`。Rust 1.96、bench 优化、默认 serde，原生 max_entries=128；合成 100 个传感器与 1024 个网络条目、max_entries=1024。实际 OS/CPU/内存和原始日志在各记录内。

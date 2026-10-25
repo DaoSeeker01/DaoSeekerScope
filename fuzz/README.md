@@ -1,5 +1,7 @@
 # Fuzz 目标
 
+2026-10-26 Linux CLI 制品回归：[CI 40245533279](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40245533279)重跑全部 12 个现有目标，每个至少 60 秒，4 项 harness 通过；未修改目标或解析器。逐目标计数和日志哈希见[本轮索引](../docs/evidence/linux-cli-bundle-ci-40245533279.json)。
+
 2026-10-25 CLI 候选包回归：没有修改 fuzz 代码或目标；[CI 40183166615](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615)全部十二目标各运行至少 60 秒，4 项 harness 守卫通过。实际计数、来源和日志哈希见[本轮验收索引](../docs/evidence/windows-cli-bundle-ci-40183166615.json)；不作为长期 fuzz 或真实硬件故障证明。
 
 2026-10-25 Windows 硬件摘要扩展既有 `dmi_text`，复用生产 REG_SZ 严格 UTF-16 解析器，检查 Win32 来源、确定性、4096-byte 输入/输出上限、控制字符和占位词。两份自制合成种子，不读取注册表或真实设备。目标总数仍为 12，Windows 本地 harness 单测增至 4 项；本轮 CI 40145306966 已在 Linux 运行扩展 dmi_text：61 秒/6,509,574 次，全部十二目标各至少 60 秒，4 项 harness 守卫通过；解析器 fuzz 不证明真实注册表权限或数据来源，见[ADR 0030](../docs/adr/0030-windows-hardware-summary.md)。

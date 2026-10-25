@@ -1,0 +1,176 @@
+{
+  "status": "passed",
+  "platform": "Darwin",
+  "observed_at": "2026-10-25T23:39:27.546893+00:00",
+  "limitations": [
+    "OS VM counters can be rate-limited/cached; no maximum age or fresh-kernel-counter claim",
+    "non-compressed active+inactive+free estimate; not immediately allocatable or per-process limit",
+    "SDK and Rust calls differ in time; no equality, fixed delta or pressure claim",
+    "real API/cleanup errors, physical Mac and Intel native remain untested",
+    "cooperative checks cannot interrupt blocked OS calls; no long native leak proof"
+  ],
+  "git_revision": "98172d0afe77f53a8e108d5f02f2b7275ce0f25c",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "rust_probe": "a599301ea8067ee99944b90c4913e3a849ccfecb0cf34ad631de203b92e66e17",
+    "c_sdk_probe": "8f0bee1de0b36132a7dffdfacdbedc59e7ec7a17d10097472201668f3a03c2c7"
+  },
+  "initial": {
+    "rust": {
+      "total": {
+        "value": 7516192768,
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1792971567633,
+        "reason": null
+      },
+      "available": {
+        "value": 6244515840,
+        "availability": "available",
+        "source": "apple_api",
+        "observed_at": 1792971567633,
+        "reason": null
+      }
+    },
+    "sdk": {
+      "status": "passed",
+      "calls": 1,
+      "total": 7516192768,
+      "page_size": 16384,
+      "active": 179160,
+      "inactive": 177523,
+      "free": 24521,
+      "speculative": 4125,
+      "available": 6245646336,
+      "requested_words": 38,
+      "returned_words": 38,
+      "sdk_struct_size": 248,
+      "rev1_prefix_bytes": 152,
+      "released_host": true
+    }
+  },
+  "observations": [
+    {
+      "status": "passed",
+      "rust": {
+        "total": {
+          "value": 7516192768,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792971567633,
+          "reason": null
+        },
+        "available": {
+          "value": 6243926016,
+          "availability": "available",
+          "source": "apple_api",
+          "observed_at": 1792971568060,
+          "reason": null
+        }
+      },
+      "sdk": {
+        "status": "passed",
+        "calls": 2,
+        "total": 7516192768,
+        "page_size": 16384,
+        "active": 179676,
+        "inactive": 177578,
+        "free": 23836,
+        "speculative": 4010,
+        "available": 6243778560,
+        "requested_words": 38,
+        "returned_words": 38,
+        "sdk_struct_size": 248,
+        "rev1_prefix_bytes": 152,
+        "released_host": true
+      }
+    },
+    {
+      "status": "passed",
+      "rust": {
+        "total": {
+          "value": 7516192768,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792971567633,
+          "reason": null
+        },
+        "available": {
+          "value": 6243926016,
+          "availability": "available",
+          "source": "apple_api",
+          "observed_at": 1792971568428,
+          "reason": null
+        }
+      },
+      "sdk": {
+        "status": "passed",
+        "calls": 3,
+        "total": 7516192768,
+        "page_size": 16384,
+        "active": 179679,
+        "inactive": 177578,
+        "free": 23842,
+        "speculative": 4010,
+        "available": 6243926016,
+        "requested_words": 38,
+        "returned_words": 38,
+        "sdk_struct_size": 248,
+        "rev1_prefix_bytes": 152,
+        "released_host": true
+      }
+    },
+    {
+      "status": "passed",
+      "rust": {
+        "total": {
+          "value": 7516192768,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1792971567633,
+          "reason": null
+        },
+        "available": {
+          "value": 6243680256,
+          "availability": "available",
+          "source": "apple_api",
+          "observed_at": 1792971568795,
+          "reason": null
+        }
+      },
+      "sdk": {
+        "status": "passed",
+        "calls": 4,
+        "total": 7516192768,
+        "page_size": 16384,
+        "active": 180078,
+        "inactive": 175670,
+        "free": 25328,
+        "speculative": 3948,
+        "available": 6243549184,
+        "requested_words": 38,
+        "returned_words": 38,
+        "sdk_struct_size": 248,
+        "rev1_prefix_bytes": 152,
+        "released_host": true
+      }
+    }
+  ],
+  "rebuilt": {
+    "total": {
+      "value": 7516192768,
+      "availability": "available",
+      "source": "sysctl",
+      "observed_at": 1792971568798,
+      "reason": null
+    },
+    "available": {
+      "value": 6244597760,
+      "availability": "available",
+      "source": "apple_api",
+      "observed_at": 1792971568798,
+      "reason": null
+    }
+  },
+  "static_total_cached": true
+}

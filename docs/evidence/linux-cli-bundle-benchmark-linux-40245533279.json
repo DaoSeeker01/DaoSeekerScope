@@ -1,0 +1,30 @@
+{
+  "source_commit": "98172d0afe77f53a8e108d5f02f2b7275ce0f25c",
+  "command": "cargo bench --locked -p daoseeker-scope --bench collect",
+  "profile": "bench optimized",
+  "features": "default serde",
+  "native_max_entries": 128,
+  "samples": 100,
+  "synthetic_sensors": 100,
+  "synthetic_networks": 1024,
+  "synthetic_max_entries": 1024,
+  "first_collect_us": 1107,
+  "refresh_p50_us": 262,
+  "refresh_p95_us": 322,
+  "refresh_max_us": 355,
+  "synthetic_collect_us": 188,
+  "synthetic_serialized_bytes": 373541,
+  "environment": {
+    "os.name": "Ubuntu",
+    "os.version": "24.04",
+    "os.kernel_version": "6.17.0-1022-azure",
+    "cpu.brand": "AMD EPYC 9V45 96-Core Processor",
+    "cpu.logical_count": 4,
+    "cpu.architecture": "x86_64",
+    "memory.total_usable_bytes": 16766414848
+  },
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "raw_log": "first_collect_us=1107\nrefresh_n=100 p50_us=262 p95_us=322 max_us=355\ncpu_usage_state=Available\nsynthetic_sensors=100 synthetic_networks=1024 collect_us=188 serialized_bytes=373541\n",
+  "log_sha256": "2746b16b0c7135202ce3f8a3631f7eb73c0154bcd7f625eefe81815dc3b3ed5b",
+  "limits": "Hosted whole-collector benchmark; not ZIP build/install performance, physical hardware, minimum libc compatibility, peak-memory or paired regression"
+}
