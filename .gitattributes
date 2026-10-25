@@ -1,2 +1,5 @@
 * text=auto eol=lf
 fuzz/corpus/dmi_text/invalid-utf8 -text
+# Byte-exact Windows evidence: CR belongs to its original CRLF terminator.
+docs/evidence/windows-cli-bundle-local-89fd2f9.json -text whitespace=cr-at-eol
+docs/evidence/windows-cli-bundle-SHA256SUMS-89fd2f9.txt -text whitespace=cr-at-eol

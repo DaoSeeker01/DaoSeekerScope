@@ -21,4 +21,20 @@ ZIP 与 SHA256SUMS 位于脚本返回的 `target/cli-bundles/candidate-*/` 目�
 
 ## 当前验收边界
 
-本轮增加归档负向单元测试和 Windows CI 步骤。干净提交的本机结果将单独归档；新增 CI 尚未执行。Linux/macOS 制品、FFI 动态库发行包、干净 Windows 镜像的运行时依赖、代码签名和正式发布尚未验收。
+2026-10-25 干净源码 `89fd2f9` 在 Windows x64（OS 报告 10.0.26300、AMD64）通过本机验收：
+
+| 项目 | 结果 |
+|---|---|
+| release ZIP | 874211 字节；73 个载荷文件，另含 manifest |
+| 许可文件 | 保守覆盖 28 个第三方 crate，55 份 crate 许可/版权/notice，14 份 Rust 工具链许可/版权 |
+| 安装/切换/回滚 | 6 个包内 CLI 进程通过版本、Schema、最低读取和默认脱敏检查 |
+| 损坏更新 | 创建安装目录前被拒绝，原选择保留 |
+| Rust 门禁 | fmt、严格全目标/全 feature Clippy、262 项测试含 doctest、无默认 feature、严格 rustdoc、构建及 Linux x64/macOS ARM64 交叉检查通过 |
+| Python 门禁 | 129 项测试通过，其中 13 项新增归档负向测试；51 文件的 Ruff 0.14.13 与 mypy 1.19.1 通过 |
+| 数据与工作流 | Schema 黄金样例/状态守卫、项目文件与本地链接、actionlint 1.7.12 通过 |
+
+[验收索引](evidence/windows-cli-bundle-acceptance-89fd2f9.json)记录报告哈希、命令及未执行项；[原始演练报告](evidence/windows-cli-bundle-local-89fd2f9.json)、[包内 manifest](evidence/windows-cli-bundle-manifest-89fd2f9.json)、[原始 SHA256SUMS](evidence/windows-cli-bundle-SHA256SUMS-89fd2f9.txt)保留源码与逐文件校验依据。ZIP 留在本地 target，未提交二进制或上传制品。归档流程再次核验 ZIP、全部成员及 Cargo.lock 哈希。
+
+两份 Windows 原始报告通过精确 `.gitattributes -text` 规则保留 CRLF 字节，避免 Git 的 LF 规范化改变索引所记录的原文件哈希；同时核验已提交 blob 的哈希。
+
+新增 Windows CI 步骤尚未执行。Linux/macOS 制品、FFI 动态库发行包、干净 Windows 镜像的运行时依赖、代码签名和正式发布尚未验收。本轮没有修改 Rust 采集/FFI 代码，未重跑八 crate 归档、fuzz、Miri、ASan 或 benchmark；上一轮证据继续保留，不能当作本轮新运行。三平台实体设备验证的延期安排不变。

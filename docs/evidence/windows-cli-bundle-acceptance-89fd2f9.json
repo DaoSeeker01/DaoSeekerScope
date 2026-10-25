@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-25",
+  "source_commit": "89fd2f99b87ef2594ae93423917c18f8bd1890db",
+  "source_dirty": false,
+  "overall": "passed",
+  "scope": "Windows x64 MSVC unpublished CLI candidate and local quality gates",
+  "archive_name": "dscope-0.1.0-x86_64-pc-windows-msvc.zip",
+  "archive_bytes": 874211,
+  "archive_sha256": "f64d8383d77f5a89832c3fa743326775757b36a5255832ca35dc2eab63487bb7",
+  "payload_files": 73,
+  "third_party_crates_conservatively_included": 28,
+  "crate_notice_files": 55,
+  "rust_toolchain_notice_files": 14,
+  "rust_tests_including_doctests": 262,
+  "python_tests": 129,
+  "new_archive_guard_tests": 13,
+  "python_source_files": 51,
+  "rust_gate": "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+  "other_commands": [
+    "ruff 0.14.13 format --check and check scripts tests examples/collect.py",
+    "mypy 1.19.1 --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+    "python -m unittest discover -s tests -p test_*.py",
+    "python scripts/check_schema.py (jsonschema 4.25.1)",
+    "python scripts/check_project.py",
+    ".tools/actionlint/actionlint.exe (1.7.12)",
+    "python scripts/cli_bundle.py --offline",
+    "python scripts/cli_bundle_smoke.py <clean-candidate.zip>"
+  ],
+  "reports": {
+    "windows-cli-bundle-local-89fd2f9.json": {
+      "sha256": "92c6be8135bd375f51fc1beab55cfce435017ba69b958432d8c95342d6b56be6"
+    },
+    "windows-cli-bundle-manifest-89fd2f9.json": {
+      "sha256": "e70b7b940d632ce4c9905da6d07bb4a408b3288c0c91e19a149eb472320f4bed"
+    },
+    "windows-cli-bundle-SHA256SUMS-89fd2f9.txt": {
+      "sha256": "15a62c494be783b3c526fc28238955d1aa0b587ba765c8a62658a351eec1f208"
+    }
+  },
+  "local_log_sha256": {
+    "cli-bundle-python-check.log": "7a9ec7dd160d21a5d396b9e4ea47c43cf51d724396df7fc699f1fdcf821b5cac",
+    "cli-bundle-rust-check.log": "6ebe62a0a2ff56018330c959b3a39ec51bf5e06157d059b3455a227b542dc1ca"
+  },
+  "compatibility": {
+    "license": "MIT",
+    "abi_version": 1,
+    "schema_version": 1,
+    "bundle_format": 1,
+    "rust_public_api_changed": false,
+    "dependencies_features_or_lock_changed": false
+  },
+  "not_executed_this_round": [
+    "New three-platform CI and native Linux/macOS binary candidate validation",
+    "FFI binary bundles, clean Windows image prerequisites and code signing",
+    "Upgrade/rollback compatibility with an older published release",
+    "New eight-crate package rerun (crate sources unchanged); previous round evidence retained",
+    "New fuzz, Miri, ASan or benchmark campaign (collection/FFI Rust code unchanged)",
+    "Registry or GitHub Release publication, binary upload or global installation"
+  ],
+  "limits": [
+    "Only the maintainer Windows x64 host was used for candidate execution",
+    "Both install slots contain the same candidate; selection rollback only",
+    "SHA-256 detects corruption and does not authenticate a publisher",
+    "Automatic copying of discovered notices is not final distribution/license approval",
+    "Identical ZIP inputs in one compression implementation are stable; compiler reproducibility is unproven"
+  ]
+}
