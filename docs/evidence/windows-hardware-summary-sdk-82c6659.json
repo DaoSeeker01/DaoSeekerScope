@@ -1,0 +1,213 @@
+{
+  "status": "passed",
+  "platform": "Windows",
+  "observed_at": "2026-10-24T23:59:18.676352+00:00",
+  "limitations": [
+    "Six OS registry summaries, not firmware authenticity or a raw SMBIOS table",
+    "Token elevation recorded; elevated access does not prove ordinary-user access",
+    "No real ACL, missing BIOS key, UWP sandbox or simultaneous registry mutation experiment",
+    "Sequential SDK and Rust reads are not an atomic snapshot; OEM text may be inaccurate or identifying"
+  ],
+  "git_revision": "82c6659898743fe2abcc6933d3eaaca97243220c",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "rust_probe": "1488c711ac3eef9f818ab1bf945789d95a0acdf727512b37009c1eaa9c97bd1c",
+    "c_sdk_probe": "b5a020af61c6f020aaed1b5b75d2491d7da64cdc55e962b74407ac42b53b468f"
+  },
+  "initial": {
+    "fields": {
+      "system.device.vendor": {
+        "value": "HASEE Computer",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358799,
+        "reason": null
+      },
+      "system.device.model": {
+        "value": "NH50_70RA",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358799,
+        "reason": null
+      },
+      "system.motherboard.vendor": {
+        "value": "Notebook",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358799,
+        "reason": null
+      },
+      "system.motherboard.model": {
+        "value": "NH50_70RA",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358799,
+        "reason": null
+      },
+      "system.firmware.vendor": {
+        "value": "INSYDE Corp.",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358799,
+        "reason": null
+      },
+      "system.firmware.version": {
+        "value": "1.07.08THZX1",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358799,
+        "reason": null
+      }
+    },
+    "sdk": {
+      "status": "passed",
+      "calls": 1,
+      "queries": 6,
+      "buffer_bytes": 4096,
+      "token_elevated": false,
+      "fields": {
+        "system.device.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 30,
+          "value": "HASEE Computer"
+        },
+        "system.device.model": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 20,
+          "value": "NH50_70RA"
+        },
+        "system.motherboard.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 18,
+          "value": "Notebook"
+        },
+        "system.motherboard.model": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 20,
+          "value": "NH50_70RA"
+        },
+        "system.firmware.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 26,
+          "value": "INSYDE Corp."
+        },
+        "system.firmware.version": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 26,
+          "value": "1.07.08THZX1"
+        }
+      }
+    }
+  },
+  "available_fields": 6,
+  "sdk_token_elevated": false,
+  "ordinary_user_read_verified": true,
+  "refreshes": [
+    {
+      "static_fields_unchanged": true
+    },
+    {
+      "static_fields_unchanged": true
+    },
+    {
+      "static_fields_unchanged": true
+    }
+  ],
+  "rebuilt": {
+    "fields": {
+      "system.device.vendor": {
+        "value": "HASEE Computer",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358945,
+        "reason": null
+      },
+      "system.device.model": {
+        "value": "NH50_70RA",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358945,
+        "reason": null
+      },
+      "system.motherboard.vendor": {
+        "value": "Notebook",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358945,
+        "reason": null
+      },
+      "system.motherboard.model": {
+        "value": "NH50_70RA",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358945,
+        "reason": null
+      },
+      "system.firmware.vendor": {
+        "value": "INSYDE Corp.",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358945,
+        "reason": null
+      },
+      "system.firmware.version": {
+        "value": "1.07.08THZX1",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792886358945,
+        "reason": null
+      }
+    },
+    "sdk": {
+      "status": "passed",
+      "calls": 2,
+      "queries": 12,
+      "buffer_bytes": 4096,
+      "token_elevated": false,
+      "fields": {
+        "system.device.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 30,
+          "value": "HASEE Computer"
+        },
+        "system.device.model": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 20,
+          "value": "NH50_70RA"
+        },
+        "system.motherboard.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 18,
+          "value": "Notebook"
+        },
+        "system.motherboard.model": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 20,
+          "value": "NH50_70RA"
+        },
+        "system.firmware.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 26,
+          "value": "INSYDE Corp."
+        },
+        "system.firmware.version": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 26,
+          "value": "1.07.08THZX1"
+        }
+      }
+    }
+  }
+}

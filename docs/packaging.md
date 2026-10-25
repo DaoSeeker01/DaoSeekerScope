@@ -22,6 +22,8 @@ python scripts/check_packages.py
 
 ## 验证边界
 
+2026-10-25 Windows 硬件摘要实现 `82c6659` 的干净工作区完成八个实际归档、原生 Cargo 验证、解包后独立 workspace 262 项测试及 CLI 安装；[报告](evidence/windows-hardware-summary-packages-82c6659.json)保存每包哈希和第三方锁约束。SDK 与原生报告绑定同一提交，六项摘要在本机未提升 token 可读；本轮三平台 CI、registry/release 尚未执行，见[索引](evidence/windows-hardware-summary-local-82c6659.json)。相邻未发布 crate 仍使用本地 patch，不冒充 registry 安装。
+
 2026-10-24 Windows CPU 多组实现 `7fbb19e` 的干净工作区通过八包实际归档、原生 Cargo 验证、解包后独立 workspace 252 项测试和 CLI 安装；[报告](evidence/windows-cpu-groups-packages-7fbb19e.json)记录包哈希和锁约束。同日源码 `bedd8a7` 的三平台 CI 40046393393 每平台八包通过，独立测试 Windows/Linux/macOS 为 252/244/249 项含 doctest，2026-10-25 完成[归档](evidence/windows-cpu-groups-ci-40046393393.json)。本机和 CI Windows 都只有一个活动组，包内 helper 实读不证明真实跨组；registry/release 未执行。
 
 2026-10-22 macOS uptime 实现 `bfd28d5` 在干净 Windows 工作区完成八包实际归档、原生 Cargo 验证、提取后独立 workspace 240 项测试与 CLI 安装；[报告](evidence/macos-uptime-packages-windows-bfd28d5.json)保留包哈希和未发布的本地 patch 边界。2026-10-23 源码 8500cc8 的三平台 CI 39878588965 进一步通过每平台八包验证与独立安装：Windows 240、Linux 233、macOS ARM64 238 项测试含 doctest；见[完整索引](evidence/macos-uptime-ci-39878588965.json)。未发布 registry 或 release。

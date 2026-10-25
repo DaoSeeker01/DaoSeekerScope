@@ -21,6 +21,8 @@
 
 LSTATUS 是错误来源，不读取 GetLastError。缺失值/键（2/3）为 Unavailable/NotPresent；拒绝（5/1314）为 Restricted/PermissionDenied；类型/长度/格式（13/87/234/1630）为 Unavailable/InvalidData；暂时资源/删除（8/14/170/1018/1237）为 Unavailable/TemporarilyUnavailable；API 不支持（50/120）为 Unsupported/NotSupported，其他为 Unavailable/Unknown。不猜测 Sandbox。组合器可能保留默认 Unsupported/Custom，验证分别检查直接 backend 与门面，不改 core 合并规则。
 
+校验针对 API 返回表示；RegGetValueW 自身可补缺少的终止 NUL，不据此证明原始存储编码完整。不修改真实 BIOS 键进行测试，不声称原子读取多个值或发现并发修改。
+
 只为 Windows target 的既有 windows-sys 0.61.2 增加 Win32_System_Registry 绑定 feature，无新第三方包/版本/许可证。复用默认关闭的 Windows `fuzzing` 与 dmi_text 目标测试生产 UTF-16 解析器，不加新 fuzz 目标或锁边。公共模型、JSON 形状、ABI 1、Schema 1、MIT 不变；Windows 六字段从 Unsupported 改为有界尝试。回滚可移除该静态读取和六项能力声明。
 
 验证包括状态映射、恶意 UTF-16/长度/占位词、失败输出不消费、每字段隔离、12 个取消检查位置、静态成功/失败缓存与重建、固定白名单以及独立 C SDK/持久公共快照对照。机器实际 token 是否提升单列；管理员读取不冒充普通用户验证。真实 ACL 拒绝、键缺失、不同 OEM/虚拟机和实体其他系统另列，不修改机器真实 BIOS 注册表制造场景。

@@ -1,0 +1,146 @@
+{
+  "source_commit": "82c6659898743fe2abcc6933d3eaaca97243220c",
+  "overall": "passed",
+  "host": "Windows x64 laptop",
+  "date": "2026-10-25",
+  "timezone": "Asia/Shanghai",
+  "scope": "Local non-elevated Windows token six-value registry summary, SDK/cache, native consumers and eight-package acceptance",
+  "host_rust_tests_including_doctests": 262,
+  "isolated_windows_package_tests": 262,
+  "python_tests": 116,
+  "python_source_files": 48,
+  "new_rust_logic_tests": 10,
+  "new_python_guard_tests": 4,
+  "observed_available_fields": [
+    "system.device.vendor",
+    "system.device.model",
+    "system.motherboard.vendor",
+    "system.motherboard.model",
+    "system.firmware.vendor",
+    "system.firmware.version"
+  ],
+  "sdk_calls": 2,
+  "sdk_value_queries": 12,
+  "dynamic_refreshes_static_unchanged": 3,
+  "sdk_token_elevated": false,
+  "non_elevated_token_read_verified_here": true,
+  "all_non_admin_accounts_verified": false,
+  "native_windows_checks": 5,
+  "native_windows_processes": 16,
+  "crate_archives": 8,
+  "cross_compile_only": [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-apple-darwin"
+  ],
+  "cross_all_target_strict_clippy": "passed for Linux x64/macOS ARM64; compile-only",
+  "three_platform_ci": "not_run",
+  "actual_fuzz_campaign": "not_run",
+  "fuzz_targets": 12,
+  "fuzz_harness_unit_tests": 4,
+  "fuzz_all_target_strict_clippy": "passed on Windows; not a libFuzzer campaign",
+  "fuzz_delta": "existing dmi_text calls production UTF-16 parser; two synthetic seeds; no native registry I/O",
+  "miri_asan_benchmark": "not_run this round",
+  "physical_linux_macos": "deferred until devices available",
+  "new_target_dependency_feature": "windows-sys/Win32_System_Registry on Windows only",
+  "third_party_package_version_license_changes": false,
+  "root_and_fuzz_locks_changed": false,
+  "new_default_consumption_features": false,
+  "new_public_consumption_types_or_signatures": false,
+  "new_hidden_fuzz_hook": "bios_registry_text",
+  "c_abi_version": 1,
+  "schema_version": 1,
+  "license": "MIT",
+  "registry_publication_verified": false,
+  "migration": "Six Windows fields Unsupported -> Win32/Partial bounded attempt through existing WindowsBackend static entry; reconstruct Hardware for refresh",
+  "sdk_c_source_sha256": "96fd9163e69a1279208619277b5e39644fdb4d1009239b0399a5674b705116d3",
+  "gate_scope": "Final full gates before implementation commit; runtime/test sources unchanged afterwards. SDK/native/packages ran on clean implementation commit.",
+  "reports": {
+    "docs/evidence/windows-hardware-summary-native-82c6659.json": {
+      "sha256_lf": "8d139be78f116311bc48a92f494516bb70db9ab33c3c17999321bbf114da395a",
+      "bytes_lf": 90196
+    },
+    "docs/evidence/windows-hardware-summary-packages-82c6659.json": {
+      "sha256_lf": "16b74e05abeddd6a8cd3f2f890f721c2e5def35e3b31acc53aa06be42693ca92",
+      "bytes_lf": 1926
+    },
+    "docs/evidence/windows-hardware-summary-sdk-82c6659.json": {
+      "sha256_lf": "0b6c522098bec84ac3d24f1d22bfc92ff75743f20ff19d1d162e9d370e5bf0cb",
+      "bytes_lf": 5603
+    }
+  },
+  "local_log_hashes": {
+    "windows-summary-check.log": {
+      "sha256": "0d58f4b75360e482ca7ea2e2a76fa98bf0d48d75ce24a3e98fd3033b0f8c01f2",
+      "bytes": 30027
+    },
+    "windows-summary-python.log": {
+      "sha256": "94de7f2b8b50aa84c1e94d278533639072d4432bcbaf4a6c2390ff0fa7a38da6",
+      "bytes": 969
+    },
+    "windows-summary-macos-clippy.log": {
+      "sha256": "781e99d30e5f060e2c4790ae4bbe0ac7f80175ac3ed9d6353ce015a678f8e72b",
+      "bytes": 267
+    },
+    "windows-summary-linux-clippy.log": {
+      "sha256": "40b19439c3d0d0859278d85ac42c770d7ff3a201bd1b70851cbdd64e8feba2f3",
+      "bytes": 267
+    },
+    "windows-summary-fuzz-local.log": {
+      "sha256": "133ff1eb203ab8991439a384753d170a4bc9bc464785a52c8109e609437f3b22",
+      "bytes": 1950
+    },
+    "windows-summary-fuzz-clippy.log": {
+      "sha256": "15c153b9911e32b01c4fa01ca76b28934cb8f23504fbf3e31d7ec8029ffeef69",
+      "bytes": 846
+    },
+    "windows-summary-project.log": {
+      "sha256": "7d4c4c7291ec1dca32bb24379b9b027615f232e865a294204abbd5bbf79e9e64",
+      "bytes": 229
+    },
+    "windows-summary-probe-build.log": {
+      "sha256": "fd52e70b6ecf330895617fbe7be7c850179c86583762b3e8d5c3fa9ed1fef24f",
+      "bytes": 162
+    },
+    "windows-summary-c-clean.log": {
+      "sha256": "4674427a87892d2b4e468747b7379683dbf0c67d93e27ee14f27a8fb49e5872f",
+      "bytes": 204
+    },
+    "windows-summary-sdk-clean.log": {
+      "sha256": "04a750f07fcbc75b88dcbf2fe8d53bf1c98ef4a974ea5386d40ea3fa9cc73e2c",
+      "bytes": 48
+    },
+    "windows-summary-native-clean.log": {
+      "sha256": "117cb7016d4e1aa4caf801508aef87c4898074ee346c9228370963e4f0ca5a5d",
+      "bytes": 82
+    },
+    "windows-summary-packages.log": {
+      "sha256": "7942d74de26b380408d6d4bda206ee1178289fc47483273ce4be59148ec73202",
+      "bytes": 49
+    }
+  },
+  "limitations": [
+    "Registry strings are OS/OEM reports, not authenticated physical hardware or current running firmware/security state",
+    "Only six fixed names queried; no serial/UUID/SKU or raw SMBIOS; arbitrary OEM text may still contain identifying content",
+    "Non-elevated probe token succeeded here; not all ordinary accounts, ACLs, OEMs or sandboxes verified",
+    "Real permission denial, missing BIOS key, malformed native registry data and concurrent mutation not tested; injection tests are distinct",
+    "Static success and missing states remain cached until Hardware rebuild; no automatic firmware-update detection",
+    "SDK and Rust sequential observations are not atomic; cooperative checks cannot interrupt blocked OS calls",
+    "No 32-bit or Windows ARM64 native validation, new three-platform CI, actual new parser fuzz, long leak/peak-memory or benchmark proof",
+    "Extracted unpublished sibling crates use local patches; no registry or release publication",
+    "RegGetValueW may append a missing NUL itself; parser validation covers the returned representation, not original storage integrity"
+  ],
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "cargo clippy --locked --workspace --all-targets --all-features --target aarch64-apple-darwin -- -D warnings",
+    "cargo clippy --locked --workspace --all-targets --all-features --target x86_64-unknown-linux-gnu -- -D warnings",
+    "Ruff 0.14.13 format/check; mypy 1.19.1; Python unittest discover; jsonschema 4.25.1; check_project.py",
+    "cargo fmt --manifest-path fuzz/Cargo.toml --check",
+    "cargo test --locked --offline --manifest-path fuzz/Cargo.toml --lib",
+    "cargo clippy --locked --offline --manifest-path fuzz/Cargo.toml --all-targets -- -D warnings",
+    "cargo build --locked -p daoseeker-scope --example dynamic_probe",
+    "pwsh -NoProfile -File scripts/build_c_example.ps1 -HardwareSummaryProbe",
+    "python scripts/windows_hardware_summary_smoke.py",
+    "python scripts/native_smoke.py --output target/windows-summary-native-clean.json",
+    "python scripts/check_packages.py --offline"
+  ]
+}

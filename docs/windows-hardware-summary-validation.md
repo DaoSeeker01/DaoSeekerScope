@@ -29,6 +29,15 @@ python scripts/native_smoke.py --output target/windows-summary-native-clean.json
 
 四项新增 Python 测试拒绝假成功状态、布尔伪整数、错误长度/类型/来源/能力/值、意外标识字段及失败后保留旧成功；失败报告只输出固定错误分类。fuzz 复用 dmi_text，新增两份 UTF-16 合成种子；Windows 本地 4 项 harness 单测、fmt 和全部目标严格 Clippy 通过，目标总数仍为 12。本轮解析器尚未运行实际 libFuzzer campaign，上一轮的 CI 不能证明新路径。
 
+实现提交 `82c6659898743fe2abcc6933d3eaaca97243220c` 的干净工作区完成：
+
+- [本机索引](evidence/windows-hardware-summary-local-82c6659.json)：命令、来源、日志与报告哈希及未验证边界。
+- [八包报告](evidence/windows-hardware-summary-packages-82c6659.json)：8 个实际归档、原生 Cargo 验证、解包后独立 workspace 262 项测试与 CLI 安装；第三方锁不变，未发布相邻 crate 使用本地 patch。
+- [原生报告](evidence/windows-hardware-summary-native-82c6659.json)：CLI/C/Python 等五组、16 个进程通过，含 100 次 Python collect/free。
+- [SDK 对照报告](evidence/windows-hardware-summary-sdk-82c6659.json)：初次与重建共两帧、12 次固定值查询；六项均 Available，探针 `token_elevated=false`；三次刷新静态模型和字段时间戳不变。
+
+完整门禁在实现提交前运行；运行和测试源码随后未改变。实现提交后重建探针并运行八包、SDK 与原生验收，三个报告均绑定同一干净提交。之后归档只更新文档与证据。RegGetValueW 自身可能为缺少终止符的存储字符串补 NUL；本库严格校验的是 API 返回表示，不声称证明注册表原始存储编码完整。
+
 尚未验证：本轮三平台原生 CI、实际新解析路径 fuzz、真实 ACL 拒绝/BIOS 键缺失、UWP/沙盒、不同 OEM/虚拟机、运行时并发修改注册表和固件更新场景、32 位与 Windows ARM64 原生、长期泄漏/峰值内存/专用基准。实体 Linux/macOS 按维护者安排延期。取消检查无法强制中断阻塞的 OS 调用；core 既有 worker 限额/等待边界不变。
 
 只增加 Windows target 的既有 windows-sys Registry feature，无第三方包/版本、两个锁文件、消费类型/签名、JSON 形状或许可证变化。复用默认关闭的 fuzzing feature，MIT、ABI 1、Schema 1 不变；尚未发布 registry/release。
