@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-2026-10-25 Windows 硬件摘要开发增量：现有 WindowsBackend 静态采集六个固定注册表值，对应既有设备/主板 vendor/model、固件 vendor/version；从 Unsupported 改为 Win32/Partial 有界尝试，不查询序列号/UUID或整份 SMBIOS。成功和缺失均静态缓存，动态刷新不重读，更新需重建 Hardware。没有新消费类型/签名、模型或 JSON 形状，ABI 1/Schema 1、MIT 不变。仅为已锁定 windows-sys 增加 Registry target feature；包/版本/锁不变，复用 dmi_text 解析 fuzz。Windows 本机未提升 token 六值和独立 SDK 通过，本轮 CI 待验，见[ADR 0030](adr/0030-windows-hardware-summary.md)与[记录](windows-hardware-summary-validation.md)。不将注册表报告当作硬件/固件真实性证明；回滚可移除六项读取与能力声明。
+2026-10-25 Windows 硬件摘要开发增量：现有 WindowsBackend 静态采集六个固定注册表值，对应既有设备/主板 vendor/model、固件 vendor/version；从 Unsupported 改为 Win32/Partial 有界尝试，不查询序列号/UUID或整份 SMBIOS。成功和缺失均静态缓存，动态刷新不重读，更新需重建 Hardware。没有新消费类型/签名、模型或 JSON 形状，ABI 1/Schema 1、MIT 不变。仅为已锁定 windows-sys 增加 Registry target feature；包/版本/锁不变，复用 dmi_text 解析 fuzz。Windows 本机未提升 token、CI 提升 token 六值/独立 SDK 通过；三平台 CI 40145306966 全部八项、各八包及十二个短 fuzz 已通过，见[ADR 0030](adr/0030-windows-hardware-summary.md)与[记录](windows-hardware-summary-validation.md)。不将注册表报告当作硬件/固件真实性证明；回滚可移除六项读取与能力声明。
 
 2026-10-24 Windows CPU 多组开发增量：单组路径不变，64 位多组从固定 Unsupported 改为有界尝试采集，最多 16 组/1024 logical processors；自有线程逐组读取并 join，不改变调用线程亲和性。逐组验证后加权，拓扑变化重新预热，失败不返回部分或旧结果。来源 Win32/Partial、公共消费类型/签名、ABI 1/Schema 1、MIT 不变。新增默认关闭的 Windows `fuzzing` feature，fuzz 锁仅新增直接依赖边，第三方版本/许可证和根锁不变。本机单组 SDK/helper、三平台 CI 40046393393 与全部 12 个短 fuzz 已通过，2026-10-25 归档；实际多组仍未验证，见 [ADR 0029](adr/0029-windows-cpu-groups.md)与[记录](windows-cpu-groups-validation.md)。回滚可恢复原有单组路径，多组消费方必须继续检查字段可用性。
 

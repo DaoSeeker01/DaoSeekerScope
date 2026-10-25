@@ -1,0 +1,213 @@
+{
+  "status": "passed",
+  "platform": "Windows",
+  "observed_at": "2026-10-25T00:12:01.901154+00:00",
+  "limitations": [
+    "Six OS registry summaries, not firmware authenticity or a raw SMBIOS table",
+    "Token elevation recorded; elevated access does not prove ordinary-user access",
+    "No real ACL, missing BIOS key, UWP sandbox or simultaneous registry mutation experiment",
+    "Sequential SDK and Rust reads are not an atomic snapshot; OEM text may be inaccurate or identifying"
+  ],
+  "git_revision": "01d222f242d3f4254ed87ecbfe937e929389cb33",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "rust_probe": "708dd3586118660c608f6331cbe148be6c4e4ca06fe5843b2ac307c75cf82f1f",
+    "c_sdk_probe": "cd6c12c9829962cd5d90d70b1f27a916c43ce0edab0c3526e55b5f47932d0e25"
+  },
+  "initial": {
+    "fields": {
+      "system.device.vendor": {
+        "value": "Microsoft Corporation",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122003,
+        "reason": null
+      },
+      "system.device.model": {
+        "value": "Virtual Machine",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122003,
+        "reason": null
+      },
+      "system.motherboard.vendor": {
+        "value": "Microsoft Corporation",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122003,
+        "reason": null
+      },
+      "system.motherboard.model": {
+        "value": "Virtual Machine",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122003,
+        "reason": null
+      },
+      "system.firmware.vendor": {
+        "value": "Microsoft Corporation",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122003,
+        "reason": null
+      },
+      "system.firmware.version": {
+        "value": "Hyper-V UEFI Release v4.1",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122003,
+        "reason": null
+      }
+    },
+    "sdk": {
+      "status": "passed",
+      "calls": 1,
+      "queries": 6,
+      "buffer_bytes": 4096,
+      "token_elevated": true,
+      "fields": {
+        "system.device.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 44,
+          "value": "Microsoft Corporation"
+        },
+        "system.device.model": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 32,
+          "value": "Virtual Machine"
+        },
+        "system.motherboard.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 44,
+          "value": "Microsoft Corporation"
+        },
+        "system.motherboard.model": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 32,
+          "value": "Virtual Machine"
+        },
+        "system.firmware.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 44,
+          "value": "Microsoft Corporation"
+        },
+        "system.firmware.version": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 52,
+          "value": "Hyper-V UEFI Release v4.1"
+        }
+      }
+    }
+  },
+  "available_fields": 6,
+  "sdk_token_elevated": true,
+  "ordinary_user_read_verified": false,
+  "refreshes": [
+    {
+      "static_fields_unchanged": true
+    },
+    {
+      "static_fields_unchanged": true
+    },
+    {
+      "static_fields_unchanged": true
+    }
+  ],
+  "rebuilt": {
+    "fields": {
+      "system.device.vendor": {
+        "value": "Microsoft Corporation",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122121,
+        "reason": null
+      },
+      "system.device.model": {
+        "value": "Virtual Machine",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122121,
+        "reason": null
+      },
+      "system.motherboard.vendor": {
+        "value": "Microsoft Corporation",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122121,
+        "reason": null
+      },
+      "system.motherboard.model": {
+        "value": "Virtual Machine",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122121,
+        "reason": null
+      },
+      "system.firmware.vendor": {
+        "value": "Microsoft Corporation",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122121,
+        "reason": null
+      },
+      "system.firmware.version": {
+        "value": "Hyper-V UEFI Release v4.1",
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1792887122121,
+        "reason": null
+      }
+    },
+    "sdk": {
+      "status": "passed",
+      "calls": 2,
+      "queries": 12,
+      "buffer_bytes": 4096,
+      "token_elevated": true,
+      "fields": {
+        "system.device.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 44,
+          "value": "Microsoft Corporation"
+        },
+        "system.device.model": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 32,
+          "value": "Virtual Machine"
+        },
+        "system.motherboard.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 44,
+          "value": "Microsoft Corporation"
+        },
+        "system.motherboard.model": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 32,
+          "value": "Virtual Machine"
+        },
+        "system.firmware.vendor": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 44,
+          "value": "Microsoft Corporation"
+        },
+        "system.firmware.version": {
+          "code": 0,
+          "kind": 1,
+          "bytes": 52,
+          "value": "Hyper-V UEFI Release v4.1"
+        }
+      }
+    }
+  }
+}

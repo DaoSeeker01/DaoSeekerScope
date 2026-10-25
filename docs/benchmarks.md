@@ -1,5 +1,16 @@
 # 性能基线
 
+## Windows 硬件摘要切片的整库回归基准（2026-10-25）
+
+源码 `01d222f242d3f4254ed87ecbfe937e929389cb33`，命令 `cargo bench --locked -p daoseeker-scope --bench collect`，Rust 1.96、bench 优化 profile、默认 serde 与对应平台增强。原生 max_entries=128；合成为 100 个传感器和 1024 个网络条目，max_entries=1024。仅托管 Linux/macOS 整库回归，不是 Windows 注册表六值查询、CLI 启动或物理设备性能。
+
+| 平台 | 首次 collect µs | 刷新 p50 / p95 / max µs（100 次） | 合成 collect µs / JSON bytes | 环境和原始日志 |
+|---|---|---|---|---|
+| Linux x64 | 1175 | 318 / 374 / 399 | 180 / 373541 | [完整记录](evidence/windows-hardware-summary-benchmark-linux-40145306966.json) |
+| macOS ARM64 | 30635 | 36 / 59 / 79 | 280 / 373541 | [完整记录](evidence/windows-hardware-summary-benchmark-darwin-40145306966.json) |
+
+首次 collect 不含构造，刷新使用静态缓存；环境、系统报告的 CPU/内存和原始日志在记录中。没有旧版配对、峰值内存或长期泄漏测量，不声明性能改善/退化或 SLA；macOS VM 计数仍可能由 OS 缓存。
+
 ## Windows CPU 多组切片的整库回归基准（2026-10-24）
 
 源码 `bedd8a7f96403020ee5492ab9cbe7221fc5ecff8`，2026-10-25 归档。命令 `cargo bench --locked -p daoseeker-scope --bench collect`，Rust 1.96、bench 优化 profile、默认 serde 与对应平台增强。原生 max_entries=128；合成为 100 个传感器和 1024 个网络条目，max_entries=1024。仅托管 Linux/macOS 整库回归，没有 Windows 多组/helper 性能测量。

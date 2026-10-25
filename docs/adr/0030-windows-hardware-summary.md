@@ -1,6 +1,6 @@
 # ADR 0030：Windows 注册表设备、主板与固件摘要
 
-状态：已实现并通过本地 Rust/Python 门禁与独立 SDK 对照；本轮 CI 尚未执行。最初调研确认本机六值存在，均为 REG_SZ；具体来源与验收边界见[验证记录](../windows-hardware-summary-validation.md)。不新增公共消费类型。
+状态：已实现并通过本地 Rust/Python 门禁与独立 SDK 对照；三平台 CI 40145306966 全部八项通过（2026-10-25），包括 Windows 六值/SDK 与扩展解析 fuzz。最初调研确认本机六值存在，均为 REG_SZ；具体来源与验收边界见[验证记录](../windows-hardware-summary-validation.md)。不新增公共消费类型。
 
 只读 `HKLM\HARDWARE\DESCRIPTION\System\BIOS` 中固定六个值，不枚举键或其他值：
 

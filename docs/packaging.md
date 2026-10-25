@@ -22,7 +22,7 @@ python scripts/check_packages.py
 
 ## 验证边界
 
-2026-10-25 Windows 硬件摘要实现 `82c6659` 的干净工作区完成八个实际归档、原生 Cargo 验证、解包后独立 workspace 262 项测试及 CLI 安装；[报告](evidence/windows-hardware-summary-packages-82c6659.json)保存每包哈希和第三方锁约束。SDK 与原生报告绑定同一提交，六项摘要在本机未提升 token 可读；本轮三平台 CI、registry/release 尚未执行，见[索引](evidence/windows-hardware-summary-local-82c6659.json)。相邻未发布 crate 仍使用本地 patch，不冒充 registry 安装。
+2026-10-25 Windows 硬件摘要实现 `82c6659` 的干净工作区完成八个实际归档、原生 Cargo 验证、解包后独立 workspace 262 项测试及 CLI 安装；[报告](evidence/windows-hardware-summary-packages-82c6659.json)保存每包哈希和第三方锁约束。SDK 与原生报告绑定同一提交，六项摘要在本机未提升 token 可读；同日源码 01d222f 的三平台 CI 40145306966 每平台八包通过，独立测试 Windows/Linux/macOS 为 262/254/259 项含 doctest，见[CI 索引](evidence/windows-hardware-summary-ci-40145306966.json)。registry/release 尚未执行。相邻未发布 crate 仍使用本地 patch，不冒充 registry 安装。
 
 2026-10-24 Windows CPU 多组实现 `7fbb19e` 的干净工作区通过八包实际归档、原生 Cargo 验证、解包后独立 workspace 252 项测试和 CLI 安装；[报告](evidence/windows-cpu-groups-packages-7fbb19e.json)记录包哈希和锁约束。同日源码 `bedd8a7` 的三平台 CI 40046393393 每平台八包通过，独立测试 Windows/Linux/macOS 为 252/244/249 项含 doctest，2026-10-25 完成[归档](evidence/windows-cpu-groups-ci-40046393393.json)。本机和 CI Windows 都只有一个活动组，包内 helper 实读不证明真实跨组；registry/release 未执行。
 
