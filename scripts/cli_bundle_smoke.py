@@ -100,6 +100,7 @@ def probe_selected(
 def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
     payload = verify_bundle(archive, checksum)
     manifest = json.loads(payload["manifest.json"])
+    require(manifest.get("product", "cli") == "cli", "unsupported_product")
     target = manifest["target"]
     require_runtime_host(target)
     with tempfile.TemporaryDirectory(

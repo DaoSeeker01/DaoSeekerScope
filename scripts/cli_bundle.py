@@ -27,6 +27,16 @@ MAX_FILE = 64 * 1024 * 1024
 MAX_TOTAL = 128 * 1024 * 1024
 MAX_ENTRIES = 512
 MAX_MANIFEST = 256 * 1024
+FFI_FILES = frozenset(
+    {
+        "bin/daoseeker_scope_ffi.dll",
+        "lib/daoseeker_scope_ffi.dll.lib",
+        "bindings/daoseeker_scope.h",
+        "examples/collect.c",
+        "examples/collect.py",
+        "schema/snapshot-v1.schema.json",
+    }
+)
 
 
 def require(condition: bool, code: str) -> None:
@@ -36,6 +46,17 @@ def require(condition: bool, code: str) -> None:
 
 def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def bundle_format(target: str, product: str) -> int:
+    require(
+        target in SUPPORTED_TARGETS and product in ("cli", "ffi_sdk"),
+        "unsupported_product",
+    )
+    if product == "ffi_sdk":
+        require(target == TARGET, "unsupported_ffi_target")
+        return 3
+    return 2 if target == LINUX_TARGET else 1
 
 
 def executable_name(target: str) -> str:
@@ -142,14 +163,16 @@ def verify_bundle(archive: Path, expected_sha256: str) -> dict[str, bytes]:
     require(isinstance(manifest, dict), "manifest_shape")
     target = manifest.get("target")
     require(isinstance(target, str) and target in SUPPORTED_TARGETS, "manifest_version")
-    bundle_format = 2 if target == LINUX_TARGET else 1
+    product = manifest.get("product", "cli")
+    require(isinstance(product, str), "manifest_version")
+    expected_format = bundle_format(target, product)
     require(
         all(
             type(manifest.get(key)) is int and manifest[key] == 1
             for key in ("abi_version", "schema_version")
         )
         and type(manifest.get("bundle_format")) is int
-        and manifest["bundle_format"] == bundle_format
+        and manifest["bundle_format"] == expected_format
         and type(manifest.get("source_dirty")) is bool
         and isinstance(manifest.get("source_commit"), str)
         and re.fullmatch(r"[0-9a-f]{40}", manifest["source_commit"]) is not None
@@ -158,11 +181,9 @@ def verify_bundle(archive: Path, expected_sha256: str) -> dict[str, bytes]:
     )
     files = manifest.get("files")
     require(isinstance(files, dict) and set(files) == set(payload), "manifest_files")
-    require(
-        {executable_name(target), "LICENSE-MIT", "THIRD_PARTY.md", "README.txt"}
-        <= set(payload),
-        "missing_required_file",
-    )
+    required = set(FFI_FILES) if product == "ffi_sdk" else {executable_name(target)}
+    required.update({"LICENSE-MIT", "THIRD_PARTY.md", "README.txt"})
+    require(required <= set(payload), "missing_required_file")
     if target == LINUX_TARGET:
         require(
             modes["manifest.json"] == (3, stat.S_IFREG | 0o644), "archive_permissions"
@@ -196,12 +217,14 @@ def run(arguments: list[str]) -> str:
     return result.stdout.decode("utf-8").strip()
 
 
-def dependency_payload(metadata: dict[str, Any]) -> dict[str, bytes]:
+def dependency_payload(
+    metadata: dict[str, Any], root_package: str = "daoseeker-scope-cli"
+) -> dict[str, bytes]:
     """Conservative CLI dependency closure, including build but excluding dev edges."""
     packages = {p["id"]: p for p in metadata["packages"]}
     nodes = {n["id"]: n for n in metadata["resolve"]["nodes"]}
-    pending = [p["id"] for p in packages.values() if p["name"] == "daoseeker-scope-cli"]
-    require(len(pending) == 1, "cli_package")
+    pending = [p["id"] for p in packages.values() if p["name"] == root_package]
+    require(len(pending) == 1, "root_package")
     seen: set[str] = set()
     while pending:
         identifier = pending.pop()
@@ -217,7 +240,7 @@ def dependency_payload(metadata: dict[str, Any]) -> dict[str, bytes]:
     inventory = [
         "# Third-party crate notices",
         "",
-        "Target-filtered CLI closure; includes build dependencies conservatively.",
+        f"Target-filtered {'CLI' if root_package == 'daoseeker-scope-cli' else 'FFI SDK'} closure; includes build dependencies conservatively.",
         "All discovered root license/copyright/notice files are retained verbatim.",
         "SPDX expressions describe upstream choices, not a relicensing by this project.",
         "Rust toolchain notices are also included under licenses/rust/.",
@@ -263,8 +286,10 @@ def write_bundle(
     payload: dict[str, bytes],
     provenance: dict[str, Any],
     target: str = TARGET,
+    product: str = "cli",
 ) -> str:
-    require(target in SUPPORTED_TARGETS, "unsupported_target")
+    version = bundle_format(target, product)
+    require("product" not in provenance, "reserved_product")
     require("manifest.json" not in payload, "reserved_manifest")
     require(len(payload) + 1 <= MAX_ENTRIES, "entry_limit")
     require(all(safe_name(name) for name in payload), "unsafe_member")
@@ -273,8 +298,9 @@ def write_bundle(
     require(sum(map(len, payload.values())) <= MAX_TOTAL - MAX_MANIFEST, "total_limit")
     manifest = {
         **provenance,
-        "bundle_format": 2 if target == LINUX_TARGET else 1,
+        "bundle_format": version,
         "target": target,
+        **({"product": product} if product == "ffi_sdk" else {}),
         "abi_version": 1,
         "schema_version": 1,
         "files": {
@@ -310,9 +336,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--offline", action="store_true")
     parser.add_argument("--allow-dirty", action="store_true")
+    parser.add_argument("--product", choices=("cli", "ffi_sdk"), default="cli")
     options = parser.parse_args()
     rustc = run(["rustc", "-vV"])
     target = native_target(rustc)
+    product = options.product
+    bundle_format(target, product)
+    package = "daoseeker-scope-ffi" if product == "ffi_sdk" else "daoseeker-scope-cli"
     checkout_status = run(["git", "status", "--porcelain"])
     dirty = bool(checkout_status)
     require(not dirty or options.allow_dirty, "dirty_checkout")
@@ -334,7 +364,7 @@ def main() -> None:
             ]
         )
     )
-    payload = dependency_payload(metadata)
+    payload = dependency_payload(metadata, root_package=package)
     sysroot = Path(run(["rustc", "--print", "sysroot"])) / "share/doc/rust"
     rust_notices = [sysroot / "COPYRIGHT.html", sysroot / "COPYRIGHT-library.html"]
     rust_notices.extend(sorted((sysroot / "licenses").glob("*")))
@@ -362,13 +392,31 @@ def main() -> None:
                 "--target-dir",
                 str(build),
                 "-p",
-                "daoseeker-scope-cli",
+                package,
                 *offline,
             ]
         )
-        binary = build / target / "release" / Path(executable_name(target)).name
-        with binary.open("rb") as source:
-            payload[executable_name(target)] = source.read(MAX_FILE + 1)
+        release = build / target / "release"
+        binaries = (
+            {
+                "bin/daoseeker_scope_ffi.dll": "daoseeker_scope_ffi.dll",
+                "lib/daoseeker_scope_ffi.dll.lib": "daoseeker_scope_ffi.dll.lib",
+            }
+            if product == "ffi_sdk"
+            else {executable_name(target): Path(executable_name(target)).name}
+        )
+        for name, filename in binaries.items():
+            with (release / filename).open("rb") as source:
+                payload[name] = source.read(MAX_FILE + 1)
+    if product == "ffi_sdk":
+        for name, filename in {
+            "bindings/daoseeker_scope.h": "bindings/daoseeker_scope.h",
+            "examples/collect.c": "examples/collect.c",
+            "examples/collect.py": "examples/collect.py",
+            "schema/snapshot-v1.schema.json": "docs/schema/snapshot-v1.schema.json",
+        }.items():
+            with (ROOT / filename).open("rb") as source:
+                payload[name] = source.read(MAX_FILE + 1)
     payload["LICENSE-MIT"] = (ROOT / "LICENSE-MIT").read_bytes()
     windows_readme = (
         "DaoSeekerScope unpublished Windows x64 CLI candidate\n"
@@ -391,6 +439,20 @@ def main() -> None:
         "SHA-256 detects corruption, not publisher identity. No signature is supplied.\n"
     ).encode()
     payload["README.txt"] = linux_readme if target == LINUX_TARGET else windows_readme
+    if product == "ffi_sdk":
+        payload["README.txt"] = (
+            "DaoSeekerScope unpublished Windows x64 FFI SDK candidate; ABI 1 / snapshot Schema 1\n"
+            "Verify SHA256SUMS before extracting into a fresh directory. Keep all notices with the DLL.\n"
+            "In an x64 MSVC developer shell:\n"
+            "cl /nologo /W4 /WX /std:c11 /Febin\\collect.exe /Fobin\\collect.obj examples\\collect.c lib\\daoseeker_scope_ffi.dll.lib\n"
+            "bin\\collect.exe\n"
+            "python examples\\collect.py <absolute-path-to-bin\\daoseeker_scope_ffi.dll>\n"
+            "Use the included header and import library with this DLL. Free library buffers using dsc_buffer_free.\n"
+            "Python's example requires only the standard library. C builds require MSVC and Windows SDK.\n"
+            "Keep the previous complete SDK directory for rollback; no PATH or global install is needed.\n"
+            "System runtime prerequisites, signing and old-version compatibility are not established.\n"
+            "SHA-256 detects corruption, not publisher identity. No binary distribution has occurred.\n"
+        ).encode()
     require((ROOT / "Cargo.lock").read_bytes() == lock, "lock_changed")
     require(run(["git", "rev-parse", "HEAD"]) == revision, "revision_changed")
     require(
@@ -402,7 +464,8 @@ def main() -> None:
     stage_root = ROOT / "target/cli-bundles"
     stage_root.mkdir(parents=True, exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix="candidate-", dir=stage_root))
-    archive = stage / f"dscope-{version}-{target}.zip"
+    prefix = "daoseeker-scope-ffi-sdk" if product == "ffi_sdk" else "dscope"
+    archive = stage / f"{prefix}-{version}-{target}.zip"
     checksum = write_bundle(
         archive,
         payload,
@@ -415,6 +478,7 @@ def main() -> None:
             "published": False,
         },
         target=target,
+        product=product,
     )
     (stage / "SHA256SUMS").write_text(f"{checksum}  {archive.name}\n", encoding="ascii")
     print(archive.relative_to(ROOT))

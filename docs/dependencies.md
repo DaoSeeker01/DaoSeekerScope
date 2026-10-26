@@ -1,5 +1,7 @@
 # 锁定依赖许可证清单
 
+2026-10-26 macOS 制品材料调查：六个锁定 objc2 系列 crate 的归档缺独立许可文件；三个精确源码提交的根 LICENSE.md 为同一许可说明，不含完整 MIT grant。记录版本、SPDX、VCS 和原文件哈希的[调查索引](evidence/macos-license-research-2026-10-26.json)不认定既有许可证无效，也不作为分发许可结论。本轮未新增/升级依赖或更改许可证，只保留 macOS 完整许可材料待办，继续实现 Windows SDK 打包。
+
 2026-10-25 Windows 硬件摘要：仅为已有 windows-sys 0.61.2 增加 Windows target 的 `Win32_System_Registry` 绑定 feature。无新第三方包、版本、许可证或锁变化；复用既有默认关闭的 Windows `fuzzing` feature 和 dmi_text 目标。项目 MIT、公开消费 features 不变，C SDK 探针独立编写，仅使用公开 API，不复制系统实现。
 
 2026-10-24 Windows CPU 多组采样沿用 windows-sys 0.61.2 已有绑定，无新第三方包、版本或 SDK feature。Windows crate 新增默认关闭的 `fuzzing` feature；fuzz workspace 直接启用该隐藏纯解析入口，fuzz/Cargo.lock 仅新增该依赖边，根 Cargo.lock 不变。项目 MIT、第三方许可证不变；C SDK 探针独立编写，没有复制系统实现。

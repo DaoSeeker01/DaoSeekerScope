@@ -1,5 +1,7 @@
 # 打包与安装验证
 
+Windows FFI SDK 二进制候选入口与 C/Python 消费者验证见[本轮记录](windows-ffi-sdk-validation.md)，不与 `.crate` 源码包或现有 CLI 制品验收混淆。
+
 2026-10-26 Linux CLI 候选实现：共享工具新增 GNU/Linux x86_64 的 ZIP v2，显式校验和恢复 Unix 文件权限；Windows ZIP v1 保留。干净提交 cdd8760 的 Windows 六进程回归、262 项 Rust 与 138 项 Python 测试通过，另 2 项 POSIX 权限测试明确跳过。随后源码 98172d0 的三平台 CI 40245533279 全部八项通过，Linux 原生 release/安装/回滚及两项 POSIX 权限测试通过；Windows 格式测试不作为 Linux 设备证据，见[本轮状态](linux-cli-bundle-validation.md)。
 
 Windows CLI 二进制候选包另见[离线安装与回滚验证](cli-bundle-validation.md)；本文的八包验证针对 Rust `.crate` 消费者。

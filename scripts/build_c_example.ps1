@@ -2,6 +2,7 @@ param(
     [string]$VcRoot,
     [string]$SdkRoot,
     [string]$SdkVersion,
+    [string]$SdkDirectory,
     [switch]$MemoryProbe,
     [switch]$CpuProbe,
     [switch]$UptimeProbe,
@@ -41,6 +42,16 @@ try {
     $env:INCLUDE = @((Join-Path $VcRoot 'include'), (Join-Path $SdkRoot "Include\$SdkVersion\ucrt"), (Join-Path $SdkRoot "Include\$SdkVersion\shared"), (Join-Path $SdkRoot "Include\$SdkVersion\um")) -join ';'
     $env:LIB = @((Join-Path $VcRoot 'lib\x64'), (Join-Path $SdkRoot "Lib\$SdkVersion\ucrt\x64"), (Join-Path $SdkRoot "Lib\$SdkVersion\um\x64")) -join ';'
     $env:PATH = (Join-Path $VcRoot 'bin\Hostx64\x64') + ';' + $oldPath
+    if ($SdkDirectory) {
+        $candidateRoot = (Resolve-Path -LiteralPath $SdkDirectory).Path
+        $candidateC = Join-Path $candidateRoot 'examples\collect.c'
+        $candidateLib = Join-Path $candidateRoot 'lib\daoseeker_scope_ffi.dll.lib'
+        $candidateExe = Join-Path $candidateRoot 'bin\c-example.exe'
+        $candidateObj = Join-Path $candidateRoot 'bin\c-example.obj'
+        & $compiler /nologo /W4 /WX /std:c11 "/Fe$candidateExe" "/Fo$candidateObj" $candidateC $candidateLib
+        if ($LASTEXITCODE -ne 0) { throw "SDK C compile failed: $LASTEXITCODE" }
+        return
+    }
     & $compiler /nologo /W4 /WX /std:c11 /Fetarget\debug\c-example.exe /Fotarget\debug\c-example.obj examples\collect.c target\debug\daoseeker_scope_ffi.dll.lib
     if ($LASTEXITCODE -ne 0) { throw "C compile failed: $LASTEXITCODE" }
     & .\target\debug\c-example.exe | Out-Null

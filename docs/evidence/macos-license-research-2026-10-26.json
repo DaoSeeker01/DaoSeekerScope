@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-26",
+  "scope": "locked macOS CLI dependency notices; no legal clearance or binary support claim",
+  "cargo_lock_sha256": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae",
+  "packages": [
+    {
+      "name": "objc2",
+      "version": "0.6.5",
+      "spdx": "MIT",
+      "vcs_commit": "d7d2fa23ceaa5e6096c923b081040e5d81b3b9df",
+      "path_in_vcs": "crates/objc2",
+      "root_notice_url": "https://github.com/madsmtm/objc2/blob/d7d2fa23ceaa5e6096c923b081040e5d81b3b9df/LICENSE.md",
+      "standalone_notice_in_crate": false
+    },
+    {
+      "name": "objc2-core-foundation",
+      "version": "0.3.2",
+      "spdx": "Zlib OR Apache-2.0 OR MIT",
+      "vcs_commit": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+      "path_in_vcs": "framework-crates/objc2-core-foundation",
+      "root_notice_url": "https://github.com/madsmtm/objc2/blob/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+      "standalone_notice_in_crate": false
+    },
+    {
+      "name": "objc2-encode",
+      "version": "4.1.0",
+      "spdx": "MIT",
+      "vcs_commit": "8d214f5477365ffcbcbb7de058c86ed9a518efb7",
+      "path_in_vcs": "crates/objc2-encode",
+      "root_notice_url": "https://github.com/madsmtm/objc2/blob/8d214f5477365ffcbcbb7de058c86ed9a518efb7/LICENSE.md",
+      "standalone_notice_in_crate": false
+    },
+    {
+      "name": "objc2-foundation",
+      "version": "0.3.2",
+      "spdx": "MIT",
+      "vcs_commit": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+      "path_in_vcs": "framework-crates/objc2-foundation",
+      "root_notice_url": "https://github.com/madsmtm/objc2/blob/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+      "standalone_notice_in_crate": false
+    },
+    {
+      "name": "objc2-io-kit",
+      "version": "0.3.2",
+      "spdx": "Zlib OR Apache-2.0 OR MIT",
+      "vcs_commit": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+      "path_in_vcs": "framework-crates/objc2-io-kit",
+      "root_notice_url": "https://github.com/madsmtm/objc2/blob/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+      "standalone_notice_in_crate": false
+    },
+    {
+      "name": "objc2-metal",
+      "version": "0.3.2",
+      "spdx": "Zlib OR Apache-2.0 OR MIT",
+      "vcs_commit": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+      "path_in_vcs": "framework-crates/objc2-metal",
+      "root_notice_url": "https://github.com/madsmtm/objc2/blob/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+      "standalone_notice_in_crate": false
+    }
+  ],
+  "verified_root_notice": {
+    "git_blob_sha1": "540ae4c81adb5f64a9f61e222b688880da24300e",
+    "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+    "bytes": 1339,
+    "same_blob_verified_at_all_three_package_commits": true,
+    "contains_full_mit_grant": false,
+    "contains_explicit_copyright_line": false
+  },
+  "upstream_tracking": {
+    "url": "https://github.com/madsmtm/objc2/issues/23",
+    "state_when_checked": "open",
+    "meaning": "Tracks historical relicensing/copyright-notice work; not evidence that the current MIT declaration is invalid"
+  },
+  "decision": "Keep complete-notice packaging gate unchanged; macOS candidate packaging remains pending notice material/review. Do not fabricate copyright holders or treat a license-summary link as completed notice copying.",
+  "not_done": [
+    "No upstream contact or permission request",
+    "No copied replacement license or inferred copyright owner",
+    "No macOS binary packaged or executed in this round",
+    "No conclusion that the declared SPDX license is invalid"
+  ]
+}

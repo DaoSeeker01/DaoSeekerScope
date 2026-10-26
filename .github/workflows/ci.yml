@@ -93,6 +93,22 @@ jobs:
           path: target/cli-bundle-evidence.json
           if-no-files-found: ignore
           retention-days: 14
+      - name: Windows FFI SDK candidate C and Python consumers
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $sdk = python scripts/cli_bundle.py --product ffi_sdk
+          if ($LASTEXITCODE -ne 0) { throw 'FFI SDK build failed' }
+          python scripts/ffi_bundle_smoke.py $sdk
+          if ($LASTEXITCODE -ne 0) { throw 'FFI SDK rehearsal failed' }
+      - name: Preserve Windows FFI SDK evidence
+        if: always() && runner.os == 'Windows'
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: ffi-sdk-evidence-Windows-X64
+          path: target/ffi-bundle-evidence.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: C FFI on Windows
         if: runner.os == 'Windows'
         shell: cmd
