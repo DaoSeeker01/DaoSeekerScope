@@ -1,0 +1,32 @@
+{
+  "overall": "passed",
+  "source_commit": "af312dad99abcbfc8fe2becd8a2fc209fca85f90",
+  "source_dirty": false,
+  "product": "ffi_sdk",
+  "target": "x86_64-pc-windows-msvc",
+  "host": {
+    "system": "Windows",
+    "version": "10.0.26100",
+    "machine": "AMD64"
+  },
+  "bundle_format": 3,
+  "abi_version": 1,
+  "schema_version": 1,
+  "archive_sha256": "94779c9dec1cdd469374c898229b08bc491a19eedf41f7b40feebbe065062af9",
+  "header_sha256": "7ba816254bd0314ed26cd620a8d802578e153689ed17fbf7ccc4a75289a8e523",
+  "payload_files": 78,
+  "processes": 9,
+  "c_compile_and_runs": 3,
+  "python_collect_free_cycles": 300,
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "stale_copy_and_empty_free": true,
+  "corrupt_update_rejected_before_install": true,
+  "same_candidate_two_slot_rollback": true,
+  "older_version_compatibility_tested": false,
+  "published": false,
+  "global_install_or_path_modified": false,
+  "publisher_authenticated": false,
+  "dll_sha256": "c68dbe422db8fdb5215729d068880b0e7bed855311754cdb7c2bf63bdffa1cb8",
+  "import_library_sha256": "78214f2b47ae59f00921e35c5b672c253348d5e0a9d94cd574dccb2b7c33ddd2"
+}

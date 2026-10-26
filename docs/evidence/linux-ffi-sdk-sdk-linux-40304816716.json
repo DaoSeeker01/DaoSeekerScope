@@ -1,0 +1,47 @@
+{
+  "overall": "passed",
+  "source_commit": "af312dad99abcbfc8fe2becd8a2fc209fca85f90",
+  "source_dirty": false,
+  "product": "ffi_sdk",
+  "target": "x86_64-unknown-linux-gnu",
+  "host": {
+    "system": "Linux",
+    "version": "#22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026",
+    "machine": "x86_64"
+  },
+  "bundle_format": 4,
+  "abi_version": 1,
+  "schema_version": 1,
+  "archive_sha256": "2bf1beac1969fb68ab23d411d56a92c734983287902c84215a730444171a45cf",
+  "header_sha256": "7ba816254bd0314ed26cd620a8d802578e153689ed17fbf7ccc4a75289a8e523",
+  "payload_files": 47,
+  "processes": 15,
+  "c_compile_and_runs": 3,
+  "python_collect_free_cycles": 300,
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "stale_copy_and_empty_free": true,
+  "corrupt_update_rejected_before_install": true,
+  "same_candidate_two_slot_rollback": true,
+  "older_version_compatibility_tested": false,
+  "published": false,
+  "global_install_or_path_modified": false,
+  "publisher_authenticated": false,
+  "library_sha256": "2371ed4acc0eb2be41c078ab4821fcaa6c07b66078b96b0eadf2ef09fdbedf3e",
+  "elf_inspections": 6,
+  "elf_needed": {
+    "consumer": [
+      "libdaoseeker_scope_ffi.so",
+      "libc.so.6"
+    ],
+    "library": [
+      "libgcc_s.so.1",
+      "libc.so.6",
+      "ld-linux-x86-64.so.2"
+    ]
+  },
+  "consumer_runpath": "$ORIGIN/../lib",
+  "child_loader_overrides_cleared": true,
+  "posix_modes_verified": true,
+  "minimum_glibc_or_distribution_verified": false
+}

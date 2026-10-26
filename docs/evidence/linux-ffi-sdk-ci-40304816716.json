@@ -1,0 +1,686 @@
+{
+  "report_version": 1,
+  "overall": "passed",
+  "source_commit": "af312dad99abcbfc8fe2becd8a2fc209fca85f90",
+  "implementation_commit": "f2620951be1a6e42921768772451d8419505f2ed",
+  "run_id": 40304816716,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40304816716",
+  "event": "workflow_dispatch",
+  "ci_runtime_fixes_required": false,
+  "ci_jobs": {
+    "ffi-asan": "success",
+    "supply-chain": "success",
+    "fuzz-smoke": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "desktop (macos-latest)": "success",
+    "desktop (windows-latest)": "success",
+    "linux-container": "success",
+    "miri": "success"
+  },
+  "reports": {
+    "linux-ffi-sdk-sdk-linux-40304816716.json": {
+      "path": "linux-ffi-sdk-sdk-linux-40304816716.json",
+      "sha256": "c93e405cdbeb4ae47a000469de01c24f04acd8e98c278adf4a195c3dab41c583",
+      "original_report_sha256": "c93e405cdbeb4ae47a000469de01c24f04acd8e98c278adf4a195c3dab41c583"
+    },
+    "linux-ffi-sdk-sdk-windows-40304816716.json": {
+      "path": "linux-ffi-sdk-sdk-windows-40304816716.json",
+      "sha256": "07f4b3b50ffaab0df7567c4b0eea92ea3eb437f617b558be3ae52582f494fe9e",
+      "original_report_sha256": "34605d535e329b09eaf277d791ecb6e47e88ed78c52c6e0619f01092440c793e"
+    },
+    "linux-ffi-sdk-native-windows-40304816716.json": {
+      "path": "linux-ffi-sdk-native-windows-40304816716.json",
+      "sha256": "a32ac4c364a7e2c44f8e0a59db82e4df930dcf0a4707d14db5e7dae39142f578",
+      "original_report_sha256": "9c84ed24301aae9e8cf9cb55c14fdc7da9ea94f6bfc46f2db5b595cba3c35918"
+    },
+    "linux-ffi-sdk-packages-windows-40304816716.json": {
+      "path": "linux-ffi-sdk-packages-windows-40304816716.json",
+      "sha256": "c648fbb9696246e9fb16abb7e71981a7ae2bafd9b0ad3d578461c130f35a5462",
+      "original_report_sha256": "ce7bb51d487f08d0a037d93f38c2d399f9dbb4c15dc938622cfc4fb1d71cebc0"
+    },
+    "linux-ffi-sdk-cli-windows-40304816716.json": {
+      "path": "linux-ffi-sdk-cli-windows-40304816716.json",
+      "sha256": "b89973619071ef482313b3ef99200796c0e81d874b41ea112d808860bc176b5c",
+      "original_report_sha256": "9a078c00af714a73d75117d0592c72046832e29a6d915de45e2220bb9c256baa"
+    },
+    "linux-ffi-sdk-windows-uptime-sdk-40304816716.json": {
+      "path": "linux-ffi-sdk-windows-uptime-sdk-40304816716.json",
+      "sha256": "b46689a3c0879e1b489733885e1797d8726dcbe08eca2c7de49cbe232d4716a9",
+      "original_report_sha256": "5a36a8268a154fca1ffbbcf3b7ae0b2002a07b1dbdd5c1fc6a7448b9558f644e"
+    },
+    "linux-ffi-sdk-windows-cpu-sdk-40304816716.json": {
+      "path": "linux-ffi-sdk-windows-cpu-sdk-40304816716.json",
+      "sha256": "3c8f70f9eabfc608e02933e0633f15a564a9553c79b2c0889ff009b1dfeb6b31",
+      "original_report_sha256": "94a3752ac7ab573a7b84c107e1355da18a77e241d0a4571a79a2612f5870e028"
+    },
+    "linux-ffi-sdk-windows-memory-sdk-40304816716.json": {
+      "path": "linux-ffi-sdk-windows-memory-sdk-40304816716.json",
+      "sha256": "843d33a0a31d84c6f764b895b9b3d01269e6a933c8c26dee9c437c3d0d363652",
+      "original_report_sha256": "cca4bc2d03fd5d1ca451df56feccd6ffd7c0f9ef8b85135a393d22bb4f3ab74e"
+    },
+    "linux-ffi-sdk-windows-cpu-groups-sdk-40304816716.json": {
+      "path": "linux-ffi-sdk-windows-cpu-groups-sdk-40304816716.json",
+      "sha256": "0d6075aa060821681b4088f0137d3bb016df7d1cf7b334d5b811ff8684cd5703",
+      "original_report_sha256": "1d76475d41fe6f1c6108ca613617a79160ebe9ff7bb9ba3a68439b5306b629b6"
+    },
+    "linux-ffi-sdk-windows-hardware-summary-sdk-40304816716.json": {
+      "path": "linux-ffi-sdk-windows-hardware-summary-sdk-40304816716.json",
+      "sha256": "666e864c11a822b7f2ddb990f85d05a1492d34a561d13436069739fe916522d9",
+      "original_report_sha256": "64c1d6ce15c456d4e5e6e67d673d65439ffa2cd399574172f4cb95952a7645c5"
+    },
+    "linux-ffi-sdk-native-linux-40304816716.json": {
+      "path": "linux-ffi-sdk-native-linux-40304816716.json",
+      "sha256": "ce488f242151bab091e86bd4538a1bb3b2b63d482a317746bb77ba2e5ee4d542",
+      "original_report_sha256": "ce488f242151bab091e86bd4538a1bb3b2b63d482a317746bb77ba2e5ee4d542"
+    },
+    "linux-ffi-sdk-packages-linux-40304816716.json": {
+      "path": "linux-ffi-sdk-packages-linux-40304816716.json",
+      "sha256": "361985b4e2753d8f42332a063f089f86bf32d27ee5948a4ef7cf5d77c3da2055",
+      "original_report_sha256": "361985b4e2753d8f42332a063f089f86bf32d27ee5948a4ef7cf5d77c3da2055"
+    },
+    "linux-ffi-sdk-cli-linux-40304816716.json": {
+      "path": "linux-ffi-sdk-cli-linux-40304816716.json",
+      "sha256": "6315de82cda6e205d8e8cbae6b050e904691ff85b71d529f09c7b8d38c13b72c",
+      "original_report_sha256": "6315de82cda6e205d8e8cbae6b050e904691ff85b71d529f09c7b8d38c13b72c"
+    },
+    "linux-ffi-sdk-native-darwin-40304816716.json": {
+      "path": "linux-ffi-sdk-native-darwin-40304816716.json",
+      "sha256": "f6865f9a976f1dc27cd5745f559262285340e3aa457d8369de877f196aa981d3",
+      "original_report_sha256": "f6865f9a976f1dc27cd5745f559262285340e3aa457d8369de877f196aa981d3"
+    },
+    "linux-ffi-sdk-packages-darwin-40304816716.json": {
+      "path": "linux-ffi-sdk-packages-darwin-40304816716.json",
+      "sha256": "99ad57962a8c3dc9062ff6a9ae83bf882a8a6b5ce1b46342e10e5c8f6b242df2",
+      "original_report_sha256": "99ad57962a8c3dc9062ff6a9ae83bf882a8a6b5ce1b46342e10e5c8f6b242df2"
+    },
+    "linux-ffi-sdk-macos-uptime-sdk-40304816716.json": {
+      "path": "linux-ffi-sdk-macos-uptime-sdk-40304816716.json",
+      "sha256": "aab95f65b780a66708e1ad9017d6143a89ab5b76b46c7177010b5f96eca9f181",
+      "original_report_sha256": "aab95f65b780a66708e1ad9017d6143a89ab5b76b46c7177010b5f96eca9f181"
+    },
+    "linux-ffi-sdk-macos-cpu-sdk-40304816716.json": {
+      "path": "linux-ffi-sdk-macos-cpu-sdk-40304816716.json",
+      "sha256": "bd313343e6c76c3d1dce76521a7cdcd891a53dfd5d1a77462d4541ed7e8a1d5d",
+      "original_report_sha256": "bd313343e6c76c3d1dce76521a7cdcd891a53dfd5d1a77462d4541ed7e8a1d5d"
+    },
+    "linux-ffi-sdk-macos-memory-sdk-40304816716.json": {
+      "path": "linux-ffi-sdk-macos-memory-sdk-40304816716.json",
+      "sha256": "643f62a9a235cef7ed52ca62cbf7090f833036673ba583f0b95e9a9c725e35d9",
+      "original_report_sha256": "643f62a9a235cef7ed52ca62cbf7090f833036673ba583f0b95e9a9c725e35d9"
+    },
+    "linux-ffi-sdk-container-linux-battery-evidence-40304816716.json": {
+      "path": "linux-ffi-sdk-container-linux-battery-evidence-40304816716.json",
+      "sha256": "cf98d72bbfd2a4d5c8da1b4722977f3e3ff69b79837f5c28c98dab2d0532d53e",
+      "original_report_sha256": "cf98d72bbfd2a4d5c8da1b4722977f3e3ff69b79837f5c28c98dab2d0532d53e"
+    },
+    "linux-ffi-sdk-container-linux-container-evidence-40304816716.json": {
+      "path": "linux-ffi-sdk-container-linux-container-evidence-40304816716.json",
+      "sha256": "abe77a2676a18db5eeb17b99e16b66b5e5b307f69015c68824226c7d06ebac8a",
+      "original_report_sha256": "abe77a2676a18db5eeb17b99e16b66b5e5b307f69015c68824226c7d06ebac8a"
+    },
+    "linux-ffi-sdk-container-linux-display-evidence-40304816716.json": {
+      "path": "linux-ffi-sdk-container-linux-display-evidence-40304816716.json",
+      "sha256": "58bb585d3559455d7ef54533fb9e07729877782e02cd3b94c32bebf2ed9a33ef",
+      "original_report_sha256": "58bb585d3559455d7ef54533fb9e07729877782e02cd3b94c32bebf2ed9a33ef"
+    },
+    "linux-ffi-sdk-container-linux-dynamic-evidence-40304816716.json": {
+      "path": "linux-ffi-sdk-container-linux-dynamic-evidence-40304816716.json",
+      "sha256": "3760a57ac3ee8c4aabd41020e56f206e19c41ffd8fd4b76d23a0ddc1747b057a",
+      "original_report_sha256": "3760a57ac3ee8c4aabd41020e56f206e19c41ffd8fd4b76d23a0ddc1747b057a"
+    },
+    "linux-ffi-sdk-container-linux-gpu-evidence-40304816716.json": {
+      "path": "linux-ffi-sdk-container-linux-gpu-evidence-40304816716.json",
+      "sha256": "0d260a0ec77cab5623771ceb387e629c31bccbf831d9ddfd5bc4971d58ec5647",
+      "original_report_sha256": "0d260a0ec77cab5623771ceb387e629c31bccbf831d9ddfd5bc4971d58ec5647"
+    },
+    "linux-ffi-sdk-container-linux-hwmon-evidence-40304816716.json": {
+      "path": "linux-ffi-sdk-container-linux-hwmon-evidence-40304816716.json",
+      "sha256": "dac3f955c05ef8398f3fc84c3edf204f5c8f4d22d983cc4e258f65a9c51775b8",
+      "original_report_sha256": "dac3f955c05ef8398f3fc84c3edf204f5c8f4d22d983cc4e258f65a9c51775b8"
+    },
+    "linux-ffi-sdk-container-linux-memory-evidence-40304816716.json": {
+      "path": "linux-ffi-sdk-container-linux-memory-evidence-40304816716.json",
+      "sha256": "2311be89dd95244f54c8439954f19506f4c86c2a080a80b309bdc34c74b8c8d1",
+      "original_report_sha256": "2311be89dd95244f54c8439954f19506f4c86c2a080a80b309bdc34c74b8c8d1"
+    },
+    "linux-ffi-sdk-container-linux-storage-evidence-40304816716.json": {
+      "path": "linux-ffi-sdk-container-linux-storage-evidence-40304816716.json",
+      "sha256": "4c5c138f60224aa550e86bf3255f14986a2b62a98cc87e6a85491d98496dad32",
+      "original_report_sha256": "4c5c138f60224aa550e86bf3255f14986a2b62a98cc87e6a85491d98496dad32"
+    },
+    "linux-ffi-sdk-benchmark-linux-40304816716.json": {
+      "path": "linux-ffi-sdk-benchmark-linux-40304816716.json",
+      "sha256": "c4fa053bae182be8cb9a3379ae81bd53be5c074474340216a2318da503b0cedc",
+      "original_report_sha256": "c4fa053bae182be8cb9a3379ae81bd53be5c074474340216a2318da503b0cedc"
+    },
+    "linux-ffi-sdk-benchmark-darwin-40304816716.json": {
+      "path": "linux-ffi-sdk-benchmark-darwin-40304816716.json",
+      "sha256": "363629556dce88855d60586ec8b1e11b542e33a05516c81c0678bc2b675d0896",
+      "original_report_sha256": "363629556dce88855d60586ec8b1e11b542e33a05516c81c0678bc2b675d0896"
+    }
+  },
+  "sdk_candidates": {
+    "linux": {
+      "report": {
+        "path": "linux-ffi-sdk-sdk-linux-40304816716.json",
+        "sha256": "c93e405cdbeb4ae47a000469de01c24f04acd8e98c278adf4a195c3dab41c583",
+        "original_report_sha256": "c93e405cdbeb4ae47a000469de01c24f04acd8e98c278adf4a195c3dab41c583"
+      },
+      "observations": {
+        "overall": "passed",
+        "source_commit": "af312dad99abcbfc8fe2becd8a2fc209fca85f90",
+        "source_dirty": false,
+        "product": "ffi_sdk",
+        "target": "x86_64-unknown-linux-gnu",
+        "host": {
+          "system": "Linux",
+          "version": "#22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026",
+          "machine": "x86_64"
+        },
+        "bundle_format": 4,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "2bf1beac1969fb68ab23d411d56a92c734983287902c84215a730444171a45cf",
+        "header_sha256": "7ba816254bd0314ed26cd620a8d802578e153689ed17fbf7ccc4a75289a8e523",
+        "payload_files": 47,
+        "processes": 15,
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "stale_copy_and_empty_free": true,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false,
+        "library_sha256": "2371ed4acc0eb2be41c078ab4821fcaa6c07b66078b96b0eadf2ef09fdbedf3e",
+        "elf_inspections": 6,
+        "elf_needed": {
+          "consumer": [
+            "libdaoseeker_scope_ffi.so",
+            "libc.so.6"
+          ],
+          "library": [
+            "libgcc_s.so.1",
+            "libc.so.6",
+            "ld-linux-x86-64.so.2"
+          ]
+        },
+        "consumer_runpath": "$ORIGIN/../lib",
+        "child_loader_overrides_cleared": true,
+        "posix_modes_verified": true,
+        "minimum_glibc_or_distribution_verified": false
+      },
+      "subprocess_count_scope": "direct calls only, excludes compiler/linker descendants",
+      "zip_independently_downloaded": false
+    },
+    "windows": {
+      "report": {
+        "path": "linux-ffi-sdk-sdk-windows-40304816716.json",
+        "sha256": "07f4b3b50ffaab0df7567c4b0eea92ea3eb437f617b558be3ae52582f494fe9e",
+        "original_report_sha256": "34605d535e329b09eaf277d791ecb6e47e88ed78c52c6e0619f01092440c793e"
+      },
+      "observations": {
+        "overall": "passed",
+        "source_commit": "af312dad99abcbfc8fe2becd8a2fc209fca85f90",
+        "source_dirty": false,
+        "product": "ffi_sdk",
+        "target": "x86_64-pc-windows-msvc",
+        "host": {
+          "system": "Windows",
+          "version": "10.0.26100",
+          "machine": "AMD64"
+        },
+        "bundle_format": 3,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "94779c9dec1cdd469374c898229b08bc491a19eedf41f7b40feebbe065062af9",
+        "header_sha256": "7ba816254bd0314ed26cd620a8d802578e153689ed17fbf7ccc4a75289a8e523",
+        "payload_files": 78,
+        "processes": 9,
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "stale_copy_and_empty_free": true,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false,
+        "dll_sha256": "c68dbe422db8fdb5215729d068880b0e7bed855311754cdb7c2bf63bdffa1cb8",
+        "import_library_sha256": "78214f2b47ae59f00921e35c5b672c253348d5e0a9d94cd574dccb2b7c33ddd2"
+      },
+      "subprocess_count_scope": "direct calls only, excludes compiler/linker descendants",
+      "zip_independently_downloaded": false
+    }
+  },
+  "native": {
+    "windows": {
+      "report": {
+        "path": "linux-ffi-sdk-native-windows-40304816716.json",
+        "sha256": "a32ac4c364a7e2c44f8e0a59db82e4df930dcf0a4707d14db5e7dae39142f578",
+        "original_report_sha256": "9c84ed24301aae9e8cf9cb55c14fdc7da9ea94f6bfc46f2db5b595cba3c35918"
+      },
+      "groups": 5,
+      "processes": 16
+    },
+    "linux": {
+      "report": {
+        "path": "linux-ffi-sdk-native-linux-40304816716.json",
+        "sha256": "ce488f242151bab091e86bd4538a1bb3b2b63d482a317746bb77ba2e5ee4d542",
+        "original_report_sha256": "ce488f242151bab091e86bd4538a1bb3b2b63d482a317746bb77ba2e5ee4d542"
+      },
+      "groups": 5,
+      "processes": 16
+    },
+    "darwin": {
+      "report": {
+        "path": "linux-ffi-sdk-native-darwin-40304816716.json",
+        "sha256": "f6865f9a976f1dc27cd5745f559262285340e3aa457d8369de877f196aa981d3",
+        "original_report_sha256": "f6865f9a976f1dc27cd5745f559262285340e3aa457d8369de877f196aa981d3"
+      },
+      "groups": 5,
+      "processes": 16
+    }
+  },
+  "packages": {
+    "windows": {
+      "report": {
+        "path": "linux-ffi-sdk-packages-windows-40304816716.json",
+        "sha256": "c648fbb9696246e9fb16abb7e71981a7ae2bafd9b0ad3d578461c130f35a5462",
+        "original_report_sha256": "ce7bb51d487f08d0a037d93f38c2d399f9dbb4c15dc938622cfc4fb1d71cebc0"
+      },
+      "archives": 8,
+      "rust_tests_including_doctests": 262
+    },
+    "linux": {
+      "report": {
+        "path": "linux-ffi-sdk-packages-linux-40304816716.json",
+        "sha256": "361985b4e2753d8f42332a063f089f86bf32d27ee5948a4ef7cf5d77c3da2055",
+        "original_report_sha256": "361985b4e2753d8f42332a063f089f86bf32d27ee5948a4ef7cf5d77c3da2055"
+      },
+      "archives": 8,
+      "rust_tests_including_doctests": 254
+    },
+    "darwin": {
+      "report": {
+        "path": "linux-ffi-sdk-packages-darwin-40304816716.json",
+        "sha256": "99ad57962a8c3dc9062ff6a9ae83bf882a8a6b5ce1b46342e10e5c8f6b242df2",
+        "original_report_sha256": "99ad57962a8c3dc9062ff6a9ae83bf882a8a6b5ce1b46342e10e5c8f6b242df2"
+      },
+      "archives": 8,
+      "rust_tests_including_doctests": 259
+    }
+  },
+  "cli_candidates": {
+    "windows": {
+      "report": {
+        "path": "linux-ffi-sdk-cli-windows-40304816716.json",
+        "sha256": "b89973619071ef482313b3ef99200796c0e81d874b41ea112d808860bc176b5c",
+        "original_report_sha256": "9a078c00af714a73d75117d0592c72046832e29a6d915de45e2220bb9c256baa"
+      },
+      "observations": {
+        "overall": "passed",
+        "source_commit": "af312dad99abcbfc8fe2becd8a2fc209fca85f90",
+        "source_dirty": false,
+        "target": "x86_64-pc-windows-msvc",
+        "host": {
+          "system": "Windows",
+          "version": "10.0.26100",
+          "machine": "AMD64"
+        },
+        "version": "0.1.0",
+        "bundle_format": 1,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "c6635050e04aad6d97cd2502c91d9ed90448d0681857169b8fc8cef6bd15b8d0",
+        "cli_sha256": "f22c090734a2b8beb87cf03d6eadcf7bcd4467bce18959139c64ea16be092dd3",
+        "payload_files": 73,
+        "processes": 6,
+        "minimum_read_and_default_privacy": true,
+        "snapshot_schema_validated": true,
+        "posix_modes_verified": false,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false
+      }
+    },
+    "linux": {
+      "report": {
+        "path": "linux-ffi-sdk-cli-linux-40304816716.json",
+        "sha256": "6315de82cda6e205d8e8cbae6b050e904691ff85b71d529f09c7b8d38c13b72c",
+        "original_report_sha256": "6315de82cda6e205d8e8cbae6b050e904691ff85b71d529f09c7b8d38c13b72c"
+      },
+      "observations": {
+        "overall": "passed",
+        "source_commit": "af312dad99abcbfc8fe2becd8a2fc209fca85f90",
+        "source_dirty": false,
+        "target": "x86_64-unknown-linux-gnu",
+        "host": {
+          "system": "Linux",
+          "version": "#22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026",
+          "machine": "x86_64"
+        },
+        "version": "0.1.0",
+        "bundle_format": 2,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "f5f7363b2155bb544f9c5cf9feb1aca87acf2df3dbf0952bea6850cde616559a",
+        "cli_sha256": "afcf43247862501354759f818d68cf328e50e9172988988a555cf2348b913e94",
+        "payload_files": 43,
+        "processes": 6,
+        "minimum_read_and_default_privacy": true,
+        "snapshot_schema_validated": true,
+        "posix_modes_verified": true,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false
+      }
+    }
+  },
+  "sdk_regressions": {
+    "windows-uptime": {
+      "report": {
+        "path": "linux-ffi-sdk-windows-uptime-sdk-40304816716.json",
+        "sha256": "b46689a3c0879e1b489733885e1797d8726dcbe08eca2c7de49cbe232d4716a9",
+        "original_report_sha256": "5a36a8268a154fca1ffbbcf3b7ae0b2002a07b1dbdd5c1fc6a7448b9558f644e"
+      }
+    },
+    "windows-cpu": {
+      "report": {
+        "path": "linux-ffi-sdk-windows-cpu-sdk-40304816716.json",
+        "sha256": "3c8f70f9eabfc608e02933e0633f15a564a9553c79b2c0889ff009b1dfeb6b31",
+        "original_report_sha256": "94a3752ac7ab573a7b84c107e1355da18a77e241d0a4571a79a2612f5870e028"
+      }
+    },
+    "windows-memory": {
+      "report": {
+        "path": "linux-ffi-sdk-windows-memory-sdk-40304816716.json",
+        "sha256": "843d33a0a31d84c6f764b895b9b3d01269e6a933c8c26dee9c437c3d0d363652",
+        "original_report_sha256": "cca4bc2d03fd5d1ca451df56feccd6ffd7c0f9ef8b85135a393d22bb4f3ab74e"
+      }
+    },
+    "windows-cpu-groups": {
+      "report": {
+        "path": "linux-ffi-sdk-windows-cpu-groups-sdk-40304816716.json",
+        "sha256": "0d6075aa060821681b4088f0137d3bb016df7d1cf7b334d5b811ff8684cd5703",
+        "original_report_sha256": "1d76475d41fe6f1c6108ca613617a79160ebe9ff7bb9ba3a68439b5306b629b6"
+      },
+      "actual_groups": 1,
+      "real_multi_group_device": false
+    },
+    "windows-hardware-summary": {
+      "report": {
+        "path": "linux-ffi-sdk-windows-hardware-summary-sdk-40304816716.json",
+        "sha256": "666e864c11a822b7f2ddb990f85d05a1492d34a561d13436069739fe916522d9",
+        "original_report_sha256": "64c1d6ce15c456d4e5e6e67d673d65439ffa2cd399574172f4cb95952a7645c5"
+      },
+      "available_fields": 6,
+      "token_elevated": true,
+      "ordinary_user_read_verified": false
+    },
+    "macos-uptime": {
+      "report": {
+        "path": "linux-ffi-sdk-macos-uptime-sdk-40304816716.json",
+        "sha256": "aab95f65b780a66708e1ad9017d6143a89ab5b76b46c7177010b5f96eca9f181",
+        "original_report_sha256": "aab95f65b780a66708e1ad9017d6143a89ab5b76b46c7177010b5f96eca9f181"
+      }
+    },
+    "macos-cpu": {
+      "report": {
+        "path": "linux-ffi-sdk-macos-cpu-sdk-40304816716.json",
+        "sha256": "bd313343e6c76c3d1dce76521a7cdcd891a53dfd5d1a77462d4541ed7e8a1d5d",
+        "original_report_sha256": "bd313343e6c76c3d1dce76521a7cdcd891a53dfd5d1a77462d4541ed7e8a1d5d"
+      }
+    },
+    "macos-memory": {
+      "report": {
+        "path": "linux-ffi-sdk-macos-memory-sdk-40304816716.json",
+        "sha256": "643f62a9a235cef7ed52ca62cbf7090f833036673ba583f0b95e9a9c725e35d9",
+        "original_report_sha256": "643f62a9a235cef7ed52ca62cbf7090f833036673ba583f0b95e9a9c725e35d9"
+      }
+    }
+  },
+  "containers": {
+    "linux-battery-evidence.json": {
+      "report": {
+        "path": "linux-ffi-sdk-container-linux-battery-evidence-40304816716.json",
+        "sha256": "cf98d72bbfd2a4d5c8da1b4722977f3e3ff69b79837f5c28c98dab2d0532d53e",
+        "original_report_sha256": "cf98d72bbfd2a4d5c8da1b4722977f3e3ff69b79837f5c28c98dab2d0532d53e"
+      },
+      "samples_passed": 30
+    },
+    "linux-container-evidence.json": {
+      "report": {
+        "path": "linux-ffi-sdk-container-linux-container-evidence-40304816716.json",
+        "sha256": "abe77a2676a18db5eeb17b99e16b66b5e5b307f69015c68824226c7d06ebac8a",
+        "original_report_sha256": "abe77a2676a18db5eeb17b99e16b66b5e5b307f69015c68824226c7d06ebac8a"
+      },
+      "scenarios_passed": 7,
+      "runtime_probes": {
+        "empty_proc": {
+          "status": "not_run",
+          "configuration": {
+            "user": "65534:65534",
+            "ReadonlyRootfs": true,
+            "NetworkMode": "none",
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges=true"
+            ],
+            "Memory": 268435456,
+            "MemorySwap": 268435456,
+            "PidsLimit": 32,
+            "NanoCpus": 1000000000
+          },
+          "exit_code": 128,
+          "docker_start_exit_code": 1,
+          "process_started": false,
+          "failure_category": "runtime_mount_error",
+          "probe_result": "runtime_rejected_mount"
+        }
+      }
+    },
+    "linux-display-evidence.json": {
+      "report": {
+        "path": "linux-ffi-sdk-container-linux-display-evidence-40304816716.json",
+        "sha256": "58bb585d3559455d7ef54533fb9e07729877782e02cd3b94c32bebf2ed9a33ef",
+        "original_report_sha256": "58bb585d3559455d7ef54533fb9e07729877782e02cd3b94c32bebf2ed9a33ef"
+      },
+      "samples_passed": 26
+    },
+    "linux-dynamic-evidence.json": {
+      "report": {
+        "path": "linux-ffi-sdk-container-linux-dynamic-evidence-40304816716.json",
+        "sha256": "3760a57ac3ee8c4aabd41020e56f206e19c41ffd8fd4b76d23a0ddc1747b057a",
+        "original_report_sha256": "3760a57ac3ee8c4aabd41020e56f206e19c41ffd8fd4b76d23a0ddc1747b057a"
+      },
+      "samples_passed": 15
+    },
+    "linux-gpu-evidence.json": {
+      "report": {
+        "path": "linux-ffi-sdk-container-linux-gpu-evidence-40304816716.json",
+        "sha256": "0d260a0ec77cab5623771ceb387e629c31bccbf831d9ddfd5bc4971d58ec5647",
+        "original_report_sha256": "0d260a0ec77cab5623771ceb387e629c31bccbf831d9ddfd5bc4971d58ec5647"
+      },
+      "samples_passed": 20
+    },
+    "linux-hwmon-evidence.json": {
+      "report": {
+        "path": "linux-ffi-sdk-container-linux-hwmon-evidence-40304816716.json",
+        "sha256": "dac3f955c05ef8398f3fc84c3edf204f5c8f4d22d983cc4e258f65a9c51775b8",
+        "original_report_sha256": "dac3f955c05ef8398f3fc84c3edf204f5c8f4d22d983cc4e258f65a9c51775b8"
+      },
+      "samples_passed": 47
+    },
+    "linux-memory-evidence.json": {
+      "report": {
+        "path": "linux-ffi-sdk-container-linux-memory-evidence-40304816716.json",
+        "sha256": "2311be89dd95244f54c8439954f19506f4c86c2a080a80b309bdc34c74b8c8d1",
+        "original_report_sha256": "2311be89dd95244f54c8439954f19506f4c86c2a080a80b309bdc34c74b8c8d1"
+      },
+      "samples_passed": 26
+    },
+    "linux-storage-evidence.json": {
+      "report": {
+        "path": "linux-ffi-sdk-container-linux-storage-evidence-40304816716.json",
+        "sha256": "4c5c138f60224aa550e86bf3255f14986a2b62a98cc87e6a85491d98496dad32",
+        "original_report_sha256": "4c5c138f60224aa550e86bf3255f14986a2b62a98cc87e6a85491d98496dad32"
+      },
+      "samples_passed": 21
+    }
+  },
+  "benchmarks": {
+    "linux": {
+      "path": "linux-ffi-sdk-benchmark-linux-40304816716.json",
+      "sha256": "c4fa053bae182be8cb9a3379ae81bd53be5c074474340216a2318da503b0cedc",
+      "original_report_sha256": "c4fa053bae182be8cb9a3379ae81bd53be5c074474340216a2318da503b0cedc"
+    },
+    "darwin": {
+      "path": "linux-ffi-sdk-benchmark-darwin-40304816716.json",
+      "sha256": "363629556dce88855d60586ec8b1e11b542e33a05516c81c0678bc2b675d0896",
+      "original_report_sha256": "363629556dce88855d60586ec8b1e11b542e33a05516c81c0678bc2b675d0896"
+    }
+  },
+  "license": "MIT",
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "bundle_formats": {
+    "windows_cli": 1,
+    "linux_cli": 2,
+    "windows_ffi_sdk": 3,
+    "linux_ffi_sdk": 4
+  },
+  "rust_public_api_changed": false,
+  "dependencies_features_or_locks_changed": false,
+  "rust_tests_including_doctests": {
+    "windows-latest": 262,
+    "ubuntu-24.04": 254,
+    "macos-latest": 259
+  },
+  "python_tests": {
+    "windows-latest": {
+      "total": 161,
+      "passed": 157,
+      "skipped": 4
+    },
+    "ubuntu-24.04": {
+      "total": 161,
+      "passed": 161,
+      "skipped": 0
+    },
+    "macos-latest": {
+      "total": 161,
+      "passed": 161,
+      "skipped": 0
+    }
+  },
+  "python_source_files": 55,
+  "fuzz_targets_completed": 12,
+  "fuzz_campaigns": {
+    "snapshot_json": {
+      "runs": 740952,
+      "elapsed_seconds": 61
+    },
+    "dmi_text": {
+      "runs": 13238029,
+      "elapsed_seconds": 61
+    },
+    "cli_args": {
+      "runs": 32372198,
+      "elapsed_seconds": 61
+    },
+    "cpu_stat": {
+      "runs": 1964733,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "b663a37bdb8d01446918984793f4dd0b340c1052897d5c5a0c4df73ff8381135"
+    },
+    "meminfo": {
+      "runs": 4554809,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "902a834e3dc3d9f48e554bed84250639f9df0a1e1f6c2ff4906af8382f2cd1ba"
+    },
+    "uptime": {
+      "runs": 31220131,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "c339e9ddb1c6854ff6576e2e288792f4da9da19d6acea2ff5ed2daed9bb60246"
+    },
+    "power_supply": {
+      "runs": 30799914,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "d788bd4ec723de2d68588957bbf39285dad750b21f899897510c04e90b4e318e"
+    },
+    "hwmon_temperature": {
+      "runs": 30937029,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "dd7a36531565ad300a2576eb729c30af897061f96712e7f45f2209a0ec87f43a"
+    },
+    "network_dev": {
+      "runs": 3109159,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "920ca08cbf88681431b7ae4f286bcd9bdc3354f0da40269446a6dba60ecde075"
+    },
+    "macos_network": {
+      "runs": 8333523,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "99ce9394783f6b8629b5fe4b22b072bf569c5f9437e556a9cdd79a33e506c3e8"
+    },
+    "storage_capacity": {
+      "runs": 46848558,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "85815cef2ea5f39cf4f9f9b5bd113a7d10f8e3ac029392d87ca8ebd0b7adf606"
+    },
+    "windows_cpu_groups": {
+      "runs": 52150846,
+      "elapsed_seconds": 61,
+      "artifact_log_sha256": "cc9eee2c76a12b35058fd23a9010e6d34cf64dcf9ada48f014dedb971c1c10df"
+    }
+  },
+  "fuzz_harness_tests": 4,
+  "miri_tests_passed": 8,
+  "asan_tests_passed": 10,
+  "all_jobs_log_sha256": "83c33e74f99120a23bda04a9b69ed88198cfd6fd193903b6fbc7c31bbcdb5253",
+  "run_metadata_sha256": "1a248dfeb413fcfe9ea4ffb1c760e70af0ef5fb4ffedc9f3d05b5b2fc941aff9",
+  "artifact_list_sha256": "cafd95d66eaafa4d0c15cf013bac15d4906e6b6cdc5fa9bf8ef9526fb18f0e98",
+  "tested_source_sha256": {
+    "scripts/cli_bundle.py": "3ae04ae34da8ef438d17a9ae0b0d0247b652556694031d2a3075a757260d593a",
+    "scripts/cli_bundle_smoke.py": "36d9b2b491ab8a9a2f39d852a1db4dbb5486590e246ec611c6c49e483e63b584",
+    "scripts/ffi_bundle_smoke.py": "4ab7ce232c76289d05c29bf3b67f075fb897ce8852039759d6257225d4e39d1a",
+    "scripts/build_c_example.ps1": "23ee64bb808f6cb66bda1fc8bc9d686f6e950b27930dff97a1ab9f1a4429e725",
+    "examples/collect.c": "1453f65f120396c32e40e92cd129591f858b482d78218ef15dc3bb05260a48f6",
+    "examples/collect.py": "a9e745b59f50c04d37d387af7104a9a9866509b934bf4dce5211aeebe409fec1",
+    "bindings/daoseeker_scope.h": "7ba816254bd0314ed26cd620a8d802578e153689ed17fbf7ccc4a75289a8e523",
+    "tests/test_linux_ffi_bundle.py": "1dd67fe97fcb0c58ecad941f8fd254aebfd4530b3c0196e284759a6204cb5e4d",
+    "tests/test_ffi_bundle.py": "86246889cc5bdede6787f7ee16788dac5bbe1d72e69c3bc278a30091f68a724b",
+    ".github/workflows/ci.yml": "22e5bbc064b3527c3e373b3aaa1b169bd449b13b389fce7c9ee6d8e72cee1c67"
+  },
+  "macos_notice_research": {
+    "report": "macos-license-research-2026-10-26.json",
+    "sha256": "3041247ea928602c26c7caa0e9b19b857e1f20177de2f1f9bd0d052543534bfe",
+    "macos_distribution_candidate_complete": false
+  },
+  "limits": [
+    "Linux GNU x86_64 and Windows MSVC x64 SDKs only; no macOS SDK or CLI distribution completion",
+    "SDK/CLI ZIPs remained on hosted runners; downloaded reports independently checked, not ZIP members a second time",
+    "15 Linux SDK calls include six readelf; 9 Windows SDK calls exclude compiler/linker descendants. 300 Python cycles per SDK are not a complete leak proof",
+    "RUNPATH/NEEDED and child loader environment checks do not prove system dependency closure, minimum glibc/distribution/kernel or a trusted host",
+    "Same-candidate directory selection rollback, not older published-version compatibility",
+    "No signing, publisher authentication, final license review, registry, Release, binary upload or global installation",
+    "Physical Linux/macOS and actual multi-group CPUs remain deferred and are not replaced by CI",
+    "Completely empty procfs was OCI rejected before process launch: not_run",
+    "Short fuzz/sanitizer tests are not long campaigns or complete peak-memory/performance proof",
+    "Eight-crate consumers use extracted local sibling patches, not a registry download/publication"
+  ]
+}

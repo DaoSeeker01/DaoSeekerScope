@@ -1,5 +1,7 @@
 # 三平台CI验收（2026-10-09，Asia/Shanghai）
 
+2026-10-26 Linux SDK 更新：源码 `af312da` 的[CI 40304816716](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40304816716)全部八项通过；Linux SDK 格式 4、47 个载荷、15 项顶层调用（6 次 ELF 检查）与 300 次 Python collect/free 通过。Windows SDK 3、CLI 1/2 回归通过；Python 为 Windows 157 passed/4 skipped、Linux/macOS 161 passed/0 skipped。三平台八包、短 fuzz/Miri/ASan、容器和基准见[记录](linux-ffi-sdk-validation.md)及[索引](evidence/linux-ffi-sdk-ci-40304816716.json)。macOS 分发材料待办保持。
+
 2026-10-26 Windows SDK 更新：源码 `ba11807` 的[CI 40249181949](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40249181949)全部八项通过；新增 SDK 包内 C/Python 九项顶层调用、300 次 collect/free 与回滚通过。Python 为 Windows 147 passed/2 skipped、Linux/macOS 149 passed/0 skipped。三平台八包、12 项短 fuzz、Miri/ASan、容器和基准见[记录](windows-ffi-sdk-validation.md)与[索引](evidence/windows-ffi-sdk-ci-40249181949.json)。macOS 分发许可材料状态没有因此改变；以下各记录保留原日期结果。
 
 2026-10-26 更新：源码 `98172d0` 的[CI 40245533279](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40245533279)全部八项通过。Linux v2 与 Windows v1 候选各六进程通过；Python 为 Windows 138 passed/2 skipped、Linux/macOS 140 passed/0 skipped，两项 POSIX 测试已在后两平台执行。三平台各八包、12 个短 fuzz、Miri/ASan、容器和依赖回归见[记录](linux-cli-bundle-validation.md)与[索引](evidence/linux-cli-bundle-ci-40245533279.json)。以下各节保留原日期结论。

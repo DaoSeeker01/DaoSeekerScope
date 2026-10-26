@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-2026-10-26 Linux FFI SDK 开发增量：新增 GNU x86_64 SDK v4、共享库/头文件/示例/Schema 打包与 ELF 路径检查，已接入 Linux CI 入口，尚未运行。干净提交 f262095 的 Windows SDK/CLI 回归、161 项 Python（157 通过/4 跳过）及 262 项 Rust 门禁通过；Linux 原生构建/调用/权限仍待验收，见[记录](linux-ffi-sdk-validation.md)。不改变 Rust API、依赖/features/锁、MIT、C ABI 1 或硬件 Schema 1。未发布二进制。
+2026-10-26 Linux FFI SDK 开发增量：新增 GNU x86_64 SDK v4、共享库/头文件/示例/Schema 打包与 ELF 路径检查，源码 af312da 的三平台 CI 40304816716 已全部八项通过。干净提交 f262095 的 Windows SDK/CLI 回归、161 项 Python（157 通过/4 跳过）及 262 项 Rust 门禁通过；Linux 原生构建/C/Python/ELF/权限/回滚与两平台 SDK/CLI 回归已通过，见[记录](linux-ffi-sdk-validation.md)。不改变 Rust API、依赖/features/锁、MIT、C ABI 1 或硬件 Schema 1。未发布二进制。
 
 2026-10-26 Windows FFI SDK 开发增量：共享 ZIP 工具增加 Windows x64 SDK 产品（bundle_format 3），包含 DLL、头文件、导入库、C/Python 示例和 Schema；原有 CLI v1/v2、Rust API、依赖/features/锁、C ABI 1、硬件 Schema 1 和 MIT 不变。干净提交 b3b47b1 本机完成 9 个 SDK 顶层调用、300 次 Python collect/free、CLI 六进程、262 Rust 与 147 Python 测试；2 项 POSIX 测试在本机跳过；随后源码 ba11807 的三平台 CI 40249181949 全部八项、各八包及 Windows SDK 九项顶层调用/300 次 Python 循环已通过，见[记录](windows-ffi-sdk-validation.md)。macOS 候选包因完整许可材料缺口继续待办；调查不构成上游现有 MIT 无效的结论，见 [ADR 0033](adr/0033-windows-ffi-sdk.md)。没有上传或正式分发 SDK。
 

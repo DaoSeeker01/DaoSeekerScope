@@ -1,5 +1,7 @@
 # 原生验收与证据保留（2026-10-09，Asia/Shanghai）
 
+2026-10-26 Linux SDK 回归：源码 `af312da` 的[CI 40304816716](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40304816716)三平台原生各 5 组/16 进程通过。Linux SDK 另 15 项顶层调用（含 6 次 ELF 检查）/300 次 Python 循环、Windows SDK 九项调用/300 次循环，以及两平台 CLI 各六进程通过，[记录](linux-ffi-sdk-validation.md)。未建立最低运行环境或旧正式版兼容、实体设备结论。
+
 2026-10-26 Windows SDK 回归：源码 `ba11807` 的[CI 40249181949](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40249181949)三平台各 5 组/16 进程通过，Windows/Linux CLI 候选各六进程通过；Windows SDK 另九项顶层调用/300 次 Python collect/free 通过，[验证记录](windows-ffi-sdk-validation.md)。C 编译器子孙进程不计入九项；不扩展为其他平台 SDK、旧版升级或实体设备结论。
 
 2026-10-26 更新：源码 `98172d0` 的三平台原生 CLI/C/Python 各 5 组/16 进程通过；Linux v2 与 Windows v1 另各六进程完成候选安装/回滚，[CI 与验证边界](linux-cli-bundle-validation.md)。POSIX 权限测试不代替实体设备、最低发行版或旧版本兼容验证。

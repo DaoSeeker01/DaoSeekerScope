@@ -1,0 +1,595 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-10-26T10:07:28.869148+00:00",
+  "overall": "passed",
+  "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+  "synthetic_block_devices": true,
+  "samples": {
+    "initial_empty": {
+      "status": "passed",
+      "new_hardware": false,
+      "storage": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249595,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "added_whole_device": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 4096,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1793009249672,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249672,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "dynamic_keeps_static_capacity": {
+      "status": "passed",
+      "new_hardware": false,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 4096,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1793009249672,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249672,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "new_hardware_reads_resize": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 8192,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1793009249715,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249715,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "genuine_zero": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 0,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1793009249737,
+              "reason": null
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249737,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "negative": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249759,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "fraction": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249781,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "units": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249802,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "overflow": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249824,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "oversize": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249846,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "invalid_utf8": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249949,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "missing_size": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "not_present"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249971,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "permission_denied": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "permission_denied"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009249992,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "fifo_rejected": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009250014,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "one_bad_device_isolated": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 4096,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1793009250036,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009250036,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "directory_denied": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": null,
+        "availability": "restricted",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "permission_denied"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "directory_recovered": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": 4096,
+              "availability": "available",
+              "source": "sysfs",
+              "observed_at": 1793009250079,
+              "reason": null
+            }
+          },
+          {
+            "name": {
+              "value": null,
+              "availability": "restricted",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "privacy_redacted"
+            },
+            "capacity_bytes": {
+              "value": null,
+              "availability": "unavailable",
+              "source": "sysfs",
+              "observed_at": null,
+              "reason": "invalid_data"
+            }
+          }
+        ],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009250079,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "directory_missing": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "not_present"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "restored_empty": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009250123,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "count_limit": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": null,
+        "availability": "unavailable",
+        "source": "sysfs",
+        "observed_at": null,
+        "reason": "invalid_data"
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    },
+    "final_empty_recovery": {
+      "status": "passed",
+      "new_hardware": true,
+      "storage": {
+        "value": [],
+        "availability": "available",
+        "source": "sysfs",
+        "observed_at": 1793009250179,
+        "reason": null
+      },
+      "healthy_memory": true,
+      "schema_validated": true
+    }
+  },
+  "git_revision": "af312dad99abcbfc8fe2becd8a2fc209fca85f90",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "probe": "df2c1053974035f886adeece9f89f0a308504f6ed28615f495b1768251b7658e",
+    "cargo_lock": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae"
+  },
+  "docker_version": "28.0.4",
+  "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+  "configuration": {
+    "user": "65534:65534",
+    "ReadonlyRootfs": true,
+    "NetworkMode": "none",
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges=true"
+    ],
+    "Memory": 268435456,
+    "MemorySwap": 268435456,
+    "PidsLimit": 32,
+    "NanoCpus": 1000000000
+  },
+  "docker_exit_code": 0,
+  "process_exit_code": 0,
+  "process_started": true
+}
