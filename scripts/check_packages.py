@@ -42,8 +42,23 @@ def require(condition: bool, message: str) -> None:
         raise ValueError(message)
 
 
+def source_state() -> tuple[str, str]:
+    return run(["git", "rev-parse", "HEAD"]), run(["git", "status", "--porcelain"])
+
+
+def verify_source(initial: tuple[str, str]) -> None:
+    require(
+        source_state() == initial, "source checkout changed during package verification"
+    )
+
+
 def check_packages(options: argparse.Namespace) -> dict[str, Any]:
     """Build actual archives and return evidence only after every check passes."""
+    initial = source_state()
+    require(
+        not initial[1] or options.allow_dirty,
+        "dirty checkout; commit changes or use --allow-dirty",
+    )
     offline = ["--offline"] if options.offline else []
     metadata = json.loads(
         run(
@@ -192,10 +207,11 @@ def check_packages(options: argparse.Namespace) -> dict[str, Any]:
             "isolated dependency lock changed",
         )
     require((ROOT / "Cargo.lock").read_bytes() == lock_before, "source lock changed")
+    verify_source(initial)
     report = {
         "overall": "passed",
-        "git_revision": run(["git", "rev-parse", "HEAD"]).strip(),
-        "git_dirty": bool(run(["git", "status", "--porcelain"]).strip()),
+        "git_revision": initial[0],
+        "git_dirty": bool(initial[1]),
         "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
         "native_cargo_verification": True,
         "registry_publication_verified": False,

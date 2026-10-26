@@ -13,6 +13,18 @@ import check_packages
 
 
 class PackageEvidence(unittest.TestCase):
+    def test_source_revision_or_worktree_change_is_not_accepted(self) -> None:
+        initial = ("a" * 40, "")
+        for current in (("b" * 40, ""), ("a" * 40, " M source.rs")):
+            with (
+                self.subTest(current=current),
+                patch.object(check_packages, "source_state", return_value=current),
+            ):
+                with self.assertRaisesRegex(ValueError, "source checkout changed"):
+                    check_packages.verify_source(initial)
+        with patch.object(check_packages, "source_state", return_value=initial):
+            check_packages.verify_source(initial)
+
     def test_failure_or_interruption_invalidates_previous_pass(self) -> None:
         for failure in (
             ValueError("private details"),
