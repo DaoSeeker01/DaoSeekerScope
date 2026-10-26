@@ -26,11 +26,13 @@
 | 电池 | 支持 | 部分支持 | 未实现 |
 | 温度 | 未实现 | 部分 hwmon 驱动 | 未实现 |
 
-文件系统可用空间尚未实现。显示器可用 `dscope display` 或 JSON 查看：Windows 提供活动路径的信号像素，Linux 提供连接视图、授权后读取名称，当前像素尺寸未实现。macOS 提供活动视图的模式像素，名称暂未实现。信号/模式尺寸不代表面板原生分辨率。网络与存储设备名称默认隐藏；Windows GPU 不含共享显存和实时使用量，Linux GPU 显存尚未实现。Windows 网络不保证所有逻辑隧道接口，Linux 网络统计限当前命名空间，macOS 的计数可能取整和回绕。Linux 电池、温度、GPU 和显示器，以及 macOS 显示器的实体设备验证仍待补充。完整范围见[平台能力矩阵](docs/adr/0005-platform-support-matrix.md)。
+系统权限、容器和驱动会影响结果，请逐字段检查状态。GPU 使用率、Linux 显存和文件系统可用空间尚未实现；显示像素尺寸不一定是面板原生分辨率。详细语义与设备验证边界见[平台能力矩阵](docs/adr/0005-platform-support-matrix.md)。
+
+序列号、网络接口名和存储设备名称默认隐藏。敏感采集需要调用方显式请求并确认已获授权，见[隐私与限制](docs/usage.md)。
 
 ## 快速上手
 
-需要 Rust 1.96。克隆仓库后，在项目目录运行：
+需要 Rust 1.96，以及当前平台的 C/C++ 链接工具。当前从源码使用；尚无 crates.io 正式版本。克隆仓库后，在项目目录运行：
 
 ```sh
 cargo run --locked -p daoseeker-scope-cli -- cpu
@@ -63,9 +65,11 @@ fn main() -> Result<(), daoseeker_scope::ScopeError> {
 
 ## 文档与参与
 
-[使用指南](docs/usage.md) · [开发与测试](CONTRIBUTING.md) · [文档目录](docs/README.md) · [问题与修复记录](docs/project-review-2026-10-11.md)
+[使用指南](docs/usage.md) · [开发与测试](CONTRIBUTING.md) · [文档目录](docs/README.md) · [当前审计](docs/project-review-2026-10-27.md)
 
-剩余开发与延期验证见[进度清单](docs/progress.md)。
+报告问题或建议，请使用 [Issue 模板](https://github.com/DaoSeeker01/DaoSeekerScope/issues/new/choose)；提交代码前请阅读[贡献指南](CONTRIBUTING.md)和[社区规范](CODE_OF_CONDUCT.md)。漏洞请按[安全政策](SECURITY.md)私密报告。
+
+[更新日志](CHANGELOG.md) · [v0.1 交付清单](docs/v0.1-checklist.md) · [开发进度](docs/progress.md) · [本轮审计](docs/project-review-2026-10-27.md)
 
 ## 许可证
 

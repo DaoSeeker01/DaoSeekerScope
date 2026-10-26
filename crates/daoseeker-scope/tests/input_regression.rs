@@ -2,6 +2,22 @@
 use daoseeker_scope::{from_json, to_json};
 
 #[test]
+fn zero_display_extent_is_rejected_in_both_exchange_directions() {
+    use daoseeker_scope::{DisplayInfo, Observed, Source, Timestamp};
+    for (width, height) in [(0, 1080), (1920, 0), (0, 0), (1920, 1080)] {
+        let mut snapshot = from_json(include_bytes!("fixtures/snapshot-v1.json")).expect("fixture");
+        let mut display = DisplayInfo::default();
+        display.width_pixels = Observed::available(width, Source::Custom, Timestamp(1));
+        display.height_pixels = Observed::available(height, Source::Custom, Timestamp(1));
+        snapshot.static_info.displays =
+            Observed::available(vec![display], Source::Custom, Timestamp(1));
+        let wire = serde_json::to_vec(&snapshot).expect("raw serialization");
+        assert_eq!(from_json(&wire).is_ok(), width > 0 && height > 0);
+        assert_eq!(to_json(&snapshot).is_ok(), width > 0 && height > 0);
+    }
+}
+
+#[test]
 fn seeded_json_mutations_preserve_invariants_when_accepted() {
     let golden = include_bytes!("fixtures/snapshot-v1.json");
     let mut state = 0x4453_435f_2026_1008u64;

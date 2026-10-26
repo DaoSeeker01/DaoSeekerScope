@@ -1,4 +1,8 @@
-# 开发与测试
+# 贡献指南
+
+欢迎修复问题、补充平台证据、改进文档或讨论功能。先搜索已有 Issue；较大的改动建议先说明使用场景和兼容性影响。安全漏洞按[安全政策](SECURITY.md)私密报告，交流请遵守[社区规范](CODE_OF_CONDUCT.md)。
+
+一次提交尽量解决一个明确问题。保留现有架构和有效测试，为修复增加能复现问题的回归测试；不用为了增加字段数量而返回占位值。
 
 需要 Rust 1.96、Python 3.11+；Windows 的 C 示例还需要 MSVC 和 Windows SDK。工具通过 PATH 调用，不依赖维护者的磁盘路径。`rust-toolchain.toml` 和 `mise.toml` 记录固定版本；CI 在三个原生桌面系统运行。
 
@@ -19,8 +23,16 @@ cargo doc --locked --workspace --all-features --no-deps
 
 ## 工具、Schema 与文档
 
+建议创建项目内虚拟环境，避免修改全局 Python：
+
 ```sh
-python -m pip install jsonschema==4.25.1 ruff==0.14.13 mypy==1.19.1
+python -m venv .venv
+```
+
+PowerShell 执行 `.venv/Scripts/Activate.ps1`；Linux/macOS 执行 `. .venv/bin/activate`。随后运行：
+
+```sh
+python -m pip install -r requirements-dev.txt
 ruff format --check scripts tests examples/collect.py
 ruff check scripts tests examples/collect.py
 mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py
@@ -29,7 +41,7 @@ python scripts/check_schema.py
 python scripts/check_project.py
 ```
 
-项目检查读取 Git 跟踪文件及未忽略的新文件，检查 JSON/TOML、Python 语法、本地文档链接和黄金样例副本一致性。原始 fuzz 种子允许损坏字节。它不验证外部网站、Markdown 锚点或证明代码没有缺陷。
+项目检查读取 Git 跟踪文件及未忽略的新文件，检查 JSON/TOML/YAML、重复 YAML 键、Python 语法、本地文档链接、版本号和黄金样例副本一致性。原始 fuzz 种子允许损坏字节。它不验证外部网站、Markdown 锚点，也不代替代码审查。工作流另外用 actionlint 1.7.12 检查。
 
 打包与独立安装检查运行 `python scripts/check_packages.py`；已缓存依赖可加 `--offline`。它检查实际 crate 归档中的 MIT 和 FFI 头文件，再用解包后的文件运行测试、安装 CLI。依赖未发布时使用本地 patch，不能据此声称真实 registry 安装通过。完整命令和 Cargo 1.96 验证限制见[打包指南](docs/packaging.md)。
 
@@ -48,10 +60,14 @@ python scripts/native_smoke.py
 
 ## Fuzz、内存与性能
 
-十一个 fuzz 目标及命令见 [fuzz 指南](fuzz/README.md)。Miri 使用 `nightly-2026-10-08` 的 miri/rust-src 组件：`pwsh -NoProfile -File scripts/check_miri.ps1`。它验证内存契约，不执行原生系统 API。
+Fuzz 目标与命令见 [fuzz 指南](fuzz/README.md)。Miri 使用 `nightly-2026-10-08` 的 miri/rust-src 组件：`pwsh -NoProfile -File scripts/check_miri.ps1`。它验证内存契约，不执行原生系统 API。
 
 CI 另有 Rust FFI AddressSanitizer 和 cargo-deny 门禁。性能入口：`cargo bench --locked -p daoseeker-scope --bench collect`；记录平台、profile 和真实/合成数据范围，参考[性能报告](docs/benchmarks.md)。
 
 ## 提交变更
 
 保持 `Observed<T>` 的状态、来源和原因语义；公共类型不要泄漏平台依赖。新增字段、能力和兼容性行为应更新 [ADR](docs/README.md)、Schema 与回归测试。不要将编译、模拟输入测试或空集合称作真实设备验收。历史证据保留原始 source commit 和失败记录；当前验证另存新报告。
+
+PR 请说明问题、行为变化、实际测试和未验证范围；用户可见的变化记录到[更新日志](CHANGELOG.md)。文字要直接说明含义和限制，不把内部调试表示当作面向用户的解释。
+
+版本号集中在 workspace；内部路径依赖随之更新，crate 继承 workspace 版本。C ABI、JSON Schema 和私有候选包格式分别管理，不随 Rust 包版本自动变更。正式发布前逐项核对 [v0.1 清单](docs/v0.1-checklist.md)，不自行创建发布标签或上传制品。

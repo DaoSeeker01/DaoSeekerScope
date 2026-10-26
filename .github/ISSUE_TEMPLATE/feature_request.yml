@@ -1,0 +1,23 @@
+name: 功能或文档建议
+description: 说明需要解决的问题，提出字段、平台或文档改进。
+title: "[Suggestion] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 需要解决什么问题？
+      description: 请给出使用场景。文档问题可贴出文件链接和不清楚的原句。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议的行为或表达
+      description: 如涉及硬件字段，请注明平台、单位、刷新方式和公开数据来源；不知道时可以直接说明。
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 现有替代办法与限制
+      description: 哪些已有接口能满足部分需求？是否需要新权限或敏感信息？

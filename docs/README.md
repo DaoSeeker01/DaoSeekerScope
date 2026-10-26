@@ -2,6 +2,9 @@
 
 ## 使用与开发
 
+- [v0.1 交付清单](v0.1-checklist.md)：首版门槛、后续增强与延期验证。
+- [当前审计与修复](project-review-2026-10-27.md)：2026-10-27 的问题、处理和验证状态。
+
 - [使用指南](usage.md)：Rust、CLI、JSON、C/Python、刷新与隐私。
 - [剩余工作](progress.md)：首版工作包、延期设备验证与后续扩展。
 - [开发指南](../CONTRIBUTING.md)：构建、检查、跨语言、fuzz 和性能命令。
@@ -60,7 +63,7 @@
 
 ## 验证记录
 
-这些记录对应各自日期和 source commit，保留当时的结果与限制。判断当前版本请先看[项目检查报告](project-review-2026-10-11.md)和 [GitHub CI](https://github.com/DaoSeeker01/DaoSeekerScope/actions/workflows/ci.yml)。
+这些记录对应各自日期和 source commit，保留当时的结果与限制。判断当前版本请先看[当前审计](project-review-2026-10-27.md)和 [GitHub CI](https://github.com/DaoSeeker01/DaoSeekerScope/actions/workflows/ci.yml)。
 
 - [首次本地验证](validation.md)、[首次三平台 CI](ci-validation.md)、[交付历史](delivery.md)。
 - [输入与 FFI](input-ffi-validation.md)、[原生验收入口](native-validation.md)、[Linux 容器](linux-container-validation.md)。

@@ -4,6 +4,10 @@ fn main() {
     value["$id"] =
         serde_json::json!("https://github.com/DaoSeeker01/DaoSeekerScope/schema/snapshot-v1");
     value["properties"]["schema_version"] = serde_json::json!({"type":"integer", "const":1});
+    // Zero is not a valid display extent. Preserve null for missing observations.
+    for field in ["width_pixels", "height_pixels"] {
+        value["$defs"]["DisplayInfo"]["properties"][field]["properties"] = serde_json::json!({"value":{"anyOf":[{"type":"null"},{"type":"integer","minimum":1,"maximum":4294967295u64}]}});
+    }
     if let Some(definitions) = value
         .get_mut("$defs")
         .and_then(serde_json::Value::as_object_mut)

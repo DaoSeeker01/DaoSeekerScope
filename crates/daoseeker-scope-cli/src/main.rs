@@ -30,7 +30,7 @@ fn show<T: Display>(output: &mut String, label: &str, value: &Observed<T>) {
             "{label}: {:?} ({:?}, {:?})",
             value.availability(),
             value.source(),
-            value.reason()
+            value.reason().unwrap_or(ReasonCode::Unknown)
         )
         .expect("string formatting");
     }
@@ -49,7 +49,7 @@ fn list<T>(output: &mut String, label: &str, value: &Observed<Vec<T>>) {
             "{label}: {:?} ({:?}, {:?})",
             value.availability(),
             value.source(),
-            value.reason()
+            value.reason().unwrap_or(ReasonCode::Unknown)
         )
         .expect("string formatting"),
     }
@@ -354,10 +354,10 @@ mod tests {
         assert!(cpu.contains("Usage percent: 0 (Procfs)"));
         let memory = text(Command::Memory, &snapshot);
         assert!(memory.contains("Available bytes: 0 (Sysfs)"));
-        assert!(memory.contains("Installed bytes: Unsupported (Custom, Some(NotSupported))"));
+        assert!(memory.contains("Installed bytes: Unsupported (Custom, NotSupported)"));
         let system = text(Command::System, &snapshot);
-        assert!(system.contains("Device model: Restricted (Wmi, Some(PermissionDenied))"));
-        assert!(system.contains("Uptime seconds: Unavailable (Procfs, Some(InvalidData))"));
+        assert!(system.contains("Device model: Restricted (Wmi, PermissionDenied)"));
+        assert!(system.contains("Uptime seconds: Unavailable (Procfs, InvalidData)"));
         assert!(!system.contains("Uptime seconds: 0"));
     }
     #[test]
@@ -377,9 +377,8 @@ mod tests {
         snapshot.dynamic.memory_available_bytes =
             Observed::unavailable(Source::AppleApi, ReasonCode::InvalidData);
         assert!(
-            text(Command::Memory, &snapshot).contains(
-                "Non-compressed estimate bytes: Unavailable (AppleApi, Some(InvalidData))"
-            )
+            text(Command::Memory, &snapshot)
+                .contains("Non-compressed estimate bytes: Unavailable (AppleApi, InvalidData)")
         );
     }
     #[test]
@@ -436,7 +435,7 @@ mod tests {
                 Observed::missing(availability, Source::Custom, reason).expect("missing");
             assert_eq!(
                 text(Command::Display, &snapshot),
-                format!("Displays: {availability:?} (Custom, Some({reason:?}))\n")
+                format!("Displays: {availability:?} (Custom, {reason:?})\n")
             );
         }
     }
@@ -473,10 +472,10 @@ mod tests {
         snapshot.static_info.displays =
             Observed::available(vec![linux, failed, mac], Source::Custom, Timestamp(1));
         let output = text(Command::Display, &snapshot);
-        assert!(output.contains("Name: Restricted (Sysfs, Some(PrivacyRedacted))"));
-        assert!(output.contains("Width pixels: Unsupported (Drm, Some(NotSupported))"));
-        assert!(output.contains("Signal width pixels: Unavailable (Win32, Some(InvalidData))"));
-        assert!(output.contains("Name: Unsupported (AppleApi, Some(NotSupported))\nMode width pixels: 1024 (AppleApi)\nMode height pixels: 768 (AppleApi)"));
+        assert!(output.contains("Name: Restricted (Sysfs, PrivacyRedacted)"));
+        assert!(output.contains("Width pixels: Unsupported (Drm, NotSupported)"));
+        assert!(output.contains("Signal width pixels: Unavailable (Win32, InvalidData)"));
+        assert!(output.contains("Name: Unsupported (AppleApi, NotSupported)\nMode width pixels: 1024 (AppleApi)\nMode height pixels: 768 (AppleApi)"));
         assert!(!output.contains("pixels: 0") && !output.contains("1920x1080"));
         assert_eq!(output.matches("Display entry ").count(), 3);
     }
@@ -519,7 +518,7 @@ mod tests {
         snapshot.dynamic.networks = Observed::restricted(Source::Win32, ReasonCode::Sandbox);
         assert_eq!(
             text(Command::Network, &snapshot),
-            "Network: Restricted (Win32, Some(Sandbox))\n"
+            "Network: Restricted (Win32, Sandbox)\n"
         );
     }
     #[test]
@@ -591,7 +590,7 @@ mod tests {
                 output.contains(&format!("Capacity: {expected} ({bytes} bytes; Win32)")),
                 "{output}"
             );
-            assert!(output.contains("Name: Restricted (Win32, Some(PrivacyRedacted))"));
+            assert!(output.contains("Name: Restricted (Win32, PrivacyRedacted)"));
             assert!(!output.contains("PhysicalDrive"));
         }
         for unit in ["GiB", "TiB", "PiB", "EiB"] {
@@ -619,9 +618,7 @@ mod tests {
         ] {
             let output =
                 render(Observed::missing(availability, Source::Iokit, reason).expect("missing"));
-            assert!(output.contains(&format!(
-                "Storage: {availability:?} (Iokit, Some({reason:?}))"
-            )));
+            assert!(output.contains(&format!("Storage: {availability:?} (Iokit, {reason:?})")));
             assert!(
                 !output.contains("Storage entry")
                     && !output.contains("0 entries")
@@ -649,8 +646,8 @@ mod tests {
             Timestamp(1),
         ));
         assert!(output.contains("Storage: 3 entries (Sysfs)"));
-        assert!(output.contains("Capacity: Unavailable (Sysfs, Some(InvalidData))"));
-        assert!(output.contains("Capacity: Restricted (Sysfs, Some(PermissionDenied))"));
+        assert!(output.contains("Capacity: Unavailable (Sysfs, InvalidData)"));
+        assert!(output.contains("Capacity: Restricted (Sysfs, PermissionDenied)"));
         assert!(output.contains(
             "Storage entry 3\nName: 测试 disk7 (Sysfs)\nCapacity: 4.00 KiB (4096 bytes; Sysfs)"
         ));

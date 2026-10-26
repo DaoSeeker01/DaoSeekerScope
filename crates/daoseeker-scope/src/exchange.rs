@@ -120,6 +120,9 @@ pub(crate) fn validate(snapshot: &Snapshot) -> Result<(), ScopeError> {
     if let Some(items) = static_info.displays.value() {
         for item in items {
             text(&item.name)?;
+            if item.width_pixels.value() == Some(&0) || item.height_pixels.value() == Some(&0) {
+                return Err(invalid());
+            }
         }
     }
     let dynamic = &snapshot.dynamic;

@@ -11,7 +11,55 @@ import subprocess
 import tomllib
 from urllib.parse import unquote, urlsplit
 
+import yaml
+
 ROOT = Path(__file__).resolve().parent.parent
+
+
+class UniqueYamlLoader(yaml.SafeLoader):
+    """Repository configuration must not silently override duplicate keys."""
+
+
+def yaml_mapping(
+    loader: UniqueYamlLoader, node: yaml.MappingNode, deep: bool = False
+) -> dict[object, object]:
+    loader.flatten_mapping(node)
+    result: dict[object, object] = {}
+    for key, value in loader.construct_pairs(node, deep=deep):
+        if key in result:
+            raise ValueError("duplicate YAML key")
+        result[key] = value
+    return result
+
+
+UniqueYamlLoader.add_constructor(
+    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, yaml_mapping
+)
+
+
+def check_versions(root: Path) -> list[str]:
+    """Catch internal crate/version drift without changing historical evidence."""
+    workspace = tomllib.loads((root / "Cargo.toml").read_text(encoding="utf-8"))[
+        "workspace"
+    ]
+    version = workspace["package"]["version"]
+    failures = []
+    for name, dependency in workspace.get("dependencies", {}).items():
+        if (
+            isinstance(dependency, dict)
+            and "path" in dependency
+            and dependency.get("version") != version
+        ):
+            failures.append(f"workspace dependency version drift: {name}")
+    for path in sorted((root / "crates").glob("*/Cargo.toml")):
+        package = tomllib.loads(path.read_text(encoding="utf-8"))["package"]
+        if package.get("version") != {"workspace": True}:
+            failures.append(f"crate version must inherit workspace: {path.parent.name}")
+    if f"## 未发布 · {version}" not in (root / "CHANGELOG.md").read_text(
+        encoding="utf-8"
+    ):
+        failures.append("current version missing from unreleased changelog")
+    return failures
 
 
 def check_file(path: Path) -> int:
@@ -27,6 +75,8 @@ def check_file(path: Path) -> int:
         tomllib.loads(data.decode("utf-8"))
     elif path.suffix == ".py":
         ast.parse(data.decode("utf-8"), filename=path.name)
+    elif path.suffix in (".yml", ".yaml"):
+        yaml.load(data.decode("utf-8"), Loader=UniqueYamlLoader)
     elif path.suffix == ".md":
         # Fenced examples may show illustrative links rather than actual links.
         text = re.sub(r"```.*?```", "", data.decode("utf-8"), flags=re.S)
@@ -58,8 +108,12 @@ def main() -> None:
         counts[path.suffix or "no_extension"] += 1
         try:
             links += check_file(path)
-        except (OSError, ValueError, SyntaxError) as error:
+        except (OSError, ValueError, SyntaxError, yaml.YAMLError) as error:
             failures.append(f"{name}: {error}")
+    try:
+        failures.extend(check_versions(ROOT))
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        failures.append(f"version configuration: {error}")
     for copy in [
         "crates/daoseeker-scope/tests/fixtures/snapshot-v1.json",
         "fuzz/corpus/snapshot_json/valid-v1.json",

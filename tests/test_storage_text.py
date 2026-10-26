@@ -18,10 +18,10 @@ class StorageText(unittest.TestCase):
         return (
             f"Storage: 2 entries ({collection_source})\n"
             "Storage entry 1\n"
-            f"Name: Restricted ({source}, Some(PrivacyRedacted))\n"
-            f"Capacity: Restricted ({source}, Some(PermissionDenied))\n"
+            f"Name: Restricted ({source}, PrivacyRedacted)\n"
+            f"Capacity: Restricted ({source}, PermissionDenied)\n"
             "Storage entry 2\n"
-            f"Name: Restricted ({source}, Some(PrivacyRedacted))\n"
+            f"Name: Restricted ({source}, PrivacyRedacted)\n"
             f"Capacity: {capacity}\n"
             "Entries are OS objects, including virtual devices; capacities may overlap.\n"
         ).encode()
@@ -44,7 +44,7 @@ class StorageText(unittest.TestCase):
         valid = self.text("Sysfs")
         for data in [
             valid.replace(
-                b"Name: Restricted (Sysfs, Some(PrivacyRedacted))",
+                b"Name: Restricted (Sysfs, PrivacyRedacted)",
                 b"Name: private-device",
             ),
             valid.replace(b"Storage: 2", b"Storage: 3"),
@@ -68,7 +68,7 @@ class StorageText(unittest.TestCase):
         for data in [
             self.text("Sysfs", "0 B (0 bytes; Sysfs)"),
             b"Storage: 0 entries (Sysfs)\nNo storage entries visible to this backend.\n",
-            b"Storage: Unsupported (Custom, Some(NotSupported))\n",
+            b"Storage: Unsupported (Custom, NotSupported)\n",
             b"x" * (smoke.MAX_JSON_BYTES + 1),
         ]:
             with self.assertRaises(smoke.ValidationFailure):

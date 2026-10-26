@@ -35,6 +35,24 @@ fn available<T>(value: T) -> Observed<T> {
 }
 
 #[test]
+fn zero_display_extent_is_isolated_without_hiding_a_valid_axis() {
+    let mut display = DisplayInfo::default();
+    display.width_pixels = available(0);
+    display.height_pixels = available(1080);
+    let mut backend = Fixture::default();
+    backend.static_info.displays = available(vec![display]);
+    let hardware = HardwareBuilder::default()
+        .with_backend(0, backend)
+        .build()
+        .expect("hardware");
+    let snapshot = hardware.collect().expect("field isolation");
+    let display = &snapshot.static_info.displays.value().expect("displays")[0];
+    assert_eq!(display.width_pixels.reason(), Some(ReasonCode::InvalidData));
+    assert_eq!(display.width_pixels.value(), None);
+    assert_eq!(display.height_pixels.value(), Some(&1080));
+}
+
+#[test]
 fn custom_storage_names_require_both_privacy_options_without_hiding_capacity() {
     let create = |options| {
         let mut item = StorageInfo::default();

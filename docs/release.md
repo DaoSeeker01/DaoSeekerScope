@@ -1,5 +1,17 @@
 # 发布与迁移路线
 
+## 当前发布门槛
+
+0.1.0 仍未发布。[v0.1 清单](v0.1-checklist.md)是交付状态入口，[更新日志](../CHANGELOG.md)记录用户可见变化；下面的日期记录保留各轮原始结论。
+
+正式发布前：冻结版本与变更日志 → 运行三平台 Rust/C/Python、八包、Schema、隐私和安全门禁 → 核对许可证与支持范围 → 在全新目录验证候选制品、校验和与恢复方式 → 审阅最终报告 → 取得发布授权。失败、跳过和延期单独列出，不用旧报告覆盖新失败。
+
+内部版本由 workspace 管理，`python scripts/check_project.py` 检查依赖版本和更新日志一致性。C ABI、Schema 和候选包格式单独管理。按 core、sysinfo/平台 crate、门面、CLI/FFI 的依赖顺序发布；本地 patch 的八包验证不能替代真实 registry 验证。
+
+本仓库没有自动发布到 registry、创建 Release 或上传二进制的工作流。更改社区文件、修复代码和运行 CI 不代表获得正式发布授权。
+
+## 开发与验收记录
+
 2026-10-26 Linux FFI SDK 开发增量：新增 GNU x86_64 SDK v4、共享库/头文件/示例/Schema 打包与 ELF 路径检查，源码 af312da 的三平台 CI 40304816716 已全部八项通过。干净提交 f262095 的 Windows SDK/CLI 回归、161 项 Python（157 通过/4 跳过）及 262 项 Rust 门禁通过；Linux 原生构建/C/Python/ELF/权限/回滚与两平台 SDK/CLI 回归已通过，见[记录](linux-ffi-sdk-validation.md)。不改变 Rust API、依赖/features/锁、MIT、C ABI 1 或硬件 Schema 1。未发布二进制。
 
 2026-10-26 Windows FFI SDK 开发增量：共享 ZIP 工具增加 Windows x64 SDK 产品（bundle_format 3），包含 DLL、头文件、导入库、C/Python 示例和 Schema；原有 CLI v1/v2、Rust API、依赖/features/锁、C ABI 1、硬件 Schema 1 和 MIT 不变。干净提交 b3b47b1 本机完成 9 个 SDK 顶层调用、300 次 Python collect/free、CLI 六进程、262 Rust 与 147 Python 测试；2 项 POSIX 测试在本机跳过；随后源码 ba11807 的三平台 CI 40249181949 全部八项、各八包及 Windows SDK 九项顶层调用/300 次 Python 循环已通过，见[记录](windows-ffi-sdk-validation.md)。macOS 候选包因完整许可材料缺口继续待办；调查不构成上游现有 MIT 无效的结论，见 [ADR 0033](adr/0033-windows-ffi-sdk.md)。没有上传或正式分发 SDK。

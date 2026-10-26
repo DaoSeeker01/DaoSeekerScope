@@ -182,7 +182,21 @@
             "source": "custom",
             "value": null
           },
-          "description": "Cached pixel height, using the same platform extent as `width_pixels`."
+          "description": "Cached pixel height, using the same platform extent as `width_pixels`.",
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "maximum": 4294967295,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              ]
+            }
+          }
         },
         "name": {
           "$ref": "#/$defs/Observed",
@@ -204,7 +218,21 @@
             "source": "custom",
             "value": null
           },
-          "description": "Cached pixel width; Windows CCD reports the target signal's active size.\nmacOS reports the current CGDisplayMode pixel extent, not logical points.\nThis is not a promise of panel-native resolution or logical DPI coordinates."
+          "description": "Cached pixel width; Windows CCD reports the target signal's active size.\nmacOS reports the current CGDisplayMode pixel extent, not logical points.\nThis is not a promise of panel-native resolution or logical DPI coordinates.",
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "maximum": 4294967295,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              ]
+            }
+          }
         }
       },
       "type": "object"

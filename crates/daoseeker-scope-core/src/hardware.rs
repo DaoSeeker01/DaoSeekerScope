@@ -547,6 +547,8 @@ fn collect_static(
                 if let Some(entries) = &mut next.displays.value {
                     for item in entries {
                         limit_string(&mut item.name);
+                        positive(&mut item.width_pixels);
+                        positive(&mut item.height_pixels);
                     }
                 }
                 merge(

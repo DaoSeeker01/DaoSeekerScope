@@ -10,7 +10,7 @@ import native_smoke as smoke
 
 class CliText(unittest.TestCase):
     def test_mac_memory_labels_do_not_claim_immediate_availability(self) -> None:
-        data = b"Physical total proxy bytes: 8192 (Sysctl)\nInstalled bytes: Unsupported (Custom, Some(NotSupported))\nNon-compressed estimate bytes: 0 (AppleApi)\n"
+        data = b"Physical total proxy bytes: 8192 (Sysctl)\nInstalled bytes: Unsupported (Custom, NotSupported)\nNon-compressed estimate bytes: 0 (AppleApi)\n"
         self.assertEqual(smoke.check_cli_text("memory", data)["available_fields"], 2)
         for bad in (
             data.replace(b"(AppleApi)", b"(Sysinfo)"),
@@ -27,7 +27,7 @@ class CliText(unittest.TestCase):
         )
         for source, prefix, name in [
             ("Win32", "Signal ", "Fixture screen (Win32)"),
-            ("AppleApi", "Mode ", "Unsupported (AppleApi, Some(NotSupported))"),
+            ("AppleApi", "Mode ", "Unsupported (AppleApi, NotSupported)"),
             ("Custom", "", "Fixture screen (Custom)"),
         ]:
             width = prefix + "width" if prefix else "Width"
@@ -64,9 +64,9 @@ class CliText(unittest.TestCase):
     def test_display_privacy_missing_dimensions_and_empty_are_distinct(self) -> None:
         data = (
             "Displays: 1 entries (Drm)\nDisplay entry 1\n"
-            "Name: Restricted (Sysfs, Some(PrivacyRedacted))\n"
-            "Width pixels: Unsupported (Drm, Some(NotSupported))\n"
-            "Height pixels: Unsupported (Drm, Some(NotSupported))\n"
+            "Name: Restricted (Sysfs, PrivacyRedacted)\n"
+            "Width pixels: Unsupported (Drm, NotSupported)\n"
+            "Height pixels: Unsupported (Drm, NotSupported)\n"
             "Entries are OS display views, not a physical monitor count.\n"
             "Pixel dimensions do not identify panel-native resolution.\n"
         ).encode()
@@ -77,7 +77,7 @@ class CliText(unittest.TestCase):
             smoke.check_cli_text(
                 "display",
                 data.replace(
-                    b"Restricted (Sysfs, Some(PrivacyRedacted))",
+                    b"Restricted (Sysfs, PrivacyRedacted)",
                     b"private-name (Sysfs)",
                 ),
             )
@@ -89,7 +89,7 @@ class CliText(unittest.TestCase):
         self.assertEqual(empty["collection_state"], "Available")
         for state in ["Unavailable", "Restricted", "Unsupported", "NotApplicable"]:
             missing = smoke.check_cli_text(
-                "display", f"Displays: {state} (Custom, Some(NotSupported))\n".encode()
+                "display", f"Displays: {state} (Custom, NotSupported)\n".encode()
             )
             self.assertIsNone(missing["entry_count"])
             self.assertEqual(missing["collection_state"], state)
@@ -105,7 +105,7 @@ class CliText(unittest.TestCase):
     def test_scalar_sources_zero_and_missing_values(self) -> None:
         valid = (
             "OS usable total bytes: 8589934592 (Sysinfo)\n"
-            "Installed bytes: Restricted (Sysfs, Some(PermissionDenied))\n"
+            "Installed bytes: Restricted (Sysfs, PermissionDenied)\n"
             "Available bytes: 0 (Procfs)\n"
         ).encode()
         result = smoke.check_cli_text("memory", valid)
@@ -119,7 +119,7 @@ class CliText(unittest.TestCase):
             valid.replace(
                 b"Available bytes: 0", b"Available bytes: 18446744073709551616"
             ),
-            valid.replace(b"Some(PermissionDenied)", b"Some(Invented)"),
+            valid.replace(b"PermissionDenied", b"Invented"),
             valid + b"unexpected\n",
             b"\xff",
             b"x" * (smoke.MAX_JSON_BYTES + 1),
@@ -133,7 +133,7 @@ class CliText(unittest.TestCase):
         battery = (
             "Batteries: 2 entries (Sysfs)\n"
             "Battery entry 1\n"
-            "Charge percent: Unavailable (Sysfs, Some(InvalidData))\n"
+            "Charge percent: Unavailable (Sysfs, InvalidData)\n"
             "AC power: false (Sysfs)\n"
             "Battery entry 2\n"
             "Charge percent: 0 (Sysfs)\n"
@@ -142,7 +142,7 @@ class CliText(unittest.TestCase):
         self.assertEqual(smoke.check_cli_text("battery", battery)["entry_count"], 2)
         empty = smoke.check_cli_text("gpu", b"GPU: 0 entries (Custom)\n")
         missing = smoke.check_cli_text(
-            "gpu", b"GPU: Unsupported (Custom, Some(NotSupported))\n"
+            "gpu", b"GPU: Unsupported (Custom, NotSupported)\n"
         )
         self.assertEqual(empty["entry_count"], 0)
         self.assertIsNone(missing["entry_count"])
@@ -161,7 +161,7 @@ class CliText(unittest.TestCase):
     def test_privacy_and_capability_reasons(self) -> None:
         sensor = (
             "Sensors: 1 entries (Hwmon)\nSensor entry 1\n"
-            "Label: Restricted (Hwmon, Some(PrivacyRedacted))\n"
+            "Label: Restricted (Hwmon, PrivacyRedacted)\n"
             "Temperature Celsius: -10.5 (Hwmon)\n"
         ).encode()
         self.assertEqual(smoke.check_cli_text("sensors", sensor)["available_fields"], 1)
@@ -169,7 +169,7 @@ class CliText(unittest.TestCase):
             smoke.check_cli_text(
                 "sensors",
                 sensor.replace(
-                    b"Restricted (Hwmon, Some(PrivacyRedacted))",
+                    b"Restricted (Hwmon, PrivacyRedacted)",
                     b"private-label (Hwmon)",
                 ),
             )

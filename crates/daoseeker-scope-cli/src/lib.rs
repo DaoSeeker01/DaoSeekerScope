@@ -76,7 +76,14 @@ pub fn parse_args(args: &[String]) -> Result<Invocation, &'static str> {
             return Err("invalid argument; use --help");
         }
     }
-    options.validate().map_err(|_| "invalid options")?;
+    if options.privacy.include_sensitive && !options.privacy.caller_authorized {
+        return Err(
+            "--include-sensitive requires --authorized; confirm authorization before requesting identifiers",
+        );
+    }
+    options
+        .validate()
+        .map_err(|_| "invalid options; use --help")?;
     Ok(Invocation::Collect {
         command: command.unwrap_or(Command::System),
         json,

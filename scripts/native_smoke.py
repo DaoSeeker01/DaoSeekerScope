@@ -886,7 +886,7 @@ def check_storage_text(data: bytes, expected_source: str) -> dict[str, Any]:
                 raise ValidationFailure("storage_text: malformed")
             if (
                 lines[position + 1]
-                != f"Name: Restricted ({expected_source}, Some(PrivacyRedacted))"
+                != f"Name: Restricted ({expected_source}, PrivacyRedacted)"
             ):
                 raise ValidationFailure("storage_text: privacy_violation")
             field = lines[position + 2]
@@ -904,7 +904,9 @@ def check_storage_text(data: bytes, expected_source: str) -> dict[str, Any]:
                 re.fullmatch(
                     r"Capacity: (?:Unavailable|Restricted|Unsupported|NotApplicable) \("
                     + re.escape(expected_source)
-                    + r", Some\(\w+\)\)",
+                    + r", "
+                    + TEXT_REASONS
+                    + r"\)",
                     field,
                 )
                 is None
@@ -943,9 +945,9 @@ def check_display_text(data: bytes) -> dict[str, Any]:
             + TEXT_MISSING
             + r") \(("
             + TEXT_SOURCES
-            + r"), Some\(("
+            + r"), ("
             + TEXT_REASONS
-            + r")\)\)"
+            + r")\)"
         )
         header = re.fullmatch(
             r"Displays: ([0-9]+) entries \((" + TEXT_SOURCES + r")\)", lines[0]
@@ -1067,16 +1069,11 @@ def check_cli_text(command: str, data: bytes) -> dict[str, Any]:
             ):
                 if (
                     label == special
-                    and re.search(r"\(" + source + r"(?:\)|, Some\()", value) is None
+                    and re.search(r"\(" + source + r"(?:\)|, )", value) is None
                 ):
                     raise ValidationFailure("cli_text: memory_source")
             if re.fullmatch(
-                TEXT_MISSING
-                + r" \("
-                + TEXT_SOURCES
-                + r", Some\("
-                + TEXT_REASONS
-                + r"\)\)",
+                TEXT_MISSING + r" \(" + TEXT_SOURCES + r", " + TEXT_REASONS + r"\)",
                 value,
             ):
                 missing += 1
@@ -1219,7 +1216,7 @@ def check_cli_text(command: str, data: bytes) -> dict[str, Any]:
                                     label
                                     + r": Restricted \("
                                     + TEXT_SOURCES
-                                    + r", Some\(PrivacyRedacted\)\)",
+                                    + r", PrivacyRedacted\)",
                                     line,
                                 )
                                 is None

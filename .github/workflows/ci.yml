@@ -2,11 +2,15 @@ name: desktop-contracts
 on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 env:
   CARGO_INCREMENTAL: "0"
   CARGO_HTTP_MULTIPLEXING: "false"
 jobs:
   desktop:
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
@@ -41,7 +45,7 @@ jobs:
           RUSTDOCFLAGS: "-D warnings"
       - run: cargo build --locked -p daoseeker-scope-ffi -p daoseeker-scope-cli
       - name: Python dev schema validator
-        run: python -m pip install jsonschema==4.25.1 ruff==0.14.13 mypy==1.19.1
+        run: python -m pip install -r requirements-dev.txt
       - name: Python static checks
         run: |
           ruff format --check scripts tests examples/collect.py
@@ -282,6 +286,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
   supply-chain:
+    timeout-minutes: 20
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
@@ -359,12 +364,14 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
   miri:
+    timeout-minutes: 20
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
       - run: rustup toolchain install nightly-2026-10-08 --profile minimal --component miri --component rust-src
       - run: cargo +nightly-2026-10-08 miri test --locked -p daoseeker-scope-ffi --target x86_64-unknown-linux-gnu memory_contracts -- --test-threads=1
   ffi-asan:
+    timeout-minutes: 25
     runs-on: ubuntu-24.04
     env:
       RUSTFLAGS: "-Zsanitizer=address"

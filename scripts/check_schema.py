@@ -17,6 +17,23 @@ fixture = json.loads(
 jsonschema.Draft202012Validator.check_schema(schema)
 validator = jsonschema.Draft202012Validator(schema)
 validator.validate(fixture)
+for width, height in ((0, 1080), (1920, 0), (0, 0), (1920, 1080)):
+
+    def observed(value: object) -> dict[str, object]:
+        return dict(
+            value=value,
+            availability="available",
+            source="custom",
+            observed_at=1,
+            reason=None,
+        )
+
+    display = copy.deepcopy(fixture)
+    display["static_info"]["displays"] = observed(
+        [dict(width_pixels=observed(width), height_pixels=observed(height))]
+    )
+    if bool(list(validator.iter_errors(display))) != (width == 0 or height == 0):
+        raise ValueError("display extent schema mismatch")
 for args, expected in [
     (["--example", "schema", "--features", "schema"], schema),
     (["--example", "golden"], fixture),

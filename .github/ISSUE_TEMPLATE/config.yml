@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 安全漏洞报告
+    url: https://github.com/DaoSeeker01/DaoSeekerScope/blob/main/SECURITY.md
+    about: 请先阅读私密报告方式，不要公开漏洞细节。
+  - name: 使用指南
+    url: https://github.com/DaoSeeker01/DaoSeekerScope/blob/main/docs/usage.md
+    about: Rust、CLI、JSON 和 C/Python 的用法与限制。
