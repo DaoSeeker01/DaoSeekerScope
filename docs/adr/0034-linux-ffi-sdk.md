@@ -1,6 +1,6 @@
 # ADR 0034：Linux FFI SDK 候选包
 
-日期：2026-10-26。状态：实现，原生 Linux 构建、C/Python 调用及权限验证待 CI；本机验证见[记录](../linux-ffi-sdk-validation.md)。
+日期：2026-10-26。状态：实现；干净提交 f262095 的共享工具守卫与 Windows SDK/CLI 回归通过，原生 Linux 构建、C/Python 调用及权限验证待 CI；见[记录](../linux-ffi-sdk-validation.md)。
 
 ## 选择
 

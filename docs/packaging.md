@@ -1,6 +1,6 @@
 # 打包与安装验证
 
-2026-10-26 Linux SDK 增量：GNU x86_64 共享库使用独立 ZIP 格式 4，包内 C/Python 消费者复用安装/回滚并新增 ELF 依赖和 RUNPATH 检查。Windows SDK 3、CLI 1/2 保持。Linux 原生构建和调用待 CI，见[记录](linux-ffi-sdk-validation.md)。
+2026-10-26 Linux SDK 增量：GNU x86_64 共享库使用独立 ZIP 格式 4，包内 C/Python 消费者复用安装/回滚并新增 ELF 依赖和 RUNPATH 检查。Windows SDK 3、CLI 1/2 保持。干净源码 f262095 的 Windows SDK 九项调用/300 次 Python 循环与 CLI 六进程回归通过；Linux 原生构建和调用待 CI，见[记录](linux-ffi-sdk-validation.md)。
 
 Windows FFI SDK 二进制候选入口与 C/Python 消费者验证见[本轮记录](windows-ffi-sdk-validation.md)，不与 `.crate` 源码包或现有 CLI 制品验收混淆。
 

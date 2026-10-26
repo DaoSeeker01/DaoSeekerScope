@@ -1,0 +1,28 @@
+{
+  "overall": "passed",
+  "source_commit": "f2620951be1a6e42921768772451d8419505f2ed",
+  "source_dirty": false,
+  "target": "x86_64-pc-windows-msvc",
+  "host": {
+    "system": "Windows",
+    "version": "10.0.26300",
+    "machine": "AMD64"
+  },
+  "version": "0.1.0",
+  "bundle_format": 1,
+  "abi_version": 1,
+  "schema_version": 1,
+  "archive_sha256": "b1228d7918d8040b679622f0a77df0100b970653d27d5a0db323642684506d31",
+  "cli_sha256": "dc16220b9bbd45af2120a0791c581dab2efb8e89cd4a3feebf5288b6a39657f8",
+  "payload_files": 73,
+  "processes": 6,
+  "minimum_read_and_default_privacy": true,
+  "snapshot_schema_validated": true,
+  "posix_modes_verified": false,
+  "corrupt_update_rejected_before_install": true,
+  "same_candidate_two_slot_rollback": true,
+  "older_version_compatibility_tested": false,
+  "published": false,
+  "global_install_or_path_modified": false,
+  "publisher_authenticated": false
+}

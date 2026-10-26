@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-26",
+  "source_commit": "f2620951be1a6e42921768772451d8419505f2ed",
+  "source_dirty": false,
+  "overall": "passed",
+  "scope": "Windows SDK/CLI native regression and platform-independent guards only; not Linux SDK native acceptance",
+  "linux_sdk_native_build": "not_run",
+  "linux_sdk_native_consumers": "not_run",
+  "new_three_platform_ci": "not_run",
+  "windows_regressions": {
+    "sdk": {
+      "report": "linux-ffi-sdk-windows-sdk-regression-f262095.json",
+      "archive_sha256": "7d9345f480283332bdf9369181d6a49fd7d75409ccbb781baa251f5c60785453",
+      "archive_bytes": 859376,
+      "processes": 9
+    },
+    "cli": {
+      "report": "linux-ffi-sdk-windows-cli-regression-f262095.json",
+      "archive_sha256": "b1228d7918d8040b679622f0a77df0100b970653d27d5a0db323642684506d31",
+      "archive_bytes": 874211,
+      "processes": 6
+    }
+  },
+  "reports": {
+    "linux-ffi-sdk-windows-sdk-regression-f262095.json": {
+      "sha256": "06c0a208bbaa9aa3e30be3f86ab1d46b9e532909991c0e79cc739d013de75380",
+      "original_report_sha256": "d568e91701a1805556f37789841cd03530822c924299134e0d019a52540398e0"
+    },
+    "linux-ffi-sdk-windows-cli-regression-f262095.json": {
+      "sha256": "d4649a48ecb5fded00002859595c4bddd3d402dd67fdf565f4b6a8be6e24a671",
+      "original_report_sha256": "20c63ef03c5a41c13e0036f43c6fe2bd84e4b4239bc025ca7cb16db51662494e"
+    },
+    "linux-ffi-sdk-notice-materials-f262095.json": {
+      "sha256": "5d7ad00faf3899aa1036c35a1ecf16b97d66ddf9d01f755e38b02ecfa39f9c9e",
+      "original_report_sha256": "5d7ad00faf3899aa1036c35a1ecf16b97d66ddf9d01f755e38b02ecfa39f9c9e"
+    }
+  },
+  "linux_notice_materials": "linux-ffi-sdk-notice-materials-f262095.json",
+  "python_tests_total": 161,
+  "python_tests_passed": 157,
+  "python_tests_skipped": 4,
+  "new_linux_sdk_tests": 12,
+  "new_linux_sdk_tests_passed_on_windows": 10,
+  "new_linux_sdk_posix_tests_skipped": 2,
+  "windows_sdk_collect_free_cycles": 300,
+  "rust_tests_including_doctests": 262,
+  "python_source_files": 55,
+  "rust_gate_execution_phase": "working tree before implementation commit; Rust inputs identical to this source and 7f67c5e",
+  "rust_api_dependencies_features_locks_changed": false,
+  "license": "MIT",
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "bundle_formats": {
+    "windows_cli": 1,
+    "linux_cli": 2,
+    "windows_ffi_sdk": 3,
+    "linux_ffi_sdk": 4
+  },
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "uv run --offline --no-project --with jsonschema==4.25.1 --with ruff==0.14.13 --with mypy==1.19.1 <tool>",
+    "Ruff format --check/check scripts tests examples/collect.py; mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+    "mypy --strict --no-incremental --ignore-missing-imports scripts/cli_bundle.py scripts/ffi_bundle_smoke.py tests/test_ffi_bundle.py tests/test_linux_ffi_bundle.py",
+    "python -m unittest discover -s tests -p test_*.py -v",
+    "python scripts/check_schema.py; python scripts/check_project.py; actionlint 1.7.12",
+    "python scripts/cli_bundle.py --product ffi_sdk --offline; python scripts/ffi_bundle_smoke.py <fresh Windows SDK ZIP>",
+    "python scripts/cli_bundle.py --offline; python scripts/cli_bundle_smoke.py <fresh Windows CLI ZIP>",
+    "cargo metadata --locked --offline --format-version 1 --filter-platform x86_64-unknown-linux-gnu; dependency_payload(metadata, root_package=daoseeker-scope-ffi)"
+  ],
+  "logs": {
+    "linux-ffi-python-clean.log": "01f7512ee2d73a6ff7350c1acf9111664b6b8fb20659f32eb16f6f69e7b71491",
+    "linux-ffi-rust-development.log": "a1bca559050b6743205ef684f4efa6cc795d1021eb0e004aee27ba6d77a638dc"
+  },
+  "source_sha256": {
+    "scripts/cli_bundle.py": "3ae04ae34da8ef438d17a9ae0b0d0247b652556694031d2a3075a757260d593a",
+    "scripts/ffi_bundle_smoke.py": "4ab7ce232c76289d05c29bf3b67f075fb897ce8852039759d6257225d4e39d1a",
+    "scripts/cli_bundle_smoke.py": "36d9b2b491ab8a9a2f39d852a1db4dbb5486590e246ec611c6c49e483e63b584",
+    "tests/test_linux_ffi_bundle.py": "1dd67fe97fcb0c58ecad941f8fd254aebfd4530b3c0196e284759a6204cb5e4d",
+    "tests/test_ffi_bundle.py": "86246889cc5bdede6787f7ee16788dac5bbe1d72e69c3bc278a30091f68a724b",
+    ".github/workflows/ci.yml": "22e5bbc064b3527c3e373b3aaa1b169bd449b13b389fce7c9ee6d8e72cee1c67"
+  },
+  "not_executed": [
+    "Linux SDK native build, readelf and C/Python execution; two new real POSIX permission tests skipped on Windows",
+    "New CI/eight-crate/fuzz/Miri/ASan/benchmark acceptance; earlier rounds remain separate",
+    "Minimum glibc/distribution/kernel, system dependency closure, signing, old released-version compatibility and final license review",
+    "Physical Linux/macOS deferred by user; macOS SDK/CLI material completion; binary publication, registry or Release"
+  ],
+  "limits": [
+    "12 policy tests use synthetic inert payloads; no fabricated ELF library or Linux program is executed",
+    "Linux notice check uses target-filtered metadata/cache on Windows, not Linux toolchain notices or final legal approval",
+    "Windows consumers are a regression only, not Linux SDK implementation acceptance",
+    "9 SDK/6 CLI counts are top-level calls, excluding compiler/linker descendants; same-candidate rollback only",
+    "SDK/CLI binaries remain under ignored target; no upload/global installation or environment change"
+  ]
+}
