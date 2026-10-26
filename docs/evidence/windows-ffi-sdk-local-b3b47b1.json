@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-26",
+  "source_commit": "b3b47b100fca6d71796af70f84f49e9aa849e4ec",
+  "source_dirty": false,
+  "overall": "passed",
+  "scope": "Windows x64 FFI SDK local acceptance and CLI regression; not native macOS/Linux SDK acceptance",
+  "sdk_archive_sha256": "db6b3bfd011f40943ec509b8c4916058f645dfe43b49c2a572d14a3bd9ff7350",
+  "sdk_archive_bytes": 859377,
+  "sdk_payload_files": 78,
+  "sdk_top_level_subprocess_calls": 9,
+  "c_compilations": 3,
+  "c_executions": 3,
+  "python_executions": 3,
+  "python_collect_free_cycles": 300,
+  "fresh_cli_processes": 6,
+  "legacy_cli_reader_verified": true,
+  "legacy_cli_archive_sha256": "08d34a004769076b7e2900fa329106a49cbe93903aa21346b2de9da2040d8f09",
+  "rust_tests_including_doctests": 262,
+  "python_tests_total": 149,
+  "python_tests_passed": 147,
+  "python_tests_skipped": 2,
+  "new_sdk_guard_tests": 9,
+  "python_source_files": 54,
+  "reports": {
+    "windows-ffi-sdk-native-b3b47b1.json": {
+      "sha256": "f6d236a5a7f9043b8b82c7fbc51fa7641bc288c7d762ddc8a9e299ae03f239b2",
+      "original_report_sha256": "c1fd70cf65798494e207f224a11a726625e1157509a1d210a0debec4494f50d8"
+    },
+    "windows-ffi-sdk-manifest-b3b47b1.json": {
+      "sha256": "fae0f809a28c96416f80c477f99ceb4890fc23e78e28bd72d4e2091920acaa8f",
+      "original_report_sha256": "fae0f809a28c96416f80c477f99ceb4890fc23e78e28bd72d4e2091920acaa8f"
+    },
+    "windows-ffi-sdk-cli-regression-b3b47b1.json": {
+      "sha256": "1ca256ccbb045d4f82094f574730e19a0c4d9b87cbbbaffd1fea20711737f0f2",
+      "original_report_sha256": "c6362fd60c5ead626123c834f47eb7ffe4cf8f0e39dc596b463a0905c3c346a9"
+    }
+  },
+  "macos_notice_research": {
+    "report": "macos-license-research-2026-10-26.json",
+    "sha256": "3041247ea928602c26c7caa0e9b19b857e1f20177de2f1f9bd0d052543534bfe",
+    "macos_candidate_complete": false
+  },
+  "commands": [
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "Ruff 0.14.13 format --check and check; mypy 1.19.1; unittest discover -s tests -p test_*.py -v",
+    "python scripts/check_schema.py (jsonschema 4.25.1); python scripts/check_project.py; actionlint 1.7.12",
+    "python scripts/cli_bundle.py --product ffi_sdk --offline",
+    "python scripts/ffi_bundle_smoke.py <clean SDK ZIP> --output <SDK report>",
+    "python scripts/cli_bundle.py --offline; python scripts/cli_bundle_smoke.py <clean CLI ZIP>",
+    "SDK consumers: pwsh build_c_example.ps1 -SdkDirectory <verified slot>, then its C executable and packaged Python example",
+    "verify_bundle and byte comparisons against committed header/examples/Schema and Cargo.lock"
+  ],
+  "local_log_sha256": {
+    "ffi-sdk-python-clean.log": "53362a181b21b1537e70547b31f4590e22414eae215a269593577f203e070d06",
+    "ffi-sdk-rust-clean.log": "1bbeb6a8c43d92fcc362c5278b4c6b0b7a539cad94776a5f96fae1346302b821"
+  },
+  "compatibility": {
+    "license": "MIT",
+    "c_abi_version": 1,
+    "snapshot_schema_version": 1,
+    "windows_cli_bundle_format": 1,
+    "linux_cli_bundle_format": 2,
+    "windows_ffi_sdk_bundle_format": 3,
+    "rust_api_dependencies_features_or_locks_changed": false
+  },
+  "not_executed_this_round": [
+    "New three-platform CI; native Linux/macOS SDK build or execution",
+    "POSIX permission tests: two explicitly skipped on Windows",
+    "New eight-crate package, fuzz, Miri, ASan or benchmark campaign (Rust crate code unchanged)",
+    "Older released-version upgrades, minimum Windows runtime compatibility, signing and final license review",
+    "Binary upload, registry or GitHub Release publication; no global install/PATH changes"
+  ],
+  "limits": [
+    "9 counts direct subprocess calls, excluding compiler/linker descendants",
+    "Only same-candidate two-slot selection rollback, not historical-version compatibility",
+    "300 cycles are not a complete memory leak/peak allocation proof",
+    "macOS notice material remains incomplete; no fabricated owner/license or legal invalidity conclusion"
+  ]
+}

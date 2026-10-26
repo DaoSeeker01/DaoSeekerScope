@@ -1,6 +1,6 @@
 # ADR 0033：Windows FFI SDK 候选包
 
-日期：2026-10-26。状态：实现，本机原生验收后归档；新增 CI 尚未执行。
+日期：2026-10-26。状态：实现，干净提交 b3b47b1 的 Windows 本机 SDK/CLI 回归通过，见[记录](../windows-ffi-sdk-validation.md)；新增 CI 尚未执行。
 
 ## 本轮选择
 
