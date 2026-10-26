@@ -1,5 +1,17 @@
 # 性能基线
 
+## Windows FFI SDK 轮次的整库回归（2026-10-26）
+
+源码 `ba11807b4cc04046f9e3a966ccb58c51dcd23a92`，[CI 40249181949](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40249181949)运行 `cargo bench --locked -p daoseeker-scope --bench collect`；Rust 1.96、bench 优化、默认 serde，原生 max_entries=128/100 次刷新，合成 100 个传感器和 1024 个网络条目/max_entries=1024。实际 OS/CPU/内存和原始日志在记录中。
+
+| 平台 | 首次 collect µs | 刷新 p50 / p95 / max µs | 合成 collect µs / JSON bytes | 环境与日志 |
+|---|---|---|---|---|
+| Linux x64 | 1195 | 263 / 309 / 326 | 229 / 373541 | [记录](evidence/windows-ffi-sdk-benchmark-linux-40249181949.json) |
+| macOS ARM64 | 36423 | 37 / 84 / 193 | 355 / 373541 | [记录](evidence/windows-ffi-sdk-benchmark-darwin-40249181949.json) |
+
+这是托管 runner 的整库回归，不是 Windows SDK 构建、加载或 collect/free 延迟基准；不声明配对改进、最低运行环境、实体设备、峰值内存或 SLA。
+
+
 ## Linux CLI 制品轮次的整库回归（2026-10-26）
 
 源码 `98172d0afe77f53a8e108d5f02f2b7275ce0f25c`，[CI 40245533279](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40245533279)运行 `cargo bench --locked -p daoseeker-scope --bench collect`，Rust 1.96、bench 优化、默认 serde。原生 max_entries=128、100 次刷新；合成 100 个传感器和 1024 个网络条目、max_entries=1024。OS、CPU、内存及原始日志保存在各记录中。

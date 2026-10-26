@@ -1,5 +1,7 @@
 # Fuzz 目标
 
+2026-10-26 Windows SDK 回归：[CI 40249181949](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40249181949)全部十二个既有目标各至少 60 秒，4 项 harness 通过。未修改目标、解析器或种子；计数与日志哈希见[本轮索引](../docs/evidence/windows-ffi-sdk-ci-40249181949.json)。
+
 2026-10-26 Linux CLI 制品回归：[CI 40245533279](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40245533279)重跑全部 12 个现有目标，每个至少 60 秒，4 项 harness 通过；未修改目标或解析器。逐目标计数和日志哈希见[本轮索引](../docs/evidence/linux-cli-bundle-ci-40245533279.json)。
 
 2026-10-25 CLI 候选包回归：没有修改 fuzz 代码或目标；[CI 40183166615](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615)全部十二目标各运行至少 60 秒，4 项 harness 守卫通过。实际计数、来源和日志哈希见[本轮验收索引](../docs/evidence/windows-cli-bundle-ci-40183166615.json)；不作为长期 fuzz 或真实硬件故障证明。

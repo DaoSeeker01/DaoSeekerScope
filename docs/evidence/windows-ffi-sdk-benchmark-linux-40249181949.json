@@ -1,0 +1,30 @@
+{
+  "source_commit": "ba11807b4cc04046f9e3a966ccb58c51dcd23a92",
+  "command": "cargo bench --locked -p daoseeker-scope --bench collect",
+  "profile": "bench optimized",
+  "features": "default serde",
+  "native_max_entries": 128,
+  "samples": 100,
+  "synthetic_sensors": 100,
+  "synthetic_networks": 1024,
+  "synthetic_max_entries": 1024,
+  "first_collect_us": 1195,
+  "refresh_p50_us": 263,
+  "refresh_p95_us": 309,
+  "refresh_max_us": 326,
+  "synthetic_collect_us": 229,
+  "synthetic_serialized_bytes": 373541,
+  "environment": {
+    "os.name": "Ubuntu",
+    "os.version": "24.04",
+    "os.kernel_version": "6.17.0-1022-azure",
+    "cpu.brand": "AMD EPYC 9V74 80-Core Processor",
+    "cpu.logical_count": 4,
+    "cpu.architecture": "x86_64",
+    "memory.total_usable_bytes": 16766414848
+  },
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "raw_log": "first_collect_us=1195\nrefresh_n=100 p50_us=263 p95_us=309 max_us=326\ncpu_usage_state=Available\nsynthetic_sensors=100 synthetic_networks=1024 collect_us=229 serialized_bytes=373541\n",
+  "log_sha256": "e11aea8eef81126f8e78f8ee0c0a0f5d30d0d2238cb2d5fdac148ea4c2ad70f3",
+  "limits": "Whole collector on hosted runners, not FFI SDK packaging performance, physical hardware, peak-memory or paired regression"
+}

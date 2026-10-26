@@ -1,5 +1,7 @@
 # procfs 解析器独立 fuzz 验收（2026-10-10）
 
+2026-10-26 Windows SDK 轮次回归：源码 `ba11807` 的[CI 40249181949](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40249181949)重跑 12 个现有目标，每个至少 60 秒、4 项 harness 通过；未改解析器、目标或 fuzz features。实际次数与日志哈希见[索引](evidence/windows-ffi-sdk-ci-40249181949.json)，不作为长期 fuzz 或完整内存证明。
+
 2026-10-26 Linux CLI 制品轮次回归：源码 `98172d0` 的[CI 40245533279](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40245533279)全部 12 个现有目标各至少 60 秒、4 项 harness 通过，没有修改解析器、种子或 fuzz features。实际次数与日志哈希见[索引](evidence/linux-cli-bundle-ci-40245533279.json)；不作为长期 campaign 或完整泄漏/峰值内存证明。
 
 2026-10-25 回归：源码 `2d0a8a1` 的[CI 40183166615](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615)完成全部 12 个现有 fuzz 目标，每个至少 60 秒，4 项 harness 守卫通过；没有新增/修改解析器、种子或 fuzz feature。逐目标实际计数与日志哈希见[本轮索引](evidence/windows-cli-bundle-ci-40183166615.json)。这仍是短 campaign，不代表长期 fuzz 或完整内存证明。以下许可证/API 描述属于各自历史日期；当前项目采用 MIT。

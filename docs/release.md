@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-2026-10-26 Windows FFI SDK 开发增量：共享 ZIP 工具增加 Windows x64 SDK 产品（bundle_format 3），包含 DLL、头文件、导入库、C/Python 示例和 Schema；原有 CLI v1/v2、Rust API、依赖/features/锁、C ABI 1、硬件 Schema 1 和 MIT 不变。干净提交 b3b47b1 本机完成 9 个 SDK 顶层调用、300 次 Python collect/free、CLI 六进程、262 Rust 与 147 Python 测试；2 项 POSIX 测试跳过，新增 CI 未执行，见[记录](windows-ffi-sdk-validation.md)。macOS 候选包因完整许可材料缺口继续待办；调查不构成上游现有 MIT 无效的结论，见 [ADR 0033](adr/0033-windows-ffi-sdk.md)。没有上传或正式分发 SDK。
+2026-10-26 Windows FFI SDK 开发增量：共享 ZIP 工具增加 Windows x64 SDK 产品（bundle_format 3），包含 DLL、头文件、导入库、C/Python 示例和 Schema；原有 CLI v1/v2、Rust API、依赖/features/锁、C ABI 1、硬件 Schema 1 和 MIT 不变。干净提交 b3b47b1 本机完成 9 个 SDK 顶层调用、300 次 Python collect/free、CLI 六进程、262 Rust 与 147 Python 测试；2 项 POSIX 测试在本机跳过；随后源码 ba11807 的三平台 CI 40249181949 全部八项、各八包及 Windows SDK 九项顶层调用/300 次 Python 循环已通过，见[记录](windows-ffi-sdk-validation.md)。macOS 候选包因完整许可材料缺口继续待办；调查不构成上游现有 MIT 无效的结论，见 [ADR 0033](adr/0033-windows-ffi-sdk.md)。没有上传或正式分发 SDK。
 
 2026-10-26 Linux CLI 候选实现增量：共享工具新增 GNU x86_64 原生 host 选择、ZIP/manifest 显式 mode、chmod 和激活前复核，Linux 独立 bundle_format 为 2；Windows v1 不变。干净提交 cdd8760 的 Windows 六进程回归、262 Rust 与 138 Python 测试通过，另两项 POSIX 权限测试跳过；11 项新增测试在本机通过 9 项。随后源码 98172d0 的三平台 CI 40245533279 全部八项、各八包、Linux v2/Windows v1 六进程演练与两项 POSIX 权限测试已通过，见[记录](linux-cli-bundle-validation.md)及 [ADR 0032](adr/0032-linux-cli-candidate.md)。不改变 Rust API、依赖/features/锁、MIT 或 ABI 1/硬件 Schema 1；不宣称 glibc/发行版最低基线或已正式分发。
 

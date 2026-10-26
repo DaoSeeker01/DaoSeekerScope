@@ -1,5 +1,7 @@
 # 三平台CI验收（2026-10-09，Asia/Shanghai）
 
+2026-10-26 Windows SDK 更新：源码 `ba11807` 的[CI 40249181949](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40249181949)全部八项通过；新增 SDK 包内 C/Python 九项顶层调用、300 次 collect/free 与回滚通过。Python 为 Windows 147 passed/2 skipped、Linux/macOS 149 passed/0 skipped。三平台八包、12 项短 fuzz、Miri/ASan、容器和基准见[记录](windows-ffi-sdk-validation.md)与[索引](evidence/windows-ffi-sdk-ci-40249181949.json)。macOS 分发许可材料状态没有因此改变；以下各记录保留原日期结果。
+
 2026-10-26 更新：源码 `98172d0` 的[CI 40245533279](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40245533279)全部八项通过。Linux v2 与 Windows v1 候选各六进程通过；Python 为 Windows 138 passed/2 skipped、Linux/macOS 140 passed/0 skipped，两项 POSIX 测试已在后两平台执行。三平台各八包、12 个短 fuzz、Miri/ASan、容器和依赖回归见[记录](linux-cli-bundle-validation.md)与[索引](evidence/linux-cli-bundle-ci-40245533279.json)。以下各节保留原日期结论。
 
 2026-10-25 更新：源码 `2d0a8a1` 的[运行 40183166615](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40183166615)全部 8 个任务通过，Windows CLI 候选包六进程安装/回滚、三平台原生测试/八包、12 项短 fuzz、Miri/ASan、依赖及容器回归完成。见[本轮验收](cli-bundle-validation.md)与[索引](evidence/windows-cli-bundle-ci-40183166615.json)。以下首次运行及“最新源码”的文字均属于对应历史日期，不代表当前版本。

@@ -1,5 +1,7 @@
 # 原生验收与证据保留（2026-10-09，Asia/Shanghai）
 
+2026-10-26 Windows SDK 回归：源码 `ba11807` 的[CI 40249181949](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40249181949)三平台各 5 组/16 进程通过，Windows/Linux CLI 候选各六进程通过；Windows SDK 另九项顶层调用/300 次 Python collect/free 通过，[验证记录](windows-ffi-sdk-validation.md)。C 编译器子孙进程不计入九项；不扩展为其他平台 SDK、旧版升级或实体设备结论。
+
 2026-10-26 更新：源码 `98172d0` 的三平台原生 CLI/C/Python 各 5 组/16 进程通过；Linux v2 与 Windows v1 另各六进程完成候选安装/回滚，[CI 与验证边界](linux-cli-bundle-validation.md)。POSIX 权限测试不代替实体设备、最低发行版或旧版本兼容验证。
 
 2026-10-25 更新：源码 `2d0a8a1` 的三平台原生 CLI/C/Python 各 5 组/16 进程及 Windows 候选包另 6 进程通过，[运行与边界](cli-bundle-validation.md)。Windows x64、Linux x64、macOS ARM64 的报告归档于[CI 索引](evidence/windows-cli-bundle-ci-40183166615.json)；托管 CI 不能替代延期的实体设备验证。以下为历史入口记录。
