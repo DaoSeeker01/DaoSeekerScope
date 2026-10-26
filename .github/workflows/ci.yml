@@ -109,6 +109,21 @@ jobs:
           path: target/ffi-bundle-evidence.json
           if-no-files-found: ignore
           retention-days: 14
+      - name: Linux FFI SDK candidate C and Python consumers
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdk=$(python scripts/cli_bundle.py --product ffi_sdk)
+          python scripts/ffi_bundle_smoke.py "$sdk"
+      - name: Preserve Linux FFI SDK evidence
+        if: always() && runner.os == 'Linux'
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: ffi-sdk-evidence-Linux-X64
+          path: target/ffi-bundle-evidence.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: C FFI on Windows
         if: runner.os == 'Windows'
         shell: cmd

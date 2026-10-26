@@ -1,11 +1,13 @@
-"""Validate a Windows FFI SDK via its packaged C and Python consumers."""
+"""Validate a native Windows/Linux FFI SDK via its packaged C/Python consumers."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import platform
+import re
 import subprocess
 import sys
 import tempfile
@@ -16,6 +18,8 @@ import jsonschema
 from cli_bundle import (
     ROOT,
     TARGET,
+    LINUX_TARGET,
+    bundle_format,
     digest,
     require,
     require_runtime_host,
@@ -25,11 +29,27 @@ from cli_bundle_smoke import activate, install
 from native_smoke import check_snapshot
 
 
-def execute(arguments: list[str], directory: Path, label: str) -> bytes:
-    require(label in ("compile", "c", "python"), "invalid_process_label")
+def execute(
+    arguments: list[str], directory: Path, label: str, target: str = TARGET
+) -> bytes:
+    require(label in ("compile", "c", "python", "elf"), "invalid_process_label")
+    environment = os.environ.copy()
+    if target == LINUX_TARGET:
+        # Do not inherit developer loader overrides or mutate the parent's environment.
+        environment = {
+            key: value
+            for key, value in environment.items()
+            if not key.startswith("LD_") and key != "GLIBC_TUNABLES"
+        }
+        environment["LC_ALL"] = "C"
     with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
         result = subprocess.run(
-            arguments, cwd=directory, stdout=stdout, stderr=stderr, timeout=90
+            arguments,
+            cwd=directory,
+            stdout=stdout,
+            stderr=stderr,
+            timeout=90,
+            env=environment,
         )
         require(result.returncode == 0, f"{label}_exit")
         stdout.seek(0)
@@ -38,23 +58,78 @@ def execute(arguments: list[str], directory: Path, label: str) -> bytes:
     return data
 
 
-def probe_sdk(root: Path, expected_slot: str) -> None:
+def elf_dependencies(output: bytes, *, consumer: bool) -> list[str]:
+    """Check readelf's C-locale dynamic tags without retaining absolute paths."""
+    text = output.decode("ascii")
+    needed = re.findall(r"\(NEEDED\)[^\r\n]*\[([^\]\r\n]+)\]", text)
+    runpath = re.findall(r"\(RUNPATH\)[^\r\n]*\[([^\]\r\n]*)\]", text)
+    require(
+        0 < len(needed) <= 64
+        and len(set(needed)) == len(needed)
+        and all(re.fullmatch(r"[A-Za-z0-9_.+\-]+", name) for name in needed),
+        "elf_needed",
+    )
+    require("(RPATH)" not in text, "elf_rpath")
+    require(runpath == (["$ORIGIN/../lib"] if consumer else []), "elf_runpath")
+    if consumer:
+        require(needed.count("libdaoseeker_scope_ffi.so") == 1, "elf_sdk_dependency")
+    return needed
+
+
+def probe_sdk(
+    root: Path, expected_slot: str, target: str = TARGET
+) -> dict[str, list[str]]:
     slot = (root / "active").read_text(encoding="ascii")
     require(slot in ("a", "b") and slot == expected_slot, "active_selection")
     sdk = root / slot
-    execute(
-        [
-            "pwsh",
-            "-NoProfile",
-            "-File",
-            str(ROOT / "scripts/build_c_example.ps1"),
-            "-SdkDirectory",
-            str(sdk),
-        ],
-        sdk,
-        "compile",
-    )
-    data = execute([str(sdk / "bin/c-example.exe")], sdk, "c")
+    dependencies = {}
+    if target == LINUX_TARGET:
+        (sdk / "bin").mkdir(exist_ok=True)
+        binary = sdk / "bin/c-example"
+        library = sdk / "lib/libdaoseeker_scope_ffi.so"
+        execute(
+            [
+                "cc",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "-std=c11",
+                str(sdk / "examples/collect.c"),
+                "-L" + str(sdk / "lib"),
+                "-ldaoseeker_scope_ffi",
+                "-Wl,--enable-new-dtags",
+                "-Wl,-rpath,$ORIGIN/../lib",
+                "-o",
+                str(binary),
+            ],
+            sdk,
+            "compile",
+            target,
+        )
+        for label, path in (("consumer", binary), ("library", library)):
+            dependencies[label] = elf_dependencies(
+                execute(
+                    ["readelf", "--wide", "--dynamic", str(path)], sdk, "elf", target
+                ),
+                consumer=label == "consumer",
+            )
+    else:
+        binary = sdk / "bin/c-example.exe"
+        library = sdk / "bin/daoseeker_scope_ffi.dll"
+        execute(
+            [
+                "pwsh",
+                "-NoProfile",
+                "-File",
+                str(ROOT / "scripts/build_c_example.ps1"),
+                "-SdkDirectory",
+                str(sdk),
+            ],
+            sdk,
+            "compile",
+            target,
+        )
+    data = execute([str(binary)], sdk, "c", target)
     snapshot = json.loads(data)
     schema = json.loads((sdk / "schema/snapshot-v1.schema.json").read_bytes())
     jsonschema.Draft202012Validator(schema).validate(snapshot)
@@ -63,36 +138,41 @@ def probe_sdk(root: Path, expected_slot: str) -> None:
         [
             sys.executable,
             str(sdk / "examples/collect.py"),
-            str(sdk / "bin/daoseeker_scope_ffi.dll"),
+            str(library),
         ],
         sdk,
         "python",
+        target,
     )
     require(
         output.strip()
         == b"ctypes: 100 real collect/free cycles, stale copy rejection, privacy and schema passed",
         "python_contract",
     )
+    return dependencies
 
 
 def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
     payload = verify_bundle(archive, checksum)
     manifest = json.loads(payload["manifest.json"])
+    target = manifest["target"]
     require(
-        manifest.get("product") == "ffi_sdk" and manifest["bundle_format"] == 3,
+        manifest.get("product") == "ffi_sdk"
+        and manifest["bundle_format"] == bundle_format(target, "ffi_sdk"),
         "unsupported_product",
     )
-    require_runtime_host(manifest["target"])
+    require_runtime_host(target)
+    dependencies = []
     with tempfile.TemporaryDirectory(
         prefix="ffi-sdk-install-", dir=ROOT / "target"
     ) as folder:
         root = Path(folder)
         install(archive, checksum, root / "a")
         activate(root, "a", payload)
-        probe_sdk(root, "a")
+        dependencies.append(probe_sdk(root, "a", target))
         install(archive, checksum, root / "b")
         activate(root, "b", payload)
-        probe_sdk(root, "b")
+        dependencies.append(probe_sdk(root, "b", target))
         raw = bytearray(archive.read_bytes())
         raw[len(raw) // 2] ^= 1
         corrupt = root / "corrupt.zip"
@@ -107,27 +187,26 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         )
         require((root / "active").read_text() == "b", "active_changed_on_failure")
         activate(root, "a", payload)
-        probe_sdk(root, "a")
-    return {
+        dependencies.append(probe_sdk(root, "a", target))
+    linux = target == LINUX_TARGET
+    report = {
         "overall": "passed",
         "source_commit": manifest["source_commit"],
         "source_dirty": manifest["source_dirty"],
         "product": "ffi_sdk",
-        "target": TARGET,
+        "target": target,
         "host": {
             "system": platform.system(),
             "version": platform.version(),
             "machine": platform.machine(),
         },
-        "bundle_format": 3,
+        "bundle_format": manifest["bundle_format"],
         "abi_version": 1,
         "schema_version": 1,
         "archive_sha256": checksum,
-        "dll_sha256": digest(payload["bin/daoseeker_scope_ffi.dll"]),
         "header_sha256": digest(payload["bindings/daoseeker_scope.h"]),
-        "import_library_sha256": digest(payload["lib/daoseeker_scope_ffi.dll.lib"]),
         "payload_files": len(payload) - 1,
-        "processes": 9,
+        "processes": 15 if linux else 9,
         "c_compile_and_runs": 3,
         "python_collect_free_cycles": 300,
         "snapshot_schema_validated": True,
@@ -140,6 +219,23 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         "global_install_or_path_modified": False,
         "publisher_authenticated": False,
     }
+    if linux:
+        require(dependencies[0] == dependencies[1] == dependencies[2], "elf_changed")
+        report.update(
+            library_sha256=digest(payload["lib/libdaoseeker_scope_ffi.so"]),
+            elf_inspections=6,
+            elf_needed=dependencies[0],
+            consumer_runpath="$ORIGIN/../lib",
+            child_loader_overrides_cleared=True,
+            posix_modes_verified=True,
+            minimum_glibc_or_distribution_verified=False,
+        )
+    else:
+        report.update(
+            dll_sha256=digest(payload["bin/daoseeker_scope_ffi.dll"]),
+            import_library_sha256=digest(payload["lib/daoseeker_scope_ffi.dll.lib"]),
+        )
+    return report
 
 
 def main() -> None:

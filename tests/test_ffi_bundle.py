@@ -9,7 +9,7 @@ from unittest.mock import patch
 import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
-from cli_bundle import FFI_FILES, LINUX_TARGET, digest, verify_bundle, write_bundle
+from cli_bundle import FFI_FILES, digest, verify_bundle, write_bundle
 import cli_bundle_smoke
 import ffi_bundle_smoke
 
@@ -70,16 +70,16 @@ class FfiBundleTests(unittest.TestCase):
                         product="ffi_sdk",
                     )
 
-    def test_linux_ffi_not_claimed(self) -> None:
-        with self.assertRaisesRegex(ValueError, "unsupported_ffi_target"):
+    def test_macos_ffi_not_claimed(self) -> None:
+        with self.assertRaisesRegex(ValueError, "unsupported_product"):
             write_bundle(
-                self.root / "linux.zip",
+                self.root / "macos.zip",
                 self.payload,
                 self.provenance,
-                target=LINUX_TARGET,
+                target="aarch64-apple-darwin",
                 product="ffi_sdk",
             )
-        self.assertFalse((self.root / "linux.zip").exists())
+        self.assertFalse((self.root / "macos.zip").exists())
 
     def test_format_cannot_impersonate_cli(self) -> None:
         files = verify_bundle(self.archive, self.checksum)

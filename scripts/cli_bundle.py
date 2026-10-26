@@ -1,6 +1,6 @@
-"""Build and verify unpublished Windows/Linux x64 portable CLI candidates.
+"""Build and verify unpublished Windows/Linux x64 CLI and FFI SDK candidates.
 
-No upload, global install, PATH change, or library/FFI distribution is performed.
+No upload, global install, PATH change, or binary distribution is performed.
 Checksums detect corruption; they do not authenticate the publisher.
 """
 
@@ -37,6 +37,9 @@ FFI_FILES = frozenset(
         "schema/snapshot-v1.schema.json",
     }
 )
+LINUX_FFI_FILES = (
+    FFI_FILES - {"bin/daoseeker_scope_ffi.dll", "lib/daoseeker_scope_ffi.dll.lib"}
+) | {"lib/libdaoseeker_scope_ffi.so"}
 
 
 def require(condition: bool, code: str) -> None:
@@ -54,14 +57,19 @@ def bundle_format(target: str, product: str) -> int:
         "unsupported_product",
     )
     if product == "ffi_sdk":
-        require(target == TARGET, "unsupported_ffi_target")
-        return 3
+        return 4 if target == LINUX_TARGET else 3
     return 2 if target == LINUX_TARGET else 1
 
 
 def executable_name(target: str) -> str:
     require(target in SUPPORTED_TARGETS, "unsupported_target")
     return "bin/dscope" if target == LINUX_TARGET else "bin/dscope.exe"
+
+
+def ffi_files(target: str) -> frozenset[str]:
+    """Return the complete SDK contract for a supported native target."""
+    require(target in SUPPORTED_TARGETS, "unsupported_target")
+    return LINUX_FFI_FILES if target == LINUX_TARGET else FFI_FILES
 
 
 def file_mode(name: str, target: str) -> int:
@@ -84,7 +92,9 @@ def require_runtime_host(
 
 
 def native_target(rustc: str) -> str:
-    hosts = re.findall(r"^host: ([^\r\n]+)\r?$", rustc, re.M)
+    hosts = [
+        match.group(1) for match in re.finditer(r"^host: ([^\r\n]+)\r?$", rustc, re.M)
+    ]
     require(len(hosts) == 1 and hosts[0] in SUPPORTED_TARGETS, "unsupported_host")
     require_runtime_host(hosts[0])
     return hosts[0]
@@ -181,7 +191,9 @@ def verify_bundle(archive: Path, expected_sha256: str) -> dict[str, bytes]:
     )
     files = manifest.get("files")
     require(isinstance(files, dict) and set(files) == set(payload), "manifest_files")
-    required = set(FFI_FILES) if product == "ffi_sdk" else {executable_name(target)}
+    required = (
+        set(ffi_files(target)) if product == "ffi_sdk" else {executable_name(target)}
+    )
     required.update({"LICENSE-MIT", "THIRD_PARTY.md", "README.txt"})
     require(required <= set(payload), "missing_required_file")
     if target == LINUX_TARGET:
@@ -220,7 +232,7 @@ def run(arguments: list[str]) -> str:
 def dependency_payload(
     metadata: dict[str, Any], root_package: str = "daoseeker-scope-cli"
 ) -> dict[str, bytes]:
-    """Conservative CLI dependency closure, including build but excluding dev edges."""
+    """Target product dependency closure, including build but excluding dev edges."""
     packages = {p["id"]: p for p in metadata["packages"]}
     nodes = {n["id"]: n for n in metadata["resolve"]["nodes"]}
     pending = [p["id"] for p in packages.values() if p["name"] == root_package]
@@ -397,14 +409,17 @@ def main() -> None:
             ]
         )
         release = build / target / "release"
-        binaries = (
-            {
+        if product == "ffi_sdk":
+            binaries = {
                 "bin/daoseeker_scope_ffi.dll": "daoseeker_scope_ffi.dll",
                 "lib/daoseeker_scope_ffi.dll.lib": "daoseeker_scope_ffi.dll.lib",
             }
-            if product == "ffi_sdk"
-            else {executable_name(target): Path(executable_name(target)).name}
-        )
+            if target == LINUX_TARGET:
+                binaries = {
+                    "lib/libdaoseeker_scope_ffi.so": "libdaoseeker_scope_ffi.so"
+                }
+        else:
+            binaries = {executable_name(target): Path(executable_name(target)).name}
         for name, filename in binaries.items():
             with (release / filename).open("rb") as source:
                 payload[name] = source.read(MAX_FILE + 1)
@@ -453,6 +468,24 @@ def main() -> None:
             "System runtime prerequisites, signing and old-version compatibility are not established.\n"
             "SHA-256 detects corruption, not publisher identity. No binary distribution has occurred.\n"
         ).encode()
+        if target == LINUX_TARGET:
+            payload["README.txt"] = (
+                "DaoSeekerScope unpublished GNU/Linux x86_64 FFI SDK; ABI 1 / snapshot Schema 1\n"
+                "Verify SHA256SUMS before extracting into a fresh directory. Keep all notices with the .so.\n"
+                "All archived SDK files use mode 0644; directories need normal search permissions.\n"
+                "From the extracted SDK root, with a GNU-compatible C compiler/linker:\n"
+                "mkdir -p bin\n"
+                "cc -Wall -Wextra -Werror -std=c11 examples/collect.c -Llib -ldaoseeker_scope_ffi "
+                "-Wl,--enable-new-dtags '-Wl,-rpath,$ORIGIN/../lib' -o bin/collect\n"
+                "bin/collect\n"
+                'python3 examples/collect.py "$(pwd)/lib/libdaoseeker_scope_ffi.so"\n'
+                "Use the packaged header with this library; release buffers with dsc_buffer_free.\n"
+                "Python requires only the standard library. The validator additionally needs readelf and jsonschema.\n"
+                "The rehearsal removes LD_* and GLIBC_TUNABLES from child environments only.\n"
+                "System loader configuration and runtime libraries remain prerequisites; no minimum glibc is established.\n"
+                "Keep the complete old SDK directory for rollback; no root, global PATH or loader changes are needed.\n"
+                "SHA-256 detects corruption, not publisher identity. Signing and older-release compatibility are pending.\n"
+            ).encode()
     require((ROOT / "Cargo.lock").read_bytes() == lock, "lock_changed")
     require(run(["git", "rev-parse", "HEAD"]) == revision, "revision_changed")
     require(

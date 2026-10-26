@@ -12,6 +12,7 @@
 - [Windows CLI 候选包](cli-bundle-validation.md)：离线 ZIP、checksum、临时安装与回滚演练。
 - [Linux CLI 候选包](linux-cli-bundle-validation.md)：GNU x86_64 的权限契约、安装回滚与当前验证边界。
 - [Windows FFI SDK](windows-ffi-sdk-validation.md)：DLL、C 头文件/导入库与 C/Python 消费者验收。
+- [Linux FFI SDK](linux-ffi-sdk-validation.md)：GNU x86_64 共享库、ELF 加载路径与 C/Python 验证入口；原生 CI 待执行。
 
 ## 设计决策
 
