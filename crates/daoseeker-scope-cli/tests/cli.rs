@@ -196,8 +196,8 @@ fn display_text_uses_public_snapshot_states_and_explicit_sensitive_warning() {
         assert!(text.contains("Mode width pixels: ") && text.contains("Mode height pixels: "));
         #[cfg(target_os = "linux")]
         {
-            assert!(text.contains("Name: Restricted (Sysfs, Some(PrivacyRedacted))"));
-            assert!(text.contains("Width pixels: Unsupported (Drm, Some(NotSupported))"));
+            assert!(text.contains("Name: Restricted (Sysfs, PrivacyRedacted)"));
+            assert!(text.contains("Width pixels: Unsupported (Drm, NotSupported)"));
         }
     }
     // New processes can observe topology changes; never compare their counts.
