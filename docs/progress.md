@@ -2,7 +2,7 @@
 
 首版交付门槛与本轮修复分别见 [v0.1 清单](v0.1-checklist.md)和[当前审计](project-review-2026-10-27.md)。下面保留平台增强工作包，不将它们全部视作首版的必要阻塞项。
 
-2026-10-27 Windows 候选增量：已在干净源码上通过 PE 架构/直接依赖检查、Release CLI/SDK 安装回滚及三产物 DUMPBIN 对照；本轮 CI 待执行。最低 Windows 版本、全新系统运行库验证仍未完成，见[记录](windows-pe-validation.md)。
+2026-10-27 Windows 候选增量：PE 架构/直接依赖检查、Release CLI/SDK 安装回滚及本机三产物 DUMPBIN 对照通过；三平台 CI 40483692144 全部八项通过。最低 Windows 版本、全新系统运行库验证仍未完成，见[记录](windows-pe-validation.md)。
 
 按可独立验收的工作包统计，首版还有 7 组主动任务。每组包含多个平台子项，不换算为代码完成百分比。
 

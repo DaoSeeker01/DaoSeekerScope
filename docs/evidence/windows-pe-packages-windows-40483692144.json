@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "ee3721fb5bd6fe906ea91510e7b2d2f748bd0605",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 264,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "5d31e9e370ec24635ebc1279d9ae3124b93d17be3507b0c3593f2882509de5eb",
+      "files": 16
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "1b3cb4ab75ff3c9eeee25c62c7d7b419757984fde4f40a71b6b58f0ae69ab925",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "1c94df012f6cf146100fbf723b2748652d8f845a6ae43e0d919247e25a042be7",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "181d2c75388c7c2c20e1e6f3e6178943a21d66d0412d0e9fa62e53624c9c0f7f",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "b97a65ba36251a8c104fa5b4e62ad59eb2b89e2dbc3b9f2f3b20ffec9cfd82ba",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "a53677d238590d6b41f9aaf34ec9f900775b94bd300426af62e8bd1b44022662",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "9fe28ee26284e1c43a4559766450c13e0e527458d65ddad8c312cbad9035aa65",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "fd0e82dca7e30ee03c62be0503a1b1bb89431227ecf2c59912260ce15bc0d97b",
+      "files": 7
+    }
+  ]
+}

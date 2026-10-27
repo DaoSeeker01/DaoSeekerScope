@@ -1,0 +1,69 @@
+{
+  "overall": "passed",
+  "source_commit": "ee3721fb5bd6fe906ea91510e7b2d2f748bd0605",
+  "source_dirty": false,
+  "target": "x86_64-pc-windows-msvc",
+  "host": {
+    "system": "Windows",
+    "version": "10.0.26100",
+    "machine": "AMD64"
+  },
+  "version": "0.1.0",
+  "bundle_format": 1,
+  "abi_version": 1,
+  "schema_version": 1,
+  "archive_sha256": "d200970ae9aa3bb23ccb1baa83422a95e2319e5b2cbc1b13cfae35ff295f3e5a",
+  "cli_sha256": "13110da441b971a29d365564fac823cb7df664933148db5f1c952c9e4c9dbe60",
+  "payload_files": 73,
+  "processes": 6,
+  "minimum_read_and_default_privacy": true,
+  "snapshot_schema_validated": true,
+  "posix_modes_verified": false,
+  "corrupt_update_rejected_before_install": true,
+  "same_candidate_two_slot_rollback": true,
+  "older_version_compatibility_tested": false,
+  "published": false,
+  "global_install_or_path_modified": false,
+  "publisher_authenticated": false,
+  "pe_image": {
+    "format": "PE32+",
+    "machine": "x86_64",
+    "kind": "exe",
+    "subsystem": "windows_cui",
+    "declared_os_version": [
+      6,
+      0
+    ],
+    "declared_subsystem_version": [
+      6,
+      0
+    ],
+    "direct_imports": [
+      "advapi32.dll",
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "api-ms-win-crt-heap-l1-1-0.dll",
+      "api-ms-win-crt-locale-l1-1-0.dll",
+      "api-ms-win-crt-math-l1-1-0.dll",
+      "api-ms-win-crt-runtime-l1-1-0.dll",
+      "api-ms-win-crt-stdio-l1-1-0.dll",
+      "api-ms-win-crt-string-l1-1-0.dll",
+      "bcryptprimitives.dll",
+      "dxgi.dll",
+      "iphlpapi.dll",
+      "kernel32.dll",
+      "ntdll.dll",
+      "oleaut32.dll",
+      "pdh.dll",
+      "powrprof.dll",
+      "psapi.dll",
+      "setupapi.dll",
+      "shell32.dll",
+      "user32.dll",
+      "vcruntime140.dll"
+    ],
+    "delay_imports": [],
+    "minimum_windows_verified": false,
+    "transitive_or_dynamic_loads_inspected": false
+  },
+  "pe_archive_inspections": 1
+}
