@@ -1,0 +1,105 @@
+{
+  "status": "passed",
+  "platform": "Windows",
+  "observed_at": "2026-10-27T00:09:33.487324+00:00",
+  "limitations": [
+    "single active processor group only; multi-group and hotplug untested",
+    "real API errors untested; injected failures tested separately",
+    "SDK and Rust intervals differ; no equality or causal load assertion",
+    "cooperative checks cannot interrupt a blocked native API"
+  ],
+  "git_revision": "d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "rust_probe": "9498600c8c291006f37a431e96773e6dff92db625c5b05f32b259deea2ce8141",
+    "c_sdk_probe": "907c9709ee9fc48ad66ab3a68156ee89c52771b9b1add8c0885c66cf5fbff61e"
+  },
+  "initial": {
+    "cpu": {
+      "value": null,
+      "availability": "unavailable",
+      "source": "win32",
+      "observed_at": null,
+      "reason": "temporarily_unavailable"
+    },
+    "sdk": {
+      "status": "passed",
+      "groups": 1,
+      "processors": 4,
+      "calls": 1,
+      "struct_size": 8,
+      "idle": 10235468750,
+      "kernel": 12158437500,
+      "user": 6253750000
+    }
+  },
+  "observations": [
+    {
+      "cpu": {
+        "value": 1.0869565217391304,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1793059773917,
+        "reason": null
+      },
+      "sdk": {
+        "status": "passed",
+        "groups": 1,
+        "processors": 4,
+        "calls": 2,
+        "struct_size": 8,
+        "idle": 10249687500,
+        "kernel": 12172656250,
+        "user": 6253906250
+      },
+      "sdk_usage_percent": 1.0869565217391304
+    },
+    {
+      "cpu": {
+        "value": 0.0,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1793059774269,
+        "reason": null
+      },
+      "sdk": {
+        "status": "passed",
+        "groups": 1,
+        "processors": 4,
+        "calls": 3,
+        "struct_size": 8,
+        "idle": 10263437500,
+        "kernel": 12186406250,
+        "user": 6253906250
+      },
+      "sdk_usage_percent": 0.0
+    },
+    {
+      "cpu": {
+        "value": 2.1739130434782608,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1793059774623,
+        "reason": null
+      },
+      "sdk": {
+        "status": "passed",
+        "groups": 1,
+        "processors": 4,
+        "calls": 4,
+        "struct_size": 8,
+        "idle": 10277500000,
+        "kernel": 12200468750,
+        "user": 6254218750
+      },
+      "sdk_usage_percent": 2.1739130434782608
+    }
+  ],
+  "rebuilt": {
+    "value": null,
+    "availability": "unavailable",
+    "source": "win32",
+    "observed_at": null,
+    "reason": "temporarily_unavailable"
+  }
+}

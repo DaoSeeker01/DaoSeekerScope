@@ -1,0 +1,28 @@
+{
+  "overall": "passed",
+  "source_commit": "d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7",
+  "source_dirty": false,
+  "target": "x86_64-unknown-linux-gnu",
+  "host": {
+    "system": "Linux",
+    "version": "#22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026",
+    "machine": "x86_64"
+  },
+  "version": "0.1.0",
+  "bundle_format": 2,
+  "abi_version": 1,
+  "schema_version": 1,
+  "archive_sha256": "72be479c5a906aa24459621f75c5a4dc5bb80f99e80e4c5e524e9b9fab6acc8c",
+  "cli_sha256": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905",
+  "payload_files": 43,
+  "processes": 6,
+  "minimum_read_and_default_privacy": true,
+  "snapshot_schema_validated": true,
+  "posix_modes_verified": true,
+  "corrupt_update_rejected_before_install": true,
+  "same_candidate_two_slot_rollback": true,
+  "older_version_compatibility_tested": false,
+  "published": false,
+  "global_install_or_path_modified": false,
+  "publisher_authenticated": false
+}

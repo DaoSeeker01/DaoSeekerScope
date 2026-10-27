@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "platform": "Darwin",
+  "observed_at": "2026-10-27T00:06:45.026885+00:00",
+  "limitations": [
+    "no sleep, hibernation, reboot, clock-adjustment or physical Mac experiment",
+    "real sysctl/time errors and boot changes untested; injection tests are separate",
+    "calendar-derived whole-second difference, not a monotonic clock or exact duration",
+    "cooperative cancellation cannot interrupt a blocked native API"
+  ],
+  "git_revision": "d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7",
+  "git_dirty": false,
+  "artifact_sha256": {
+    "sdk": "39db67ca9895e208a50c9d4f852047c93c18230e32c8e395a63c42adc867d81f",
+    "rust": "370cfcc874f26cc40dfc04dcddadfde4c89edc8a148da9ab4c6268bae77cde51"
+  },
+  "observations": [
+    {
+      "operation": "collect",
+      "uptime": {
+        "value": 326,
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1793059605113,
+        "reason": null
+      },
+      "sdk_before_seconds": 326,
+      "sdk_after_seconds": 326
+    },
+    {
+      "operation": "refresh",
+      "uptime": {
+        "value": 327,
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1793059606261,
+        "reason": null
+      },
+      "sdk_before_seconds": 327,
+      "sdk_after_seconds": 327
+    },
+    {
+      "operation": "refresh",
+      "uptime": {
+        "value": 328,
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1793059607402,
+        "reason": null
+      },
+      "sdk_before_seconds": 328,
+      "sdk_after_seconds": 328
+    },
+    {
+      "operation": "refresh",
+      "uptime": {
+        "value": 329,
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1793059608583,
+        "reason": null
+      },
+      "sdk_before_seconds": 329,
+      "sdk_after_seconds": 329
+    },
+    {
+      "operation": "rebuild",
+      "uptime": {
+        "value": 329,
+        "availability": "available",
+        "source": "sysctl",
+        "observed_at": 1793059608611,
+        "reason": null
+      },
+      "sdk_before_seconds": 329,
+      "sdk_after_seconds": 329
+    }
+  ],
+  "initial_sdk": {
+    "status": "passed",
+    "calls": 1,
+    "uptime_seconds": 326,
+    "timeval_size": 16,
+    "time_t_size": 8,
+    "boot_stable": true
+  }
+}

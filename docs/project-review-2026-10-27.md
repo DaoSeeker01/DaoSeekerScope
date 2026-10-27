@@ -21,7 +21,7 @@
 | A07 | 低 | CLI 的缺失原因仍显示 `Some(...)`，敏感选项错误提示过于笼统；README 限制说明堆在长段落 | 统一可读输出，明确授权提示，简化入口并保留详细能力文档 |
 | A08 | 高 | 本机八包运行期间发生提交变更，报告只记录结束时提交，可能错绑混合源码结果 | 记录初始提交/工作树状态并在结束时复查，变化即失败；该次结果不计验收，需重跑 |
 
-本机验证：fmt、严格 Clippy/doc、264 项 Rust 测试、Linux x64/macOS ARM64 交叉 check 通过；Python 164 项中 160 通过、4 项 POSIX 权限用例跳过，56 文件 Ruff/mypy 通过。Schema、项目文件/链接和 actionlint 通过；C 示例以及 CLI/C/Python 原生 smoke 通过。三平台 CI、干净源码的八包与候选包回归尚待本轮执行，历史结果不替代本轮验收。
+本机验证：fmt、严格 Clippy/doc、264 项 Rust 测试、Linux x64/macOS ARM64 交叉 check 通过；初次 Python 164 项中 160 通过、4 项 POSIX 权限用例跳过，56 文件 Ruff/mypy 通过。Schema、项目文件/链接和 actionlint 通过；C 示例以及 CLI/C/Python 原生 smoke 通过。随后已完成冻结源码的八包与三平台回归，最终结果见下节，早期结果不替代最终验收。
 
 私密漏洞报告已通过 API 开启并核验为 enabled=true；未发送漏洞报告或其他对外消息。
 
@@ -42,3 +42,27 @@
 - [GitHub 工作流并发](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency)。
 
 依赖说明：新增 [PyYAML 6.0.3](https://pypi.org/project/PyYAML/6.0.3/)（MIT）及 [types-PyYAML 6.0.12.20260906](https://pypi.org/project/types-PyYAML/6.0.12.20260906/)（Apache-2.0），分别用于开发期 YAML 检查和类型检查，不进入 Rust 或 SDK 运行时依赖。既有 jsonschema/Ruff/mypy 版本移到 requirements-dev.txt。移除该检查及对应开发依赖即可回退，替代方式是单独运行 YAML 检查器。项目 MIT、C ABI 1、Schema 1 和 SDK/CLI 候选包格式保持。
+
+## 冻结源码验收
+
+源码 `d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7` 的[最终 CI 40423886083](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40423886083)全部 8 个任务通过。没有跳过失败的门禁；首次失败和之后两次为修复而取消的运行仍单独记录。新增源码状态检查及提交号换行回归也已通过。
+
+| 平台 | workspace Rust 含 doctest | 八包独立测试 | Python 通过 / 跳过 |
+|---|---|---|---|
+| Windows x64 | 264 | 264 | 162 / 4 |
+| Linux x64 | 256 | 256 | 166 / 0 |
+| macOS ARM64 | 261 | 261 | 166 / 0 |
+
+三平台 fmt、严格 Clippy/doc、无默认 feature、56 文件 Ruff/mypy、Schema 与项目检查通过。三平台原生 CLI/C/Python 各 5 组/16 进程通过；Windows/Linux CLI 候选各六进程、Windows SDK 九项和 Linux SDK 十五项顶层调用通过，两种 SDK 各 300 次 Python collect/free，Linux 另含六次 ELF 检查。同候选安装、损坏更新拒绝和回滚通过；不是旧正式版兼容验证。
+
+本机也从同一干净源码完成八包/264 项独立测试和 CLI 安装，实际校验版本、Schema、最低读取与默认隐私；前后提交/工作树一致。本机 Python 最终 166 项中 162 通过、4 跳过，原生 smoke 5 组/16 进程通过。Rust 全门禁与交叉 check 的本机结果保留，最终原生平台验收以本轮 CI 为准。
+
+12 个 fuzz 目标各至少 60 秒，4 项 harness、Miri 8 项、Linux ASan 10 项通过；8 类 Linux 容器报告通过，完整空 /proc 被 OCI 在进程启动前拒绝，保持 not_run。整库基准与环境见[基线](benchmarks.md)，不声明峰值内存、长期 fuzz 或配对性能提升。
+
+[验收索引](evidence/v01-audit-ci-40423886083.json)保存 31 份本轮报告、来源与哈希，包括原生、实际八包、SDK/CLI、容器、本机验收、基准和基线文件清单。Git 中的报告字节另经哈希核对。候选 ZIP 留在 runner，归档核验下载报告，不声称二次检查 ZIP 成员。
+
+社区文件及 YAML 表单通过本地检查，私密漏洞报告 enabled=true。GitHub 社区文件完整度接口返回 100%，这个值不是产品质量分数；其旧 issue_template 字段未列出 YAML 表单，不据此声称已实际提交 Issue 或漏洞报告。
+
+项目 MIT、Rust 签名、C ABI 1 与候选包格式不变。Schema v1 只收紧零像素尺寸校验；该兼容性边界已写入更新日志。开发依赖新增 PyYAML（MIT）和类型存根（Apache-2.0），未改 Rust 依赖或锁。没有 registry、Release、二进制发布或版本标签操作。
+
+本轮确认的问题已修复并回归，不代表项目已完成所有未来任务或不存在其他缺陷。macOS 预编译制品材料、最低运行环境、长期资源测量、实体设备和正式发布评审继续按清单跟踪。

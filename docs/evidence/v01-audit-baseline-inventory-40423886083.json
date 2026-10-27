@@ -1,0 +1,5030 @@
+[
+  {
+    "path": ".gitattributes",
+    "bytes": 296,
+    "sha256": "8ffbad6f2b5fe5edc4b8e4330c849b8db3c00d9247252e77efc6fb6f5215f4f7",
+    "lines": 5
+  },
+  {
+    "path": ".github/workflows/ci.yml",
+    "bytes": 20119,
+    "sha256": "ca82096f5c9df761dc08ef6d37a4bc573bf1a23112ea9b40dacbc26f1698d7ac",
+    "lines": 375
+  },
+  {
+    "path": ".gitignore",
+    "bytes": 164,
+    "sha256": "5387e07b0bc3f3e195fdb46c4a1441a872a9f25d1cabb7db92ef5eb93affc579",
+    "lines": 12
+  },
+  {
+    "path": "CONTRIBUTING.md",
+    "bytes": 3607,
+    "sha256": "a336d1e11898e23e99f72660921b71b94d199e2553a45bf69c2c1c3c48f2d083",
+    "lines": 57
+  },
+  {
+    "path": "Cargo.lock",
+    "bytes": 11498,
+    "sha256": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae",
+    "lines": 476
+  },
+  {
+    "path": "Cargo.toml",
+    "bytes": 1220,
+    "sha256": "50f2d0fcf6ca9ab533fae57d3030a08ad09640320da3a23c5d8fa0c905bac509",
+    "lines": 30
+  },
+  {
+    "path": "LICENSE-MIT",
+    "bytes": 1084,
+    "sha256": "b0008b7d840c2b21a0cfb5cfdc166a045adfbfaba161f8b7a5b2e3cac271edb5",
+    "lines": 21
+  },
+  {
+    "path": "README.md",
+    "bytes": 3450,
+    "sha256": "05ada1b77bc46ff3fe9bf681245ebb859afffa41d03dad950402ff58a7feb205",
+    "lines": 72
+  },
+  {
+    "path": "bindings/daoseeker_scope.h",
+    "bytes": 2191,
+    "sha256": "7ba816254bd0314ed26cd620a8d802578e153689ed17fbf7ccc4a75289a8e523",
+    "lines": 49
+  },
+  {
+    "path": "crates/daoseeker-scope-cli/Cargo.toml",
+    "bytes": 325,
+    "sha256": "8bf7aa6d0fcf67444cbdc642a441e24bbb722c0411db7a6595e1d7b16d7ad452",
+    "lines": 15
+  },
+  {
+    "path": "crates/daoseeker-scope-cli/LICENSE-MIT",
+    "bytes": 1084,
+    "sha256": "b0008b7d840c2b21a0cfb5cfdc166a045adfbfaba161f8b7a5b2e3cac271edb5",
+    "lines": 21
+  },
+  {
+    "path": "crates/daoseeker-scope-cli/src/lib.rs",
+    "bytes": 6150,
+    "sha256": "2c4e8c4d3da634cc63bceba91d0124b53224f9e8887a2552ec5a6f92f06ea5fd",
+    "lines": 188
+  },
+  {
+    "path": "crates/daoseeker-scope-cli/src/main.rs",
+    "bytes": 28934,
+    "sha256": "e25ddcb6a57bbd3c08ec94165eb997ba2d0ff3a3cb823236aa32afc6ecab39a1",
+    "lines": 660
+  },
+  {
+    "path": "crates/daoseeker-scope-cli/tests/cli.rs",
+    "bytes": 13375,
+    "sha256": "aa9c6f63abcbfcb32af89c470a9476cfd6abf2ced8531443bc842a92edf4a129",
+    "lines": 321
+  },
+  {
+    "path": "crates/daoseeker-scope-cli/tests/invalid_encoding.rs",
+    "bytes": 1034,
+    "sha256": "523fdb9afc7cc630ff2f4add2d5a5d0df817a73a3ef33e3ad9213b3332d4c7c1",
+    "lines": 30
+  },
+  {
+    "path": "crates/daoseeker-scope-core/Cargo.toml",
+    "bytes": 472,
+    "sha256": "2e0ba63af1a1e65db8b92ac95c2322dca24c85526a234d11950734c7533731de",
+    "lines": 19
+  },
+  {
+    "path": "crates/daoseeker-scope-core/LICENSE-MIT",
+    "bytes": 1084,
+    "sha256": "b0008b7d840c2b21a0cfb5cfdc166a045adfbfaba161f8b7a5b2e3cac271edb5",
+    "lines": 21
+  },
+  {
+    "path": "crates/daoseeker-scope-core/src/hardware.rs",
+    "bytes": 30587,
+    "sha256": "c9241ea72e6e9f4e0a69fccdfa81fc0b7b35464797b137ff085b56c572a81485",
+    "lines": 830
+  },
+  {
+    "path": "crates/daoseeker-scope-core/src/lib.rs",
+    "bytes": 16385,
+    "sha256": "b7a0863e6b37a719a205dcf2c5b64a03adb0e294a7569ffe9846c27b37a6ff60",
+    "lines": 539
+  },
+  {
+    "path": "crates/daoseeker-scope-core/tests/audit.rs",
+    "bytes": 9971,
+    "sha256": "5af600605247ab3988ed3df4f564891820c65a3f7d10da72405ea17e88945d4e",
+    "lines": 321
+  },
+  {
+    "path": "crates/daoseeker-scope-core/tests/contracts.rs",
+    "bytes": 11641,
+    "sha256": "18896e6e8df648b7bf65ad8aa4f5fcbbe3f429dc52d30ba091b6c3b9e58645d3",
+    "lines": 387
+  },
+  {
+    "path": "crates/daoseeker-scope-ffi/Cargo.toml",
+    "bytes": 318,
+    "sha256": "7c68dac938a7c714ae6e548e1e386f4b692e83744ae381e7b3704fbceb13844f",
+    "lines": 14
+  },
+  {
+    "path": "crates/daoseeker-scope-ffi/LICENSE-MIT",
+    "bytes": 1084,
+    "sha256": "b0008b7d840c2b21a0cfb5cfdc166a045adfbfaba161f8b7a5b2e3cac271edb5",
+    "lines": 21
+  },
+  {
+    "path": "crates/daoseeker-scope-ffi/include/daoseeker_scope.h",
+    "bytes": 2191,
+    "sha256": "7ba816254bd0314ed26cd620a8d802578e153689ed17fbf7ccc4a75289a8e523",
+    "lines": 49
+  },
+  {
+    "path": "crates/daoseeker-scope-ffi/src/lib.rs",
+    "bytes": 17188,
+    "sha256": "b2f244f32197a57dcc447ec7c3d33204972ebfe3107660a5283c9636bb7dc7ea",
+    "lines": 445
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/Cargo.toml",
+    "bytes": 385,
+    "sha256": "6258c4aa84c0675df6185f02646e45a6caf19ed266590c799e18aa8804dadc35",
+    "lines": 15
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/LICENSE-MIT",
+    "bytes": 1084,
+    "sha256": "b0008b7d840c2b21a0cfb5cfdc166a045adfbfaba161f8b7a5b2e3cac271edb5",
+    "lines": 21
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/src/battery.rs",
+    "bytes": 17004,
+    "sha256": "0b0c7a7062386fa4c7ca8199006f37c3d647022ec51fb88453ff7e68270e8cdc",
+    "lines": 469
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/src/cpu.rs",
+    "bytes": 13116,
+    "sha256": "5d8ce8e717551d969d7f8f754825398bc3b60cd7c7783064b412e6e5ae99e4a6",
+    "lines": 386
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/src/display.rs",
+    "bytes": 19723,
+    "sha256": "18fe0cd015c192707f5150fe9b8ddc73bf3480cba30947983ccb0e4b56e93aa8",
+    "lines": 572
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/src/fuzzing.rs",
+    "bytes": 2919,
+    "sha256": "196301553de55689c55ce04da14db925afb22ba32f77a5d9dc6d024872b22344",
+    "lines": 71
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/src/gpu.rs",
+    "bytes": 20790,
+    "sha256": "befc56cd83a81392d39c68486b35e4fee7ce56e7c994c8cfd2290a13270d358a",
+    "lines": 571
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/src/hwmon.rs",
+    "bytes": 22522,
+    "sha256": "05f17e80240cd632f531864dc7b1ef714a64947269ea09c4a833f59e315ef717",
+    "lines": 596
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/src/lib.rs",
+    "bytes": 17882,
+    "sha256": "17f30955588dbb07e523e6e12841fbed10dd92f36240c70400065b21108327fe",
+    "lines": 458
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/src/network.rs",
+    "bytes": 10182,
+    "sha256": "765d67a2ab2755771d7534eab5f2c1e5dd84fa18867c6f011b9b83ec2da7689d",
+    "lines": 306
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/src/procfs.rs",
+    "bytes": 9018,
+    "sha256": "c6f4ecb9366cbe6d711962da4a71c2e895c97bebb96eb65751d7a7a9debf8bbc",
+    "lines": 284
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/src/storage.rs",
+    "bytes": 10941,
+    "sha256": "27c75c4c2b1070640e11fbf96e6893f1ee3ec73bb4bd68d1a8091fe3a011ccbe",
+    "lines": 319
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/tests/input_regression.rs",
+    "bytes": 1601,
+    "sha256": "c8b2ee16f2c45b62c4b31c2173c748e482024e8b5c434ea6d39de30dbf7a3ee3",
+    "lines": 41
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/tests/network_fuzz_hooks.rs",
+    "bytes": 1992,
+    "sha256": "228ad459b837b7a05f176b57fd9a428999e24c572e66fd09c68d1c3de96f7e8d",
+    "lines": 54
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/tests/power_supply_fuzz_hooks.rs",
+    "bytes": 1616,
+    "sha256": "920f2e7cb13319499de5d730c676028094fe6d530123effab43674e20c0bf78b",
+    "lines": 46
+  },
+  {
+    "path": "crates/daoseeker-scope-linux/tests/procfs_fuzz_hooks.rs",
+    "bytes": 3956,
+    "sha256": "2ee9299ba2b301173469f0bccd1e3545d2b59dd8558e80f0f84d9e512cc55b78",
+    "lines": 103
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/Cargo.toml",
+    "bytes": 923,
+    "sha256": "13e77b4a19623979e509d55a79f60ee02c4643ee6caa2a94674b6b84bbb18604",
+    "lines": 22
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/LICENSE-MIT",
+    "bytes": 1084,
+    "sha256": "b0008b7d840c2b21a0cfb5cfdc166a045adfbfaba161f8b7a5b2e3cac271edb5",
+    "lines": 21
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/src/cpu.rs",
+    "bytes": 25853,
+    "sha256": "ea974cfe19f18a245440c2ff6ca51d26147493ec75088de74dd22efcd6ce71f8",
+    "lines": 735
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/src/display.rs",
+    "bytes": 16222,
+    "sha256": "d515d6bfbf78c468b2585c14020f5b9c02936d40a967ccbef36e26a1ae0e270d",
+    "lines": 440
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/src/fuzzing.rs",
+    "bytes": 1146,
+    "sha256": "06a4736ff417d45bb2bb768be29f3ae404f1269218410082ff2f33676bdf8f08",
+    "lines": 28
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/src/gpu.rs",
+    "bytes": 15019,
+    "sha256": "e113c26f2cf36e5870996f5b08a14bf05d227311c5e19ef9d827e61610104428",
+    "lines": 437
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/src/lib.rs",
+    "bytes": 5620,
+    "sha256": "874473250f16fc672ffc6dcdece7699201aae8209003aaede0f08b9a42b40f9c",
+    "lines": 151
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/src/memory.rs",
+    "bytes": 24269,
+    "sha256": "aeb3842fdf2cea17df50cda1886eb2cfb4a05c63f4a68163b9a5cf11dd8d0372",
+    "lines": 671
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/src/network.rs",
+    "bytes": 13431,
+    "sha256": "03ffdaa436126faf7ce425229c7c9a4cb0e315496a44c880b4b2953e41bc2c77",
+    "lines": 381
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/src/network_wire.rs",
+    "bytes": 6041,
+    "sha256": "e43964b656f20657ca129327b5f451864592bb01ccce1d25c781a9ceb3b5c82b",
+    "lines": 166
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/src/storage.rs",
+    "bytes": 24679,
+    "sha256": "5fcb9af26e1e680488131ee55789727fcf1bcec2a453565ab0ffe8997decb0c7",
+    "lines": 656
+  },
+  {
+    "path": "crates/daoseeker-scope-macos/src/uptime.rs",
+    "bytes": 17018,
+    "sha256": "37d59bdba55049c41ad47d4ad1654b11cac9a1eaba9de6a0d791537136e8f6f9",
+    "lines": 491
+  },
+  {
+    "path": "crates/daoseeker-scope-sysinfo/Cargo.toml",
+    "bytes": 318,
+    "sha256": "b3a0abaa4d3a37a2ee075b84f45ee569b58ec393a275d8431866550da6c5f1be",
+    "lines": 13
+  },
+  {
+    "path": "crates/daoseeker-scope-sysinfo/LICENSE-MIT",
+    "bytes": 1084,
+    "sha256": "b0008b7d840c2b21a0cfb5cfdc166a045adfbfaba161f8b7a5b2e3cac271edb5",
+    "lines": 21
+  },
+  {
+    "path": "crates/daoseeker-scope-sysinfo/src/lib.rs",
+    "bytes": 9052,
+    "sha256": "9ea5817b89c0bc5e7088248a3974419ce3a1a52461754fff814e221c47038f5c",
+    "lines": 243
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/Cargo.toml",
+    "bytes": 858,
+    "sha256": "fb58b1b6a89e0c12c9205fd7bc0c0528bb3799e8eab72f43c90b5a65213393a4",
+    "lines": 18
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/LICENSE-MIT",
+    "bytes": 1084,
+    "sha256": "b0008b7d840c2b21a0cfb5cfdc166a045adfbfaba161f8b7a5b2e3cac271edb5",
+    "lines": 21
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/cpu.rs",
+    "bytes": 24368,
+    "sha256": "6026addf8555a00477079b918ac5135fcdc3f8a75bda0d6424eee152017173b6",
+    "lines": 705
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/cpu_groups.rs",
+    "bytes": 17340,
+    "sha256": "4dc107fb92b8c56842e3eac762b2e383942a929d0a6bfa28c604eb9a39bac73b",
+    "lines": 496
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/cpu_groups_wire.rs",
+    "bytes": 2546,
+    "sha256": "cebfdfc165559bf0377b6586852cead6fe380ac3829a6badc8ac94b4803b9c62",
+    "lines": 76
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/display.rs",
+    "bytes": 22581,
+    "sha256": "20c281af581a81a14146918144414b9d8200e352b38407530f1decf5689c423f",
+    "lines": 645
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/fuzzing.rs",
+    "bytes": 949,
+    "sha256": "ea81c2c906a0e6ef5c5718c34eb124b59efcc755b02083fbe4a8c348b696f23f",
+    "lines": 28
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/gpu.rs",
+    "bytes": 15689,
+    "sha256": "193c8c3ffd6fbc968b01546fdec4f294efa02f6104bf236051bd65534ef1215c",
+    "lines": 434
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/hardware_summary.rs",
+    "bytes": 12898,
+    "sha256": "00c36e6622d44641ceea0233aded7afa4e28477dbe8f9736425a6ab8abda1975",
+    "lines": 370
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/lib.rs",
+    "bytes": 6285,
+    "sha256": "20036ac67e3038c939c32395175bf520e6d230262fc40f4e95671c98f9f6d50d",
+    "lines": 154
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/memory.rs",
+    "bytes": 15325,
+    "sha256": "9bf6f0d68bdc927f70c12a05ac37a53c07bca6712fe809b148f38264b2bdc319",
+    "lines": 426
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/network.rs",
+    "bytes": 15642,
+    "sha256": "a3c16b77c5bf38cd5a4c247195277d1bd222b69956d0a3a100367ae933531238",
+    "lines": 424
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/registry_text.rs",
+    "bytes": 4101,
+    "sha256": "f1438729382957e60d28284d965e3447a976a22d500975eec21897d5ab378f11",
+    "lines": 127
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/storage.rs",
+    "bytes": 26673,
+    "sha256": "3b9d6c26e2e6a1416a99be81ae9b1ea1fa39cf2c03bb6fb198bd91122027f533",
+    "lines": 741
+  },
+  {
+    "path": "crates/daoseeker-scope-windows/src/uptime.rs",
+    "bytes": 3079,
+    "sha256": "37f0756ed251032e2f27032f1e952e7d1b9da3619d26da39ef8f4fec6f65aa34",
+    "lines": 97
+  },
+  {
+    "path": "crates/daoseeker-scope/Cargo.toml",
+    "bytes": 1080,
+    "sha256": "47d3ef6526d281edd90cb66b61b6e32ed074eac0324bdfcd838b13f0ecd5dd8e",
+    "lines": 37
+  },
+  {
+    "path": "crates/daoseeker-scope/LICENSE-MIT",
+    "bytes": 1084,
+    "sha256": "b0008b7d840c2b21a0cfb5cfdc166a045adfbfaba161f8b7a5b2e3cac271edb5",
+    "lines": 21
+  },
+  {
+    "path": "crates/daoseeker-scope/benches/collect.rs",
+    "bytes": 3263,
+    "sha256": "b9710cdce4d3e1e3b39aad9d97e2ddc2ffa56a3b35c1576794f781f92ca4f719",
+    "lines": 91
+  },
+  {
+    "path": "crates/daoseeker-scope/examples/dynamic_probe.rs",
+    "bytes": 1945,
+    "sha256": "ef034cecdce66bbe36f94f7af11593b60039586aaf00998b426cc21ea5b24846",
+    "lines": 51
+  },
+  {
+    "path": "crates/daoseeker-scope/examples/golden.rs",
+    "bytes": 1593,
+    "sha256": "1e4c1386f55676dc5060a9e34c753dfe4d2fc4fb577d1e0d55f38781b6cba49d",
+    "lines": 40
+  },
+  {
+    "path": "crates/daoseeker-scope/examples/schema.rs",
+    "bytes": 2089,
+    "sha256": "5dc21935322706e2d69a0b9838c86848d45e5787b69eee6dbd90e1524b009f35",
+    "lines": 40
+  },
+  {
+    "path": "crates/daoseeker-scope/src/exchange.rs",
+    "bytes": 5321,
+    "sha256": "796a1e14825502419d53c421c19583a80f67526ad29c524acb0a8ff099aad61f",
+    "lines": 169
+  },
+  {
+    "path": "crates/daoseeker-scope/src/lib.rs",
+    "bytes": 3815,
+    "sha256": "667cf83f039d0d059d28c245d824b819974cf8849a4c2717187e14585e998df7",
+    "lines": 85
+  },
+  {
+    "path": "crates/daoseeker-scope/tests/desktop.rs",
+    "bytes": 5445,
+    "sha256": "631dced74bd8bc7bd19851e0577e1ac5edd4c1b7e79798e902f399333691afed",
+    "lines": 165
+  },
+  {
+    "path": "crates/daoseeker-scope/tests/fixtures/snapshot-v1.json",
+    "bytes": 5530,
+    "sha256": "351562586dccdcc3f8c13df639b79c2d499a43b837b1a322be13e0e705cfbb07",
+    "lines": 1
+  },
+  {
+    "path": "crates/daoseeker-scope/tests/input_regression.rs",
+    "bytes": 2626,
+    "sha256": "dc0541391a606b7ea775a9b906d4b11d9ddc9f94c7bef3daa9706ea1ebcb7d6b",
+    "lines": 68
+  },
+  {
+    "path": "crates/daoseeker-scope/tests/metadata.rs",
+    "bytes": 1108,
+    "sha256": "07924a322ccb601454a6bc2e9eb06e3648fa4c89ec3ecf030863be0e5c89e966",
+    "lines": 28
+  },
+  {
+    "path": "crates/daoseeker-scope/tests/network.rs",
+    "bytes": 2769,
+    "sha256": "f2c4c1251051568b10f18e6a64de94545fdb38e9287aa2801d9e45cf0933ddd9",
+    "lines": 81
+  },
+  {
+    "path": "deny.toml",
+    "bytes": 320,
+    "sha256": "4facf6f0b37d5d707b5ee748c31708939d0c4164f89805c99ae82a0bb328dbea",
+    "lines": 14
+  },
+  {
+    "path": "docs/README.md",
+    "bytes": 5227,
+    "sha256": "825026ae3630b2cfdf3f3401c95a02783ded3f766f5db5af6f11e1b93f15351c",
+    "lines": 80
+  },
+  {
+    "path": "docs/adr/0001-public-model.md",
+    "bytes": 2296,
+    "sha256": "b4063dcce19d0b8502739f43d3042b11a22d0d96699b00adfb6860b4a1c9e84e",
+    "lines": 11
+  },
+  {
+    "path": "docs/adr/0002-sysinfo-backend.md",
+    "bytes": 7188,
+    "sha256": "5f2bf045eb2c6807292841863ce22a7686e3ae1d587bc5ee03a454961099c8e2",
+    "lines": 35
+  },
+  {
+    "path": "docs/adr/0003-capability-and-error-model.md",
+    "bytes": 3195,
+    "sha256": "8352dbba96dbdc060ad49ce7a330e2ad6bc37f9b4a101d55e10a71c923f69e22",
+    "lines": 13
+  },
+  {
+    "path": "docs/adr/0004-c-abi.md",
+    "bytes": 3107,
+    "sha256": "d8b5a5cc64eb9ed180993669ce8911a54bbdbe174db45e773f3e60fd2a4c0598",
+    "lines": 15
+  },
+  {
+    "path": "docs/adr/0005-platform-support-matrix.md",
+    "bytes": 14071,
+    "sha256": "f48b532d6667cbd888e76577e4c0c668defbbdd096eab8fe8dee2c33b2298823",
+    "lines": 59
+  },
+  {
+    "path": "docs/adr/0006-procfs-fuzz-hooks.md",
+    "bytes": 2908,
+    "sha256": "bb0024cbd3fe6e325e7d2eec9c9c7ff325bd1844e308e4bafb664e0e50b3470b",
+    "lines": 15
+  },
+  {
+    "path": "docs/adr/0007-linux-power-supply.md",
+    "bytes": 3715,
+    "sha256": "b6bd146850ced79a6ffdd85eef884642a379dc9aae390db6ef2d4f63bbd75b9d",
+    "lines": 21
+  },
+  {
+    "path": "docs/adr/0008-linux-hwmon.md",
+    "bytes": 3172,
+    "sha256": "6620dd6d7ec9e23bfe6fab693953968c562855e0345e672d0675d9a1edfcac7c",
+    "lines": 17
+  },
+  {
+    "path": "docs/adr/0009-linux-nvme-temperature.md",
+    "bytes": 2585,
+    "sha256": "6ad642560e2692c7dcfd307eaa9d7c87647a0e58f9b1eb50159d125c0d888f85",
+    "lines": 13
+  },
+  {
+    "path": "docs/adr/0010-linux-network-counters.md",
+    "bytes": 3151,
+    "sha256": "54819ff9cf088ba3fdd6483a6ea20d77e63b275b63ccc8e7bc94035fb6617e41",
+    "lines": 25
+  },
+  {
+    "path": "docs/adr/0011-windows-network-counters.md",
+    "bytes": 5054,
+    "sha256": "9a1708b4fe34c52768df53e74849985970d29e9b11fcd47cd3f2cd62317e3e2b",
+    "lines": 32
+  },
+  {
+    "path": "docs/adr/0012-macos-network-counters.md",
+    "bytes": 4012,
+    "sha256": "cbb649100cdeacbfa139368192b679149f3146e3ff793a89fb769d33ea83f228",
+    "lines": 29
+  },
+  {
+    "path": "docs/adr/0013-storage-capacity.md",
+    "bytes": 4308,
+    "sha256": "02e3e902e5dfa167cb78b848b7fc3c9833aa24321c4cfa72781d19309e142de4",
+    "lines": 27
+  },
+  {
+    "path": "docs/adr/0014-windows-storage-capacity.md",
+    "bytes": 3961,
+    "sha256": "5a8a4fdaa9f0f306101366cbe969944c74719491c6b7332f020917377c76af8e",
+    "lines": 26
+  },
+  {
+    "path": "docs/adr/0015-macos-storage-capacity.md",
+    "bytes": 4503,
+    "sha256": "2297468dc2a81207c01f541037066128aea0912e7dfe2ac55766a3a83b5eee56",
+    "lines": 27
+  },
+  {
+    "path": "docs/adr/0016-windows-gpu.md",
+    "bytes": 3431,
+    "sha256": "11c4725a281636948534784635f8240c8b618b6ac05caa40fbd13b2bdd210e23",
+    "lines": 25
+  },
+  {
+    "path": "docs/adr/0017-linux-gpu.md",
+    "bytes": 4009,
+    "sha256": "5db916a21e3f2fc0d2549972f5a3a4c935619f3b3fb4baee5d560d15f144bf49",
+    "lines": 29
+  },
+  {
+    "path": "docs/adr/0018-macos-gpu.md",
+    "bytes": 3626,
+    "sha256": "72940fc7cec2c186f9373b31e7a54641e596fe1da4e78d04ae8ac4146bc818c9",
+    "lines": 27
+  },
+  {
+    "path": "docs/adr/0019-windows-display.md",
+    "bytes": 4594,
+    "sha256": "fe16c857c5361b1b07f0563d03074c250da6d8c0e0f8c2ef0a832d47e6d1d7fe",
+    "lines": 34
+  },
+  {
+    "path": "docs/adr/0020-linux-display.md",
+    "bytes": 4283,
+    "sha256": "5330d5a86574dc25106a2731b0b1924d46c5debf25cfe54d715a128a50588e81",
+    "lines": 33
+  },
+  {
+    "path": "docs/adr/0021-macos-display.md",
+    "bytes": 4838,
+    "sha256": "41fc5930c8bd2616bf6128e46c2435427a8635ea69efde6b7c2c5befcb439f46",
+    "lines": 28
+  },
+  {
+    "path": "docs/adr/0022-display-cli.md",
+    "bytes": 2370,
+    "sha256": "95be476a77ed40aad5f5a876640c2a7fa06cf32389f3fc4ef01b576f15a19b9c",
+    "lines": 15
+  },
+  {
+    "path": "docs/adr/0023-windows-memory.md",
+    "bytes": 3626,
+    "sha256": "e89a68cb4d960e927bfc1e5026c9d734c48f4fcca6b2b342346d7d4b2fcb0f5d",
+    "lines": 19
+  },
+  {
+    "path": "docs/adr/0024-windows-cpu.md",
+    "bytes": 3809,
+    "sha256": "41d86ac4a6077ba86dfb7fb8ae030af8cb2471e11da93174e03540246ca33606",
+    "lines": 19
+  },
+  {
+    "path": "docs/adr/0025-macos-cpu.md",
+    "bytes": 4779,
+    "sha256": "dd8f625eb0f8da7391bbb7c1323c3e11f0a10dd14dcac6ce03382f48e56351bc",
+    "lines": 21
+  },
+  {
+    "path": "docs/adr/0026-macos-memory.md",
+    "bytes": 4819,
+    "sha256": "26d89c0920e8a76a9327392869dc3cb7d7a89572d1b4bffceb0671af12ff6246",
+    "lines": 21
+  },
+  {
+    "path": "docs/adr/0027-windows-uptime.md",
+    "bytes": 2790,
+    "sha256": "044431d274d05cab3f6b4f227034e7feb2434f8947a86b812e2d1628974bc8b9",
+    "lines": 15
+  },
+  {
+    "path": "docs/adr/0028-macos-uptime.md",
+    "bytes": 3808,
+    "sha256": "e64547f32bfa04772a23c81b20279866e4c684edfd2eedfd304fe1a0655b0bba",
+    "lines": 17
+  },
+  {
+    "path": "docs/adr/0029-windows-cpu-groups.md",
+    "bytes": 4123,
+    "sha256": "0a46d317c73783524930d5d981655fc4f2a647a65c8d2006228e79f0e50336cc",
+    "lines": 17
+  },
+  {
+    "path": "docs/adr/0030-windows-hardware-summary.md",
+    "bytes": 4709,
+    "sha256": "5a29aecd9793fcfe4aabd7f5a73ba06c521537e71ad96f09a84c8dcd408870cb",
+    "lines": 30
+  },
+  {
+    "path": "docs/adr/0031-windows-cli-candidate.md",
+    "bytes": 3612,
+    "sha256": "d77fa004af02ab731606e2cb7a82420aad7d18e3f4c737f86f973241c0cc465b",
+    "lines": 27
+  },
+  {
+    "path": "docs/adr/0032-linux-cli-candidate.md",
+    "bytes": 3657,
+    "sha256": "883306011b021a2dce052eb538c74c450becd52580730e24313272a6c4d0f991",
+    "lines": 27
+  },
+  {
+    "path": "docs/adr/0033-windows-ffi-sdk.md",
+    "bytes": 3976,
+    "sha256": "b91c67d8f939806d9b223af5e1687ec2b2fef2ed4747df349e3a2805a2384d10",
+    "lines": 29
+  },
+  {
+    "path": "docs/adr/0034-linux-ffi-sdk.md",
+    "bytes": 3715,
+    "sha256": "039da13a29f6c992fd1d7b9b84f145f757563c4c4688d94587c72653ac11a831",
+    "lines": 25
+  },
+  {
+    "path": "docs/battery-validation.md",
+    "bytes": 11043,
+    "sha256": "e91435db52976c520e8b4ea96d704fc29ec13dbf59de78fd193c922c68d655f1",
+    "lines": 84
+  },
+  {
+    "path": "docs/benchmark-native-runs.txt",
+    "bytes": 920,
+    "sha256": "565d0fdb2d230b70cb7e473c8f56ef884a96ec98f6f4973aa8a09c0181eba25c",
+    "lines": 20
+  },
+  {
+    "path": "docs/benchmarks.md",
+    "bytes": 33994,
+    "sha256": "b0de5d5e11d2f011bd2208043bacb63f6258caec06205b31e195caf93d8da110",
+    "lines": 359
+  },
+  {
+    "path": "docs/ci-validation.md",
+    "bytes": 15042,
+    "sha256": "52f4eeeeb0ce7ddc8fd2913dfb2ea4f9a9f78d1e8192bdc3aee406fafe7f14e3",
+    "lines": 105
+  },
+  {
+    "path": "docs/cli-bundle-validation.md",
+    "bytes": 5949,
+    "sha256": "cab38e1294e4bbc1024f03db917699a0f327addcdc2f12df2e97f781847b08c6",
+    "lines": 58
+  },
+  {
+    "path": "docs/cli-text-validation.md",
+    "bytes": 5852,
+    "sha256": "8b316ff57915942eb173dd42050be4dbb39fb77c2cef64380f540fb14e9ef36c",
+    "lines": 23
+  },
+  {
+    "path": "docs/cpu-refresh-validation.md",
+    "bytes": 10762,
+    "sha256": "d42c34d0d485cde44da7a595964670d6435b9ef49422d989a5cc8dd6a51bb4b4",
+    "lines": 74
+  },
+  {
+    "path": "docs/delivery.md",
+    "bytes": 20972,
+    "sha256": "99a026cc587483d8a42b298b9b83be04e69f5677f03ecf634746f2f328e9c827",
+    "lines": 117
+  },
+  {
+    "path": "docs/dependencies.md",
+    "bytes": 8115,
+    "sha256": "6e9e8044ee66797d7bfd2cabf29fa890cdab98bd526afc8dbc83db037eaf11ec",
+    "lines": 89
+  },
+  {
+    "path": "docs/dependency-tree.txt",
+    "bytes": 5493,
+    "sha256": "54441c7a022a507ffaa904ef6d615f2ad771c811d9a76027a2dd6cb64b475372",
+    "lines": 107
+  },
+  {
+    "path": "docs/display-text-validation.md",
+    "bytes": 6804,
+    "sha256": "1a34e6d5112b32081445b5f3e692f07bb5e109cbfe2e108eb706bd079a61e198",
+    "lines": 54
+  },
+  {
+    "path": "docs/evidence/ci-linux-x64-37864529108.json",
+    "bytes": 5323,
+    "sha256": "c51262c6561e8d7229c1b44b11e21f6db29726e05f9dff0babe9d0ae7b9cabc6",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-linux-x64-37867335002.json",
+    "bytes": 5507,
+    "sha256": "309dd0ff54bb46709f7648d2229042a769b45e84e2759da5fff4a22745f6d6bc",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-linux-x64-38006382007.json",
+    "bytes": 5321,
+    "sha256": "49997b082c0abba0db947947b1958e5edb757256633ebf24a888ef365b32e06f",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-linux-x64-38008554490.json",
+    "bytes": 5503,
+    "sha256": "fb1ccf0495f064ded8a5bf4deba70198c510b878a916d1e27f82f9ab5ace8931",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-macos-arm64-37864529108.json",
+    "bytes": 5287,
+    "sha256": "97320a0c2611a0cfd8471dfe60a009fb668dab3da4d68c725d56067be027afc4",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-macos-arm64-37867335002.json",
+    "bytes": 5471,
+    "sha256": "50c8c9a3aec9bed7adfe2efb5cdf2a0a4b7c160dd783349b4509064866c91f47",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-macos-arm64-38006382007.json",
+    "bytes": 5287,
+    "sha256": "843bd3c02904bb204e85fb6b394426f06bb3565d3dd3cc5ec0f3263a887f8c18",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-macos-arm64-38008554490.json",
+    "bytes": 5471,
+    "sha256": "43c4d9b266a6a93e02f1a583cbd12dd6e742deb84a219aaeed520ea5c2246854",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-run-37864529108.json",
+    "bytes": 17081,
+    "sha256": "1306fd3dbc5944d5f6bfdf675da51845dd799451cf226a0774e26e6d97ae25c9",
+    "lines": 545
+  },
+  {
+    "path": "docs/evidence/ci-run-37867335002.json",
+    "bytes": 18735,
+    "sha256": "f6f3399a2c91d7651af5fb00194a95cb64fb14b0740809f43c35e50fd60e893b",
+    "lines": 600
+  },
+  {
+    "path": "docs/evidence/ci-run-38006382007.json",
+    "bytes": 18455,
+    "sha256": "9c7f8ab5c9c6f7c49b480257c9dcad163f111b984e844bd2ddc6e85b393adabd",
+    "lines": 610
+  },
+  {
+    "path": "docs/evidence/ci-run-38008554490.json",
+    "bytes": 32941,
+    "sha256": "022bdebf70058b3bd3252d725ee24c4dbb3a5ee037b79ceb0c07d796003f6803",
+    "lines": 939
+  },
+  {
+    "path": "docs/evidence/ci-run-38044730604.json",
+    "bytes": 34063,
+    "sha256": "2d385299036bef8901578384b4048ebe1ee06758e4d45442dd02ba72f28b1d62",
+    "lines": 971
+  },
+  {
+    "path": "docs/evidence/ci-run-38047435339.json",
+    "bytes": 34617,
+    "sha256": "aa3ddc11157332f9f45e2f1d5cced79093e89dd5b24269b85cf640b37d6b646c",
+    "lines": 987
+  },
+  {
+    "path": "docs/evidence/ci-run-38065295625.json",
+    "bytes": 36777,
+    "sha256": "7314bd6bc6be4c114a640761f72ec390c706fe3d5e4d75b8421338657d2a9af1",
+    "lines": 1051
+  },
+  {
+    "path": "docs/evidence/ci-run-38067341915.json",
+    "bytes": 36747,
+    "sha256": "f51265df7cd7c15c00a77ff270eeef380c3a1013a65b5e77b64d84a81617948a",
+    "lines": 1050
+  },
+  {
+    "path": "docs/evidence/ci-run-38070151022.json",
+    "bytes": 36759,
+    "sha256": "d504a36b01065e68ebffdc0aaa1558045ddfca04ee6b020d578df154483ce36a",
+    "lines": 1050
+  },
+  {
+    "path": "docs/evidence/ci-run-failed-38047029198.json",
+    "bytes": 34617,
+    "sha256": "d531b716ce4b68c6f4a81b242859843117299b1daf6c8abb5e9f6b5e6df2ee95",
+    "lines": 987
+  },
+  {
+    "path": "docs/evidence/ci-windows-x64-37864529108.json",
+    "bytes": 5497,
+    "sha256": "c53c8dc43620d1a0ecdaec9720a7ae123e5499cbcd1ff5b570f542bb47a889b7",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-windows-x64-37867335002.json",
+    "bytes": 5497,
+    "sha256": "2f06c1e89420c89ffb227383a6f5bc8fff879144f638a87e308be1860b70387f",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-windows-x64-38006382007.json",
+    "bytes": 5313,
+    "sha256": "60f0ce6aba4848823b3a973113445310c2cd0bd49ad6c97fa9a9ed5009293a65",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/ci-windows-x64-38008554490.json",
+    "bytes": 5497,
+    "sha256": "2704495010667e9ba837518812b21d0e42464e1a7d528eec011ad9a59bae4713",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/cli-text-ci-38486638499.json",
+    "bytes": 16501,
+    "sha256": "fba0ba8111e705796bc284668dc9b413e2f44a54cfdc42d1fd8dd32391479310",
+    "lines": 422
+  },
+  {
+    "path": "docs/evidence/cli-text-container-linux-38486638499.json",
+    "bytes": 15940,
+    "sha256": "d2e5e4ae4049bca5850c941911e07a42c1fcddf0b1f98244c073a2bd71495479",
+    "lines": 595
+  },
+  {
+    "path": "docs/evidence/cli-text-failure-first-attempt-38486638499.json",
+    "bytes": 971,
+    "sha256": "ed72b6af2047616bfcffa87f2ef85d059dcd35356b9ce7313411ef6757964ce1",
+    "lines": 18
+  },
+  {
+    "path": "docs/evidence/cli-text-native-failure-local-windows-38486638499.json",
+    "bytes": 82449,
+    "sha256": "ec96217a0652d4533d5bae9c65070234629be8a133bfad789bd875292793a5be",
+    "lines": 2714
+  },
+  {
+    "path": "docs/evidence/cli-text-native-linux-38486638499.json",
+    "bytes": 23342,
+    "sha256": "da47baed8fdce6fa7bb6f86bce553a86335c18204db0277235454ea8b512030a",
+    "lines": 793
+  },
+  {
+    "path": "docs/evidence/cli-text-native-local-windows-38486638499.json",
+    "bytes": 84401,
+    "sha256": "6d58d1b360d1f0cff65b2dc595bf8324e3b48de56efa141683825927ff95e882",
+    "lines": 2771
+  },
+  {
+    "path": "docs/evidence/cli-text-native-macos-38486638499.json",
+    "bytes": 31451,
+    "sha256": "d395d4e3cc3a4bf4bd5251e901b4c5c7ab54999aea9bcccb2a76ba4e2edf6b79",
+    "lines": 1049
+  },
+  {
+    "path": "docs/evidence/cli-text-native-windows-38486638499.json",
+    "bytes": 36528,
+    "sha256": "c5eb0050f4c8f684e905234d41507341dec975bc16af7f7899deac6921180734",
+    "lines": 1206
+  },
+  {
+    "path": "docs/evidence/cli-text-package-linux-38486638499.json",
+    "bytes": 1925,
+    "sha256": "5d83f152d2e1dc584cbc62a439cbbb9ecdb8308a638500a46ca3e7b2d67654bb",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/cli-text-package-local-windows-38486638499.json",
+    "bytes": 1925,
+    "sha256": "c2f97ea443f2c9eae15aa1d7c2c890330c6834f1fec24210d42efdd06428dd91",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/cli-text-package-macos-38486638499.json",
+    "bytes": 1925,
+    "sha256": "5d83f152d2e1dc584cbc62a439cbbb9ecdb8308a638500a46ca3e7b2d67654bb",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/cli-text-package-windows-38486638499.json",
+    "bytes": 1925,
+    "sha256": "26198ddfd61bd47ccaacd34cca2ef826655ea5681f18b7e4b44000d3df268e26",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/cli-text-sdk-probe-macos-38486638499.json",
+    "bytes": 177,
+    "sha256": "7451c748918aa158e87731fc911dea3cda4d85260167ab59b93885432b85bd16",
+    "lines": 1
+  },
+  {
+    "path": "docs/evidence/display-text-benchmark-darwin-39178858567.json",
+    "bytes": 1410,
+    "sha256": "6307ecf970f1957d6b7572b69af2792956f09bd1fc03467e223217e3990fc6c0",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/display-text-benchmark-linux-39178858567.json",
+    "bytes": 1443,
+    "sha256": "f728e244a81ed41a535aac3654a1593df23605065eb2bc29c690555e3e7eff15",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/display-text-ci-39178858567.json",
+    "bytes": 17028,
+    "sha256": "138556c8df2023e78f5a85edbaf462e99620ede15a9761ff0faa5af3b6495d49",
+    "lines": 452
+  },
+  {
+    "path": "docs/evidence/display-text-local-560e6f1.json",
+    "bytes": 3489,
+    "sha256": "a23dd247c5636d715d93950695d90b7c55edb5607d75b1df2e6e58560f926ede",
+    "lines": 86
+  },
+  {
+    "path": "docs/evidence/display-text-native-darwin-39178858567.json",
+    "bytes": 36872,
+    "sha256": "9d86abd12de873eeed6ee1363d2f1978fbb390de43375637176205f29f3c451c",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/display-text-native-linux-39178858567.json",
+    "bytes": 29318,
+    "sha256": "63ae34975519c452876be65e098cd71abc02cd005d20620af1d764d90c4ca28c",
+    "lines": 1028
+  },
+  {
+    "path": "docs/evidence/display-text-native-windows-39178858567.json",
+    "bytes": 33823,
+    "sha256": "1e01d757fd5664f6b0b6fa7649648a708dce0de9a323e453ecaac83149139ffe",
+    "lines": 1157
+  },
+  {
+    "path": "docs/evidence/display-text-native-windows-560e6f1.json",
+    "bytes": 77533,
+    "sha256": "7133f7004cba703ab7e94a8567580ec10922da7819024185ace35e07a489b1d2",
+    "lines": 2586
+  },
+  {
+    "path": "docs/evidence/display-text-package-evidence-linux-x64-39178858567.json",
+    "bytes": 1926,
+    "sha256": "066f0295bd4f26ec55d766c36bf6752f89fc9e8ce3bee48e3c4a89a2a22b4692",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/display-text-package-evidence-macos-arm64-39178858567.json",
+    "bytes": 1926,
+    "sha256": "066f0295bd4f26ec55d766c36bf6752f89fc9e8ce3bee48e3c4a89a2a22b4692",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/display-text-package-evidence-windows-x64-39178858567.json",
+    "bytes": 1926,
+    "sha256": "0a649548ac524219107d04b0980f47fdb650405dc57e2e605c708c0c55f57fd6",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/display-text-packages-windows-560e6f1.json",
+    "bytes": 1926,
+    "sha256": "175d3effde037ee8385a933c1d5b0dc5ea8e3d5771f6ee455835517105051c84",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/display-text-sdk-comparison-39178858567.json",
+    "bytes": 360,
+    "sha256": "2ac9f0217502d3df6a3701044bb3beb8860fe6e67b8fb769ae1b5e51b1705dcb",
+    "lines": 14
+  },
+  {
+    "path": "docs/evidence/display-text-sdk-probe-39178858567.json",
+    "bytes": 82,
+    "sha256": "be3f11903d2d39b3d47445ab613d91b3072faaa0893cc30588dc4219fd5562b4",
+    "lines": 1
+  },
+  {
+    "path": "docs/evidence/hwmon-fuzz-38065295625.json",
+    "bytes": 3532,
+    "sha256": "0de1e3f8608e49700ce85527d02089c51e79d53aa2f8c0d3256a7fb45fcf4e4b",
+    "lines": 112
+  },
+  {
+    "path": "docs/evidence/linux-battery-38047435339.json",
+    "bytes": 25981,
+    "sha256": "d9737d088c4ca64175fb955f4bbbb85d356f2ce6b6987e1e8ab990bd32af0f28",
+    "lines": 943
+  },
+  {
+    "path": "docs/evidence/linux-battery-38065295625.json",
+    "bytes": 25981,
+    "sha256": "a48d85916710e33f9d793d185dbed83c7242804a7162c6972a03e609cf00473b",
+    "lines": 943
+  },
+  {
+    "path": "docs/evidence/linux-battery-38067341915.json",
+    "bytes": 25981,
+    "sha256": "2e9ba2a5daf20157c596968d31a7af03fca2af1f3c9caca38dd20861975c0d2f",
+    "lines": 943
+  },
+  {
+    "path": "docs/evidence/linux-battery-38070151022.json",
+    "bytes": 25981,
+    "sha256": "6a21364198d3035f3d6733b1d6a73ea57a5f8cd7b4865b359f3e6f174547bd34",
+    "lines": 943
+  },
+  {
+    "path": "docs/evidence/linux-battery-failed-38047029198.json",
+    "bytes": 13429,
+    "sha256": "e1dfbcf28f862033bbe817311f74f70cb8d6191f14a022d78ee2237f7c813bad",
+    "lines": 484
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-benchmark-darwin-40245533279.json",
+    "bytes": 1428,
+    "sha256": "48fbb9a54ab007983b22f9ed097e85027db6bd23b5ed343fd34535074f935441",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-benchmark-linux-40245533279.json",
+    "bytes": 1459,
+    "sha256": "6322533749a3c21c8d498ebbb944a35b684aa0340358d17221cdd231242d21b7",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-candidate-linux-40245533279.json",
+    "bytes": 936,
+    "sha256": "e84b270d2c7c48fd90cfc9a049ebd5152882cfb9dc523b31fa740bbfe47f90ee",
+    "lines": 28
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-candidate-windows-40245533279.json",
+    "bytes": 903,
+    "sha256": "fd19bf6fb986ee1ae90a1c87af52828d6ad7355c7e00bda3809ace510bac2a3d",
+    "lines": 28
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-ci-40245533279.json",
+    "bytes": 21677,
+    "sha256": "530be1790e5e2e5a40109b81818c8adad25da94115c15b26d46bb9ddf7ebde84",
+    "lines": 501
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-local-cdd8760.json",
+    "bytes": 3962,
+    "sha256": "a6c482e1075adeff69ab964b44fb0a13ccb5ba4001e3915dfed09256ac3338d6",
+    "lines": 89
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-macos-cpu-sdk-40245533279.json",
+    "bytes": 4214,
+    "sha256": "d585984adaa519b53a6629460c9f3a791ab7d06c04e91635029f95da852ffa8c",
+    "lines": 195
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-macos-memory-sdk-40245533279.json",
+    "bytes": 4724,
+    "sha256": "a7f9f5b7312f52af527da906c49d3e1c4650b2d2552973495b437c5fae5cf1a5",
+    "lines": 176
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-macos-uptime-sdk-40245533279.json",
+    "bytes": 2318,
+    "sha256": "3cf95cc9f58ce0835f25df1d6d7bfd8282f735ad3d77ecf025340a6d0987aaf1",
+    "lines": 87
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-native-darwin-40245533279.json",
+    "bytes": 36882,
+    "sha256": "8a00aaa29945739c468427214cc48ebac4cb55d10d72c32e1d5241645e0ad559",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-native-linux-40245533279.json",
+    "bytes": 29318,
+    "sha256": "6dffb6aad92cd4b1d564dbc99c5345b70d829cd73539e0cc24ca6809fe8c2080",
+    "lines": 1028
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-native-windows-40245533279.json",
+    "bytes": 43667,
+    "sha256": "26b088aedf6904455049ef695287d8a7c3e39a37b3e7f17744cabc975ca0f729",
+    "lines": 1479
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-packages-darwin-40245533279.json",
+    "bytes": 1926,
+    "sha256": "aa14df96194399d81b46e32127032b759c9713ee1df50a44b9d9451bf45f2d15",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-packages-linux-40245533279.json",
+    "bytes": 1926,
+    "sha256": "38bb5f316b644c2cf845174e1ba00493dbf9507a0046ae23b2330849021f63d7",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-packages-windows-40245533279.json",
+    "bytes": 1926,
+    "sha256": "148685886754c11f4d4d4c1f01a590a0f900432be37ea912fe93de9c5a0105d6",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-windows-cpu-groups-sdk-40245533279.json",
+    "bytes": 3633,
+    "sha256": "adb60714f16141fbaa60829fa65a12af2c978313de00e07c91190f3d3e9d7027",
+    "lines": 140
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-windows-cpu-sdk-40245533279.json",
+    "bytes": 2692,
+    "sha256": "1a4c20878b6bfc04774f913adef2eedf47d7a0f58a44d8a968f5cbb497abdec1",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-windows-hardware-summary-sdk-40245533279.json",
+    "bytes": 5817,
+    "sha256": "865441b64caa195853c79c1a8f731ca2dc6ca6ff42a5fc422051aed10f624bb4",
+    "lines": 213
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-windows-local-cdd8760.json",
+    "bytes": 903,
+    "sha256": "c76c68bfc2208ca8c9669f1b46f0a3426d5eae6cc40b340e350177c13e1784a3",
+    "lines": 28
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-windows-manifest-cdd8760.json",
+    "bytes": 12003,
+    "sha256": "9304f8db7f5d6d96157c344de72153a10f304a2c1ec419661677287912474c46",
+    "lines": 306
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-windows-memory-sdk-40245533279.json",
+    "bytes": 2885,
+    "sha256": "a0d50f3e6fde2d26a99307cc9292809b97715b2bcc99980db5b995bc2f44d1af",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/linux-cli-bundle-windows-uptime-sdk-40245533279.json",
+    "bytes": 2107,
+    "sha256": "5f3352f85c0d27d106cfeee210a870ef760f557ecdce3bcdd4aa8cf12d9113bd",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/linux-container-37867335002.json",
+    "bytes": 37062,
+    "sha256": "3c7afd3d0844d66accb805d1679ab027abf891989467a8c7fb62830531733306",
+    "lines": 1326
+  },
+  {
+    "path": "docs/evidence/linux-container-38006382007.json",
+    "bytes": 37062,
+    "sha256": "3b8f27ad4cf4cac1909260f3861e7f63700ec691b077b994029cc33b5afc5e8b",
+    "lines": 1326
+  },
+  {
+    "path": "docs/evidence/linux-container-38008554490.json",
+    "bytes": 38408,
+    "sha256": "26dab38ce8d5391ba6fabc63c15180798c2f90018f055eaaf40081f99f0e82c4",
+    "lines": 1326
+  },
+  {
+    "path": "docs/evidence/linux-container-38044730604.json",
+    "bytes": 38408,
+    "sha256": "55250279ce1cff34c33f2e2b21c47f2005297d906933ce85f069be801d53aa03",
+    "lines": 1326
+  },
+  {
+    "path": "docs/evidence/linux-container-38047435339.json",
+    "bytes": 38408,
+    "sha256": "005472437b3b05ceb80c71cbfb5476895ba77fd6bb6f9b9576a45220f8aed449",
+    "lines": 1326
+  },
+  {
+    "path": "docs/evidence/linux-container-38065295625.json",
+    "bytes": 38492,
+    "sha256": "4ba0b42557c8b21c6a710eaec2b26815cdc86ea12d63bc5625e9d8fca9ffa562",
+    "lines": 1326
+  },
+  {
+    "path": "docs/evidence/linux-container-38067341915.json",
+    "bytes": 38408,
+    "sha256": "63ef73ec818e323624626d9e1a707356fbeac1c9d2ce646ceb4913d69e2f65e7",
+    "lines": 1326
+  },
+  {
+    "path": "docs/evidence/linux-container-38070151022.json",
+    "bytes": 38408,
+    "sha256": "d0bdc3ab54fc510dab103808ec541098562c5925a4cabf2fb4ea667570af2829",
+    "lines": 1326
+  },
+  {
+    "path": "docs/evidence/linux-display-benchmark-38983994614.json",
+    "bytes": 1461,
+    "sha256": "ff9490d5ae957ea91fd25e2129efed951081ae551795fed6dd044f48b680a5b1",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/linux-display-ci-38983994614.json",
+    "bytes": 10357,
+    "sha256": "d4c4611a6d9c07690d5b0e8bde0176db643f21169b34e342520956d533ac6e1c",
+    "lines": 280
+  },
+  {
+    "path": "docs/evidence/linux-display-container-38983994614.json",
+    "bytes": 14311,
+    "sha256": "40d5c14710b57ab64d84cb649a3cd04e6855866bb5c24f1c3863b780733c6143",
+    "lines": 516
+  },
+  {
+    "path": "docs/evidence/linux-display-local-cac0191.json",
+    "bytes": 3795,
+    "sha256": "d0f64ff60fcd9db9b617c3f62e8ed9dd19d13e38e2e3f4d5d344cb41186559db",
+    "lines": 74
+  },
+  {
+    "path": "docs/evidence/linux-display-native-darwin-38983994614.json",
+    "bytes": 34897,
+    "sha256": "bd633776981c3625b01ac46275a08ec43e7a3b8061bc074407b8782039c8e864",
+    "lines": 1191
+  },
+  {
+    "path": "docs/evidence/linux-display-native-linux-38983994614.json",
+    "bytes": 27897,
+    "sha256": "f0e0250aab4421574101167597965f64568d66929952f8527d6737963c7d583d",
+    "lines": 979
+  },
+  {
+    "path": "docs/evidence/linux-display-native-windows-38983994614.json",
+    "bytes": 41822,
+    "sha256": "1e73a52e095b98445763d2bd3c80c1e7fd90bfe56a78f12e654f26afa3931ed8",
+    "lines": 1418
+  },
+  {
+    "path": "docs/evidence/linux-display-native-windows-local-cac0191.json",
+    "bytes": 77110,
+    "sha256": "9dfc1ae3dbf94405b0bd11af6aefff58cd04329e06dde4e883463ef12e97f8e2",
+    "lines": 2571
+  },
+  {
+    "path": "docs/evidence/linux-display-package-evidence-linux-x64-38983994614.json",
+    "bytes": 1926,
+    "sha256": "6e4cf389d0ea0c7cfa4f72cbcd11c77ae7eb037b2f82d2a54f0405303cf990ae",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-display-package-evidence-macos-arm64-38983994614.json",
+    "bytes": 1926,
+    "sha256": "6e4cf389d0ea0c7cfa4f72cbcd11c77ae7eb037b2f82d2a54f0405303cf990ae",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-display-package-evidence-windows-x64-38983994614.json",
+    "bytes": 1926,
+    "sha256": "78eb4800b9b1dd267cad6c109522464193904932b98bf102c9fb9b369a1a8f71",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-display-packages-windows-local-cac0191.json",
+    "bytes": 1926,
+    "sha256": "facc832d3d166f4d3571c60864dfe0b773dc8991f1f6abe17eba550694d4ab89",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-dynamic-38006382007.json",
+    "bytes": 7875,
+    "sha256": "2c52bfb0692954d1ae3887569467fb506759f70f2a875279c9d25a7433b6fb44",
+    "lines": 305
+  },
+  {
+    "path": "docs/evidence/linux-dynamic-38008554490.json",
+    "bytes": 8180,
+    "sha256": "42d04a41ae8cb9344227ec0985a1435289dfa451ffd832a58b84255788bc8a12",
+    "lines": 305
+  },
+  {
+    "path": "docs/evidence/linux-dynamic-38044730604.json",
+    "bytes": 8180,
+    "sha256": "858ceef5ab12555558293e06df0e76395dc87389a3e499e2d5385d422b2ec84c",
+    "lines": 305
+  },
+  {
+    "path": "docs/evidence/linux-dynamic-38047435339.json",
+    "bytes": 8180,
+    "sha256": "46eb3253c53c56222ad4377ddb2ba23431ff296428cd72631333b8036609e402",
+    "lines": 305
+  },
+  {
+    "path": "docs/evidence/linux-dynamic-38065295625.json",
+    "bytes": 8180,
+    "sha256": "7bdac5b9613e31a30a1b6de74d0d08ba404ea7ab0c1de0f7e038cc47b7f84d15",
+    "lines": 305
+  },
+  {
+    "path": "docs/evidence/linux-dynamic-38067341915.json",
+    "bytes": 8180,
+    "sha256": "2764804e0d3d5365623bb8f1fcd0e2f52959ba73c3ba72cdf1b2ac0428fcaaeb",
+    "lines": 305
+  },
+  {
+    "path": "docs/evidence/linux-dynamic-38070151022.json",
+    "bytes": 8180,
+    "sha256": "74d6567e6b8516ecaca547d24318b62cdb0499c8ed9dc47de43596250097a52f",
+    "lines": 305
+  },
+  {
+    "path": "docs/evidence/linux-dynamic-before-38005835576.json",
+    "bytes": 2130,
+    "sha256": "d21dba67e28e3f097bbd3845f538c243160e98a1d05a20bcb80e109f4fbfa013",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-benchmark-darwin-40304816716.json",
+    "bytes": 1407,
+    "sha256": "363629556dce88855d60586ec8b1e11b542e33a05516c81c0678bc2b675d0896",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-benchmark-linux-40304816716.json",
+    "bytes": 1448,
+    "sha256": "c4fa053bae182be8cb9a3379ae81bd53be5c074474340216a2318da503b0cedc",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-ci-40304816716.json",
+    "bytes": 30970,
+    "sha256": "4d5a92bf9d16f4d0d170e98ba5b9bacf070bcc7d21654492132a6030bdba56cb",
+    "lines": 686
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-cli-linux-40304816716.json",
+    "bytes": 936,
+    "sha256": "6315de82cda6e205d8e8cbae6b050e904691ff85b71d529f09c7b8d38c13b72c",
+    "lines": 28
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-cli-windows-40304816716.json",
+    "bytes": 903,
+    "sha256": "b89973619071ef482313b3ef99200796c0e81d874b41ea112d808860bc176b5c",
+    "lines": 28
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-container-linux-battery-evidence-40304816716.json",
+    "bytes": 25038,
+    "sha256": "cf98d72bbfd2a4d5c8da1b4722977f3e3ff69b79837f5c28c98dab2d0532d53e",
+    "lines": 943
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-container-linux-container-evidence-40304816716.json",
+    "bytes": 37094,
+    "sha256": "abe77a2676a18db5eeb17b99e16b66b5e5b307f69015c68824226c7d06ebac8a",
+    "lines": 1326
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-container-linux-display-evidence-40304816716.json",
+    "bytes": 14311,
+    "sha256": "58bb585d3559455d7ef54533fb9e07729877782e02cd3b94c32bebf2ed9a33ef",
+    "lines": 516
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-container-linux-dynamic-evidence-40304816716.json",
+    "bytes": 7875,
+    "sha256": "3760a57ac3ee8c4aabd41020e56f206e19c41ffd8fd4b76d23a0ddc1747b057a",
+    "lines": 305
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-container-linux-gpu-evidence-40304816716.json",
+    "bytes": 11076,
+    "sha256": "0d260a0ec77cab5623771ceb387e629c31bccbf831d9ddfd5bc4971d58ec5647",
+    "lines": 426
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-container-linux-hwmon-evidence-40304816716.json",
+    "bytes": 53548,
+    "sha256": "dac3f955c05ef8398f3fc84c3edf204f5c8f4d22d983cc4e258f65a9c51775b8",
+    "lines": 1973
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-container-linux-memory-evidence-40304816716.json",
+    "bytes": 22737,
+    "sha256": "2311be89dd95244f54c8439954f19506f4c86c2a080a80b309bdc34c74b8c8d1",
+    "lines": 900
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-container-linux-storage-evidence-40304816716.json",
+    "bytes": 15940,
+    "sha256": "4c5c138f60224aa550e86bf3255f14986a2b62a98cc87e6a85491d98496dad32",
+    "lines": 595
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-local-f262095.json",
+    "bytes": 5363,
+    "sha256": "0eb9f2b33e3a1369de1fbd0ea9ed2c6c2cb7e0ae46baa25a1a933ec0bb1d4a6b",
+    "lines": 95
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-macos-cpu-sdk-40304816716.json",
+    "bytes": 4198,
+    "sha256": "bd313343e6c76c3d1dce76521a7cdcd891a53dfd5d1a77462d4541ed7e8a1d5d",
+    "lines": 195
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-macos-memory-sdk-40304816716.json",
+    "bytes": 4724,
+    "sha256": "643f62a9a235cef7ed52ca62cbf7090f833036673ba583f0b95e9a9c725e35d9",
+    "lines": 176
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-macos-uptime-sdk-40304816716.json",
+    "bytes": 2318,
+    "sha256": "aab95f65b780a66708e1ad9017d6143a89ab5b76b46c7177010b5f96eca9f181",
+    "lines": 87
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-native-darwin-40304816716.json",
+    "bytes": 36882,
+    "sha256": "f6865f9a976f1dc27cd5745f559262285340e3aa457d8369de877f196aa981d3",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-native-linux-40304816716.json",
+    "bytes": 28375,
+    "sha256": "ce488f242151bab091e86bd4538a1bb3b2b63d482a317746bb77ba2e5ee4d542",
+    "lines": 994
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-native-windows-40304816716.json",
+    "bytes": 43667,
+    "sha256": "a32ac4c364a7e2c44f8e0a59db82e4df930dcf0a4707d14db5e7dae39142f578",
+    "lines": 1479
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-notice-materials-f262095.json",
+    "bytes": 4203,
+    "sha256": "5d7ad00faf3899aa1036c35a1ecf16b97d66ddf9d01f755e38b02ecfa39f9c9e",
+    "lines": 38
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-packages-darwin-40304816716.json",
+    "bytes": 1926,
+    "sha256": "99ad57962a8c3dc9062ff6a9ae83bf882a8a6b5ce1b46342e10e5c8f6b242df2",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-packages-linux-40304816716.json",
+    "bytes": 1926,
+    "sha256": "361985b4e2753d8f42332a063f089f86bf32d27ee5948a4ef7cf5d77c3da2055",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-packages-windows-40304816716.json",
+    "bytes": 1926,
+    "sha256": "c648fbb9696246e9fb16abb7e71981a7ae2bafd9b0ad3d578461c130f35a5462",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-sdk-linux-40304816716.json",
+    "bytes": 1483,
+    "sha256": "c93e405cdbeb4ae47a000469de01c24f04acd8e98c278adf4a195c3dab41c583",
+    "lines": 47
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-sdk-windows-40304816716.json",
+    "bytes": 1155,
+    "sha256": "07f4b3b50ffaab0df7567c4b0eea92ea3eb437f617b558be3ae52582f494fe9e",
+    "lines": 32
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-windows-cli-regression-f262095.json",
+    "bytes": 903,
+    "sha256": "d4649a48ecb5fded00002859595c4bddd3d402dd67fdf565f4b6a8be6e24a671",
+    "lines": 28
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-windows-cpu-groups-sdk-40304816716.json",
+    "bytes": 3630,
+    "sha256": "0d6075aa060821681b4088f0137d3bb016df7d1cf7b334d5b811ff8684cd5703",
+    "lines": 140
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-windows-cpu-sdk-40304816716.json",
+    "bytes": 2707,
+    "sha256": "3c8f70f9eabfc608e02933e0633f15a564a9553c79b2c0889ff009b1dfeb6b31",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-windows-hardware-summary-sdk-40304816716.json",
+    "bytes": 5817,
+    "sha256": "666e864c11a822b7f2ddb990f85d05a1492d34a561d13436069739fe916522d9",
+    "lines": 213
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-windows-memory-sdk-40304816716.json",
+    "bytes": 2885,
+    "sha256": "843d33a0a31d84c6f764b895b9b3d01269e6a933c8c26dee9c437c3d0d363652",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-windows-sdk-regression-f262095.json",
+    "bytes": 1155,
+    "sha256": "06c0a208bbaa9aa3e30be3f86ab1d46b9e532909991c0e79cc739d013de75380",
+    "lines": 32
+  },
+  {
+    "path": "docs/evidence/linux-ffi-sdk-windows-uptime-sdk-40304816716.json",
+    "bytes": 2107,
+    "sha256": "b46689a3c0879e1b489733885e1797d8726dcbe08eca2c7de49cbe232d4716a9",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/linux-gpu-ci-38660183893.json",
+    "bytes": 6496,
+    "sha256": "c00fe6d2d50f23d4487cc13e900f9b3bc2eab090b1b73a11c6a6a0cdc389d671",
+    "lines": 174
+  },
+  {
+    "path": "docs/evidence/linux-gpu-container-38660183893.json",
+    "bytes": 11076,
+    "sha256": "3a283555f5016f5bd4af780ed9591ecb6e437411003b0833a36e420888ff8c7f",
+    "lines": 426
+  },
+  {
+    "path": "docs/evidence/linux-gpu-darwin-38660183893.json",
+    "bytes": 34321,
+    "sha256": "89ccbc6b74732093a4fd2df9dd606d1e9fcb2cd5547be6aecc34fe5b744b70e6",
+    "lines": 1171
+  },
+  {
+    "path": "docs/evidence/linux-gpu-linux-38660183893.json",
+    "bytes": 27043,
+    "sha256": "ee05f5ae10818aed80fe7fd14b38875eed81123c850fca67a25ed2946c62164c",
+    "lines": 947
+  },
+  {
+    "path": "docs/evidence/linux-gpu-local-packages-38660183893.json",
+    "bytes": 1925,
+    "sha256": "7bee7678370fbae2c3bd12eb842db50cac4e3a3bf48d46bf446208350ef07ab3",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-gpu-local-windows-38660183893.json",
+    "bytes": 75264,
+    "sha256": "2efab636b78ec55f972e38592058a0d820ec46b24ec7b9846f1667f0ffe24ee4",
+    "lines": 2503
+  },
+  {
+    "path": "docs/evidence/linux-gpu-package-evidence-linux-x64-38660183893.json",
+    "bytes": 1925,
+    "sha256": "e52726876f56f5d8d71b6fb2d351254b0d856032a310d79ffc4a3d52a016b828",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-gpu-package-evidence-macos-arm64-38660183893.json",
+    "bytes": 1925,
+    "sha256": "e52726876f56f5d8d71b6fb2d351254b0d856032a310d79ffc4a3d52a016b828",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-gpu-package-evidence-windows-x64-38660183893.json",
+    "bytes": 1925,
+    "sha256": "fc64ee16b36981526211cafe88d7cc213e312d6048c6851a99456c5fc2a57253",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/linux-gpu-windows-38660183893.json",
+    "bytes": 39954,
+    "sha256": "06e02a137e3f18411fa022d322b0344b0285d1f94c7d3aff252f35384ffb1d16",
+    "lines": 1350
+  },
+  {
+    "path": "docs/evidence/linux-hwmon-38065295625.json",
+    "bytes": 33737,
+    "sha256": "1e2431963aa9cb1095a0ece0531b7fe437960aa1eb5422c94f3518a750b7a25e",
+    "lines": 1225
+  },
+  {
+    "path": "docs/evidence/linux-hwmon-38067341915.json",
+    "bytes": 55521,
+    "sha256": "7e80089f9ccc476f494162ceef927c0d648d0e6d03c01a831223feb25e5921a9",
+    "lines": 1973
+  },
+  {
+    "path": "docs/evidence/linux-hwmon-38070151022.json",
+    "bytes": 55521,
+    "sha256": "6aeb2e31a37140a2b91c4ac6c7733d31216517837bf9c3ce4d450b5a187c98ae",
+    "lines": 1973
+  },
+  {
+    "path": "docs/evidence/linux-memory-38008554490.json",
+    "bytes": 23637,
+    "sha256": "563973ac5bc9f34498e2bc31be31c3e6ddc48489213df26a7da667fead048e32",
+    "lines": 900
+  },
+  {
+    "path": "docs/evidence/linux-memory-38044730604.json",
+    "bytes": 23637,
+    "sha256": "f8f98b3f9846326901f39dbb86d801e74764de593bc8b2affe6f6bd63c5ec268",
+    "lines": 900
+  },
+  {
+    "path": "docs/evidence/linux-memory-38047435339.json",
+    "bytes": 23637,
+    "sha256": "0cdd34110036c5b3c407c02dcebe2889c2c549f5bbee2c3b497a53a87da371c5",
+    "lines": 900
+  },
+  {
+    "path": "docs/evidence/linux-memory-38065295625.json",
+    "bytes": 23637,
+    "sha256": "2d8bccbb1923f54e125a32b33b72f46172d7fa8100cf3baf343be9fbb58cdc21",
+    "lines": 900
+  },
+  {
+    "path": "docs/evidence/linux-memory-38067341915.json",
+    "bytes": 23637,
+    "sha256": "ff2439dc6dbfacdb040df44847c047f3e72d9915b5d806502b2bef9b8f73557c",
+    "lines": 900
+  },
+  {
+    "path": "docs/evidence/linux-memory-38070151022.json",
+    "bytes": 23637,
+    "sha256": "13ede0546c34dc40f93f019e7ce2af0df70c2f31f69a5a5998e8c1cdba8db3b1",
+    "lines": 900
+  },
+  {
+    "path": "docs/evidence/linux-memory-before-38008139512.json",
+    "bytes": 2676,
+    "sha256": "d84a5f9f110b33455c6ebbc17626fab564dd7fc1f25af1fd3bd5748c9dab8790",
+    "lines": 97
+  },
+  {
+    "path": "docs/evidence/linux-native-38044730604.json",
+    "bytes": 5503,
+    "sha256": "d60b7bd64c40f557beecd8b1750a781928fdf049957e094d4b7f0b1484b58f26",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/linux-native-38047435339.json",
+    "bytes": 5885,
+    "sha256": "64b54cd50869fea23252e04e2d870e94e28205c312351b208b41ff548dbec212",
+    "lines": 198
+  },
+  {
+    "path": "docs/evidence/linux-native-38065295625.json",
+    "bytes": 6263,
+    "sha256": "8be6633778fb7a77b822bf2144370ae011f89c34caf092ad47265c0848b00a8d",
+    "lines": 212
+  },
+  {
+    "path": "docs/evidence/linux-native-38067341915.json",
+    "bytes": 6263,
+    "sha256": "d148a30ae43fc2fdd42fa1f3871ccd818cc5313853dc95cc874efbbceb430c78",
+    "lines": 212
+  },
+  {
+    "path": "docs/evidence/linux-native-38070151022.json",
+    "bytes": 6263,
+    "sha256": "d0698a9d98d8e0e36fdc93d17a03ea2668a10dbb538660443459a620a104586a",
+    "lines": 212
+  },
+  {
+    "path": "docs/evidence/macos-cpu-benchmark-darwin-39518381989.json",
+    "bytes": 1414,
+    "sha256": "6ed6920724eea43ce26c3a07c6cc0c701281aeaed04dd537354c950a3654f208",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/macos-cpu-benchmark-linux-39518381989.json",
+    "bytes": 1442,
+    "sha256": "d902dd29a6c1aafbf43052e9d47b2ec5efac6440a0ce6bcbdd08f1c763271201",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/macos-cpu-ci-39518381989.json",
+    "bytes": 32910,
+    "sha256": "d476aa2ab7144651c67c4c48c3e1db53a62b2860ea1cf8721b6eaa776674ff8d",
+    "lines": 1051
+  },
+  {
+    "path": "docs/evidence/macos-cpu-local-359af7e.json",
+    "bytes": 4512,
+    "sha256": "2ffb3e2359c8f2e5c4dd63b062c904523c87f95515d2d0dfbf5f461b3a1554c5",
+    "lines": 97
+  },
+  {
+    "path": "docs/evidence/macos-cpu-native-darwin-39518381989.json",
+    "bytes": 36884,
+    "sha256": "435ef5197771467b89079426a097a97f164672bff1a9bcec6acb287f231cb66f",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/macos-cpu-native-linux-39518381989.json",
+    "bytes": 29316,
+    "sha256": "9423521ffd8c52b29f83bbae1001b1c40885357d32632eb1840d8a0c3f66f9cc",
+    "lines": 1028
+  },
+  {
+    "path": "docs/evidence/macos-cpu-native-windows-359af7e.json",
+    "bytes": 77547,
+    "sha256": "5b66d80af3d2b665b931b8a551bc5a03053fa59cbd93b6f9e70eb02dd1bb8885",
+    "lines": 2586
+  },
+  {
+    "path": "docs/evidence/macos-cpu-native-windows-39518381989.json",
+    "bytes": 42263,
+    "sha256": "a7d140f7e2eabeece0ad3abca6c6ae73bc58408a409ab55e213f3d49f7c7a138",
+    "lines": 1433
+  },
+  {
+    "path": "docs/evidence/macos-cpu-package-evidence-linux-x64-39518381989.json",
+    "bytes": 1926,
+    "sha256": "aaabb52beb7d1ac73145a93538f73c9eea7f19199c8677e31e0170d53abf3fa7",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-cpu-package-evidence-macos-arm64-39518381989.json",
+    "bytes": 1926,
+    "sha256": "4077595ddd8b81ec31717e6e37d3059379e04739576d5c90375cd347bf470a38",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-cpu-package-evidence-windows-x64-39518381989.json",
+    "bytes": 1926,
+    "sha256": "6bfab26e19df8da5165298f29d5e480214de607f7bb57a589960e03a3b126021",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-cpu-packages-windows-359af7e.json",
+    "bytes": 1926,
+    "sha256": "35ab9b99debbde09824da9a7c655c7820e8265b706b3e2a8bbb7fe65078433e3",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-cpu-pressure-39518381989.json",
+    "bytes": 2885,
+    "sha256": "570168a410458e6b50e8ef85af5889898b5979a8320079b71c15b989da5f3e45",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/macos-cpu-sdk-39518381989.json",
+    "bytes": 4212,
+    "sha256": "89337764086c6449cc75cf3d9aa8a314af8d772bc160d7bfdb144ee33cbf9ab9",
+    "lines": 195
+  },
+  {
+    "path": "docs/evidence/macos-cpu-windows-sdk-39518381989.json",
+    "bytes": 2706,
+    "sha256": "5aa6b272ff442ce888abf4183515488765b9d77adb96c3d14127ff165fad7360",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/macos-display-benchmark-39081392549.json",
+    "bytes": 1442,
+    "sha256": "3b2468683930473c8694abb4613e3994f0c11c0ffa2e2676864b6ae8e6267082",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/macos-display-ci-39081392549.json",
+    "bytes": 11146,
+    "sha256": "3618be4ece3c55ce04249e0483580a889d02282f743d62d447671e6ecb832d46",
+    "lines": 296
+  },
+  {
+    "path": "docs/evidence/macos-display-local-2cf2736.json",
+    "bytes": 3699,
+    "sha256": "125353604b443abfa2244566e4679d2e6607f2e928fa162c75246c524c6aa0f7",
+    "lines": 72
+  },
+  {
+    "path": "docs/evidence/macos-display-native-darwin-39081392549.json",
+    "bytes": 36443,
+    "sha256": "37f19fb6bb4818d0c628509a67e5c9a86748de4b868df07b153521c6876bd8dd",
+    "lines": 1245
+  },
+  {
+    "path": "docs/evidence/macos-display-native-linux-39081392549.json",
+    "bytes": 28868,
+    "sha256": "e1319f7aba6e7762204b61db35e875f2fd2df6f0932f3c12d9e1afa49e6a9452",
+    "lines": 1013
+  },
+  {
+    "path": "docs/evidence/macos-display-native-windows-39081392549.json",
+    "bytes": 33374,
+    "sha256": "9b33286b3a4ad963c71e2b2b0a988446df6176a073edfa603e9538474178c918",
+    "lines": 1142
+  },
+  {
+    "path": "docs/evidence/macos-display-native-windows-local-2cf2736.json",
+    "bytes": 77088,
+    "sha256": "8e6409a697d8b6ba2881db9afb9a37e5c7da7b2e3e69659d1538400e117c669c",
+    "lines": 2571
+  },
+  {
+    "path": "docs/evidence/macos-display-package-evidence-linux-x64-39081392549.json",
+    "bytes": 1926,
+    "sha256": "ac2b278f65bc5cd8f2919dcf78b6874508e04c78a938a222ea41e00f93f9ad3a",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-display-package-evidence-macos-arm64-39081392549.json",
+    "bytes": 1926,
+    "sha256": "ac2b278f65bc5cd8f2919dcf78b6874508e04c78a938a222ea41e00f93f9ad3a",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-display-package-evidence-windows-x64-39081392549.json",
+    "bytes": 1926,
+    "sha256": "7bd3b5dee2e893354c2253f5f7e5133c5f25824e434cae566e363647b38772a4",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-display-packages-windows-local-2cf2736.json",
+    "bytes": 1926,
+    "sha256": "4e7da7a4ae2a82b8b0b711fc2e7d20b4a1e6f2e38b39035aebd9b76a8c7acf84",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-display-sdk-comparison-39081392549.json",
+    "bytes": 360,
+    "sha256": "7ea745f6b4a0d544ec751245b8d0b131c92364853e826ec388d3928ece3b4fac",
+    "lines": 14
+  },
+  {
+    "path": "docs/evidence/macos-display-sdk-probe-39081392549.json",
+    "bytes": 82,
+    "sha256": "be3f11903d2d39b3d47445ab613d91b3072faaa0893cc30588dc4219fd5562b4",
+    "lines": 1
+  },
+  {
+    "path": "docs/evidence/macos-gpu-benchmark-38826444216.json",
+    "bytes": 973,
+    "sha256": "52ee5015353b7a848f5334a3bae98c5b881a96710368947a04e1a5c29af7d11b",
+    "lines": 25
+  },
+  {
+    "path": "docs/evidence/macos-gpu-ci-38826444216.json",
+    "bytes": 7236,
+    "sha256": "a26d13c9344ea78ce522c458a3cf8511d6646d9f62dff47f4d55f4f638cb21b1",
+    "lines": 187
+  },
+  {
+    "path": "docs/evidence/macos-gpu-linux-container-38826444216.json",
+    "bytes": 11076,
+    "sha256": "e2fdcba19afd2c0bb2ec57e58989d8ece847e2b61b4480f0f8dd0baf807e9047",
+    "lines": 426
+  },
+  {
+    "path": "docs/evidence/macos-gpu-local-2b0ea76.json",
+    "bytes": 1321,
+    "sha256": "d7aa70ffa13145b448db15ce5ce9a07673c9c3233c04cab34dec80c17dc20589",
+    "lines": 27
+  },
+  {
+    "path": "docs/evidence/macos-gpu-native-darwin-38826444216.json",
+    "bytes": 34901,
+    "sha256": "95d3ae4587f5f1d86f800922d2783541ec11e43e5554c98c9d4916223243cf4a",
+    "lines": 1191
+  },
+  {
+    "path": "docs/evidence/macos-gpu-native-linux-38826444216.json",
+    "bytes": 27043,
+    "sha256": "d21f73c06cb291c128ec12fb873e4d518ab5b9868835df78c118581a6c30fac7",
+    "lines": 947
+  },
+  {
+    "path": "docs/evidence/macos-gpu-native-local-windows-2b0ea76.json",
+    "bytes": 75228,
+    "sha256": "085220380ae7b6df7e8820e3470b30905062f0414a078974c1e73263904a6069",
+    "lines": 2503
+  },
+  {
+    "path": "docs/evidence/macos-gpu-native-windows-38826444216.json",
+    "bytes": 39951,
+    "sha256": "73391cb547f05c581f1a5e31fbdb2e4f4cb7ac9fbcfd89055dd085e30c59f8ac",
+    "lines": 1350
+  },
+  {
+    "path": "docs/evidence/macos-gpu-package-evidence-linux-x64-38826444216.json",
+    "bytes": 1925,
+    "sha256": "1aa67ac79b15c98edbd13178589282d8f9a26a4913c7d2ff2158b854d1cce475",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-gpu-package-evidence-macos-arm64-38826444216.json",
+    "bytes": 1925,
+    "sha256": "1aa67ac79b15c98edbd13178589282d8f9a26a4913c7d2ff2158b854d1cce475",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-gpu-package-evidence-windows-x64-38826444216.json",
+    "bytes": 1925,
+    "sha256": "7e840213686ed68c7b642dbd5cc3eca626323053af764bb870b67045d1151e45",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-gpu-package-local-windows-2b0ea76.json",
+    "bytes": 1925,
+    "sha256": "ecfa0e284fa2b4534f355df8119a79d325a4fa47ffe99761ff40702d99d4080a",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-gpu-sdk-probe-38826444216.json",
+    "bytes": 86,
+    "sha256": "87d0e75add6e925d79ae129eb0af9dd4e19646e687f80ccefcd3ecf939f5df16",
+    "lines": 1
+  },
+  {
+    "path": "docs/evidence/macos-license-research-2026-10-26.json",
+    "bytes": 3569,
+    "sha256": "3041247ea928602c26c7caa0e9b19b857e1f20177de2f1f9bd0d052543534bfe",
+    "lines": 81
+  },
+  {
+    "path": "docs/evidence/macos-memory-benchmark-darwin-39696658516.json",
+    "bytes": 1410,
+    "sha256": "0ff5332f8780c6917a2df8629ca9fe0f9f97a3ffbefdcb17195d0da4299ee0e5",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/macos-memory-benchmark-linux-39696658516.json",
+    "bytes": 1440,
+    "sha256": "5db22cde60ffa162f151c34bf127bf69e461a7b6c53a8c1f56de35508d5335b2",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/macos-memory-ci-39696658516.json",
+    "bytes": 44330,
+    "sha256": "4c318dbf91e881263f62201eacd714be199fc80423954298e5238b0a3b977803",
+    "lines": 1405
+  },
+  {
+    "path": "docs/evidence/macos-memory-cpu-sdk-39696658516.json",
+    "bytes": 4186,
+    "sha256": "3c9425da80c5713039017b1ac1a6d92fe5b2fe8683b05f184e22299c2e40d47f",
+    "lines": 195
+  },
+  {
+    "path": "docs/evidence/macos-memory-initial-failures-39696658516.json",
+    "bytes": 3353,
+    "sha256": "05b1f22aef93180004afa84b65cafd38761fb5c7d7d86fd488162ae3e673c642",
+    "lines": 92
+  },
+  {
+    "path": "docs/evidence/macos-memory-local-57500a6.json",
+    "bytes": 5276,
+    "sha256": "9754ba0f5484a8b6bfeb7857195fff060a5532ac943c5c5ab00149edc828801a",
+    "lines": 104
+  },
+  {
+    "path": "docs/evidence/macos-memory-native-darwin-39696658516.json",
+    "bytes": 36882,
+    "sha256": "1e50e1cf403d48dac577add9831d3edecd155714e7d59a691c082dd5ff27302e",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/macos-memory-native-linux-39696658516.json",
+    "bytes": 29316,
+    "sha256": "7761224d07115037ac5c88a4954435136b7da3f6653e689f80cce0b5490e88d1",
+    "lines": 1028
+  },
+  {
+    "path": "docs/evidence/macos-memory-native-windows-39696658516.json",
+    "bytes": 42263,
+    "sha256": "19674898b5cfa4a27dcadeca168fd8dae6989e3b0dcbb74137ae5bccfa2b9516",
+    "lines": 1433
+  },
+  {
+    "path": "docs/evidence/macos-memory-native-windows-57500a6.json",
+    "bytes": 90162,
+    "sha256": "468bd9b2ccc63115171fa73d61cfb7f925a1e8e079251399d8423e4cf4d0f095",
+    "lines": 3000
+  },
+  {
+    "path": "docs/evidence/macos-memory-package-evidence-linux-x64-39696658516.json",
+    "bytes": 1926,
+    "sha256": "e8bb3a81c2325630a34c03e0ddba6d8e5e3e10c6b0c1396e8d450fcc6f2e1b6f",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-memory-package-evidence-macos-arm64-39696658516.json",
+    "bytes": 1926,
+    "sha256": "81effc58dc36ca9307a9ee810a2904e4f975486533ced0ccd63d2ffb57c6f711",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-memory-package-evidence-windows-x64-39696658516.json",
+    "bytes": 1926,
+    "sha256": "dbfa1c934c34416c5756c3822062e01c0e575a611cb5e44deff7c64f8af2b720",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-memory-packages-windows-57500a6.json",
+    "bytes": 1926,
+    "sha256": "c04e75b0c460fae0a7a99aafaae51c93435eb09cadd27bf9930505ea874ee390",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-memory-pressure-39696658516.json",
+    "bytes": 2885,
+    "sha256": "0683c5e3c3d2a6acf0c23d822a57144ad5d8e928049fdc444699ed35831e53a7",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/macos-memory-sdk-39696658516.json",
+    "bytes": 4728,
+    "sha256": "246b392dfea632bc165f0fa4a1620755b6127beed8e626b50b7fbe73096f7e87",
+    "lines": 176
+  },
+  {
+    "path": "docs/evidence/macos-memory-windows-sdk-39696658516.json",
+    "bytes": 2704,
+    "sha256": "9669013eee8afdc2267dc6df2c6d6ccd297b2b651f14403e9941ccb7bc14d4fe",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/macos-native-38044730604.json",
+    "bytes": 5471,
+    "sha256": "9deeed9291954a2cbbf675209459f89cedc21422977f09d4a262576d076e8b3e",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/macos-native-38047435339.json",
+    "bytes": 5867,
+    "sha256": "1b42dedf05fbc75802deff745b5835823b56b5938821dcd58dd6f0a814671dfd",
+    "lines": 198
+  },
+  {
+    "path": "docs/evidence/macos-native-38065295625.json",
+    "bytes": 6259,
+    "sha256": "764e1b38b4ca8d2756b6c1a93f15cdefb0569cf82879a03e6b785eb4f3444a5e",
+    "lines": 212
+  },
+  {
+    "path": "docs/evidence/macos-native-38067341915.json",
+    "bytes": 6259,
+    "sha256": "674f74f98c44b42698154ee4af0e8380d199e9ad1fe6845c4b86e9ced62fed07",
+    "lines": 212
+  },
+  {
+    "path": "docs/evidence/macos-native-38070151022.json",
+    "bytes": 6259,
+    "sha256": "cc8d72a0b5fead43c4baa8999f724f984d4094bf91bbf622f8a154efc415aceb",
+    "lines": 212
+  },
+  {
+    "path": "docs/evidence/macos-network-ci-38186025262.json",
+    "bytes": 6635,
+    "sha256": "52c937995e2232ea4d0e86f1abb08745bc059a0aead0ef8ad0745446e1b0ce9f",
+    "lines": 166
+  },
+  {
+    "path": "docs/evidence/macos-network-failure-previous-run-38186025262.json",
+    "bytes": 2083,
+    "sha256": "a42da94f7647d20271133031795bd11ca88bb5ac6dacda3269f4308fb5b1abb6",
+    "lines": 53
+  },
+  {
+    "path": "docs/evidence/macos-network-native-linux-38186025262.json",
+    "bytes": 12147,
+    "sha256": "2200a31571014c21b9a733da9eb4f68187b710593d75fbfdb756c332074e2099",
+    "lines": 412
+  },
+  {
+    "path": "docs/evidence/macos-network-native-macos-38186025262.json",
+    "bytes": 21989,
+    "sha256": "b267a7730f4ca177cba323950f7854a0317b6803bfe0837d301b5f06a072be0a",
+    "lines": 734
+  },
+  {
+    "path": "docs/evidence/macos-network-native-windows-38186025262.json",
+    "bytes": 31891,
+    "sha256": "fa1c486a3e4a5b1d088193844816d8dd5479eb646d28568856b2113f201aebab",
+    "lines": 1056
+  },
+  {
+    "path": "docs/evidence/macos-network-package-linux-38186025262.json",
+    "bytes": 1924,
+    "sha256": "9ff5f173f02158e143d62e9ce7682c681b79265849be7207234b016e92956017",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-network-package-local-windows-38186025262.json",
+    "bytes": 1924,
+    "sha256": "b988347a3640275fb1278e051830d30fa3fea1cc5a24bfc6ae081104c60c0565",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-network-package-macos-38186025262.json",
+    "bytes": 1924,
+    "sha256": "ae9265085895e26e515dc3381e6d916ec108d0505c32466da655f0d734ecc908",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-network-package-windows-38186025262.json",
+    "bytes": 1924,
+    "sha256": "75c3d10d79790c18c4c41c7821752825b42a5fa4cf7c8a0754551149e3dcdbad",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-storage-ci-38326748121.json",
+    "bytes": 7618,
+    "sha256": "09f1e85108b09c621a0cf4fa70bd1dfcd708578d9a423ffcff6ca0f974d07e08",
+    "lines": 177
+  },
+  {
+    "path": "docs/evidence/macos-storage-container-linux-38326748121.json",
+    "bytes": 15940,
+    "sha256": "b412bd6b417bfd2c141ab3616fe93a12b78d4e0f2a0e576de8b1ac14f5e3038b",
+    "lines": 595
+  },
+  {
+    "path": "docs/evidence/macos-storage-native-linux-38326748121.json",
+    "bytes": 20951,
+    "sha256": "8a175d8837a300ab08493601c1a6c89ac453aec4d1c858485e6c48c5b32e24ea",
+    "lines": 716
+  },
+  {
+    "path": "docs/evidence/macos-storage-native-macos-38326748121.json",
+    "bytes": 29017,
+    "sha256": "810f6e343a13877a22529d301ee02a03f7f9047f1867664df134b7fa43405163",
+    "lines": 974
+  },
+  {
+    "path": "docs/evidence/macos-storage-native-windows-38326748121.json",
+    "bytes": 34185,
+    "sha256": "3915b7433c7565ec5cb49cc73eb1ed4c640ad27490c20d6b2991affb72e270be",
+    "lines": 1136
+  },
+  {
+    "path": "docs/evidence/macos-storage-package-linux-38326748121.json",
+    "bytes": 1925,
+    "sha256": "26816153d5a04aa97afeb2d0052f0d899ae7daa9029e24a863a1fa2084892e06",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-storage-package-local-windows-38326748121.json",
+    "bytes": 1925,
+    "sha256": "ab95c87dd0af8f8daccd55b0fc45de1b4dfabee6473fb3680d272562306b5e59",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-storage-package-macos-38326748121.json",
+    "bytes": 1925,
+    "sha256": "26816153d5a04aa97afeb2d0052f0d899ae7daa9029e24a863a1fa2084892e06",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-storage-package-windows-38326748121.json",
+    "bytes": 1925,
+    "sha256": "01389ea6995ce33901a1b9447d6bb44d47e82684a4ff66d7d8f97f7e7c31eff1",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-storage-sdk-probe-macos-38326748121.json",
+    "bytes": 177,
+    "sha256": "7451c748918aa158e87731fc911dea3cda4d85260167ab59b93885432b85bd16",
+    "lines": 1
+  },
+  {
+    "path": "docs/evidence/macos-uptime-benchmark-darwin-39878588965.json",
+    "bytes": 1426,
+    "sha256": "c5c7f8c71fd7fb7bf8bfe24373c5f637a05b5b4788a11716a1fcaf64c8887b46",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/macos-uptime-benchmark-linux-39878588965.json",
+    "bytes": 1457,
+    "sha256": "649cc498281ea756bf5700a3f29848bdc7e0ca0d43fdf8912224e95752255ba5",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/macos-uptime-ci-39878588965.json",
+    "bytes": 22075,
+    "sha256": "b7f1fe769fc0d19d698d4fa7a9cddeeec24f217d651c29808f66f17ac03923c5",
+    "lines": 587
+  },
+  {
+    "path": "docs/evidence/macos-uptime-local-bfd28d5.json",
+    "bytes": 4483,
+    "sha256": "afd2193b83455b1d40178b210a9c997ed286ee13158cec93cb099b598ac281e3",
+    "lines": 93
+  },
+  {
+    "path": "docs/evidence/macos-uptime-macos-cpu-sdk-39878588965.json",
+    "bytes": 4226,
+    "sha256": "9b28b7c217bff47c5350d828e74f3e2a2525a0f9668403570921af83bb1b23ec",
+    "lines": 195
+  },
+  {
+    "path": "docs/evidence/macos-uptime-macos-memory-sdk-39878588965.json",
+    "bytes": 4724,
+    "sha256": "b97bb2b2c12006358a538af648b7ef446fc7b980715f413293d27f61495ffad9",
+    "lines": 176
+  },
+  {
+    "path": "docs/evidence/macos-uptime-native-darwin-39878588965.json",
+    "bytes": 36882,
+    "sha256": "d39cd5aaa55cb6921e5ea798896798dd73ab061d914b6fd0f72e032bb58d40b9",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/macos-uptime-native-linux-39878588965.json",
+    "bytes": 29318,
+    "sha256": "7fe7a189285966782bd78cb941a58fded3606abdd2c2a679ed7d5f700e03fb11",
+    "lines": 1028
+  },
+  {
+    "path": "docs/evidence/macos-uptime-native-windows-39878588965.json",
+    "bytes": 43667,
+    "sha256": "61ef5e090739ae47a6ef77f812a67fadb8fa05fa4f0b47f59c40b04d7d5617c2",
+    "lines": 1479
+  },
+  {
+    "path": "docs/evidence/macos-uptime-native-windows-bfd28d5.json",
+    "bytes": 77561,
+    "sha256": "422b91107e811b466e1f0b51c0cfe7411551eb873d55692c0e206c34bf4c7295",
+    "lines": 2586
+  },
+  {
+    "path": "docs/evidence/macos-uptime-package-evidence-linux-x64-39878588965.json",
+    "bytes": 1926,
+    "sha256": "b54c4fd401bb274f49f35811d4356726b4a4851890ebdf661673f76a17a78d65",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-uptime-package-evidence-macos-arm64-39878588965.json",
+    "bytes": 1926,
+    "sha256": "e14be1b7b7e569d47f56f22080d098809dc04c90f66eee43aa729ee991f787a8",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-uptime-package-evidence-windows-x64-39878588965.json",
+    "bytes": 1926,
+    "sha256": "20994c3d6d08f16184b2600a13359c53b88b994af2d3486c3ef2f9365bc9149b",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-uptime-packages-windows-bfd28d5.json",
+    "bytes": 1926,
+    "sha256": "a9945249c14512ae8e5da85722ea2ce8ba7dc0a1066acf6727d44e1c0b141da9",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/macos-uptime-sdk-39878588965.json",
+    "bytes": 2318,
+    "sha256": "61696a55ee7e1d807eb203821cd430a4b6396f3847f80a2a666ddb41ca26a573",
+    "lines": 87
+  },
+  {
+    "path": "docs/evidence/macos-uptime-windows-cpu-sdk-39878588965.json",
+    "bytes": 2682,
+    "sha256": "450d436f2ffe7ef5ca82525a15e9ad23e9a5be2926b4a34d1b164e5cf80a1bb1",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/macos-uptime-windows-memory-sdk-39878588965.json",
+    "bytes": 2885,
+    "sha256": "6b809af2dff4337dc2a5a0b4867e9e40ba808cb87a9f7ee4a3d510e2e1baeaed",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/macos-uptime-windows-uptime-sdk-39878588965.json",
+    "bytes": 2107,
+    "sha256": "f3326fe6e557a7f0ed4d3ee6d8e7735ecc06eb4bf60559e70a646dc61c406256",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/native-diagnostics-ci-38490913050.json",
+    "bytes": 4269,
+    "sha256": "11706fa82e6aeadec456f4ee56269a6d53c052bbb1f13429ae9bb78a92a01ff5",
+    "lines": 100
+  },
+  {
+    "path": "docs/evidence/native-diagnostics-darwin-38490913050.json",
+    "bytes": 34321,
+    "sha256": "e7a7ca4ac930bb86e77c62a70a2b2c0d27a4a8e89d1a1ab7501e59aea20e1355",
+    "lines": 1171
+  },
+  {
+    "path": "docs/evidence/native-diagnostics-first-container-failure-38490913050.json",
+    "bytes": 954,
+    "sha256": "a9570f71ea24bf9a8aa001773e5637ce47ea8fa77d0d39e27766fe5d6b5492ff",
+    "lines": 39
+  },
+  {
+    "path": "docs/evidence/native-diagnostics-linux-38490913050.json",
+    "bytes": 27180,
+    "sha256": "7253ecf0f21aa9a41b50c156018afd6545c230830ecb77bf7345c441003d0b66",
+    "lines": 949
+  },
+  {
+    "path": "docs/evidence/native-diagnostics-local-windows-38490913050.json",
+    "bytes": 87305,
+    "sha256": "8ae714fd301fa6d0bed4820668ecf69df4da957c612d6592c5086b4fb7bb2dfa",
+    "lines": 2893
+  },
+  {
+    "path": "docs/evidence/native-diagnostics-windows-38490913050.json",
+    "bytes": 39398,
+    "sha256": "a35206fcf021c8ff1bf5b3e44675eef55dd1f1baacfedd0a25634ad9ba3319e8",
+    "lines": 1328
+  },
+  {
+    "path": "docs/evidence/network-ci-38092523723.json",
+    "bytes": 3412,
+    "sha256": "c43c467bce5194ba2cb95a24ac4eaeb9548e0ee72c78e90ac869c2fca948af8a",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/network-native-linux-38092523723.json",
+    "bytes": 12147,
+    "sha256": "d62334b05c5ec68b0ecd5b6c10a63298e6a5cb94ad534bf8b324304c11018df1",
+    "lines": 412
+  },
+  {
+    "path": "docs/evidence/network-native-macos-38092523723.json",
+    "bytes": 6427,
+    "sha256": "0f2c0350f40908c8c4dae9bc78b88c1acbcfc4c07d1d44911790f40bd209779a",
+    "lines": 226
+  },
+  {
+    "path": "docs/evidence/network-native-windows-38092523723.json",
+    "bytes": 6679,
+    "sha256": "1cc996cf6ef06838034d04a4be89cd200deaedcdce7e8130983817c49c9edd13",
+    "lines": 226
+  },
+  {
+    "path": "docs/evidence/network-package-linux-38092523723.json",
+    "bytes": 1923,
+    "sha256": "e109340f567e9186ff478ddba5167f9dea2e17b4ba4c4766257c9697225d27ec",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/network-package-macos-38092523723.json",
+    "bytes": 1923,
+    "sha256": "e10b462d64b449c8e0a8580f5ca1d73b0eb821c7c2b256e6a0acef019fb546f2",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/network-package-windows-38092523723.json",
+    "bytes": 1985,
+    "sha256": "82bc485f28fac567b1616a092d6a39025fee6e1e6167fd8d3c510299c592709f",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/nvme-fuzz-38067341915.json",
+    "bytes": 3895,
+    "sha256": "79751fac13afe5c2ee72fd53442275881a5cac9dae02780f875d0cc4bf6a4ec3",
+    "lines": 122
+  },
+  {
+    "path": "docs/evidence/power-supply-fuzz-38047435339.json",
+    "bytes": 7699,
+    "sha256": "6b2c4925330a0d3c10d3523e4ec0e664b1b9838089311f70e6a08bf63ffc89fe",
+    "lines": 213
+  },
+  {
+    "path": "docs/evidence/procfs-fuzz-38044730604.json",
+    "bytes": 7713,
+    "sha256": "53e75a893310c3fb77258e0a201f4c5dfb23798555f0024bfe1475e8d920dcca",
+    "lines": 227
+  },
+  {
+    "path": "docs/evidence/project-review-38070151022.json",
+    "bytes": 4323,
+    "sha256": "e0122cd018c078da7e48aef8286038a8ad570f644311990e27f9759b8ada40dc",
+    "lines": 137
+  },
+  {
+    "path": "docs/evidence/storage-ci-38188243470.json",
+    "bytes": 6878,
+    "sha256": "f7d26d36c11619cfa269c58c578588ca4477b0ee2efca87d728af3593a00e4d3",
+    "lines": 166
+  },
+  {
+    "path": "docs/evidence/storage-container-linux-38188243470.json",
+    "bytes": 15940,
+    "sha256": "6a31c03c314fbc02eef0560b309aac128e21c21c93dee09e56466609ca684f75",
+    "lines": 595
+  },
+  {
+    "path": "docs/evidence/storage-native-linux-38188243470.json",
+    "bytes": 20951,
+    "sha256": "1c6030ffc9428ef86cc56098ca7092621d9e27331356ec65695f1f775bb8ea2f",
+    "lines": 716
+  },
+  {
+    "path": "docs/evidence/storage-native-macos-38188243470.json",
+    "bytes": 22361,
+    "sha256": "25fea843165f399dfb187e39911625ebfb0c454fade22f0888257542aeca29f8",
+    "lines": 748
+  },
+  {
+    "path": "docs/evidence/storage-native-windows-38188243470.json",
+    "bytes": 32267,
+    "sha256": "e3cd5490b50e59e97694b30b8a844feb56bb5fb13ad5c8fe31c52e049a635b5c",
+    "lines": 1070
+  },
+  {
+    "path": "docs/evidence/storage-package-linux-38188243470.json",
+    "bytes": 1924,
+    "sha256": "ce8ad5b799785247a3fcc3090fcea351b644149c4cc52a4bd4077b15328aa386",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/storage-package-local-windows-38188243470.json",
+    "bytes": 1924,
+    "sha256": "8bbf465f32f16a85c9fb11058fe90ac792dc702ca7f0e0428a4a011b1cebd828",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/storage-package-macos-38188243470.json",
+    "bytes": 1924,
+    "sha256": "592656662c385d07d6f748c3d9d6627d88b669ce1077b513e4dd017b96ef1d15",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/storage-package-windows-38188243470.json",
+    "bytes": 1924,
+    "sha256": "a804d2d93e2f54df3b696d70b76a38d02d560f82b9c9feee55a5e258fe72892a",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/storage-text-ci-38329245146.json",
+    "bytes": 9232,
+    "sha256": "99390c5a12e1ea9ad52588f26799cce818803288c68227297ace63a831631254",
+    "lines": 235
+  },
+  {
+    "path": "docs/evidence/storage-text-container-linux-38329245146.json",
+    "bytes": 15940,
+    "sha256": "0b307b2ea776b1486082dff56bc8fe9eb67937549abeb2ba998b819d116ae35d",
+    "lines": 595
+  },
+  {
+    "path": "docs/evidence/storage-text-native-linux-38329245146.json",
+    "bytes": 22302,
+    "sha256": "b3e76de15303767ab6efebac88cb8ce02dc83a92e3ccff7f5fba6b357f331a9c",
+    "lines": 768
+  },
+  {
+    "path": "docs/evidence/storage-text-native-local-windows-38329245146.json",
+    "bytes": 82374,
+    "sha256": "15def91b1e09a08a1d16ddb49afac6157bbef2658751ba681e5b873c692656d3",
+    "lines": 2712
+  },
+  {
+    "path": "docs/evidence/storage-text-native-macos-38329245146.json",
+    "bytes": 29428,
+    "sha256": "541a88045e88d2b0f1a54934602bcd54e2b1521668227f2b9249026437e4a594",
+    "lines": 990
+  },
+  {
+    "path": "docs/evidence/storage-text-native-windows-38329245146.json",
+    "bytes": 34500,
+    "sha256": "960ec98205568b19094c553ee63c129c8a9028c843c27e1175448fa216ef96ef",
+    "lines": 1147
+  },
+  {
+    "path": "docs/evidence/storage-text-package-linux-38329245146.json",
+    "bytes": 1925,
+    "sha256": "411568372b968cb6476e5958ca2efe7d15ff71d45cdd8fc410913188287484f3",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/storage-text-package-local-windows-38329245146.json",
+    "bytes": 1925,
+    "sha256": "ad8775df92e4ba79926da42af14d558980aca8ca90d66a198f6ae67fea137151",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/storage-text-package-macos-38329245146.json",
+    "bytes": 1925,
+    "sha256": "411568372b968cb6476e5958ca2efe7d15ff71d45cdd8fc410913188287484f3",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/storage-text-package-windows-38329245146.json",
+    "bytes": 1925,
+    "sha256": "ecda3d323f77e8eed2ca30d064472a6c4a83e29294272d45814c17337c5ac082",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/storage-text-sdk-probe-macos-38329245146.json",
+    "bytes": 177,
+    "sha256": "7451c748918aa158e87731fc911dea3cda4d85260167ab59b93885432b85bd16",
+    "lines": 1
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-SHA256SUMS-89fd2f9.txt",
+    "bytes": 107,
+    "sha256": "15a62c494be783b3c526fc28238955d1aa0b587ba765c8a62658a351eec1f208",
+    "lines": 1
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-acceptance-89fd2f9.json",
+    "bytes": 3159,
+    "sha256": "99b3d79837232683f20d0ac06aa6897e7c045a63050455abec55d8326c03d9e7",
+    "lines": 67
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-benchmark-darwin-40183166615.json",
+    "bytes": 1403,
+    "sha256": "7cc961e0ef44d75c8a3f1ec5e0262d71a549d8fac4b00ed69398b5a2a1bd4407",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-benchmark-linux-40183166615.json",
+    "bytes": 1436,
+    "sha256": "e8162d7373904ddc5642d01c1d18adc0654c5f812368bd44c28905544ed38f26",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-candidate-40183166615.json",
+    "bytes": 870,
+    "sha256": "0e364340fe597b62a952662bd82aa64df73b96b83ba78c5c855f3ea7921307ab",
+    "lines": 27
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-ci-40183166615.json",
+    "bytes": 18800,
+    "sha256": "c678a784435a3beb19b353586f57759e677e79260094e8b20d8adcc923a770ca",
+    "lines": 424
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-local-89fd2f9.json",
+    "bytes": 897,
+    "sha256": "92c6be8135bd375f51fc1beab55cfce435017ba69b958432d8c95342d6b56be6",
+    "lines": 27
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-macos-cpu-sdk-40183166615.json",
+    "bytes": 4219,
+    "sha256": "6f2221754d655f2ea20a9fb524616d41e6ca12f6d3f8dbc6f0f67f5335756792",
+    "lines": 195
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-macos-memory-sdk-40183166615.json",
+    "bytes": 4724,
+    "sha256": "62e6b0fb501cfa7a2fcc4efd75b1b35f2143df0283ba7d790d5cacc53f87732f",
+    "lines": 176
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-macos-uptime-sdk-40183166615.json",
+    "bytes": 2318,
+    "sha256": "e20c0109cc329818cead33df54d0243d8ad45590032dba499ee79b91f73d5a66",
+    "lines": 87
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-manifest-89fd2f9.json",
+    "bytes": 12003,
+    "sha256": "e70b7b940d632ce4c9905da6d07bb4a408b3288c0c91e19a149eb472320f4bed",
+    "lines": 306
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-native-darwin-40183166615.json",
+    "bytes": 36882,
+    "sha256": "9b27c8338c18558a1394c62842aa45e84343e9f21cba12a38bd59694d95ec637",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-native-linux-40183166615.json",
+    "bytes": 29318,
+    "sha256": "deaec0a730b4dd03c329fbc1087db8b34281ee87af29980d677bd7f577647934",
+    "lines": 1028
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-native-windows-40183166615.json",
+    "bytes": 43667,
+    "sha256": "e775b0c5b8430ccb9cc157d287379e0962da14ba2915c65917bbcba5ba77a4e5",
+    "lines": 1479
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-packages-darwin-40183166615.json",
+    "bytes": 1926,
+    "sha256": "00909aa4d8622978307c7001ef435009e1d0e295778e45d3f612a5519adfd63b",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-packages-linux-40183166615.json",
+    "bytes": 1926,
+    "sha256": "531dc443615132f318088d8c8f89948f0ee098cf99daaf95ad859b3285c68b9a",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-packages-windows-40183166615.json",
+    "bytes": 1926,
+    "sha256": "d47badd015029e1e4ba0664c7eb6d40aa5b34cabf09e5db3883fc52c3463f1b1",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-windows-cpu-groups-sdk-40183166615.json",
+    "bytes": 3633,
+    "sha256": "e0c3d006fed723453fb094b1e4c375fd61982c74c97d58701353baaae42cc945",
+    "lines": 140
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-windows-cpu-sdk-40183166615.json",
+    "bytes": 2704,
+    "sha256": "27e22f048ae333b564fb337229b63d3bbb2ebf2d341b2b1fe8773c2a1dad0028",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-windows-hardware-summary-sdk-40183166615.json",
+    "bytes": 5817,
+    "sha256": "7bdbe6c717cc9acb11d5cdf16e335ba5628028b0d96d9fbd48c444cde55a0c69",
+    "lines": 213
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-windows-memory-sdk-40183166615.json",
+    "bytes": 2885,
+    "sha256": "3151be7156c396da4b96fc9875bff97e66851ccef7e82642c061ec2cdf22016d",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/windows-cli-bundle-windows-uptime-sdk-40183166615.json",
+    "bytes": 2107,
+    "sha256": "8ee7172378c76fcadab9cdb671fa67af27674ed585dd855c472065098d0aa775",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/windows-cpu-benchmark-darwin-39350478223.json",
+    "bytes": 1414,
+    "sha256": "686bb66d2cc858522f5aba8edde843a9dd4741e9087b235982f29f138ffe70b3",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-cpu-benchmark-linux-39350478223.json",
+    "bytes": 1442,
+    "sha256": "26c6d98858ffa1796c8c0f120784f63e27ae10dc6dcb517e0f1cc7e82cb0eab9",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-cpu-ci-39350478223.json",
+    "bytes": 23614,
+    "sha256": "51fd95dbc771db08e09f0aba93a6b558c588b6a7eb1b6d04525ed5a0370429aa",
+    "lines": 687
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-benchmark-darwin-40046393393.json",
+    "bytes": 1417,
+    "sha256": "7ae4516bb16e0c0802643a87c53115ee563e7cfe1b804d3e6c3eff654bb6465a",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-benchmark-linux-40046393393.json",
+    "bytes": 1444,
+    "sha256": "be08cb7324c732588603585bd49f46a157db437497ceb00186c09b42045bd3b0",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-ci-40046393393.json",
+    "bytes": 36066,
+    "sha256": "fa8e196a4b0c73748a28c605237a5af86bfa3373fbebe93a5ceb1121183f2e34",
+    "lines": 647
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-local-7fbb19e.json",
+    "bytes": 7191,
+    "sha256": "25e64e01d363539caa499bfba7c2831416479dee22882897253754ddea203636",
+    "lines": 145
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-macos-cpu-sdk-40046393393.json",
+    "bytes": 4188,
+    "sha256": "6ccbfc95cb9d73da61ac22899493ca28848f77803cf0412a91fc9ad0bc649702",
+    "lines": 195
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-macos-memory-sdk-40046393393.json",
+    "bytes": 4724,
+    "sha256": "dab22917e524cad1d27c2d7d47af06d413df0ca1f2249d38c8afd2e8b94f8662",
+    "lines": 176
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-macos-uptime-sdk-40046393393.json",
+    "bytes": 2318,
+    "sha256": "a8f99edded0fc8046c8cbf490bd1c540cd8932c61831ced51e9aa5572cd8b2a5",
+    "lines": 87
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-native-7fbb19e.json",
+    "bytes": 77545,
+    "sha256": "cb0a4efe9fbaaa9c1db7180d00d3ada8037d611b08b35ee060ea1b93532f72f0",
+    "lines": 2586
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-native-darwin-40046393393.json",
+    "bytes": 36882,
+    "sha256": "ca5faa2aa6c722f29cd2bf4b6cc78f32fbd928071eef7d15d65735ed4fdf4812",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-native-linux-40046393393.json",
+    "bytes": 28347,
+    "sha256": "108d0e943e44d6f166db20e28e7433ede16073d05212c29a41002590e74c6585",
+    "lines": 994
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-native-windows-40046393393.json",
+    "bytes": 43667,
+    "sha256": "36de06a58f9e80379621364f4a1e5f0451abbda6a6137063708e2bcd3b20e874",
+    "lines": 1479
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-package-evidence-linux-x64-40046393393.json",
+    "bytes": 1926,
+    "sha256": "634e5efb5a3a4761caa4055fafffe29173838f3a94d936d2729bad89cf48d2a6",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-package-evidence-macos-arm64-40046393393.json",
+    "bytes": 1926,
+    "sha256": "ea385fae80b1b03665e2a38b56fa8293e294d890a3abb0306e7d8309d20aad67",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-package-evidence-windows-x64-40046393393.json",
+    "bytes": 1926,
+    "sha256": "45c5a5bba493e681149f1fc87127a2a6a429c42405b0028c36eb639fae4fea6f",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-packages-7fbb19e.json",
+    "bytes": 1926,
+    "sha256": "c87296bfb7e00bc0557c88b5b2cbc6aa4b99757ab15393df4f1ba7505d610d7c",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-sdk-40046393393.json",
+    "bytes": 3616,
+    "sha256": "1aa971f2b583ad348aa774066de47c5fbe3a65e314bcd837351c1ef35117a7eb",
+    "lines": 140
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-sdk-7fbb19e.json",
+    "bytes": 3661,
+    "sha256": "7c5dcbeed92c243c157a75015a0d5e0fe8932c6133c53f5862057589875c7fb5",
+    "lines": 140
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-windows-cpu-sdk-40046393393.json",
+    "bytes": 2694,
+    "sha256": "ff4535fd39a51fd01258e8c03a0815ee22f5d65a5809455c743dd2e706522300",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-windows-memory-sdk-40046393393.json",
+    "bytes": 2885,
+    "sha256": "b402a418f450fb5dceb8122809ba280d17aba01a43db660e76e127d7d4aead03",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/windows-cpu-groups-windows-uptime-sdk-40046393393.json",
+    "bytes": 2107,
+    "sha256": "d06bad5328f2f18d70374cb8b2022d7ba75efed4647d3f67ed9a6075c1a17c1d",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/windows-cpu-local-17cdc54.json",
+    "bytes": 4153,
+    "sha256": "2328064d2c434d2ee4b97c92259e9e42fd7f994b8151262c756bc05594886bc4",
+    "lines": 91
+  },
+  {
+    "path": "docs/evidence/windows-cpu-native-darwin-39350478223.json",
+    "bytes": 36872,
+    "sha256": "2dcd111b146709f31e6b17f6f56c05f48f44ba4a349a1ac6c6d4b7ed01096119",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/windows-cpu-native-linux-39350478223.json",
+    "bytes": 29316,
+    "sha256": "8bafc627e7ebaf4562db27704a38db47f8618e175ddbdfd07e0850b321e18973",
+    "lines": 1028
+  },
+  {
+    "path": "docs/evidence/windows-cpu-native-windows-17cdc54.json",
+    "bytes": 77563,
+    "sha256": "5c47ba40ad626711d51dcf6592ae22fe5f66fb58410eaba8e8d234d75534e410",
+    "lines": 2586
+  },
+  {
+    "path": "docs/evidence/windows-cpu-native-windows-39350478223.json",
+    "bytes": 42263,
+    "sha256": "aee19ebef2d9dee1d322b16fff6a3f9a03331eecdce6f77def44142d60310b1c",
+    "lines": 1433
+  },
+  {
+    "path": "docs/evidence/windows-cpu-package-evidence-linux-x64-39350478223.json",
+    "bytes": 1926,
+    "sha256": "49a6ec095b0bd0c88bc63ae4a0466e6b5363df4418124979a3eb4e6a9e2ede82",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cpu-package-evidence-macos-arm64-39350478223.json",
+    "bytes": 1926,
+    "sha256": "49a6ec095b0bd0c88bc63ae4a0466e6b5363df4418124979a3eb4e6a9e2ede82",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cpu-package-evidence-windows-x64-39350478223.json",
+    "bytes": 1926,
+    "sha256": "536bea0c122ba07c292e0e41c83fc755574a0842db9fd560eb6cf367a55512bc",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cpu-packages-windows-17cdc54.json",
+    "bytes": 1926,
+    "sha256": "dd93200e9eabf2d9311ca558cc022cd4aeba2f898492fbb9cd3a93be24b74c81",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-cpu-pressure-39350478223.json",
+    "bytes": 2885,
+    "sha256": "4a7c6e65d472894abe66aa38a5aa3905cdaa47069fd8750dbd8ccfafb6511cad",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/windows-cpu-sdk-39350478223.json",
+    "bytes": 2687,
+    "sha256": "969dd8bcc4bb4e531d139c83865c50ec44f92b8340fd070984be24be785b3270",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/windows-cpu-sdk-windows-17cdc54.json",
+    "bytes": 2722,
+    "sha256": "ec545a1c13d14a0f3d9adbe343ffc3c20a60c778145175d5dd249721a442ae90",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/windows-display-benchmark-local-7bd5b19.json",
+    "bytes": 1310,
+    "sha256": "1138eac4ed4f20457c5f5bade5156447135a2ea5ff6ce2294e7d309cf50e04d4",
+    "lines": 31
+  },
+  {
+    "path": "docs/evidence/windows-display-ci-38830602052.json",
+    "bytes": 9128,
+    "sha256": "21b438fe492e1388205bdc8b9e5f3593e8c30ff92962709f0c1b351cd1afcc50",
+    "lines": 241
+  },
+  {
+    "path": "docs/evidence/windows-display-linux-container-38830602052.json",
+    "bytes": 11076,
+    "sha256": "6d8d6114b8fcb6133bc87c1d27921b7c0d12acb170df748f25e3891f06d9358e",
+    "lines": 426
+  },
+  {
+    "path": "docs/evidence/windows-display-local-7bd5b19.json",
+    "bytes": 2259,
+    "sha256": "bd38d5b6d52291502af12f8fe87451c19ee9fa5ab9f318ac0b81cc5f0c6593ab",
+    "lines": 47
+  },
+  {
+    "path": "docs/evidence/windows-display-native-darwin-38830602052.json",
+    "bytes": 34897,
+    "sha256": "b83d53ce91e64ae1c16b8dbf5a417d94c9afaf778c87772af2f97caed71d8f7b",
+    "lines": 1191
+  },
+  {
+    "path": "docs/evidence/windows-display-native-linux-38830602052.json",
+    "bytes": 28014,
+    "sha256": "f4f3b4c694784e65cd73f895df03e7cc3671bf3344d57e3cafa6f77eac1e56be",
+    "lines": 981
+  },
+  {
+    "path": "docs/evidence/windows-display-native-local-7bd5b19.json",
+    "bytes": 77124,
+    "sha256": "5b4ea66bb2170c8466189cad6fc7c2f4d3a15ef7271bbceae26354fdaf737409",
+    "lines": 2571
+  },
+  {
+    "path": "docs/evidence/windows-display-native-windows-38830602052.json",
+    "bytes": 41822,
+    "sha256": "26d586bc8d9cc8a91ffaca4ad45f6a2d20d7dc13fd20f3ce961ba809ab9b624e",
+    "lines": 1418
+  },
+  {
+    "path": "docs/evidence/windows-display-package-evidence-linux-x64-38830602052.json",
+    "bytes": 1926,
+    "sha256": "19e381a59a0e5f2ff3505b07e71366a58cdbf56890ae76bde79bf14895f95580",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-display-package-evidence-macos-arm64-38830602052.json",
+    "bytes": 1926,
+    "sha256": "19e381a59a0e5f2ff3505b07e71366a58cdbf56890ae76bde79bf14895f95580",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-display-package-evidence-windows-x64-38830602052.json",
+    "bytes": 1926,
+    "sha256": "12de75a220bbff5be066d1aad53b130843aa9c46ffbca9973cacb8fed801992c",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-display-package-local-7bd5b19.json",
+    "bytes": 1926,
+    "sha256": "74db4bb636e30e59a71ef73332472e51709830587abe0d1ecd01e367a6eafdf1",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-display-sdk-probe-38830602052.json",
+    "bytes": 90,
+    "sha256": "f3c468a4ba361384ac85878a4e00f86b502ab7b1da68bab7d97c185399d98103",
+    "lines": 1
+  },
+  {
+    "path": "docs/evidence/windows-display-sdk-probe-local-7bd5b19.json",
+    "bytes": 97,
+    "sha256": "43393ff0a27af1353cdd0bf9e8b5068d6c58371d2264a17a1d0d96d8c05e0bcf",
+    "lines": 1
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-benchmark-darwin-40249181949.json",
+    "bytes": 1401,
+    "sha256": "339bcbee44a48932a0bf67ddcb2aa10e59725c0d0fd8a7d94b8e796532dba767",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-benchmark-linux-40249181949.json",
+    "bytes": 1432,
+    "sha256": "1b9b28f3f3f106a769bf76acdcd2e80602d65089ea178426f0ad35ef02361298",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-ci-40249181949.json",
+    "bytes": 23896,
+    "sha256": "fcaef88078a45f64ee6e72503205b01b85b172e03ef9c07dd611329d30d211c6",
+    "lines": 547
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-cli-linux-40249181949.json",
+    "bytes": 936,
+    "sha256": "93e2a88ec4a8f99157bbb3ee2add2627276d8f3ee9cdd2733d809b1a0a52b0ad",
+    "lines": 28
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-cli-regression-b3b47b1.json",
+    "bytes": 903,
+    "sha256": "1ca256ccbb045d4f82094f574730e19a0c4d9b87cbbbaffd1fea20711737f0f2",
+    "lines": 28
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-cli-windows-40249181949.json",
+    "bytes": 903,
+    "sha256": "7fac8cb51f2ff4108f2522b04164387adb054129f410d54b028539fb00de17d6",
+    "lines": 28
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-local-b3b47b1.json",
+    "bytes": 3939,
+    "sha256": "9711f19dbb20f131b8288e525efefa66069a9da3289fc850297343de0107cdb8",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-macos-cpu-sdk-40249181949.json",
+    "bytes": 4231,
+    "sha256": "8f89d0315532b0f5f34e5b31e8baf68acca518b7de9eea536d316c47c87ba0c4",
+    "lines": 195
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-macos-memory-sdk-40249181949.json",
+    "bytes": 4724,
+    "sha256": "a672ff33f7ba6b8f74845550d06ea01618935d3a6f5d731763921c4a91739026",
+    "lines": 176
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-macos-uptime-sdk-40249181949.json",
+    "bytes": 2318,
+    "sha256": "d67fe21e27e51c3d74caf5c52887f7c95b08d5e30b60ac597cf8ee2ae960c056",
+    "lines": 87
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-manifest-b3b47b1.json",
+    "bytes": 12764,
+    "sha256": "fae0f809a28c96416f80c477f99ceb4890fc23e78e28bd72d4e2091920acaa8f",
+    "lines": 327
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-native-b3b47b1.json",
+    "bytes": 1155,
+    "sha256": "f6d236a5a7f9043b8b82c7fbc51fa7641bc288c7d762ddc8a9e299ae03f239b2",
+    "lines": 32
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-native-darwin-40249181949.json",
+    "bytes": 36882,
+    "sha256": "24381e24231bb5f0af6ba88713d6cf08dc0bd44e981251ead4ae7a496a562f28",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-native-linux-40249181949.json",
+    "bytes": 29318,
+    "sha256": "aec36d4b4d566f0250aa77fa946b7e9601f1eac414a5eaa5ddb4f99463a7b668",
+    "lines": 1028
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-native-windows-40249181949.json",
+    "bytes": 43667,
+    "sha256": "87804696de655454d35145c6caf249dbc7725abeecebfad2995af3ba265df53f",
+    "lines": 1479
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-packages-darwin-40249181949.json",
+    "bytes": 1926,
+    "sha256": "cab7cbd4c379eae0e6539476873ba1b361136dd608a9c1604bfa6cc2fe2a3d83",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-packages-linux-40249181949.json",
+    "bytes": 1926,
+    "sha256": "a09100255a1686fa56a5c31f4133e445afcd1771133cd1e8c370de62e05a98d7",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-packages-windows-40249181949.json",
+    "bytes": 1926,
+    "sha256": "1ec79fcdc00deb5cee0caad1e59adb66d06682f52b73723434935bbbd1a86a2a",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-sdk-consumers-40249181949.json",
+    "bytes": 1155,
+    "sha256": "5d793d44f1e2c900840556de567fcd7947e511ae3836be6b4abeb446502d57d3",
+    "lines": 32
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-windows-cpu-groups-sdk-40249181949.json",
+    "bytes": 3632,
+    "sha256": "0701dd8c735a4c368e8f989aadddf400eaefd9d40babc3db52ccd2e49e930b5d",
+    "lines": 140
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-windows-cpu-sdk-40249181949.json",
+    "bytes": 2693,
+    "sha256": "00303d83995e7af319ee81120c920def4e64a7309195c78aefe4ffb7ff708c58",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-windows-hardware-summary-sdk-40249181949.json",
+    "bytes": 5817,
+    "sha256": "018da6acc4a8cdf689ee3a274164645742d536707d078128ab5be8a8af27788a",
+    "lines": 213
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-windows-memory-sdk-40249181949.json",
+    "bytes": 2885,
+    "sha256": "5c845b5117bb1b0853f97fc1a9768ce188d973faa50716dfe5be3e39d2dcf663",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/windows-ffi-sdk-windows-uptime-sdk-40249181949.json",
+    "bytes": 2107,
+    "sha256": "cc8465d7e56f788acfc118c6444175a433a93b3924c71fdf1c856b5a2900f563",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/windows-gpu-ci-38657166792.json",
+    "bytes": 5678,
+    "sha256": "75f0be97a99cdbe425733a9b2b7a34f459b0713f0463a447bc04c6f8869113b2",
+    "lines": 149
+  },
+  {
+    "path": "docs/evidence/windows-gpu-darwin-38657166792.json",
+    "bytes": 34317,
+    "sha256": "f6fc5008e4956b50dba6abc2cd27a08e0a70151ad374c75a289fb8a32f4a7cb9",
+    "lines": 1171
+  },
+  {
+    "path": "docs/evidence/windows-gpu-linux-38657166792.json",
+    "bytes": 27180,
+    "sha256": "aa12a88dda43b8a6bf49f8244a960c82eac9e4224bf239e8c535a2fc5656993c",
+    "lines": 949
+  },
+  {
+    "path": "docs/evidence/windows-gpu-local-packages-38657166792.json",
+    "bytes": 1925,
+    "sha256": "19d20d3784da67fbcd352bc09e863fbb191b646fba2e8172b13315a565f59429",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-gpu-local-sdk-probe-38657166792.json",
+    "bytes": 607,
+    "sha256": "fe49636b8df8ac9820f8aadab1acc6e5626c4e66194e58ef250b131d73678a20",
+    "lines": 18
+  },
+  {
+    "path": "docs/evidence/windows-gpu-local-windows-38657166792.json",
+    "bytes": 75250,
+    "sha256": "5d19050c77e4aefceb7ede68716967b7a03e873f395e1353d15173138f148009",
+    "lines": 2503
+  },
+  {
+    "path": "docs/evidence/windows-gpu-package-evidence-linux-x64-38657166792.json",
+    "bytes": 1925,
+    "sha256": "65170c0f0d51aaed108599de352c7ec004361472e302231946bae5b8029d2e25",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-gpu-package-evidence-macos-arm64-38657166792.json",
+    "bytes": 1925,
+    "sha256": "65170c0f0d51aaed108599de352c7ec004361472e302231946bae5b8029d2e25",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-gpu-package-evidence-windows-x64-38657166792.json",
+    "bytes": 1925,
+    "sha256": "e795b59ce21979ecf33ed496c8e3c5f1b9e5fc064b1b9d3478736c649e082737",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-gpu-windows-38657166792.json",
+    "bytes": 39951,
+    "sha256": "6599230fb44199040af6bad15f196148c3c379f397d0ae524ca761d4f92b6608",
+    "lines": 1350
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-benchmark-darwin-40145306966.json",
+    "bytes": 1417,
+    "sha256": "9d2afbd167cb7dcc2d06b36a6de1ef6602ad3b0cb0c12e6101c413966f87908e",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-benchmark-linux-40145306966.json",
+    "bytes": 1450,
+    "sha256": "eed6b6d055ec5604f1675f35be3dfa32232da01b26aea2c5a2d890776bccc358",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-ci-40145306966.json",
+    "bytes": 487681,
+    "sha256": "fd14b9d3155ed221da7df4b819a82e58cee0f1fa4a1ecd54491e84c2d1a3057e",
+    "lines": 671
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-local-82c6659.json",
+    "bytes": 7153,
+    "sha256": "4493400897f76362bc37617c29d750bcc357e4ea40da74323cf1c6cd60bef54f",
+    "lines": 146
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-macos-cpu-sdk-40145306966.json",
+    "bytes": 4230,
+    "sha256": "512b3f9a65323c3e3cc7e01017753bf40e59b1464b7c95a595b1082cc3bb8b42",
+    "lines": 195
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-macos-memory-sdk-40145306966.json",
+    "bytes": 4724,
+    "sha256": "7270890273c7d4e3b26c5314eef63ae8403e6f7572e1daedbc3f10947931b9ea",
+    "lines": 176
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-macos-uptime-sdk-40145306966.json",
+    "bytes": 2318,
+    "sha256": "2efa0348eeb351e757e749a412e3daa8cb4d566cd082451c64f128d37b33dbe5",
+    "lines": 87
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-native-82c6659.json",
+    "bytes": 90196,
+    "sha256": "8d139be78f116311bc48a92f494516bb70db9ab33c3c17999321bbf114da395a",
+    "lines": 3000
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-native-darwin-40145306966.json",
+    "bytes": 36882,
+    "sha256": "e0ec12a6d2efab4e7703ee1347776ec627f569d0dff0fe7b1e6cd13e6fb48d51",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-native-linux-40145306966.json",
+    "bytes": 29318,
+    "sha256": "ad7f46972d1ec23e121123fca88d6f71d5ca83c9ffe8d93a291120fc38965d3b",
+    "lines": 1028
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-native-windows-40145306966.json",
+    "bytes": 43667,
+    "sha256": "01bfeb9558a288621d094e7f1161bfa2a85e25d6cf176099a19c3fd2d114c0e8",
+    "lines": 1479
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-package-evidence-linux-x64-40145306966.json",
+    "bytes": 1926,
+    "sha256": "4b1e16b53b57a1860891ec338cd5984857753e876b5f431369641f67972c82bb",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-package-evidence-macos-arm64-40145306966.json",
+    "bytes": 1926,
+    "sha256": "4447a3fb62943d5b9f7cc8c8d9d2cb5bd990852a7c3141468ca756c5cc7ab065",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-package-evidence-windows-x64-40145306966.json",
+    "bytes": 1926,
+    "sha256": "df58b5d6cc14290a6cb1436dbb0d9a03b9dc6cc99710f996f255fe6f66cea3d6",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-packages-82c6659.json",
+    "bytes": 1926,
+    "sha256": "16b74e05abeddd6a8cd3f2f890f721c2e5def35e3b31acc53aa06be42693ca92",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-sdk-40145306966.json",
+    "bytes": 5817,
+    "sha256": "6d6b61092f79a1ab6a93eb236e7bd529ff24818105296e4186c062948c18c3d4",
+    "lines": 213
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-sdk-82c6659.json",
+    "bytes": 5603,
+    "sha256": "0b6c522098bec84ac3d24f1d22bfc92ff75743f20ff19d1d162e9d370e5bf0cb",
+    "lines": 213
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-windows-cpu-groups-sdk-40145306966.json",
+    "bytes": 3623,
+    "sha256": "58825afb50eaea3cc50d7c920e80c4f6a2ff23686d5d155f94d9b349500fd34e",
+    "lines": 140
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-windows-cpu-sdk-40145306966.json",
+    "bytes": 2708,
+    "sha256": "03d1bc5dc97e6034b7eac2cfdddd5c53191c3b8ab3416bbb5abd68d3bcd8fac4",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-windows-memory-sdk-40145306966.json",
+    "bytes": 2885,
+    "sha256": "d11952c8417bbca6f1df742eda364caa30666e0fa509875cfecffcd6d457be2e",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/windows-hardware-summary-windows-uptime-sdk-40145306966.json",
+    "bytes": 2107,
+    "sha256": "fa5f7038b77bf7b18b22688d085cc33d556507d0b357698a21a87d0590e6b19a",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/windows-memory-benchmark-darwin-39347249649.json",
+    "bytes": 1410,
+    "sha256": "3c064e5aa84952bb121ae6fed4009320d092bc2de6b0731d1383d57c8755f737",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-memory-benchmark-linux-39347249649.json",
+    "bytes": 1441,
+    "sha256": "e49a391c19c2226b84f3edd343593164a8ea49c97bf1ab325dcb1667197f7205",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-memory-ci-39347249649.json",
+    "bytes": 19434,
+    "sha256": "2630bd46b1796bf4995ae95b9ac3f344dbc426ebe3846336c7a1a6d3b59710df",
+    "lines": 541
+  },
+  {
+    "path": "docs/evidence/windows-memory-local-eeb12da.json",
+    "bytes": 3882,
+    "sha256": "165541fe3e96345cb9f8c304e463f0d94aea3d9402aad8796b18762ca44bb3e7",
+    "lines": 92
+  },
+  {
+    "path": "docs/evidence/windows-memory-native-darwin-39347249649.json",
+    "bytes": 36876,
+    "sha256": "2497030e1e785c0ac17483b9b5d71130c1b9941a02f73fede826d839597cb863",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/windows-memory-native-linux-39347249649.json",
+    "bytes": 28347,
+    "sha256": "82b1689bd67ebce8afb9adbd76482258bdf11f963ab84374e6de181d69a53d58",
+    "lines": 994
+  },
+  {
+    "path": "docs/evidence/windows-memory-native-windows-39347249649.json",
+    "bytes": 42267,
+    "sha256": "83f0b2e1e236d3a74d178bb7f797405193b812c1a54231d192c381284e1b64d8",
+    "lines": 1433
+  },
+  {
+    "path": "docs/evidence/windows-memory-native-windows-eeb12da.json",
+    "bytes": 77529,
+    "sha256": "b1bd1e8166b8ae2c4d7437100972f5003825034cd2bb01d3ef07c0183f7b425f",
+    "lines": 2586
+  },
+  {
+    "path": "docs/evidence/windows-memory-package-evidence-linux-x64-39347249649.json",
+    "bytes": 1926,
+    "sha256": "5a2766c3e6832718f77463bb27dbf9f1c76af8f5c4ac7ea030052f080f93b2fc",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-memory-package-evidence-macos-arm64-39347249649.json",
+    "bytes": 1926,
+    "sha256": "5a2766c3e6832718f77463bb27dbf9f1c76af8f5c4ac7ea030052f080f93b2fc",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-memory-package-evidence-windows-x64-39347249649.json",
+    "bytes": 1926,
+    "sha256": "8f850bce50174f2755ecf1cf6168c9a8d1afec1d12b5cdb43022da8181169943",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-memory-packages-windows-eeb12da.json",
+    "bytes": 1926,
+    "sha256": "5b530410e1e3c4f88b0e4cba02aed7c26771be342341122f33425d96c8a2f089",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-memory-pressure-39347249649.json",
+    "bytes": 2885,
+    "sha256": "f0d0f2a99b1b126612098f53efc484e4f0b6aa36babc642f9c73e857ed588bed",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/windows-memory-pressure-windows-eeb12da.json",
+    "bytes": 2879,
+    "sha256": "b8f45292da103e026f3a2a01b39e52181a659df488272166758264a17d96d004",
+    "lines": 108
+  },
+  {
+    "path": "docs/evidence/windows-native-2026-10-09.json",
+    "bytes": 5482,
+    "sha256": "1121c3fad0dfec238811dcdd0bc176c7fd507fc785957930ea57a45a2dc12a94",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/windows-native-38044730604.json",
+    "bytes": 5497,
+    "sha256": "87a0fb3027da6160b1501f29f9c95b88475c7744288078a9361bec1030c66c56",
+    "lines": 184
+  },
+  {
+    "path": "docs/evidence/windows-native-38047435339.json",
+    "bytes": 5893,
+    "sha256": "b39c82d636b4a7dee5476e807c1aeea886b989e9131f2438d07fe95745b7f3ca",
+    "lines": 198
+  },
+  {
+    "path": "docs/evidence/windows-native-38065295625.json",
+    "bytes": 6285,
+    "sha256": "1c0f38564d3a717e276ee516ae8781f6c38ba5129488971249076ca4cd34646d",
+    "lines": 212
+  },
+  {
+    "path": "docs/evidence/windows-native-38067341915.json",
+    "bytes": 6285,
+    "sha256": "5255a916b41f179ed43525ca7f03b0213938cf36fa8dae145748b66ea88e991e",
+    "lines": 212
+  },
+  {
+    "path": "docs/evidence/windows-native-38070151022.json",
+    "bytes": 6285,
+    "sha256": "934afdf54c583157c94db613691edc513b21e87a1e1310818b0e33cec0dd1716",
+    "lines": 212
+  },
+  {
+    "path": "docs/evidence/windows-native-battery-2026-10-10.json",
+    "bytes": 6897,
+    "sha256": "8c6b3907d139a36de0aab137a8a2422a38d6e6b4c080f2d441e5901e6d0f9ca6",
+    "lines": 232
+  },
+  {
+    "path": "docs/evidence/windows-native-hwmon-2026-10-10.json",
+    "bytes": 7289,
+    "sha256": "16db14107f74e3b38059910d55498ab150a747e63db7c135a5467d334b3bbf1e",
+    "lines": 246
+  },
+  {
+    "path": "docs/evidence/windows-native-nvme-2026-10-11.json",
+    "bytes": 7289,
+    "sha256": "db79ac7145d0fcae942b223896946ac394514033524cb69a1c9fa31a0a02b2da",
+    "lines": 246
+  },
+  {
+    "path": "docs/evidence/windows-native-review-2026-10-11.json",
+    "bytes": 7289,
+    "sha256": "47be3fd2d411394b03fd89abc9da6eb49a581314accf069714eee93e54e1838f",
+    "lines": 246
+  },
+  {
+    "path": "docs/evidence/windows-network-ci-38094160512.json",
+    "bytes": 6880,
+    "sha256": "533d75edad02ccc35207ab30a2cce02433bd95134e9cbfa6e329a3ac5b9a9277",
+    "lines": 177
+  },
+  {
+    "path": "docs/evidence/windows-network-extra-local-windows-38094160512.json",
+    "bytes": 1238,
+    "sha256": "8be25033d5827ecbf66b687102e1f69662853960ccdee8687413a52c54a28c27",
+    "lines": 40
+  },
+  {
+    "path": "docs/evidence/windows-network-limits-local-windows-38094160512.json",
+    "bytes": 1087,
+    "sha256": "9e2c8633d742760b6640a1da5d29de8de5c868d30a6f70f147079864054bb710",
+    "lines": 44
+  },
+  {
+    "path": "docs/evidence/windows-network-native-linux-38094160512.json",
+    "bytes": 12147,
+    "sha256": "ff7f3740e59c69ddec5220d133b02e029e70bc50d3ffc59eb8eeb10fb10cb5e7",
+    "lines": 412
+  },
+  {
+    "path": "docs/evidence/windows-network-native-local-windows-38094160512.json",
+    "bytes": 68109,
+    "sha256": "e154418affa1db9a26d77bbae2946212c733af88b6fff1f8c0cc4a211389b7f8",
+    "lines": 2240
+  },
+  {
+    "path": "docs/evidence/windows-network-native-macos-38094160512.json",
+    "bytes": 6427,
+    "sha256": "43cf4663448be3afd3d92215e511073a4b80711006a1bcf892f2077a50f635a9",
+    "lines": 226
+  },
+  {
+    "path": "docs/evidence/windows-network-native-windows-38094160512.json",
+    "bytes": 31891,
+    "sha256": "b10370fb8f5d42a7a70139fabfaacae06fc400bdc9367d34a03a031b5a57abce",
+    "lines": 1056
+  },
+  {
+    "path": "docs/evidence/windows-network-package-linux-38094160512.json",
+    "bytes": 1923,
+    "sha256": "fe03294369709ad67f5401db7193c80916f4c246537408818bdcdfe289f853f9",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-network-package-local-windows-38094160512.json",
+    "bytes": 1923,
+    "sha256": "79aeaac91e2b87a76933529eedd867f36b25fe1a824cad3d55595ca73bf83241",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-network-package-macos-38094160512.json",
+    "bytes": 1923,
+    "sha256": "7b7a6e3fa99713661e449d3b44c32eb3c0254e2a624b5e82453ffbc2816a5138",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-network-package-windows-38094160512.json",
+    "bytes": 1923,
+    "sha256": "16a2dc0f8e2628d758be3c4304dc8783709a1cd45809a0df135443454d72cc68",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-storage-ci-38324105182.json",
+    "bytes": 7923,
+    "sha256": "f4a9e22a69242fd861b178e584739b7192524271695b445c3f2a7d1273dd54aa",
+    "lines": 189
+  },
+  {
+    "path": "docs/evidence/windows-storage-container-linux-38324105182.json",
+    "bytes": 15940,
+    "sha256": "6b7302a7b29f066e7d18bf3eaedfa55ade22f251670a4f70f149b69a28979613",
+    "lines": 595
+  },
+  {
+    "path": "docs/evidence/windows-storage-local_ffi-windows-38324105182.json",
+    "bytes": 569,
+    "sha256": "3845d986f1cc1f8b6de114da712da3be4731fe2fc029b0429b513348d7225d17",
+    "lines": 18
+  },
+  {
+    "path": "docs/evidence/windows-storage-local_native-windows-38324105182.json",
+    "bytes": 69429,
+    "sha256": "9fae7267e97fc438fc59aa7d4cf6d82331811247b32f02dfb77dbacf8b3a5b32",
+    "lines": 2288
+  },
+  {
+    "path": "docs/evidence/windows-storage-native-linux-38324105182.json",
+    "bytes": 21921,
+    "sha256": "1be92dbaa6377449ea9b0364700fd8950155d498217ac260c4351b9aab0922fd",
+    "lines": 750
+  },
+  {
+    "path": "docs/evidence/windows-storage-native-macos-38324105182.json",
+    "bytes": 22365,
+    "sha256": "e87031a0774102c7aff3af83c5822ef8efb65b283cc34050c0e5415c81a0063f",
+    "lines": 748
+  },
+  {
+    "path": "docs/evidence/windows-storage-native-windows-38324105182.json",
+    "bytes": 34187,
+    "sha256": "70f6cd5caf1197803026816897222e9e8a2b12c93e5770dbd3e17d0af6b81a37",
+    "lines": 1136
+  },
+  {
+    "path": "docs/evidence/windows-storage-package-linux-38324105182.json",
+    "bytes": 1924,
+    "sha256": "521ef590fef00ea5df8d445b131c299a2f669e8b85a363f7e8161bf88e1b9d7b",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-storage-package-local-windows-38324105182.json",
+    "bytes": 1924,
+    "sha256": "04dc766cdd0a1c10ebe3913d7fb9f06ee7058599ce11b3e5b57006092c872894",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-storage-package-macos-38324105182.json",
+    "bytes": 1924,
+    "sha256": "fe786001abe2fb65caf1467b0cd0e2f43cf73d7d2b9fe3eeebb1ba087427d25a",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-storage-package-windows-38324105182.json",
+    "bytes": 1924,
+    "sha256": "28bf10db37def63f3e6c4c73f0e470cf70647543bb0bc22e1fd249d4e5f8dbf6",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-uptime-benchmark-darwin-39755735940.json",
+    "bytes": 1420,
+    "sha256": "cc93a88f8bdac957ba8257c7cd74eacaede929474cbca4013ed67d159950f734",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-uptime-benchmark-linux-39755735940.json",
+    "bytes": 1445,
+    "sha256": "9abc528565bc6984a9677d2e5808eda3dfb963677b4b633f48728bc91a2b69c9",
+    "lines": 30
+  },
+  {
+    "path": "docs/evidence/windows-uptime-ci-39755735940.json",
+    "bytes": 17134,
+    "sha256": "0bd1441d262d9f8d9bfd6463807328661ecfb94fec39da3d5c5c0cab4a77ebaa",
+    "lines": 419
+  },
+  {
+    "path": "docs/evidence/windows-uptime-local-7b79a17.json",
+    "bytes": 4426,
+    "sha256": "8d0f54032e7ef5122dbb24f54b5c5da76c80a803c39f4f167836cf325c99feb7",
+    "lines": 93
+  },
+  {
+    "path": "docs/evidence/windows-uptime-macos-cpu-sdk-39755735940.json",
+    "bytes": 4201,
+    "sha256": "0fb8a314c576cd6e803ca7644ad78cbd1d72330bdee106f0ab5e048a34cca4d6",
+    "lines": 195
+  },
+  {
+    "path": "docs/evidence/windows-uptime-macos-memory-sdk-39755735940.json",
+    "bytes": 4724,
+    "sha256": "7da50431c7d43699e30de7f93fe783db55a0df9ff0e5ec523aaf004ce40b7c34",
+    "lines": 176
+  },
+  {
+    "path": "docs/evidence/windows-uptime-native-7b79a17.json",
+    "bytes": 77525,
+    "sha256": "29abd24ce15c9cb3c6875aa2e66cef59d91781c53956db2b1fd658898a47b9b7",
+    "lines": 2586
+  },
+  {
+    "path": "docs/evidence/windows-uptime-native-darwin-39755735940.json",
+    "bytes": 36882,
+    "sha256": "fb79cd2878a9c7d16aadda89f2bdc24d35c2cd1f43de075982e327ca3eb14c74",
+    "lines": 1260
+  },
+  {
+    "path": "docs/evidence/windows-uptime-native-linux-39755735940.json",
+    "bytes": 28347,
+    "sha256": "026ac1214a087f0a0efec6572c8d6add821b1d87134a2f2009bec658b78faa3d",
+    "lines": 994
+  },
+  {
+    "path": "docs/evidence/windows-uptime-native-windows-39755735940.json",
+    "bytes": 42263,
+    "sha256": "538b1195e83d11c9d242af813b90ea5362575ae19fadf51f48886b80d064c711",
+    "lines": 1433
+  },
+  {
+    "path": "docs/evidence/windows-uptime-package-evidence-linux-x64-39755735940.json",
+    "bytes": 1926,
+    "sha256": "c6d34a6aa99f277772e05997dea37d9badf559145f83f1732b67f92408f77650",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-uptime-package-evidence-macos-arm64-39755735940.json",
+    "bytes": 1926,
+    "sha256": "1a0b48a0ed146cb05b1e75bc79592c9bf39f7db3aafeb403dce2d9098d018c1e",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-uptime-package-evidence-windows-x64-39755735940.json",
+    "bytes": 1926,
+    "sha256": "81649257b328a38c381e32347cac5c68c25b9444da44efc59bc0533384f14607",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-uptime-packages-7b79a17.json",
+    "bytes": 1926,
+    "sha256": "69fa58f716d206f37a5107d3e637b4037c48a174cb60aa10f759b05a5858141d",
+    "lines": 62
+  },
+  {
+    "path": "docs/evidence/windows-uptime-sdk-39755735940.json",
+    "bytes": 2107,
+    "sha256": "efd9ed4a4e06ba86a10bf765bdf9c7af89928571867d9d77eab5d97e100b93f4",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/windows-uptime-sdk-7b79a17.json",
+    "bytes": 2122,
+    "sha256": "abb94164518aff22edb04be6aae539f8d9b39fb3ff5968760b6a7ddc7655e5fa",
+    "lines": 79
+  },
+  {
+    "path": "docs/evidence/windows-uptime-windows-cpu-sdk-39755735940.json",
+    "bytes": 2708,
+    "sha256": "8036990472041838a90294627f025f8020ae1d64dde11ac4c1a17cb0a6b323f0",
+    "lines": 105
+  },
+  {
+    "path": "docs/evidence/windows-uptime-windows-memory-sdk-39755735940.json",
+    "bytes": 2885,
+    "sha256": "9d4118c0750cd42efeca6b85408647de441bb50b60b9a293720b03ee5f507835",
+    "lines": 108
+  },
+  {
+    "path": "docs/hwmon-validation.md",
+    "bytes": 8311,
+    "sha256": "97b563cb13e11008f9574bfeaceff77367a40dcf2fd6dc1d16b203542ef27dc1",
+    "lines": 54
+  },
+  {
+    "path": "docs/input-ffi-validation.md",
+    "bytes": 6385,
+    "sha256": "9cb20ef4495982c4765190ad7e98d06eb241afb996536542164ab2425d61574f",
+    "lines": 55
+  },
+  {
+    "path": "docs/linux-cli-bundle-validation.md",
+    "bytes": 6067,
+    "sha256": "5a4ec4cc3388e9eef2b6e0c334557ade480920ba289c4cc993961d07d34cec9a",
+    "lines": 56
+  },
+  {
+    "path": "docs/linux-container-validation.md",
+    "bytes": 12132,
+    "sha256": "3591fbc81425379fbfac61a6789bb4a1c8c1497242d116c52e5bb8f915da6ae9",
+    "lines": 90
+  },
+  {
+    "path": "docs/linux-display-validation.md",
+    "bytes": 7757,
+    "sha256": "2d4c1ee5e9008e7d98d19ba9ab145ef72e333a8bc7272d11bc64f462186e3136",
+    "lines": 49
+  },
+  {
+    "path": "docs/linux-ffi-sdk-validation.md",
+    "bytes": 7336,
+    "sha256": "559db7db712a269c56f6fcaa9d5f73bb0d94dddfa9fe1b8debd4a23d487deea7",
+    "lines": 63
+  },
+  {
+    "path": "docs/linux-gpu-validation.md",
+    "bytes": 5331,
+    "sha256": "cb2c336541e25c7ead53cf074100b8502999131d297d839377603cbbef75593f",
+    "lines": 39
+  },
+  {
+    "path": "docs/macos-cpu-validation.md",
+    "bytes": 7887,
+    "sha256": "8ff75813157dfeb0803ef9c70aec05d85eac6540f429708e996f156a8e4e247e",
+    "lines": 65
+  },
+  {
+    "path": "docs/macos-display-validation.md",
+    "bytes": 8130,
+    "sha256": "0032e7595faf2ffb197b07ff98d1604b3636c49fe2e95aec0d32569cfed84e6b",
+    "lines": 50
+  },
+  {
+    "path": "docs/macos-gpu-validation.md",
+    "bytes": 6716,
+    "sha256": "f81e3653dc951c01458971e8a1dcc7aa05da4bb6e63bdd9f7bb46baec3ca0ab0",
+    "lines": 48
+  },
+  {
+    "path": "docs/macos-memory-validation.md",
+    "bytes": 10948,
+    "sha256": "bbec1d7985dad83bb8abeaaf634c3f6f8de24e48df1a0a2433d4b5685ba35da7",
+    "lines": 93
+  },
+  {
+    "path": "docs/macos-network-validation.md",
+    "bytes": 6521,
+    "sha256": "1e44c1a351159d9a8ee7530c07ce9225c9f1c0343830dd7b8524c8196976c42b",
+    "lines": 35
+  },
+  {
+    "path": "docs/macos-storage-validation.md",
+    "bytes": 6142,
+    "sha256": "89617f9c1c844d531ac2d1b13822588c099de4f0268897ca04ffae4f364dccea",
+    "lines": 34
+  },
+  {
+    "path": "docs/macos-uptime-validation.md",
+    "bytes": 8489,
+    "sha256": "6c8bb42d014317aa7b8af95bc395f529f818caa00f27098d1e665f8a08a958c5",
+    "lines": 82
+  },
+  {
+    "path": "docs/memory-refresh-validation.md",
+    "bytes": 11475,
+    "sha256": "ad00165d5b6800f22598d3fc23933e7553818137b682acb9ebf416b95bafdaab",
+    "lines": 72
+  },
+  {
+    "path": "docs/native-diagnostics-validation.md",
+    "bytes": 4382,
+    "sha256": "b6996005656560c9398131bbf6161896d659fb869ff1277b58a8b74fa3de0711",
+    "lines": 19
+  },
+  {
+    "path": "docs/native-validation.md",
+    "bytes": 7449,
+    "sha256": "83c4c0b8c325772cf72e45e586c78fa17d324118e69f2442450908f3610ca08e",
+    "lines": 74
+  },
+  {
+    "path": "docs/network-validation.md",
+    "bytes": 5352,
+    "sha256": "ddc8aedb59a1b1eb34e3da55db190e1b366434d38a7b1e267e89f2181750d449",
+    "lines": 52
+  },
+  {
+    "path": "docs/nvme-temperature-validation.md",
+    "bytes": 6956,
+    "sha256": "91142f272e2f8f8a52544bff57c39e912c8b6a9f8a386929b8a23d5ee0ce9d63",
+    "lines": 52
+  },
+  {
+    "path": "docs/packaging.md",
+    "bytes": 7331,
+    "sha256": "4451eea28c79bd49256fc36b8bb1f85bc0994f7f57239641f954290afb2c7250",
+    "lines": 47
+  },
+  {
+    "path": "docs/procfs-fuzz-validation.md",
+    "bytes": 10785,
+    "sha256": "02f9600c973146a1d8fbded95dad70f7365b89a1899ab65eeacc70cad30da93b",
+    "lines": 82
+  },
+  {
+    "path": "docs/progress.md",
+    "bytes": 3132,
+    "sha256": "4045a41a0dd282e1d8cb7419bf4b02b0c859613e59a94f0c9418cbcf9895aea6",
+    "lines": 19
+  },
+  {
+    "path": "docs/project-review-2026-10-11.md",
+    "bytes": 10404,
+    "sha256": "43511fab760a3fe0b1406f0a88537863b0679d90938c21aee5d96b0881273c1c",
+    "lines": 72
+  },
+  {
+    "path": "docs/release.md",
+    "bytes": 19098,
+    "sha256": "faf3114aad319e6be698461af278ad2971377b981391cce57d9ccc599f98a3b1",
+    "lines": 66
+  },
+  {
+    "path": "docs/research/cpu_groups_probe.c",
+    "bytes": 4907,
+    "sha256": "c2625908e244f9e520213db74e1e4d82ba33e75aca72cd4c1ac9b76940f1ebe6",
+    "lines": 78
+  },
+  {
+    "path": "docs/research/cpu_probe.c",
+    "bytes": 1803,
+    "sha256": "747bc8df1720d29e65bf7a6c19d7f1655c0c4d763d411947fa763ed8763d9926",
+    "lines": 47
+  },
+  {
+    "path": "docs/research/display_probe.c",
+    "bytes": 4041,
+    "sha256": "7bfc47bdd6a1f49e2d2338cc8319a23c37e65213bb637b262a9c383ce87c460d",
+    "lines": 89
+  },
+  {
+    "path": "docs/research/dxgi_probe.cpp",
+    "bytes": 2499,
+    "sha256": "ea52e0e1dc484b4f435dc1175cc6261dfd5d7028283e1ba80e9c93605a1648c0",
+    "lines": 45
+  },
+  {
+    "path": "docs/research/hardware_summary_probe.c",
+    "bytes": 2931,
+    "sha256": "96fd9163e69a1279208619277b5e39644fdb4d1009239b0399a5674b705116d3",
+    "lines": 55
+  },
+  {
+    "path": "docs/research/iomedia_probe.c",
+    "bytes": 3136,
+    "sha256": "8b9efd3006c14cab59974ec10a1dfdb4ec8cc33787417f0efcdbd6f3e4a30314",
+    "lines": 80
+  },
+  {
+    "path": "docs/research/macos_cpu_probe.c",
+    "bytes": 2924,
+    "sha256": "c24825fa4ee5e4e35d00b0f7c8abb79e7438804eb34e2b7c7ddc2515b5a70a29",
+    "lines": 73
+  },
+  {
+    "path": "docs/research/macos_display_probe.c",
+    "bytes": 3465,
+    "sha256": "2a50c3fc49c83c79338520b4e3552f409e19e2544fdf78dfd7014d8733f4a83b",
+    "lines": 75
+  },
+  {
+    "path": "docs/research/macos_memory_probe.c",
+    "bytes": 3961,
+    "sha256": "2ae53d4023931c811b5a2fc4bdb63a9ccc770c413949f934a6bbffa33ea5014d",
+    "lines": 83
+  },
+  {
+    "path": "docs/research/macos_uptime_probe.c",
+    "bytes": 2145,
+    "sha256": "b06b5bc81f54ab1348e1a4ef05edd2de885ad6ebb75195ae169cd12f743eb2e8",
+    "lines": 55
+  },
+  {
+    "path": "docs/research/memory_probe.c",
+    "bytes": 2128,
+    "sha256": "5d6cb23e5ad05e7f585f0927a1044b056da1fbac40a05125fd02023f1b9b41b5",
+    "lines": 52
+  },
+  {
+    "path": "docs/research/metal_probe.m",
+    "bytes": 1752,
+    "sha256": "2fa58bc85a66971af1e03d1d7ef127454d5050ae8ed20030e886a55913cd77d6",
+    "lines": 35
+  },
+  {
+    "path": "docs/research/probe/Cargo.lock",
+    "bytes": 6159,
+    "sha256": "20f4357193d5dbcf140138dd908944886981e059abd34d0f814449db7627f6c8",
+    "lines": 237
+  },
+  {
+    "path": "docs/research/probe/Cargo.toml",
+    "bytes": 220,
+    "sha256": "787a73227635e1940e871e0fdb2780b6ec0756250419b419ed19488663d4d4e5",
+    "lines": 8
+  },
+  {
+    "path": "docs/research/probe/src/main.rs",
+    "bytes": 473,
+    "sha256": "1b889b2a4dcda82c31bd3c8e6deac858eb6e7537d25e800732c1d2d91a83fa93",
+    "lines": 9
+  },
+  {
+    "path": "docs/research/uptime_probe.c",
+    "bytes": 728,
+    "sha256": "f0aa719559d6a5da12ccbff7e2b7d1742a01588be716fb87eb9c306ade29f9ad",
+    "lines": 24
+  },
+  {
+    "path": "docs/schema/snapshot-v1.schema.json",
+    "bytes": 49098,
+    "sha256": "9d973c32e2f73b1472b0b6c28241adea0916ce534a3be1c4ec70cea14e5dd62d",
+    "lines": 1974
+  },
+  {
+    "path": "docs/storage-text-validation.md",
+    "bytes": 4629,
+    "sha256": "516cf98bb3ec024b51173ac6f9fcedcb1285b14b48837f2c0279bcf4a47d9973",
+    "lines": 19
+  },
+  {
+    "path": "docs/storage-validation.md",
+    "bytes": 5131,
+    "sha256": "5fe7ed388689a1b0fd0cd15ce3302e1c3541a1348b572c0b2c2452d56d6e142e",
+    "lines": 30
+  },
+  {
+    "path": "docs/usage.md",
+    "bytes": 15511,
+    "sha256": "0bea222b46fabdf07de81185c048aae2fcd00360f2fa0ad0ed7d92929436c058",
+    "lines": 94
+  },
+  {
+    "path": "docs/validation.md",
+    "bytes": 13118,
+    "sha256": "7851bca1a61327eef0dc86f3ae5021bddd9177d20144cacdfd2f321f36788cde",
+    "lines": 79
+  },
+  {
+    "path": "docs/windows-cpu-groups-validation.md",
+    "bytes": 8141,
+    "sha256": "740169192c8067551db205f7d191c20aa9318e02104eec64c2c969d3135a2a56",
+    "lines": 69
+  },
+  {
+    "path": "docs/windows-cpu-validation.md",
+    "bytes": 7805,
+    "sha256": "f01c4fc2bed4b6251fa43cbb67d2f6f92dbdd91809a4ea9a4074e928ce5ac438",
+    "lines": 65
+  },
+  {
+    "path": "docs/windows-display-validation.md",
+    "bytes": 7923,
+    "sha256": "aecebe78ed64324157e16afecf7f8c150f4647a93120f147e4d6d1b2c7b2d108",
+    "lines": 49
+  },
+  {
+    "path": "docs/windows-ffi-sdk-validation.md",
+    "bytes": 6411,
+    "sha256": "87c0aef71d8d73685e48dd5cc4b6460219ee83b5046c8317c7e287e64fea3f25",
+    "lines": 59
+  },
+  {
+    "path": "docs/windows-gpu-validation.md",
+    "bytes": 5526,
+    "sha256": "7fde865d1b80ed20d9d6201282421dc66acbb7b5e2cb661d6cc377024ee0e968",
+    "lines": 46
+  },
+  {
+    "path": "docs/windows-hardware-summary-validation.md",
+    "bytes": 8481,
+    "sha256": "b1186b32c5edac10b4c2a94c6b7e6715abcf4f47995b23953025b67b16bc0238",
+    "lines": 65
+  },
+  {
+    "path": "docs/windows-memory-validation.md",
+    "bytes": 7543,
+    "sha256": "7e6d448e90adaaff466a00fbbabc519b844c5937fa8c28bcbb799d7f505ce2a6",
+    "lines": 65
+  },
+  {
+    "path": "docs/windows-network-validation.md",
+    "bytes": 4633,
+    "sha256": "25dcf79abf19be18f3fd227120738a7d5aed5d5df6dc61f46f0df0463e4ff91e",
+    "lines": 29
+  },
+  {
+    "path": "docs/windows-storage-validation.md",
+    "bytes": 6602,
+    "sha256": "a72f2d86baab60707987fab914184417f9c9373639e74ab597bcae53eb84fbcd",
+    "lines": 35
+  },
+  {
+    "path": "docs/windows-uptime-validation.md",
+    "bytes": 7564,
+    "sha256": "6f21673ae10db5bad4eb1071bd029eef2e5890c2afaf90c5db8368299290941d",
+    "lines": 79
+  },
+  {
+    "path": "examples/collect.c",
+    "bytes": 809,
+    "sha256": "1453f65f120396c32e40e92cd129591f858b482d78218ef15dc3bb05260a48f6",
+    "lines": 22
+  },
+  {
+    "path": "examples/collect.py",
+    "bytes": 2424,
+    "sha256": "a9e745b59f50c04d37d387af7104a9a9866509b934bf4dce5211aeebe409fec1",
+    "lines": 67
+  },
+  {
+    "path": "fuzz/Cargo.lock",
+    "bytes": 12000,
+    "sha256": "e8c0a9782956108ab776785cbbedbd27297f06386996f31920b1b63822f6c0c6",
+    "lines": 489
+  },
+  {
+    "path": "fuzz/Cargo.toml",
+    "bytes": 1878,
+    "sha256": "0fd8578687c7c3938b3a780ec0a3e70c86968971a4a4bc9b96c16e68a51c7224",
+    "lines": 98
+  },
+  {
+    "path": "fuzz/README.md",
+    "bytes": 10405,
+    "sha256": "183b55d180ef33abab570201161e790790ebc85d5448adec0d3f77df5adb2b8c",
+    "lines": 80
+  },
+  {
+    "path": "fuzz/corpus/cli_args/authorized",
+    "bytes": 32,
+    "sha256": "dff52395bf9b0103520e649b776b9a9bd11a259bd1f88831c8b4d481a07d1b13",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/cli_args/cpu-json",
+    "bytes": 10,
+    "sha256": "9559e6567599277cda4e07024c54965f4653e8da284663cba449ad0e1fdccebe",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/cli_args/display-json",
+    "bytes": 14,
+    "sha256": "f9ba56c6b74e9897cdb78c65ced0e9c04722c022177ae54ba1932b95eaf5d7c0",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/cli_args/unauthorized",
+    "bytes": 19,
+    "sha256": "c2e0b41a88509d81916c0728364b9e2214e474454e8f648dfc5e000e87fde22b",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/cpu_stat/baseline-ready",
+    "bytes": 35,
+    "sha256": "449f6f06a1fb4f8d59908aab421e4e9353a0dafbbe11f980ceb87fe9b6c1a394",
+    "lines": 2
+  },
+  {
+    "path": "fuzz/corpus/cpu_stat/counter-reset",
+    "bytes": 55,
+    "sha256": "97116d3a494258e59f6ba6b8fc57f4c710b9d55552ded0efe576de5287475887",
+    "lines": 3
+  },
+  {
+    "path": "fuzz/corpus/cpu_stat/fast-poll",
+    "bytes": 71,
+    "sha256": "af3ba94e074cdade46038d1e3ba849a707a525eee12619de8f52b7d247aab6da",
+    "lines": 4
+  },
+  {
+    "path": "fuzz/corpus/cpu_stat/guest-iowait",
+    "bytes": 59,
+    "sha256": "ed91e6abf6d21101b7bf76cc5db279305b65772f0d46e52f16b0862d0aa5fc44",
+    "lines": 2
+  },
+  {
+    "path": "fuzz/corpus/cpu_stat/invalid-utf8",
+    "bytes": 13,
+    "sha256": "2ae46ffc98cddabe29e2004c298df3ee6223326a8536a17f58a40dd0c66fde49",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/cpu_stat/io-recovery",
+    "bytes": 77,
+    "sha256": "186830d27ee31ffdcc4a8a803c6b720a0a7e2fca6047d4636d539913cf3d3e5a",
+    "lines": 4
+  },
+  {
+    "path": "fuzz/corpus/cpu_stat/overflow",
+    "bytes": 32,
+    "sha256": "520e33f28bd29663a5557dd25b4710c177e21e5413efbb7d0c7414655d8030d3",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/cpu_stat/oversize",
+    "bytes": 4098,
+    "sha256": "39da5814855c205bb122cf0e6162450f57993dcd831391fa4a52a1b502afa4bc",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/edid-bad-checksum",
+    "bytes": 128,
+    "sha256": "b8f50878a360fc44eae9b08ee77a2a8925415238e28b8d1c6d56ddabac9cc19b",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/edid-monitor-name",
+    "bytes": 128,
+    "sha256": "b2b506f2dddcb34b4795bdc42d428e7deab4c991bd668d3fe0dcaf1de76f425d",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/gpu-product-name",
+    "bytes": 9,
+    "sha256": "c786688751031c1354ba50dfed27790535c22af346c5958f743fe6b05c56c3c1",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/invalid-utf8",
+    "bytes": 3,
+    "sha256": "ef192b7af54e943f206ab27075ec1805384c972c9959fc5820f1fa7d5268fcef",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/metal-nul",
+    "bytes": 8,
+    "sha256": "3ab1d4b550550b92259a4f19b2d91bf58369e9bd8f9c08b2900412b3d2024b0d",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/metal-unicode",
+    "bytes": 13,
+    "sha256": "f9d9050f64dd6d8fadde5c8848291f6976093e070f231821d048e25b0f687c78",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/model",
+    "bytes": 15,
+    "sha256": "1102fb88a9d07fc231273eb10091919fb75e77006dd4fa8fd10ab79c3e76af6e",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/nvidia-model",
+    "bytes": 16,
+    "sha256": "22af36c06564729b9f3c07936b9017d232eb8c8caebc2a18009e31714d7651aa",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/placeholder",
+    "bytes": 22,
+    "sha256": "2e668dd3f297ab3858f2ea4f1aad70f006c5170993bc66fcaaa0ed36832d91f2",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/windows_registry_placeholder",
+    "bytes": 46,
+    "sha256": "0b3e467bae98ef8a911c62a8d392dec24edff4211091b7983f1dfb031c0871b7",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/dmi_text/windows_registry_utf16",
+    "bytes": 24,
+    "sha256": "8c6b8b845d9b8c7a037e57add497b4e9bf58787634047f463197a0a586c6445f",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/absolute_zero",
+    "bytes": 8,
+    "sha256": "682799365c451aa767fe741da5f48b3c2bc428a8d73756d81fb541650d992c80",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/below_zero",
+    "bytes": 8,
+    "sha256": "4d4a5302881e0882bec9df26fc0e0ea76ad0d41f99439d76ad1e42ee11755b35",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/invalid_utf8",
+    "bytes": 1,
+    "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/maximum",
+    "bytes": 8,
+    "sha256": "085c348f64a3b543e973a33749e90ba20847b99016a87e5228847597d61ce582",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/nan",
+    "bytes": 4,
+    "sha256": "3f3ea8a1afc0f5a6ce7ace3152abfdaa52ea3726c4f66e728790f42cbc005901",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/negative",
+    "bytes": 6,
+    "sha256": "02c13adad9470bf68fe17f9123fe03e508e07f8a494a43b71a021ffb1699154c",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/nvme_below_freezing",
+    "bytes": 4,
+    "sha256": "3821691b2f28f7992d91defafc3b441b1473eb4556656e0746f1336ed6c27033",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/nvme_positive",
+    "bytes": 5,
+    "sha256": "849c5f90f2fb0cce76947b8e68fb3afc08199192fc499e2420d884d0be4ed9e3",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/overflow",
+    "bytes": 11,
+    "sha256": "604fec38960d7c5bd3bd6c06ad8f4b42eac0bb30ea02d43518d0f9f11d5e131e",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/oversize",
+    "bytes": 129,
+    "sha256": "beab3966389f2ad495c7db4f9dc029f16aae31c76af3ebefd9754faf0e6ddcb4",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/unit",
+    "bytes": 5,
+    "sha256": "2e002e4a79ed8d45c56234aed260e6974fa18641e3d2c5bbef9c6d5b7d61d23f",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/hwmon_temperature/zero",
+    "bytes": 2,
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/macos_network/oversize",
+    "bytes": 524289,
+    "sha256": "eda6e9fb7e8bed184a10de09683556f9fc1720ffc1af5fa73f4891c7dec70bca",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/macos_network/truncated",
+    "bytes": 159,
+    "sha256": "f644fd523c77fd514b221ea1dbae7424795bca53489f22db2941e10fac5b8fb8",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/macos_network/valid",
+    "bytes": 160,
+    "sha256": "94255dde63d9bb487c0d7a9c2fc062ddb340821d44d097240b798711f6f0c0dc",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/macos_network/zero-index",
+    "bytes": 160,
+    "sha256": "8676f4af58407733dcdecd6a288dff60f6f3995e2015b3d473f7342751a9a1c8",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/meminfo/duplicate",
+    "bytes": 58,
+    "sha256": "607dc52b72ebffe90c9694543f224e0966a0962fd4fc41a974a45ac754e24b99",
+    "lines": 3
+  },
+  {
+    "path": "fuzz/corpus/meminfo/invalid-utf8",
+    "bytes": 15,
+    "sha256": "2d63990f6357ec738cfbde14d49ee9986a561a232a7c9ea13d2c24f5862a73a4",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/meminfo/missing-key",
+    "bytes": 34,
+    "sha256": "5e256eca1408726fec492d857d2a48a5313f1a7ca6f3c69526056e155582c7c3",
+    "lines": 2
+  },
+  {
+    "path": "fuzz/corpus/meminfo/overflow",
+    "bytes": 53,
+    "sha256": "fc7e9eec387fab41d760a462fdc503a27078f7ec3b0d5e11e66d6c845513d0f0",
+    "lines": 2
+  },
+  {
+    "path": "fuzz/corpus/meminfo/oversize",
+    "bytes": 4097,
+    "sha256": "3e97197f4b8d46a893067c94ab15e195e3d97fb5f24eede5ef047b571240d92b",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/meminfo/valid",
+    "bytes": 39,
+    "sha256": "e5bcf466233d267fe797a6a8fb43632417e61e1fbf21e74599b09e9c65ec76ac",
+    "lines": 2
+  },
+  {
+    "path": "fuzz/corpus/meminfo/wrong-unit",
+    "bytes": 39,
+    "sha256": "bb8bd09a46f47f2be8859fb3133e4924ef7280f8c87bf1b81867e69f381af43a",
+    "lines": 2
+  },
+  {
+    "path": "fuzz/corpus/meminfo/zero",
+    "bytes": 37,
+    "sha256": "2da6b66cb7f6e1b1f6740feeb9daab50ea58c5b834ca2ad0415221435f61bf2c",
+    "lines": 2
+  },
+  {
+    "path": "fuzz/corpus/network_dev/columns",
+    "bytes": 153,
+    "sha256": "4d763d75127cab792f9b64bf5b12b91fe60e4a7b3333deb6d0d7b8f800f9fb8d",
+    "lines": 3
+  },
+  {
+    "path": "fuzz/corpus/network_dev/duplicate",
+    "bytes": 216,
+    "sha256": "c9af5c60436b29ea64cd1be0c922e16292026d7247399cf93d128b56150ef663",
+    "lines": 4
+  },
+  {
+    "path": "fuzz/corpus/network_dev/empty",
+    "bytes": 144,
+    "sha256": "e99c32ed208a08b63b97bfabdb4f8f4610a993052be76c0af4622d39a1c6e66a",
+    "lines": 2
+  },
+  {
+    "path": "fuzz/corpus/network_dev/overflow",
+    "bytes": 201,
+    "sha256": "1c1590d2c817c74a644a390e85747477d9a7b0c6c0a597fa980bc61d4685a1e7",
+    "lines": 3
+  },
+  {
+    "path": "fuzz/corpus/network_dev/valid",
+    "bytes": 184,
+    "sha256": "f89567669b61490a3c5279b5c8056c30303088a6e916a37620aa3ef3e587e08a",
+    "lines": 3
+  },
+  {
+    "path": "fuzz/corpus/network_dev/zero",
+    "bytes": 180,
+    "sha256": "9816520076cb5271cf49a3cfe1e8dec7895537b23a02e3f60a6eb371173856ff",
+    "lines": 3
+  },
+  {
+    "path": "fuzz/corpus/power_supply/battery-type",
+    "bytes": 8,
+    "sha256": "314fc5420fec3cce784b91a867585974df652499277ad366bf739055141d0e60",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/power_supply/bool",
+    "bytes": 2,
+    "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/power_supply/invalid-utf8",
+    "bytes": 1,
+    "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/power_supply/mains-type",
+    "bytes": 6,
+    "sha256": "d49ee06945a80563c3192f20b86f655aba185ec403a7b5c3d51379490281e1b3",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/power_supply/max-percent",
+    "bytes": 4,
+    "sha256": "eea8254c7500ba3de996aa8ad6af399183f04e17d4a8102fde539dbc93a90012",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/power_supply/nan",
+    "bytes": 4,
+    "sha256": "3f3ea8a1afc0f5a6ce7ace3152abfdaa52ea3726c4f66e728790f42cbc005901",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/power_supply/negative",
+    "bytes": 3,
+    "sha256": "ee3aa64bb94a50845d5024cd4bd20202a4567aed5cd5328c0d97e9920775fc28",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/power_supply/overflow",
+    "bytes": 34,
+    "sha256": "3ba2c86a281fbdbcfffc01df15a5b4c3f9934542435c913ea675cd053e53b728",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/power_supply/oversize",
+    "bytes": 129,
+    "sha256": "0ec9eb33e74510bcdd1f2ea55206e82f21649c5c2becbf2b433eb475b34c01bd",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/power_supply/zero",
+    "bytes": 2,
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/snapshot_json/compact-expansion.json",
+    "bytes": 23846,
+    "sha256": "97efb0ad54eee0119b2fd9c0a4512c0f5b8caf26a7d65bb619d44d6b6be00ea6",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/snapshot_json/valid-v1.json",
+    "bytes": 5530,
+    "sha256": "351562586dccdcc3f8c13df639b79c2d499a43b837b1a322be13e0e705cfbb07",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/storage_capacity/max",
+    "bytes": 17,
+    "sha256": "4bdd79c2ae0c8a69e0e0c815ef6637e80e9fc6033ab0187ccae023b9ec7aae89",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/storage_capacity/negative",
+    "bytes": 2,
+    "sha256": "1bad6b8cf97131fceab8543e81f7757195fbb1d36b376ee994ad1cf17699c464",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/storage_capacity/overflow",
+    "bytes": 17,
+    "sha256": "5492a8ba665c81a5fa5419ccdcbfb3cbf3ba6088cd7e9a9f16dd8f69b750939a",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/storage_capacity/oversize",
+    "bytes": 129,
+    "sha256": "beab3966389f2ad495c7db4f9dc029f16aae31c76af3ebefd9754faf0e6ddcb4",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/storage_capacity/units",
+    "bytes": 5,
+    "sha256": "ee0b5a57e82f02a327158238bcc8cb8dea2902accbdbab4795eaa9430891cd98",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/storage_capacity/valid",
+    "bytes": 1,
+    "sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/storage_capacity/zero",
+    "bytes": 1,
+    "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/uptime/invalid-utf8",
+    "bytes": 7,
+    "sha256": "d5815a47d617c8d69b42b587c18d1f6064fb21f2cfa467320c01f1e695af39b5",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/uptime/max",
+    "bytes": 29,
+    "sha256": "f77bdf6be630adaf388082d7c9f39e50a153a5ea865cd733bbae3f2c93187285",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/uptime/missing-idle",
+    "bytes": 7,
+    "sha256": "b5311e0e7de28f59cfbe7e84b950bcf27e3b37ed21915cb43092e3f914261306",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/uptime/nan",
+    "bytes": 9,
+    "sha256": "d8ff3d9c1bf5eaeb5656d30d95743326ce9087995b0ae6a1da1c6e1cbd26d361",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/uptime/negative",
+    "bytes": 11,
+    "sha256": "4c72b9fa6347029db756f154d626eaf839b33439e9f102d06793bd434618178f",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/uptime/overflow",
+    "bytes": 29,
+    "sha256": "c644380af74fad3a42f58bde037a422c9c68aa1433f39062ddd02bbc7901b154",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/uptime/oversize",
+    "bytes": 257,
+    "sha256": "409339361ec2c199ca6a3b2c1134e268ad96880bf73b3a3ef4184ba18805a206",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/corpus/uptime/valid",
+    "bytes": 14,
+    "sha256": "0de9d9916ab2bd907bed4e5063d5c13fcf7e34007c9ee3cf18e8735658484bd8",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/uptime/zero",
+    "bytes": 10,
+    "sha256": "245da3b1c980ec4b1a568274a71268270d6e1493ffde2a8de8104c57181e5953",
+    "lines": 1
+  },
+  {
+    "path": "fuzz/corpus/windows_cpu_groups/valid_group_table",
+    "bytes": 128,
+    "sha256": "778f4fa6c9f5bfa1190d5783758b37e592722f1f0db8a41262f70e6c9ebda93a",
+    "lines": 0
+  },
+  {
+    "path": "fuzz/fuzz_targets/cli_args.rs",
+    "bytes": 612,
+    "sha256": "36148719031a80caf6213edd659dca60b832be36276fabc1eb81afa2bda36b67",
+    "lines": 19
+  },
+  {
+    "path": "fuzz/fuzz_targets/common.rs",
+    "bytes": 515,
+    "sha256": "1476053e45d1eea01e806b3da1919d31389ad83dc28a851b1570e9b4d0c279df",
+    "lines": 14
+  },
+  {
+    "path": "fuzz/fuzz_targets/cpu_stat.rs",
+    "bytes": 961,
+    "sha256": "b5caae85d85687948046a6a69d2aa8f5e8459181523af09d7baf8f330e1fd2e4",
+    "lines": 26
+  },
+  {
+    "path": "fuzz/fuzz_targets/dmi_text.rs",
+    "bytes": 1447,
+    "sha256": "15d0d4e7223d3f56c233b2c19b4e4eafe295a5c11b0e72c70ba98a2bb001460d",
+    "lines": 35
+  },
+  {
+    "path": "fuzz/fuzz_targets/hwmon_temperature.rs",
+    "bytes": 1854,
+    "sha256": "ce29c7b4087018f1705b1a453ad42f0de4fae2be7c1de2cac64479bb82a8d1a5",
+    "lines": 46
+  },
+  {
+    "path": "fuzz/fuzz_targets/macos_network.rs",
+    "bytes": 1271,
+    "sha256": "36135689e916e83047261dd554a6f30e0342b5fd6e1822deff534fb1d2f84580",
+    "lines": 31
+  },
+  {
+    "path": "fuzz/fuzz_targets/meminfo.rs",
+    "bytes": 1758,
+    "sha256": "df0a74daf407b64a5fd37f5508792fd1d7c6719470003e5eab307633df67d8c5",
+    "lines": 39
+  },
+  {
+    "path": "fuzz/fuzz_targets/network_dev.rs",
+    "bytes": 1882,
+    "sha256": "419d04feaa571b115c77854e8c4d598512b5d4f3881b3a5e5436575ad454e8b2",
+    "lines": 42
+  },
+  {
+    "path": "fuzz/fuzz_targets/power_supply.rs",
+    "bytes": 1384,
+    "sha256": "794d3957340c1c4d62aa4b34b1cccc29d26124823a2ea512290257e512b66f55",
+    "lines": 36
+  },
+  {
+    "path": "fuzz/fuzz_targets/snapshot_json.rs",
+    "bytes": 355,
+    "sha256": "2f426bb28084184f007837b9ec502ac5c05dc4674092ffc00a5f3f34fc889fe8",
+    "lines": 10
+  },
+  {
+    "path": "fuzz/fuzz_targets/storage_capacity.rs",
+    "bytes": 638,
+    "sha256": "19526b788c31f07345c1ccd64c0506c98e9a9b7586387b7c30e56d5064151680",
+    "lines": 18
+  },
+  {
+    "path": "fuzz/fuzz_targets/uptime.rs",
+    "bytes": 957,
+    "sha256": "69f16636f0265894fa4c6f8f7478d127c4b3aaca5523a87edd259d2eb7c8a9b1",
+    "lines": 28
+  },
+  {
+    "path": "fuzz/fuzz_targets/windows_cpu_groups.rs",
+    "bytes": 578,
+    "sha256": "bd72d6b637764384c19939a39f130487543c712410d8052c82820fa63cb0b16a",
+    "lines": 17
+  },
+  {
+    "path": "fuzz/src/lib.rs",
+    "bytes": 2335,
+    "sha256": "ef5ac6e33709d5cb4669183cfa58e35cee150eb895efbde595caba42481b7399",
+    "lines": 59
+  },
+  {
+    "path": "mise.toml",
+    "bytes": 24,
+    "sha256": "615ff49dd9b59bffd08f9e9af003cbd4f3a42ba2d105fdcd77ef3514f17957fa",
+    "lines": 2
+  },
+  {
+    "path": "rust-toolchain.toml",
+    "bytes": 86,
+    "sha256": "2c388180d0d5476ed0d69975b382feaf709bb072d51a342add3030cfb3d1bdb2",
+    "lines": 4
+  },
+  {
+    "path": "scripts/build_c_example.ps1",
+    "bytes": 5405,
+    "sha256": "23ee64bb808f6cb66bda1fc8bc9d686f6e950b27930dff97a1ab9f1a4429e725",
+    "lines": 90
+  },
+  {
+    "path": "scripts/check.ps1",
+    "bytes": 1596,
+    "sha256": "ef9b117caeddeb3dcc66e8852c9e07d0c20f43a80480fca91a1543cd413b7db2",
+    "lines": 29
+  },
+  {
+    "path": "scripts/check_miri.ps1",
+    "bytes": 691,
+    "sha256": "3bf05f98d397c24e8d6bd636e0362146b85845c4a69f1baae4f1d8b8376b84b0",
+    "lines": 17
+  },
+  {
+    "path": "scripts/check_packages.py",
+    "bytes": 7334,
+    "sha256": "dae41a93a21c789f3c53cdc396dba07f366675dda8eeda0b5d579b4db8e35f66",
+    "lines": 202
+  },
+  {
+    "path": "scripts/check_project.py",
+    "bytes": 3355,
+    "sha256": "8d3fa913edc68181319dd735731b558854f4ac48c351186924e4971eeeaf1d78",
+    "lines": 97
+  },
+  {
+    "path": "scripts/check_schema.py",
+    "bytes": 1818,
+    "sha256": "ee299bf6cc03a6cf7dbba4b0e689d9497ef0732c4740450b61c934b1eb853ae7",
+    "lines": 53
+  },
+  {
+    "path": "scripts/cli_bundle.py",
+    "bytes": 22271,
+    "sha256": "3ae04ae34da8ef438d17a9ae0b0d0247b652556694031d2a3075a757260d593a",
+    "lines": 521
+  },
+  {
+    "path": "scripts/cli_bundle_smoke.py",
+    "bytes": 7098,
+    "sha256": "36d9b2b491ab8a9a2f39d852a1db4dbb5486590e246ec611c6c49e483e63b584",
+    "lines": 189
+  },
+  {
+    "path": "scripts/ffi_bundle_smoke.py",
+    "bytes": 9023,
+    "sha256": "4ab7ce232c76289d05c29bf3b67f075fb897ce8852039759d6257225d4e39d1a",
+    "lines": 265
+  },
+  {
+    "path": "scripts/license_inventory.py",
+    "bytes": 1070,
+    "sha256": "239ca6b36df47c581e886f0f85afdef3bf510bbad066bc02a71e7b46d1d9ac71",
+    "lines": 28
+  },
+  {
+    "path": "scripts/linux_battery_smoke.py",
+    "bytes": 10756,
+    "sha256": "94cacecd245ceeb84fb12ad00a5e5f755f60f0775da93c9020757cf2386e55e3",
+    "lines": 291
+  },
+  {
+    "path": "scripts/linux_container_smoke.py",
+    "bytes": 18677,
+    "sha256": "710e2dd4d1a26ee7e28596eb75a17b14c830fec935215986522cd2b8bca0fe2c",
+    "lines": 469
+  },
+  {
+    "path": "scripts/linux_display_smoke.py",
+    "bytes": 9363,
+    "sha256": "9ab082bc03aef4eda4a2d7711840521afeb23f9eca56a3ba8b0a545f1e15b950",
+    "lines": 249
+  },
+  {
+    "path": "scripts/linux_dynamic_smoke.py",
+    "bytes": 16274,
+    "sha256": "43ee91112533c458322af2a06b95b985b730d3b29ba02f7d5a7af24e2d9aea45",
+    "lines": 412
+  },
+  {
+    "path": "scripts/linux_gpu_smoke.py",
+    "bytes": 7737,
+    "sha256": "ed55244d946ef095de387909907619cdf1e9ef6bfbc94371c8f0c5e44e29969c",
+    "lines": 210
+  },
+  {
+    "path": "scripts/linux_hwmon_smoke.py",
+    "bytes": 11945,
+    "sha256": "08fc363af4ed3b75c882e076ab77c60ec79c7dd84ddd080dbecbd70a3a873ffc",
+    "lines": 313
+  },
+  {
+    "path": "scripts/linux_memory_smoke.py",
+    "bytes": 9311,
+    "sha256": "06027400f19586be6a24455eef01b35878f6a84daa97e34826d12db1ccd6f950",
+    "lines": 235
+  },
+  {
+    "path": "scripts/linux_storage_smoke.py",
+    "bytes": 8329,
+    "sha256": "6f47bbada2e2adf299fa4a73f6256eb8ce8aae454157247fed273751c94df5ed",
+    "lines": 220
+  },
+  {
+    "path": "scripts/macos_cpu_smoke.py",
+    "bytes": 8611,
+    "sha256": "8d58bf01af25b1a5d4eced93937e51fc518b6f244d4c8127cdd083ea8ebf737f",
+    "lines": 242
+  },
+  {
+    "path": "scripts/macos_display_probe.py",
+    "bytes": 6809,
+    "sha256": "036f0939bb84e6389da93d5ddbf761f9a5f3a52639df74c75e54e4051a4a85c7",
+    "lines": 165
+  },
+  {
+    "path": "scripts/macos_memory_smoke.py",
+    "bytes": 8696,
+    "sha256": "89ceeb5a77d019fa31e10abd48eba73b072808906d85fa4c9be653bc047de642",
+    "lines": 245
+  },
+  {
+    "path": "scripts/macos_uptime_smoke.py",
+    "bytes": 7930,
+    "sha256": "c7f6a40ecf8f544ec92714fc7d9db86b47db613c4faf606a9e8fcb62a53f4f7c",
+    "lines": 223
+  },
+  {
+    "path": "scripts/native_smoke.py",
+    "bytes": 59009,
+    "sha256": "38ad9bf66996b1f08ed230366a8b5caa3ea0febc08888d3c0584ce6ffede1aa8",
+    "lines": 1409
+  },
+  {
+    "path": "scripts/windows_cpu_groups_smoke.py",
+    "bytes": 7589,
+    "sha256": "33443a3994b97c792373ddc603968f62bbb26c938c20dabea837ac894b4a2657",
+    "lines": 210
+  },
+  {
+    "path": "scripts/windows_cpu_smoke.py",
+    "bytes": 7686,
+    "sha256": "0dfda3f23f4baa8575dbec54d15e7c1c59f34f8c385147adea063e11fbc735d3",
+    "lines": 229
+  },
+  {
+    "path": "scripts/windows_hardware_summary_smoke.py",
+    "bytes": 9026,
+    "sha256": "6a30a49aba0a1347d1826ca7bcceac19f7e10b0a266d953016b2c60bf6f37a88",
+    "lines": 264
+  },
+  {
+    "path": "scripts/windows_memory_smoke.py",
+    "bytes": 7607,
+    "sha256": "c3be6a0fddb4389e7442db0f9f57edb21fee473bbe79b91d0cfe0910bc9b7d80",
+    "lines": 220
+  },
+  {
+    "path": "scripts/windows_uptime_smoke.py",
+    "bytes": 7367,
+    "sha256": "4df9136f78bbb66af6f8137885a7522f66598e5aaef89cd688373fd5fc8811da",
+    "lines": 218
+  },
+  {
+    "path": "tests/fixtures/snapshot-v1.json",
+    "bytes": 5530,
+    "sha256": "351562586dccdcc3f8c13df639b79c2d499a43b837b1a322be13e0e705cfbb07",
+    "lines": 1
+  },
+  {
+    "path": "tests/test_cli_bundle.py",
+    "bytes": 8353,
+    "sha256": "0ef8124d53fedada8d79d080acfb4293be18ad4f86f3b916252e144337f161cf",
+    "lines": 208
+  },
+  {
+    "path": "tests/test_cli_text.py",
+    "bytes": 8609,
+    "sha256": "51e8e54742fee47b12ffda4e54843d56b35498fa94c76de21d5c6acab3f550c4",
+    "lines": 187
+  },
+  {
+    "path": "tests/test_ffi_bundle.py",
+    "bytes": 5727,
+    "sha256": "86246889cc5bdede6787f7ee16788dac5bbe1d72e69c3bc278a30091f68a724b",
+    "lines": 147
+  },
+  {
+    "path": "tests/test_linux_battery_smoke.py",
+    "bytes": 5870,
+    "sha256": "124db167b495cd31b25f224451a1d5b55296647d152d8e5584ff9cce9e034d15",
+    "lines": 138
+  },
+  {
+    "path": "tests/test_linux_cli_bundle.py",
+    "bytes": 7812,
+    "sha256": "f3c3e2a9cf94de7deac3e73c6d9c63567abe2e1e2211c4592847955dc71bb126",
+    "lines": 187
+  },
+  {
+    "path": "tests/test_linux_container_smoke.py",
+    "bytes": 8948,
+    "sha256": "b9683a9c234ff4fe092666400ed9e40205aedf14f17a1e2578065a4e78be830d",
+    "lines": 218
+  },
+  {
+    "path": "tests/test_linux_display_evidence.py",
+    "bytes": 4961,
+    "sha256": "60eed8ce9120ff10c6558a00112b02473b1faf86df84796a00288c3618b09776",
+    "lines": 122
+  },
+  {
+    "path": "tests/test_linux_dynamic_smoke.py",
+    "bytes": 4005,
+    "sha256": "fd076c1df72d9c96c9dbe106c7763498c244ccb810cb0a30cc81cf5bddfd0221",
+    "lines": 101
+  },
+  {
+    "path": "tests/test_linux_ffi_bundle.py",
+    "bytes": 10158,
+    "sha256": "1dd67fe97fcb0c58ecad941f8fd254aebfd4530b3c0196e284759a6204cb5e4d",
+    "lines": 244
+  },
+  {
+    "path": "tests/test_linux_gpu_evidence.py",
+    "bytes": 4423,
+    "sha256": "a885c39266cf64a79c11cc4e3acf60ba663a2297d1a8bc7606e72f3b55723b49",
+    "lines": 120
+  },
+  {
+    "path": "tests/test_linux_hwmon_smoke.py",
+    "bytes": 5672,
+    "sha256": "e846361f2a3f984eb22cbcb9add52d472d8c99c7a15811889e5c8bf1d71c3c1e",
+    "lines": 148
+  },
+  {
+    "path": "tests/test_linux_memory_smoke.py",
+    "bytes": 4490,
+    "sha256": "9fb1c72c069d2d4c305545e74d92a34ee927ee1822f22b3967a807677e246d3b",
+    "lines": 117
+  },
+  {
+    "path": "tests/test_linux_storage_smoke.py",
+    "bytes": 5688,
+    "sha256": "0e20ea85ab98629c9e91059b9ce9afa96701c00ff3491b52c35929efb52eab53",
+    "lines": 131
+  },
+  {
+    "path": "tests/test_macos_cpu_smoke.py",
+    "bytes": 5269,
+    "sha256": "ec72584dea00b62254a5dc4496ce815d2f2adccf61f0ac2bcea38b2b0fb5c222",
+    "lines": 148
+  },
+  {
+    "path": "tests/test_macos_display_evidence.py",
+    "bytes": 6959,
+    "sha256": "cdea70b566ca900c664ec949b4832bcaef8b8761a1d2eebb02df81133f81a97a",
+    "lines": 179
+  },
+  {
+    "path": "tests/test_macos_gpu_evidence.py",
+    "bytes": 3594,
+    "sha256": "8148a8de9fee872fa69de4d39077b36d463f4e40e38e421bfe4dc9bcd22a28b9",
+    "lines": 97
+  },
+  {
+    "path": "tests/test_macos_memory_smoke.py",
+    "bytes": 5840,
+    "sha256": "2ee1e11db8a072609f9f86e420583fa1aa6b1487763a9b5e0884595da211a67e",
+    "lines": 168
+  },
+  {
+    "path": "tests/test_macos_uptime_smoke.py",
+    "bytes": 3427,
+    "sha256": "04f66daea09ebf4351a5c83eb8d1d37d1814bac5c84cd04295562c8e19edf04d",
+    "lines": 94
+  },
+  {
+    "path": "tests/test_native_smoke.py",
+    "bytes": 8339,
+    "sha256": "5812774858faba771c4ce86e8bb2bf3445ef89a059a658a35fb4785cdb9bbe9e",
+    "lines": 210
+  },
+  {
+    "path": "tests/test_process_diagnostics.py",
+    "bytes": 9292,
+    "sha256": "eae892d6b0ddf82d027925c3bbb57ac02d408ed4a17a1755bb45fbcea8fbef44",
+    "lines": 208
+  },
+  {
+    "path": "tests/test_project_checks.py",
+    "bytes": 1619,
+    "sha256": "2d4ea2ed9dceecc039607c1b0fbeb59bd6b5099e65bc3351063526712895c028",
+    "lines": 43
+  },
+  {
+    "path": "tests/test_storage_text.py",
+    "bytes": 3389,
+    "sha256": "82e6e7c4e869c492741c9e2d7787a2a4c371895226e1714b97ce4281d55c272e",
+    "lines": 79
+  },
+  {
+    "path": "tests/test_windows_cpu_groups_smoke.py",
+    "bytes": 3749,
+    "sha256": "ca46d87ec1728f6ca3d7cdaa5f84510f76c48b23bec06b093001a9dbf2477e07",
+    "lines": 107
+  },
+  {
+    "path": "tests/test_windows_cpu_smoke.py",
+    "bytes": 4448,
+    "sha256": "19989aaaa266a746e1a4d0c0977a1d2d3426a50256a9b0688ac55c0fb26027f9",
+    "lines": 128
+  },
+  {
+    "path": "tests/test_windows_display_evidence.py",
+    "bytes": 3724,
+    "sha256": "db86522fc27952294ad3153919b76e8f8d583cbee71dc533011a96e0a03660fe",
+    "lines": 97
+  },
+  {
+    "path": "tests/test_windows_gpu_evidence.py",
+    "bytes": 4411,
+    "sha256": "9a97d5e04e9500d689ebe7bae7f78d0e0ca8e98ae494c09088dac2c02af13ad3",
+    "lines": 120
+  },
+  {
+    "path": "tests/test_windows_hardware_summary_smoke.py",
+    "bytes": 6339,
+    "sha256": "38fbe14af0b2b964e6a459b0df58459df29bfffdb371753ed07add14d009e6d0",
+    "lines": 183
+  },
+  {
+    "path": "tests/test_windows_memory_smoke.py",
+    "bytes": 3488,
+    "sha256": "edbe3a4fb73ebc8a588db89d6c5a59ab83b04479fc5f2f0c0cbced656c9a123e",
+    "lines": 100
+  },
+  {
+    "path": "tests/test_windows_uptime_smoke.py",
+    "bytes": 2988,
+    "sha256": "41698e38c3630b384884af0468f69bd6e5d58f6c46b339a07f9eb62342294e9a",
+    "lines": 81
+  }
+]

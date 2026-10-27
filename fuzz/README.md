@@ -1,5 +1,7 @@
 # Fuzz 目标
 
+2026-10-27 v0.1 审计回归：[最终 CI 40423886083](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40423886083)12 个现有目标各至少 60 秒，4 项 harness 通过；未修改目标或种子。[验收索引](../docs/evidence/v01-audit-ci-40423886083.json)保留实际次数与日志哈希，早期取消的运行不作为通过证据。
+
 2026-10-26 Linux SDK 回归：[CI 40304816716](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40304816716)十二个既有目标各至少 60 秒，4 项 harness 通过。未改目标、解析器或种子；实际次数与日志哈希见[索引](../docs/evidence/linux-ffi-sdk-ci-40304816716.json)。
 
 2026-10-26 Windows SDK 回归：[CI 40249181949](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40249181949)全部十二个既有目标各至少 60 秒，4 项 harness 通过。未修改目标、解析器或种子；计数与日志哈希见[本轮索引](../docs/evidence/windows-ffi-sdk-ci-40249181949.json)。

@@ -1,0 +1,693 @@
+{
+  "report_version": 1,
+  "date": "2026-10-27",
+  "source_commit": "d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7",
+  "overall": "passed",
+  "run_id": 40423886083,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40423886083",
+  "event": "push",
+  "baseline": "a0389304f451059af8bc49b93841fe80e19f949a",
+  "reports": {
+    "v01-audit-native-windows-native-evidence-40423886083.json": {
+      "path": "v01-audit-native-windows-native-evidence-40423886083.json",
+      "sha256": "617a37f22acae6c79423b355c66e32e17a1ccbcc2e2ec8ac98696b880597b99b",
+      "original_report_sha256": "4552e492e180102215594fadcbb4c89af7c6bc43d52eb2e18201c81b6d00f014"
+    },
+    "v01-audit-native-windows-windows-cpu-evidence-40423886083.json": {
+      "path": "v01-audit-native-windows-windows-cpu-evidence-40423886083.json",
+      "sha256": "14be7688919b9ee24b7c8f1d06ab7373ce99e28eeae8aa393b7171a7299727d5",
+      "original_report_sha256": "842421e050b4752a87c0029b087962a8ed754e87e597b306c3fa04f1cc096b90"
+    },
+    "v01-audit-native-windows-windows-cpu-groups-evidence-40423886083.json": {
+      "path": "v01-audit-native-windows-windows-cpu-groups-evidence-40423886083.json",
+      "sha256": "85b10a093e5aae0e37a443cad701b1184d36605992b1a1ca9b1cd9ca603da5fe",
+      "original_report_sha256": "91de253b070fd6c59799f6106581947bdff0a9ffda608e1da73b116a3ae95127"
+    },
+    "v01-audit-native-windows-windows-memory-evidence-40423886083.json": {
+      "path": "v01-audit-native-windows-windows-memory-evidence-40423886083.json",
+      "sha256": "c2e9f3973abfb8da70b79298532d1fe7d4a038714dce36e954fd0eec933488e3",
+      "original_report_sha256": "ff3d700881657ca1ab981db9acd5422edf2a37a39f5c4486eade387495438ad6"
+    },
+    "v01-audit-native-windows-windows-uptime-evidence-40423886083.json": {
+      "path": "v01-audit-native-windows-windows-uptime-evidence-40423886083.json",
+      "sha256": "0b3fe426d48b8fd356c3a78c1f4535ca4694707aad304652df53ad91da564d91",
+      "original_report_sha256": "1a06c7af8fd64019a1335eb1ce9107fcb3f5463978578e757d70eb789de5d031"
+    },
+    "v01-audit-native-windows-windows-hardware-summary-evidence-40423886083.json": {
+      "path": "v01-audit-native-windows-windows-hardware-summary-evidence-40423886083.json",
+      "sha256": "c931eca4622cffb98671424511947538bfbba1dbf6cf15c1cd002377f59cd2e0",
+      "original_report_sha256": "ed0213f7f4bb0e7a7e170d354f1c905acf4924a03b74a70535f37848869fc38f"
+    },
+    "v01-audit-packages-windows-40423886083.json": {
+      "path": "v01-audit-packages-windows-40423886083.json",
+      "sha256": "5f6babc03d9e412706172abfcc4f58295f87c5c577819bb419340116ec15215d",
+      "original_report_sha256": "92b53a4dec007b02fa4ae01b4fe111c641525f8218988081b08cbfc591d28c02"
+    },
+    "v01-audit-sdk-windows-40423886083.json": {
+      "path": "v01-audit-sdk-windows-40423886083.json",
+      "sha256": "d531a88ee267605e933d7dc6e27969e742482ccab84d11c3b144afba10dd3956",
+      "original_report_sha256": "ff8a19908efc90534f43d74661296d24df0cf8136acd9d5b34c182a4746e7c2a"
+    },
+    "v01-audit-cli-windows-40423886083.json": {
+      "path": "v01-audit-cli-windows-40423886083.json",
+      "sha256": "deafb3d0bf8a028d6078993d9d0165a385364fc66f52b5f1ff01125c5b39bc18",
+      "original_report_sha256": "f3836f524c071f8800c85ca30467d5c992711f8b7c4151998562b218be56b160"
+    },
+    "v01-audit-native-linux-native-evidence-40423886083.json": {
+      "path": "v01-audit-native-linux-native-evidence-40423886083.json",
+      "sha256": "e05ce1d66225fe4c6e9ddbcc9e5e4e374e109a7c929e9aafe004d4c6af353abc",
+      "original_report_sha256": "e05ce1d66225fe4c6e9ddbcc9e5e4e374e109a7c929e9aafe004d4c6af353abc"
+    },
+    "v01-audit-packages-linux-40423886083.json": {
+      "path": "v01-audit-packages-linux-40423886083.json",
+      "sha256": "5c44e39c22e6b90178d49814037a951210b3ed98c55ea2b3d785166ae15c030a",
+      "original_report_sha256": "5c44e39c22e6b90178d49814037a951210b3ed98c55ea2b3d785166ae15c030a"
+    },
+    "v01-audit-sdk-linux-40423886083.json": {
+      "path": "v01-audit-sdk-linux-40423886083.json",
+      "sha256": "f030a42bc195fbf061f25849f22d73fe39072f4070c5c2e6e25e05c5b1ab05ce",
+      "original_report_sha256": "f030a42bc195fbf061f25849f22d73fe39072f4070c5c2e6e25e05c5b1ab05ce"
+    },
+    "v01-audit-cli-linux-40423886083.json": {
+      "path": "v01-audit-cli-linux-40423886083.json",
+      "sha256": "7562e4aae1aaeb4675087dbccfaa9f9213ca2240bdfa9385c76ed35aeee9ea92",
+      "original_report_sha256": "7562e4aae1aaeb4675087dbccfaa9f9213ca2240bdfa9385c76ed35aeee9ea92"
+    },
+    "v01-audit-native-darwin-native-evidence-40423886083.json": {
+      "path": "v01-audit-native-darwin-native-evidence-40423886083.json",
+      "sha256": "a27e5dc145881f323bdbdb4b8e82b88926d4297ea87b803736119c4fa44d93c7",
+      "original_report_sha256": "a27e5dc145881f323bdbdb4b8e82b88926d4297ea87b803736119c4fa44d93c7"
+    },
+    "v01-audit-native-darwin-macos-cpu-evidence-40423886083.json": {
+      "path": "v01-audit-native-darwin-macos-cpu-evidence-40423886083.json",
+      "sha256": "ce69b7514d2422da663277c044e4bbde10561f275e31a23e3f6ad1e45a98acfe",
+      "original_report_sha256": "ce69b7514d2422da663277c044e4bbde10561f275e31a23e3f6ad1e45a98acfe"
+    },
+    "v01-audit-native-darwin-macos-memory-evidence-40423886083.json": {
+      "path": "v01-audit-native-darwin-macos-memory-evidence-40423886083.json",
+      "sha256": "0be4c0f246682a1008695d488c217d9597804dd48d106b54c211f12bd6e4c2b9",
+      "original_report_sha256": "0be4c0f246682a1008695d488c217d9597804dd48d106b54c211f12bd6e4c2b9"
+    },
+    "v01-audit-native-darwin-macos-uptime-evidence-40423886083.json": {
+      "path": "v01-audit-native-darwin-macos-uptime-evidence-40423886083.json",
+      "sha256": "435a679737e845b42287fe928374f6f13f9a2b3d70c50754c8af980dc9fe9f94",
+      "original_report_sha256": "435a679737e845b42287fe928374f6f13f9a2b3d70c50754c8af980dc9fe9f94"
+    },
+    "v01-audit-packages-darwin-40423886083.json": {
+      "path": "v01-audit-packages-darwin-40423886083.json",
+      "sha256": "9570648bcc18ceed7833ac8136fda99997fdc67b373cfbe16d07e81126ca41d2",
+      "original_report_sha256": "9570648bcc18ceed7833ac8136fda99997fdc67b373cfbe16d07e81126ca41d2"
+    },
+    "v01-audit-container-linux-battery-evidence-40423886083.json": {
+      "path": "v01-audit-container-linux-battery-evidence-40423886083.json",
+      "sha256": "5b13838b53c7c69ef450d3b9f4056d132c7eac2fe97ffef401bd1e523e416f12",
+      "original_report_sha256": "5b13838b53c7c69ef450d3b9f4056d132c7eac2fe97ffef401bd1e523e416f12"
+    },
+    "v01-audit-container-linux-container-evidence-40423886083.json": {
+      "path": "v01-audit-container-linux-container-evidence-40423886083.json",
+      "sha256": "44405c4d23a6156acd7020fab2fae60b4c0d835c2d04d8ead6d7ba1c096cc257",
+      "original_report_sha256": "44405c4d23a6156acd7020fab2fae60b4c0d835c2d04d8ead6d7ba1c096cc257"
+    },
+    "v01-audit-container-linux-display-evidence-40423886083.json": {
+      "path": "v01-audit-container-linux-display-evidence-40423886083.json",
+      "sha256": "dabf73df95b1504bc5c70db2b97038a3d5d17fd12737c788b788cc1a80ab702f",
+      "original_report_sha256": "dabf73df95b1504bc5c70db2b97038a3d5d17fd12737c788b788cc1a80ab702f"
+    },
+    "v01-audit-container-linux-dynamic-evidence-40423886083.json": {
+      "path": "v01-audit-container-linux-dynamic-evidence-40423886083.json",
+      "sha256": "b5d8bbf5f552a2b4d0c5ca6e0e61c784e42ee13d7ea8e629f479770d3e09259b",
+      "original_report_sha256": "b5d8bbf5f552a2b4d0c5ca6e0e61c784e42ee13d7ea8e629f479770d3e09259b"
+    },
+    "v01-audit-container-linux-gpu-evidence-40423886083.json": {
+      "path": "v01-audit-container-linux-gpu-evidence-40423886083.json",
+      "sha256": "e990d0b21b23c7e0db5feccb51a9764ece29bfb1544eba07a460582b3362d18b",
+      "original_report_sha256": "e990d0b21b23c7e0db5feccb51a9764ece29bfb1544eba07a460582b3362d18b"
+    },
+    "v01-audit-container-linux-hwmon-evidence-40423886083.json": {
+      "path": "v01-audit-container-linux-hwmon-evidence-40423886083.json",
+      "sha256": "e956920fdbd2b5fe595fd9bac828ba06983dc598e88e77e9902c257405e4a054",
+      "original_report_sha256": "e956920fdbd2b5fe595fd9bac828ba06983dc598e88e77e9902c257405e4a054"
+    },
+    "v01-audit-container-linux-memory-evidence-40423886083.json": {
+      "path": "v01-audit-container-linux-memory-evidence-40423886083.json",
+      "sha256": "d22e776f3a86da3088a734dd1a2cbe3d60c9be7dd760c490e23656b11abc851a",
+      "original_report_sha256": "d22e776f3a86da3088a734dd1a2cbe3d60c9be7dd760c490e23656b11abc851a"
+    },
+    "v01-audit-container-linux-storage-evidence-40423886083.json": {
+      "path": "v01-audit-container-linux-storage-evidence-40423886083.json",
+      "sha256": "8c3163b801d515dba6fdde0e7b51d4f33807c96481ed8cd04b935cb41e502c3c",
+      "original_report_sha256": "8c3163b801d515dba6fdde0e7b51d4f33807c96481ed8cd04b935cb41e502c3c"
+    },
+    "v01-audit-local-native-40423886083.json": {
+      "path": "v01-audit-local-native-40423886083.json",
+      "sha256": "e0891b51c22fbca78c824d368fe96c969673db98e755e9f8586631ff309379ba",
+      "original_report_sha256": "e754a0a43200ff4525f131380074f2bf11aad291e6cef77a0b51bc8b72bb7bbb"
+    },
+    "v01-audit-local-packages-40423886083.json": {
+      "path": "v01-audit-local-packages-40423886083.json",
+      "sha256": "6cfe8fae74fcd3c51085ed1de682d6f6dd814093cec587426eb17b9aead937c9",
+      "original_report_sha256": "86e9d957a7ab4eee25b61e29b4eecc336680ab4f1612b83a84084d99116f14cd"
+    },
+    "v01-audit-benchmark-linux-40423886083.json": {
+      "path": "v01-audit-benchmark-linux-40423886083.json",
+      "sha256": "92388b58baf560cf9a0a823b526edab59e733d661f8e34cd448bba56562803e5",
+      "original_report_sha256": "92388b58baf560cf9a0a823b526edab59e733d661f8e34cd448bba56562803e5"
+    },
+    "v01-audit-benchmark-darwin-40423886083.json": {
+      "path": "v01-audit-benchmark-darwin-40423886083.json",
+      "sha256": "cf7a9297eae99ccb42e7f8aaabee9085518538a9e4fc0ba5e910f50bef566f2d",
+      "original_report_sha256": "cf7a9297eae99ccb42e7f8aaabee9085518538a9e4fc0ba5e910f50bef566f2d"
+    },
+    "v01-audit-baseline-inventory-40423886083.json": {
+      "path": "v01-audit-baseline-inventory-40423886083.json",
+      "sha256": "051c3df44939ad0ad980f37c39e24831ba7702db5ec6b18b1f81092b9912c38d",
+      "original_report_sha256": "51758b4f2d5c9ad28e2a902da4ee045e6b9351240f2b65232fe22c8505601d98"
+    }
+  },
+  "ci_jobs": {
+    "ffi-asan": "success",
+    "desktop (ubuntu-24.04)": "success",
+    "linux-container": "success",
+    "miri": "success",
+    "desktop (windows-latest)": "success",
+    "desktop (macos-latest)": "success",
+    "fuzz-smoke": "success",
+    "supply-chain": "success"
+  },
+  "native": {
+    "windows/native-evidence": {
+      "path": "v01-audit-native-windows-native-evidence-40423886083.json",
+      "sha256": "617a37f22acae6c79423b355c66e32e17a1ccbcc2e2ec8ac98696b880597b99b",
+      "original_report_sha256": "4552e492e180102215594fadcbb4c89af7c6bc43d52eb2e18201c81b6d00f014"
+    },
+    "windows/windows-cpu-evidence": {
+      "path": "v01-audit-native-windows-windows-cpu-evidence-40423886083.json",
+      "sha256": "14be7688919b9ee24b7c8f1d06ab7373ce99e28eeae8aa393b7171a7299727d5",
+      "original_report_sha256": "842421e050b4752a87c0029b087962a8ed754e87e597b306c3fa04f1cc096b90"
+    },
+    "windows/windows-cpu-groups-evidence": {
+      "path": "v01-audit-native-windows-windows-cpu-groups-evidence-40423886083.json",
+      "sha256": "85b10a093e5aae0e37a443cad701b1184d36605992b1a1ca9b1cd9ca603da5fe",
+      "original_report_sha256": "91de253b070fd6c59799f6106581947bdff0a9ffda608e1da73b116a3ae95127"
+    },
+    "windows/windows-memory-evidence": {
+      "path": "v01-audit-native-windows-windows-memory-evidence-40423886083.json",
+      "sha256": "c2e9f3973abfb8da70b79298532d1fe7d4a038714dce36e954fd0eec933488e3",
+      "original_report_sha256": "ff3d700881657ca1ab981db9acd5422edf2a37a39f5c4486eade387495438ad6"
+    },
+    "windows/windows-uptime-evidence": {
+      "path": "v01-audit-native-windows-windows-uptime-evidence-40423886083.json",
+      "sha256": "0b3fe426d48b8fd356c3a78c1f4535ca4694707aad304652df53ad91da564d91",
+      "original_report_sha256": "1a06c7af8fd64019a1335eb1ce9107fcb3f5463978578e757d70eb789de5d031"
+    },
+    "windows/windows-hardware-summary-evidence": {
+      "path": "v01-audit-native-windows-windows-hardware-summary-evidence-40423886083.json",
+      "sha256": "c931eca4622cffb98671424511947538bfbba1dbf6cf15c1cd002377f59cd2e0",
+      "original_report_sha256": "ed0213f7f4bb0e7a7e170d354f1c905acf4924a03b74a70535f37848869fc38f"
+    },
+    "linux/native-evidence": {
+      "path": "v01-audit-native-linux-native-evidence-40423886083.json",
+      "sha256": "e05ce1d66225fe4c6e9ddbcc9e5e4e374e109a7c929e9aafe004d4c6af353abc",
+      "original_report_sha256": "e05ce1d66225fe4c6e9ddbcc9e5e4e374e109a7c929e9aafe004d4c6af353abc"
+    },
+    "darwin/native-evidence": {
+      "path": "v01-audit-native-darwin-native-evidence-40423886083.json",
+      "sha256": "a27e5dc145881f323bdbdb4b8e82b88926d4297ea87b803736119c4fa44d93c7",
+      "original_report_sha256": "a27e5dc145881f323bdbdb4b8e82b88926d4297ea87b803736119c4fa44d93c7"
+    },
+    "darwin/macos-cpu-evidence": {
+      "path": "v01-audit-native-darwin-macos-cpu-evidence-40423886083.json",
+      "sha256": "ce69b7514d2422da663277c044e4bbde10561f275e31a23e3f6ad1e45a98acfe",
+      "original_report_sha256": "ce69b7514d2422da663277c044e4bbde10561f275e31a23e3f6ad1e45a98acfe"
+    },
+    "darwin/macos-memory-evidence": {
+      "path": "v01-audit-native-darwin-macos-memory-evidence-40423886083.json",
+      "sha256": "0be4c0f246682a1008695d488c217d9597804dd48d106b54c211f12bd6e4c2b9",
+      "original_report_sha256": "0be4c0f246682a1008695d488c217d9597804dd48d106b54c211f12bd6e4c2b9"
+    },
+    "darwin/macos-uptime-evidence": {
+      "path": "v01-audit-native-darwin-macos-uptime-evidence-40423886083.json",
+      "sha256": "435a679737e845b42287fe928374f6f13f9a2b3d70c50754c8af980dc9fe9f94",
+      "original_report_sha256": "435a679737e845b42287fe928374f6f13f9a2b3d70c50754c8af980dc9fe9f94"
+    }
+  },
+  "packages": {
+    "windows": {
+      "report": {
+        "path": "v01-audit-packages-windows-40423886083.json",
+        "sha256": "5f6babc03d9e412706172abfcc4f58295f87c5c577819bb419340116ec15215d",
+        "original_report_sha256": "92b53a4dec007b02fa4ae01b4fe111c641525f8218988081b08cbfc591d28c02"
+      },
+      "rust_tests_including_doctests": 264,
+      "archives": 8
+    },
+    "linux": {
+      "report": {
+        "path": "v01-audit-packages-linux-40423886083.json",
+        "sha256": "5c44e39c22e6b90178d49814037a951210b3ed98c55ea2b3d785166ae15c030a",
+        "original_report_sha256": "5c44e39c22e6b90178d49814037a951210b3ed98c55ea2b3d785166ae15c030a"
+      },
+      "rust_tests_including_doctests": 256,
+      "archives": 8
+    },
+    "darwin": {
+      "report": {
+        "path": "v01-audit-packages-darwin-40423886083.json",
+        "sha256": "9570648bcc18ceed7833ac8136fda99997fdc67b373cfbe16d07e81126ca41d2",
+        "original_report_sha256": "9570648bcc18ceed7833ac8136fda99997fdc67b373cfbe16d07e81126ca41d2"
+      },
+      "rust_tests_including_doctests": 261,
+      "archives": 8
+    }
+  },
+  "sdks": {
+    "windows": {
+      "report": {
+        "path": "v01-audit-sdk-windows-40423886083.json",
+        "sha256": "d531a88ee267605e933d7dc6e27969e742482ccab84d11c3b144afba10dd3956",
+        "original_report_sha256": "ff8a19908efc90534f43d74661296d24df0cf8136acd9d5b34c182a4746e7c2a"
+      },
+      "observations": {
+        "overall": "passed",
+        "source_commit": "d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7",
+        "source_dirty": false,
+        "product": "ffi_sdk",
+        "target": "x86_64-pc-windows-msvc",
+        "host": {
+          "system": "Windows",
+          "version": "10.0.26100",
+          "machine": "AMD64"
+        },
+        "bundle_format": 3,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "7342672624f19446e2aec4035f7d4546b574378bd8ca2faef8a9490acbffe4e0",
+        "header_sha256": "7ba816254bd0314ed26cd620a8d802578e153689ed17fbf7ccc4a75289a8e523",
+        "payload_files": 78,
+        "processes": 9,
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "stale_copy_and_empty_free": true,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false,
+        "dll_sha256": "207f7f93b3a124b1b34cf2f0af89a42665c96824a76eae542c73a5867531fec7",
+        "import_library_sha256": "78214f2b47ae59f00921e35c5b672c253348d5e0a9d94cd574dccb2b7c33ddd2"
+      }
+    },
+    "linux": {
+      "report": {
+        "path": "v01-audit-sdk-linux-40423886083.json",
+        "sha256": "f030a42bc195fbf061f25849f22d73fe39072f4070c5c2e6e25e05c5b1ab05ce",
+        "original_report_sha256": "f030a42bc195fbf061f25849f22d73fe39072f4070c5c2e6e25e05c5b1ab05ce"
+      },
+      "observations": {
+        "overall": "passed",
+        "source_commit": "d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7",
+        "source_dirty": false,
+        "product": "ffi_sdk",
+        "target": "x86_64-unknown-linux-gnu",
+        "host": {
+          "system": "Linux",
+          "version": "#22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026",
+          "machine": "x86_64"
+        },
+        "bundle_format": 4,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "22ef6cfe278858dfb61c4f8721ef494fd5d3fc3839b00c416ec439b13bad6bf4",
+        "header_sha256": "7ba816254bd0314ed26cd620a8d802578e153689ed17fbf7ccc4a75289a8e523",
+        "payload_files": 47,
+        "processes": 15,
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "stale_copy_and_empty_free": true,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false,
+        "library_sha256": "5bb39c224b3e37dd858a76f297bf87beecf9b66581858619a5cc15530b98b13c",
+        "elf_inspections": 6,
+        "elf_needed": {
+          "consumer": [
+            "libdaoseeker_scope_ffi.so",
+            "libc.so.6"
+          ],
+          "library": [
+            "libgcc_s.so.1",
+            "libc.so.6",
+            "ld-linux-x86-64.so.2"
+          ]
+        },
+        "consumer_runpath": "$ORIGIN/../lib",
+        "child_loader_overrides_cleared": true,
+        "posix_modes_verified": true,
+        "minimum_glibc_or_distribution_verified": false
+      }
+    }
+  },
+  "cli": {
+    "windows": {
+      "report": {
+        "path": "v01-audit-cli-windows-40423886083.json",
+        "sha256": "deafb3d0bf8a028d6078993d9d0165a385364fc66f52b5f1ff01125c5b39bc18",
+        "original_report_sha256": "f3836f524c071f8800c85ca30467d5c992711f8b7c4151998562b218be56b160"
+      },
+      "observations": {
+        "overall": "passed",
+        "source_commit": "d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7",
+        "source_dirty": false,
+        "target": "x86_64-pc-windows-msvc",
+        "host": {
+          "system": "Windows",
+          "version": "10.0.26100",
+          "machine": "AMD64"
+        },
+        "version": "0.1.0",
+        "bundle_format": 1,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "0a7277b1a2c3251c6dd9ea1b244e66997e185e74ace2040cb95bd5df64d35a71",
+        "cli_sha256": "7035cb48e51a78678e063e033f04770d1b9373caf4e11afd6114c716e039105f",
+        "payload_files": 73,
+        "processes": 6,
+        "minimum_read_and_default_privacy": true,
+        "snapshot_schema_validated": true,
+        "posix_modes_verified": false,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false
+      }
+    },
+    "linux": {
+      "report": {
+        "path": "v01-audit-cli-linux-40423886083.json",
+        "sha256": "7562e4aae1aaeb4675087dbccfaa9f9213ca2240bdfa9385c76ed35aeee9ea92",
+        "original_report_sha256": "7562e4aae1aaeb4675087dbccfaa9f9213ca2240bdfa9385c76ed35aeee9ea92"
+      },
+      "observations": {
+        "overall": "passed",
+        "source_commit": "d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7",
+        "source_dirty": false,
+        "target": "x86_64-unknown-linux-gnu",
+        "host": {
+          "system": "Linux",
+          "version": "#22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026",
+          "machine": "x86_64"
+        },
+        "version": "0.1.0",
+        "bundle_format": 2,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "72be479c5a906aa24459621f75c5a4dc5bb80f99e80e4c5e524e9b9fab6acc8c",
+        "cli_sha256": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905",
+        "payload_files": 43,
+        "processes": 6,
+        "minimum_read_and_default_privacy": true,
+        "snapshot_schema_validated": true,
+        "posix_modes_verified": true,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false
+      }
+    }
+  },
+  "containers": {
+    "linux-battery-evidence.json": {
+      "path": "v01-audit-container-linux-battery-evidence-40423886083.json",
+      "sha256": "5b13838b53c7c69ef450d3b9f4056d132c7eac2fe97ffef401bd1e523e416f12",
+      "original_report_sha256": "5b13838b53c7c69ef450d3b9f4056d132c7eac2fe97ffef401bd1e523e416f12"
+    },
+    "linux-container-evidence.json": {
+      "path": "v01-audit-container-linux-container-evidence-40423886083.json",
+      "sha256": "44405c4d23a6156acd7020fab2fae60b4c0d835c2d04d8ead6d7ba1c096cc257",
+      "original_report_sha256": "44405c4d23a6156acd7020fab2fae60b4c0d835c2d04d8ead6d7ba1c096cc257"
+    },
+    "linux-display-evidence.json": {
+      "path": "v01-audit-container-linux-display-evidence-40423886083.json",
+      "sha256": "dabf73df95b1504bc5c70db2b97038a3d5d17fd12737c788b788cc1a80ab702f",
+      "original_report_sha256": "dabf73df95b1504bc5c70db2b97038a3d5d17fd12737c788b788cc1a80ab702f"
+    },
+    "linux-dynamic-evidence.json": {
+      "path": "v01-audit-container-linux-dynamic-evidence-40423886083.json",
+      "sha256": "b5d8bbf5f552a2b4d0c5ca6e0e61c784e42ee13d7ea8e629f479770d3e09259b",
+      "original_report_sha256": "b5d8bbf5f552a2b4d0c5ca6e0e61c784e42ee13d7ea8e629f479770d3e09259b"
+    },
+    "linux-gpu-evidence.json": {
+      "path": "v01-audit-container-linux-gpu-evidence-40423886083.json",
+      "sha256": "e990d0b21b23c7e0db5feccb51a9764ece29bfb1544eba07a460582b3362d18b",
+      "original_report_sha256": "e990d0b21b23c7e0db5feccb51a9764ece29bfb1544eba07a460582b3362d18b"
+    },
+    "linux-hwmon-evidence.json": {
+      "path": "v01-audit-container-linux-hwmon-evidence-40423886083.json",
+      "sha256": "e956920fdbd2b5fe595fd9bac828ba06983dc598e88e77e9902c257405e4a054",
+      "original_report_sha256": "e956920fdbd2b5fe595fd9bac828ba06983dc598e88e77e9902c257405e4a054"
+    },
+    "linux-memory-evidence.json": {
+      "path": "v01-audit-container-linux-memory-evidence-40423886083.json",
+      "sha256": "d22e776f3a86da3088a734dd1a2cbe3d60c9be7dd760c490e23656b11abc851a",
+      "original_report_sha256": "d22e776f3a86da3088a734dd1a2cbe3d60c9be7dd760c490e23656b11abc851a"
+    },
+    "linux-storage-evidence.json": {
+      "path": "v01-audit-container-linux-storage-evidence-40423886083.json",
+      "sha256": "8c3163b801d515dba6fdde0e7b51d4f33807c96481ed8cd04b935cb41e502c3c",
+      "original_report_sha256": "8c3163b801d515dba6fdde0e7b51d4f33807c96481ed8cd04b935cb41e502c3c"
+    }
+  },
+  "benchmarks": {
+    "linux": {
+      "path": "v01-audit-benchmark-linux-40423886083.json",
+      "sha256": "92388b58baf560cf9a0a823b526edab59e733d661f8e34cd448bba56562803e5",
+      "original_report_sha256": "92388b58baf560cf9a0a823b526edab59e733d661f8e34cd448bba56562803e5"
+    },
+    "darwin": {
+      "path": "v01-audit-benchmark-darwin-40423886083.json",
+      "sha256": "cf7a9297eae99ccb42e7f8aaabee9085518538a9e4fc0ba5e910f50bef566f2d",
+      "original_report_sha256": "cf7a9297eae99ccb42e7f8aaabee9085518538a9e4fc0ba5e910f50bef566f2d"
+    }
+  },
+  "local": {
+    "native": {
+      "path": "v01-audit-local-native-40423886083.json",
+      "sha256": "e0891b51c22fbca78c824d368fe96c969673db98e755e9f8586631ff309379ba",
+      "original_report_sha256": "e754a0a43200ff4525f131380074f2bf11aad291e6cef77a0b51bc8b72bb7bbb"
+    },
+    "packages": {
+      "path": "v01-audit-local-packages-40423886083.json",
+      "sha256": "6cfe8fae74fcd3c51085ed1de682d6f6dd814093cec587426eb17b9aead937c9",
+      "original_report_sha256": "86e9d957a7ab4eee25b61e29b4eecc336680ab4f1612b83a84084d99116f14cd"
+    }
+  },
+  "license": "MIT",
+  "c_abi_version": 1,
+  "snapshot_schema_version": 1,
+  "schema_validation_tightened": "Display width/height reject zero; no field layout change",
+  "rust_public_signatures_changed": false,
+  "rust_runtime_dependencies_or_lock_changed": false,
+  "development_dependencies_added": {
+    "PyYAML 6.0.3": "MIT",
+    "types-PyYAML 6.0.12.20260906": "Apache-2.0"
+  },
+  "empty_proc_not_run": {
+    "status": "not_run",
+    "configuration": {
+      "user": "65534:65534",
+      "ReadonlyRootfs": true,
+      "NetworkMode": "none",
+      "CapDrop": [
+        "ALL"
+      ],
+      "SecurityOpt": [
+        "no-new-privileges=true"
+      ],
+      "Memory": 268435456,
+      "MemorySwap": 268435456,
+      "PidsLimit": 32,
+      "NanoCpus": 1000000000
+    },
+    "exit_code": 128,
+    "docker_start_exit_code": 1,
+    "process_started": false,
+    "failure_category": "runtime_mount_error",
+    "probe_result": "runtime_rejected_mount"
+  },
+  "rust_tests_including_doctests": {
+    "windows-latest": 264,
+    "ubuntu-24.04": 256,
+    "macos-latest": 261
+  },
+  "python_tests": {
+    "windows-latest": {
+      "total": 166,
+      "passed": 162,
+      "skipped": 4
+    },
+    "ubuntu-24.04": {
+      "total": 166,
+      "passed": 166,
+      "skipped": 0
+    },
+    "macos-latest": {
+      "total": 166,
+      "passed": 166,
+      "skipped": 0
+    }
+  },
+  "fuzz_campaigns": {
+    "snapshot_json": {
+      "runs": 731807,
+      "seconds": 61
+    },
+    "dmi_text": {
+      "runs": 9350305,
+      "seconds": 61
+    },
+    "cli_args": {
+      "runs": 26579188,
+      "seconds": 61
+    },
+    "cpu_stat": {
+      "runs": 1584385,
+      "seconds": 61,
+      "artifact_log_sha256": "dc1bbd382ed29b1be8af63b3162a65f1ccbecd5b04c022e7bbd081da21d6c036"
+    },
+    "meminfo": {
+      "runs": 3796619,
+      "seconds": 61,
+      "artifact_log_sha256": "11f535dbdf9bef9bd184f20aa2c02c0664a16c0de70785245463fa5f8bdaa678"
+    },
+    "uptime": {
+      "runs": 25092317,
+      "seconds": 61,
+      "artifact_log_sha256": "be114360f151a6c4338617df2631937e1e281242382acbeda2d20a3bc4e87857"
+    },
+    "power_supply": {
+      "runs": 25160044,
+      "seconds": 61,
+      "artifact_log_sha256": "347a6f13a0a8832bad338ba4cd39c682c91294f11b407742d3ec8525b3dda309"
+    },
+    "hwmon_temperature": {
+      "runs": 24759251,
+      "seconds": 61,
+      "artifact_log_sha256": "30549cda4e469e079c8d277bf49ba4b01079c336bf07f10e05e71edc531e580c"
+    },
+    "network_dev": {
+      "runs": 2982473,
+      "seconds": 61,
+      "artifact_log_sha256": "a5e78c177058d5e0e6ea95c412a7d475b30d69f6b7a6a39c6f8a8548557118f2"
+    },
+    "macos_network": {
+      "runs": 6400982,
+      "seconds": 61,
+      "artifact_log_sha256": "7b8a0ca3617faf49a5aea481890e1bb0bf1bd05cdfc5c5594ee35e1a9761bde1"
+    },
+    "storage_capacity": {
+      "runs": 37299768,
+      "seconds": 61,
+      "artifact_log_sha256": "2b9bb97d86f1926eca33a9b98a70377950e73c1b4a74ac154c9456ce5f2200c4"
+    },
+    "windows_cpu_groups": {
+      "runs": 41805681,
+      "seconds": 61,
+      "artifact_log_sha256": "b47e3c33d4c8c678122bbe08af519e60e23bee4ed4210cc9b044c3d1b1df5262"
+    }
+  },
+  "miri_tests": 8,
+  "asan_tests": 10,
+  "fuzz_harness_tests": 4,
+  "all_jobs_log_sha256": "b2a8437b3f6fa92d467334f811ab02cc2db97e2506cd8ec662c5f5c13a92f5a3",
+  "baseline_inventory": {
+    "path": "v01-audit-baseline-inventory-40423886083.json",
+    "sha256": "051c3df44939ad0ad980f37c39e24831ba7702db5ec6b18b1f81092b9912c38d",
+    "original_report_sha256": "51758b4f2d5c9ad28e2a902da4ee045e6b9351240f2b65232fe22c8505601d98"
+  },
+  "baseline_inventory_scope": "Working-tree file bytes read before edits on a038930; not a proof of exhaustive semantic correctness",
+  "community": {
+    "private_vulnerability_reporting_enabled": true,
+    "github_health_percentage": 100,
+    "profile_files_present": {
+      "code_of_conduct": true,
+      "code_of_conduct_file": true,
+      "contributing": true,
+      "issue_template": false,
+      "pull_request_template": true,
+      "license": true,
+      "readme": true
+    },
+    "limitations": "GitHub health measures community files, not product quality; REST legacy issue_template is absent while YAML forms are present and syntax-checked; no issue/report submitted"
+  },
+  "earlier_runs": [
+    {
+      "run_id": 40422585226,
+      "source": "c8e7377d96f6bcc125585b5261dd1de41d155b64",
+      "accepted": false,
+      "reason": "Linux display test retained old Some(...) assertions; remaining jobs cancelled",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40422585226",
+      "metadata_sha256": "c2a31460da4bc42a0add3c251182e9111b64e8419275a05831859bffa6c5ef16"
+    },
+    {
+      "run_id": 40422984594,
+      "source": "7bdf781cd7128cc7179961806b07b065b0b66ff6",
+      "accepted": false,
+      "reason": "Cancelled to add source-provenance guard",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40422984594",
+      "metadata_sha256": "a5764aa303dd55b41aea7416daca9187eafd64f3f68ac17333a21f2b1d8bad8b"
+    },
+    {
+      "run_id": 40423153395,
+      "source": "c627bbbfb3aa9fbaf1dfa891949fe40f75d60138",
+      "accepted": false,
+      "reason": "Package revision retained Git newline; cancelled to normalize metadata and cover terminator regression",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40423153395",
+      "metadata_sha256": "516c2ae8c0e4a7b58e01c1310064b28db6f1ae61cfc9d03d6b7582d5ecf2d401"
+    }
+  ],
+  "rejected_local_package_run": {
+    "accepted": false,
+    "reason": "Source changed while running; end-only revision could misattribute inputs; rerun under frozen source",
+    "report_sha256": "dff0800c9dec9417aad25cabdb78bae8878b640493bcb82868f392d3bb3cc777"
+  },
+  "tested_source_sha256": {
+    "scripts/check_packages.py": "e6958b80aeadb743ae80cf9241e10d99de2955eabaf0b8c18c5cfbc39d79e75a",
+    "scripts/check_project.py": "22515218e5311fcff7642ae7e43508bfc1403b538fb14fa63a89f419cfd28379",
+    "scripts/check_schema.py": "75cacf60927c9fd8c4ce21d20682056e4c0fba69f0f37e8545d24d979f961771",
+    "scripts/native_smoke.py": "725678fd87bedb6346d8d3f2cc0b8ea2c358bdc27549cf6b9956c205db3769e2",
+    "requirements-dev.txt": "ce35bd27c1fdd15d54981db312093600318bb3405c803bd586d32178c451dbd8",
+    ".github/workflows/ci.yml": "70ba9e6d8e5ef105da4d3fbe4e90b7bc75394491302d13e66be67660acda8766",
+    "crates/daoseeker-scope-cli/src/main.rs": "937d5f6365937c3c2ef81b2ebd4ad1425990a6fe36ade8435dd02e77932fff6d",
+    "crates/daoseeker-scope-cli/tests/cli.rs": "765ef144ebf9a141dccb1634223307da35febd34c5b4b2dca6fe6a627b729166",
+    "crates/daoseeker-scope-core/src/hardware.rs": "2e1c7a50baacb72bc18336668a588ab902133ac4e2970388987588ca65b2ece5",
+    "crates/daoseeker-scope/src/exchange.rs": "67a32222f9817f3211665df35bf3c72aa165e1230a86e64445a489e3074794e1",
+    "docs/schema/snapshot-v1.schema.json": "914f41cf400ada7c25ed931bb0ac76896242fc9ea3dff1df7f3b4b1e9b471e6b"
+  },
+  "limits": [
+    "Not a formal release; no registry/Release/binary publication or tag creation",
+    "Physical Linux/macOS/multi-group/OEM validation stays deferred; CI and fixtures are separate evidence",
+    "Minimum runtime, macOS distribution material, old released-version upgrades and final API/license review remain pending",
+    "Short fuzz/Miri/ASan and 300 SDK cycles are not a complete leak/peak-memory or long-campaign proof",
+    "SDK/CLI ZIPs stayed on runners; independently checked reports, not second inspection of ZIP members",
+    "Eight-crate checks use local sibling patches, not actual registry publication",
+    "Caller timeout cannot kill an in-progress native API; trusted custom backends still have obligations"
+  ]
+}
