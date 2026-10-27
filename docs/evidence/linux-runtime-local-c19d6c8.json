@@ -1,0 +1,108 @@
+{
+  "overall": "passed",
+  "date": "2026-10-28",
+  "source_commit": "c19d6c8950ac949ca9ef5f19e7b96d831f9703a8",
+  "source_dirty": false,
+  "scope": "final corrected Windows local guards; native Linux candidate verification pending CI",
+  "source_files": {
+    "scripts/elf_inspect.py": "72da94d87ec57276309e68d5ff883bceafd66f72a357de8150cfe3e90738aa99",
+    "scripts/cli_bundle_smoke.py": "a4bf3ec23cf43bf1935c3c1fcdb2406a3c8ad9b587a7921c4f86ce59ea4f224a",
+    "scripts/ffi_bundle_smoke.py": "02aabb335294b736f55b461920aa6e6d14f988424e474aa47cc9681eacff2ea2",
+    "tests/test_elf_inspect.py": "a1f80b20768314973818c3ad6d0f28229a554d6d2d717e7d053fc42a0de54776"
+  },
+  "python": {
+    "run": 193,
+    "passed": 188,
+    "skipped": 5,
+    "elf_tests": 15,
+    "elf_native_linux_test": "skipped_on_windows",
+    "other_skips": "4 existing POSIX permission tests"
+  },
+  "rust_tests_including_doctests": 264,
+  "commands": [
+    "python -m unittest discover -s tests -p test_*.py -v",
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "python -m ruff format --check scripts tests examples/collect.py",
+    "python -m ruff check scripts tests examples/collect.py",
+    "python -m mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+    "python scripts/check_project.py"
+  ],
+  "static_checks": {
+    "ruff_format": "passed",
+    "ruff_lint": "passed",
+    "mypy_source_files": 60,
+    "actionlint": "passed",
+    "project_files": 906,
+    "local_links": 730,
+    "diff_check": "passed"
+  },
+  "rust_gates": [
+    "fmt",
+    "strict_clippy_all_targets_all_features",
+    "workspace_tests",
+    "no_default_features",
+    "strict_rustdoc",
+    "build",
+    "linux_x64_cross_check",
+    "macos_arm64_cross_check"
+  ],
+  "logs": {
+    "python_sha256": "b25b816f34edb23cd9cd70958a59e4d41e90468bd8d4195a4c5b897ef5c0b84f",
+    "rust_sha256": "01ead5b8ab51bff24dd1df4fc45d337e71e3ec140105f7c6ef1c944902623a1b"
+  },
+  "review_fixes": [
+    "Keep WEAK versions out of mandatory requirements and numeric maximum; retain them separately.",
+    "Compare all numeric components within the 128-byte name limit, including large values."
+  ],
+  "previous_ci": {
+    "run_id": 40604102386,
+    "source_commit": "008617571b0db7afcb5f8dcd807b3fe077052a1f",
+    "status": "completed",
+    "conclusion": "cancelled",
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40604102386",
+    "accepted": false,
+    "reason": "Cancelled for weak-version classification correction, before final acceptance.",
+    "jobs": [
+      {
+        "name": "linux-container",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "conclusion": "cancelled"
+      },
+      {
+        "name": "desktop (windows-latest)",
+        "conclusion": "cancelled"
+      },
+      {
+        "name": "supply-chain",
+        "conclusion": "success"
+      },
+      {
+        "name": "miri",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "conclusion": "cancelled"
+      },
+      {
+        "name": "fuzz-smoke",
+        "conclusion": "cancelled"
+      },
+      {
+        "name": "ffi-asan",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "native_linux_candidates_verified_locally": false,
+  "minimum_glibc_or_distribution_verified": false,
+  "ci": "pending_corrected_source_run",
+  "public_rust_api_changed": false,
+  "abi": 1,
+  "snapshot_schema": 1,
+  "dependency_feature_or_license_changes": false,
+  "published": false
+}
