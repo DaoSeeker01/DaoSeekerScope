@@ -43,7 +43,9 @@ def require(condition: bool, message: str) -> None:
 
 
 def source_state() -> tuple[str, str]:
-    return run(["git", "rev-parse", "HEAD"]), run(["git", "status", "--porcelain"])
+    return run(["git", "rev-parse", "HEAD"]).strip(), run(
+        ["git", "status", "--porcelain"]
+    )
 
 
 def verify_source(initial: tuple[str, str]) -> None:

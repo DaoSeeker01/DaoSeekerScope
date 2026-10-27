@@ -13,6 +13,10 @@ import check_packages
 
 
 class PackageEvidence(unittest.TestCase):
+    def test_revision_is_a_commit_id_without_command_terminator(self) -> None:
+        with patch.object(check_packages, "run", side_effect=["a" * 40 + "\n", ""]):
+            self.assertEqual(check_packages.source_state(), ("a" * 40, ""))
+
     def test_source_revision_or_worktree_change_is_not_accepted(self) -> None:
         initial = ("a" * 40, "")
         for current in (("b" * 40, ""), ("a" * 40, " M source.rs")):
