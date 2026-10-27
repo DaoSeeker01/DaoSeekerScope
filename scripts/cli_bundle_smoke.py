@@ -26,6 +26,7 @@ from cli_bundle import (
     verify_bundle,
 )
 from native_smoke import check_snapshot
+from pe_inspect import inspect_pe
 
 
 def install(archive: Path, checksum: str, destination: Path) -> dict[str, bytes]:
@@ -103,6 +104,11 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
     require(manifest.get("product", "cli") == "cli", "unsupported_product")
     target = manifest["target"]
     require_runtime_host(target)
+    pe = (
+        inspect_pe(payload[executable_name(target)], dll=False)
+        if target == TARGET
+        else None
+    )
     with tempfile.TemporaryDirectory(
         prefix="cli-install-", dir=ROOT / "target"
     ) as folder:
@@ -131,7 +137,7 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         activate(root, "a", payload)
         require((root / "active").read_text() == "a", "rollback_selection")
         probe_selected(root, "a", manifest["version"], target)
-    return {
+    report = {
         "overall": "passed",
         "source_commit": manifest["source_commit"],
         "source_dirty": manifest["source_dirty"],
@@ -159,6 +165,9 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         "global_install_or_path_modified": False,
         "publisher_authenticated": False,
     }
+    if pe is not None:
+        report.update(pe_image=pe, pe_archive_inspections=1)
+    return report
 
 
 def main() -> None:

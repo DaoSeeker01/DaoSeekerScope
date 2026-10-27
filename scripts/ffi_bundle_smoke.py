@@ -27,6 +27,7 @@ from cli_bundle import (
 )
 from cli_bundle_smoke import activate, install
 from native_smoke import check_snapshot
+from pe_inspect import inspect_file, inspect_pe
 
 
 def execute(
@@ -76,13 +77,11 @@ def elf_dependencies(output: bytes, *, consumer: bool) -> list[str]:
     return needed
 
 
-def probe_sdk(
-    root: Path, expected_slot: str, target: str = TARGET
-) -> dict[str, list[str]]:
+def probe_sdk(root: Path, expected_slot: str, target: str = TARGET) -> dict[str, Any]:
     slot = (root / "active").read_text(encoding="ascii")
     require(slot in ("a", "b") and slot == expected_slot, "active_selection")
     sdk = root / slot
-    dependencies = {}
+    dependencies: dict[str, Any] = {}
     if target == LINUX_TARGET:
         (sdk / "bin").mkdir(exist_ok=True)
         binary = sdk / "bin/c-example"
@@ -129,6 +128,14 @@ def probe_sdk(
             "compile",
             target,
         )
+        dependencies = {
+            "consumer": inspect_file(binary, dll=False),
+            "library": inspect_file(library, dll=True),
+        }
+        require(
+            "daoseeker_scope_ffi.dll" in dependencies["consumer"]["direct_imports"],
+            "pe_sdk_dependency",
+        )
     data = execute([str(binary)], sdk, "c", target)
     snapshot = json.loads(data)
     schema = json.loads((sdk / "schema/snapshot-v1.schema.json").read_bytes())
@@ -162,6 +169,8 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         "unsupported_product",
     )
     require_runtime_host(target)
+    if target == TARGET:
+        inspect_pe(payload["bin/daoseeker_scope_ffi.dll"], dll=True)
     dependencies = []
     with tempfile.TemporaryDirectory(
         prefix="ffi-sdk-install-", dir=ROOT / "target"
@@ -231,9 +240,13 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
             minimum_glibc_or_distribution_verified=False,
         )
     else:
+        require(dependencies[0] == dependencies[1] == dependencies[2], "pe_changed")
         report.update(
             dll_sha256=digest(payload["bin/daoseeker_scope_ffi.dll"]),
             import_library_sha256=digest(payload["lib/daoseeker_scope_ffi.dll.lib"]),
+            pe_archive_inspections=1,
+            pe_installed_inspections=6,
+            pe_images=dependencies[0],
         )
     return report
 

@@ -16,6 +16,7 @@
 - [Linux CLI 候选包](linux-cli-bundle-validation.md)：GNU x86_64 的权限契约、安装回滚与当前验证边界。
 - [Windows FFI SDK](windows-ffi-sdk-validation.md)：DLL、C 头文件/导入库与 C/Python 消费者验收。
 - [Linux FFI SDK](linux-ffi-sdk-validation.md)：GNU x86_64 共享库、ELF 加载路径与 C/Python 原生 CI 验收。
+- [Windows 二进制检查](windows-pe-validation.md)：PE 架构、直接 DLL 依赖与最低系统版本的验证边界。
 
 ## 设计决策
 

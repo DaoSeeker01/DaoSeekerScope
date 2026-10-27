@@ -1,5 +1,7 @@
 # 打包与安装验证
 
+Windows CLI/SDK 候选验收增加了安装前 PE 检查，记录架构、直接 DLL 依赖和版本声明，并拒绝已知 MSVC 调试运行库。ZIP 格式不变；头部声明不能作为最低系统版本保证，见[验证状态](windows-pe-validation.md)。
+
 2026-10-27 打包可靠性修复：开始验收时作废旧 pass，失败/中断分别记录；前后源码状态必须一致，安装后的 CLI 增加版本、Schema、最低读取和默认隐私检查。源码 `d5d1e3b` 的本机及三平台八包回归、两平台 CLI/SDK 候选通过，[记录](project-review-2026-10-27.md)。
 
 2026-10-26 Linux SDK 增量：GNU x86_64 共享库使用独立 ZIP 格式 4，包内 C/Python 消费者复用安装/回滚并新增 ELF 依赖和 RUNPATH 检查。Windows SDK 3、CLI 1/2 保持。干净源码 f262095 的 Windows SDK 九项调用/300 次 Python 循环与 CLI 六进程回归通过；随后源码 af312da 的 CI 40304816716 全部八项通过，Linux SDK 47 项载荷/15 次顶层调用/300 次 Python 循环和两平台 SDK/CLI 回归通过，见[记录](linux-ffi-sdk-validation.md)。
