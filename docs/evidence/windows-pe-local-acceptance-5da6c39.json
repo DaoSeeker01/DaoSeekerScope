@@ -1,0 +1,89 @@
+{
+  "overall": "passed",
+  "date": "2026-10-27",
+  "source_commit": "5da6c39eaa3512b1406a8c92f27a1188812c53df",
+  "source_clean_during_candidate_builds_and_oracle": true,
+  "source_files": {
+    "scripts/pe_inspect.py": "c64e9c332a0c714aea8bd098f4e7d5e40090bc56adf7032b0e65ef34fe5d9771",
+    "scripts/cli_bundle_smoke.py": "626b3ab09fda0624c4940147eaf662c58ad870929527e34f95d0fa76527cbe77",
+    "scripts/ffi_bundle_smoke.py": "60bef1ded05a01ed210d3e249d7c65e5d88860e788adade0ca9a9128454394e4",
+    "tests/test_pe_inspect.py": "39962ddd034f2eedd5cd7d4b3620d4df5cc41595ae5c27eefca817bc6b67cbff"
+  },
+  "reports": {
+    "docs/evidence/windows-pe-local-cli-5da6c39.json": {
+      "sha256": "4be698b6f4a7108eb1eb5943dca869dd5f5f9e4bbac8d7442a0f8e43ba0ff36f",
+      "original_sha256": "00d5d6ac4e1da31baddcd0a2813a5ffdd791f717d8bbe9292ad90369a12a4a12"
+    },
+    "docs/evidence/windows-pe-local-sdk-5da6c39.json": {
+      "sha256": "ae9d0845f8d3a4e220cc6ad6c5a3970f0aa52d820ee9ae01db17f77f90a23174",
+      "original_sha256": "4c4f99df99eafb5dd019045b32b51898c4121b93fa25484300f62b10ea2fef03"
+    },
+    "docs/evidence/windows-pe-local-dumpbin-5da6c39.json": {
+      "sha256": "0b6149497ad465295b145ad50adf5def63cb1238a4a1055cb1253ff05029dee7",
+      "original_sha256": "63a0805609c3e554861e2aeca9720747208961cc5d49f837a092bf97e6bc0964"
+    }
+  },
+  "checks": {
+    "python": {
+      "run": 178,
+      "passed": 174,
+      "skipped_posix": 4
+    },
+    "new_pe_tests": 12,
+    "bounded_mutation_inputs": 256,
+    "mutation_inputs_are_not_a_fuzz_campaign": true,
+    "rust_tests_including_doctests": 264,
+    "rust_checks": [
+      "fmt",
+      "strict_clippy_all_targets_all_features",
+      "no_default_features",
+      "strict_rustdoc",
+      "build",
+      "linux_x64_cross_check",
+      "macos_arm64_cross_check"
+    ],
+    "python_checks": {
+      "ruff_format": "passed",
+      "ruff_check": "passed",
+      "mypy_files": 58
+    },
+    "cli": {
+      "payload_files": 73,
+      "processes": 6,
+      "pe_archive_inspections": 1
+    },
+    "sdk": {
+      "payload_files": 78,
+      "top_level_calls": 9,
+      "python_collect_free": 300,
+      "pe_archive_inspections": 1,
+      "pe_installed_inspections": 6
+    },
+    "dumpbin_comparisons": 3
+  },
+  "log_hashes": {
+    "python_sha256": "32366b36d2d897daed06bb2ca13a60e8b7a3148de7fe683a7d550913104cc632",
+    "rust_sha256": "06331b37168105c17b5af427298406ed03458cae51b891fccb9eba79658c41d1"
+  },
+  "earlier_non_acceptance": [
+    "First sandbox test run: 2 temporary-directory permission errors; rerun under normal user permissions passed.",
+    "Initial type check: names required an explicit list[str] annotation; fixed and full mypy rerun passed.",
+    "Initial manual probe rejected GUI-subsystem DLL; corrected narrow contract to allow GUI/CUI DLL and verified actual artifacts."
+  ],
+  "not_verified": [
+    "minimum_windows",
+    "VC_runtime_absent_clean_system",
+    "transitive_or_dynamic_loads",
+    "individual_imported_functions",
+    "Authenticode",
+    "real_delay_load_oracle",
+    "physical_linux_macos_or_multi_group",
+    "long_fuzz_or_peak_memory"
+  ],
+  "rust_public_api_changed": false,
+  "c_abi": 1,
+  "snapshot_schema": 1,
+  "dependencies_features_or_license_changed": false,
+  "published": false,
+  "ci": "pending_this_round"
+}

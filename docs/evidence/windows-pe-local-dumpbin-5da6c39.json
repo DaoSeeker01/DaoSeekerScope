@@ -1,0 +1,175 @@
+{
+  "overall": "passed",
+  "source_commit": "5da6c39eaa3512b1406a8c92f27a1188812c53df",
+  "source_dirty": false,
+  "host": {
+    "system": "Windows",
+    "version": "10.0.26300",
+    "machine": "AMD64"
+  },
+  "tool": "Microsoft DUMPBIN",
+  "msvc_directory_version": "14.51.36231",
+  "tool_sha256": "357c989e1c926841df4e6e97c25a60b205b30110cd6db39bde8d81a627e48ebb",
+  "binary_comparisons": {
+    "cli/bin/dscope.exe": {
+      "sha256": "3b9de933e4b6b299ccf2615ba5e99b9f15cda1d518f890bd72a0e31cd0276b82",
+      "pe": {
+        "format": "PE32+",
+        "machine": "x86_64",
+        "kind": "exe",
+        "subsystem": "windows_cui",
+        "declared_os_version": [
+          6,
+          0
+        ],
+        "declared_subsystem_version": [
+          6,
+          0
+        ],
+        "direct_imports": [
+          "advapi32.dll",
+          "api-ms-win-core-synch-l1-2-0.dll",
+          "api-ms-win-crt-heap-l1-1-0.dll",
+          "api-ms-win-crt-locale-l1-1-0.dll",
+          "api-ms-win-crt-math-l1-1-0.dll",
+          "api-ms-win-crt-runtime-l1-1-0.dll",
+          "api-ms-win-crt-stdio-l1-1-0.dll",
+          "api-ms-win-crt-string-l1-1-0.dll",
+          "bcryptprimitives.dll",
+          "dxgi.dll",
+          "iphlpapi.dll",
+          "kernel32.dll",
+          "ntdll.dll",
+          "oleaut32.dll",
+          "pdh.dll",
+          "powrprof.dll",
+          "psapi.dll",
+          "setupapi.dll",
+          "shell32.dll",
+          "user32.dll",
+          "vcruntime140.dll"
+        ],
+        "delay_imports": [],
+        "minimum_windows_verified": false,
+        "transitive_or_dynamic_loads_inspected": false
+      },
+      "dumpbin_direct_imports": [
+        "advapi32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "api-ms-win-crt-heap-l1-1-0.dll",
+        "api-ms-win-crt-locale-l1-1-0.dll",
+        "api-ms-win-crt-math-l1-1-0.dll",
+        "api-ms-win-crt-runtime-l1-1-0.dll",
+        "api-ms-win-crt-stdio-l1-1-0.dll",
+        "api-ms-win-crt-string-l1-1-0.dll",
+        "bcryptprimitives.dll",
+        "dxgi.dll",
+        "iphlpapi.dll",
+        "kernel32.dll",
+        "ntdll.dll",
+        "oleaut32.dll",
+        "pdh.dll",
+        "powrprof.dll",
+        "psapi.dll",
+        "setupapi.dll",
+        "shell32.dll",
+        "user32.dll",
+        "vcruntime140.dll"
+      ],
+      "matched": true
+    },
+    "sdk/bin/daoseeker_scope_ffi.dll": {
+      "sha256": "c6e6c751d48cfaed6c3ed1ea4b0111d544f7bb76f1b22f277d1319857776c194",
+      "pe": {
+        "format": "PE32+",
+        "machine": "x86_64",
+        "kind": "dll",
+        "subsystem": "windows_gui",
+        "declared_os_version": [
+          6,
+          0
+        ],
+        "declared_subsystem_version": [
+          6,
+          0
+        ],
+        "direct_imports": [
+          "advapi32.dll",
+          "api-ms-win-core-synch-l1-2-0.dll",
+          "api-ms-win-crt-heap-l1-1-0.dll",
+          "api-ms-win-crt-runtime-l1-1-0.dll",
+          "api-ms-win-crt-string-l1-1-0.dll",
+          "bcryptprimitives.dll",
+          "dxgi.dll",
+          "iphlpapi.dll",
+          "kernel32.dll",
+          "ntdll.dll",
+          "oleaut32.dll",
+          "pdh.dll",
+          "powrprof.dll",
+          "psapi.dll",
+          "setupapi.dll",
+          "shell32.dll",
+          "user32.dll",
+          "vcruntime140.dll"
+        ],
+        "delay_imports": [],
+        "minimum_windows_verified": false,
+        "transitive_or_dynamic_loads_inspected": false
+      },
+      "dumpbin_direct_imports": [
+        "advapi32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "api-ms-win-crt-heap-l1-1-0.dll",
+        "api-ms-win-crt-runtime-l1-1-0.dll",
+        "api-ms-win-crt-string-l1-1-0.dll",
+        "bcryptprimitives.dll",
+        "dxgi.dll",
+        "iphlpapi.dll",
+        "kernel32.dll",
+        "ntdll.dll",
+        "oleaut32.dll",
+        "pdh.dll",
+        "powrprof.dll",
+        "psapi.dll",
+        "setupapi.dll",
+        "shell32.dll",
+        "user32.dll",
+        "vcruntime140.dll"
+      ],
+      "matched": true
+    },
+    "sdk/bin/c-example.exe": {
+      "sha256": "c9f67a5296a6ad6703b5b7568fa8d19540024f15a901d5cb3a192462963bcc23",
+      "pe": {
+        "format": "PE32+",
+        "machine": "x86_64",
+        "kind": "exe",
+        "subsystem": "windows_cui",
+        "declared_os_version": [
+          6,
+          0
+        ],
+        "declared_subsystem_version": [
+          6,
+          0
+        ],
+        "direct_imports": [
+          "daoseeker_scope_ffi.dll",
+          "kernel32.dll"
+        ],
+        "delay_imports": [],
+        "minimum_windows_verified": false,
+        "transitive_or_dynamic_loads_inspected": false
+      },
+      "dumpbin_direct_imports": [
+        "daoseeker_scope_ffi.dll",
+        "kernel32.dll"
+      ],
+      "matched": true
+    }
+  },
+  "delay_import_oracle_tested": false,
+  "minimum_windows_verified": false,
+  "published": false
+}
