@@ -108,6 +108,12 @@ class ElfTests(unittest.TestCase):
         )
         report = inspect_elf(output)
         self.assertEqual(report["highest_glibc_numeric_requirement"], "GLIBC_2.10")
+        self.assertEqual(
+            inspect_elf(output.replace(b"GLIBC_2.10", b"GLIBC_1234567890.0"))[
+                "highest_glibc_numeric_requirement"
+            ],
+            "GLIBC_1234567890.0",
+        )
         self.assertEqual(report["weak_symbol_versions"]["libc.so.6"], ["GLIBC_2.9"])
         self.assertEqual(
             report["required_symbol_versions"]["libc.so.6"], ["GLIBC_2.10"]

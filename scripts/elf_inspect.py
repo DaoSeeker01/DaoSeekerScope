@@ -130,7 +130,7 @@ def inspect_elf(output: bytes, *, consumer: bool = False) -> dict[str, Any]:
         name
         for names in versions.values()
         for name in names
-        if re.fullmatch(r"GLIBC_\d{1,8}(?:\.\d{1,8}){1,3}", name)
+        if re.fullmatch(r"GLIBC_[0-9]+(?:\.[0-9]+)+", name)
     }
     highest = max(
         glibc,
