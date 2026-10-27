@@ -108,6 +108,10 @@ class ElfTests(unittest.TestCase):
         )
         report = inspect_elf(output)
         self.assertEqual(report["highest_glibc_numeric_requirement"], "GLIBC_2.10")
+        self.assertEqual(report["weak_symbol_versions"]["libc.so.6"], ["GLIBC_2.9"])
+        self.assertEqual(
+            report["required_symbol_versions"]["libc.so.6"], ["GLIBC_2.10"]
+        )
         self.assertEqual(
             report["direct_dependencies_without_version_entries"], ["libgcc_s.so.1"]
         )
@@ -117,6 +121,15 @@ class ElfTests(unittest.TestCase):
             )
         )
         self.assertIsNone(report["highest_glibc_numeric_requirement"])
+
+    def test_weak_high_version_does_not_raise_numeric_requirement(self) -> None:
+        output = OUTPUT.replace(b"GLIBC_2.9 Flags: none", b"GLIBC_99.0 Flags: WEAK")
+        report = inspect_elf(output)
+        self.assertEqual(report["highest_glibc_numeric_requirement"], "GLIBC_2.34")
+        self.assertNotIn("GLIBC_99.0", report["required_symbol_versions"]["libc.so.6"])
+        self.assertEqual(report["weak_symbol_versions"]["libc.so.6"], ["GLIBC_99.0"])
+        with self.assertRaisesRegex(ValueError, "elf_version_flags"):
+            inspect_elf(OUTPUT.replace(b"Flags: none", b"Flags: UNKNOWN", 1))
 
     def test_sdk_keeps_origin_runpath_contract(self) -> None:
         tags = b"0x01 (NEEDED) Shared library: [libdaoseeker_scope_ffi.so]\n0x1d (RUNPATH) Library runpath: [$ORIGIN/../lib]\n"

@@ -10,7 +10,7 @@
 
 保留现有 NEEDED/RPATH/RUNPATH 规则。SDK C 消费者必须直接依赖 `libdaoseeker_scope_ffi.so`，RUNPATH 仅为 `$ORIGIN/../lib`；SDK 库和 CLI 不允许 RPATH/RUNPATH。根据 [Linux loader 文档](https://man7.org/linux/man-pages/man8/ld.so.8.html)，这个 RUNPATH 只覆盖直接依赖，不能据此宣称传递依赖已满足。
 
-只解析 version needs，不把 version definitions 或已提供符号当作要求。按依赖库保存完整版本名称，保留 `GLIBC_ABI_*` 等非数值条件，并单独列出没有版本条目的直接依赖；后者不表示该依赖没有兼容性要求。数字版本按整数分段比较，避免把 2.9 错排在 2.34 之后。`highest_glibc_numeric_requirement` 只表示当前产物声明中的数值最大值，不是项目的最低 glibc 或发行版承诺。拒绝直接依赖 `GLIBC_PRIVATE` 的候选。
+只解析 version needs，不把 version definitions 或已提供符号当作要求。按依赖库保存完整版本名称，保留 `GLIBC_ABI_*` 等非数值条件；强制要求与 `WEAK` 弱版本分别记录，不认识的标志明确失败。弱版本不计入最高强制 GLIBC 要求。另列出没有版本条目的直接依赖，这不表示该依赖没有兼容性要求。数字版本按整数分段比较，避免把 2.9 错排在 2.34 之后。`highest_glibc_numeric_requirement` 不是项目的最低 glibc 或发行版承诺。拒绝直接依赖 `GLIBC_PRIVATE` 的候选。
 
 ## 边界与接入
 

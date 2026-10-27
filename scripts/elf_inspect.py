@@ -48,7 +48,7 @@ def needed_libraries(output: bytes, *, consumer: bool) -> list[str]:
     return needed
 
 
-def version_requirements(output: bytes, needed: list[str]) -> dict[str, list[str]]:
+def version_requirements(output: bytes, needed: list[str]) -> dict[str, dict[str, str]]:
     """Read only version needs, never version definitions or provided symbols."""
     require(len(output) <= MAX_OUTPUT, "elf_output_limit")
     text = output.decode("ascii")
@@ -66,7 +66,7 @@ def version_requirements(output: bytes, needed: list[str]) -> dict[str, list[str
         text[headers[0].end() :],
         maxsplit=1,
     )[0]
-    result: dict[str, list[str]] = {}
+    result: dict[str, dict[str, str]] = {}
     current: str | None = None
     expected = 0
     total = 0
@@ -85,18 +85,20 @@ def version_requirements(output: bytes, needed: list[str]) -> dict[str, list[str
             expected = int(entry[2])
             require(current in needed and current not in result, "elf_version_file")
             require(1 <= expected <= 256, "elf_version_count")
-            result[current] = []
+            result[current] = {}
             continue
         version = re.fullmatch(
-            r"\s*(?:0x)?[0-9a-fA-F]+:\s+Name:\s+([A-Za-z0-9_.+\-]{1,128})\s+Flags:\s+\S+\s+Version:\s+\d+\s*",
+            r"\s*(?:0x)?[0-9a-fA-F]+:\s+Name:\s+([A-Za-z0-9_.+\-]{1,128})\s+Flags:\s+(\S+)\s+Version:\s+\d+\s*",
             line,
         )
         require(version is not None and current is not None, "elf_version_entry")
         assert version is not None and current is not None
         name = version[1]
+        flags = version[2]
+        require(flags in ("none", "WEAK"), "elf_version_flags")
         require(name != "GLIBC_PRIVATE", "elf_private_glibc")
         require(name not in result[current], "elf_version_duplicate")
-        result[current].append(name)
+        result[current][name] = flags
         total += 1
         require(total <= 1024 and len(result[current]) <= expected, "elf_version_count")
     require(
@@ -105,13 +107,25 @@ def version_requirements(output: bytes, needed: list[str]) -> dict[str, list[str
         and len(result[current]) == expected,
         "elf_version_count",
     )
-    return {library: sorted(names) for library, names in sorted(result.items())}
+    return {
+        library: dict(sorted(names.items()))
+        for library, names in sorted(result.items())
+    }
 
 
 def inspect_elf(output: bytes, *, consumer: bool = False) -> dict[str, Any]:
     """Inventory requirements; a numeric maximum is not an OS compatibility proof."""
     needed = needed_libraries(output, consumer=consumer)
-    versions = version_requirements(output, needed)
+    entries = version_requirements(output, needed)
+    versions = {
+        library: [name for name, flags in names.items() if flags == "none"]
+        for library, names in entries.items()
+    }
+    weak = {
+        library: [name for name, flags in names.items() if flags == "WEAK"]
+        for library, names in entries.items()
+        if "WEAK" in names.values()
+    }
     glibc = {
         name
         for names in versions.values()
@@ -126,6 +140,7 @@ def inspect_elf(output: bytes, *, consumer: bool = False) -> dict[str, Any]:
     return {
         "direct_dependencies": needed,
         "required_symbol_versions": versions,
+        "weak_symbol_versions": weak,
         "direct_dependencies_without_version_entries": sorted(
             set(needed) - versions.keys()
         ),
