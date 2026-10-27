@@ -7,7 +7,6 @@ import json
 import os
 from pathlib import Path
 import platform
-import re
 import subprocess
 import sys
 import tempfile
@@ -27,6 +26,7 @@ from cli_bundle import (
 )
 from cli_bundle_smoke import activate, install
 from native_smoke import check_snapshot
+from elf_inspect import inspect_elf, linux_environment, needed_libraries
 from pe_inspect import inspect_file, inspect_pe
 
 
@@ -37,12 +37,7 @@ def execute(
     environment = os.environ.copy()
     if target == LINUX_TARGET:
         # Do not inherit developer loader overrides or mutate the parent's environment.
-        environment = {
-            key: value
-            for key, value in environment.items()
-            if not key.startswith("LD_") and key != "GLIBC_TUNABLES"
-        }
-        environment["LC_ALL"] = "C"
+        environment = linux_environment(environment)
     with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
         result = subprocess.run(
             arguments,
@@ -60,21 +55,8 @@ def execute(
 
 
 def elf_dependencies(output: bytes, *, consumer: bool) -> list[str]:
-    """Check readelf's C-locale dynamic tags without retaining absolute paths."""
-    text = output.decode("ascii")
-    needed = re.findall(r"\(NEEDED\)[^\r\n]*\[([^\]\r\n]+)\]", text)
-    runpath = re.findall(r"\(RUNPATH\)[^\r\n]*\[([^\]\r\n]*)\]", text)
-    require(
-        0 < len(needed) <= 64
-        and len(set(needed)) == len(needed)
-        and all(re.fullmatch(r"[A-Za-z0-9_.+\-]+", name) for name in needed),
-        "elf_needed",
-    )
-    require("(RPATH)" not in text, "elf_rpath")
-    require(runpath == (["$ORIGIN/../lib"] if consumer else []), "elf_runpath")
-    if consumer:
-        require(needed.count("libdaoseeker_scope_ffi.so") == 1, "elf_sdk_dependency")
-    return needed
+    """Compatibility helper for the existing SDK dynamic-tag regression tests."""
+    return needed_libraries(output, consumer=consumer)
 
 
 def probe_sdk(root: Path, expected_slot: str, target: str = TARGET) -> dict[str, Any]:
@@ -106,9 +88,12 @@ def probe_sdk(root: Path, expected_slot: str, target: str = TARGET) -> dict[str,
             target,
         )
         for label, path in (("consumer", binary), ("library", library)):
-            dependencies[label] = elf_dependencies(
+            dependencies[label] = inspect_elf(
                 execute(
-                    ["readelf", "--wide", "--dynamic", str(path)], sdk, "elf", target
+                    ["readelf", "--wide", "--dynamic", "--version-info", str(path)],
+                    sdk,
+                    "elf",
+                    target,
                 ),
                 consumer=label == "consumer",
             )
@@ -233,7 +218,11 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         report.update(
             library_sha256=digest(payload["lib/libdaoseeker_scope_ffi.so"]),
             elf_inspections=6,
-            elf_needed=dependencies[0],
+            elf_needed={
+                role: item["direct_dependencies"]
+                for role, item in dependencies[0].items()
+            },
+            elf_images=dependencies[0],
             consumer_runpath="$ORIGIN/../lib",
             child_loader_overrides_cleared=True,
             posix_modes_verified=True,

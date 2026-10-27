@@ -1,5 +1,7 @@
 # 打包与安装验证
 
+Linux 候选现在记录所需符号版本；CLI 验收也清除加载器覆盖变量，增加一次 readelf 调用。SDK 原有 15 次调用不变，见[本轮验证状态](linux-runtime-validation.md)。版本声明不能替代最低系统环境实测。
+
 Windows CLI/SDK 候选验收增加了安装前 PE 检查，记录架构、直接 DLL 依赖和版本声明，并拒绝已知 MSVC 调试运行库。ZIP 格式不变；头部声明不能作为最低系统版本保证，见[验证状态](windows-pe-validation.md)。
 
 2026-10-27 打包可靠性修复：开始验收时作废旧 pass，失败/中断分别记录；前后源码状态必须一致，安装后的 CLI 增加版本、Schema、最低读取和默认隐私检查。源码 `d5d1e3b` 的本机及三平台八包回归、两平台 CLI/SDK 候选通过，[记录](project-review-2026-10-27.md)。

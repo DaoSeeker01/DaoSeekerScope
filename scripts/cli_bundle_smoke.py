@@ -26,6 +26,7 @@ from cli_bundle import (
     verify_bundle,
 )
 from native_smoke import check_snapshot
+from elf_inspect import inspect_file as inspect_elf_file, linux_environment
 from pe_inspect import inspect_pe
 
 
@@ -63,7 +64,7 @@ def activate(root: Path, slot: str, payload: dict[str, bytes]) -> None:
     os.replace(pending, root / "active")
 
 
-def probe(binary: Path, version: str) -> None:
+def probe(binary: Path, version: str, target: str = TARGET) -> None:
     for arguments in (["--version"], ["--json"]):
         # Spool child output to disk, then read a bounded amount; never log snapshots.
         with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
@@ -74,6 +75,7 @@ def probe(binary: Path, version: str) -> None:
                 stderr=stderr,
                 timeout=30,
                 check=True,
+                env=linux_environment(os.environ) if target == LINUX_TARGET else None,
             )
             require(result.returncode == 0, "cli_exit")
             stdout.seek(0)
@@ -95,7 +97,7 @@ def probe_selected(
 ) -> None:
     slot = (root / "active").read_text(encoding="ascii")
     require(slot in ("a", "b") and slot == expected_slot, "active_selection")
-    probe(root / slot / executable_name(target), version)
+    probe(root / slot / executable_name(target), version, target)
 
 
 def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
@@ -114,6 +116,11 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
     ) as folder:
         root = Path(folder)
         install(archive, checksum, root / "a")
+        elf = (
+            inspect_elf_file(root / "a" / executable_name(target))
+            if target == LINUX_TARGET
+            else None
+        )
         activate(root, "a", payload)
         probe_selected(root, "a", manifest["version"], target)
         # Both slots contain the same real candidate: this tests directory selection,
@@ -154,7 +161,7 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         "archive_sha256": checksum,
         "cli_sha256": digest(payload[executable_name(target)]),
         "payload_files": len(payload) - 1,
-        "processes": 6,
+        "processes": 7 if target == LINUX_TARGET else 6,
         "minimum_read_and_default_privacy": True,
         "snapshot_schema_validated": True,
         "posix_modes_verified": target == LINUX_TARGET,
@@ -167,6 +174,10 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
     }
     if pe is not None:
         report.update(pe_image=pe, pe_archive_inspections=1)
+    if elf is not None:
+        report.update(
+            elf_image=elf, elf_inspections=1, child_loader_overrides_cleared=True
+        )
     return report
 
 

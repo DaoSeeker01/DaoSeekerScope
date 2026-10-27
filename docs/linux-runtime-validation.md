@@ -1,0 +1,34 @@
+# Linux 候选包运行库要求
+
+本轮补充 CLI 和 SDK 的 ELF 符号版本记录，并让 CLI 验收摆脱开发者加载器覆盖变量的影响。规则见 [ADR 0036](adr/0036-linux-symbol-version-requirements.md)。
+
+## 复现
+
+需要 GNU/Linux x64、项目 Python 开发环境、GNU readelf 和 C 工具链。在干净源码目录运行：
+
+```sh
+python -m unittest discover -s tests -p test_elf_inspect.py -v
+cli=$(python scripts/cli_bundle.py)
+python scripts/cli_bundle_smoke.py "$cli"
+sdk=$(python scripts/cli_bundle.py --product ffi_sdk)
+python scripts/ffi_bundle_smoke.py "$sdk"
+```
+
+CLI 报告为 `target/cli-bundle-evidence.json`，SDK 为 `target/ffi-bundle-evidence.json`。失败或中断不能保留上次成功结果。候选保存在项目内，不安装系统运行库、不修改 PATH、不正式发布。
+
+## 如何读取结果
+
+- `direct_dependencies`：ELF 声明的直接库名，不是所有传递依赖。
+- `required_symbol_versions`：按库记录的版本要求，包含数值和非数值名称。
+- `direct_dependencies_without_version_entries`：没有 version needs 条目的直接依赖；不能理解为它不受兼容性约束。
+- `highest_glibc_numeric_requirement`：当前产物声明的最高数值 GLIBC 要求。它没有涵盖内核、其他库、CPU 指令、驱动和运行期加载路径，也不是最低发行版保证。
+
+检查依据是 [GNU readelf 的动态和版本信息](https://sourceware.org/binutils/docs/binutils/readelf.html)。当 `elf_version_section`、`elf_version_entry` 或 `elf_version_count` 失败时，应先核对工具输出、版本和链接产物，不能把解析失败改成空列表。`elf_private_glibc` 表示直接引用了私有 glibc 版本，需检查构建和链接来源。
+
+CLI 现在有七次顶层调用：六次实际 CLI 运行和一次 readelf。SDK 仍为 15 次：三次编译、三次 C、三次 Python、六次 readelf；Python 合计 300 次 collect/free。没有把编译器和链接器的子孙进程计入这个数字。
+
+## 本轮状态
+
+本机 Windows 的文本、负向、环境隔离及共享工具回归已通过；新增 Linux 原生编译测试在 Windows 明确跳过。真实 Linux CLI/SDK 的符号版本读取与三平台 CI 尚待本轮验收。没有把上一轮结果作为本轮原生证据。
+
+最低 glibc/内核/发行版、传递和运行期依赖、实体 Linux/macOS、多组 CPU、长期 fuzz 和峰值内存仍待独立验证。Windows PE 检查沿用[上轮结果](windows-pe-validation.md)，本轮仍需共享工具回归。
