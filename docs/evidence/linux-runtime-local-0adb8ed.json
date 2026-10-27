@@ -1,0 +1,61 @@
+{
+  "overall": "passed",
+  "scope": "Windows local guards; native Linux candidates not executed locally",
+  "date": "2026-10-28",
+  "source_commit": "0adb8ed6f4d1283cc508240a6f8b7c9c236ccf59",
+  "source_dirty": false,
+  "source_files": {
+    "scripts/elf_inspect.py": "ab586b99a5791ccccdecf406c00ade677e27e08bd4d8ef59a993e706fcd028e7",
+    "scripts/cli_bundle_smoke.py": "a4bf3ec23cf43bf1935c3c1fcdb2406a3c8ad9b587a7921c4f86ce59ea4f224a",
+    "scripts/ffi_bundle_smoke.py": "02aabb335294b736f55b461920aa6e6d14f988424e474aa47cc9681eacff2ea2",
+    "tests/test_elf_inspect.py": "be7f49bd4380ecac6f3e2cf75796722cf7b2398271c464d44b078587d338cf85"
+  },
+  "python": {
+    "run": 192,
+    "passed": 187,
+    "skipped": 5,
+    "new_elf_tests": 14,
+    "new_elf_native_linux_test": "skipped_on_windows",
+    "other_skips": "4 existing POSIX permission tests"
+  },
+  "rust_tests_including_doctests": 264,
+  "commands": [
+    "python -m unittest discover -s tests -p test_*.py -v",
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "python -m ruff format --check scripts tests examples/collect.py",
+    "python -m ruff check scripts tests examples/collect.py",
+    "python -m mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+    "python scripts/check_project.py"
+  ],
+  "static_checks": {
+    "ruff_format": "passed",
+    "ruff_lint": "passed",
+    "mypy_source_files": 60,
+    "project_files": 905,
+    "project_local_links": 728,
+    "actionlint": "passed",
+    "diff_check": "passed"
+  },
+  "rust_gates": [
+    "fmt",
+    "strict_clippy_all_targets_all_features",
+    "workspace_tests",
+    "no_default_features",
+    "strict_rustdoc",
+    "build",
+    "linux_x64_cross_check",
+    "macos_arm64_cross_check"
+  ],
+  "logs": {
+    "python_sha256": "e2f6600a2ddc7b0a4897ec95cde66e2a85ff3b6d90f59aa479d9dd1240db5085",
+    "rust_sha256": "a8f1bf619d3cfa45d4e99ceb2ed5ed0518ab2e753af082d4dadcc6bcd56c989c"
+  },
+  "native_linux_candidate_readelf_install_or_runtime_verification": false,
+  "ci": "pending_this_round",
+  "minimum_glibc_or_distribution_verified": false,
+  "public_rust_api_changed": false,
+  "abi": 1,
+  "snapshot_schema": 1,
+  "dependency_feature_or_license_changes": false,
+  "published": false
+}

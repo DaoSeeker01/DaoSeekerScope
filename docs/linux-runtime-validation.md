@@ -29,6 +29,8 @@ CLI 现在有七次顶层调用：六次实际 CLI 运行和一次 readelf。SDK
 
 ## 本轮状态
 
-本机 Windows 的文本、负向、环境隔离及共享工具回归已通过；新增 Linux 原生编译测试在 Windows 明确跳过。真实 Linux CLI/SDK 的符号版本读取与三平台 CI 尚待本轮验收。没有把上一轮结果作为本轮原生证据。
+干净提交 `0adb8ed6f4d1283cc508240a6f8b7c9c236ccf59` 的本机 Windows 回归已通过：Python 共 192 项，187 项通过、5 项跳过（4 项既有 POSIX 权限测试和 1 项新增 Linux 原生编译测试）；新增 ELF 测试共 14 项。Rust 264 项测试、fmt、严格 Clippy/文档、无默认 feature 和 Linux x64/macOS ARM64 交叉检查通过。Ruff 与 mypy 的 60 个文件检查通过，[本机记录](evidence/linux-runtime-local-0adb8ed.json)保存来源和日志哈希。
+
+本机没有执行 Linux readelf、原生编译或候选安装。真实 Linux CLI/SDK 的符号版本读取与三平台 CI 尚待本轮验收，没有把上一轮结果作为本轮原生证据。
 
 最低 glibc/内核/发行版、传递和运行期依赖、实体 Linux/macOS、多组 CPU、长期 fuzz 和峰值内存仍待独立验证。Windows PE 检查沿用[上轮结果](windows-pe-validation.md)，本轮仍需共享工具回归。
