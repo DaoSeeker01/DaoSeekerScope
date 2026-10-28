@@ -1,6 +1,6 @@
 # ADR 0037：在较低版本 Linux 用户空间验证候选包
 
-日期：2026-10-28。状态：实现，等待本轮原生 CI；结果见[验证记录](../linux-runtime-container-validation.md)。
+日期：2026-10-28。状态：本机守卫与三平台 CI 40664519934 已通过；Debian 12 实际运行及 Debian 11 预期拒绝分别验收，首轮失败保留。见[验证记录](../linux-runtime-container-validation.md)。
 
 ## 要解决的问题
 

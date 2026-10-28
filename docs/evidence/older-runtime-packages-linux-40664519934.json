@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 256,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "06a56aa901a431de1d872c72abaada86c415b1e3a0447d648c4be586eaff8be9",
+      "files": 16
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "7cf38753b12ef6981aeea9f6dd2d68ace2397cc91b8f679e51dc62dbf189b553",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "5861e10c60d3d85ed3424e51529487771761f46a99a5f8fc13b404b4070e19df",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "bd6968dfcc386837eec16022f4282b00395893aa88c05ae870111726146d9716",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "529fc43b77caafece5e1b33ee2a12722f71da8bedb3ef4ba75f1c039bc8d21b2",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "115283800e6e1f42553f0f98ca0b65595d213550fcf48854b5c99bf3ea919f22",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "18a3e86883dc737c758dc8b4261d452a5609fd0f1741fe3d7b79ad741aadb9c6",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "570fc1e7efac6ea71da5536d34123045cd9152181f9fc5384b01b75b92285025",
+      "files": 7
+    }
+  ]
+}

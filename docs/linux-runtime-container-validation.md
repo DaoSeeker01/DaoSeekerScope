@@ -14,25 +14,41 @@ python scripts/linux_runtime_container_smoke.py "$cli" "$sdk"
 
 脚本不安装或启动 Docker，不使用远程 daemon，不更改系统库或 PATH。报告写入 `target/linux-runtime-container-evidence.json`；任一步失败都不能沿用旧成功报告。镜像仅用于测试，不随项目分发。
 
-## 本轮状态
+## 已验证结果
 
-首轮 CI 40609811580 在启动任何容器前因 `runtime_payload_limit` 失败：完整候选总载荷超出工具写死的 32 MiB 门槛。该轮没有用户空间运行证据，[失败报告](evidence/linux-runtime-container-failed-40609811580.json)保留，不能算作 Debian 兼容性失败或成功。本轮修正为按 64 MiB 实际工作区计算完整安装预算并保留 16 MiB 余量，额外核对容器内复制前后真实空间。许可证、二进制、镜像及隔离限制保持原样，修正后的原生结果仍待 CI。
+干净源码 `a5ae6fe799bfb899de8d1b4a44408905cc6d6c15` 的 [CI 40664519934](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934)八项任务全部通过，受测文件与最终本机实现提交 `7c3e90a` 逐字节一致。完整报告见[容器结果](evidence/older-runtime-containers-linux-40664519934.json)，来源、哈希和门禁汇总见[验收索引](evidence/older-runtime-ci-40664519934.json)。
 
-已实现两项固定摘要的环境检查，原生结果待本轮 CI：
-
-| 环境 | 验收条件 | 不能据此得出的结论 |
+| 固定镜像中的环境 | 实际结果 | 结论范围 |
 |---|---|---|
-| Debian 12 / glibc 2.36 | 相同哈希的 CLI、C 和 Python 正常运行；CLI/C Schema、最低读取和默认隐私通过；Python 完成 100 次 collect/free | 所有 Debian 12 设备、精确最低 glibc、最低内核或所有硬件字段均可用 |
-| Debian 11 / glibc 2.31 | CLI/C 和 ctypes 仅因已声明的更高 GLIBC 版本缺失而加载失败 | 该环境受支持或库已经成功采集 |
+| Debian 12 / glibc 2.36 / Python 3.13.13 | CLI 版本与 JSON、C 采集、Python 100 次 collect/free 通过；Schema、最低读取和默认隐私通过 | 当前候选在此用户空间可运行 |
+| Debian 11 / glibc 2.31 / Python 3.13.5 | CLI/C 报告缺少 GLIBC_2.32、2.33、2.34，ctypes 报告缺少 GLIBC_2.32；未开始采集 | 当前候选在此环境被 loader 拒绝；“通过”只指预期拒绝检查通过 |
 
-本机 Windows 没有启动容器或 Linux 程序；单元测试只证明守卫逻辑、报告校验及异常清理路径。镜像摘要来源见[记录](evidence/linux-runtime-images-2026-10-28.json)，它不是镜像运行证据。
+两次运行使用相同 CLI、SDK 库和宿主预先编译的 C 消费者哈希；容器内没有重新编译它们。完整复制并校验 CLI 43 项与 SDK 47 项载荷，另有两个 manifest 和一个 C 消费者，共 93 个安装文件。两个容器均以 UID/GID 65534、只读根目录、无网络和固定资源限制运行，结束后均已移除。
 
-源码 `2f0c90009ba148e66e97b9247b443736a76647e5` 已完成本机门禁：Python 208 项中 203 项通过、5 项既有平台测试跳过，新增容器守卫 15 项全部通过；Rust 264 项、fmt、严格 Clippy/文档、无默认 feature 及 Linux x64/macOS ARM64 交叉检查通过。Ruff/mypy 检查 63 个文件，actionlint 与项目守卫通过，见[本机记录](evidence/linux-runtime-container-local-2f0c900.json)。本轮原生容器仍待 CI，不采用上一轮的运行结果。
+## 容量修复与资源证据
 
-修正后干净源码 `7c3e90a2c0843564da87647ca1b7a3c1316b3017` 的本机门禁通过：Python 212 项中 207 项通过、5 项平台跳过，容器守卫共 19 项；Rust 264 项及上述构建/交叉/静态门禁通过。另修正 C loader 版本归属，允许来自已校验的包内 SDK 库，并继续拒绝未知版本或无关错误。见[修正记录](evidence/linux-runtime-container-local-7c3e90a.json)。
+完整安装逻辑大小为 34442903 bytes（约 32.85 MiB），按分配单元和目录估算为 34832384 bytes。64 MiB 工作区保留 16 MiB 余量；复制前后通过 statvfs 核对，复制后还剩 32432128 bytes（约 30.93 MiB）。内存上限仍为 256 MiB，没有扩大容器资源或删除、共享许可证文件。
 
-正面场景中，候选先复制到容器内 `/work` 的新目录，再按 manifest 检查完整文件和执行文件的哈希；Rust 二进制与 C 消费者均不会在该环境重新编译。报告只保存结果、运行环境、哈希和受控配置，原始默认脱敏快照在宿主验证后丢弃。
+首轮 [CI 40609811580](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40609811580)因工具写死的 32 MiB 载荷门槛失败，未启动任何测试容器，不能当作兼容性结果。[原始失败报告](evidence/linux-runtime-container-failed-40609811580.json)和七项成功、一项失败的状态保留。修复后按实际工作区预算完整安装，并检查复制前后真实余量；超限仍必须失败。
 
-报告的 `payload_bytes`、`work_budget` 和各环境的 `installation_storage` 分别记录载荷、按分配单元估算的安装占用及真实可用空间。预算不包含删除或共享许可证文件的优化；若容量或余量不足，应记录失败并检查产物规模，不得降低检查标准。
+另补齐 C loader 诊断的已知依赖范围：C EXE 的错误可以来自包内 SDK 库，二者的强制版本表共同校验；CLI 和 ctypes 仍分别检查自身。此次 C 诊断实际包含 SDK 声明的 GLIBC_2.32、2.33，相关回归通过；未知版本、崩溃、权限错误或普通非零退出不能冒充预期拒绝。
 
-内核与 CPU 来自 CI 宿主。实体 Linux/macOS、多组 CPU、更低 glibc 区间、最低内核及正式发布仍待单独验收。当前没有新增公共 API、依赖、feature 或许可证变化。
+## 回归门禁
+
+| 原生 runner | 八个实际归档的独立 Rust 测试（含 doctest） | Python 通过 / 跳过 |
+|---|---:|---:|
+| Windows x64 | 264 | 207 / 5 |
+| Linux x64 | 256 | 212 / 0 |
+| macOS ARM64 | 261 | 211 / 1 |
+
+三平台 fmt、严格 Clippy/文档、workspace 测试、无默认 feature、Schema、Ruff/mypy（63 文件）和项目守卫通过；各平台五组原生 CLI/C/Python 检查、16 项顶层进程通过。两平台既有 CLI/SDK 安装回滚与 ELF/PE 门禁也通过。Linux 新增用户空间场景单独记录，不与既有 CLI 七次、SDK 15 次调用/300 次 Python 循环混计。
+
+供应链、既有 Linux 容器、Miri 8 项、FFI ASan 10 项及 12 个 Rust 短 fuzz 目标通过。完整空 `/proc` 仍被 OCI 在库进程启动前拒绝，记录为未运行；长期 fuzz 与峰值内存尚未完成。本轮下载核查的是 runner 产生的报告，没有二次下载候选 ZIP 重新验收。
+
+本机 Windows 的[初次守卫](evidence/linux-runtime-container-local-2f0c900.json)和[修复后守卫](evidence/linux-runtime-container-local-7c3e90a.json)分别保留。最终本机 Python 207 项通过、5 项平台跳过，容器守卫共 19 项；Rust 264 项及 Linux x64/macOS ARM64 交叉检查通过。本机没有启动 Docker 或 Linux 程序。
+
+## 尚未证明的内容
+
+容器共享 CI 宿主内核 `7.0.0-1017-azure` 和宿主 CPU，不能当作实体 Debian 设备或最低内核测试。glibc 2.31 被拒绝、2.36 可运行，并不能推出 2.32–2.35 区间的精确下限，更不能推出所有发行版或所有硬件字段可用。当前结论只针对这次构建的二进制候选，不等同于判定整个源码库在 Debian 11 不可构建。
+
+实体 Linux/macOS、多组 CPU、更多用户空间版本、最低内核、macOS 分发材料和正式发布仍待单独验收。公共 Rust API、C ABI 1、硬件 JSON Schema 1、ZIP 格式、依赖、feature、锁文件和 MIT 未变。

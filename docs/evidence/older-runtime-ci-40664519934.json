@@ -1,0 +1,474 @@
+{
+  "overall": "passed",
+  "date": "2026-10-28",
+  "source_commit": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15",
+  "implementation_commit": "7c3e90a2c0843564da87647ca1b7a3c1316b3017",
+  "run_id": 40664519934,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934",
+  "event": "push",
+  "source_files": {
+    "scripts/linux_runtime_container_smoke.py": "1d27b164fd4aba6a86fd6b391a3e2880be3275d4a6e212881b89bc0ce152b3ee",
+    "scripts/linux_runtime_container_probe.py": "e2f54f58664f424706e4e3f5df5a5e78e53ef40d20ff3b753f2051df7e7a3e20",
+    "tests/test_linux_runtime_container.py": "02d06c78daeac65abb4aef17042b471a4c0a69be5296f1435b68fb9f4cdda9d4",
+    ".github/workflows/ci.yml": "abac9e001d73266276b5cb37001e2ab96a7da66d39857f732e91c5d149440173",
+    "docs/evidence/linux-runtime-images-2026-10-28.json": "34169a58cc86bdd78d43764b1219772fbe2f339736e411f0f3fab2228ac56443",
+    "scripts/elf_inspect.py": "72da94d87ec57276309e68d5ff883bceafd66f72a357de8150cfe3e90738aa99"
+  },
+  "jobs": [
+    {
+      "databaseId": 122735536387,
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934/job/122735536387"
+    },
+    {
+      "databaseId": 122735536744,
+      "name": "miri",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934/job/122735536744"
+    },
+    {
+      "databaseId": 122735536768,
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934/job/122735536768"
+    },
+    {
+      "databaseId": 122735536783,
+      "name": "supply-chain",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934/job/122735536783"
+    },
+    {
+      "databaseId": 122735536827,
+      "name": "linux-container",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934/job/122735536827"
+    },
+    {
+      "databaseId": 122735536888,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934/job/122735536888"
+    },
+    {
+      "databaseId": 122735536946,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934/job/122735536946"
+    },
+    {
+      "databaseId": 122735537021,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934/job/122735537021"
+    }
+  ],
+  "platforms": {
+    "windows": {
+      "archives": 8,
+      "isolated_rust_tests_including_doctests": 264,
+      "python_run": 212,
+      "python_passed": 207,
+      "python_skipped": 5,
+      "native_check_groups": 5,
+      "native_processes": 16
+    },
+    "linux": {
+      "archives": 8,
+      "isolated_rust_tests_including_doctests": 256,
+      "python_run": 212,
+      "python_passed": 212,
+      "python_skipped": 0,
+      "native_check_groups": 5,
+      "native_processes": 16
+    },
+    "macos": {
+      "archives": 8,
+      "isolated_rust_tests_including_doctests": 261,
+      "python_run": 212,
+      "python_passed": 211,
+      "python_skipped": 1,
+      "native_check_groups": 5,
+      "native_processes": 16
+    }
+  },
+  "reports": {
+    "older-runtime-native-windows-40664519934.json": {
+      "sha256": "397e5be89443db24de1567122fc6d88047eb5e3a8b564919be8bd331916839d2",
+      "original_sha256": "64c65c6d1675ae259105017f8002bd1812518451b6c26d25646278a3ac888abe",
+      "artifact": "native-evidence-Windows-X64"
+    },
+    "older-runtime-packages-windows-40664519934.json": {
+      "sha256": "1d781b140733860e133f92d70874028aacbae4270762dc4cfcb33ed7b182857d",
+      "original_sha256": "b001d6f34e5e46e5e77b4bd5a2020eabb5cfaf953b5e4f3d87331338d3e06545",
+      "artifact": "package-evidence-Windows-X64"
+    },
+    "older-runtime-native-linux-40664519934.json": {
+      "sha256": "53727cd11d652f4a00f8c1d90f383505c430b4c36b9d061d558f6f21d5baf0d3",
+      "original_sha256": "53727cd11d652f4a00f8c1d90f383505c430b4c36b9d061d558f6f21d5baf0d3",
+      "artifact": "native-evidence-Linux-X64"
+    },
+    "older-runtime-packages-linux-40664519934.json": {
+      "sha256": "c3141fed24ff11e6b68cae411ec5bf16787ed2a66d852d98cdbf9c96623160e0",
+      "original_sha256": "c3141fed24ff11e6b68cae411ec5bf16787ed2a66d852d98cdbf9c96623160e0",
+      "artifact": "package-evidence-Linux-X64"
+    },
+    "older-runtime-native-macos-40664519934.json": {
+      "sha256": "4a82b707abaa20e0bb486f11ad65fd405e4bc7c2464ecef6f44bdd476a3dac22",
+      "original_sha256": "4a82b707abaa20e0bb486f11ad65fd405e4bc7c2464ecef6f44bdd476a3dac22",
+      "artifact": "native-evidence-macOS-ARM64"
+    },
+    "older-runtime-packages-macos-40664519934.json": {
+      "sha256": "50df73a2b083adca2bd77bfb57d23a9e1c5c292c0a5cfc53ab23bdcfc5477983",
+      "original_sha256": "50df73a2b083adca2bd77bfb57d23a9e1c5c292c0a5cfc53ab23bdcfc5477983",
+      "artifact": "package-evidence-macOS-ARM64"
+    },
+    "older-runtime-cli-windows-40664519934.json": {
+      "sha256": "c4221483aa5297a83560201337751c0f74974a3257ef4e0f9b217edf69c7d130",
+      "original_sha256": "ffc50868208de2e98eda0e0845c5cb38c7dcb5cf79564e910b8b912c1e27a3f6",
+      "artifact": "cli-bundle-evidence-Windows-X64"
+    },
+    "older-runtime-sdk-windows-40664519934.json": {
+      "sha256": "a88fa0621099556046c275202c6b76ffb1cdefc99741000fe88312a61e0138ce",
+      "original_sha256": "c45c4de388b9e0328a4ee893c400aea844beebdd9bdeb3e8eba3f7a9b6c73620",
+      "artifact": "ffi-sdk-evidence-Windows-X64"
+    },
+    "older-runtime-cli-linux-40664519934.json": {
+      "sha256": "eb8c7397d375e1489c07c59b6cdaf755cbfff87232caca25d7d3fc3e0b16e67a",
+      "original_sha256": "eb8c7397d375e1489c07c59b6cdaf755cbfff87232caca25d7d3fc3e0b16e67a",
+      "artifact": "cli-bundle-evidence-Linux-X64"
+    },
+    "older-runtime-sdk-linux-40664519934.json": {
+      "sha256": "b81779abb5cb5f0e75a835e6485afed1ddfb8eb3cd5ac9dc536bc0298decfe8c",
+      "original_sha256": "b81779abb5cb5f0e75a835e6485afed1ddfb8eb3cd5ac9dc536bc0298decfe8c",
+      "artifact": "ffi-sdk-evidence-Linux-X64"
+    },
+    "older-runtime-containers-linux-40664519934.json": {
+      "sha256": "5ea6f65eec7fc9584b9209c13a7878d0bcb95b5c71818e9974fe48dac66b7684",
+      "original_sha256": "5ea6f65eec7fc9584b9209c13a7878d0bcb95b5c71818e9974fe48dac66b7684",
+      "artifact": "native-evidence-Linux-X64"
+    }
+  },
+  "candidate_calls": {
+    "windows_cli": 6,
+    "windows_sdk": 9,
+    "linux_cli": 7,
+    "linux_sdk": 15
+  },
+  "runtime_profiles": {
+    "bookworm": {
+      "status": "passed",
+      "image": "python@sha256:f576b530293e74140ea91d262232648d5c4f45640a95ec447757701bfcacf034",
+      "phase": "complete",
+      "image_id": "sha256:2e6b5bbf5b2f372ef9b208e7c7c300675be97a6dc1bbe7e3ac0b9c20035fd70e",
+      "configuration": {
+        "user": "65534:65534",
+        "network": "none",
+        "readonly_root": true,
+        "readonly_candidate_mount": true,
+        "writable_tmpfs": "/work",
+        "memory_bytes": 268435456,
+        "pids": 32,
+        "cpus": 1
+      },
+      "expected": "runs",
+      "runtime": {
+        "glibc": "2.36",
+        "debian": "12",
+        "python": "3.13.13",
+        "kernel": "7.0.0-1017-azure",
+        "machine": "x86_64",
+        "uid": 65534,
+        "cargo_available": false,
+        "rustc_available": false
+      },
+      "binary_sha256": {
+        "cli": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905",
+        "library": "5bb39c224b3e37dd858a76f297bf87beecf9b66581858619a5cc15530b98b13c",
+        "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+      },
+      "installed_payload_files": {
+        "cli": 43,
+        "sdk": 47
+      },
+      "rebuilt_in_container": false,
+      "installation_storage": {
+        "capacity_bytes": 67108864,
+        "reserve_bytes": 16777216,
+        "available_before_copy_bytes": 67108864,
+        "available_after_copy_bytes": 32432128
+      },
+      "snapshot_schema_and_default_privacy": true,
+      "python_collect_free_cycles": 100,
+      "child_processes": 4,
+      "output_sha256": {
+        "cli_version": "492d0083a0d1e9de8fbfc97174806c46f68dd007a649cc18d398383c657cbe9d",
+        "cli_json": "c008c25777cda578e6115e0d3c27e549ffe21a0d28d5c489e05832fb7a1707ef",
+        "c": "5fed0bcf29c6df1e1f91138161daf160e719e65be81e91fd793c4a5261e97ce1",
+        "python": "57adedfa84f5ded89ada46a8084320007d4aa190f5ab67db6cc062d1699bdd66"
+      },
+      "container_removed": true
+    },
+    "bullseye": {
+      "status": "passed",
+      "image": "python@sha256:4ea2e567da526afcd5655339f71295ca6ef72271ff6123bb5c7144ae8fdc1692",
+      "phase": "complete",
+      "image_id": "sha256:932831e2e7dc0aebbabca90d6c78087538e5c3ecf38151069ab418d1ec4532d2",
+      "configuration": {
+        "user": "65534:65534",
+        "network": "none",
+        "readonly_root": true,
+        "readonly_candidate_mount": true,
+        "writable_tmpfs": "/work",
+        "memory_bytes": 268435456,
+        "pids": 32,
+        "cpus": 1
+      },
+      "expected": "loader_rejects",
+      "runtime": {
+        "glibc": "2.31",
+        "debian": "11",
+        "python": "3.13.5",
+        "kernel": "7.0.0-1017-azure",
+        "machine": "x86_64",
+        "uid": 65534,
+        "cargo_available": false,
+        "rustc_available": false
+      },
+      "binary_sha256": {
+        "cli": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905",
+        "library": "5bb39c224b3e37dd858a76f297bf87beecf9b66581858619a5cc15530b98b13c",
+        "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+      },
+      "installed_payload_files": {
+        "cli": 43,
+        "sdk": 47
+      },
+      "rebuilt_in_container": false,
+      "installation_storage": {
+        "capacity_bytes": 67108864,
+        "reserve_bytes": 16777216,
+        "available_before_copy_bytes": 67108864,
+        "available_after_copy_bytes": 32432128
+      },
+      "collection_started": false,
+      "child_processes": 2,
+      "missing_glibc_versions": {
+        "cli": [
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "c": [
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "ctypes_load": [
+          "GLIBC_2.32"
+        ]
+      },
+      "container_removed": true
+    }
+  },
+  "work_budget": {
+    "capacity_bytes": 67108864,
+    "reserve_bytes": 16777216,
+    "logical_bytes": 34442903,
+    "estimated_copy_bytes": 34832384,
+    "allocation_block_bytes": 4096,
+    "files": 93,
+    "directories": 38
+  },
+  "payload_bytes": {
+    "cli": 17215833,
+    "sdk": 17210766
+  },
+  "previous_ci": {
+    "run_id": 40609811580,
+    "source_commit": "8be46ab088e0cb90c6a4e9d395f480867e505107",
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40609811580",
+    "conclusion": "failure",
+    "accepted": false,
+    "failure": "runtime_payload_limit",
+    "runtime_containers_started": false,
+    "failure_report": "docs/evidence/linux-runtime-container-failed-40609811580.json",
+    "failure_report_sha256": "a350dc26352df651d7881fbd8c006f784ca9763684ba1b9dfb2f4212a3806a78",
+    "failed_linux_job_log_sha256": "03b8fd910dee7dfce1c447787f0321ed5bdfc42440ac0aec05fe40ece2353c9a",
+    "jobs": [
+      {
+        "name": "miri",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (windows-latest)",
+        "conclusion": "success"
+      },
+      {
+        "name": "fuzz-smoke",
+        "conclusion": "success"
+      },
+      {
+        "name": "ffi-asan",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "conclusion": "failure"
+      },
+      {
+        "name": "linux-container",
+        "conclusion": "success"
+      },
+      {
+        "name": "supply-chain",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "quality_gates": {
+    "miri_passed": 8,
+    "asan_passed": 10,
+    "existing_short_rust_fuzz_targets": 12,
+    "fuzz_run_counts_and_seconds": [
+      {
+        "runs": 983028,
+        "seconds": 61
+      },
+      {
+        "runs": 13997577,
+        "seconds": 61
+      },
+      {
+        "runs": 33779848,
+        "seconds": 61
+      },
+      {
+        "runs": 2128896,
+        "seconds": 61
+      },
+      {
+        "runs": 5866402,
+        "seconds": 61
+      },
+      {
+        "runs": 35981536,
+        "seconds": 61
+      },
+      {
+        "runs": 33591871,
+        "seconds": 61
+      },
+      {
+        "runs": 34518910,
+        "seconds": 61
+      },
+      {
+        "runs": 6365531,
+        "seconds": 61
+      },
+      {
+        "runs": 8855473,
+        "seconds": 61
+      },
+      {
+        "runs": 48283367,
+        "seconds": 61
+      },
+      {
+        "runs": 55292021,
+        "seconds": 61
+      }
+    ],
+    "empty_proc_probe": {
+      "status": "not_run",
+      "process_started": false,
+      "failure_category": "runtime_mount_error",
+      "probe_result": "runtime_rejected_mount"
+    }
+  },
+  "all_jobs_log_sha256": "4d52fae59d166798c29c87a6e668a6fa6bc2f4a549b734e66a47814c2c4f64fd",
+  "artifact_metadata": [
+    {
+      "name": "procfs-fuzz-evidence",
+      "digest": "sha256:03fc142415cd51d99e2f3070295effe8cdb95fa9e48ca9cce505a8a3107374cf",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "digest": "sha256:ad5ba424cc43b8d4a013001a024321f93a600d6e694dd2aa1196e4225565ba67",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "digest": "sha256:ead173df1423370dc7785e945ecfe00b68cb3d1b198d91432dff3731dd9fba18",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "native-evidence-Linux-X64",
+      "digest": "sha256:7f077ca4b63c40294966eec1f69af6ef4d5308619cca60b3ec3476a162673bd5",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "digest": "sha256:6455845b06e74594bb5a587214496a15973a6ccb4cfc9753030cc37789272c6b",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "package-evidence-Windows-X64",
+      "digest": "sha256:19b5cae2e2ea3a1603b93ac18119f4cd888c1002de31658dc15fb5d0e35d272f",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "native-evidence-Windows-X64",
+      "digest": "sha256:cddf603088449e70b26b336fbd51fd913ebc605fffdbd8b8b57bb23f3f511aa3",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "digest": "sha256:adea220d991717058ba12d1fa4290ce95b48b2916e1aa9ec0d9f3b37588e504d",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "package-evidence-Linux-X64",
+      "digest": "sha256:850f794c08e45e26c1f2443df630ec8e8ee1353383d3ce5254ddaeb6428ccc51",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "linux-container-evidence",
+      "digest": "sha256:9928f91bed22c03ad5cadfe9550c3e879d78649cc797f4563fa49843dfdd5617",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "digest": "sha256:556bdab0eca159955db4b32305e8ae44b89f90f5660bdc273dd4e7e0827d47bb",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    },
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "digest": "sha256:19440d6ee7a0b54b048a5f5166bb035031be39288b19af21b15c5085a36f0b42",
+      "head_sha": "a5ae6fe799bfb899de8d1b4a44408905cc6d6c15"
+    }
+  ],
+  "archive_scope": "11 source-bound native/package/candidate/runtime reports; other gates recorded by jobs and log hash",
+  "downloaded_candidate_zip_second_inspection": false,
+  "public_rust_api_changed": false,
+  "abi": 1,
+  "snapshot_schema": 1,
+  "license": "MIT",
+  "dependencies_or_features_changed": false,
+  "published": false,
+  "not_verified": [
+    "exact_minimum_glibc_between_2.31_and_2.36",
+    "minimum_kernel_or_all_distributions",
+    "physical_linux_macos_multi_group",
+    "macos_distribution_materials",
+    "long_fuzz_and_peak_memory",
+    "formal_release"
+  ]
+}
