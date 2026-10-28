@@ -6,7 +6,7 @@
 
 测量分为三个进程：64 MiB 校准；默认采集器累计 1/100/300 次 collect/free；显式 options 累计 1/10/30 次 collect/free。首次调用包含构造，后续默认调用复用缓存，显式调用仍重建。两者均默认脱敏、max_entries=128、超时 2000 ms。每批耗时不累计前批；峰值则是整个进程运行以来的最大值，不能相减解释为每次分配。
 
-内存包含 C 进程、依赖库、缓存和线程，并非 allocator 用量。CPU/内存摘要是系统报告值，CI 不等于实体设备。单位、校准和失败规则见 [ADR 0038](adr/0038-process-peak-memory.md)。本轮实测完成后在此归档，不以已加入 CI 作为通过证据。
+内存包含 C 进程、依赖库、缓存和线程，并非 allocator 用量。CPU/内存摘要是系统报告值，CI 不等于实体设备。单位、校准和失败规则见 [ADR 0038](adr/0038-process-peak-memory.md)。Windows 本机和下列三平台 CI 均有独立实测报告。
 
 ### Windows 本机（2026-10-28）
 
@@ -17,7 +17,23 @@
 | 默认缓存 | 36.64 ms | 第 101–300 次 / 646.51 ms | 11960320 bytes（11.41 MiB） |
 | 每次重建 | 37.04 ms | 第 11–30 次 / 88.47 ms | 12017664 bytes（11.46 MiB） |
 
-这是单次、有限调用样本，调用数量也不同，不能据此比较两种方式的长期增长或作性能排名。[原始计数与哈希](evidence/process-peak-memory-windows-local-caa3443.json)、[本机验收索引](evidence/process-peak-memory-local-caa3443.json)包含三个独立进程的全部阶段；八包和原生 CLI/C/Python 检查另存报告。Linux/macOS 原生峰值测量待本轮 CI，交叉检查不代替原生执行。
+这是单次、有限调用样本，调用数量也不同，不能据此比较两种方式的长期增长或作性能排名。[原始计数与哈希](evidence/process-peak-memory-windows-local-caa3443.json)、[本机验收索引](evidence/process-peak-memory-local-caa3443.json)包含三个独立进程的全部阶段；八包和原生 CLI/C/Python 检查另存报告。下列 CI 补充 Linux/macOS 原生执行；交叉检查不代替原生执行。
+
+### 三平台原生 CI（2026-10-28）
+
+干净源码 `eb3f6c9518c532334920a70a40c23b1dbd5b6bdd` 的 [CI 40669330970](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970)八项任务全部通过；探针、脚本、测试与本机实现提交 `caa3443` 逐字节一致。均为 Rust 1.96.0、release、默认 feature、max_entries=128、脱敏、2000 ms 超时；C 编译器版本、OS、CPU/内存摘要和各批耗时见原始报告。
+
+| 平台 | 校准峰值增长 bytes | 缓存 300 次 / 重建 30 次后峰值 bytes | 首次缓存 / 重建调用 ms | 完整记录 |
+|---|---|---|---|---|
+| Windows x64 | 67112960 | 11161600 / 11493376 | 7.70 / 7.03 | [原始报告](evidence/process-peak-memory-windows-40669330970.json) |
+| Linux x64 | 38592512 | 30375936 / 30375936 | 1.05 / 0.99 | [原始报告](evidence/process-peak-memory-linux-40669330970.json) |
+| macOS ARM64 | 67108864 | 10911744 / 11157504 | 9.99 / 11.05 | [原始报告](evidence/process-peak-memory-macos-40669330970.json) |
+
+每个峰值均属于单个 C 进程的运行历史，校准在另一个进程中完成；不能把增长值当作库的独占内存，或按平台数值排名。调用规模有限，未测长期增长、allocator 归因或合成 100 传感器/1024 接口的峰值。
+
+本轮 Linux 在采集前已记录 30375936 字节峰值，缓存与重建调用均未超过它。这不是“没有分配”：Linux 的资源计账会跨 `execve` 保留，启动阶段的较高峰值可能遮住后续较小变化，见 [getrusage 说明](https://man7.org/linux/man-pages/man2/getrusage.2.html)。原始报告保留所有基线，后续须补启动阶段隔离或分配器测量，才能回答库本身增加了多少内存。
+
+三平台分别完成八包独立构建和原生 CLI/C/Python 验证；Python 通过数为 Windows 221（跳过 5）、Linux 226、macOS 225（跳过 1），对应独立 Rust 测试 264/256/261。Miri 8、ASan 10、12 个 Rust fuzz 目标各至少 60 秒及既有容器门禁通过；完整覆盖空 `/proc` 仍被 OCI 拒绝，属于未执行。逐报告哈希和被替代运行见[验收索引](evidence/process-peak-memory-ci-40669330970.json)。正式发布和实体 Linux/macOS 测试未执行。
 
 ## v0.1 审计修复回归（2026-10-27）
 

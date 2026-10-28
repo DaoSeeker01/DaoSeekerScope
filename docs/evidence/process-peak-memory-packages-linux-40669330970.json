@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 256,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "14a983e001f0876fc9bf0ffbf8b888beb402121226c8628750181f2753137377",
+      "files": 16
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "30a84655cdffaa757b03e6cde53970064d03cf2870105009c6a9e5936ba2d5d0",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "f5a67d1b73dd37bf06fcab6778dec7457f89bae94e364a9ba30f968734a63f70",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "fc6a0f05b1360f29f48af66ff1e7d4c03e4f469e769759f5fa8a1fb342369fd8",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "7a2232e266f29c64e1e5b6df402dc8f05214dfe70e39984cafb8935ec485221b",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "ae01b2416d2c58ce015fbfebab3bb6aab4b60138566b8bae50ad03965ed9ced9",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "5956a1fadb3cd41f7c4f15e2498091adca246e19d42a92931b4b117bfbde4568",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "325632e0087d7c67320f5b307c87f6af362df0a5dfd6a4f739e7bb1cf7e85e92",
+      "files": 7
+    }
+  ]
+}

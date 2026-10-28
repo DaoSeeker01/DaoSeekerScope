@@ -1,0 +1,180 @@
+{
+  "overall": "passed",
+  "recorded_at": "2026-10-28T10:08:22.996425+00:00",
+  "git_revision": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd",
+  "git_dirty": false,
+  "system": "Linux",
+  "os_release": "6.17.0-1022-azure",
+  "machine": "x86_64",
+  "profile": "release",
+  "features": "default serde; target desktop backend",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "target": "x86_64-unknown-linux-gnu",
+  "scope": "process lifetime high-water; not allocator bytes or leak proof",
+  "options": {
+    "timeout_ms": 2000,
+    "max_entries": 128,
+    "sensitive": false
+  },
+  "c_compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "c_build": "cc -O2 -Wall -Wextra -Werror -std=c11; release shared library and rpath",
+  "binary_sha256": {
+    "ffi-memory-probe": "de61999d85994b91f36b3f04232c8e48504db6b2adddf4edaa48a4923c1e8f08",
+    "libdaoseeker_scope_ffi.so": "5bb39c224b3e37dd858a76f297bf87beecf9b66581858619a5cc15530b98b13c",
+    "dscope": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905"
+  },
+  "hardware": {
+    "cpu_brand": {
+      "value": "AMD EPYC 7763 64-Core Processor",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793182114129,
+      "reason": null
+    },
+    "logical_count": {
+      "value": 4,
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793182114129,
+      "reason": null
+    },
+    "total_usable_bytes": {
+      "value": 16766406656,
+      "availability": "available",
+      "source": "procfs",
+      "observed_at": 1793182114129,
+      "reason": null
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "measurements": {
+    "calibrate": {
+      "accepted": true,
+      "observation": {
+        "format": 1,
+        "mode": "calibrate",
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 29664,
+            "peak_bytes": 30375936,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 67352,
+            "peak_bytes": 68968448,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 67352,
+            "peak_bytes": 68968448,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          }
+        ]
+      }
+    },
+    "cached": {
+      "accepted": true,
+      "observation": {
+        "format": 1,
+        "mode": "cached",
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 29664,
+            "peak_bytes": 30375936,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 29664,
+            "peak_bytes": 30375936,
+            "elapsed_ns": 1052136,
+            "max_json_bytes": 9526
+          },
+          {
+            "phase": "collected",
+            "calls": 100,
+            "peak_raw": 29664,
+            "peak_bytes": 30375936,
+            "elapsed_ns": 13533822,
+            "max_json_bytes": 9526
+          },
+          {
+            "phase": "collected",
+            "calls": 300,
+            "peak_raw": 29664,
+            "peak_bytes": 30375936,
+            "elapsed_ns": 27835573,
+            "max_json_bytes": 9526
+          }
+        ]
+      }
+    },
+    "fresh": {
+      "accepted": true,
+      "observation": {
+        "format": 1,
+        "mode": "fresh",
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 29664,
+            "peak_bytes": 30375936,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 29664,
+            "peak_bytes": 30375936,
+            "elapsed_ns": 986444,
+            "max_json_bytes": 9526
+          },
+          {
+            "phase": "collected",
+            "calls": 10,
+            "peak_raw": 29664,
+            "peak_bytes": 30375936,
+            "elapsed_ns": 6909251,
+            "max_json_bytes": 9526
+          },
+          {
+            "phase": "collected",
+            "calls": 30,
+            "peak_raw": 29664,
+            "peak_bytes": 30375936,
+            "elapsed_ns": 15225038,
+            "max_json_bytes": 9526
+          }
+        ]
+      }
+    }
+  },
+  "source_and_binaries_unchanged": true
+}

@@ -1,0 +1,180 @@
+{
+  "overall": "passed",
+  "recorded_at": "2026-10-28T10:13:01.235308+00:00",
+  "git_revision": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd",
+  "git_dirty": false,
+  "system": "Windows",
+  "os_release": "2025Server",
+  "machine": "AMD64",
+  "profile": "release",
+  "features": "default serde; target desktop backend",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "target": "x86_64-pc-windows-msvc",
+  "scope": "process lifetime high-water; not allocator bytes or leak proof",
+  "options": {
+    "timeout_ms": 2000,
+    "max_entries": 128,
+    "sensitive": false
+  },
+  "c_compiler": "19.51.36260.0",
+  "c_build": "MSVC /W4 /WX /O2 /std:c11; release import library; Psapi.lib",
+  "binary_sha256": {
+    "ffi-memory-probe.exe": "f3488f4f74f5d883aa9fc5a693a351b99bab5ad5e845976900d8d2ec9a91a299",
+    "daoseeker_scope_ffi.dll": "ec87729304a7094d4bd67abdbf6bc5d5e8e285be6061e3e761fdb24000cdbaa8",
+    "dscope.exe": "b45e0535586c0bdf5a454877c91c2d43fccff9f92946062d2c025879efc73d8c"
+  },
+  "hardware": {
+    "cpu_brand": {
+      "value": "AMD EPYC 9V74 80-Core Processor",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793182413524,
+      "reason": null
+    },
+    "logical_count": {
+      "value": 4,
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793182413524,
+      "reason": null
+    },
+    "total_usable_bytes": {
+      "value": 17174360064,
+      "availability": "available",
+      "source": "win32",
+      "observed_at": 1793182413529,
+      "reason": null
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "measurements": {
+    "calibrate": {
+      "accepted": true,
+      "observation": {
+        "format": 1,
+        "mode": "calibrate",
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 8548352,
+            "peak_bytes": 8548352,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 75661312,
+            "peak_bytes": 75661312,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 75661312,
+            "peak_bytes": 75661312,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          }
+        ]
+      }
+    },
+    "cached": {
+      "accepted": true,
+      "observation": {
+        "format": 1,
+        "mode": "cached",
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 7725056,
+            "peak_bytes": 7725056,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 11022336,
+            "peak_bytes": 11022336,
+            "elapsed_ns": 7698000,
+            "max_json_bytes": 11210
+          },
+          {
+            "phase": "collected",
+            "calls": 100,
+            "peak_raw": 11128832,
+            "peak_bytes": 11128832,
+            "elapsed_ns": 61969299,
+            "max_json_bytes": 11210
+          },
+          {
+            "phase": "collected",
+            "calls": 300,
+            "peak_raw": 11161600,
+            "peak_bytes": 11161600,
+            "elapsed_ns": 124030899,
+            "max_json_bytes": 11210
+          }
+        ]
+      }
+    },
+    "fresh": {
+      "accepted": true,
+      "observation": {
+        "format": 1,
+        "mode": "fresh",
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 7725056,
+            "peak_bytes": 7725056,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 11022336,
+            "peak_bytes": 11022336,
+            "elapsed_ns": 7031699,
+            "max_json_bytes": 11210
+          },
+          {
+            "phase": "collected",
+            "calls": 10,
+            "peak_raw": 11337728,
+            "peak_bytes": 11337728,
+            "elapsed_ns": 13680899,
+            "max_json_bytes": 11210
+          },
+          {
+            "phase": "collected",
+            "calls": 30,
+            "peak_raw": 11493376,
+            "peak_bytes": 11493376,
+            "elapsed_ns": 29501499,
+            "max_json_bytes": 11210
+          }
+        ]
+      }
+    }
+  },
+  "source_and_binaries_unchanged": true
+}

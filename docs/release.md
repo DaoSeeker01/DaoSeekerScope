@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-2026-10-27 当前验收：源码 `d5d1e3b` 的[三平台 CI 40423886083](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40423886083)全部通过，社区规范与打包/字段校验修复见[审计](project-review-2026-10-27.md)。当前仍为未发布 0.1.0；未完成项以[v0.1 清单](v0.1-checklist.md)为准。
+截至 2026-10-28，最新[三平台 CI 40669330970](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970)八项任务通过，补充 release C ABI 的校准与进程峰值基线，见[性能报告](benchmarks.md)。当前仍为未发布 0.1.0；发布门槛与未完成项以 [v0.1 清单](v0.1-checklist.md)为准，历史审计见[记录](project-review-2026-10-27.md)。
 
 ## 当前发布门槛
 

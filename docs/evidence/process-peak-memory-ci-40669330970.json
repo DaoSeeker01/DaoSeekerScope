@@ -1,0 +1,328 @@
+{
+  "overall": "passed",
+  "date": "2026-10-28",
+  "run_id": 40669330970,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970",
+  "source_commit": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd",
+  "implementation_commit": "caa3443055baaa6cd3ed9f87882a57902e9e9875",
+  "source_files": {
+    "docs/research/ffi_memory_probe.c": "379199beba0a3b5304c925bd04547727d0860c6c4ed45c2e01d301e87a1546db",
+    "scripts/peak_memory.py": "367de14a05ea2be2073f62518fa78121d1215f61283c54985e0cc40d4e894aa2",
+    "scripts/build_c_example.ps1": "5ff134bfe93d7fc8a9710dc08e8f7ba60b948500a24cbe9964b5e9df3b80677a",
+    "tests/test_peak_memory.py": "0f0527b63ac426344d95189160d92c0aca603055c49b06aaeb9f3b92bb203c7b",
+    ".github/workflows/ci.yml": "e18d69ec23b518b21bf20072669756698aee5c2b1275439728aa101d43ffc266"
+  },
+  "platforms": {
+    "windows": {
+      "archives": 8,
+      "isolated_rust_tests": 264,
+      "python_passed": 221,
+      "python_skipped": 5,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67112960,
+      "cached_final_peak_bytes": 11161600,
+      "fresh_final_peak_bytes": 11493376,
+      "baseline_peak_bytes": {
+        "cached": 7725056,
+        "fresh": 7725056
+      }
+    },
+    "linux": {
+      "archives": 8,
+      "isolated_rust_tests": 256,
+      "python_passed": 226,
+      "python_skipped": 0,
+      "native_processes": 16,
+      "calibration_growth_bytes": 38592512,
+      "cached_final_peak_bytes": 30375936,
+      "fresh_final_peak_bytes": 30375936,
+      "baseline_peak_bytes": {
+        "cached": 30375936,
+        "fresh": 30375936
+      }
+    },
+    "macos": {
+      "archives": 8,
+      "isolated_rust_tests": 261,
+      "python_passed": 225,
+      "python_skipped": 1,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67108864,
+      "cached_final_peak_bytes": 10911744,
+      "fresh_final_peak_bytes": 11157504,
+      "baseline_peak_bytes": {
+        "cached": 5783552,
+        "fresh": 5783552
+      }
+    }
+  },
+  "jobs": [
+    {
+      "databaseId": 122752122669,
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970/job/122752122669"
+    },
+    {
+      "databaseId": 122752122728,
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970/job/122752122728"
+    },
+    {
+      "databaseId": 122752122753,
+      "name": "linux-container",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970/job/122752122753"
+    },
+    {
+      "databaseId": 122752122813,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970/job/122752122813"
+    },
+    {
+      "databaseId": 122752122899,
+      "name": "miri",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970/job/122752122899"
+    },
+    {
+      "databaseId": 122752123007,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970/job/122752123007"
+    },
+    {
+      "databaseId": 122752123019,
+      "name": "supply-chain",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970/job/122752123019"
+    },
+    {
+      "databaseId": 122752123043,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970/job/122752123043"
+    }
+  ],
+  "reports": {
+    "process-peak-memory-windows-40669330970.json": {
+      "sha256": "6dc2576c02a41c7c01907d9ee7bcfcf113a82e45621338186bec0cd2424fa275",
+      "original_sha256": "90c9bf296facbc7b98d702fb1dd16069942d637de7f6c3b6df89533b26cfb16b",
+      "artifact": "native-evidence-Windows-X64"
+    },
+    "process-peak-memory-packages-windows-40669330970.json": {
+      "sha256": "08c3417c1ad84dc772da0e346ab0cc1cbc747d08d4cc64ee6373e240051e2f14",
+      "original_sha256": "80abd5d90476f41d9955bcb05f404b7b923282d084bcdd0a530f64472dfc3c55",
+      "artifact": "package-evidence-Windows-X64"
+    },
+    "process-peak-memory-native-windows-40669330970.json": {
+      "sha256": "357cde5c568fcfc00532f04b40ac61b15acce2899e8e6125193deab28cd74416",
+      "original_sha256": "8ddcbef205e814494532dbe3b4a2ae1d17742679279d7383e232a8da127cf20d",
+      "artifact": "native-evidence-Windows-X64"
+    },
+    "process-peak-memory-linux-40669330970.json": {
+      "sha256": "a247999ecfdcb84f1a5e8f25c0dca362f6cac0e90b7e1367a487c21b51f88d1c",
+      "original_sha256": "a247999ecfdcb84f1a5e8f25c0dca362f6cac0e90b7e1367a487c21b51f88d1c",
+      "artifact": "native-evidence-Linux-X64"
+    },
+    "process-peak-memory-packages-linux-40669330970.json": {
+      "sha256": "4896884686725fe203dc24f4c2aa6283a5339f0d76249950e06686e4221012e6",
+      "original_sha256": "4896884686725fe203dc24f4c2aa6283a5339f0d76249950e06686e4221012e6",
+      "artifact": "package-evidence-Linux-X64"
+    },
+    "process-peak-memory-native-linux-40669330970.json": {
+      "sha256": "6bd7c68129c043327ff1e67ccfe1591fd7b19a0fddc088c0112ef84f4f60c593",
+      "original_sha256": "6bd7c68129c043327ff1e67ccfe1591fd7b19a0fddc088c0112ef84f4f60c593",
+      "artifact": "native-evidence-Linux-X64"
+    },
+    "process-peak-memory-macos-40669330970.json": {
+      "sha256": "dc07127b74b19ae263145920562a4f697e8c4c4ac7f9cb43d05f4372e084ebce",
+      "original_sha256": "dc07127b74b19ae263145920562a4f697e8c4c4ac7f9cb43d05f4372e084ebce",
+      "artifact": "native-evidence-macOS-ARM64"
+    },
+    "process-peak-memory-packages-macos-40669330970.json": {
+      "sha256": "1f405bfd70ee2b558e36f84f56b9e194a7bfca48cfe8a9eddd79c7c447122694",
+      "original_sha256": "1f405bfd70ee2b558e36f84f56b9e194a7bfca48cfe8a9eddd79c7c447122694",
+      "artifact": "package-evidence-macOS-ARM64"
+    },
+    "process-peak-memory-native-macos-40669330970.json": {
+      "sha256": "6901c0161b3f0fec41644569584de60a11bd6353b6f4edeb20fc3bbe139fba4b",
+      "original_sha256": "6901c0161b3f0fec41644569584de60a11bd6353b6f4edeb20fc3bbe139fba4b",
+      "artifact": "native-evidence-macOS-ARM64"
+    },
+    "process-peak-memory-cli-windows-40669330970.json": {
+      "sha256": "06e2540da7dbe60cdbf9715e3bb9b375c2ad56e012bc9464ac815dcf6622962c",
+      "original_sha256": "86c19d0e6c921fc8353daca7adcd05fa92be988dba3b86443ca0a12594a833d1",
+      "artifact": "cli-bundle-evidence-Windows-X64"
+    },
+    "process-peak-memory-sdk-windows-40669330970.json": {
+      "sha256": "540858ac4ffb61347f1b15dfab15f8bb022ab7cd27f2634d3ac2618558b4f106",
+      "original_sha256": "2f876c429f994a76a8e823b3a9eb8ebfc62165f8df2d507b03db9350b2da0454",
+      "artifact": "ffi-sdk-evidence-Windows-X64"
+    },
+    "process-peak-memory-cli-linux-40669330970.json": {
+      "sha256": "6f1e0d69998515fa2796fe5c3d2312c3a73635f5c130ed3df85acb1ba45638d6",
+      "original_sha256": "6f1e0d69998515fa2796fe5c3d2312c3a73635f5c130ed3df85acb1ba45638d6",
+      "artifact": "cli-bundle-evidence-Linux-X64"
+    },
+    "process-peak-memory-sdk-linux-40669330970.json": {
+      "sha256": "dd9f95023aa9f51837c902ad149edc5f814dde932b276defe68a957562f6a3b5",
+      "original_sha256": "dd9f95023aa9f51837c902ad149edc5f814dde932b276defe68a957562f6a3b5",
+      "artifact": "ffi-sdk-evidence-Linux-X64"
+    },
+    "process-peak-memory-older-userlands-linux-40669330970.json": {
+      "sha256": "eb0dee516b55ea1d508774f0bd01afde8ab2734d81a666f2d43102d1b6561e66",
+      "original_sha256": "eb0dee516b55ea1d508774f0bd01afde8ab2734d81a666f2d43102d1b6561e66",
+      "artifact": "native-evidence-Linux-X64"
+    }
+  },
+  "archive_digest_encoding": "SHA-256 of archived UTF-8 LF bytes; original artifact hash also preserved",
+  "artifact_metadata": [
+    {
+      "name": "package-evidence-Windows-X64",
+      "digest": "sha256:934b514cc6b564d7c34b415d19472d9c2de215b7f80911823cd281edb28d181f",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "procfs-fuzz-evidence",
+      "digest": "sha256:793a07bb2a54f0cfe66d68772de0f1d45d51c0c2b1f0fcc75a0fe1adf83d6c46",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "digest": "sha256:117e43b29087abf8d86b5d60c4b6811cd61cf20e2799859591a5f87d4d35a570",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "digest": "sha256:011dacf0fd2a155b573d0b3db46a3ccad0e4292d17c0fbc2c9297ccb1e22ea14",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "digest": "sha256:156ad9a73dba14bea8ce157c708b37405f8f22cd5a5ecd67f2202fe6b9799ff8",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "digest": "sha256:4030cc20c5a92306315f9e0518c9dd42de4d08470cf55b207fcc0bcdb75eedaa",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "digest": "sha256:904c0d01a1b535a0ee50ce0ba7f30e1b2d818462d3500309d4328598bb83931a",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "digest": "sha256:f6d3ec2f9126acd91594637ccc0a4b4b37dcb4a039a8447cd779faba312c0f9b",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "linux-container-evidence",
+      "digest": "sha256:8b25574b5c2d034834fd3ddf7587bc0d3082a88aaf322d37278859b3be28ded5",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "package-evidence-Linux-X64",
+      "digest": "sha256:f0e18f52715b3ed3f0534389ddb62c63ec39f8e870244ba66f6431d94587f898",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "native-evidence-Windows-X64",
+      "digest": "sha256:0049e6cb5f389ddfdc9bd9c80899e8504a45c6eab32526788fd0c1d2c718519b",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    },
+    {
+      "name": "native-evidence-Linux-X64",
+      "digest": "sha256:d4e055692938e2dd4e08e7e0db52e0dda2896f2bb2bdabea6ee0661948330f25",
+      "head_sha": "eb3f6c9518c532334920a70a40c23b1dbd5b6bdd"
+    }
+  ],
+  "all_jobs_log_sha256": "2f832017bbc17fb1d8db7c885a4a9a9920bee144c29bb4733120bf93ae77faa8",
+  "replaced_run": {
+    "run_id": 40669201058,
+    "source_commit": "21d45c77cca7ceab62a3b25643811d82034e5959",
+    "conclusion": "cancelled",
+    "accepted": false,
+    "reason": "local archive digest corrected for Git LF normalization; measurements unchanged"
+  },
+  "quality_gates": {
+    "miri_passed": 8,
+    "asan_passed": 10,
+    "short_fuzz_targets": 12,
+    "fuzz_runs_and_seconds": [
+      {
+        "runs": 549045,
+        "seconds": 61
+      },
+      {
+        "runs": 9713331,
+        "seconds": 61
+      },
+      {
+        "runs": 26649446,
+        "seconds": 61
+      },
+      {
+        "runs": 1629537,
+        "seconds": 61
+      },
+      {
+        "runs": 4219873,
+        "seconds": 61
+      },
+      {
+        "runs": 25823139,
+        "seconds": 61
+      },
+      {
+        "runs": 25790901,
+        "seconds": 61
+      },
+      {
+        "runs": 24864867,
+        "seconds": 61
+      },
+      {
+        "runs": 4834036,
+        "seconds": 61
+      },
+      {
+        "runs": 6498192,
+        "seconds": 61
+      },
+      {
+        "runs": 37430052,
+        "seconds": 61
+      },
+      {
+        "runs": 42061471,
+        "seconds": 61
+      }
+    ],
+    "empty_proc": {
+      "status": "not_run",
+      "process_started": false
+    }
+  },
+  "measurement_scope": "three separate release native C processes: 64 MiB calibration; 300 cached and 30 fresh collect/free calls; lifetime accounting can include pre-exec launch memory, notably the Linux sample; not installed candidate SDK performance",
+  "public_api_changed": false,
+  "abi": 1,
+  "snapshot_schema": 1,
+  "license": "MIT",
+  "dependencies_or_features_changed": false,
+  "published": false,
+  "not_verified": [
+    "long-term memory growth or allocator attribution",
+    "post-exec-only Linux peak separated from launch high-water",
+    "peak memory with synthetic 100 sensors/1024 interfaces",
+    "long-term fuzz",
+    "physical Linux/macOS and multi-group Windows",
+    "macOS distribution materials",
+    "exact minimum runtimes",
+    "formal release"
+  ]
+}
