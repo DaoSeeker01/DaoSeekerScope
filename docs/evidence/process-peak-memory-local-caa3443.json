@@ -28,9 +28,9 @@
     "python_log_sha256": "5a6134626f1fb691cc0fd8ecb5d896e305b21428b2bd3fe43f646c59f754fb1b"
   },
   "reports": {
-    "process-peak-memory-windows-local-caa3443.json": "71ffda9bce5257c5177438416c12857150dacf3dbef06dce4fcc9b27f9b394a3",
-    "process-peak-memory-packages-local-caa3443.json": "c8ebdbbfd9efdf825ce828cbed86450fbfc512672845fed9bd53190f998b7f2f",
-    "process-peak-memory-native-local-caa3443.json": "bbb8033a9106d80b084fcecc8587eb2ff927c1aa1e3a1b918b7cdf327215b454"
+    "process-peak-memory-windows-local-caa3443.json": "713c7cb2a69e13e5abd786065ab4c1b00c1e15a576dada3395e3c1ec8de3eef3",
+    "process-peak-memory-packages-local-caa3443.json": "68b333abf2ae38261cf886a7145d849b0d8408461c9c7ef8ab30cd8d80401f3d",
+    "process-peak-memory-native-local-caa3443.json": "0aa9cc6b3b89de54a92097dcafdb1cbc0400174e0e014cceaeb8732f73ae3056"
   },
   "not_executed": [
     "native Linux/macOS peak memory (pending CI)",
@@ -46,5 +46,6 @@
     "dependencies_changed": false,
     "features_changed": false,
     "license": "MIT"
-  }
+  },
+  "archive_digest_encoding": "SHA-256 of Git blob bytes (UTF-8, LF); original measurements unchanged"
 }
