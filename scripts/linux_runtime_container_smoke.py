@@ -336,6 +336,28 @@ def validate_result(
     return result
 
 
+def validate_loader_requirements(
+    calls: dict[str, Any], requirements: dict[str, Any]
+) -> None:
+    """Allow only the inspected candidate and its known packaged SDK dependency."""
+    closure = {
+        "cli": ("cli",),
+        "c": ("consumer", "library"),
+        "ctypes_load": ("library",),
+    }
+    for call, binaries in closure.items():
+        declared = {
+            version
+            for binary in binaries
+            for versions in requirements[binary]["required_symbol_versions"].values()
+            for version in versions
+        }
+        require(
+            set(calls[call]["missing_glibc_versions"]) <= declared,
+            "runtime_unexpected_loader_version",
+        )
+
+
 def run_profile(
     stage: Path,
     label: str,
@@ -385,23 +407,7 @@ def run_profile(
             item["probe_failure"] = probe_result.get("failure", "runtime_probe_failed")
         item.update(validate_result(probe_result, profile, hashes, version))
         if profile["expected"] == "loader_rejects":
-            for call, binary in (
-                ("cli", "cli"),
-                ("c", "consumer"),
-                ("ctypes_load", "library"),
-            ):
-                declared = {
-                    version
-                    for versions in requirements[binary][
-                        "required_symbol_versions"
-                    ].values()
-                    for version in versions
-                }
-                require(
-                    set(probe_result["calls"][call]["missing_glibc_versions"])
-                    <= declared,
-                    "runtime_unexpected_loader_version",
-                )
+            validate_loader_requirements(probe_result["calls"], requirements)
         item["phase"] = "complete"
     except Exception:
         item["status"] = "failed"

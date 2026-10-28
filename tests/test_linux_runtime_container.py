@@ -319,6 +319,33 @@ class RuntimeContainerTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "diagnostic_limit"):
                 probe.missing_glibc_versions(diagnostic)
 
+    def test_loader_versions_use_only_the_known_packaged_dependency_closure(
+        self,
+    ) -> None:
+        requirements = {
+            "cli": {"required_symbol_versions": {"libc.so.6": ["GLIBC_2.34"]}},
+            "consumer": {"required_symbol_versions": {"libc.so.6": ["GLIBC_2.34"]}},
+            "library": {
+                "required_symbol_versions": {
+                    "libc.so.6": ["GLIBC_2.32", "GLIBC_2.33", "GLIBC_2.34"]
+                }
+            },
+        }
+        calls = result("bullseye")["calls"]
+        calls["c"]["missing_glibc_versions"] = [
+            "GLIBC_2.32",
+            "GLIBC_2.33",
+            "GLIBC_2.34",
+        ]
+        smoke.validate_loader_requirements(calls, requirements)
+        calls["cli"]["missing_glibc_versions"] = ["GLIBC_2.32"]
+        with self.assertRaisesRegex(ValueError, "runtime_unexpected_loader_version"):
+            smoke.validate_loader_requirements(calls, requirements)
+        calls["cli"]["missing_glibc_versions"] = ["GLIBC_2.34"]
+        calls["c"]["missing_glibc_versions"] = ["GLIBC_2.40"]
+        with self.assertRaisesRegex(ValueError, "runtime_unexpected_loader_version"):
+            smoke.validate_loader_requirements(calls, requirements)
+
     def test_candidate_copy_checks_manifest_and_every_payload(self) -> None:
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
