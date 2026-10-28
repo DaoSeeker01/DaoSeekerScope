@@ -8,6 +8,17 @@
 
 内存包含 C 进程、依赖库、缓存和线程，并非 allocator 用量。CPU/内存摘要是系统报告值，CI 不等于实体设备。单位、校准和失败规则见 [ADR 0038](adr/0038-process-peak-memory.md)。本轮实测完成后在此归档，不以已加入 CI 作为通过证据。
 
+### Windows 本机（2026-10-28）
+
+干净源码 `caa3443055baaa6cd3ed9f87882a57902e9e9875`，Windows 11 x64，系统报告 i7-9750H、12 逻辑 CPU、17009004544 字节总可用内存；Rust 1.96.0、MSVC 19.51.36260、release、默认 serde 和 Windows backend。校准峰值从 8605696 增至 75718656 字节，增加 67112960 字节（约 64 MiB）。
+
+| 调用方式 | 首次 collect/free | 最后一批调用 / 耗时 | 最后一批后进程峰值 |
+|---|---|---|---|
+| 默认缓存 | 36.64 ms | 第 101–300 次 / 646.51 ms | 11960320 bytes（11.41 MiB） |
+| 每次重建 | 37.04 ms | 第 11–30 次 / 88.47 ms | 12017664 bytes（11.46 MiB） |
+
+这是单次、有限调用样本，调用数量也不同，不能据此比较两种方式的长期增长或作性能排名。[原始计数与哈希](evidence/process-peak-memory-windows-local-caa3443.json)、[本机验收索引](evidence/process-peak-memory-local-caa3443.json)包含三个独立进程的全部阶段；八包和原生 CLI/C/Python 检查另存报告。Linux/macOS 原生峰值测量待本轮 CI，交叉检查不代替原生执行。
+
 ## v0.1 审计修复回归（2026-10-27）
 
 源码 `d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7`，[CI 40423886083](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40423886083)执行 `cargo bench --locked -p daoseeker-scope --bench collect`；Rust 1.96、bench 优化、默认 serde，原生 max_entries=128/100 次刷新，合成 100 传感器/1024 网络条目、max_entries=1024。环境和原始日志在记录中。

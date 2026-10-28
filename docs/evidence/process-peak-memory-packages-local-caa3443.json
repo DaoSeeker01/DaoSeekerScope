@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "caa3443055baaa6cd3ed9f87882a57902e9e9875",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 264,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "ea4e3845154b4c663313873faab192e9ca3360b27033482741be6eec4cdcac96",
+      "files": 16
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "cfca4790757989eb084cb20387c98bcb7a5cb6fb14e5fcd6f062193b3317ff0d",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "a4e8ac2e78fa0093b1caa6bd3a5ee5a5cef6a291b20ae9e897dff336c79c2af0",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "4c8c4351d95ace37a2e6526d7f5ca6be7d60f0043ea3f05f4fac32480dbac0f4",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "60da249871293894738a10c21540c37aef2a096caf6bd27592f5ed73b79c27d3",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "6a3ff11a735bf5878d0ef06d0e46f3e5fb73f81fd33803d7621ba5e85315e750",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "b4d6211afbb0710fe567e3687d68be442536a4d3e625f782699c18b70f270e94",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "e174d6e82ff2a1df91f4010f965127cc375d79f68e1e66c84a4308bd48eaba16",
+      "files": 7
+    }
+  ]
+}

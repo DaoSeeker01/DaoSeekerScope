@@ -1,0 +1,50 @@
+{
+  "overall": "passed",
+  "source": "caa3443055baaa6cd3ed9f87882a57902e9e9875",
+  "source_frozen_checks": [
+    "release process peak memory",
+    "eight crate archives and isolated consumer",
+    "native CLI/C/Python"
+  ],
+  "precommit_checks": {
+    "note": "Rust/Python gates ran before implementation commit on the committed file content; these logs do not have an independent source-state assertion",
+    "rust_passed": 264,
+    "rust_failed": 0,
+    "python_passed": 221,
+    "python_skipped": 5,
+    "python_failed": 0,
+    "new_counter_and_failure_tests": 14,
+    "commands": [
+      "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+      "python -m ruff format --check scripts tests examples/collect.py",
+      "python -m ruff check scripts tests examples/collect.py",
+      "python -m mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+      "python -m unittest discover -s tests -p test_*.py",
+      "python scripts/check_project.py",
+      "actionlint",
+      "git diff --check"
+    ],
+    "rust_log_sha256": "ea9067a6025243e8bf58b1701bb242b5b1fb883303c6de6d35f327181cede63d",
+    "python_log_sha256": "5a6134626f1fb691cc0fd8ecb5d896e305b21428b2bd3fe43f646c59f754fb1b"
+  },
+  "reports": {
+    "process-peak-memory-windows-local-caa3443.json": "71ffda9bce5257c5177438416c12857150dacf3dbef06dce4fcc9b27f9b394a3",
+    "process-peak-memory-packages-local-caa3443.json": "c8ebdbbfd9efdf825ce828cbed86450fbfc512672845fed9bd53190f998b7f2f",
+    "process-peak-memory-native-local-caa3443.json": "bbb8033a9106d80b084fcecc8587eb2ff927c1aa1e3a1b918b7cdf327215b454"
+  },
+  "not_executed": [
+    "native Linux/macOS peak memory (pending CI)",
+    "long-term memory growth",
+    "allocator profiling",
+    "physical Linux/macOS hardware",
+    "formal publication"
+  ],
+  "compatibility": {
+    "rust": "0.1.0 unreleased",
+    "c_abi": 1,
+    "snapshot_schema": 1,
+    "dependencies_changed": false,
+    "features_changed": false,
+    "license": "MIT"
+  }
+}

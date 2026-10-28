@@ -1,6 +1,6 @@
 # ADR 0038：C ABI 进程峰值内存基线
 
-状态：实现；Windows 本机与三平台 CI 验证结果另存[性能报告](../benchmarks.md)。
+状态：Windows 本机校准与采样通过；三平台 CI 待执行，结果另存[性能报告](../benchmarks.md)。
 
 ## 为什么增加这个检查
 
