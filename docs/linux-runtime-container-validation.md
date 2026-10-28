@@ -25,6 +25,8 @@ python scripts/linux_runtime_container_smoke.py "$cli" "$sdk"
 
 本机 Windows 没有启动容器或 Linux 程序；单元测试只证明守卫逻辑、报告校验及异常清理路径。镜像摘要来源见[记录](evidence/linux-runtime-images-2026-10-28.json)，它不是镜像运行证据。
 
+源码 `2f0c90009ba148e66e97b9247b443736a76647e5` 已完成本机门禁：Python 208 项中 203 项通过、5 项既有平台测试跳过，新增容器守卫 15 项全部通过；Rust 264 项、fmt、严格 Clippy/文档、无默认 feature 及 Linux x64/macOS ARM64 交叉检查通过。Ruff/mypy 检查 63 个文件，actionlint 与项目守卫通过，见[本机记录](evidence/linux-runtime-container-local-2f0c900.json)。本轮原生容器仍待 CI，不采用上一轮的运行结果。
+
 正面场景中，候选先复制到容器内 `/work` 的新目录，再按 manifest 检查完整文件和执行文件的哈希；Rust 二进制与 C 消费者均不会在该环境重新编译。报告只保存结果、运行环境、哈希和受控配置，原始默认脱敏快照在宿主验证后丢弃。
 
 内核与 CPU 来自 CI 宿主。实体 Linux/macOS、多组 CPU、更低 glibc 区间、最低内核及正式发布仍待单独验收。当前没有新增公共 API、依赖、feature 或许可证变化。

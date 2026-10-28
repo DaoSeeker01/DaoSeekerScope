@@ -1,0 +1,72 @@
+{
+  "overall": "passed",
+  "scope": "Windows local guards only; runtime containers not executed locally",
+  "date": "2026-10-28",
+  "source_commit": "2f0c90009ba148e66e97b9247b443736a76647e5",
+  "source_dirty_at_archive": false,
+  "source_files": {
+    "scripts/linux_runtime_container_probe.py": "9f42fd9e80f61b9fcb806ae7f433ed295279b8e40ee4afdefb1b4a2353fe787c",
+    "scripts/linux_runtime_container_smoke.py": "4b15e17db16eddbbc22c406ca84f29972dd037349d24ad598f127efb71f056eb",
+    "tests/test_linux_runtime_container.py": "8747a693f05dc9fca1fc82aa215ae48f85a0be1699a254c239159b64957f27a7",
+    ".github/workflows/ci.yml": "abac9e001d73266276b5cb37001e2ab96a7da66d39857f732e91c5d149440173",
+    "docs/evidence/linux-runtime-images-2026-10-28.json": "34169a58cc86bdd78d43764b1219772fbe2f339736e411f0f3fab2228ac56443",
+    "scripts/elf_inspect.py": "72da94d87ec57276309e68d5ff883bceafd66f72a357de8150cfe3e90738aa99"
+  },
+  "python": {
+    "run": 208,
+    "passed": 203,
+    "skipped": 5,
+    "new_runtime_guard_tests": 15,
+    "skip_reasons": [
+      "4 existing POSIX permission cases",
+      "1 existing GNU/Linux cc/readelf test"
+    ]
+  },
+  "rust_tests_including_doctests": 264,
+  "rust_gates": [
+    "fmt",
+    "strict_clippy_all_targets_all_features",
+    "workspace_tests",
+    "no_default_features",
+    "strict_rustdoc",
+    "build",
+    "linux_x64_cross_check",
+    "macos_arm64_cross_check"
+  ],
+  "commands": [
+    "python -m unittest discover -s tests -p test_*.py -v",
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "python -m ruff format --check scripts tests examples/collect.py",
+    "python -m ruff check scripts tests examples/collect.py",
+    "python -m mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+    "python scripts/check_project.py",
+    "actionlint"
+  ],
+  "static_checks": {
+    "ruff_format": "passed",
+    "ruff_lint": "passed",
+    "mypy_source_files": 63,
+    "actionlint": "passed",
+    "project_files": 924,
+    "project_local_links": 739,
+    "diff_check": "passed"
+  },
+  "logs": {
+    "python_sha256": "465584855150cf83f67d8ac1283cf5f29029c6b22a67c11ca0d1a1b6f0c51206",
+    "rust_sha256": "7dbc772a8333e7171134311657d21dc33ce0a6e78ac97206211c0a7f357dfa55"
+  },
+  "non_acceptance_or_metadata_notes": [
+    "Initial fixture expected POSIX path spelling on Windows; fixed platform-neutral assertion and reran all tests.",
+    "Cross-platform mypy rejected POSIX-only os attributes; guarded access and reran all checks.",
+    "Two normalized-LF files briefly retained Git modified stat metadata despite identical bytes; refreshed only those index entries, verified all source files byte-for-byte against HEAD; no content or commit changed."
+  ],
+  "docker_or_linux_runtime_started_locally": false,
+  "virtualization_services_changed": false,
+  "image_registry_resolution_only": true,
+  "ci": "pending_this_round",
+  "public_rust_api_changed": false,
+  "abi": 1,
+  "snapshot_schema": 1,
+  "dependencies_features_or_license_changed": false,
+  "published": false
+}
