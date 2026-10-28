@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "46bd67ca6bd7a94c98c373b25616f6fe92d1f797",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 256,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "f7968cfe9e5a7ccb89508a2c380ff6a9368af5a20f303115b514e53eb3ba25ac",
+      "files": 16
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "aea30ed855a36a69cfc739d9f521fc65434d60c1950ba4a609127741df77a555",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "01e0aa76ec12edc8bbf90c4ead309313e582b40ed5ce2bbf1f6ce7629e71529b",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "dce39a8b414ec7c6efd5e50b3ad65f0ac77f9974963e3134610248dee450b94f",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "5119227959349d2670d96dabf41a79a37c1845af0d9df86898ed581d30d4b73c",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "b8acade636a44d12dc967ff2ab7915bb4986dba61913621867390e2b3676c59d",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "54d95025cb2bf3c5b82568620c3b9da59e47e3c6bc45917bede43b97fcb33928",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "5f97b7b3822356a8dbec1227115b23c6ad631b851c47d13ba2e02cdfa1d89bf0",
+      "files": 7
+    }
+  ]
+}

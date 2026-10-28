@@ -2,7 +2,7 @@
 
 首版交付门槛与本轮修复分别见 [v0.1 清单](v0.1-checklist.md)和[当前审计](project-review-2026-10-27.md)。下面保留平台增强工作包，不将它们全部视作首版的必要阻塞项。
 
-2026-10-28 Linux 候选增量：符号版本要求、CLI 加载器环境隔离及文本/负向守卫通过本机 Windows 检查；Linux 原生编译、CLI/SDK 验收待本轮 CI。最低 glibc/发行版仍未验证，见[记录](linux-runtime-validation.md)。
+2026-10-28 Linux 候选增量：符号版本记录、强制/弱引用区分、CLI 加载器环境隔离通过本机守卫和三平台 CI 40604554378；Linux 原生 C/readelf、CLI/SDK 安装回滚通过。本次产物最高强制数值要求为 GLIBC_2.34，最低 glibc/发行版仍未验证，见[记录](linux-runtime-validation.md)。
 
 2026-10-27 Windows 候选增量：PE 架构/直接依赖检查、Release CLI/SDK 安装回滚及本机三产物 DUMPBIN 对照通过；三平台 CI 40483692144 全部八项通过。最低 Windows 版本、全新系统运行库验证仍未完成，见[记录](windows-pe-validation.md)。
 
