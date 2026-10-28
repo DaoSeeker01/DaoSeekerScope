@@ -1,0 +1,106 @@
+{
+  "overall": "passed",
+  "date": "2026-10-28",
+  "scope": "Windows corrected guards only; runtime containers not executed locally",
+  "source_commit": "7c3e90a2c0843564da87647ca1b7a3c1316b3017",
+  "source_dirty": false,
+  "source_files": {
+    "scripts/linux_runtime_container_smoke.py": "1d27b164fd4aba6a86fd6b391a3e2880be3275d4a6e212881b89bc0ce152b3ee",
+    "scripts/linux_runtime_container_probe.py": "e2f54f58664f424706e4e3f5df5a5e78e53ef40d20ff3b753f2051df7e7a3e20",
+    "tests/test_linux_runtime_container.py": "02d06c78daeac65abb4aef17042b471a4c0a69be5296f1435b68fb9f4cdda9d4",
+    ".github/workflows/ci.yml": "abac9e001d73266276b5cb37001e2ab96a7da66d39857f732e91c5d149440173",
+    "docs/evidence/linux-runtime-images-2026-10-28.json": "34169a58cc86bdd78d43764b1219772fbe2f339736e411f0f3fab2228ac56443",
+    "scripts/elf_inspect.py": "72da94d87ec57276309e68d5ff883bceafd66f72a357de8150cfe3e90738aa99"
+  },
+  "python": {
+    "run": 212,
+    "passed": 207,
+    "skipped": 5,
+    "runtime_guard_tests": 19,
+    "skip_reasons": [
+      "4 existing POSIX permission cases",
+      "1 existing GNU/Linux cc/readelf test"
+    ]
+  },
+  "rust_tests_including_doctests": 264,
+  "commands": [
+    "python -m unittest discover -s tests -p test_*.py -v",
+    "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+    "python -m ruff format --check scripts tests examples/collect.py",
+    "python -m ruff check scripts tests examples/collect.py",
+    "python -m mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+    "python scripts/check_project.py",
+    "actionlint"
+  ],
+  "static_checks": {
+    "ruff_format": "passed",
+    "ruff_check": "passed",
+    "mypy_files": 63,
+    "actionlint": "passed",
+    "project_files": 925,
+    "local_links": 741,
+    "diff_check": "passed"
+  },
+  "logs": {
+    "python_sha256": "3d013e9bebe56dc7729b124607ed2c5fdc30e0bdaabb3b3a1f479ce0b0804a89",
+    "rust_sha256": "6655d1a90fb3fe28aee4e21d4cc98743ce65bb9e37deb2bcd4601c3e89dda758"
+  },
+  "fixes": [
+    "Replace disconnected 32 MiB payload gate with rounded complete-install budget, within the unchanged 64 MiB tmpfs and 16 MiB reserve; check actual free space before/after copying.",
+    "Permit C loader diagnostics from the known packaged SDK library as well as its consumer; unrelated versions and CLI-only mismatches remain rejected."
+  ],
+  "previous_ci": {
+    "run_id": 40609811580,
+    "source_commit": "8be46ab088e0cb90c6a4e9d395f480867e505107",
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40609811580",
+    "conclusion": "failure",
+    "accepted": false,
+    "failure": "runtime_payload_limit",
+    "runtime_containers_started": false,
+    "failure_report": "docs/evidence/linux-runtime-container-failed-40609811580.json",
+    "failure_report_sha256": "a350dc26352df651d7881fbd8c006f784ca9763684ba1b9dfb2f4212a3806a78",
+    "failed_linux_job_log_sha256": "03b8fd910dee7dfce1c447787f0321ed5bdfc42440ac0aec05fe40ece2353c9a",
+    "jobs": [
+      {
+        "name": "miri",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (windows-latest)",
+        "conclusion": "success"
+      },
+      {
+        "name": "fuzz-smoke",
+        "conclusion": "success"
+      },
+      {
+        "name": "ffi-asan",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "conclusion": "failure"
+      },
+      {
+        "name": "linux-container",
+        "conclusion": "success"
+      },
+      {
+        "name": "supply-chain",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "docker_or_linux_runtime_started_locally": false,
+  "virtualization_services_changed": false,
+  "ci": "pending_corrected_source_run",
+  "public_rust_api_changed": false,
+  "abi": 1,
+  "snapshot_schema": 1,
+  "dependencies_features_or_license_changed": false,
+  "published": false
+}

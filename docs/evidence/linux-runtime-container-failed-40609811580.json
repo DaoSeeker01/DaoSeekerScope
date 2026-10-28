@@ -1,0 +1,12 @@
+{
+  "report_version": 1,
+  "overall": "failed",
+  "profiles": {},
+  "physical_device_validation": false,
+  "minimum_kernel_or_distribution_verified": false,
+  "published": false,
+  "source_commit": "8be46ab088e0cb90c6a4e9d395f480867e505107",
+  "source_dirty": false,
+  "docker_version": "28.0.4",
+  "failure": "runtime_payload_limit"
+}
