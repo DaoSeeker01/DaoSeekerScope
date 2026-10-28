@@ -89,6 +89,7 @@ jobs:
           set -euo pipefail
           bundle=$(python scripts/cli_bundle.py)
           python scripts/cli_bundle_smoke.py "$bundle"
+          printf '%s\n' "$bundle" > target/linux-cli-archive.txt
       - name: Preserve Linux CLI candidate evidence
         if: always() && runner.os == 'Linux'
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
@@ -120,6 +121,15 @@ jobs:
           set -euo pipefail
           sdk=$(python scripts/cli_bundle.py --product ffi_sdk)
           python scripts/ffi_bundle_smoke.py "$sdk"
+          printf '%s\n' "$sdk" > target/linux-sdk-archive.txt
+      - name: Linux candidates in pinned older userlands
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          IFS= read -r cli < target/linux-cli-archive.txt
+          IFS= read -r sdk < target/linux-sdk-archive.txt
+          python scripts/linux_runtime_container_smoke.py "$cli" "$sdk"
       - name: Preserve Linux FFI SDK evidence
         if: always() && runner.os == 'Linux'
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
@@ -242,6 +252,7 @@ jobs:
             target/macos-display-probe.json
             target/macos-display-comparison.json
             target/linux-collect-benchmark.log
+            target/linux-runtime-container-evidence.json
           if-no-files-found: ignore
           retention-days: 14
   linux-container:

@@ -1,0 +1,32 @@
+[
+  {
+    "tag": "python:3.13.13-slim-bookworm",
+    "index_digest": "sha256:355bfa66770995d7e9a0da4b3473b44d0cb451f6b56f5615ad9c39e3c4eca03f",
+    "linux_amd64_digest": "sha256:f576b530293e74140ea91d262232648d5c4f45640a95ec447757701bfcacf034",
+    "config_digest": "sha256:2e6b5bbf5b2f372ef9b208e7c7c300675be97a6dc1bbe7e3ac0b9c20035fd70e",
+    "layer_digests": [
+      "sha256:068fedd6b0f109b8186d00d49327b6fc6747c428fd3c9a8739424ff5f38d7531",
+      "sha256:6f59d65eb126bdbbfafbdc6551ec22d189bcf11e4c4f556e1cb95f03dd424f5c",
+      "sha256:59dae010ffdc12f24a794eec2ca47e675613b78a165c26b389ea7f670919f998",
+      "sha256:36d1aa696f899174752f594312e62a77a068b3f1a7a751bffafecdff61b55dcb"
+    ],
+    "resolved_at_client_date": "2026-10-28",
+    "source": "Docker Official Image library/python via registry-1.docker.io",
+    "executed": false
+  },
+  {
+    "tag": "python:3.13.5-slim-bullseye",
+    "index_digest": "sha256:846d391e752027be4a490ac42f8bba40b54b8271fd57d18d5304698a02a4efb0",
+    "linux_amd64_digest": "sha256:4ea2e567da526afcd5655339f71295ca6ef72271ff6123bb5c7144ae8fdc1692",
+    "config_digest": "sha256:932831e2e7dc0aebbabca90d6c78087538e5c3ecf38151069ab418d1ec4532d2",
+    "layer_digests": [
+      "sha256:ccaf924377f936af2c0396fce237145b7d1ecc0b8196916667fc6d5ff4866e2d",
+      "sha256:d154c1b03fc6bb21efc127af34e6e94eff5432084fc1f02744fb7129d9bf3c42",
+      "sha256:91d1b19e0b40d459280afb8708d44c714d6c53eac51878210fc06534f79dfd5f",
+      "sha256:4085babbc5702254267393a22fc7f0d644efddd41dc328f81b1549c13a210b4e"
+    ],
+    "resolved_at_client_date": "2026-10-28",
+    "source": "Docker Official Image library/python via registry-1.docker.io",
+    "executed": false
+  }
+]

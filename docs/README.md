@@ -18,6 +18,7 @@
 - [Linux FFI SDK](linux-ffi-sdk-validation.md)：GNU x86_64 共享库、ELF 加载路径与 C/Python 原生 CI 验收。
 - [Windows 二进制检查](windows-pe-validation.md)：PE 架构、直接 DLL 依赖与最低系统版本的验证边界。
 - [Linux 运行库要求](linux-runtime-validation.md)：ELF 符号版本、加载器环境隔离与最低运行环境的边界。
+- [较低版本 Linux 环境](linux-runtime-container-validation.md)：用相同候选验证运行成功和不兼容加载拒绝。
 
 ## 设计决策
 
