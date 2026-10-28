@@ -9,6 +9,7 @@ import subprocess
 import sys
 import tempfile
 from typing import Any
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -82,6 +83,12 @@ def result(label: str) -> dict[str, Any]:
         "binary_sha256": dict(HASHES),
         "installed_payload_files": {"cli": 3, "sdk": 4},
         "calls": {},
+        "installation_storage": {
+            "capacity_bytes": smoke.WORK_BYTES,
+            "reserve_bytes": smoke.WORK_RESERVE,
+            "available_before_copy_bytes": smoke.WORK_BYTES,
+            "available_after_copy_bytes": 24 * 1024 * 1024,
+        },
     }
     value["runtime"].update(
         machine="x86_64",
@@ -125,6 +132,59 @@ def result(label: str) -> dict[str, Any]:
 
 
 class RuntimeContainerTests(unittest.TestCase):
+    def test_install_budget_accounts_for_two_complete_notice_trees(self) -> None:
+        # Reproduce the >32 MiB logical size without creating large fixture files.
+        budget = smoke.installation_budget(
+            [17 * 1024 * 1024, 17 * 1024 * 1024, 17000], 20
+        )
+        self.assertGreater(budget["logical_bytes"], 32 * 1024 * 1024)
+        self.assertLessEqual(
+            budget["estimated_copy_bytes"] + budget["reserve_bytes"], smoke.WORK_BYTES
+        )
+        self.assertGreater(budget["estimated_copy_bytes"], budget["logical_bytes"])
+        for sizes, directories in (([48 * 1024 * 1024], 1), ([49 * 1024 * 1024], 0)):
+            with self.assertRaisesRegex(ValueError, "runtime_install_capacity"):
+                smoke.installation_budget(sizes, directories)
+        for sizes, directories, block in (
+            ([-1], 0, 4096),
+            ([1], -1, 4096),
+            ([1], 0, 0),
+            ([1], 0, 4095),
+        ):
+            with self.assertRaisesRegex(ValueError, "runtime_install_sizes"):
+                smoke.installation_budget(sizes, directories, block)
+        with self.assertRaisesRegex(ValueError, "runtime_install_sizes"):
+            smoke.installation_budget([True], 0)
+
+    def test_actual_work_space_is_checked_before_and_after_copy(self) -> None:
+        budget = smoke.installation_budget([34 * 1024 * 1024], 0)
+        usage = SimpleNamespace(f_blocks=16384, f_frsize=4096, f_bavail=16384)
+        with patch.object(probe.os, "statvfs", return_value=usage, create=True):
+            self.assertEqual(
+                probe.work_space(
+                    Path("unused"), budget, budget["estimated_copy_bytes"]
+                )["capacity_bytes"],
+                smoke.WORK_BYTES,
+            )
+            usage.f_bavail = 4095
+            with self.assertRaisesRegex(ValueError, "runtime_work_space"):
+                probe.work_space(Path("unused"), budget, 0)
+            usage.f_bavail = 12000
+            with self.assertRaisesRegex(ValueError, "runtime_work_space"):
+                probe.work_space(Path("unused"), budget, budget["estimated_copy_bytes"])
+            usage.f_blocks = 32768
+            with self.assertRaisesRegex(ValueError, "runtime_work_space"):
+                probe.work_space(Path("unused"), budget, 0)
+
+    def test_report_rejects_missing_workspace_reserve(self) -> None:
+        for label in ("bookworm", "bullseye"):
+            value = result(label)
+            value["installation_storage"]["available_after_copy_bytes"] = (
+                smoke.WORK_RESERVE - 1
+            )
+            with self.assertRaisesRegex(ValueError, "runtime_install_storage"):
+                smoke.validate_result(value, smoke.PROFILES[label], HASHES, "0.1.0")
+
     def test_images_are_fixed_amd64_content_digests(self) -> None:
         for profile in smoke.PROFILES.values():
             self.assertRegex(profile["image"], r"^python@sha256:[0-9a-f]{64}$")

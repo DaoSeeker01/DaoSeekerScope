@@ -16,6 +16,8 @@ python scripts/linux_runtime_container_smoke.py "$cli" "$sdk"
 
 ## 本轮状态
 
+首轮 CI 40609811580 在启动任何容器前因 `runtime_payload_limit` 失败：完整候选总载荷超出工具写死的 32 MiB 门槛。该轮没有用户空间运行证据，失败报告保留；不能算作 Debian 兼容性失败或成功。本轮修正为按 64 MiB 实际工作区计算完整安装预算并保留 16 MiB 余量，额外核对容器内复制前后真实空间。许可证、二进制、镜像及隔离限制保持原样，修正后的原生结果仍待 CI。
+
 已实现两项固定摘要的环境检查，原生结果待本轮 CI：
 
 | 环境 | 验收条件 | 不能据此得出的结论 |
@@ -28,5 +30,7 @@ python scripts/linux_runtime_container_smoke.py "$cli" "$sdk"
 源码 `2f0c90009ba148e66e97b9247b443736a76647e5` 已完成本机门禁：Python 208 项中 203 项通过、5 项既有平台测试跳过，新增容器守卫 15 项全部通过；Rust 264 项、fmt、严格 Clippy/文档、无默认 feature 及 Linux x64/macOS ARM64 交叉检查通过。Ruff/mypy 检查 63 个文件，actionlint 与项目守卫通过，见[本机记录](evidence/linux-runtime-container-local-2f0c900.json)。本轮原生容器仍待 CI，不采用上一轮的运行结果。
 
 正面场景中，候选先复制到容器内 `/work` 的新目录，再按 manifest 检查完整文件和执行文件的哈希；Rust 二进制与 C 消费者均不会在该环境重新编译。报告只保存结果、运行环境、哈希和受控配置，原始默认脱敏快照在宿主验证后丢弃。
+
+报告的 `payload_bytes`、`work_budget` 和各环境的 `installation_storage` 分别记录载荷、按分配单元估算的安装占用及真实可用空间。预算不包含删除或共享许可证文件的优化；若容量或余量不足，应记录失败并检查产物规模，不得降低检查标准。
 
 内核与 CPU 来自 CI 宿主。实体 Linux/macOS、多组 CPU、更低 glibc 区间、最低内核及正式发布仍待单独验收。当前没有新增公共 API、依赖、feature 或许可证变化。

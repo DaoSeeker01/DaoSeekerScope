@@ -80,6 +80,19 @@ def install_candidate(source: Path, destination: Path, expected_manifest: str) -
     return len(manifest["files"])
 
 
+def work_space(work: Path, budget: dict[str, int], required: int) -> dict[str, int]:
+    """Verify actual tmpfs capacity and free space, not only daemon configuration."""
+    usage = getattr(os, "statvfs")(work)
+    capacity = usage.f_blocks * usage.f_frsize
+    available = usage.f_bavail * usage.f_frsize
+    require(
+        capacity == budget["capacity_bytes"]
+        and available >= required + budget["reserve_bytes"],
+        "runtime_work_space",
+    )
+    return {"capacity_bytes": capacity, "available_bytes": available}
+
+
 def execute(root: Path, work: Path, config: dict[str, Any]) -> dict[str, Any]:
     uid = getattr(os, "geteuid", lambda: -1)()
     gid = getattr(os, "getegid", lambda: -1)()
@@ -103,6 +116,8 @@ def execute(root: Path, work: Path, config: dict[str, Any]) -> dict[str, Any]:
         "runtime_loader_override",
     )
     require(platform.python_version() == config["python"], "runtime_python")
+    budget = config["work_budget"]
+    before = work_space(work, budget, budget["estimated_copy_bytes"])
     installed = {}
     for name in ("cli", "sdk"):
         installed[name] = install_candidate(
@@ -118,6 +133,7 @@ def execute(root: Path, work: Path, config: dict[str, Any]) -> dict[str, Any]:
         "consumer": file_hash(consumer),
     }
     require(hashes == config["binary_sha256"], "runtime_binary_changed")
+    after = work_space(work, budget, 0)
     result: dict[str, Any] = {
         "overall": "passed",
         "expected": config["expected"],
@@ -135,6 +151,12 @@ def execute(root: Path, work: Path, config: dict[str, Any]) -> dict[str, Any]:
         "binary_sha256": hashes,
         "calls": {},
         "rebuilt_in_container": False,
+        "installation_storage": {
+            "capacity_bytes": after["capacity_bytes"],
+            "reserve_bytes": budget["reserve_bytes"],
+            "available_before_copy_bytes": before["available_bytes"],
+            "available_after_copy_bytes": after["available_bytes"],
+        },
     }
     if config["expected"] == "runs":
         jobs = {

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from collections.abc import Sequence
 import json
 import os
 from pathlib import Path
@@ -46,6 +47,38 @@ PROFILES = {
         "expected": "loader_rejects",
     },
 }
+WORK_BYTES = 64 * 1024 * 1024
+WORK_RESERVE = 16 * 1024 * 1024
+
+
+def installation_budget(
+    file_sizes: Sequence[int], directories: int, block_bytes: int = 4096
+) -> dict[str, int]:
+    """Budget rounded file allocations and directories, retaining workspace reserve."""
+    require(
+        0 < len(file_sizes) <= 2048
+        and type(directories) is int
+        and 0 <= directories <= 2048
+        and type(block_bytes) is int
+        and 512 <= block_bytes <= 65536
+        and block_bytes & (block_bytes - 1) == 0
+        and all(type(size) is int and size >= 0 for size in file_sizes),
+        "runtime_install_sizes",
+    )
+    allocated = sum(
+        (size + block_bytes - 1) // block_bytes * block_bytes for size in file_sizes
+    )
+    allocated += directories * block_bytes
+    require(allocated <= WORK_BYTES - WORK_RESERVE, "runtime_install_capacity")
+    return {
+        "capacity_bytes": WORK_BYTES,
+        "reserve_bytes": WORK_RESERVE,
+        "logical_bytes": sum(file_sizes),
+        "estimated_copy_bytes": allocated,
+        "allocation_block_bytes": block_bytes,
+        "files": len(file_sizes),
+        "directories": directories,
+    }
 
 
 def run(arguments: list[str], *, timeout: int = 60) -> bytes:
@@ -206,6 +239,16 @@ def validate_result(
         "runtime_build_toolchain_present",
     )
     calls = value["calls"]
+    storage = value["installation_storage"]
+    require(
+        storage["capacity_bytes"] == WORK_BYTES
+        and storage["reserve_bytes"] == WORK_RESERVE
+        and WORK_RESERVE
+        <= storage["available_after_copy_bytes"]
+        <= storage["available_before_copy_bytes"]
+        <= WORK_BYTES,
+        "runtime_install_storage",
+    )
     result: dict[str, Any] = {
         "status": "passed",
         "expected": profile["expected"],
@@ -213,6 +256,7 @@ def validate_result(
         "binary_sha256": hashes,
         "installed_payload_files": value["installed_payload_files"],
         "rebuilt_in_container": False,
+        "installation_storage": storage,
     }
     if profile["expected"] == "runs":
         require(
@@ -417,11 +461,9 @@ def execute(cli_archive: Path, sdk_archive: Path, report: dict[str, Any]) -> Non
         and manifests["cli"]["version"] == manifests["sdk"]["version"],
         "runtime_candidate_product",
     )
-    require(
-        sum(len(data) for files in payloads.values() for data in files.values())
-        < 32 * 1024 * 1024,
-        "runtime_payload_limit",
-    )
+    report["payload_bytes"] = {
+        product: sum(map(len, files.values())) for product, files in payloads.items()
+    }
     with tempfile.TemporaryDirectory(
         prefix="runtime-candidates-", dir=ROOT / "target"
     ) as folder:
@@ -468,9 +510,21 @@ def execute(cli_archive: Path, sdk_archive: Path, report: dict[str, Any]) -> Non
         shutil.copyfile(
             ROOT / "scripts/linux_runtime_container_probe.py", stage / "probe.py"
         )
+        installed_paths = [
+            path
+            for product in ("cli", "sdk")
+            for path in [stage / product, *(stage / product).rglob("*")]
+        ]
+        budget = installation_budget(
+            [path.stat().st_size for path in installed_paths if path.is_file()],
+            sum(path.is_dir() for path in installed_paths),
+            getattr(os, "sysconf")("SC_PAGESIZE"),
+        )
+        report["work_budget"] = budget
         for label, profile in PROFILES.items():
             config = {
                 **profile,
+                "work_budget": budget,
                 "binary_sha256": hashes,
                 "manifests": {
                     key: digest(files["manifest.json"])
