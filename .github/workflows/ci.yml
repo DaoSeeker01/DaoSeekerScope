@@ -188,6 +188,9 @@ jobs:
           cc -Wall -Wextra -Werror examples/collect.c -Ltarget/debug -ldaoseeker_scope_ffi -Wl,-rpath,"$PWD/target/debug" -o target/debug/c-example
       - name: Native smoke evidence
         run: python scripts/native_smoke.py
+      - name: Release C ABI process peak memory
+        timeout-minutes: 10
+        run: python scripts/peak_memory.py
       - name: macOS public IOMedia SDK probe
         if: runner.os == 'macOS'
         run: |
@@ -253,6 +256,7 @@ jobs:
             target/macos-display-comparison.json
             target/linux-collect-benchmark.log
             target/linux-runtime-container-evidence.json
+            target/peak-memory-evidence.json
           if-no-files-found: ignore
           retention-days: 14
   linux-container:

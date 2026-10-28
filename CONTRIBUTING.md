@@ -64,6 +64,8 @@ Fuzz 目标与命令见 [fuzz 指南](fuzz/README.md)。Miri 使用 `nightly-202
 
 CI 另有 Rust FFI AddressSanitizer 和 cargo-deny 门禁。性能入口：`cargo bench --locked -p daoseeker-scope --bench collect`；记录平台、profile 和真实/合成数据范围，参考[性能报告](docs/benchmarks.md)。
 
+在干净工作区运行 `python scripts/peak_memory.py`，可构建 release C 消费者并记录进程内存峰值。需要本机 C 编译器；Windows 使用现有 MSVC/SDK 发现逻辑。它单独执行 64 MiB 校准、300 次缓存调用和 30 次新采集器调用，报告写到 `target/peak-memory-evidence.json`。这不是分配器用量或长期无泄漏证明，口径见 [ADR 0038](docs/adr/0038-process-peak-memory.md)。
+
 ## 提交变更
 
 保持 `Observed<T>` 的状态、来源和原因语义；公共类型不要泄漏平台依赖。新增字段、能力和兼容性行为应更新 [ADR](docs/README.md)、Schema 与回归测试。不要将编译、模拟输入测试或空集合称作真实设备验收。历史证据保留原始 source commit 和失败记录；当前验证另存新报告。

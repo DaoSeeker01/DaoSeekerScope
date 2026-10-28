@@ -7,7 +7,9 @@ param(
     [switch]$CpuProbe,
     [switch]$UptimeProbe,
     [switch]$CpuGroupsProbe,
-    [switch]$HardwareSummaryProbe
+    [switch]$HardwareSummaryProbe,
+    [switch]$PeakMemoryProbe,
+    [string]$PeakMemoryDirectory = 'target\release'
 )
 $ErrorActionPreference = 'Stop'
 if (!$VcRoot) {
@@ -42,6 +44,16 @@ try {
     $env:INCLUDE = @((Join-Path $VcRoot 'include'), (Join-Path $SdkRoot "Include\$SdkVersion\ucrt"), (Join-Path $SdkRoot "Include\$SdkVersion\shared"), (Join-Path $SdkRoot "Include\$SdkVersion\um")) -join ';'
     $env:LIB = @((Join-Path $VcRoot 'lib\x64'), (Join-Path $SdkRoot "Lib\$SdkVersion\ucrt\x64"), (Join-Path $SdkRoot "Lib\$SdkVersion\um\x64")) -join ';'
     $env:PATH = (Join-Path $VcRoot 'bin\Hostx64\x64') + ';' + $oldPath
+    if ($PeakMemoryProbe) {
+        $peakRoot = (Resolve-Path -LiteralPath $PeakMemoryDirectory).Path
+        $peakExe = Join-Path $peakRoot 'ffi-memory-probe.exe'
+        $peakObj = Join-Path $peakRoot 'ffi-memory-probe.obj'
+        $peakLib = Join-Path $peakRoot 'daoseeker_scope_ffi.dll.lib'
+        & $compiler /nologo /W4 /WX /O2 /std:c11 "/Fe$peakExe" "/Fo$peakObj" docs\research\ffi_memory_probe.c $peakLib Psapi.lib
+        if ($LASTEXITCODE -ne 0) { throw "FFI peak memory probe compile failed: $LASTEXITCODE" }
+        Write-Output "c_compiler_version=$((Get-Item -LiteralPath $compiler).VersionInfo.FileVersion)"
+        return
+    }
     if ($SdkDirectory) {
         $candidateRoot = (Resolve-Path -LiteralPath $SdkDirectory).Path
         $candidateC = Join-Path $candidateRoot 'examples\collect.c'

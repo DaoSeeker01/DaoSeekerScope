@@ -1,5 +1,13 @@
 # 性能基线
 
+## C ABI 进程峰值内存
+
+复现：在干净工作区运行 `python scripts/peak_memory.py`。脚本构建 release CLI/FFI 与优化 C11 探针，保存源码、产物哈希、硬件摘要、原始计数和各批耗时。三平台 CI 同样执行；结果写入 `target/peak-memory-evidence.json`，随 native-evidence 保留。
+
+测量分为三个进程：64 MiB 校准；默认采集器累计 1/100/300 次 collect/free；显式 options 累计 1/10/30 次 collect/free。首次调用包含构造，后续默认调用复用缓存，显式调用仍重建。两者均默认脱敏、max_entries=128、超时 2000 ms。每批耗时不累计前批；峰值则是整个进程运行以来的最大值，不能相减解释为每次分配。
+
+内存包含 C 进程、依赖库、缓存和线程，并非 allocator 用量。CPU/内存摘要是系统报告值，CI 不等于实体设备。单位、校准和失败规则见 [ADR 0038](adr/0038-process-peak-memory.md)。本轮实测完成后在此归档，不以已加入 CI 作为通过证据。
+
 ## v0.1 审计修复回归（2026-10-27）
 
 源码 `d5d1e3b94b52b543e1b43aeb203fe8e6d9f7d7c7`，[CI 40423886083](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40423886083)执行 `cargo bench --locked -p daoseeker-scope --bench collect`；Rust 1.96、bench 优化、默认 serde，原生 max_entries=128/100 次刷新，合成 100 传感器/1024 网络条目、max_entries=1024。环境和原始日志在记录中。
