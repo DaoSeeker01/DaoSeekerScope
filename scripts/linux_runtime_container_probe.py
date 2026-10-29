@@ -93,29 +93,77 @@ def work_space(work: Path, budget: dict[str, int], required: int) -> dict[str, i
     return {"capacity_bytes": capacity, "available_bytes": available}
 
 
+def distribution(release: bytes) -> dict[str, str]:
+    """Read only ID and VERSION_ID, without evaluating os-release as shell code."""
+    require(len(release) <= 4096, "runtime_distribution_limit")
+    values: dict[str, str] = {}
+    for line in release.decode("utf-8").splitlines():
+        if not line.startswith(("ID=", "VERSION_ID=")):
+            continue
+        match = re.fullmatch(
+            r'(ID|VERSION_ID)=(?:"([a-zA-Z0-9_.-]+)"|([a-zA-Z0-9_.-]+))', line
+        )
+        require(match is not None, "runtime_distribution")
+        assert match is not None
+        key = match[1]
+        require(key not in values, "runtime_distribution_duplicate")
+        values[key] = match[2] or match[3]
+    require(set(values) == {"ID", "VERSION_ID"}, "runtime_distribution")
+    return {"id": values["ID"], "version_id": values["VERSION_ID"]}
+
+
+def validate_identity(runtime: dict[str, Any], config: dict[str, Any]) -> None:
+    """Keep exact legacy versions; the pinned UBI image records full patch versions."""
+    require(runtime["glibc"] == config["glibc"], "runtime_glibc")
+    distro = runtime["distribution"]
+    if "debian" in config:
+        require(
+            distro == {"id": "debian", "version_id": config["debian"]}
+            and runtime.get("debian") == config["debian"],
+            "runtime_distribution",
+        )
+        require(runtime["python"] == config["python"], "runtime_python")
+    else:
+        require(
+            distro["id"] == config["distribution_id"]
+            and re.fullmatch(
+                re.escape(config["distribution_major"]) + r"(?:\.[0-9]+)*",
+                distro["version_id"],
+            )
+            is not None,
+            "runtime_distribution",
+        )
+        require(
+            re.fullmatch(
+                re.escape(config["python_minor"]) + r"\.[0-9]+", runtime["python"]
+            )
+            is not None,
+            "runtime_python",
+        )
+
+
 def execute(root: Path, work: Path, config: dict[str, Any]) -> dict[str, Any]:
     uid = getattr(os, "geteuid", lambda: -1)()
     gid = getattr(os, "getegid", lambda: -1)()
     require(uid == 65534 and gid == 65534, "runtime_user")
     require(platform.machine() == "x86_64", "runtime_architecture")
     glibc = getattr(os, "confstr", lambda _key: None)("CS_GNU_LIBC_VERSION")
-    require(glibc == "glibc " + config["glibc"], "runtime_glibc")
+    require(isinstance(glibc, str) and glibc.startswith("glibc "), "runtime_glibc")
+    assert isinstance(glibc, str)
     with Path("/etc/os-release").open("rb") as source:
-        release = source.read(4097).decode("utf-8")
-    require(
-        len(release) <= 4096 and re.search(r"^ID=debian$", release, re.M) is not None,
-        "runtime_distribution",
-    )
-    release_id = re.search(r'^VERSION_ID="([0-9]+)"$', release, re.M)
-    require(
-        release_id is not None and release_id[1] == config["debian"],
-        "runtime_distribution_version",
-    )
+        distro = distribution(source.read(4097))
+    identity = {
+        "glibc": glibc.removeprefix("glibc "),
+        "distribution": distro,
+        "python": platform.python_version(),
+    }
+    if "debian" in config:
+        identity["debian"] = distro["version_id"]
+    validate_identity(identity, config)
     require(
         not any(key.startswith("LD_") or key == "GLIBC_TUNABLES" for key in os.environ),
         "runtime_loader_override",
     )
-    require(platform.python_version() == config["python"], "runtime_python")
     budget = config["work_budget"]
     before = work_space(work, budget, budget["estimated_copy_bytes"])
     installed = {}
@@ -138,9 +186,7 @@ def execute(root: Path, work: Path, config: dict[str, Any]) -> dict[str, Any]:
         "overall": "passed",
         "expected": config["expected"],
         "runtime": {
-            "glibc": config["glibc"],
-            "debian": config["debian"],
-            "python": platform.python_version(),
+            **identity,
             "kernel": platform.release(),
             "machine": platform.machine(),
             "uid": uid,

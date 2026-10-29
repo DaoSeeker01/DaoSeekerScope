@@ -28,6 +28,7 @@ from cli_bundle import (
 from cli_bundle_smoke import install
 from elf_inspect import inspect_elf, linux_environment
 from native_smoke import check_snapshot
+from linux_runtime_container_probe import validate_identity
 
 PROFILES = {
     "bookworm": {
@@ -45,6 +46,16 @@ PROFILES = {
         "debian": "11",
         "python": "3.13.5",
         "expected": "loader_rejects",
+    },
+    "ubi9": {
+        "image": "registry.access.redhat.com/ubi9/python-312@sha256:d2cacc387d43e61513038694222980f774cae60b2b8afea8b6846654e25da9e7",
+        "config_digest": "sha256:06e426750a52b32e8d258fa8a8e7f237421fa8167a0e38ad8307d6af4d4d68c6",
+        "glibc": "2.34",
+        "distribution_id": "rhel",
+        "distribution_major": "9",
+        "python_minor": "3.12",
+        "executable": "/usr/bin/python3.12",
+        "expected": "runs",
     },
 }
 WORK_BYTES = 64 * 1024 * 1024
@@ -123,6 +134,10 @@ def container_arguments(
         "--read-only",
         "--env",
         "LC_ALL=C",
+        "--entrypoint",
+        profile.get("executable", "python"),
+        "--workdir",
+        "/work",
         "--network",
         "none",
         "--cap-drop",
@@ -144,17 +159,20 @@ def container_arguments(
         "--mount",
         f"type=bind,source={stage},target=/input,readonly",
         profile["image"],
-        "python",
         "-B",
         "/input/probe.py",
         f"/input/{label}.json",
     ]
 
 
-def validate_config(value: dict[str, Any]) -> dict[str, Any]:
+def validate_config(
+    value: dict[str, Any], *, executable: str = "python"
+) -> dict[str, Any]:
     host = value["HostConfig"]
     require(
         value["Config"]["User"] == "65534:65534"
+        and value["Config"]["Entrypoint"] == [executable]
+        and value["Config"]["WorkingDir"] == "/work"
         and not host["Privileged"]
         and host["ReadonlyRootfs"]
         and host["NetworkMode"] == "none",
@@ -211,6 +229,7 @@ def validate_config(value: dict[str, Any]) -> dict[str, Any]:
         "readonly_root": True,
         "readonly_candidate_mount": True,
         "writable_tmpfs": "/work",
+        "entrypoint": executable,
         "memory_bytes": host["Memory"],
         "pids": 32,
         "cpus": 1,
@@ -227,10 +246,9 @@ def validate_result(
         "runtime_probe_contract",
     )
     runtime = value["runtime"]
+    validate_identity(runtime, profile)
     require(
-        all(runtime[key] == profile[key] for key in ("glibc", "debian", "python"))
-        and runtime["machine"] == "x86_64"
-        and runtime["uid"] == 65534,
+        runtime["machine"] == "x86_64" and runtime["uid"] == 65534,
         "runtime_identity",
     )
     require(value["binary_sha256"] == hashes, "runtime_binary_changed")
@@ -370,7 +388,7 @@ def run_profile(
     profile = PROFILES[label]
     run(
         ["docker", "pull", "--platform", "linux/amd64", profile["image"]],
-        timeout=180,
+        timeout=300 if label == "ubi9" else 180,
     )
     image = json.loads(run(["docker", "image", "inspect", profile["image"]]))[0]
     require(
@@ -388,7 +406,9 @@ def run_profile(
         created = True
         item["phase"] = "configuration"
         inspected = json.loads(run(["docker", "inspect", name]))[0]
-        item["configuration"] = validate_config(inspected)
+        item["configuration"] = validate_config(
+            inspected, executable=profile.get("executable", "python")
+        )
         item["phase"] = "start"
         raw = run(["docker", "start", "--attach", name], timeout=300)
         state = json.loads(
@@ -578,7 +598,7 @@ def main() -> None:
     )
     options = parser.parse_args()
     report: dict[str, Any] = {
-        "report_version": 1,
+        "report_version": 2,
         "overall": "incomplete",
         "profiles": {},
         "physical_device_validation": False,

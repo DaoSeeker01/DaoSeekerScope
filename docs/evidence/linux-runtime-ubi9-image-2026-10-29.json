@@ -1,0 +1,43 @@
+{
+  "purpose": "test-only glibc 2.34 candidate userland; metadata is not execution evidence",
+  "retrieved_at": "2026-10-29T10:02:10.264645+00:00",
+  "registry": "https://registry.access.redhat.com/v2/ubi9/python-312/",
+  "image": "registry.access.redhat.com/ubi9/python-312@sha256:d2cacc387d43e61513038694222980f774cae60b2b8afea8b6846654e25da9e7",
+  "config_digest": "sha256:06e426750a52b32e8d258fa8a8e7f237421fa8167a0e38ad8307d6af4d4d68c6",
+  "architecture": "amd64",
+  "os": "linux",
+  "digest_verification": "SHA-256 computed over downloaded manifest/config bytes; the amd64 child descriptor and config descriptor matched",
+  "compressed_layer_bytes": 398231903,
+  "layers": [
+    {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 80423744,
+      "digest": "sha256:f8d52b369c86dbd277e65deb6c4d961fa4880b88a637f831cd15e954c5694e6c"
+    },
+    {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 17459461,
+      "digest": "sha256:0b8b1779dd4d1303df90093b317e2dc56f33397979dd68b862425f32d6816cd7"
+    },
+    {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 229263000,
+      "digest": "sha256:8bfb2dd6f428852f03d77c5ed055c45225070aadf76683dec1e848ac8bf36529"
+    },
+    {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 71085698,
+      "digest": "sha256:f04661f3a45762f3b407e9f1e2c010c9e06841111105390e893ed85007a58fc5"
+    }
+  ],
+  "original_entrypoint": [
+    "container-entrypoint"
+  ],
+  "original_working_directory": "/opt/app-root/src",
+  "test_entrypoint": "/usr/bin/python3.12",
+  "test_working_directory": "/work",
+  "upstream_revision_label": "4ef2dbd8b333593777f8ae412e2125715d185fb4",
+  "license_terms": "https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI",
+  "execution_on_windows": false,
+  "distributed_with_project": false
+}

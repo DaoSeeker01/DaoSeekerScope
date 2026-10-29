@@ -24,7 +24,11 @@ from native_smoke import ValidationFailure
 
 def docker_config() -> dict:
     return {
-        "Config": {"User": "65534:65534"},
+        "Config": {
+            "User": "65534:65534",
+            "Entrypoint": ["python"],
+            "WorkingDir": "/work",
+        },
         "HostConfig": {
             "ReadonlyRootfs": True,
             "Privileged": False,
@@ -79,7 +83,11 @@ def result(label: str) -> dict[str, Any]:
         "overall": "passed",
         "expected": profile["expected"],
         "rebuilt_in_container": False,
-        "runtime": {key: profile[key] for key in ("glibc", "debian", "python")},
+        "runtime": (
+            {key: profile[key] for key in ("glibc", "debian", "python")}
+            if "debian" in profile
+            else {"glibc": "2.34", "python": "3.12.99"}
+        ),
         "binary_sha256": dict(HASHES),
         "installed_payload_files": {"cli": 3, "sdk": 4},
         "calls": {},
@@ -91,13 +99,16 @@ def result(label: str) -> dict[str, Any]:
         },
     }
     value["runtime"].update(
+        distribution={"id": "debian", "version_id": profile["debian"]}
+        if "debian" in profile
+        else {"id": "rhel", "version_id": "9.7"},
         machine="x86_64",
         uid=65534,
         kernel="fixture",
         cargo_available=False,
         rustc_available=False,
     )
-    if label == "bookworm":
+    if profile["expected"] == "runs":
         outputs = {
             "cli_version": "dscope 0.1.0\n",
             "cli_json": json.dumps(snapshot()),
@@ -132,6 +143,100 @@ def result(label: str) -> dict[str, Any]:
 
 
 class RuntimeContainerTests(unittest.TestCase):
+    def test_distribution_reader_accepts_only_selected_literal_fields(self) -> None:
+        self.assertEqual(
+            probe.distribution(
+                b'NAME="Red Hat Enterprise Linux"\nID="rhel"\nID_LIKE="fedora"\nVERSION_ID="9.7"\n'
+            ),
+            {"id": "rhel", "version_id": "9.7"},
+        )
+        self.assertEqual(
+            probe.distribution(b"ID=debian\nVERSION_ID=12\n"),
+            {"id": "debian", "version_id": "12"},
+        )
+
+    def test_distribution_reader_rejects_missing_malformed_and_duplicate_fields(
+        self,
+    ) -> None:
+        for raw in (
+            b"ID=debian\n",
+            b'ID="rhel\nVERSION_ID=9\n',
+            b"ID=debian\nID=rhel\nVERSION_ID=9\n",
+            b"ID=rhel\nVERSION_ID=9\nVERSION_ID=10\n",
+            b"ID=$(command)\nVERSION_ID=9\n",
+            b"x" * 4097,
+        ):
+            with self.subTest(raw=raw[:60]), self.assertRaises(ValueError):
+                probe.distribution(raw)
+
+    def test_pinned_ubi_profile_runs_same_candidate_contract(self) -> None:
+        report = smoke.validate_result(
+            result("ubi9"), smoke.PROFILES["ubi9"], HASHES, "0.1.0"
+        )
+        self.assertEqual(report["python_collect_free_cycles"], 100)
+        self.assertEqual(
+            report["runtime"]["distribution"], {"id": "rhel", "version_id": "9.7"}
+        )
+        self.assertEqual(report["runtime"]["python"], "3.12.99")
+        self.assertNotIn("debian", report["runtime"])
+
+    def test_ubi_identity_rejects_foreign_versions_and_invented_release(self) -> None:
+        for field, value in (
+            ("glibc", "2.36"),
+            ("python", "3.13.1"),
+            ("python", "3.12.1rc1"),
+            ("python", "3.12"),
+            ("distribution", {"id": "debian", "version_id": "9.7"}),
+            ("distribution", {"id": "rhel", "version_id": "90.1"}),
+            ("distribution", {"id": "rhel", "version_id": "9.future"}),
+        ):
+            data = result("ubi9")
+            data["runtime"][field] = value
+            with self.subTest(field=field, value=value), self.assertRaises(ValueError):
+                smoke.validate_result(data, smoke.PROFILES["ubi9"], HASHES, "0.1.0")
+
+    def test_debian_keeps_exact_python_and_distribution_checks(self) -> None:
+        for label in ("bookworm", "bullseye"):
+            data = result(label)
+            data["runtime"]["python"] = smoke.PROFILES[label]["python"] + ".1"
+            with self.assertRaisesRegex(ValueError, "runtime_python"):
+                smoke.validate_result(data, smoke.PROFILES[label], HASHES, "0.1.0")
+            data = result(label)
+            data["runtime"]["distribution"]["version_id"] += ".1"
+            with self.assertRaisesRegex(ValueError, "runtime_distribution"):
+                smoke.validate_result(data, smoke.PROFILES[label], HASHES, "0.1.0")
+
+    def test_all_container_profiles_bypass_image_entrypoint(self) -> None:
+        for label, profile in smoke.PROFILES.items():
+            arguments = smoke.container_arguments(
+                "fixture", Path("/fixture"), profile, label
+            )
+            self.assertEqual(
+                arguments[arguments.index("--entrypoint") + 1],
+                profile.get("executable", "python"),
+            )
+            self.assertEqual(arguments[arguments.index("--workdir") + 1], "/work")
+            self.assertEqual(arguments[-4], profile["image"])
+            self.assertEqual(
+                arguments[-3:], ["-B", "/input/probe.py", f"/input/{label}.json"]
+            )
+
+    def test_container_entrypoint_and_workdir_overrides_are_verified(self) -> None:
+        for field, value in (
+            ("Entrypoint", ["container-entrypoint"]),
+            ("WorkingDir", "/opt/app-root/src"),
+        ):
+            data = docker_config()
+            data["Config"][field] = value
+            with self.assertRaisesRegex(ValueError, "runtime_container_configuration"):
+                smoke.validate_config(data)
+        data = docker_config()
+        data["Config"]["Entrypoint"] = ["/usr/bin/python3.12"]
+        self.assertEqual(
+            smoke.validate_config(data, executable="/usr/bin/python3.12")["entrypoint"],
+            "/usr/bin/python3.12",
+        )
+
     def test_install_budget_accounts_for_two_complete_notice_trees(self) -> None:
         # Reproduce the >32 MiB logical size without creating large fixture files.
         budget = smoke.installation_budget(
@@ -177,7 +282,7 @@ class RuntimeContainerTests(unittest.TestCase):
                 probe.work_space(Path("unused"), budget, 0)
 
     def test_report_rejects_missing_workspace_reserve(self) -> None:
-        for label in ("bookworm", "bullseye"):
+        for label in smoke.PROFILES:
             value = result(label)
             value["installation_storage"]["available_after_copy_bytes"] = (
                 smoke.WORK_RESERVE - 1
@@ -187,7 +292,10 @@ class RuntimeContainerTests(unittest.TestCase):
 
     def test_images_are_fixed_amd64_content_digests(self) -> None:
         for profile in smoke.PROFILES.values():
-            self.assertRegex(profile["image"], r"^python@sha256:[0-9a-f]{64}$")
+            self.assertRegex(
+                profile["image"],
+                r"^(?:python|registry\.access\.redhat\.com/ubi9/python-312)@sha256:[0-9a-f]{64}$",
+            )
             self.assertRegex(profile["config_digest"], r"^sha256:[0-9a-f]{64}$")
         self.assertEqual(smoke.PROFILES["bookworm"]["expected"], "runs")
         self.assertEqual(smoke.PROFILES["bullseye"]["expected"], "loader_rejects")
@@ -203,7 +311,7 @@ class RuntimeContainerTests(unittest.TestCase):
             f"type=bind,source={Path('/fixture')},target=/input,readonly", arguments
         )
         self.assertEqual(
-            arguments[-4:], ["python", "-B", "/input/probe.py", "/input/bookworm.json"]
+            arguments[-3:], ["-B", "/input/probe.py", "/input/bookworm.json"]
         )
         with self.assertRaisesRegex(ValueError, "unsupported_bind_path"):
             smoke.container_arguments(
