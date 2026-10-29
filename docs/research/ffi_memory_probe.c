@@ -2,7 +2,12 @@
 #if defined(__linux__)
 #define _POSIX_C_SOURCE 200809L
 #endif
+#if defined(DSCOPE_SYNTHETIC)
+#include <stdint.h>
+extern uint64_t scope_probe_synthetic(uint32_t profile, uint32_t refreshes);
+#else
 #include "../../bindings/daoseeker_scope.h"
+#endif
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -118,6 +123,23 @@ static int calibration(void) {
 }
 
 static int collect(const char *mode) {
+#if defined(DSCOPE_SYNTHETIC)
+    uint32_t profile = strcmp(mode, "over_limit") == 0 ? 1u : 0u;
+    unsigned batch;
+    double start, end;
+    uint64_t bytes;
+    if (!sample("baseline", 0, 0, 0)) return failure("memory_counter");
+    for (batch = 0; batch < 2; ++batch) {
+        if (!seconds(&start)) return failure("clock");
+        bytes = scope_probe_synthetic(profile, batch == 0 ? 0u : 100u);
+        if (bytes == 0 || bytes > 1024u * 1024u) return failure("synthetic_workload");
+        if (!seconds(&end) || end < start || end - start > 600.0) return failure("clock");
+        printf(",");
+        if (!sample("collected", batch + 1, (uint64_t)((end - start) * 1000000000.0), (size_t)bytes))
+            return failure("memory_counter");
+    }
+    return 0;
+#else
     const unsigned cached_stages[] = {1, 100, 300};
     const unsigned fresh_stages[] = {1, 10, 30};
     int cached = strcmp(mode, "cached") == 0;
@@ -148,6 +170,7 @@ static int collect(const char *mode) {
             return failure("memory_counter");
     }
     return 0;
+#endif
 }
 
 int main(int argc, char **argv) {
@@ -162,8 +185,13 @@ int main(int argc, char **argv) {
     if (argc != 2) return failure("usage_calibrate_cached_or_fresh");
 #endif
     if (!lifecycle && (strcmp(argv[1], "calibrate") != 0
+#if defined(DSCOPE_SYNTHETIC)
+        && strcmp(argv[1], "synthetic") != 0 && strcmp(argv[1], "over_limit") != 0))
+        return failure("usage_calibrate_synthetic_or_over_limit");
+#else
         && strcmp(argv[1], "cached") != 0 && strcmp(argv[1], "fresh") != 0))
         return failure("usage_calibrate_cached_or_fresh");
+#endif
 #if defined(__linux__)
     if (argc == 2) {
         pid_t child, waited;
@@ -195,6 +223,14 @@ int main(int argc, char **argv) {
 #endif
     printf("{\"format\":2,\"mode\":\"%s\",\"launch\":", argv[1]);
     launch_json();
+#if defined(DSCOPE_SYNTHETIC)
+    if (strcmp(argv[1], "calibrate") != 0) {
+        printf(",\"workload\":{\"synthetic_data\":true,\"backends\":2,\"sensors_generated\":100,"
+               "\"networks_generated\":%u,\"max_entries\":1024,\"first_batch_refreshes\":0,"
+               "\"second_batch_refreshes\":100,\"json_roundtrip\":true}",
+               strcmp(argv[1], "over_limit") == 0 ? 1025u : 1024u);
+    }
+#endif
     printf(",\"metric\":\"%s\",\"raw_unit\":\"%s\","
            "\"multiplier\":%" PRIu64 ",\"pressure_bytes\":%u,\"samples\":[",
            METRIC, RAW_UNIT, MULTIPLIER,

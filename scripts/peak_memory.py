@@ -22,7 +22,12 @@ from native_smoke import check_snapshot
 ROOT = Path(__file__).resolve().parent.parent
 PRESSURE = 64 * 1024 * 1024
 LAUNCH_PRESSURE = 128 * 1024 * 1024
-STAGES = {"cached": [0, 1, 100, 300], "fresh": [0, 1, 10, 30]}
+STAGES = {
+    "cached": [0, 1, 100, 300],
+    "fresh": [0, 1, 10, 30],
+    "synthetic": [0, 1, 2],
+    "over_limit": [0, 1, 2],
+}
 
 
 def require(condition: bool, code: str) -> None:
@@ -80,6 +85,26 @@ def validate(
         launch = expected_launch or ("linux_fork" if system == "Linux" else "direct")
         validate_launch(data.get("launch"), launch)
     require(data.get("mode") == mode, "mode")
+    if mode in ("synthetic", "over_limit"):
+        workload = data.get("workload")
+        require(isinstance(workload, dict), "synthetic_workload")
+        require(
+            workload.get("synthetic_data") is True
+            and workload.get("json_roundtrip") is True,
+            "synthetic_contract",
+        )
+        for key, expected in {
+            "backends": 2,
+            "sensors_generated": 100,
+            "networks_generated": 1025 if mode == "over_limit" else 1024,
+            "max_entries": 1024,
+            "first_batch_refreshes": 0,
+            "second_batch_refreshes": 100,
+        }.items():
+            require(
+                type(workload.get(key)) is int and workload[key] == expected,
+                "synthetic_scale",
+            )
     metric, unit, multiplier = {
         "Windows": ("peak_working_set", "bytes", 1),
         "Linux": ("ru_maxrss", "kibibytes", 1024),
@@ -277,6 +302,48 @@ def verify_unchanged(
     require(source_state() == initial, "source_changed")
 
 
+def compile_probe(
+    system: str, directory: Path, *, synthetic: bool = False
+) -> tuple[Path, str]:
+    """Compile the same OS metric implementation against a selected probe library."""
+    name = "synthetic-memory-probe" if synthetic else "ffi-memory-probe"
+    probe = directory / (name + (".exe" if system == "Windows" else ""))
+    if system == "Windows":
+        command = [
+            "pwsh",
+            "-NoProfile",
+            "-File",
+            "scripts/build_c_example.ps1",
+            "-SyntheticMemoryProbe" if synthetic else "-PeakMemoryProbe",
+            "-PeakMemoryDirectory",
+            str(directory),
+        ]
+    else:
+        command = [
+            "cc",
+            "-O2",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-std=c11",
+            *(["-DDSCOPE_SYNTHETIC"] if synthetic else []),
+            "docs/research/ffi_memory_probe.c",
+            f"-L{directory}",
+            "-lsynthetic_memory" if synthetic else "-ldaoseeker_scope_ffi",
+            f"-Wl,-rpath,{directory}",
+            "-o",
+            str(probe),
+        ]
+    output = run(command).decode("utf-8")
+    if system == "Windows":
+        version = re.search(r"^c_compiler_version=([0-9. ]+)\r?$", output, re.MULTILINE)
+        require(version is not None, "c_compiler_version")
+        compiler = version[1].strip() if version else ""
+    else:
+        compiler = run(["cc", "--version"], 10).decode().splitlines()[0][:256]
+    return probe, compiler
+
+
 def measure(report: dict[str, Any]) -> None:
     initial = source_state()
     require(not initial[1], "dirty_checkout")
@@ -320,7 +387,6 @@ def measure(report: dict[str, Any]) -> None:
     )
     release = ROOT / "target/peak-memory-build" / host / "release"
     suffix = ".exe" if system == "Windows" else ""
-    probe = release / f"ffi-memory-probe{suffix}"
     library = (
         release
         / {
@@ -330,48 +396,47 @@ def measure(report: dict[str, Any]) -> None:
         }[system]
     )
     cli = release / f"dscope{suffix}"
-    if system == "Windows":
-        build = [
-            "pwsh",
-            "-NoProfile",
-            "-File",
-            "scripts/build_c_example.ps1",
-            "-PeakMemoryProbe",
-            "-PeakMemoryDirectory",
-            str(release),
-        ]
-    else:
-        build = [
-            "cc",
-            "-O2",
-            "-Wall",
-            "-Wextra",
-            "-Werror",
-            "-std=c11",
-            "docs/research/ffi_memory_probe.c",
-            f"-L{release}",
-            "-ldaoseeker_scope_ffi",
-            f"-Wl,-rpath,{release}",
-            "-o",
-            str(probe),
-        ]
-    build_output = run(build).decode("utf-8")
-    if system == "Windows":
-        version = re.search(
-            r"^c_compiler_version=([0-9. ]+)\r?$", build_output, re.MULTILINE
-        )
-        require(version is not None, "c_compiler_version")
-        report["c_compiler"] = version[1].strip() if version else ""
-    else:
-        report["c_compiler"] = (
-            run(["cc", "--version"], 10).decode().splitlines()[0][:256]
-        )
+    probe, compiler = compile_probe(system, release)
+    report["c_compiler"] = compiler
     report["c_build"] = (
         "MSVC /W4 /WX /O2 /std:c11; release import library; Psapi.lib"
         if system == "Windows"
         else "cc -O2 -Wall -Wextra -Werror -std=c11; release shared library and rpath"
     )
-    binaries = [probe, library, cli]
+    run(
+        [
+            "cargo",
+            "build",
+            "--locked",
+            "--release",
+            "--target-dir",
+            "target/peak-memory-build",
+            "--target",
+            host,
+            "-p",
+            "daoseeker-scope",
+            "--example",
+            "synthetic_memory",
+        ],
+        900,
+    )
+    synthetic_directory = release / "examples"
+    synthetic, synthetic_compiler = compile_probe(
+        system, synthetic_directory, synthetic=True
+    )
+    require(synthetic_compiler == compiler, "compiler_changed")
+    synthetic_library = (
+        synthetic_directory
+        / {
+            "Windows": "synthetic_memory.dll",
+            "Linux": "libsynthetic_memory.so",
+            "Darwin": "libsynthetic_memory.dylib",
+        }[system]
+    )
+    report["synthetic_scope"] = (
+        "two Custom fixture backends; not hardware evidence or production FFI performance"
+    )
+    binaries = [probe, library, cli, synthetic, synthetic_library]
     hashes = fingerprint(binaries)
     report["binary_sha256"] = hashes
     snapshot = json.loads(run([str(cli), "--json"]))
@@ -404,6 +469,19 @@ def measure(report: dict[str, Any]) -> None:
         linux_launch_control(probe, report["launch_control"])
         report["phase"] = "lifecycle"
         report["lifecycle"] = linux_lifecycle(probe)
+    report["phase"] = "synthetic"
+    synthetic_modes: dict[str, Any] = {}
+    report["synthetic_measurements"] = synthetic_modes
+    for mode in ("calibrate", "synthetic", "over_limit"):
+        data = json.loads(run([str(synthetic), mode]))
+        synthetic_modes[mode] = {"accepted": False, "observation": data}
+        validate(
+            data,
+            mode,
+            system,
+            expected_launch="linux_fork" if system == "Linux" else "direct",
+        )
+        synthetic_modes[mode]["accepted"] = True
     verify_unchanged(initial, binaries, hashes)
     report["source_and_binaries_unchanged"] = True
     report["phase"] = "complete"

@@ -61,10 +61,76 @@ def current_observation(
             "parent_death_signal": 9 if strategy == "linux_fork" else 0,
         },
     )
+    if mode in ("synthetic", "over_limit"):
+        data["workload"] = {
+            "synthetic_data": True,
+            "backends": 2,
+            "sensors_generated": 100,
+            "networks_generated": 1025 if mode == "over_limit" else 1024,
+            "max_entries": 1024,
+            "first_batch_refreshes": 0,
+            "second_batch_refreshes": 100,
+            "json_roundtrip": True,
+        }
     return data
 
 
 class PeakMemory(unittest.TestCase):
+    def test_synthetic_profiles_have_their_own_bounded_stages(self) -> None:
+        for system in ("Windows", "Linux", "Darwin"):
+            for mode in ("synthetic", "over_limit"):
+                with self.subTest(system=system, mode=mode):
+                    probe.validate(current_observation(mode, system), mode, system)
+
+    def test_synthetic_profile_without_fixture_disclosure_is_rejected(self) -> None:
+        data = current_observation("synthetic")
+        del data["workload"]
+        with self.assertRaisesRegex(ValueError, "synthetic_workload"):
+            probe.validate(data, "synthetic", "Linux")
+
+    def test_synthetic_scale_cannot_be_relabelled_as_a_smaller_or_unbounded_run(
+        self,
+    ) -> None:
+        for key in (
+            "backends",
+            "sensors_generated",
+            "networks_generated",
+            "max_entries",
+            "second_batch_refreshes",
+        ):
+            for invalid in (True, -1, 0, 2**64):
+                data = current_observation("synthetic")
+                data["workload"][key] = invalid
+                with (
+                    self.subTest(key=key, invalid=invalid),
+                    self.assertRaisesRegex(ValueError, "synthetic_scale"),
+                ):
+                    probe.validate(data, "synthetic", "Linux")
+
+    def test_over_limit_profile_must_report_generated_1025_not_retained_entries(
+        self,
+    ) -> None:
+        data = current_observation("over_limit")
+        data["workload"]["networks_generated"] = 1024
+        with self.assertRaisesRegex(ValueError, "synthetic_scale"):
+            probe.validate(data, "over_limit", "Linux")
+
+    def test_fixture_label_and_roundtrip_checks_are_required(self) -> None:
+        for key in ("synthetic_data", "json_roundtrip"):
+            data = current_observation("synthetic")
+            data["workload"][key] = False
+            with (
+                self.subTest(key=key),
+                self.assertRaisesRegex(ValueError, "synthetic_contract"),
+            ):
+                probe.validate(data, "synthetic", "Linux")
+
+    def test_native_stages_cannot_be_substituted_for_synthetic_stages(self) -> None:
+        data = current_observation("synthetic")
+        data["samples"] = observation("cached")["samples"]
+        with self.assertRaisesRegex(ValueError, "stages"):
+            probe.validate(data, "synthetic", "Linux")
+
     def test_pidfd_cleanup_closes_handle_even_when_signal_fails(self) -> None:
         for error in (None, ProcessLookupError(), PermissionError()):
             with (

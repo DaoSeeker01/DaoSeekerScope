@@ -1,5 +1,11 @@
 # 性能基线
 
+## 合成规模峰值验证
+
+2026-10-29 开发增量：新增两个 Custom backend 的合成工作负载，用公共 API 验证 100 个传感器、1024 个网络条目和 1025 条超限网络输入。C 探针在同一进程测量 Rust 示例，计时包含构造和 JSON 编解码，不访问真实硬件 backend。批次和边界见 [ADR 0040](adr/0040-synthetic-memory.md)。
+
+Windows 开发试跑已完成，固定源码与三平台验收待执行。旧原生数据与合成数据分别保留，不将两者作性能排名。
+
 ## Linux 启动阶段隔离（2026-10-29）
 
 干净源码 `a5f50557a3032e9adb897eaede36ee449c97b1d3` 的 [CI 40792258046](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046)八项任务全部通过；C 探针、Python 入口及测试与本机实现 `f1c354d` 逐字节一致。私有探针 JSON 为格式 2，硬件 Schema 和 C ABI 仍为 1。实现与边界见 [ADR 0039](adr/0039-linux-peak-launch-isolation.md)，逐报告来源与哈希见[验收索引](evidence/peak-isolation-ci-40792258046.json)。

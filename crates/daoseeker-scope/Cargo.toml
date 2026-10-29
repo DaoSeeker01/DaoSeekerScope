@@ -32,6 +32,11 @@ required-features = ["serde"]
 [[example]]
 name = "dynamic_probe"
 required-features = ["serde"]
+[[example]]
+name = "synthetic_memory"
+required-features = ["serde"]
+crate-type = ["cdylib"]
+test = true
 [[bench]]
 name = "collect"
 harness = false

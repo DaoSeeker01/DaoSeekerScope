@@ -68,6 +68,8 @@ CI 另有 Rust FFI AddressSanitizer 和 cargo-deny 门禁。性能入口：`carg
 
 Linux 另用 fork 隔离启动阶段，并执行 128 MiB 父进程对照和父退出清理实验；需要 Python pidfd API、Linux 5.3+ 与可读 `/proc`，不会要求 root。详见 [ADR 0039](docs/adr/0039-linux-peak-launch-isolation.md)。这些是验证工具要求，不改变核心库的系统支持声明。
 
+同一入口另构建合成示例库，测量两个 Custom backend 的 100 个传感器、1024 个网络条目，以及 1025 条网络输入的字段隔离。结果放在报告的 `synthetic_measurements`，与真实机器采集分开；计时包含 JSON 编解码，不代表驱动性能。批次和上限见 [ADR 0040](docs/adr/0040-synthetic-memory.md)。
+
 ## 提交变更
 
 保持 `Observed<T>` 的状态、来源和原因语义；公共类型不要泄漏平台依赖。新增字段、能力和兼容性行为应更新 [ADR](docs/README.md)、Schema 与回归测试。不要将编译、模拟输入测试或空集合称作真实设备验收。历史证据保留原始 source commit 和失败记录；当前验证另存新报告。
