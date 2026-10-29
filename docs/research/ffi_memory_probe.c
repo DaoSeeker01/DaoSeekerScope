@@ -16,6 +16,7 @@
 #elif defined(__linux__) || defined(__APPLE__)
 #include <sys/resource.h>
 #include <time.h>
+#include <unistd.h>
 #define METRIC "ru_maxrss"
 #if defined(__APPLE__)
 #define RAW_UNIT "bytes"
@@ -28,7 +29,31 @@
 #error This development probe supports only desktop Windows, Linux and macOS
 #endif
 
+#if defined(__linux__)
+#include <errno.h>
+#include <signal.h>
+#include <sys/prctl.h>
+#include <sys/wait.h>
+#endif
+
 #define PRESSURE_BYTES (64u * 1024u * 1024u)
+static uint64_t launcher_pid;
+static int isolated;
+
+static uint64_t process_id(void) {
+#if defined(_WIN32)
+    return (uint64_t)GetCurrentProcessId();
+#else
+    return (uint64_t)getpid();
+#endif
+}
+
+static void launch_json(void) {
+    printf("{\"strategy\":\"%s\",\"launcher_pid\":%" PRIu64
+           ",\"measurement_pid\":%" PRIu64 ",\"parent_death_signal\":%d}",
+           isolated ? "linux_fork" : "direct", launcher_pid, process_id(),
+           isolated ? 9 : 0);
+}
 
 static int failure(const char *message) {
     fprintf(stderr, "ffi_memory_probe: %s\n", message);
@@ -127,12 +152,52 @@ static int collect(const char *mode) {
 
 int main(int argc, char **argv) {
     int status;
-    if (argc != 2 || (strcmp(argv[1], "calibrate") != 0
+    int lifecycle = 0;
+    launcher_pid = process_id();
+#if defined(__linux__)
+    lifecycle = argc == 2 && strcmp(argv[1], "lifecycle") == 0;
+    if (argc != 2 && !(argc == 3 && strcmp(argv[2], "--direct") == 0))
+        return failure("usage_calibrate_cached_or_fresh");
+#else
+    if (argc != 2) return failure("usage_calibrate_cached_or_fresh");
+#endif
+    if (!lifecycle && (strcmp(argv[1], "calibrate") != 0
         && strcmp(argv[1], "cached") != 0 && strcmp(argv[1], "fresh") != 0))
         return failure("usage_calibrate_cached_or_fresh");
-    printf("{\"format\":1,\"mode\":\"%s\",\"metric\":\"%s\",\"raw_unit\":\"%s\","
+#if defined(__linux__)
+    if (argc == 2) {
+        pid_t child, waited;
+        /* Fork before any Rust call or output. The launcher is single-threaded
+         * and holds only its small C image, not Python's pre-exec heap. */
+        if (signal(SIGALRM, SIG_DFL) == SIG_ERR) return failure("alarm_signal");
+        child = fork();
+        if (child < 0) return failure("fork");
+        if (child > 0) {
+            alarm(170);
+            do { waited = waitpid(child, &status, 0); } while (waited < 0 && errno == EINTR);
+            alarm(0);
+            if (waited != child) return failure("waitpid");
+            if (!WIFEXITED(status)) return failure("worker_signaled");
+            return WEXITSTATUS(status);
+        }
+        if (prctl(PR_SET_PDEATHSIG, (long)SIGKILL, 0L, 0L, 0L) != 0
+            || (uint64_t)getppid() != launcher_pid) return failure("parent_death_signal");
+        isolated = 1;
+    }
+    if (lifecycle) {
+        printf("{\"format\":2,\"lifecycle\":true,\"launch\":");
+        launch_json();
+        printf("}\n");
+        if (fflush(stdout) != 0) return failure("output");
+        alarm(15); /* Safety fallback for the parent-death regression only. */
+        for (;;) pause();
+    }
+#endif
+    printf("{\"format\":2,\"mode\":\"%s\",\"launch\":", argv[1]);
+    launch_json();
+    printf(",\"metric\":\"%s\",\"raw_unit\":\"%s\","
            "\"multiplier\":%" PRIu64 ",\"pressure_bytes\":%u,\"samples\":[",
-           argv[1], METRIC, RAW_UNIT, MULTIPLIER,
+           METRIC, RAW_UNIT, MULTIPLIER,
            strcmp(argv[1], "calibrate") == 0 ? PRESSURE_BYTES : 0);
     status = strcmp(argv[1], "calibrate") == 0 ? calibration() : collect(argv[1]);
     if (status != 0) return status;

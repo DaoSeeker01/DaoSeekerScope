@@ -8,7 +8,7 @@ import sys
 import tempfile
 from typing import Any
 import unittest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 import peak_memory as probe
@@ -47,7 +47,190 @@ def observation(mode: str = "cached", system: str = "Windows") -> dict[str, Any]
     }
 
 
+def current_observation(
+    mode: str = "cached", system: str = "Linux", strategy: str | None = None
+) -> dict[str, Any]:
+    data = observation(mode, system)
+    strategy = strategy or ("linux_fork" if system == "Linux" else "direct")
+    data.update(
+        format=2,
+        launch={
+            "strategy": strategy,
+            "launcher_pid": 101,
+            "measurement_pid": 201 if strategy == "linux_fork" else 101,
+            "parent_death_signal": 9 if strategy == "linux_fork" else 0,
+        },
+    )
+    return data
+
+
 class PeakMemory(unittest.TestCase):
+    def test_pidfd_cleanup_closes_handle_even_when_signal_fails(self) -> None:
+        for error in (None, ProcessLookupError(), PermissionError()):
+            with (
+                self.subTest(error=type(error).__name__),
+                patch.object(
+                    probe.signal, "pidfd_send_signal", create=True, side_effect=error
+                ) as send,
+                patch.object(probe.os, "close") as close,
+            ):
+                if isinstance(error, PermissionError):
+                    with self.assertRaises(PermissionError):
+                        probe.close_worker_handle(123, stop=True)
+                else:
+                    probe.close_worker_handle(123, stop=True)
+                send.assert_called_once_with(123, 9)
+                close.assert_called_once_with(123)
+
+    def test_unowned_pidfd_is_closed_without_signalling(self) -> None:
+        with (
+            patch.object(probe.signal, "pidfd_send_signal", create=True) as send,
+            patch.object(probe.os, "close") as close,
+        ):
+            probe.close_worker_handle(123, stop=False)
+            send.assert_not_called()
+            close.assert_called_once_with(123)
+
+    def test_legacy_report_cannot_claim_current_launch_acceptance(self) -> None:
+        with self.assertRaisesRegex(ValueError, "current_format_required"):
+            probe.validate(
+                observation(system="Linux"),
+                "cached",
+                "Linux",
+                expected_launch="linux_fork",
+            )
+
+    def test_current_format_for_all_platforms_and_modes(self) -> None:
+        for system in ("Windows", "Linux", "Darwin"):
+            for mode in ("calibrate", "cached", "fresh"):
+                with self.subTest(system=system, mode=mode):
+                    data = current_observation(mode, system)
+                    probe.validate(
+                        data, mode, system, expected_launch=data["launch"]["strategy"]
+                    )
+
+    def test_invalid_pids_and_missing_death_signal_are_rejected(self) -> None:
+        for key in ("launcher_pid", "measurement_pid", "parent_death_signal"):
+            for value in (None, True, 0, -1, 2**32):
+                data = current_observation()
+                data["launch"][key] = value
+                with self.subTest(key=key, value=value), self.assertRaises(ValueError):
+                    probe.validate(
+                        data, "cached", "Linux", expected_launch="linux_fork"
+                    )
+
+    def test_direct_or_same_pid_cannot_claim_isolation(self) -> None:
+        data = current_observation(strategy="direct")
+        with self.assertRaisesRegex(ValueError, "launch_strategy"):
+            probe.validate(data, "cached", "Linux", expected_launch="linux_fork")
+        data = current_observation()
+        data["launch"]["measurement_pid"] = data["launch"]["launcher_pid"]
+        with self.assertRaisesRegex(ValueError, "launch_contract"):
+            probe.validate(data, "cached", "Linux", expected_launch="linux_fork")
+
+    def test_pressure_control_requires_visible_mask_and_isolated_baseline(self) -> None:
+        direct = current_observation(strategy="direct")
+        isolated = current_observation()
+        for sample in direct["samples"]:
+            sample["peak_bytes"] += probe.LAUNCH_PRESSURE
+            sample["peak_raw"] = sample["peak_bytes"] // 1024
+        probe.check_launch_control(direct, isolated)
+        for invalid in (deepcopy(direct), deepcopy(isolated)):
+            invalid["launch"]["strategy"] = "direct"
+            invalid["launch"]["measurement_pid"] = 101
+            invalid["launch"]["parent_death_signal"] = 0
+            with self.assertRaises(ValueError):
+                probe.check_launch_control(invalid, invalid)
+        with self.assertRaisesRegex(ValueError, "launch_pressure_mask"):
+            probe.check_launch_control(current_observation(strategy="direct"), isolated)
+
+    def test_proc_state_handles_spaces_and_parentheses_in_comm(self) -> None:
+        fields = ["S", "101"] + ["0"] * 17 + ["999"]
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "stat"
+            path.write_bytes(b"201 (name with ) bracket) " + " ".join(fields).encode())
+            with patch.object(probe, "Path", return_value=path):
+                self.assertEqual(
+                    probe.process_state(201),
+                    {"state": "S", "parent_pid": 101, "start_ticks": 999},
+                )
+            path.write_bytes(b"x" * 8193)
+            with patch.object(probe, "Path", return_value=path):
+                with self.assertRaisesRegex(ValueError, "process_stat_limit"):
+                    probe.process_state(201)
+
+    def test_proc_state_missing_process_is_gone(self) -> None:
+        with tempfile.TemporaryDirectory() as folder:
+            with patch.object(probe, "Path", return_value=Path(folder) / "missing"):
+                self.assertIsNone(probe.process_state(201))
+
+    def lifecycle_process(self) -> MagicMock:
+        process = MagicMock()
+        process.pid = 101
+        process.poll.return_value = -9
+        data = {
+            "format": 2,
+            "lifecycle": True,
+            "launch": current_observation()["launch"],
+        }
+        process.communicate.side_effect = subprocess.TimeoutExpired(
+            "probe", 3, output=json.dumps(data).encode()
+        )
+        return process
+
+    def test_lifecycle_reaps_launcher_and_records_stopped_worker(self) -> None:
+        process = self.lifecycle_process()
+        identity = {"state": "S", "parent_pid": 101, "start_ticks": 22}
+        zombie = dict(identity, state="Z")
+        with (
+            patch.object(probe.subprocess, "Popen") as popen,
+            patch.object(probe, "process_state", side_effect=[identity, zombie, None]),
+            patch.object(probe, "open_worker_handle", return_value=123),
+            patch.object(probe, "close_worker_handle") as close,
+        ):
+            popen.return_value.__enter__.return_value = process
+            result = probe.linux_lifecycle(Path("probe"))
+        self.assertTrue(result["passed"])
+        self.assertFalse(result["worker_running"])
+        self.assertEqual(result["worker_exit_state"], "zombie_waiting_for_reaper")
+        process.kill.assert_called_once()
+        process.wait.assert_called_once_with(timeout=5)
+        close.assert_called_once_with(123, stop=True)
+
+    def test_recycled_worker_pid_is_never_signalled(self) -> None:
+        process = self.lifecycle_process()
+        identity = {"state": "S", "parent_pid": 101, "start_ticks": 22}
+        replacement = dict(identity, start_ticks=23)
+        with (
+            patch.object(probe.subprocess, "Popen") as popen,
+            patch.object(
+                probe, "process_state", side_effect=[identity, replacement, replacement]
+            ),
+            patch.object(probe, "open_worker_handle", return_value=123),
+            patch.object(probe, "close_worker_handle") as close,
+            patch.object(probe.os, "kill") as kill,
+        ):
+            popen.return_value.__enter__.return_value = process
+            result = probe.linux_lifecycle(Path("probe"))
+        self.assertEqual(result["worker_exit_state"], "pid_reused_original_gone")
+        kill.assert_not_called()
+        close.assert_called_once_with(123, stop=True)
+
+    def test_worker_that_survives_parent_is_failure_and_is_cleaned_up(self) -> None:
+        process = self.lifecycle_process()
+        identity = {"state": "S", "parent_pid": 101, "start_ticks": 22}
+        with (
+            patch.object(probe.subprocess, "Popen") as popen,
+            patch.object(probe, "process_state", return_value=identity),
+            patch.object(probe.time, "monotonic", side_effect=[0, 6]),
+            patch.object(probe, "open_worker_handle", return_value=123),
+            patch.object(probe, "close_worker_handle") as close,
+        ):
+            popen.return_value.__enter__.return_value = process
+            with self.assertRaisesRegex(ValueError, "worker_survived_launcher"):
+                probe.linux_lifecycle(Path("probe"))
+        close.assert_called_once_with(123, stop=True)
+
     def test_all_platform_units_and_modes(self) -> None:
         for system in ("Windows", "Linux", "Darwin"):
             for mode in ("calibrate", "cached", "fresh"):

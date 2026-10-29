@@ -20,6 +20,7 @@
 - [Linux 运行库要求](linux-runtime-validation.md)：ELF 符号版本、加载器环境隔离与最低运行环境的边界。
 - [较低版本 Linux 环境](linux-runtime-container-validation.md)：用相同候选验证运行成功和不兼容加载拒绝。
 - [进程峰值内存契约](adr/0038-process-peak-memory.md)：C ABI 校准、缓存与新采集器调用的计量边界。
+- [Linux 启动阶段隔离](adr/0039-linux-peak-launch-isolation.md)：隔离 Python 启动计账，并验证父退出清理。
 
 ## 设计决策
 

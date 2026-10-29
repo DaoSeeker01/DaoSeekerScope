@@ -2,6 +2,8 @@
 
 首版交付门槛与本轮修复分别见 [v0.1 清单](v0.1-checklist.md)和[当前审计](project-review-2026-10-27.md)。下面保留平台增强工作包，不将它们全部视作首版的必要阻塞项。
 
+2026-10-29 Linux 启动计账隔离：已实现 fork 测量、128 MiB 父进程对照和父退出清理验证；Windows 编译与回归通过，Linux 原生实验待 CI。旧计量结果保留，见[性能报告](benchmarks.md)。
+
 2026-10-28 进程内存基线：新增 release C ABI 峰值探针和 64 MiB 校准，Windows 本机 300 次缓存调用及 30 次重建调用已通过；源码和产物哈希一致。三平台原生 CI 40669330970 全部八项通过；长期内存增长、allocator profiling 和合成规模峰值仍未验证，见[性能报告](benchmarks.md)。
 
 2026-10-28 较低版本 Linux 用户空间验收：固定镜像的 Debian 12 / glibc 2.36 完成实际 CLI/C/Python 运行；Debian 11 / glibc 2.31 完成预期加载拒绝，未采集。修复后 CI 40664519934 全部八项通过，首轮容量失败保留。最低内核、精确 glibc 下限和实体设备仍待验证，见[记录](linux-runtime-container-validation.md)。

@@ -1,5 +1,11 @@
 # 性能基线
 
+## Linux 启动阶段隔离
+
+2026-10-29 开发增量：Linux 探针在任何 Rust 调用前 fork，将 Python 启动阶段的历史峰值与测量进程分开。新增 128 MiB 父进程对照和父退出清理实验；私有探针 JSON 为格式 2，硬件 Schema 与 C ABI 仍为 1。实现与边界见 [ADR 0039](adr/0039-linux-peak-launch-isolation.md)。
+
+Windows 编译、26 项探针单元测试和现有回归已通过；Linux 原生验证待本轮 CI。下方保留上一轮直接启动的原始结果，不把新旧启动方式作性能提升比较。
+
 ## C ABI 进程峰值内存
 
 复现：在干净工作区运行 `python scripts/peak_memory.py`。脚本构建 release CLI/FFI 与优化 C11 探针，保存源码、产物哈希、硬件摘要、原始计数和各批耗时。三平台 CI 同样执行；结果写入 `target/peak-memory-evidence.json`，随 native-evidence 保留。
