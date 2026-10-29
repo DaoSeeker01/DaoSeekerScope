@@ -19,6 +19,7 @@ extern uint64_t scope_probe_synthetic(uint32_t profile, uint32_t refreshes);
 #define RAW_UNIT "bytes"
 #define MULTIPLIER UINT64_C(1)
 #elif defined(__linux__) || defined(__APPLE__)
+#include <errno.h>
 #include <sys/resource.h>
 #include <time.h>
 #include <unistd.h>
@@ -46,7 +47,7 @@ extern uint64_t scope_probe_synthetic(uint32_t profile, uint32_t refreshes);
 #if defined(DSCOPE_SYNTHETIC)
 #define USAGE "choose a workload: calibrate, resident_calibrate, synthetic, over_limit, growth_synthetic"
 #else
-#define USAGE "choose a workload: calibrate, resident_calibrate, cached, fresh, growth_cached"
+#define USAGE "choose a workload: calibrate, resident_calibrate, cached, fresh, growth_cached; or soak_cached <120..3600 seconds, multiple of 60>"
 #endif
 #if defined(_WIN32)
 #define RESIDENT_METRIC "working_set_size"
@@ -188,6 +189,72 @@ static int calibration(void) {
     return 0;
 }
 
+#if !defined(DSCOPE_SYNTHETIC)
+static int collect_once(const dsc_options *options, size_t *max_json) {
+    dsc_buffer buffer = {0};
+    int32_t code = dsc_collect_json(options, &buffer);
+    int valid = code == DSC_OK && buffer.data != NULL
+        && buffer.len > 0 && buffer.len <= 1024u * 1024u && buffer.token != 0;
+    if (buffer.len > *max_json) *max_json = buffer.len;
+    if (dsc_buffer_free(&buffer) != DSC_OK) return failure("buffer_free");
+    if (!valid || buffer.data != NULL || buffer.len != 0 || buffer.token != 0)
+        return failure("collect_or_zeroing");
+    return 0;
+}
+
+static int pause_between_calls(void) {
+#if defined(_WIN32)
+    Sleep(100);
+#else
+    struct timespec request = {0, 100000000}, remainder;
+    while (nanosleep(&request, &remainder) != 0) {
+        if (errno != EINTR) return 0;
+        request = remainder;
+    }
+#endif
+    return 1;
+}
+
+static int timed_sample(unsigned ordinal, unsigned calls, uint64_t elapsed, size_t max_json) {
+    printf("{\"record\":\"sample\",\"ordinal\":%u,\"observation\":", ordinal);
+    if (!sample(ordinal == 0 ? "baseline" : "collected", calls, elapsed, max_json))
+        return 0;
+    printf("}\n");
+    return fflush(stdout) == 0;
+}
+
+static int soak(unsigned duration) {
+    unsigned calls = 0, checkpoint = 1;
+    size_t max_json = 0;
+    double start, now;
+    if (dsc_abi_version() != 1 || !seconds(&start)) return failure("soak_start");
+    printf("{\"record\":\"header\",\"format\":1,\"mode\":\"soak_cached\",\"launch\":");
+    launch_json();
+    printf(",\"duration_seconds\":%u,\"checkpoint_seconds\":60,\"call_interval_ms\":100,"
+           "\"warmup_seconds\":%u,\"tail_budget_bytes\":%u,"
+           "\"resident_metric\":\"%s\",\"resident_raw_unit\":\"%s\",\"resident_multiplier\":%" PRIu64
+           ",\"metric\":\"%s\",\"raw_unit\":\"%s\",\"multiplier\":%" PRIu64 "}\n",
+           duration, duration >= 600 ? 300u : 60u, TAIL_BUDGET,
+           RESIDENT_METRIC, RESIDENT_UNIT, resident_multiplier, METRIC, RAW_UNIT, MULTIPLIER);
+    if (fflush(stdout) != 0 || !timed_sample(0, 0, 0, 0)) return failure("output");
+    while (checkpoint <= duration / 60) {
+        /* Sleep granularity varies; cap calls without claiming an exact rate. */
+        if (calls >= duration * 20u + 1u) return failure("soak_call_limit");
+        if (collect_once(NULL, &max_json) != 0) return 1;
+        ++calls;
+        if (!pause_between_calls() || !seconds(&now) || now < start
+            || now - start > (double)duration + 5.0) return failure("soak_clock");
+        if (now - start >= (double)checkpoint * 60.0) {
+            if (!timed_sample(checkpoint, calls, (uint64_t)((now - start) * 1000000000.0), max_json))
+                return failure("memory_counter_or_output");
+            ++checkpoint;
+        }
+    }
+    printf("{\"record\":\"complete\",\"calls\":%u,\"samples\":%u}\n", calls, checkpoint);
+    return fflush(stdout) != 0 ? failure("output") : 0;
+}
+#endif
+
 static int collect(const char *mode) {
 #if defined(DSCOPE_SYNTHETIC)
     uint32_t profile = strcmp(mode, "over_limit") == 0 ? 1u : 0u;
@@ -226,15 +293,7 @@ static int collect(const char *mode) {
     for (stage = 0; stage < (growth ? 7u : 3u); ++stage) {
         if (!seconds(&start)) return failure("clock");
         while (calls < stages[stage]) {
-            dsc_buffer buffer = {0};
-            int32_t code = dsc_collect_json(cached ? NULL : &options, &buffer);
-            int valid = code == DSC_OK && buffer.data != NULL
-                && buffer.len > 0 && buffer.len <= 1024u * 1024u && buffer.token != 0;
-            if (buffer.len > max_json) max_json = buffer.len;
-            /* Also attempt cleanup on a malformed success or error output. */
-            if (dsc_buffer_free(&buffer) != DSC_OK) return failure("buffer_free");
-            if (!valid || buffer.data != NULL || buffer.len != 0 || buffer.token != 0)
-                return failure("collect_or_zeroing");
+            if (collect_once(cached ? NULL : &options, &max_json) != 0) return 1;
             ++calls;
         }
         if (!seconds(&end) || end < start || end - start > 600.0) return failure("clock");
@@ -250,16 +309,30 @@ int main(int argc, char **argv) {
     int status;
     int lifecycle = 0;
     int calibrate;
+    int timed = 0;
+    unsigned duration = 0;
     launcher_pid = process_id();
+#if !defined(DSCOPE_SYNTHETIC)
+    if (argc == 3 && strcmp(argv[1], "soak_cached") == 0) {
+        const char *digit = argv[2];
+        if (*digit == '\0' || strlen(digit) > 4) return failure(USAGE);
+        for (; *digit; ++digit) {
+            if (*digit < '0' || *digit > '9') return failure(USAGE);
+            duration = duration * 10u + (unsigned)(*digit - '0');
+        }
+        timed = duration >= 120 && duration <= 3600 && duration % 60 == 0;
+        if (!timed) return failure(USAGE);
+    }
+#endif
 #if defined(__linux__)
     lifecycle = argc == 2 && strcmp(argv[1], "lifecycle") == 0;
-    if (argc != 2 && !(argc == 3 && strcmp(argv[2], "--direct") == 0))
+    if (argc != 2 && !timed && !(argc == 3 && strcmp(argv[2], "--direct") == 0))
         return failure(USAGE);
 #else
-    if (argc != 2) return failure(USAGE);
+    if (argc != 2 && !timed) return failure(USAGE);
 #endif
     calibrate = strcmp(argv[1], "calibrate") == 0 || strcmp(argv[1], "resident_calibrate") == 0;
-    if (!lifecycle && (!calibrate
+    if (!lifecycle && !timed && (!calibrate
 #if defined(DSCOPE_SYNTHETIC)
         && strcmp(argv[1], "synthetic") != 0 && strcmp(argv[1], "over_limit") != 0
         && strcmp(argv[1], "growth_synthetic") != 0))
@@ -270,7 +343,8 @@ int main(int argc, char **argv) {
         return failure(USAGE);
 #endif
     include_resident = strcmp(argv[1], "resident_calibrate") == 0
-        || strcmp(argv[1], "growth_cached") == 0 || strcmp(argv[1], "growth_synthetic") == 0;
+        || strcmp(argv[1], "growth_cached") == 0 || strcmp(argv[1], "growth_synthetic") == 0 || timed;
+    if (timed && duration < 120) return failure(USAGE);
 #if defined(__linux__)
     if (include_resident) {
         long page = sysconf(_SC_PAGESIZE);
@@ -279,7 +353,7 @@ int main(int argc, char **argv) {
     }
 #endif
 #if defined(__linux__)
-    if (argc == 2) {
+    if (argc == 2 || timed) {
         pid_t child, waited;
         /* Fork before any Rust call or output. The launcher is single-threaded
          * and holds only its small C image, not Python's pre-exec heap. */
@@ -287,7 +361,7 @@ int main(int argc, char **argv) {
         child = fork();
         if (child < 0) return failure("fork");
         if (child > 0) {
-            alarm(170);
+            alarm(timed ? duration + 30u : 170u);
             do { waited = waitpid(child, &status, 0); } while (waited < 0 && errno == EINTR);
             alarm(0);
             if (waited != child) return failure("waitpid");
@@ -306,6 +380,9 @@ int main(int argc, char **argv) {
         alarm(15); /* Safety fallback for the parent-death regression only. */
         for (;;) pause();
     }
+#endif
+#if !defined(DSCOPE_SYNTHETIC)
+    if (timed) return soak(duration);
 #endif
     printf("{\"format\":2,\"mode\":\"%s\",\"launch\":", argv[1]);
     launch_json();

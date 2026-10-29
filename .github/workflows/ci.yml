@@ -195,6 +195,9 @@ jobs:
       - name: Release C ABI process peak memory
         timeout-minutes: 10
         run: python scripts/peak_memory.py
+      - name: Two-minute cached C ABI sampling trial
+        timeout-minutes: 8
+        run: python scripts/timed_soak.py --seconds 120
       - name: macOS public IOMedia SDK probe
         if: runner.os == 'macOS'
         run: |
@@ -263,6 +266,8 @@ jobs:
             target/linux-collect-benchmark.log
             target/linux-runtime-container-evidence.json
             target/peak-memory-evidence.json
+            target/timed-soak-evidence.json
+            target/timed-soak-evidence.ndjson
           if-no-files-found: ignore
           retention-days: 14
   linux-container:
