@@ -55,6 +55,8 @@ jobs:
         run: python -m unittest discover -s tests -p "test_*.py"
       - name: Project data and documentation links
         run: python scripts/check_project.py
+      - name: Dependency notice inventory (not distribution approval)
+        run: python scripts/notice_audit.py --offline
       - name: Frozen v0.1 manifest Schema and native ABI contract
         run: python scripts/check_contract.py
       - name: Crate archives and isolated consumer
@@ -240,6 +242,7 @@ jobs:
           path: |
             target/native-evidence.json
             target/contract-evidence.json
+            target/notice-audit-evidence.json
             target/windows-display-probe.json
             target/windows-memory-evidence.json
             target/windows-cpu-evidence.json

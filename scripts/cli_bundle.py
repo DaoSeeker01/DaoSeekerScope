@@ -229,9 +229,9 @@ def run(arguments: list[str]) -> str:
     return result.stdout.decode("utf-8").strip()
 
 
-def dependency_payload(
+def dependency_packages(
     metadata: dict[str, Any], root_package: str = "daoseeker-scope-cli"
-) -> dict[str, bytes]:
+) -> list[dict[str, Any]]:
     """Target product dependency closure, including build but excluding dev edges."""
     packages = {p["id"]: p for p in metadata["packages"]}
     nodes = {n["id"]: n for n in metadata["resolve"]["nodes"]}
@@ -248,6 +248,28 @@ def dependency_payload(
             for edge in nodes[identifier]["deps"]
             if any(kind["kind"] != "dev" for kind in edge["dep_kinds"])
         )
+    return [
+        packages[identifier]
+        for identifier in sorted(seen)
+        if packages[identifier]["source"] is not None
+    ]
+
+
+def notice_files(package: dict[str, Any]) -> list[Path]:
+    """Use the same root notice discovery for packaging and preflight reports."""
+    base = Path(package["manifest_path"]).parent
+    return sorted(
+        path
+        for path in base.iterdir()
+        if path.is_file()
+        and path.name.upper().startswith(("LICENSE", "COPYING", "COPYRIGHT", "NOTICE"))
+    )
+
+
+def dependency_payload(
+    metadata: dict[str, Any], root_package: str = "daoseeker-scope-cli"
+) -> dict[str, bytes]:
+    """Copy upstream root notices; missing files continue to block packaging."""
     payload: dict[str, bytes] = {}
     inventory = [
         "# Third-party crate notices",
@@ -258,21 +280,10 @@ def dependency_payload(
         "Rust toolchain notices are also included under licenses/rust/.",
         "",
     ]
-    for identifier in sorted(seen):
-        package = packages[identifier]
-        if package["source"] is None:
-            continue
+    for package in dependency_packages(metadata, root_package):
         require(package["source"].startswith("registry+"), "non_registry_dependency")
         require(bool(package["license"]), "missing_spdx")
-        base = Path(package["manifest_path"]).parent
-        notices = sorted(
-            path
-            for path in base.iterdir()
-            if path.is_file()
-            and path.name.upper().startswith(
-                ("LICENSE", "COPYING", "COPYRIGHT", "NOTICE")
-            )
-        )
+        notices = notice_files(package)
         require(bool(notices), "missing_dependency_notice")
         require(
             any(
