@@ -1,0 +1,271 @@
+{
+  "format": 1,
+  "overall": "passed",
+  "source_revision": "52a68d039785d750acd9d80d2708da9d9375a436",
+  "source_status_before_archive": "",
+  "run": {
+    "id": 40807092742,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40807092742",
+    "head_sha": "52a68d039785d750acd9d80d2708da9d9375a436",
+    "event": "push",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "fuzz-smoke",
+        "id": 123228523207,
+        "conclusion": "success"
+      },
+      {
+        "name": "miri",
+        "id": 123228523479,
+        "conclusion": "success"
+      },
+      {
+        "name": "ffi-asan",
+        "id": 123228523537,
+        "conclusion": "success"
+      },
+      {
+        "name": "linux-container",
+        "id": 123228523618,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (windows-latest)",
+        "id": 123228523640,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "id": 123228523653,
+        "conclusion": "success"
+      },
+      {
+        "name": "supply-chain",
+        "id": 123228523670,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "id": 123228523741,
+        "conclusion": "success"
+      }
+    ]
+  },
+  "platforms": {
+    "windows": {
+      "target": "x86_64-pc-windows-msvc",
+      "native_contract": "passed",
+      "archives": 8,
+      "isolated_rust_tests": 269,
+      "python_passed": 262,
+      "python_skipped": 5,
+      "native_checks": 5,
+      "native_processes": 16,
+      "c_compiler": "c_compiler_version=19.51.36260.0",
+      "native_evidence_original_sha256": "8bfd0ece738180f9373dc8438d03cf429b9bc6704c462058a4675c8817564085"
+    },
+    "linux": {
+      "target": "x86_64-unknown-linux-gnu",
+      "native_contract": "passed",
+      "archives": 8,
+      "isolated_rust_tests": 261,
+      "python_passed": 267,
+      "python_skipped": 0,
+      "native_checks": 5,
+      "native_processes": 16,
+      "c_compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "native_evidence_original_sha256": "4b488e2594bd8223f0731a56d6bccea205a853858cb490447bf1a1509f29395a"
+    },
+    "macos": {
+      "target": "aarch64-apple-darwin",
+      "native_contract": "passed",
+      "archives": 8,
+      "isolated_rust_tests": 266,
+      "python_passed": 266,
+      "python_skipped": 1,
+      "native_checks": 5,
+      "native_processes": 16,
+      "c_compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+      "native_evidence_original_sha256": "74ba825ff9558f85a3537c380aa58bd2a9c9a0107cb96378725d9cf9c16a1998"
+    }
+  },
+  "local": {
+    "target": "x86_64-pc-windows-msvc",
+    "native_contract": "passed",
+    "archives": 8,
+    "isolated_rust_tests": 269,
+    "precommit_checks": {
+      "rust_tests": 269,
+      "python_passed": 262,
+      "python_skipped": 5,
+      "mypy_files": 67,
+      "fmt_clippy_doc": "passed",
+      "ruff": "passed",
+      "schema": "passed",
+      "actionlint": "passed",
+      "cross_checks": [
+        "x86_64-unknown-linux-gnu",
+        "aarch64-apple-darwin"
+      ]
+    },
+    "precommit_limits": "Quality commands ran before commit; native contract and package reports separately enforce the clean source tuple.",
+    "initial_failures": [
+      "One missing Python type annotation was fixed before commit.",
+      "Two temporary-directory subcases hit sandbox permissions; the unchanged cases passed outside the sandbox."
+    ]
+  },
+  "safety": {
+    "miri_passed": 8,
+    "ffi_asan_passed": 11,
+    "short_fuzz_targets": 12,
+    "cargo_deny": "passed"
+  },
+  "reports": {
+    "contract-windows-40807092742.json": {
+      "sha256": "f6bd3d5eb5c3729c84fef67d73e8bf6e8afcd1fa0f3848996ee567b9bab20e94",
+      "original_sha256": "f6bd3d5eb5c3729c84fef67d73e8bf6e8afcd1fa0f3848996ee567b9bab20e94",
+      "origin": "target/contract-ci-40807092742/native-evidence-Windows-X64/contract-evidence.json"
+    },
+    "contract-packages-windows-40807092742.json": {
+      "sha256": "22b333dd6fb14fa2247236d508f3714af671f4f63369731c6ed9c2b9874a7b50",
+      "original_sha256": "fa523793440a918c247245d6d5b9514a5e7dc30d2e8fb5d1de01de8b2681f338",
+      "origin": "target/contract-ci-40807092742/package-evidence-Windows-X64/package-evidence.json"
+    },
+    "contract-linux-40807092742.json": {
+      "sha256": "7129a03d4dd164462972bba3d2c793e7989aa8f441420b4f49c31700241d485a",
+      "original_sha256": "7129a03d4dd164462972bba3d2c793e7989aa8f441420b4f49c31700241d485a",
+      "origin": "target/contract-ci-40807092742/native-evidence-Linux-X64/contract-evidence.json"
+    },
+    "contract-packages-linux-40807092742.json": {
+      "sha256": "6d1f9f9e442e40ac8879d65fd42f85d4bfc16baaf51322a7eb90f339211e5640",
+      "original_sha256": "6d1f9f9e442e40ac8879d65fd42f85d4bfc16baaf51322a7eb90f339211e5640",
+      "origin": "target/contract-ci-40807092742/package-evidence-Linux-X64/package-evidence.json"
+    },
+    "contract-macos-40807092742.json": {
+      "sha256": "13cde4d6cdef47fbe6657e5be16802a0743310c1d90692e4f73ad6aefc4c6810",
+      "original_sha256": "13cde4d6cdef47fbe6657e5be16802a0743310c1d90692e4f73ad6aefc4c6810",
+      "origin": "target/contract-ci-40807092742/native-evidence-macOS-ARM64/contract-evidence.json"
+    },
+    "contract-packages-macos-40807092742.json": {
+      "sha256": "29fcbc6bf49688728f6c996ed81ef9b9d21ba9595f489e394277c63e8d1f25fb",
+      "original_sha256": "29fcbc6bf49688728f6c996ed81ef9b9d21ba9595f489e394277c63e8d1f25fb",
+      "origin": "target/contract-ci-40807092742/package-evidence-macOS-ARM64/package-evidence.json"
+    },
+    "contract-local-windows-40807092742.json": {
+      "sha256": "67f7af6c51e8a96af945861bb92021f82bdc12f332ab9e0bc242eac6d98de1d3",
+      "original_sha256": "67f7af6c51e8a96af945861bb92021f82bdc12f332ab9e0bc242eac6d98de1d3",
+      "origin": "target/contract-evidence.json"
+    },
+    "contract-local-packages-windows-40807092742.json": {
+      "sha256": "7a65a79f3f86be915b0bec06ec74b53ab0d035b634ace3ca682b6dacd7eb0d44",
+      "original_sha256": "e35c5bfb0147182f52f1e25831c9f56ce33c0b9c465909a4738dea2cc815c788",
+      "origin": "target/package-evidence.json"
+    }
+  },
+  "source_files": {
+    ".github/workflows/ci.yml": "fd04901d15e44fa3a7355052903f74180de2a7ea8283feb4ea8b2eb2ad6e33b2",
+    "CHANGELOG.md": "bf6d2556712b544e90e445299009cb9b4e5a3fba2d7eaa336f1e482377bbaebd",
+    "CONTRIBUTING.md": "35a96ceebfffed4742bebb13032c884149480dfc5a506f98a59f9f81db951882",
+    "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+    "crates/daoseeker-scope-ffi/examples/abi_contract.rs": "4cf981fc6efa34f4507edb6c095e949548d8d61a1901f91face7099d3b52eedc",
+    "crates/daoseeker-scope-ffi/include/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+    "crates/daoseeker-scope-ffi/src/lib.rs": "93c88d98332aedc42ef80cffcc58319d193952bad76979c38ecbfad62e70eea3",
+    "docs/README.md": "f29c192961582371f46419699d63ef364e8d6be39888d2041353d0ca168cd48c",
+    "docs/adr/0004-c-abi.md": "183843091e17c0bdbb29da3b60cef87b2d2e11b641a212b7753625c57c446c80",
+    "docs/adr/0042-release-contract.md": "953e79997890cda5f71fb86b3a7567e15a40e35577cd9592b1a02089b506f233",
+    "docs/contracts/v0.1.json": "d233d30804cbf6b90cad8a93072d275c46adb79b53bea86abc38c018e2e645f4",
+    "docs/research/abi_contract_probe.c": "7e086b2b5b15dca9367dd7183b8d543ac29eb7ac95ff3f51cf158cf802fe058e",
+    "docs/usage.md": "a3c0fbe0e221b47b8a222bc0eb550510b0c3adb87fa50abbca3ca3ed857a4522",
+    "docs/v0.1-checklist.md": "7387a874fbae41264423b03ebe0867fe92c0340b760c589ad56753f0080a7b9a",
+    "docs/v0.1-contract-review.md": "bbc149fe7eed3f0fbf0769da65f441d1e4b0e55024bc85b789844abe56bd59ab",
+    "scripts/build_c_example.ps1": "7303faa10826f92653e4a4c16761f454e68c15cf0baf203e6ac54334b3e6eb4e",
+    "scripts/check_contract.py": "0ce9c9442eed7ffa70eb818af75f030aac13e37af0645bf4911876f8dab55803",
+    "tests/test_contract.py": "619d5767c207b25f26162604b581ead664faf37ec11a0a4b6746021064850eef"
+  },
+  "ci_artifacts": [
+    {
+      "name": "package-evidence-Linux-X64",
+      "id": 12869360344,
+      "digest": "sha256:ac6ccaf0138c5e9798ea618419c8c1e8a6005c1403dd522f7037bcf9c84f9112",
+      "size_in_bytes": 945
+    },
+    {
+      "name": "package-evidence-Windows-X64",
+      "id": 12869290280,
+      "digest": "sha256:456374655e369978241b2ead6fb10da05117335907f8354f173a565ec548cce5",
+      "size_in_bytes": 949
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "id": 12869250659,
+      "digest": "sha256:cebcee3b615d5da73cd213023b65d40287dbfc1710b1da1828880aa8a4dd7a79",
+      "size_in_bytes": 1234
+    },
+    {
+      "name": "native-evidence-Windows-X64",
+      "id": 12869145868,
+      "digest": "sha256:ed341b44a2471611a84b45905d31fda1dc59e7f7c0eadde3921da19216c16c0b",
+      "size_in_bytes": 12316
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "id": 12869110729,
+      "digest": "sha256:a4e8e20e5787a6699bd7864bfc4a842eaa0492a37387d47a394d471b42240b2b",
+      "size_in_bytes": 955
+    },
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "id": 12868926744,
+      "digest": "sha256:846df0997db7e3d72f499acdb3ac51d9af87ec00c12d2932689a61c16788f26c",
+      "size_in_bytes": 1001
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "id": 12868807576,
+      "digest": "sha256:157f0d50b71558be0c8eed095158a95d74d0365f0bd88cf46fabde90c03f4e04",
+      "size_in_bytes": 1149
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "id": 12868661842,
+      "digest": "sha256:d37e71717356b137efc367aebaeb217e9c8cec30c8164d5da207815fcd230619",
+      "size_in_bytes": 945
+    },
+    {
+      "name": "procfs-fuzz-evidence",
+      "id": 12868594885,
+      "digest": "sha256:011576484472629b24b182a1ebd15e5ebf38b1008266167cd337b51f468a8bc0",
+      "size_in_bytes": 257507
+    },
+    {
+      "name": "native-evidence-Linux-X64",
+      "id": 12868269024,
+      "digest": "sha256:43495510a736dfc8a62390848fe41d2ca1f11d9a76e8166add298e215a889437",
+      "size_in_bytes": 9182
+    },
+    {
+      "name": "linux-container-evidence",
+      "id": 12868154691,
+      "digest": "sha256:1623be5c8c344a3bc906414c701b3d301e22393e57e559035d6e6a5e90dbb571",
+      "size_in_bytes": 13364
+    },
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "id": 12868104022,
+      "digest": "sha256:7c0d4712b4a3837758798ed12ba3f1684cf556629db64b97044d38d5f1afcf62",
+      "size_in_bytes": 13240
+    }
+  ],
+  "all_jobs_log_sha256": "8b429cc56833010b253a5b37b6c513c15f6e86cda53401bccd68a42b2c864c23",
+  "archive_observations": [
+    "The first archive validation expected named log steps. gh returned UNKNOWN STEP labels; checks were corrected to use raw command lines and successful step metadata. CI results were unchanged."
+  ],
+  "limits": [
+    "Layout checks are native debug measurements on the three listed targets; not a complete Rust semver proof.",
+    "CI, synthetic fixtures and short safety checks do not replace deferred physical-device or long-duration evidence.",
+    "Eight contract/package reports are archived here; other gates retain their CI links and summarized outcomes.",
+    "No public consumer type/signature, ABI 1, hardware Schema 1, third-party dependency/feature/lock or MIT change.",
+    "Maintainer release review, macOS prebuilt materials and minimum OS ranges remain pending; no formal publication."
+  ]
+}
