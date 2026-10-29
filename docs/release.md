@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-截至 2026-10-29，最新[三平台 CI 40807092742](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40807092742)八项任务通过，补齐共享库加载期限说明并增加独立 C/Rust 原生布局、版本/features/Schema 基线检查，见[契约评审](v0.1-contract-review.md)。此前性能证据保留在[性能报告](benchmarks.md)。当前仍为未发布 0.1.0；发布门槛与未完成项以 [v0.1 清单](v0.1-checklist.md)为准。
+截至 2026-10-30，最新[三平台 CI 40854571297](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40854571297)八项任务通过，补充固定 glibc 2.34 用户空间的真实候选运行，见[验收记录](linux-glibc234-validation.md)。此前[契约评审](v0.1-contract-review.md)与[性能证据](benchmarks.md)保留。当前仍为未发布 0.1.0；发布门槛与未完成项以 [v0.1 清单](v0.1-checklist.md)为准。
 
 ## 当前发布门槛
 

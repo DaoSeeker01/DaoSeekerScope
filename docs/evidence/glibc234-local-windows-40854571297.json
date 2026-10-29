@@ -1,0 +1,88 @@
+{
+  "overall": "passed",
+  "source_before": {
+    "revision": "ebb056db468faacacaba4ab2649e160b952c09aa",
+    "status": ""
+  },
+  "source_after": {
+    "revision": "ebb056db468faacacaba4ab2649e160b952c09aa",
+    "status": ""
+  },
+  "checks": [
+    {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "scripts",
+        "tests",
+        "examples/collect.py"
+      ],
+      "result": "passed",
+      "output_sha256": "b75cbfdc648a3350a77e0c7831035d830c486ab9918dbdf3f315551293017f8e"
+    },
+    {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "scripts",
+        "tests",
+        "examples/collect.py"
+      ],
+      "result": "passed",
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "mypy",
+        "--no-incremental",
+        "--ignore-missing-imports",
+        "scripts",
+        "tests",
+        "examples/collect.py"
+      ],
+      "result": "passed",
+      "output_sha256": "5bffadce8703c13cc5b58128f78b6683cf364d25c5ebace94758f720bc10cfc7"
+    },
+    {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py"
+      ],
+      "result": "passed",
+      "output_sha256": "7fafca3ee8db2d96f1fc7526db692b04f85b420912ce58169b501ba9d5a77615"
+    },
+    {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "scripts/check_project.py"
+      ],
+      "result": "passed",
+      "output_sha256": "5752508bba1d169494187e3ee0dd7cab9fecb26bbfcea4b73ab11fa8ca05e029"
+    }
+  ],
+  "python": {
+    "total": 274,
+    "passed": 269,
+    "skipped": 5,
+    "container_regression_tests": 26
+  },
+  "frozen_contract_static_check": "passed",
+  "docker_executed": false,
+  "linux_binaries_executed": false,
+  "rust_commands_this_round": "not_run locally; production Rust files unchanged; CI performs native checks",
+  "initial_failure": "One mypy narrowing error was corrected before commit; the initial 19 existing container cases passed.",
+  "limits": "Windows fixture/policy tests do not prove Linux runtime or Docker behavior."
+}

@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "ebb056db468faacacaba4ab2649e160b952c09aa",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 266,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "fba94c6b56f3e2020738c396b72333a9e2b98625b243c50307cfffe03b2c83b6",
+      "files": 17
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "b526d81160e27f4a0538e3523fd7c82ad8f0fecc316f6afe7dac55664372f118",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "d3d7d30a6fa92deb9180aa50a3071911f185e2aaaeafab99cdbe20675a5c1ab9",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "ec8a18eb4127ee026b7cae5fd658ed401f5440f2217d01186e363cd3fa7b87f0",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "22f2e8fb4f3fcf7bb9eecb938437e1b7e8b4bfd7b0ca8f6673fd2d9321a634c9",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "24a461e3a626058076efc97a926685d8e12e4739c59aae35c0dc5d0e4f87255e",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "d4dc860046d019973cd2fcfe1184e54a679e6905dda42955027f7238b988fbd5",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "76e76a2810ae07392c8f5831a3872d7b3f423dd0f9fabac0f4ca02ea000e566a",
+      "files": 8
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # Linux 候选包的较低版本环境验证
 
+本文保留 2026-10-28 的验收记录；后续新增的 glibc 2.34 实测见[最新验证](linux-glibc234-validation.md)。
+
 这项验收直接运行现有 CLI 和 SDK 候选，回答它们能否在指定的较低版本用户空间中安装、加载和采集。它与[符号版本清单](linux-runtime-validation.md)互补；规则见 [ADR 0037](adr/0037-linux-candidate-older-userlands.md)。
 
 ## 复现

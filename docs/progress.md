@@ -2,6 +2,8 @@
 
 首版交付门槛与本轮修复分别见 [v0.1 清单](v0.1-checklist.md)和[当前审计](project-review-2026-10-27.md)。下面保留平台增强工作包，不将它们全部视作首版的必要阻塞项。
 
+2026-10-29 glibc 2.34 验证：固定 UBI 9 用户空间已运行相同 CLI/SDK/C 消费者，Python 100 次 collect/free、Schema、隐私、实际入口和清理通过；[CI 40854571297](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40854571297)八项任务成功。Debian 2.36 成功与 2.31 拒绝回归保留，不据此建立所有发行版或最低内核保证，见[记录](linux-glibc234-validation.md)。
+
 2026-10-29 发布前契约检查：安装头文件已同步共享库加载期限；本机与[三平台 CI 40807092742](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40807092742)的原生 C/Rust 布局、版本/features/Schema 基线及八包验收通过。已整理[维护者评审表](v0.1-contract-review.md)，V01-08 仍待最终确认；本轮无正式发布。
 
 2026-10-29 固定轮次驻留回归：5000 次缓存 collect/free、60 批合成重建及当前驻留校准通过本机和三平台 CI 40801172470；热身后采样范围符合事前 16 MiB 预算。小时／天级运行与 allocator 归因仍未验证，见[性能报告](benchmarks.md)。
