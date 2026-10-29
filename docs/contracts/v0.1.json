@@ -1,0 +1,160 @@
+{
+  "format": 1,
+  "scope": "v0.1 review baseline; updates require a compatibility review, not regeneration to silence CI",
+  "native_targets": [
+    "x86_64-pc-windows-msvc",
+    "x86_64-unknown-linux-gnu",
+    "aarch64-apple-darwin"
+  ],
+  "schema_version": 1,
+  "schema_sha256": "b99bff6b948e6cc2ae69d51a0e6cf34c315df4ed8f3d65a2d1f421c624299078",
+  "manifests": {
+    "package": {
+      "version": "0.1.0",
+      "edition": "2024",
+      "rust-version": "1.96",
+      "license": "MIT",
+      "repository": "https://github.com/DaoSeeker01/DaoSeekerScope"
+    },
+    "crates": {
+      "daoseeker-scope": {
+        "features": {
+          "default": [
+            "serde"
+          ],
+          "serde": [
+            "daoseeker-scope-core/serde",
+            "dep:serde_json"
+          ],
+          "schema": [
+            "serde",
+            "daoseeker-scope-core/schema",
+            "dep:schemars"
+          ]
+        },
+        "crate_types": [
+          "rlib"
+        ],
+        "binaries": []
+      },
+      "daoseeker-scope-cli": {
+        "features": {},
+        "crate_types": [
+          "rlib"
+        ],
+        "binaries": [
+          {
+            "name": "dscope",
+            "path": "src/main.rs"
+          }
+        ]
+      },
+      "daoseeker-scope-core": {
+        "features": {
+          "default": [],
+          "serde": [
+            "dep:serde"
+          ],
+          "schema": [
+            "serde",
+            "dep:schemars"
+          ]
+        },
+        "crate_types": [
+          "rlib"
+        ],
+        "binaries": []
+      },
+      "daoseeker-scope-ffi": {
+        "features": {},
+        "crate_types": [
+          "cdylib",
+          "rlib"
+        ],
+        "binaries": []
+      },
+      "daoseeker-scope-linux": {
+        "features": {
+          "fuzzing": []
+        },
+        "crate_types": [
+          "rlib"
+        ],
+        "binaries": []
+      },
+      "daoseeker-scope-macos": {
+        "features": {
+          "default": [],
+          "fuzzing": []
+        },
+        "crate_types": [
+          "rlib"
+        ],
+        "binaries": []
+      },
+      "daoseeker-scope-sysinfo": {
+        "features": {},
+        "crate_types": [
+          "rlib"
+        ],
+        "binaries": []
+      },
+      "daoseeker-scope-windows": {
+        "features": {
+          "default": [],
+          "fuzzing": []
+        },
+        "crate_types": [
+          "rlib"
+        ],
+        "binaries": []
+      }
+    },
+    "toolchain": {
+      "toolchain": {
+        "channel": "1.96.0",
+        "profile": "minimal",
+        "components": [
+          "rustfmt",
+          "clippy"
+        ]
+      }
+    }
+  },
+  "native_layout": {
+    "abi_version": 1,
+    "pointer_bytes": 8,
+    "options": {
+      "size": 20,
+      "alignment": 4,
+      "offsets": [
+        0,
+        4,
+        8,
+        12,
+        16
+      ]
+    },
+    "buffer": {
+      "size": 24,
+      "alignment": 8,
+      "offsets": [
+        0,
+        8,
+        16
+      ]
+    }
+  },
+  "status_codes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ]
+}

@@ -10,6 +10,8 @@ param(
     [switch]$HardwareSummaryProbe,
     [switch]$PeakMemoryProbe,
     [switch]$SyntheticMemoryProbe,
+    [switch]$AbiContractProbe,
+    [string]$AbiContractDirectory = 'target\debug',
     [string]$PeakMemoryDirectory = 'target\release'
 )
 $ErrorActionPreference = 'Stop'
@@ -45,6 +47,16 @@ try {
     $env:INCLUDE = @((Join-Path $VcRoot 'include'), (Join-Path $SdkRoot "Include\$SdkVersion\ucrt"), (Join-Path $SdkRoot "Include\$SdkVersion\shared"), (Join-Path $SdkRoot "Include\$SdkVersion\um")) -join ';'
     $env:LIB = @((Join-Path $VcRoot 'lib\x64'), (Join-Path $SdkRoot "Lib\$SdkVersion\ucrt\x64"), (Join-Path $SdkRoot "Lib\$SdkVersion\um\x64")) -join ';'
     $env:PATH = (Join-Path $VcRoot 'bin\Hostx64\x64') + ';' + $oldPath
+    if ($AbiContractProbe) {
+        $abiRoot = (Resolve-Path -LiteralPath $AbiContractDirectory).Path
+        $abiExe = Join-Path $abiRoot 'abi-contract-probe.exe'
+        $abiObj = Join-Path $abiRoot 'abi-contract-probe.obj'
+        $abiLib = Join-Path $abiRoot 'daoseeker_scope_ffi.dll.lib'
+        & $compiler /nologo /W4 /WX /std:c11 "/Fe$abiExe" "/Fo$abiObj" docs\research\abi_contract_probe.c $abiLib
+        if ($LASTEXITCODE -ne 0) { throw "ABI contract probe compile failed: $LASTEXITCODE" }
+        Write-Output "c_compiler_version=$((Get-Item -LiteralPath $compiler).VersionInfo.FileVersion)"
+        return
+    }
     if ($PeakMemoryProbe -or $SyntheticMemoryProbe) {
         $peakRoot = (Resolve-Path -LiteralPath $PeakMemoryDirectory).Path
         $peakName = if ($SyntheticMemoryProbe) { 'synthetic-memory-probe' } else { 'ffi-memory-probe' }

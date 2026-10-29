@@ -23,6 +23,8 @@ cargo doc --locked --workspace --all-features --no-deps
 
 ## 工具、Schema 与文档
 
+更改公共模型、features、C 头文件或版本前，先读[发布前契约评审](docs/v0.1-contract-review.md)。在干净提交上运行 `python scripts/check_contract.py`，独立构建本机 C/Rust 探针并检查冻结基线；需要 C11 编译器，Windows 需 PowerShell 7、MSVC 与 Windows SDK。该检查触发兼容性评审，不代替 API、行为或完整平台验证；不得只重生成基线来消除失败。
+
 建议创建项目内虚拟环境，避免修改全局 Python：
 
 ```sh

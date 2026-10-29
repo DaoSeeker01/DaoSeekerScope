@@ -55,6 +55,8 @@ jobs:
         run: python -m unittest discover -s tests -p "test_*.py"
       - name: Project data and documentation links
         run: python scripts/check_project.py
+      - name: Frozen v0.1 manifest Schema and native ABI contract
+        run: python scripts/check_contract.py
       - name: Crate archives and isolated consumer
         run: python scripts/check_packages.py
       - name: Preserve package evidence
@@ -237,6 +239,7 @@ jobs:
           name: native-evidence-${{ runner.os }}-${{ runner.arch }}
           path: |
             target/native-evidence.json
+            target/contract-evidence.json
             target/windows-display-probe.json
             target/windows-memory-evidence.json
             target/windows-cpu-evidence.json

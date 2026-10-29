@@ -1,4 +1,8 @@
 //! C ABI v1. See bindings/daoseeker_scope.h for pointer and ownership contracts.
+//!
+//! After any `dsc_collect_json` call, including failure or timeout, keep the
+//! shared library loaded until process exit. ABI v1 has no shutdown/drain
+//! operation; freeing every buffer does not make unloading or hot reload safe.
 use daoseeker_scope::*;
 use std::{
     cell::Cell,
@@ -216,6 +220,22 @@ pub unsafe extern "C" fn dsc_buffer_free(buffer: *mut DscBuffer) -> i32 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn abi_v1_error_numbers_and_redacted_messages_are_stable() {
+        for (error, number, message) in [
+            (ErrorCode::InvalidArgument, 1, c"invalid argument"),
+            (ErrorCode::UnsupportedPlatform, 2, c"unsupported platform"),
+            (ErrorCode::Timeout, 3, c"timeout"),
+            (ErrorCode::Cancelled, 4, c"cancelled"),
+            (ErrorCode::Busy, 5, c"busy"),
+            (ErrorCode::BackendFailure, 6, c"backend failure"),
+            (ErrorCode::ResourceLimit, 7, c"resource limit"),
+            (ErrorCode::Panic, 8, c"panic"),
+            (ErrorCode::InvalidBuffer, 9, c"invalid buffer"),
+        ] {
+            assert_eq!(status(error), (number, message));
+        }
+    }
     #[test]
     fn transient_constructor_failure_is_not_cached() {
         let slot = Mutex::new(None);

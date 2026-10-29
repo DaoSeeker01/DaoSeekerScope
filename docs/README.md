@@ -3,6 +3,7 @@
 ## 使用与开发
 
 - [v0.1 交付清单](v0.1-checklist.md)：首版门槛、后续增强与延期验证。
+- [发布前契约评审](v0.1-contract-review.md)：接口承诺、自动检查范围及待维护者确认项。
 - [当前审计与修复](project-review-2026-10-27.md)：2026-10-27 的问题、处理和验证状态。
 
 - [使用指南](usage.md)：Rust、CLI、JSON、C/Python、刷新与隐私。

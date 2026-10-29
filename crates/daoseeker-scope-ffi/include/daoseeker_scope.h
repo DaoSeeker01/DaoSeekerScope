@@ -10,6 +10,10 @@ extern "C" {
  * and concurrent mutation are caller UB and cannot be guarded by this API.
  * Thread safe across distinct structs. Calls can return BUSY.
  * Error text is redacted and thread-local, valid until next ABI call on thread.
+ * After any dsc_collect_json call, including failure or timeout, keep this
+ * library loaded until process exit. ABI v1 has no shutdown/drain operation.
+ * Freeing all buffers does not prove background workers have stopped;
+ * unloading or hot-reloading the library is unsupported.
  */
 typedef struct {
     uint32_t size;       /* sizeof(dsc_options), exactly 20 in ABI v1 */

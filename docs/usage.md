@@ -99,7 +99,7 @@ python examples/collect.py target/debug/libdaoseeker_scope_ffi.dylib
 
 按 `len` 读取 UTF-8 Buffer，它没有 NUL 结尾。用 `dsc_buffer_free` 释放，原结构随后清零；空释放可重复，陈旧复制会被拒绝。最多保留 64 个未释放 Buffer，不得在另一线程读取时释放同一块内存。
 
-NULL options 复用采集器；非 NULL options 每次新建实例，CPU 可能没有采样基线。ABI v1 没有 shutdown，首次采集后应保持共享库加载到进程结束；释放全部 Buffer 不代表后台 worker 已停止。本版不支持运行中的卸载或热重载，详见[所有权契约](adr/0004-c-abi.md)。
+NULL options 复用采集器；非 NULL options 每次新建实例，CPU 可能没有采样基线。ABI v1 没有 shutdown，任何采集调用后（包括失败或超时）都应保持共享库加载到进程结束；释放全部 Buffer 不代表后台 worker 已停止。本版不支持运行中的卸载或热重载，详见[所有权契约](adr/0004-c-abi.md)。
 
 候选 SDK 包含共享库、头文件、示例和 Schema，尚未正式分发。构建与安装验证见 [Windows SDK](windows-ffi-sdk-validation.md)和 [Linux SDK](linux-ffi-sdk-validation.md)。
 
