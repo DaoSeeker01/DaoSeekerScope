@@ -1,0 +1,452 @@
+{
+  "overall": "passed",
+  "date": "2026-10-29",
+  "run_id": 40796845854,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854",
+  "source_commit": "614982cba8fffdd6e47bbc5823a93aeda498cbd4",
+  "implementation_commit": "614982cba8fffdd6e47bbc5823a93aeda498cbd4",
+  "source_files": {
+    "docs/research/ffi_memory_probe.c": "d9e94c35e35d29632883da229e94dc3e06d7f8aa126b11bb4dfcb1a674e8b09b",
+    "scripts/peak_memory.py": "bfe4219ba388ca59632c40fc446ed44c0a046a5a4b3db629abee4b4440e284ec",
+    "scripts/build_c_example.ps1": "3904907270f8c445121d91b822c51a947a7a1397f0b56e2d9fce7e812449cdd6",
+    "tests/test_peak_memory.py": "e0757561eca5b3b7a65d191830ecaa5adfd2bc0abb41c056747cc35ac27a067a",
+    ".github/workflows/ci.yml": "e18d69ec23b518b21bf20072669756698aee5c2b1275439728aa101d43ffc266",
+    "crates/daoseeker-scope/Cargo.toml": "ccbf877b212c25b2bdbc2a23036c47e6562813bbe987490fa03fad41b070420c",
+    "crates/daoseeker-scope/examples/synthetic_memory.rs": "fb102d8f768baceb14693820be8ae9d53494840377d79a647fbe0a2691d92787"
+  },
+  "platforms": {
+    "windows": {
+      "archives": 8,
+      "isolated_rust_tests": 268,
+      "python_passed": 239,
+      "python_skipped": 5,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67112960,
+      "cached_final_peak_bytes": 11202560,
+      "fresh_final_peak_bytes": 11423744,
+      "baseline_peak_bytes": {
+        "cached": 7737344,
+        "fresh": 7737344
+      },
+      "synthetic_final_peak_bytes": {
+        "synthetic": 5677056,
+        "over_limit": 5005312
+      }
+    },
+    "linux": {
+      "archives": 8,
+      "isolated_rust_tests": 260,
+      "python_passed": 244,
+      "python_skipped": 0,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67108864,
+      "cached_final_peak_bytes": 2396160,
+      "fresh_final_peak_bytes": 2613248,
+      "baseline_peak_bytes": {
+        "cached": 1191936,
+        "fresh": 1355776
+      },
+      "synthetic_final_peak_bytes": {
+        "synthetic": 3497984,
+        "over_limit": 2744320
+      }
+    },
+    "macos": {
+      "archives": 8,
+      "isolated_rust_tests": 265,
+      "python_passed": 243,
+      "python_skipped": 1,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67125248,
+      "cached_final_peak_bytes": 10862592,
+      "fresh_final_peak_bytes": 11108352,
+      "baseline_peak_bytes": {
+        "cached": 5767168,
+        "fresh": 5767168
+      },
+      "synthetic_final_peak_bytes": {
+        "synthetic": 7782400,
+        "over_limit": 7061504
+      }
+    }
+  },
+  "jobs": [
+    {
+      "databaseId": 123195269161,
+      "name": "linux-container",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854/job/123195269161"
+    },
+    {
+      "databaseId": 123195269422,
+      "name": "miri",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854/job/123195269422"
+    },
+    {
+      "databaseId": 123195269440,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854/job/123195269440"
+    },
+    {
+      "databaseId": 123195269470,
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854/job/123195269470"
+    },
+    {
+      "databaseId": 123195269475,
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854/job/123195269475"
+    },
+    {
+      "databaseId": 123195269491,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854/job/123195269491"
+    },
+    {
+      "databaseId": 123195269557,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854/job/123195269557"
+    },
+    {
+      "databaseId": 123195269652,
+      "name": "supply-chain",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854/job/123195269652"
+    }
+  ],
+  "reports": {
+    "synthetic-memory-windows-40796845854.json": {
+      "sha256": "3b31e3ce2ba2256929e1c8f9ab1f787f2b05e106bbcf694440266603ba0d024f",
+      "original_sha256": "3b31e3ce2ba2256929e1c8f9ab1f787f2b05e106bbcf694440266603ba0d024f",
+      "artifact": "native-evidence-Windows-X64"
+    },
+    "synthetic-memory-packages-windows-40796845854.json": {
+      "sha256": "6dc831dc9adc30882c8b1e2d353af97f1ee45da19ea6c1f97cdcb46e37fc13bc",
+      "original_sha256": "14aa68109043f066a7e5daced5ef73fa1284557fd4e8d5ccb770b08981fd9bba",
+      "artifact": "package-evidence-Windows-X64"
+    },
+    "synthetic-memory-native-windows-40796845854.json": {
+      "sha256": "ca643d0d32ed583dbd033dcf6afc215455ab57e1e83bbefb7c5795636b4fcb55",
+      "original_sha256": "6c6dd7c681cd4b50e1d1f77cafb3996adb51127c1d26e3abf07e2c7237641e74",
+      "artifact": "native-evidence-Windows-X64"
+    },
+    "synthetic-memory-linux-40796845854.json": {
+      "sha256": "f88d66aa50ad8569c814869e5a6e7ee4a08f6c7a8744af506902dec3e7ae6dfa",
+      "original_sha256": "f88d66aa50ad8569c814869e5a6e7ee4a08f6c7a8744af506902dec3e7ae6dfa",
+      "artifact": "native-evidence-Linux-X64"
+    },
+    "synthetic-memory-packages-linux-40796845854.json": {
+      "sha256": "362a9db35f2730d77f7a4f5bc4351effb8ff358ff20448a5b40161898bdc9993",
+      "original_sha256": "362a9db35f2730d77f7a4f5bc4351effb8ff358ff20448a5b40161898bdc9993",
+      "artifact": "package-evidence-Linux-X64"
+    },
+    "synthetic-memory-native-linux-40796845854.json": {
+      "sha256": "eba92ef1b3c5d499900b3fd65c3deb4a325c754f20b0409d528d5f4a02290022",
+      "original_sha256": "eba92ef1b3c5d499900b3fd65c3deb4a325c754f20b0409d528d5f4a02290022",
+      "artifact": "native-evidence-Linux-X64"
+    },
+    "synthetic-memory-macos-40796845854.json": {
+      "sha256": "a1601d6cf3c31e09da4e5a1680e0a008d6450dde1633802e1a51690aec62769b",
+      "original_sha256": "a1601d6cf3c31e09da4e5a1680e0a008d6450dde1633802e1a51690aec62769b",
+      "artifact": "native-evidence-macOS-ARM64"
+    },
+    "synthetic-memory-packages-macos-40796845854.json": {
+      "sha256": "0958fecf9bbd32ad90eea72a1df9c5085fde765301e626e0a9ee653c8b79dd6b",
+      "original_sha256": "0958fecf9bbd32ad90eea72a1df9c5085fde765301e626e0a9ee653c8b79dd6b",
+      "artifact": "package-evidence-macOS-ARM64"
+    },
+    "synthetic-memory-native-macos-40796845854.json": {
+      "sha256": "39f30738380d27e1d5456e8ccde2f83126cede77b8e6ad6e63a1e8be50b611a9",
+      "original_sha256": "39f30738380d27e1d5456e8ccde2f83126cede77b8e6ad6e63a1e8be50b611a9",
+      "artifact": "native-evidence-macOS-ARM64"
+    },
+    "synthetic-memory-cli-windows-40796845854.json": {
+      "sha256": "2b0ca812c851f82368f00af16f9a35e6169aa028891c45e54b8b5f6f1a6a399d",
+      "original_sha256": "dddaad2cded02ff31303c8e3c17bce8c3d91e6b5cc5b82973be93ac94f013074",
+      "artifact": "cli-bundle-evidence-Windows-X64"
+    },
+    "synthetic-memory-sdk-windows-40796845854.json": {
+      "sha256": "b2d59cd06382c673b18f0dce7c60aa338de24051daa9b6674db0b7a5311bcf17",
+      "original_sha256": "a2bf430b2d71de0b6fa1a37134d3cbd8ab9ca2d8b0bd51d63e65c06c7bc2d002",
+      "artifact": "ffi-sdk-evidence-Windows-X64"
+    },
+    "synthetic-memory-cli-linux-40796845854.json": {
+      "sha256": "d623a6aeee2d916db9609d6f681eaef0bdd573de3e12255c19777af2d5cc6147",
+      "original_sha256": "d623a6aeee2d916db9609d6f681eaef0bdd573de3e12255c19777af2d5cc6147",
+      "artifact": "cli-bundle-evidence-Linux-X64"
+    },
+    "synthetic-memory-sdk-linux-40796845854.json": {
+      "sha256": "2525c6792920a7413c32e1396389e87e0b1385e4f4d01b9161f3f572deae336d",
+      "original_sha256": "2525c6792920a7413c32e1396389e87e0b1385e4f4d01b9161f3f572deae336d",
+      "artifact": "ffi-sdk-evidence-Linux-X64"
+    },
+    "synthetic-memory-older-userlands-linux-40796845854.json": {
+      "sha256": "45f94b476a8ad0df75945d4c36625b71dd326f357f85dc539ee6f7dc648c1b92",
+      "original_sha256": "45f94b476a8ad0df75945d4c36625b71dd326f357f85dc539ee6f7dc648c1b92",
+      "artifact": "native-evidence-Linux-X64"
+    }
+  },
+  "archive_digest_encoding": "SHA-256 of archived UTF-8 LF bytes; original artifact hash also preserved",
+  "artifact_metadata": [
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "digest": "sha256:03be0b3b7f45d42723d8463e2a4f634c4f3bf8f8f8beca601ed8c86a10196404",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "digest": "sha256:e5aca91b77928630e59eb5d8c57143495478ddcddcbd75521f711ad831ae3f70",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "procfs-fuzz-evidence",
+      "digest": "sha256:24daa1440b9d1c417ec75b9666f09fc44df2c4cb7b7302339af707ba81112fb8",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "digest": "sha256:ad408608677e76383f256aaacf8b8cecdbc54123a260ab29fed1b8fa476baef9",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "native-evidence-Linux-X64",
+      "digest": "sha256:2ffffab18bbe8fae340bd0b68fe4c4cc837c8838ab17f4e974d4b2d3c04bf161",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "native-evidence-Windows-X64",
+      "digest": "sha256:73b101820b04c85ba4eee58989d7f2a5dbd34e2542a22bb274c8c9c1e4118572",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "digest": "sha256:9fc6b082591259078ac8e490082b6d113685bafc842c704a4e7e74011ceaeebd",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "linux-container-evidence",
+      "digest": "sha256:d5c6a468ce7580a54a36f04307da4bd02889eb0e618c31bb72f60018ed5bc0de",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "package-evidence-Windows-X64",
+      "digest": "sha256:e9a909f6a47d43177abb3a2b5cc05deda2e90ef2db0d7b0921b2402b65789dd7",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "digest": "sha256:5d4718c55f606e08be57d2a377fe15bb375c772dde5cb2e2a5feb2f12964d055",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "package-evidence-Linux-X64",
+      "digest": "sha256:5832d286eaca71821c875e6baa6b1b38f4f572878f32a957c7953ab491f08a5d",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "digest": "sha256:cb8c3d42f42773831300e41f8eafee3f56753987635a2ff91b35b9b59738684b",
+      "head_sha": "614982cba8fffdd6e47bbc5823a93aeda498cbd4"
+    }
+  ],
+  "all_jobs_log_sha256": "93c294902219f4b7059fc2c6bb1f9721f4261d73ced900ea49ecb08eae260994",
+  "quality_gates": {
+    "miri_passed": 8,
+    "asan_passed": 10,
+    "short_fuzz_targets": 12,
+    "fuzz_runs_and_seconds": [
+      {
+        "runs": 773796,
+        "seconds": 61
+      },
+      {
+        "runs": 13705152,
+        "seconds": 61
+      },
+      {
+        "runs": 33212087,
+        "seconds": 61
+      },
+      {
+        "runs": 1790743,
+        "seconds": 61
+      },
+      {
+        "runs": 6233548,
+        "seconds": 61
+      },
+      {
+        "runs": 34273891,
+        "seconds": 61
+      },
+      {
+        "runs": 34064288,
+        "seconds": 61
+      },
+      {
+        "runs": 34275308,
+        "seconds": 61
+      },
+      {
+        "runs": 3021320,
+        "seconds": 61
+      },
+      {
+        "runs": 8177176,
+        "seconds": 61
+      },
+      {
+        "runs": 47313741,
+        "seconds": 61
+      },
+      {
+        "runs": 50523261,
+        "seconds": 61
+      }
+    ],
+    "empty_proc": {
+      "status": "not_run",
+      "process_started": false
+    }
+  },
+  "measurement_scope": "native regression plus separate Custom fixture cdylib/C process: 100 sensors + 1024 networks, or 1025 networks rejected per field. Each profile has 2 fresh collectors: 1 collect/roundtrip, then 1 collect + 100 refresh/roundtrip. Linux uses fork isolation; not hardware/production FFI/allocator performance",
+  "public_api_changed": false,
+  "abi": 1,
+  "snapshot_schema": 1,
+  "license": "MIT",
+  "dependencies_or_features_changed": false,
+  "published": false,
+  "private_probe_format": 2,
+  "linux_launch_control": {
+    "accepted": true,
+    "held_bytes": 134217728,
+    "direct": {
+      "format": 2,
+      "mode": "cached",
+      "launch": {
+        "strategy": "direct",
+        "launcher_pid": 10180,
+        "measurement_pid": 10180,
+        "parent_death_signal": 0
+      },
+      "metric": "ru_maxrss",
+      "raw_unit": "kibibytes",
+      "multiplier": 1024,
+      "pressure_bytes": 0,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 160456,
+          "peak_bytes": 164306944,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0
+        },
+        {
+          "phase": "collected",
+          "calls": 1,
+          "peak_raw": 160456,
+          "peak_bytes": 164306944,
+          "elapsed_ns": 1007899,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 100,
+          "peak_raw": 160456,
+          "peak_bytes": 164306944,
+          "elapsed_ns": 14201678,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 300,
+          "peak_raw": 160456,
+          "peak_bytes": 164306944,
+          "elapsed_ns": 28559846,
+          "max_json_bytes": 9525
+        }
+      ]
+    },
+    "isolated": {
+      "format": 2,
+      "mode": "cached",
+      "launch": {
+        "strategy": "linux_fork",
+        "launcher_pid": 10182,
+        "measurement_pid": 10183,
+        "parent_death_signal": 9
+      },
+      "metric": "ru_maxrss",
+      "raw_unit": "kibibytes",
+      "multiplier": 1024,
+      "pressure_bytes": 0,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 1168,
+          "peak_bytes": 1196032,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0
+        },
+        {
+          "phase": "collected",
+          "calls": 1,
+          "peak_raw": 2384,
+          "peak_bytes": 2441216,
+          "elapsed_ns": 976309,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 100,
+          "peak_raw": 2384,
+          "peak_bytes": 2441216,
+          "elapsed_ns": 14140232,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 300,
+          "peak_raw": 2384,
+          "peak_bytes": 2441216,
+          "elapsed_ns": 28291409,
+          "max_json_bytes": 9525
+        }
+      ]
+    }
+  },
+  "linux_lifecycle": {
+    "passed": true,
+    "launch": {
+      "strategy": "linux_fork",
+      "launcher_pid": 10185,
+      "measurement_pid": 10186,
+      "parent_death_signal": 9
+    },
+    "worker_exit_state": "gone",
+    "worker_running": false,
+    "launcher_reaped": true
+  },
+  "new_workload_checks": {
+    "rust_example_tests": 4,
+    "python_descriptor_tests": 6,
+    "dependencies_added": false,
+    "public_ffi_symbol_added": false
+  },
+  "not_verified": [
+    "long-term memory growth or allocator attribution",
+    "long-term fuzz",
+    "physical Linux/macOS and multi-group Windows",
+    "macOS distribution materials",
+    "exact minimum runtimes",
+    "formal release"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "overall": "passed",
+  "date": "2026-10-29",
+  "source_commit": "614982cba8fffdd6e47bbc5823a93aeda498cbd4",
+  "reports": {
+    "synthetic-memory-windows-local-614982c.json": {
+      "sha256": "cc15486d9916a8902c683f36fbe70e89e072a01259a5e4e8fdde2ddc28144a6a",
+      "original_sha256": "cc15486d9916a8902c683f36fbe70e89e072a01259a5e4e8fdde2ddc28144a6a"
+    },
+    "synthetic-memory-packages-windows-local-614982c.json": {
+      "sha256": "e9a316b1bcfd438e3e0cee827302dcd6b490af8745a03775999b1373b8310ff8",
+      "original_sha256": "4ff52890de48fb52286e36aaf907e9de2155b13989ab48f9f6d8a38ae82eb0f9"
+    },
+    "synthetic-memory-native-windows-local-614982c.json": {
+      "sha256": "e7d765bbb90cf279f1aae25295752bb4bf26194c9e7157149854b4b9b0ad0491",
+      "original_sha256": "a3a2ed3e2684c8d39d08821a96960eb1398bab00ebff9a7c6066a41b80c3ebc1"
+    }
+  },
+  "archive_digest_encoding": "SHA-256 of canonical UTF-8 LF Git blob bytes; original hashes retained",
+  "frozen_checks": [
+    "Windows native + synthetic process peak calibration/measurements",
+    "eight archives and isolated consumers",
+    "native CLI/C/Python"
+  ],
+  "precommit_checks": {
+    "note": "Commands ran on subsequently committed source; frozen checks independently assert source tuple",
+    "rust_passed": 268,
+    "rust_failed": 0,
+    "python_passed": 239,
+    "python_skipped": 5,
+    "python_failed": 0,
+    "new_rust_example_tests": 4,
+    "new_python_descriptor_tests": 6,
+    "commands": [
+      "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+      "ruff format --check scripts tests examples/collect.py",
+      "ruff check scripts tests examples/collect.py",
+      "mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+      "python -m unittest discover -s tests -p test_*.py",
+      "python scripts/check_project.py",
+      "actionlint",
+      "git diff --check"
+    ],
+    "rust_log_sha256": "b949f07b1e44e881a41981a4b4f3871752947aa7bacfb83c77df42a32febae42",
+    "python_log_sha256": "1df30eb3b06624b2adb46feaaeaf0f0b4b057a23166a001f0cee994f425f71b5"
+  },
+  "development_failure_fixed": {
+    "initial": "MSVC synthetic compile failed: PowerShell unwrapped a single define string and splatted characters; linker reported D.obj missing",
+    "fix": "typed string array for compiler defines; normal and synthetic native probes then compiled and passed",
+    "failed_trial_not_counted_as_acceptance": true
+  },
+  "public_rust_api_changed": false,
+  "dependencies_or_features_changed": false,
+  "c_abi": 1,
+  "snapshot_schema": 1,
+  "private_probe_format": 2,
+  "license": "MIT",
+  "not_run_locally": [
+    "Linux/macOS synthetic native runtime (covered separately by CI)",
+    "long-term memory growth or allocator attribution",
+    "formal publication"
+  ]
+}

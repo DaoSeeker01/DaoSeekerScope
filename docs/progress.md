@@ -2,6 +2,8 @@
 
 首版交付门槛与本轮修复分别见 [v0.1 清单](v0.1-checklist.md)和[当前审计](project-review-2026-10-27.md)。下面保留平台增强工作包，不将它们全部视作首版的必要阻塞项。
 
+2026-10-29 合成规模峰值：100 个传感器、1024 条网络数据与 1025 条网络输入的字段隔离通过本机及三平台 CI 40796845854，包含两 backend 的静态缓存和每次 JSON 往返检查。合成结果不作为真实设备支持或长期无泄漏证据，见[性能报告](benchmarks.md)。
+
 2026-10-29 Linux 启动计账隔离：已实现 fork 测量、128 MiB 父进程对照和父退出清理验证；三平台 CI 40792258046 八项任务通过；Linux 压力对照与进程退出已原生验收。旧计量结果保留，见[性能报告](benchmarks.md)。
 
 2026-10-28 进程内存基线：新增 release C ABI 峰值探针和 64 MiB 校准，Windows 本机 300 次缓存调用及 30 次重建调用已通过；源码和产物哈希一致。三平台原生 CI 40669330970 全部八项通过；长期内存增长、allocator profiling 和合成规模峰值仍未验证，见[性能报告](benchmarks.md)。
@@ -20,7 +22,7 @@
 | 显示器 | Windows 活动路径/信号像素通过本机 SDK 与 CI；Linux 连接视图通过原生 CLI/C、授权合成名称和 26 项权限/缓存容器验证；macOS 活动视图/模式状态通过原生 CI 与 SDK 对照；CLI 文本通过本机和三平台原生 CI，见 [记录](display-text-validation.md) | Linux 当前像素、真实名称阳性；实体多屏等验证 |
 | 平台增强 | Linux 部分 DMI/电池/温度、macOS 设备型号、Windows 电池摘要；Windows 设备/主板/固件六值本机与 CI SDK/缓存通过，[记录](windows-hardware-summary-validation.md) | 更多设备/OEM 与主板/固件来源，其他平台电池/传感器可靠来源评估 |
 | 动态数据可靠性 | Linux CPU/内存/网络读取与失败回归；Windows/macOS 网络；Windows 内存与单组 CPU 通过本机和三平台 CI；macOS CPU/内存/uptime、Windows uptime 已通过原生 SDK/CI/八包；Windows 多组采样实现通过三平台 CI，单组 helper/SDK 在本机和 CI 通过，[记录](windows-cpu-groups-validation.md) | Windows 真实多组、Job/hotplug/真实故障覆盖 |
-| 深入质量验证 | 单元、负向、原生 CI、容器、短 fuzz、Miri/ASan | 长期 fuzz、更多故障场景、持续内存增长与合成规模峰值；已有三平台 C ABI 进程峰值基线 |
+| 深入质量验证 | 单元、负向、原生 CI、容器、短 fuzz、Miri/ASan | 长期 fuzz、更多故障场景、持续内存增长与 allocator 归因；已有三平台原生及合成规模进程峰值基线 |
 | 发行制品 | 8 crate 的归档与独立构建检查；Windows CLI ZIP/checksum/隔离安装回滚通过本机与 CI 六进程验收，[记录](cli-bundle-validation.md)；Linux ZIP v2/权限与六进程安装回滚通过原生 CI，[记录](linux-cli-bundle-validation.md)；Windows FFI SDK 本机及 CI C/Python 与回滚通过，[记录](windows-ffi-sdk-validation.md)；Linux SDK v4 原生构建/C/Python/权限与回滚通过三平台 CI，[记录](linux-ffi-sdk-validation.md) | macOS CLI 许可材料、macOS FFI 制品、运行时/许可最终评审和旧版回滚；registry 验收另需发布授权 |
 | 最终评审与发布准备 | ADR、Schema、头文件与许可证资料 | API/ABI/Schema 最终评审、首版验收收口；公开发布另需授权 |
 

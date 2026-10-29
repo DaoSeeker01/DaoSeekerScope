@@ -1,10 +1,26 @@
 # 性能基线
 
-## 合成规模峰值验证
+## 合成规模峰值验证（2026-10-29）
 
-2026-10-29 开发增量：新增两个 Custom backend 的合成工作负载，用公共 API 验证 100 个传感器、1024 个网络条目和 1025 条超限网络输入。C 探针在同一进程测量 Rust 示例，计时包含构造和 JSON 编解码，不访问真实硬件 backend。批次和边界见 [ADR 0040](adr/0040-synthetic-memory.md)。
+干净源码 `614982cba8fffdd6e47bbc5823a93aeda498cbd4` 的 [CI 40796845854](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854)八项任务全部通过。本机与 CI 使用同一实现提交，报告与代码哈希见[验收索引](evidence/synthetic-memory-ci-40796845854.json)；Windows 本机另有[记录](evidence/synthetic-memory-local-614982c.json)。
 
-Windows 开发试跑已完成，固定源码与三平台验收待执行。旧原生数据与合成数据分别保留，不将两者作性能排名。
+本轮新增仅开发使用的 Rust cdylib 示例，通过现有公共 Backend API 组合两个 Custom backend。正常 profile 为 100 个传感器、1024 条网络数据；超限 profile 生成 1025 条网络数据，要求整个网络字段变成 Unavailable/InvalidData，100 个健康传感器仍可用。它们不是实体设备观测，正式 C ABI、Schema、依赖与 feature 不变；见 [ADR 0040](adr/0040-synthetic-memory.md)。
+
+每个 profile 是独立 C 进程，先执行一次新采集器的 collect/JSON 往返，再重建采集器，执行一次 collect 加 100 次动态刷新和 JSON 往返。每批两个 backend 的静态读取均为 1 次；动态读取分别为 1 和 101 次。Rust 每次检查规模、来源、隐私、无 backend 错误及 JSON 语义。C 端只接收整数结果，没有字符串或 buffer 所有权跨界。
+
+构建使用 Rust 1.96.0、release、默认 serde；max_entries=1024、默认隐私、请求超时 2000 ms。C 为优化 C11，Windows 使用 peak working set 字节，Linux/Darwin 使用 ru_maxrss（Linux 由 KiB 换为字节）；Linux 在任何 Rust 调用前 fork。每个示例库各有独立 64 MiB 校准，三平台均通过。CPU、内存、OS 和编译器版本见报告，不能按平台数值作性能排名。
+
+| 平台 | 正常：最终峰值 / JSON bytes | 超限：最终峰值 / JSON bytes | 第二批耗时：正常 / 超限 ms | 完整结果 |
+|---|---|---|---|---|
+| Windows x64 | 5677056 / 378465 | 5005312 / 28457 | 322.22 / 50.09 | [原始报告](evidence/synthetic-memory-windows-40796845854.json) |
+| Linux x64 | 3497984 / 378465 | 2744320 / 28457 | 262.52 / 35.32 | [原始报告](evidence/synthetic-memory-linux-40796845854.json) |
+| macOS ARM64 | 7782400 / 378465 | 7061504 / 28457 | 278.52 / 25.23 | [原始报告](evidence/synthetic-memory-macos-40796845854.json) |
+
+峰值是该进程自启动以来的最大值，包含 C、Rust 示例、线程、模型、JSON 编解码和缓存开销；第二批耗时包含重建与 101 次 JSON 往返，不是单次 refresh 延迟。超限 profile 输出更少，两者的差异不能解释为优化幅度，也不能与生产 FFI 或旧单 backend 延迟 benchmark 直接比较。
+
+三平台各八包独立测试包含新增 4 项 Rust 示例用例，Windows/Linux/macOS 分别通过 268/260/265 项；Python 通过 239/244/243 项，跳过 5/0/1 项。原生 CLI/C/Python、Windows/Linux 候选安装回滚、Linux 较低版本用户空间、启动污染对照与父退出回归通过；Miri 8、ASan 10、12 个短 fuzz 目标各至少 60 秒通过。空 `/proc` 的整体覆盖仍被 OCI 拒绝，属于未运行。
+
+本轮没有持续内存增长、allocator 归因或真实百级设备结论，实体 Linux/macOS 与正式发布仍未执行。以下保留早期原生测量，启动方式和数据规模分别解释。
 
 ## Linux 启动阶段隔离（2026-10-29）
 

@@ -1,0 +1,466 @@
+{
+  "overall": "passed",
+  "recorded_at": "2026-10-29T00:54:44.548493+00:00",
+  "git_revision": "614982cba8fffdd6e47bbc5823a93aeda498cbd4",
+  "git_dirty": false,
+  "system": "Linux",
+  "os_release": "7.0.0-1017-azure",
+  "machine": "x86_64",
+  "profile": "release",
+  "probe_format": 2,
+  "features": "default serde; target desktop backend",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "target": "x86_64-unknown-linux-gnu",
+  "scope": "process lifetime high-water; not allocator bytes or leak proof",
+  "options": {
+    "timeout_ms": 2000,
+    "max_entries": 128,
+    "sensitive": false
+  },
+  "c_compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "c_build": "cc -O2 -Wall -Wextra -Werror -std=c11; release shared library and rpath",
+  "synthetic_scope": "two Custom fixture backends; not hardware evidence or production FFI performance",
+  "binary_sha256": {
+    "ffi-memory-probe": "e4ff0dec2314583ca7a0be9fb3dfe82478e61ad3769d8598e22c966e29c7a986",
+    "libdaoseeker_scope_ffi.so": "5bb39c224b3e37dd858a76f297bf87beecf9b66581858619a5cc15530b98b13c",
+    "dscope": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905",
+    "synthetic-memory-probe": "990a19246843612c087269ea73871fb3755f78f40c651105b0144f1dbc06b191",
+    "libsynthetic_memory.so": "f4d35760873921998f7c0a3f6c3b28ebd33c0b91fe5f2d79ac2353859e30171c"
+  },
+  "hardware": {
+    "cpu_brand": {
+      "value": "AMD EPYC 7763 64-Core Processor",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793235297089,
+      "reason": null
+    },
+    "logical_count": {
+      "value": 4,
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793235297089,
+      "reason": null
+    },
+    "total_usable_bytes": {
+      "value": 16760344576,
+      "availability": "available",
+      "source": "procfs",
+      "observed_at": 1793235297089,
+      "reason": null
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "measurements": {
+    "calibrate": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "calibrate",
+        "launch": {
+          "strategy": "linux_fork",
+          "launcher_pid": 10143,
+          "measurement_pid": 10144,
+          "parent_death_signal": 9
+        },
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 1168,
+            "peak_bytes": 1196032,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 66704,
+            "peak_bytes": 68304896,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 66704,
+            "peak_bytes": 68304896,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          }
+        ]
+      }
+    },
+    "cached": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "cached",
+        "launch": {
+          "strategy": "linux_fork",
+          "launcher_pid": 10145,
+          "measurement_pid": 10146,
+          "parent_death_signal": 9
+        },
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 1164,
+            "peak_bytes": 1191936,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 2340,
+            "peak_bytes": 2396160,
+            "elapsed_ns": 1062040,
+            "max_json_bytes": 9525
+          },
+          {
+            "phase": "collected",
+            "calls": 100,
+            "peak_raw": 2340,
+            "peak_bytes": 2396160,
+            "elapsed_ns": 14440118,
+            "max_json_bytes": 9525
+          },
+          {
+            "phase": "collected",
+            "calls": 300,
+            "peak_raw": 2340,
+            "peak_bytes": 2396160,
+            "elapsed_ns": 28508675,
+            "max_json_bytes": 9525
+          }
+        ]
+      }
+    },
+    "fresh": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "fresh",
+        "launch": {
+          "strategy": "linux_fork",
+          "launcher_pid": 10148,
+          "measurement_pid": 10149,
+          "parent_death_signal": 9
+        },
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 1324,
+            "peak_bytes": 1355776,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 2552,
+            "peak_bytes": 2613248,
+            "elapsed_ns": 1002128,
+            "max_json_bytes": 9525
+          },
+          {
+            "phase": "collected",
+            "calls": 10,
+            "peak_raw": 2552,
+            "peak_bytes": 2613248,
+            "elapsed_ns": 6799644,
+            "max_json_bytes": 9525
+          },
+          {
+            "phase": "collected",
+            "calls": 30,
+            "peak_raw": 2552,
+            "peak_bytes": 2613248,
+            "elapsed_ns": 14900164,
+            "max_json_bytes": 9525
+          }
+        ]
+      }
+    }
+  },
+  "phase": "complete",
+  "launch_control": {
+    "accepted": true,
+    "held_bytes": 134217728,
+    "direct": {
+      "format": 2,
+      "mode": "cached",
+      "launch": {
+        "strategy": "direct",
+        "launcher_pid": 10180,
+        "measurement_pid": 10180,
+        "parent_death_signal": 0
+      },
+      "metric": "ru_maxrss",
+      "raw_unit": "kibibytes",
+      "multiplier": 1024,
+      "pressure_bytes": 0,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 160456,
+          "peak_bytes": 164306944,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0
+        },
+        {
+          "phase": "collected",
+          "calls": 1,
+          "peak_raw": 160456,
+          "peak_bytes": 164306944,
+          "elapsed_ns": 1007899,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 100,
+          "peak_raw": 160456,
+          "peak_bytes": 164306944,
+          "elapsed_ns": 14201678,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 300,
+          "peak_raw": 160456,
+          "peak_bytes": 164306944,
+          "elapsed_ns": 28559846,
+          "max_json_bytes": 9525
+        }
+      ]
+    },
+    "isolated": {
+      "format": 2,
+      "mode": "cached",
+      "launch": {
+        "strategy": "linux_fork",
+        "launcher_pid": 10182,
+        "measurement_pid": 10183,
+        "parent_death_signal": 9
+      },
+      "metric": "ru_maxrss",
+      "raw_unit": "kibibytes",
+      "multiplier": 1024,
+      "pressure_bytes": 0,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 1168,
+          "peak_bytes": 1196032,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0
+        },
+        {
+          "phase": "collected",
+          "calls": 1,
+          "peak_raw": 2384,
+          "peak_bytes": 2441216,
+          "elapsed_ns": 976309,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 100,
+          "peak_raw": 2384,
+          "peak_bytes": 2441216,
+          "elapsed_ns": 14140232,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 300,
+          "peak_raw": 2384,
+          "peak_bytes": 2441216,
+          "elapsed_ns": 28291409,
+          "max_json_bytes": 9525
+        }
+      ]
+    }
+  },
+  "lifecycle": {
+    "passed": true,
+    "launch": {
+      "strategy": "linux_fork",
+      "launcher_pid": 10185,
+      "measurement_pid": 10186,
+      "parent_death_signal": 9
+    },
+    "worker_exit_state": "gone",
+    "worker_running": false,
+    "launcher_reaped": true
+  },
+  "synthetic_measurements": {
+    "calibrate": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "calibrate",
+        "launch": {
+          "strategy": "linux_fork",
+          "launcher_pid": 10187,
+          "measurement_pid": 10188,
+          "parent_death_signal": 9
+        },
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 1168,
+            "peak_bytes": 1196032,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 66704,
+            "peak_bytes": 68304896,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 66704,
+            "peak_bytes": 68304896,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          }
+        ]
+      }
+    },
+    "synthetic": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "synthetic",
+        "launch": {
+          "strategy": "linux_fork",
+          "launcher_pid": 10189,
+          "measurement_pid": 10190,
+          "parent_death_signal": 9
+        },
+        "workload": {
+          "synthetic_data": true,
+          "backends": 2,
+          "sensors_generated": 100,
+          "networks_generated": 1024,
+          "max_entries": 1024,
+          "first_batch_refreshes": 0,
+          "second_batch_refreshes": 100,
+          "json_roundtrip": true
+        },
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 1164,
+            "peak_bytes": 1191936,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 2876,
+            "peak_bytes": 2945024,
+            "elapsed_ns": 3652933,
+            "max_json_bytes": 378465
+          },
+          {
+            "phase": "collected",
+            "calls": 2,
+            "peak_raw": 3416,
+            "peak_bytes": 3497984,
+            "elapsed_ns": 262518077,
+            "max_json_bytes": 378465
+          }
+        ]
+      }
+    },
+    "over_limit": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "over_limit",
+        "launch": {
+          "strategy": "linux_fork",
+          "launcher_pid": 10193,
+          "measurement_pid": 10194,
+          "parent_death_signal": 9
+        },
+        "workload": {
+          "synthetic_data": true,
+          "backends": 2,
+          "sensors_generated": 100,
+          "networks_generated": 1025,
+          "max_entries": 1024,
+          "first_batch_refreshes": 0,
+          "second_batch_refreshes": 100,
+          "json_roundtrip": true
+        },
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 1172,
+            "peak_bytes": 1200128,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 2392,
+            "peak_bytes": 2449408,
+            "elapsed_ns": 774118,
+            "max_json_bytes": 28457
+          },
+          {
+            "phase": "collected",
+            "calls": 2,
+            "peak_raw": 2680,
+            "peak_bytes": 2744320,
+            "elapsed_ns": 35321994,
+            "max_json_bytes": 28457
+          }
+        ]
+      }
+    }
+  },
+  "source_and_binaries_unchanged": true
+}

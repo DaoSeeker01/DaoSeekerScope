@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "614982cba8fffdd6e47bbc5823a93aeda498cbd4",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 260,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "ac0060d5093322fecd3facb9b266b53f2dd92139e60722aafd971b6f52cbc4f6",
+      "files": 17
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "30a80ebc0e31c15ed38f06b4f8113257d038a4d02f8fc1343f4f6ae10e8ad668",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "cc4137f89af67b033d1c5107c22301c68a95a7aed80ccfb5eb237e48a4ce57a5",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "baf50911cc72178ea321b6bc51808b4ebf561648ac5d3ab813ab4a9e76463290",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "e8925ab27d4b9603077fec47c1df9e91f294bfe482950c1f81f7bac52ee777b4",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "12411a5980982c723a646e54ab910103c7086037433a0ff9a9518323b7a53cfc",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "4231f370e61f2ababd8013da3ca6845a57eaa6457bbe0932beed6ace389dc9b5",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "42399c4c2a4545b02726a7fca4492196f4471346ed04bfd03c3f9a45ceabccb1",
+      "files": 7
+    }
+  ]
+}

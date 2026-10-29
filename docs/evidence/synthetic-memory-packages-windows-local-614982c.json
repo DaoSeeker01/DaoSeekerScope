@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "614982cba8fffdd6e47bbc5823a93aeda498cbd4",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 268,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "32bf5ea624d24e920b8fa3a971020ecb118f7010c06db54b7370b5d1bb960f77",
+      "files": 17
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "30a80ebc0e31c15ed38f06b4f8113257d038a4d02f8fc1343f4f6ae10e8ad668",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "cc4137f89af67b033d1c5107c22301c68a95a7aed80ccfb5eb237e48a4ce57a5",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "baf50911cc72178ea321b6bc51808b4ebf561648ac5d3ab813ab4a9e76463290",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "e8925ab27d4b9603077fec47c1df9e91f294bfe482950c1f81f7bac52ee777b4",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "12411a5980982c723a646e54ab910103c7086037433a0ff9a9518323b7a53cfc",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "2ad8be835fb3b3184dd53de62884cbe9100d98b0abefb563423204711a4d0616",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "ba92878344dc3f6edb499c386e1afc67523bae578d20658f517c69e4c157ff40",
+      "files": 7
+    }
+  ]
+}
