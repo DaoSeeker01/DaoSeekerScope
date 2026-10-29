@@ -1,0 +1,716 @@
+{
+  "overall": "passed",
+  "recorded_at": "2026-10-29T01:31:14.485288+00:00",
+  "git_revision": "da378db4038b9792ac9ac15c016cb93ce08ba60b",
+  "git_dirty": false,
+  "system": "Windows",
+  "os_release": "11",
+  "machine": "AMD64",
+  "profile": "release",
+  "probe_format": 2,
+  "features": "default serde; target desktop backend",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "target": "x86_64-pc-windows-msvc",
+  "scope": "process lifetime high-water; not allocator bytes or leak proof",
+  "options": {
+    "timeout_ms": 2000,
+    "max_entries": 128,
+    "sensitive": false
+  },
+  "c_compiler": "19.51.36260.0",
+  "c_build": "MSVC /W4 /WX /O2 /std:c11; release import library; Psapi.lib",
+  "synthetic_scope": "two Custom fixture backends; not hardware evidence or production FFI performance",
+  "binary_sha256": {
+    "ffi-memory-probe.exe": "325d47c6e0daca8cf747737b73d28ef78963c5ab3f5b1851da399671f3f02e22",
+    "daoseeker_scope_ffi.dll": "d920619e278cd4c7b8cb837d639ad062ae6f9aa6d901e918cf22c5e814080bff",
+    "dscope.exe": "55bc23ec56da995c9bfa71edb8b86ca6dee877886b0c427ac89f23fb6d716089",
+    "synthetic-memory-probe.exe": "b538f0910e0155f9dc8feb6d5422e60b1c58e1300b0970abb267933e6ab76d50",
+    "synthetic_memory.dll": "41b777cf75c73eb5e1c21d30ec239bcfa80217ddfb74854baa4f19450eb66f57"
+  },
+  "hardware": {
+    "cpu_brand": {
+      "value": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793237478757,
+      "reason": null
+    },
+    "logical_count": {
+      "value": 12,
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793237478757,
+      "reason": null
+    },
+    "total_usable_bytes": {
+      "value": 17009004544,
+      "availability": "available",
+      "source": "win32",
+      "observed_at": 1793237478787,
+      "reason": null
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "measurements": {
+    "calibrate": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "calibrate",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 3836,
+          "measurement_pid": 3836,
+          "parent_death_signal": 0
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 7876608,
+            "peak_bytes": 7876608,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 74989568,
+            "peak_bytes": 74989568,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 74989568,
+            "peak_bytes": 74989568,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          }
+        ]
+      }
+    },
+    "cached": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "cached",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 17076,
+          "measurement_pid": 17076,
+          "parent_death_signal": 0
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 7880704,
+            "peak_bytes": 7880704,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 11714560,
+            "peak_bytes": 11714560,
+            "elapsed_ns": 30537300,
+            "max_json_bytes": 25482
+          },
+          {
+            "phase": "collected",
+            "calls": 100,
+            "peak_raw": 11935744,
+            "peak_bytes": 11935744,
+            "elapsed_ns": 281268500,
+            "max_json_bytes": 25482
+          },
+          {
+            "phase": "collected",
+            "calls": 300,
+            "peak_raw": 11935744,
+            "peak_bytes": 11935744,
+            "elapsed_ns": 560868000,
+            "max_json_bytes": 25482
+          }
+        ]
+      }
+    },
+    "fresh": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "fresh",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 9752,
+          "measurement_pid": 9752,
+          "parent_death_signal": 0
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 7892992,
+            "peak_bytes": 7892992,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 11747328,
+            "peak_bytes": 11747328,
+            "elapsed_ns": 35540099,
+            "max_json_bytes": 25482
+          },
+          {
+            "phase": "collected",
+            "calls": 10,
+            "peak_raw": 12087296,
+            "peak_bytes": 12087296,
+            "elapsed_ns": 39705799,
+            "max_json_bytes": 25482
+          },
+          {
+            "phase": "collected",
+            "calls": 30,
+            "peak_raw": 12103680,
+            "peak_bytes": 12103680,
+            "elapsed_ns": 88174299,
+            "max_json_bytes": 25482
+          }
+        ]
+      }
+    }
+  },
+  "phase": "complete",
+  "synthetic_measurements": {
+    "calibrate": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "calibrate",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 3496,
+          "measurement_pid": 3496,
+          "parent_death_signal": 0
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 4034560,
+            "peak_bytes": 4034560,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 71147520,
+            "peak_bytes": 71147520,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 71147520,
+            "peak_bytes": 71147520,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          }
+        ]
+      }
+    },
+    "synthetic": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "synthetic",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 12232,
+          "measurement_pid": 12232,
+          "parent_death_signal": 0
+        },
+        "workload": {
+          "synthetic_data": true,
+          "backends": 2,
+          "sensors_generated": 100,
+          "networks_generated": 1024,
+          "max_entries": 1024,
+          "first_batch_refreshes": 0,
+          "second_batch_refreshes": 100,
+          "json_roundtrip": true
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 4034560,
+            "peak_bytes": 4034560,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 5648384,
+            "peak_bytes": 5648384,
+            "elapsed_ns": 6702300,
+            "max_json_bytes": 378465
+          },
+          {
+            "phase": "collected",
+            "calls": 2,
+            "peak_raw": 6074368,
+            "peak_bytes": 6074368,
+            "elapsed_ns": 392061999,
+            "max_json_bytes": 378465
+          }
+        ]
+      }
+    },
+    "over_limit": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "over_limit",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 8084,
+          "measurement_pid": 8084,
+          "parent_death_signal": 0
+        },
+        "workload": {
+          "synthetic_data": true,
+          "backends": 2,
+          "sensors_generated": 100,
+          "networks_generated": 1025,
+          "max_entries": 1024,
+          "first_batch_refreshes": 0,
+          "second_batch_refreshes": 100,
+          "json_roundtrip": true
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 4034560,
+            "peak_bytes": 4034560,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 4800512,
+            "peak_bytes": 4800512,
+            "elapsed_ns": 763800,
+            "max_json_bytes": 28457
+          },
+          {
+            "phase": "collected",
+            "calls": 2,
+            "peak_raw": 5292032,
+            "peak_bytes": 5292032,
+            "elapsed_ns": 47441299,
+            "max_json_bytes": 28457
+          }
+        ]
+      }
+    }
+  },
+  "resident_regression": {
+    "native_calibration": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "resident_calibrate",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 7912,
+          "measurement_pid": 7912,
+          "parent_death_signal": 0
+        },
+        "resident_metric": "working_set_size",
+        "resident_raw_unit": "bytes",
+        "resident_multiplier": 1,
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 7876608,
+            "peak_bytes": 7876608,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 7876608,
+            "resident_bytes": 7876608
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 74989568,
+            "peak_bytes": 74989568,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 74989568,
+            "resident_bytes": 74989568
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 74989568,
+            "peak_bytes": 74989568,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 7876608,
+            "resident_bytes": 7876608
+          }
+        ]
+      },
+      "analysis": {
+        "calibration_growth_bytes": 67112960,
+        "passed": true
+      }
+    },
+    "synthetic_calibration": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "resident_calibrate",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 7732,
+          "measurement_pid": 7732,
+          "parent_death_signal": 0
+        },
+        "resident_metric": "working_set_size",
+        "resident_raw_unit": "bytes",
+        "resident_multiplier": 1,
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 4034560,
+            "peak_bytes": 4034560,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 4034560,
+            "resident_bytes": 4034560
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 71147520,
+            "peak_bytes": 71147520,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 71147520,
+            "resident_bytes": 71147520
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 71147520,
+            "peak_bytes": 71147520,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 4034560,
+            "resident_bytes": 4034560
+          }
+        ]
+      },
+      "analysis": {
+        "calibration_growth_bytes": 67112960,
+        "passed": true
+      }
+    },
+    "cached": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "growth_cached",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 9132,
+          "measurement_pid": 9132,
+          "parent_death_signal": 0
+        },
+        "resident_metric": "working_set_size",
+        "resident_raw_unit": "bytes",
+        "resident_multiplier": 1,
+        "growth_plan": {
+          "warmup_calls": 1000,
+          "tail_budget_bytes": 16777216
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 7892992,
+            "peak_bytes": 7892992,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 7892992,
+            "resident_bytes": 7892992
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 11759616,
+            "peak_bytes": 11759616,
+            "elapsed_ns": 25005999,
+            "max_json_bytes": 25482,
+            "resident_raw": 11534336,
+            "resident_bytes": 11534336
+          },
+          {
+            "phase": "collected",
+            "calls": 100,
+            "peak_raw": 12066816,
+            "peak_bytes": 12066816,
+            "elapsed_ns": 273185900,
+            "max_json_bytes": 25482,
+            "resident_raw": 11902976,
+            "resident_bytes": 11902976
+          },
+          {
+            "phase": "collected",
+            "calls": 1000,
+            "peak_raw": 12066816,
+            "peak_bytes": 12066816,
+            "elapsed_ns": 2443981100,
+            "max_json_bytes": 25482,
+            "resident_raw": 12066816,
+            "resident_bytes": 12066816
+          },
+          {
+            "phase": "collected",
+            "calls": 2000,
+            "peak_raw": 12066816,
+            "peak_bytes": 12066816,
+            "elapsed_ns": 2695400600,
+            "max_json_bytes": 25482,
+            "resident_raw": 12066816,
+            "resident_bytes": 12066816
+          },
+          {
+            "phase": "collected",
+            "calls": 3000,
+            "peak_raw": 12271616,
+            "peak_bytes": 12271616,
+            "elapsed_ns": 2653534399,
+            "max_json_bytes": 25482,
+            "resident_raw": 12259328,
+            "resident_bytes": 12259328
+          },
+          {
+            "phase": "collected",
+            "calls": 4000,
+            "peak_raw": 12271616,
+            "peak_bytes": 12271616,
+            "elapsed_ns": 2691871699,
+            "max_json_bytes": 25482,
+            "resident_raw": 12259328,
+            "resident_bytes": 12259328
+          },
+          {
+            "phase": "collected",
+            "calls": 5000,
+            "peak_raw": 12271616,
+            "peak_bytes": 12271616,
+            "elapsed_ns": 2646366500,
+            "max_json_bytes": 25482,
+            "resident_raw": 12259328,
+            "resident_bytes": 12259328
+          }
+        ]
+      },
+      "analysis": {
+        "warmup_calls": 1000,
+        "tail_samples": 5,
+        "first_resident_bytes": 12066816,
+        "last_resident_bytes": 12259328,
+        "net_change_bytes": 192512,
+        "tail_min_bytes": 12066816,
+        "tail_max_bytes": 12259328,
+        "tail_range_bytes": 192512,
+        "budget_bytes": 16777216,
+        "within_budget": true,
+        "scope": "finite sampled OS resident accounting; not allocator attribution or leak proof"
+      }
+    },
+    "synthetic_rebuild": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "growth_synthetic",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 4232,
+          "measurement_pid": 4232,
+          "parent_death_signal": 0
+        },
+        "resident_metric": "working_set_size",
+        "resident_raw_unit": "bytes",
+        "resident_multiplier": 1,
+        "growth_plan": {
+          "warmup_calls": 10,
+          "tail_budget_bytes": 16777216
+        },
+        "workload": {
+          "synthetic_data": true,
+          "backends": 2,
+          "sensors_generated": 100,
+          "networks_generated": 1024,
+          "max_entries": 1024,
+          "refreshes_per_batch": 100,
+          "batches": 60,
+          "json_roundtrip": true
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 4034560,
+            "peak_bytes": 4034560,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 4034560,
+            "resident_bytes": 4034560
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 6098944,
+            "peak_bytes": 6098944,
+            "elapsed_ns": 404584199,
+            "max_json_bytes": 378465,
+            "resident_raw": 5214208,
+            "resident_bytes": 5214208
+          },
+          {
+            "phase": "collected",
+            "calls": 10,
+            "peak_raw": 6426624,
+            "peak_bytes": 6426624,
+            "elapsed_ns": 3457369499,
+            "max_json_bytes": 378465,
+            "resident_raw": 5382144,
+            "resident_bytes": 5382144
+          },
+          {
+            "phase": "collected",
+            "calls": 20,
+            "peak_raw": 6426624,
+            "peak_bytes": 6426624,
+            "elapsed_ns": 3724312400,
+            "max_json_bytes": 378465,
+            "resident_raw": 6287360,
+            "resident_bytes": 6287360
+          },
+          {
+            "phase": "collected",
+            "calls": 30,
+            "peak_raw": 6426624,
+            "peak_bytes": 6426624,
+            "elapsed_ns": 3891142899,
+            "max_json_bytes": 378465,
+            "resident_raw": 5332992,
+            "resident_bytes": 5332992
+          },
+          {
+            "phase": "collected",
+            "calls": 40,
+            "peak_raw": 6426624,
+            "peak_bytes": 6426624,
+            "elapsed_ns": 3930821899,
+            "max_json_bytes": 378465,
+            "resident_raw": 5455872,
+            "resident_bytes": 5455872
+          },
+          {
+            "phase": "collected",
+            "calls": 50,
+            "peak_raw": 6430720,
+            "peak_bytes": 6430720,
+            "elapsed_ns": 3795056599,
+            "max_json_bytes": 378465,
+            "resident_raw": 5496832,
+            "resident_bytes": 5496832
+          },
+          {
+            "phase": "collected",
+            "calls": 60,
+            "peak_raw": 6447104,
+            "peak_bytes": 6447104,
+            "elapsed_ns": 3739379000,
+            "max_json_bytes": 378465,
+            "resident_raw": 5468160,
+            "resident_bytes": 5468160
+          }
+        ]
+      },
+      "analysis": {
+        "warmup_calls": 10,
+        "tail_samples": 6,
+        "first_resident_bytes": 5382144,
+        "last_resident_bytes": 5468160,
+        "net_change_bytes": 86016,
+        "tail_min_bytes": 5332992,
+        "tail_max_bytes": 6287360,
+        "tail_range_bytes": 954368,
+        "budget_bytes": 16777216,
+        "within_budget": true,
+        "scope": "finite sampled OS resident accounting; not allocator attribution or leak proof"
+      }
+    }
+  },
+  "source_and_binaries_unchanged": true
+}

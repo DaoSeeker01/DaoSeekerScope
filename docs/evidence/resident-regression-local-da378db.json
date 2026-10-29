@@ -1,0 +1,59 @@
+{
+  "overall": "passed",
+  "date": "2026-10-29",
+  "source_commit": "da378db4038b9792ac9ac15c016cb93ce08ba60b",
+  "reports": {
+    "resident-regression-windows-local-da378db.json": {
+      "sha256": "f305406ca69a8c98eb240338cce9a66eb0df55599b9cca54b9f9d731476054d9",
+      "original_sha256": "f305406ca69a8c98eb240338cce9a66eb0df55599b9cca54b9f9d731476054d9"
+    },
+    "resident-regression-native-windows-local-da378db.json": {
+      "sha256": "f74d1bfff465f2b12759ba3ce1fa3becc612bcf0a5fe2314880e8f348bb11d54",
+      "original_sha256": "e749466acf4623128b4a3aa4a3847cdff305737781ca90f9fe6fb95113ef253d"
+    }
+  },
+  "archive_digest_encoding": "SHA-256 of canonical UTF-8 LF Git blob bytes; original hashes retained",
+  "frozen_checks": [
+    "Windows native/synthetic peak and resident calibration, repeated workload and tail budget",
+    "native CLI/C/Python"
+  ],
+  "precommit_checks": {
+    "note": "Checks ran on subsequently committed file content; frozen native checks assert source tuple independently",
+    "rust_passed": 268,
+    "rust_failed": 0,
+    "python_passed": 248,
+    "python_skipped": 5,
+    "python_failed": 0,
+    "probe_tests": 41,
+    "new_resident_tests": 9,
+    "commands": [
+      "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+      "ruff format --check scripts tests examples/collect.py",
+      "ruff check scripts tests examples/collect.py",
+      "mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+      "python -m unittest discover -s tests -p test_*.py",
+      "python scripts/check_project.py",
+      "actionlint",
+      "git diff --check"
+    ],
+    "rust_log_sha256": "82eac9fb18d50c0ed6a67d6c2c7a5baebabddd991267367a478dc04fe01d1fed",
+    "python_log_sha256": "55c17ef6c92e60e18bbef888c3315c81df6be5dba5df5ba0706bccf400f0e2a7"
+  },
+  "development_failure_fixed": {
+    "initial": "mypy inferred object for heterogeneous test observation/accepted dictionary; one indexing error",
+    "fix": "explicit dict[str, Any] test type; full 65-file mypy and 253-case unittest passed afterward"
+  },
+  "public_rust_api_changed": false,
+  "dependencies_or_features_changed": false,
+  "c_abi": 1,
+  "snapshot_schema": 1,
+  "private_probe_format": 2,
+  "license": "MIT",
+  "not_run_locally": [
+    "Linux/macOS native resident regression (covered separately by CI)",
+    "independent eight-crate rerun (covered by CI)",
+    "hour/day scale memory growth or allocator attribution",
+    "long fuzz",
+    "formal publication"
+  ]
+}

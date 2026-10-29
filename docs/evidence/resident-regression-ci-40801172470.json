@@ -1,0 +1,559 @@
+{
+  "overall": "passed",
+  "date": "2026-10-29",
+  "run_id": 40801172470,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470",
+  "source_commit": "da378db4038b9792ac9ac15c016cb93ce08ba60b",
+  "implementation_commit": "da378db4038b9792ac9ac15c016cb93ce08ba60b",
+  "source_files": {
+    "docs/research/ffi_memory_probe.c": "59b1ab5d135142f507e2816ebba95bad90c05b4f1aae9508c50ec691253f7408",
+    "scripts/peak_memory.py": "59686797d3e4187b6a3a7fdcfd2ac817769e2bbb1aefcc53a53e9254cacbfb6e",
+    "scripts/build_c_example.ps1": "3904907270f8c445121d91b822c51a947a7a1397f0b56e2d9fce7e812449cdd6",
+    "tests/test_peak_memory.py": "58b0f967f0a6c656f209d220b1a81cb9cf815f7da1272a535d452fc946e250e9",
+    ".github/workflows/ci.yml": "e18d69ec23b518b21bf20072669756698aee5c2b1275439728aa101d43ffc266",
+    "crates/daoseeker-scope/Cargo.toml": "ccbf877b212c25b2bdbc2a23036c47e6562813bbe987490fa03fad41b070420c",
+    "crates/daoseeker-scope/examples/synthetic_memory.rs": "fb102d8f768baceb14693820be8ae9d53494840377d79a647fbe0a2691d92787"
+  },
+  "platforms": {
+    "windows": {
+      "archives": 8,
+      "isolated_rust_tests": 268,
+      "python_passed": 248,
+      "python_skipped": 5,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67112960,
+      "cached_final_peak_bytes": 11194368,
+      "fresh_final_peak_bytes": 11321344,
+      "baseline_peak_bytes": {
+        "cached": 7745536,
+        "fresh": 7741440
+      },
+      "synthetic_final_peak_bytes": {
+        "synthetic": 5681152,
+        "over_limit": 4980736
+      },
+      "resident_analysis": {
+        "native_calibration": {
+          "calibration_growth_bytes": 67112960,
+          "passed": true
+        },
+        "synthetic_calibration": {
+          "calibration_growth_bytes": 67112960,
+          "passed": true
+        },
+        "cached": {
+          "warmup_calls": 1000,
+          "tail_samples": 5,
+          "first_resident_bytes": 11063296,
+          "last_resident_bytes": 11419648,
+          "net_change_bytes": 356352,
+          "tail_min_bytes": 11063296,
+          "tail_max_bytes": 11448320,
+          "tail_range_bytes": 385024,
+          "budget_bytes": 16777216,
+          "within_budget": true,
+          "scope": "finite sampled OS resident accounting; not allocator attribution or leak proof"
+        },
+        "synthetic_rebuild": {
+          "warmup_calls": 10,
+          "tail_samples": 6,
+          "first_resident_bytes": 4820992,
+          "last_resident_bytes": 5050368,
+          "net_change_bytes": 229376,
+          "tail_min_bytes": 4820992,
+          "tail_max_bytes": 5636096,
+          "tail_range_bytes": 815104,
+          "budget_bytes": 16777216,
+          "within_budget": true,
+          "scope": "finite sampled OS resident accounting; not allocator attribution or leak proof"
+        }
+      }
+    },
+    "linux": {
+      "archives": 8,
+      "isolated_rust_tests": 260,
+      "python_passed": 253,
+      "python_skipped": 0,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67108864,
+      "cached_final_peak_bytes": 2306048,
+      "fresh_final_peak_bytes": 2588672,
+      "baseline_peak_bytes": {
+        "cached": 1196032,
+        "fresh": 1200128
+      },
+      "synthetic_final_peak_bytes": {
+        "synthetic": 3584000,
+        "over_limit": 2666496
+      },
+      "resident_analysis": {
+        "native_calibration": {
+          "calibration_growth_bytes": 67174400,
+          "passed": true
+        },
+        "synthetic_calibration": {
+          "calibration_growth_bytes": 67174400,
+          "passed": true
+        },
+        "cached": {
+          "warmup_calls": 1000,
+          "tail_samples": 5,
+          "first_resident_bytes": 2666496,
+          "last_resident_bytes": 2666496,
+          "net_change_bytes": 0,
+          "tail_min_bytes": 2666496,
+          "tail_max_bytes": 2666496,
+          "tail_range_bytes": 0,
+          "budget_bytes": 16777216,
+          "within_budget": true,
+          "scope": "finite sampled OS resident accounting; not allocator attribution or leak proof"
+        },
+        "synthetic_rebuild": {
+          "warmup_calls": 10,
+          "tail_samples": 6,
+          "first_resident_bytes": 3837952,
+          "last_resident_bytes": 3837952,
+          "net_change_bytes": 0,
+          "tail_min_bytes": 3837952,
+          "tail_max_bytes": 3837952,
+          "tail_range_bytes": 0,
+          "budget_bytes": 16777216,
+          "within_budget": true,
+          "scope": "finite sampled OS resident accounting; not allocator attribution or leak proof"
+        }
+      }
+    },
+    "macos": {
+      "archives": 8,
+      "isolated_rust_tests": 265,
+      "python_passed": 252,
+      "python_skipped": 1,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67125248,
+      "cached_final_peak_bytes": 10813440,
+      "fresh_final_peak_bytes": 11108352,
+      "baseline_peak_bytes": {
+        "cached": 5767168,
+        "fresh": 5767168
+      },
+      "synthetic_final_peak_bytes": {
+        "synthetic": 7733248,
+        "over_limit": 7061504
+      },
+      "resident_analysis": {
+        "native_calibration": {
+          "calibration_growth_bytes": 67141632,
+          "passed": true
+        },
+        "synthetic_calibration": {
+          "calibration_growth_bytes": 67141632,
+          "passed": true
+        },
+        "cached": {
+          "warmup_calls": 1000,
+          "tail_samples": 5,
+          "first_resident_bytes": 10797056,
+          "last_resident_bytes": 10797056,
+          "net_change_bytes": 0,
+          "tail_min_bytes": 10797056,
+          "tail_max_bytes": 10797056,
+          "tail_range_bytes": 0,
+          "budget_bytes": 16777216,
+          "within_budget": true,
+          "scope": "finite sampled OS resident accounting; not allocator attribution or leak proof"
+        },
+        "synthetic_rebuild": {
+          "warmup_calls": 10,
+          "tail_samples": 6,
+          "first_resident_bytes": 7847936,
+          "last_resident_bytes": 7979008,
+          "net_change_bytes": 131072,
+          "tail_min_bytes": 7847936,
+          "tail_max_bytes": 7979008,
+          "tail_range_bytes": 131072,
+          "budget_bytes": 16777216,
+          "within_budget": true,
+          "scope": "finite sampled OS resident accounting; not allocator attribution or leak proof"
+        }
+      }
+    }
+  },
+  "jobs": [
+    {
+      "databaseId": 123209373575,
+      "name": "linux-container",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470/job/123209373575"
+    },
+    {
+      "databaseId": 123209373813,
+      "name": "supply-chain",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470/job/123209373813"
+    },
+    {
+      "databaseId": 123209373847,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470/job/123209373847"
+    },
+    {
+      "databaseId": 123209373880,
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470/job/123209373880"
+    },
+    {
+      "databaseId": 123209373911,
+      "name": "miri",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470/job/123209373911"
+    },
+    {
+      "databaseId": 123209373930,
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470/job/123209373930"
+    },
+    {
+      "databaseId": 123209374025,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470/job/123209374025"
+    },
+    {
+      "databaseId": 123209374052,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470/job/123209374052"
+    }
+  ],
+  "reports": {
+    "resident-regression-windows-40801172470.json": {
+      "sha256": "bb436c928e987215d80e8e0b9b822f82ffa2aa2e9bbf4d9778396bd8d4031bac",
+      "original_sha256": "bb436c928e987215d80e8e0b9b822f82ffa2aa2e9bbf4d9778396bd8d4031bac",
+      "artifact": "native-evidence-Windows-X64"
+    },
+    "resident-regression-packages-windows-40801172470.json": {
+      "sha256": "fb9034f4fa17cdc9f32ff23fbb39286a688a2f29e48f24902c828825035a7e2a",
+      "original_sha256": "571b586e1fe5fd38eb71d2d366fc2458df67aa0f2233de4dfa19dbfaa0d2939d",
+      "artifact": "package-evidence-Windows-X64"
+    },
+    "resident-regression-native-windows-40801172470.json": {
+      "sha256": "a9e33bf9644a203979b65795d531be353a09d02948fee7c614255e871c56ed97",
+      "original_sha256": "b986bb6ea3f23e2a8d9005f375e21e45647e6ae1454f1c4d424f66961677f630",
+      "artifact": "native-evidence-Windows-X64"
+    },
+    "resident-regression-linux-40801172470.json": {
+      "sha256": "a5eec0b1504bab8d9926f8780673cb25999ccdcde78a0f44982f3743bad1c8d1",
+      "original_sha256": "a5eec0b1504bab8d9926f8780673cb25999ccdcde78a0f44982f3743bad1c8d1",
+      "artifact": "native-evidence-Linux-X64"
+    },
+    "resident-regression-packages-linux-40801172470.json": {
+      "sha256": "b9774189d006fefa8f9edd5ffaae5c39e248083fbb73f80e6a5bf677efca9544",
+      "original_sha256": "b9774189d006fefa8f9edd5ffaae5c39e248083fbb73f80e6a5bf677efca9544",
+      "artifact": "package-evidence-Linux-X64"
+    },
+    "resident-regression-native-linux-40801172470.json": {
+      "sha256": "21c7642678fcd81f563f56062b5614889c5e85a171b2b5adf13b57016b09763a",
+      "original_sha256": "21c7642678fcd81f563f56062b5614889c5e85a171b2b5adf13b57016b09763a",
+      "artifact": "native-evidence-Linux-X64"
+    },
+    "resident-regression-macos-40801172470.json": {
+      "sha256": "1fe1e34f16d3e29651502500dbc159ab5dde591de911238f7029e3c26c8d5445",
+      "original_sha256": "1fe1e34f16d3e29651502500dbc159ab5dde591de911238f7029e3c26c8d5445",
+      "artifact": "native-evidence-macOS-ARM64"
+    },
+    "resident-regression-packages-macos-40801172470.json": {
+      "sha256": "6ea5e67a5b444bc122103837b217db0fac2cd696b91bc6ed27d45f4ec6c2ccf6",
+      "original_sha256": "6ea5e67a5b444bc122103837b217db0fac2cd696b91bc6ed27d45f4ec6c2ccf6",
+      "artifact": "package-evidence-macOS-ARM64"
+    },
+    "resident-regression-native-macos-40801172470.json": {
+      "sha256": "37aae11ad5f78ac8395e3ec772c9dbc0348718d2e2a800b814f7b4135cea44e0",
+      "original_sha256": "37aae11ad5f78ac8395e3ec772c9dbc0348718d2e2a800b814f7b4135cea44e0",
+      "artifact": "native-evidence-macOS-ARM64"
+    },
+    "resident-regression-cli-windows-40801172470.json": {
+      "sha256": "75bc070576b86239056f0e72bd874156c4d6bbbcdbe2417462104a4ed1085c21",
+      "original_sha256": "6911d1e6f746f8df04d1d1734c9d23f5fdc9106b94cc09c70b74b71b34ce6ea7",
+      "artifact": "cli-bundle-evidence-Windows-X64"
+    },
+    "resident-regression-sdk-windows-40801172470.json": {
+      "sha256": "e7654ad5603cda32406923f7568a4010d8f6a7065292aaf0d58074e8ef51c594",
+      "original_sha256": "01a839daa462fd228dbfc0f7c24b18322560188a1283e548af02a6710767ca24",
+      "artifact": "ffi-sdk-evidence-Windows-X64"
+    },
+    "resident-regression-cli-linux-40801172470.json": {
+      "sha256": "813deb884143e300379c3bf82e4fe0789f7414eadbd2b0c7667a4674da2eded5",
+      "original_sha256": "813deb884143e300379c3bf82e4fe0789f7414eadbd2b0c7667a4674da2eded5",
+      "artifact": "cli-bundle-evidence-Linux-X64"
+    },
+    "resident-regression-sdk-linux-40801172470.json": {
+      "sha256": "9c7957c74a45adfce34522b738f767bd3ac590fd9d6537d11708f326e4171fd7",
+      "original_sha256": "9c7957c74a45adfce34522b738f767bd3ac590fd9d6537d11708f326e4171fd7",
+      "artifact": "ffi-sdk-evidence-Linux-X64"
+    },
+    "resident-regression-older-userlands-linux-40801172470.json": {
+      "sha256": "120b7b1d05acba41be7ca8d1ea5ccef0c18a2c0c5ff81597ffc5c7fb599c1ba0",
+      "original_sha256": "120b7b1d05acba41be7ca8d1ea5ccef0c18a2c0c5ff81597ffc5c7fb599c1ba0",
+      "artifact": "native-evidence-Linux-X64"
+    }
+  },
+  "archive_digest_encoding": "SHA-256 of archived UTF-8 LF bytes; original artifact hash also preserved",
+  "artifact_metadata": [
+    {
+      "name": "procfs-fuzz-evidence",
+      "digest": "sha256:59509f8c51f2995d7df486bd3e3584ad4a5e4ba9f118a398af9ba61d5f67a732",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "package-evidence-Windows-X64",
+      "digest": "sha256:9ee1ec770190e5b4d46dffc76f76f169803292fe567d9a96b49d331c9aad2d2b",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "native-evidence-Windows-X64",
+      "digest": "sha256:b279cf5b6014f541dc35ba25d3ea42cda2d301c520bc7124d81e60b3f581b1bf",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "digest": "sha256:e1ada5fe15119d1d3ce2ba865bf555d275a81e4fc7628b07803ac0a1ca30a34f",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "digest": "sha256:9630ec12387aadfdbbaab68f8c98fd984725749746e8eeb327798c47f58a6fb6",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "package-evidence-Linux-X64",
+      "digest": "sha256:90bb1834dec7b9a38d1903efeb85e7fda26c8824fe628ad90a89c84e0506aae7",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "digest": "sha256:bf0c6917e1c606da8096a72f63c1a3c7e19103f7fded76e0b452eccd4e8f0fe7",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "native-evidence-Linux-X64",
+      "digest": "sha256:f9e55a2f816fb7256facad461e1830baa5e3a2cdc1a88c735a4d83a53f87558f",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "digest": "sha256:c3032842117381d72e97cca310a2b032da8f68bda2351880f73bd39e3d736ef3",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "linux-container-evidence",
+      "digest": "sha256:b5f67c2005f2ea0a7b12f2d12b1afeb943a7c2d3deec92890e962da9541097ed",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "digest": "sha256:0d38680d25062adaaaa8f7255b6af83065d838a7755c4f3a5992e1a535043ee2",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    },
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "digest": "sha256:08a0082876f243a23963f64d2cb1b903f8f0cc5227784ddb8fc7a693fb231ca5",
+      "head_sha": "da378db4038b9792ac9ac15c016cb93ce08ba60b"
+    }
+  ],
+  "all_jobs_log_sha256": "f0785dc74f90f5cc9e7e5ec7f404386591577ee08ba09b63512406b828302ca4",
+  "quality_gates": {
+    "miri_passed": 8,
+    "asan_passed": 10,
+    "short_fuzz_targets": 12,
+    "fuzz_runs_and_seconds": [
+      {
+        "runs": 358234,
+        "seconds": 61
+      },
+      {
+        "runs": 7273591,
+        "seconds": 61
+      },
+      {
+        "runs": 19589046,
+        "seconds": 61
+      },
+      {
+        "runs": 1062305,
+        "seconds": 61
+      },
+      {
+        "runs": 3448751,
+        "seconds": 61
+      },
+      {
+        "runs": 19440933,
+        "seconds": 61
+      },
+      {
+        "runs": 19513475,
+        "seconds": 61
+      },
+      {
+        "runs": 18926545,
+        "seconds": 61
+      },
+      {
+        "runs": 3261727,
+        "seconds": 61
+      },
+      {
+        "runs": 4568716,
+        "seconds": 61
+      },
+      {
+        "runs": 29115726,
+        "seconds": 61
+      },
+      {
+        "runs": 30677111,
+        "seconds": 61
+      }
+    ],
+    "empty_proc": {
+      "status": "not_run",
+      "process_started": false
+    }
+  },
+  "measurement_scope": "existing native/synthetic peak regression plus current OS residency: 5000 cached collect/free calls or 60 synthetic collector lifetimes, each with 1 collect + 100 refresh/roundtrip. Tail max-min budget 16 MiB, warmup 1000 calls/10 batches. Independent 64 MiB calibration per driver; not long-term or allocator evidence",
+  "public_api_changed": false,
+  "abi": 1,
+  "snapshot_schema": 1,
+  "license": "MIT",
+  "dependencies_or_features_changed": false,
+  "published": false,
+  "private_probe_format": 2,
+  "linux_launch_control": {
+    "accepted": true,
+    "held_bytes": 134217728,
+    "direct": {
+      "format": 2,
+      "mode": "cached",
+      "launch": {
+        "strategy": "direct",
+        "launcher_pid": 10193,
+        "measurement_pid": 10193,
+        "parent_death_signal": 0
+      },
+      "metric": "ru_maxrss",
+      "raw_unit": "kibibytes",
+      "multiplier": 1024,
+      "pressure_bytes": 0,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 160724,
+          "peak_bytes": 164581376,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0
+        },
+        {
+          "phase": "collected",
+          "calls": 1,
+          "peak_raw": 160724,
+          "peak_bytes": 164581376,
+          "elapsed_ns": 1077640,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 100,
+          "peak_raw": 160724,
+          "peak_bytes": 164581376,
+          "elapsed_ns": 14448996,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 300,
+          "peak_raw": 160724,
+          "peak_bytes": 164581376,
+          "elapsed_ns": 29130320,
+          "max_json_bytes": 9525
+        }
+      ]
+    },
+    "isolated": {
+      "format": 2,
+      "mode": "cached",
+      "launch": {
+        "strategy": "linux_fork",
+        "launcher_pid": 10195,
+        "measurement_pid": 10196,
+        "parent_death_signal": 9
+      },
+      "metric": "ru_maxrss",
+      "raw_unit": "kibibytes",
+      "multiplier": 1024,
+      "pressure_bytes": 0,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 1168,
+          "peak_bytes": 1196032,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0
+        },
+        {
+          "phase": "collected",
+          "calls": 1,
+          "peak_raw": 2248,
+          "peak_bytes": 2301952,
+          "elapsed_ns": 1073654,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 100,
+          "peak_raw": 2248,
+          "peak_bytes": 2301952,
+          "elapsed_ns": 14673926,
+          "max_json_bytes": 9525
+        },
+        {
+          "phase": "collected",
+          "calls": 300,
+          "peak_raw": 2248,
+          "peak_bytes": 2301952,
+          "elapsed_ns": 29486603,
+          "max_json_bytes": 9525
+        }
+      ]
+    }
+  },
+  "linux_lifecycle": {
+    "passed": true,
+    "launch": {
+      "strategy": "linux_fork",
+      "launcher_pid": 10198,
+      "measurement_pid": 10199,
+      "parent_death_signal": 9
+    },
+    "worker_exit_state": "gone",
+    "worker_running": false,
+    "launcher_reaped": true
+  },
+  "new_resident_checks": {
+    "python_tests": 9,
+    "budget_bytes": 16777216,
+    "budget_changed_during_acceptance": false
+  },
+  "not_verified": [
+    "hour/day scale memory growth or allocator attribution",
+    "long-term fuzz",
+    "physical Linux/macOS and multi-group Windows",
+    "macOS distribution materials",
+    "exact minimum runtimes",
+    "formal release"
+  ]
+}

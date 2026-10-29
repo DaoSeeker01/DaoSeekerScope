@@ -1,0 +1,67 @@
+{
+  "overall": "passed",
+  "source_commit": "da378db4038b9792ac9ac15c016cb93ce08ba60b",
+  "source_dirty": false,
+  "target": "x86_64-unknown-linux-gnu",
+  "host": {
+    "system": "Linux",
+    "version": "#17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026",
+    "machine": "x86_64"
+  },
+  "version": "0.1.0",
+  "bundle_format": 2,
+  "abi_version": 1,
+  "schema_version": 1,
+  "archive_sha256": "ac746b1843f8b9b5622a358be87e6fb5cb15893114d6e79a670d152130335600",
+  "cli_sha256": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905",
+  "payload_files": 43,
+  "processes": 7,
+  "minimum_read_and_default_privacy": true,
+  "snapshot_schema_validated": true,
+  "posix_modes_verified": true,
+  "corrupt_update_rejected_before_install": true,
+  "same_candidate_two_slot_rollback": true,
+  "older_version_compatibility_tested": false,
+  "published": false,
+  "global_install_or_path_modified": false,
+  "publisher_authenticated": false,
+  "elf_image": {
+    "direct_dependencies": [
+      "libgcc_s.so.1",
+      "libc.so.6",
+      "ld-linux-x86-64.so.2"
+    ],
+    "required_symbol_versions": {
+      "ld-linux-x86-64.so.2": [
+        "GLIBC_2.3"
+      ],
+      "libc.so.6": [
+        "GLIBC_2.14",
+        "GLIBC_2.16",
+        "GLIBC_2.17",
+        "GLIBC_2.18",
+        "GLIBC_2.2.5",
+        "GLIBC_2.25",
+        "GLIBC_2.28",
+        "GLIBC_2.3",
+        "GLIBC_2.3.4",
+        "GLIBC_2.30",
+        "GLIBC_2.32",
+        "GLIBC_2.33",
+        "GLIBC_2.34"
+      ],
+      "libgcc_s.so.1": [
+        "GCC_3.0",
+        "GCC_3.3",
+        "GCC_4.2.0"
+      ]
+    },
+    "weak_symbol_versions": {},
+    "direct_dependencies_without_version_entries": [],
+    "highest_glibc_numeric_requirement": "GLIBC_2.34",
+    "minimum_glibc_or_distribution_verified": false,
+    "transitive_or_runtime_loads_inspected": false
+  },
+  "elf_inspections": 1,
+  "child_loader_overrides_cleared": true
+}

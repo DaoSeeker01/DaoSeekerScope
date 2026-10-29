@@ -1,0 +1,106 @@
+{
+  "overall": "passed",
+  "source_commit": "da378db4038b9792ac9ac15c016cb93ce08ba60b",
+  "source_dirty": false,
+  "product": "ffi_sdk",
+  "target": "x86_64-unknown-linux-gnu",
+  "host": {
+    "system": "Linux",
+    "version": "#17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026",
+    "machine": "x86_64"
+  },
+  "bundle_format": 4,
+  "abi_version": 1,
+  "schema_version": 1,
+  "archive_sha256": "21ebae4a636dbd556c2c69d06ccd79f0b8caeb11c5a4af94e9ba1ca523610943",
+  "header_sha256": "7ba816254bd0314ed26cd620a8d802578e153689ed17fbf7ccc4a75289a8e523",
+  "payload_files": 47,
+  "processes": 15,
+  "c_compile_and_runs": 3,
+  "python_collect_free_cycles": 300,
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "stale_copy_and_empty_free": true,
+  "corrupt_update_rejected_before_install": true,
+  "same_candidate_two_slot_rollback": true,
+  "older_version_compatibility_tested": false,
+  "published": false,
+  "global_install_or_path_modified": false,
+  "publisher_authenticated": false,
+  "library_sha256": "5bb39c224b3e37dd858a76f297bf87beecf9b66581858619a5cc15530b98b13c",
+  "elf_inspections": 6,
+  "elf_needed": {
+    "consumer": [
+      "libdaoseeker_scope_ffi.so",
+      "libc.so.6"
+    ],
+    "library": [
+      "libgcc_s.so.1",
+      "libc.so.6",
+      "ld-linux-x86-64.so.2"
+    ]
+  },
+  "elf_images": {
+    "consumer": {
+      "direct_dependencies": [
+        "libdaoseeker_scope_ffi.so",
+        "libc.so.6"
+      ],
+      "required_symbol_versions": {
+        "libc.so.6": [
+          "GLIBC_2.2.5",
+          "GLIBC_2.34",
+          "GLIBC_2.4"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [
+        "libdaoseeker_scope_ffi.so"
+      ],
+      "highest_glibc_numeric_requirement": "GLIBC_2.34",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    },
+    "library": {
+      "direct_dependencies": [
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "required_symbol_versions": {
+        "ld-linux-x86-64.so.2": [
+          "GLIBC_2.3"
+        ],
+        "libc.so.6": [
+          "GLIBC_2.14",
+          "GLIBC_2.16",
+          "GLIBC_2.17",
+          "GLIBC_2.18",
+          "GLIBC_2.2.5",
+          "GLIBC_2.25",
+          "GLIBC_2.28",
+          "GLIBC_2.3",
+          "GLIBC_2.3.4",
+          "GLIBC_2.30",
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "libgcc_s.so.1": [
+          "GCC_3.0",
+          "GCC_3.3",
+          "GCC_4.2.0"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [],
+      "highest_glibc_numeric_requirement": "GLIBC_2.34",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    }
+  },
+  "consumer_runpath": "$ORIGIN/../lib",
+  "child_loader_overrides_cleared": true,
+  "posix_modes_verified": true,
+  "minimum_glibc_or_distribution_verified": false
+}

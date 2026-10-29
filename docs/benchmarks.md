@@ -1,10 +1,29 @@
 # 性能基线
 
-## 固定轮次驻留内存回归
+## 固定轮次驻留内存回归（2026-10-29）
 
-2026-10-29 开发增量：为历史峰值增加当前驻留计量。固定执行 5000 次缓存 collect/free 和 60 批合成重建（每批 collect 一次、refresh 100 次并逐次 JSON 往返），预先设定热身后 16 MiB 波动预算。另有独立 64 MiB 校准；口径见 [ADR 0041](adr/0041-resident-regression.md)。
+干净源码 `da378db4038b9792ac9ac15c016cb93ce08ba60b` 的 [CI 40801172470](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470)八项任务通过；同一源码的 Windows 本机也已通过，[本机索引](evidence/resident-regression-local-da378db.json)与[三平台索引](evidence/resident-regression-ci-40801172470.json)保留原始报告、源码及产物哈希。
 
-Windows 开发试跑与三平台验收结果待归档。这是有限规模回归，不是长期无泄漏或 allocator 用量证明。
+本轮新增当前驻留内存计量，保留原历史峰值。原生进程执行 5000 次默认 C ABI collect/free，热身点为第 1000 次；另一个进程重建 60 批合成采集器，每批 collect 一次、refresh 100 次并逐次 JSON 往返，共 6000 次 refresh，热身点为第 10 批。原生 max_entries=128，合成为 1024；两者超时均为 2000 ms，默认脱敏。每个驱动程序都有独立 64 MiB 当前驻留校准，三平台均通过。
+
+事前固定的门槛为热身点及其后采样的 `max - min <= 16 MiB`，没有调整预算或移除不利样本。记录所有检查点，也记录首尾差。实现、采样点和单位见 [ADR 0041](adr/0041-resident-regression.md)。
+
+| 平台 · 工作负载 | 热身后首 / 末驻留 bytes | 尾部范围 bytes | 工作批次累计秒数 | 完整记录 |
+|---|---|---|---|---|
+| Windows x64 · 缓存 5000 次 | 11063296 / 11419648 | 385024 | 6.96 | [原始报告](evidence/resident-regression-windows-40801172470.json) |
+| Windows x64 · 重建 60 批 | 4820992 / 5050368 | 815104 | 20.19 | [原始报告](evidence/resident-regression-windows-40801172470.json) |
+| Linux x64 · 缓存 5000 次 | 2666496 / 2666496 | 0 | 0.73 | [原始报告](evidence/resident-regression-linux-40801172470.json) |
+| Linux x64 · 重建 60 批 | 3837952 / 3837952 | 0 | 15.74 | [原始报告](evidence/resident-regression-linux-40801172470.json) |
+| macOS ARM64 · 缓存 5000 次 | 10797056 / 10797056 | 0 | 0.36 | [原始报告](evidence/resident-regression-macos-40801172470.json) |
+| macOS ARM64 · 重建 60 批 | 7847936 / 7979008 | 131072 | 11.64 | [原始报告](evidence/resident-regression-macos-40801172470.json) |
+
+累计秒数只相加探针记录的工作批次，不含构建、启动和检查点采样开销，不承诺持续某个时长。均为 Rust 1.96.0、release、默认 serde 和优化 C11；OS、CPU、内存、编译器与原始单位在报告中。合成为两个 Custom backend、100 个传感器和 1024 条网络数据，不是实体设备观测或生产 FFI 的执行路径。
+
+Windows 为当前工作集，Linux 为近似 statm resident 页数乘实际页大小，macOS 为 Mach task resident_size 字节；Linux 沿用 fork 隔离。三者不是同一种 allocator 统计，不能作跨平台排名。当前驻留值可以下降，历史峰值不会下降。Linux 若出现平坦采样，也不能说明没有分配或没有泄漏。
+
+本轮结论仅为上述有限工作负载的采样范围符合 16 MiB 预算。共享页、allocator 缓存、工作集调整和采样间隔都会影响结果；未覆盖小时／天级运行、采样间的瞬时增长或 allocator 归因。三平台各八包、原生 CLI/C/Python、两平台候选安装回滚和 Linux 较低版本用户空间回归通过；独立 Rust 测试为 Windows/Linux/macOS 268/260/265，Python 通过 248/253/252、跳过 5/0/1。Miri 8、ASan 10、12 个短 fuzz 目标各至少 60 秒通过；空 `/proc` 整体覆盖仍被 OCI 拒绝，未运行。
+
+新增 9 项 Python 测试覆盖换算、负增长、预算越界、中途升高、缺失检查点和校准失败；失败观测与分析保留，旧成功状态作废。Rust API、依赖、feature、MIT、正式 C ABI 1、硬件 Schema 1 均不变，未正式发布。以下保留早期测量。
 
 ## 合成规模峰值验证（2026-10-29）
 
