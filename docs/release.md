@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-截至 2026-10-28，最新[三平台 CI 40669330970](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40669330970)八项任务通过，补充 release C ABI 的校准与进程峰值基线，见[性能报告](benchmarks.md)。当前仍为未发布 0.1.0；发布门槛与未完成项以 [v0.1 清单](v0.1-checklist.md)为准，历史审计见[记录](project-review-2026-10-27.md)。
+截至 2026-10-29，最新[三平台 CI 40792258046](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046)八项任务通过，补充 Linux 峰值测量启动隔离、128 MiB 父进程对照和父退出清理实验，见[性能报告](benchmarks.md)。当前仍为未发布 0.1.0；发布门槛与未完成项以 [v0.1 清单](v0.1-checklist.md)为准。
 
 ## 当前发布门槛
 

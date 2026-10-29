@@ -1,0 +1,312 @@
+{
+  "overall": "passed",
+  "recorded_at": "2026-10-29T00:12:04.067550+00:00",
+  "git_revision": "a5f50557a3032e9adb897eaede36ee449c97b1d3",
+  "git_dirty": false,
+  "system": "Linux",
+  "os_release": "7.0.0-1017-azure",
+  "machine": "x86_64",
+  "profile": "release",
+  "probe_format": 2,
+  "features": "default serde; target desktop backend",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "target": "x86_64-unknown-linux-gnu",
+  "scope": "process lifetime high-water; not allocator bytes or leak proof",
+  "options": {
+    "timeout_ms": 2000,
+    "max_entries": 128,
+    "sensitive": false
+  },
+  "c_compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "c_build": "cc -O2 -Wall -Wextra -Werror -std=c11; release shared library and rpath",
+  "binary_sha256": {
+    "ffi-memory-probe": "e4ff0dec2314583ca7a0be9fb3dfe82478e61ad3769d8598e22c966e29c7a986",
+    "libdaoseeker_scope_ffi.so": "5bb39c224b3e37dd858a76f297bf87beecf9b66581858619a5cc15530b98b13c",
+    "dscope": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905"
+  },
+  "hardware": {
+    "cpu_brand": {
+      "value": "AMD EPYC 9V74 80-Core Processor",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793232733482,
+      "reason": null
+    },
+    "logical_count": {
+      "value": 4,
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793232733482,
+      "reason": null
+    },
+    "total_usable_bytes": {
+      "value": 16760344576,
+      "availability": "available",
+      "source": "procfs",
+      "observed_at": 1793232733482,
+      "reason": null
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "measurements": {
+    "calibrate": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "calibrate",
+        "launch": {
+          "strategy": "linux_fork",
+          "launcher_pid": 9825,
+          "measurement_pid": 9826,
+          "parent_death_signal": 9
+        },
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 1168,
+            "peak_bytes": 1196032,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 66704,
+            "peak_bytes": 68304896,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 66704,
+            "peak_bytes": 68304896,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          }
+        ]
+      }
+    },
+    "cached": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "cached",
+        "launch": {
+          "strategy": "linux_fork",
+          "launcher_pid": 9827,
+          "measurement_pid": 9828,
+          "parent_death_signal": 9
+        },
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 1168,
+            "peak_bytes": 1196032,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 2336,
+            "peak_bytes": 2392064,
+            "elapsed_ns": 1272248,
+            "max_json_bytes": 9765
+          },
+          {
+            "phase": "collected",
+            "calls": 100,
+            "peak_raw": 2336,
+            "peak_bytes": 2392064,
+            "elapsed_ns": 28479013,
+            "max_json_bytes": 9765
+          },
+          {
+            "phase": "collected",
+            "calls": 300,
+            "peak_raw": 2336,
+            "peak_bytes": 2392064,
+            "elapsed_ns": 56432458,
+            "max_json_bytes": 9765
+          }
+        ]
+      }
+    },
+    "fresh": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "fresh",
+        "launch": {
+          "strategy": "linux_fork",
+          "launcher_pid": 9830,
+          "measurement_pid": 9831,
+          "parent_death_signal": 9
+        },
+        "metric": "ru_maxrss",
+        "raw_unit": "kibibytes",
+        "multiplier": 1024,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 1344,
+            "peak_bytes": 1376256,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 2604,
+            "peak_bytes": 2666496,
+            "elapsed_ns": 1207112,
+            "max_json_bytes": 9765
+          },
+          {
+            "phase": "collected",
+            "calls": 10,
+            "peak_raw": 2604,
+            "peak_bytes": 2666496,
+            "elapsed_ns": 7418072,
+            "max_json_bytes": 9765
+          },
+          {
+            "phase": "collected",
+            "calls": 30,
+            "peak_raw": 2604,
+            "peak_bytes": 2666496,
+            "elapsed_ns": 16183726,
+            "max_json_bytes": 9765
+          }
+        ]
+      }
+    }
+  },
+  "phase": "complete",
+  "launch_control": {
+    "accepted": true,
+    "held_bytes": 134217728,
+    "direct": {
+      "format": 2,
+      "mode": "cached",
+      "launch": {
+        "strategy": "direct",
+        "launcher_pid": 9862,
+        "measurement_pid": 9862,
+        "parent_death_signal": 0
+      },
+      "metric": "ru_maxrss",
+      "raw_unit": "kibibytes",
+      "multiplier": 1024,
+      "pressure_bytes": 0,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 160104,
+          "peak_bytes": 163946496,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0
+        },
+        {
+          "phase": "collected",
+          "calls": 1,
+          "peak_raw": 160104,
+          "peak_bytes": 163946496,
+          "elapsed_ns": 1257948,
+          "max_json_bytes": 9765
+        },
+        {
+          "phase": "collected",
+          "calls": 100,
+          "peak_raw": 160104,
+          "peak_bytes": 163946496,
+          "elapsed_ns": 27439615,
+          "max_json_bytes": 9765
+        },
+        {
+          "phase": "collected",
+          "calls": 300,
+          "peak_raw": 160104,
+          "peak_bytes": 163946496,
+          "elapsed_ns": 55988087,
+          "max_json_bytes": 9765
+        }
+      ]
+    },
+    "isolated": {
+      "format": 2,
+      "mode": "cached",
+      "launch": {
+        "strategy": "linux_fork",
+        "launcher_pid": 9864,
+        "measurement_pid": 9865,
+        "parent_death_signal": 9
+      },
+      "metric": "ru_maxrss",
+      "raw_unit": "kibibytes",
+      "multiplier": 1024,
+      "pressure_bytes": 0,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 1292,
+          "peak_bytes": 1323008,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0
+        },
+        {
+          "phase": "collected",
+          "calls": 1,
+          "peak_raw": 2520,
+          "peak_bytes": 2580480,
+          "elapsed_ns": 1169125,
+          "max_json_bytes": 9765
+        },
+        {
+          "phase": "collected",
+          "calls": 100,
+          "peak_raw": 2520,
+          "peak_bytes": 2580480,
+          "elapsed_ns": 28919833,
+          "max_json_bytes": 9765
+        },
+        {
+          "phase": "collected",
+          "calls": 300,
+          "peak_raw": 2520,
+          "peak_bytes": 2580480,
+          "elapsed_ns": 57010025,
+          "max_json_bytes": 9765
+        }
+      ]
+    }
+  },
+  "lifecycle": {
+    "passed": true,
+    "launch": {
+      "strategy": "linux_fork",
+      "launcher_pid": 9867,
+      "measurement_pid": 9868,
+      "parent_death_signal": 9
+    },
+    "worker_exit_state": "gone",
+    "worker_running": false,
+    "launcher_reaped": true
+  },
+  "source_and_binaries_unchanged": true
+}

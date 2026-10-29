@@ -1,0 +1,433 @@
+{
+  "overall": "passed",
+  "date": "2026-10-29",
+  "run_id": 40792258046,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046",
+  "source_commit": "a5f50557a3032e9adb897eaede36ee449c97b1d3",
+  "implementation_commit": "f1c354d371781be5841dbc435e51d66bb7f54df3",
+  "source_files": {
+    "docs/research/ffi_memory_probe.c": "73141e83742c025a0f30b20c28c811246d0bcfa02f3303eed6ad3e2030b18ee5",
+    "scripts/peak_memory.py": "6df2be07163dacb8ca8541b613462e608dfcc3495ed3813fe5b1063efcbbf303",
+    "scripts/build_c_example.ps1": "5ff134bfe93d7fc8a9710dc08e8f7ba60b948500a24cbe9964b5e9df3b80677a",
+    "tests/test_peak_memory.py": "9091dbabb3628273a8b567fbf13d4532dba54e9636746721632224482b217f28",
+    ".github/workflows/ci.yml": "e18d69ec23b518b21bf20072669756698aee5c2b1275439728aa101d43ffc266"
+  },
+  "platforms": {
+    "windows": {
+      "archives": 8,
+      "isolated_rust_tests": 264,
+      "python_passed": 233,
+      "python_skipped": 5,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67112960,
+      "cached_final_peak_bytes": 11358208,
+      "fresh_final_peak_bytes": 11325440,
+      "baseline_peak_bytes": {
+        "cached": 7741440,
+        "fresh": 7745536
+      }
+    },
+    "linux": {
+      "archives": 8,
+      "isolated_rust_tests": 256,
+      "python_passed": 238,
+      "python_skipped": 0,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67108864,
+      "cached_final_peak_bytes": 2392064,
+      "fresh_final_peak_bytes": 2666496,
+      "baseline_peak_bytes": {
+        "cached": 1196032,
+        "fresh": 1376256
+      }
+    },
+    "macos": {
+      "archives": 8,
+      "isolated_rust_tests": 261,
+      "python_passed": 237,
+      "python_skipped": 1,
+      "native_processes": 16,
+      "calibration_growth_bytes": 67125248,
+      "cached_final_peak_bytes": 10944512,
+      "fresh_final_peak_bytes": 11206656,
+      "baseline_peak_bytes": {
+        "cached": 5783552,
+        "fresh": 5783552
+      }
+    }
+  },
+  "jobs": [
+    {
+      "databaseId": 123180073662,
+      "name": "miri",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046/job/123180073662"
+    },
+    {
+      "databaseId": 123180073891,
+      "name": "supply-chain",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046/job/123180073891"
+    },
+    {
+      "databaseId": 123180073920,
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046/job/123180073920"
+    },
+    {
+      "databaseId": 123180073943,
+      "name": "linux-container",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046/job/123180073943"
+    },
+    {
+      "databaseId": 123180073964,
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046/job/123180073964"
+    },
+    {
+      "databaseId": 123180074000,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046/job/123180074000"
+    },
+    {
+      "databaseId": 123180074028,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046/job/123180074028"
+    },
+    {
+      "databaseId": 123180074116,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046/job/123180074116"
+    }
+  ],
+  "reports": {
+    "peak-isolation-windows-40792258046.json": {
+      "sha256": "cfa329adf4f8c37c5052ca64cc4fc600b80e1b09446f543274d47bc9041aac4f",
+      "original_sha256": "cfa329adf4f8c37c5052ca64cc4fc600b80e1b09446f543274d47bc9041aac4f",
+      "artifact": "native-evidence-Windows-X64"
+    },
+    "peak-isolation-packages-windows-40792258046.json": {
+      "sha256": "753792db2af8b09d9907663cc54aa1c0ef75d4ff57e57dade0e6d72ec9daefe2",
+      "original_sha256": "d05b82502fd0a9779196c07ce67abf7c46e7907609965627270459bb1b83b894",
+      "artifact": "package-evidence-Windows-X64"
+    },
+    "peak-isolation-native-windows-40792258046.json": {
+      "sha256": "833141aa1897e03067ac8ae94f5b40c6d2b974d840a48c918e47613710c790a0",
+      "original_sha256": "f0c707fb7a93c9673a4aeba13034db2f9cddf034cbc439a0af0ec11d87526248",
+      "artifact": "native-evidence-Windows-X64"
+    },
+    "peak-isolation-linux-40792258046.json": {
+      "sha256": "d09b29f29a30abcaf3c439930f95c8658fd1effb3c4614e92a33605094e26c6b",
+      "original_sha256": "d09b29f29a30abcaf3c439930f95c8658fd1effb3c4614e92a33605094e26c6b",
+      "artifact": "native-evidence-Linux-X64"
+    },
+    "peak-isolation-packages-linux-40792258046.json": {
+      "sha256": "f0f4603b1a5c33f9c1db46a3b93a7b02d47a97d77c4b867ab5555eb182fbba52",
+      "original_sha256": "f0f4603b1a5c33f9c1db46a3b93a7b02d47a97d77c4b867ab5555eb182fbba52",
+      "artifact": "package-evidence-Linux-X64"
+    },
+    "peak-isolation-native-linux-40792258046.json": {
+      "sha256": "afac79aac5983ac4a349c9630d4e84e5100c513de0e6ea32e72f600fac9b29ab",
+      "original_sha256": "afac79aac5983ac4a349c9630d4e84e5100c513de0e6ea32e72f600fac9b29ab",
+      "artifact": "native-evidence-Linux-X64"
+    },
+    "peak-isolation-macos-40792258046.json": {
+      "sha256": "ca32483858d7ddf7d201d93aaaf8d513d351e540b1fedf51d78a2b82f4413959",
+      "original_sha256": "ca32483858d7ddf7d201d93aaaf8d513d351e540b1fedf51d78a2b82f4413959",
+      "artifact": "native-evidence-macOS-ARM64"
+    },
+    "peak-isolation-packages-macos-40792258046.json": {
+      "sha256": "d8e491c5704c0de86b1116ec1756f27dd2daa57ed4521163cc587a65d5f7580a",
+      "original_sha256": "d8e491c5704c0de86b1116ec1756f27dd2daa57ed4521163cc587a65d5f7580a",
+      "artifact": "package-evidence-macOS-ARM64"
+    },
+    "peak-isolation-native-macos-40792258046.json": {
+      "sha256": "3cf427a3e5c73ce1e8569b3d5b6fb759e622e666d54931524dfebeb9bc0dbc00",
+      "original_sha256": "3cf427a3e5c73ce1e8569b3d5b6fb759e622e666d54931524dfebeb9bc0dbc00",
+      "artifact": "native-evidence-macOS-ARM64"
+    },
+    "peak-isolation-cli-windows-40792258046.json": {
+      "sha256": "56a6e11571ed0b4147aaa19a37429eb1fe4556caa6963e68f843349af70f8733",
+      "original_sha256": "418994627c4363efb60652460cffd4ea832ce8903a00fa6119bfc30f1a7fc70e",
+      "artifact": "cli-bundle-evidence-Windows-X64"
+    },
+    "peak-isolation-sdk-windows-40792258046.json": {
+      "sha256": "7753769d9147b67764d876b33f8f9ad63075272a4d92755a85538d464bb92cfa",
+      "original_sha256": "959796d8a8c991e0344d588d25272fed74e05aec5cb518b636630eb466555e64",
+      "artifact": "ffi-sdk-evidence-Windows-X64"
+    },
+    "peak-isolation-cli-linux-40792258046.json": {
+      "sha256": "c25cd6dc78c21fecc178614e16bd80b3bc05da69aade427a66d37276aac63f3c",
+      "original_sha256": "c25cd6dc78c21fecc178614e16bd80b3bc05da69aade427a66d37276aac63f3c",
+      "artifact": "cli-bundle-evidence-Linux-X64"
+    },
+    "peak-isolation-sdk-linux-40792258046.json": {
+      "sha256": "01e1fa3f598221071e4547224616a0f699ea0fa2db18c4277a099ee324186e9d",
+      "original_sha256": "01e1fa3f598221071e4547224616a0f699ea0fa2db18c4277a099ee324186e9d",
+      "artifact": "ffi-sdk-evidence-Linux-X64"
+    },
+    "peak-isolation-older-userlands-linux-40792258046.json": {
+      "sha256": "a04e2d0c7e77ab3be717ce43660dab484cd11f3be31e957eaf4ea4aa6f652e5a",
+      "original_sha256": "a04e2d0c7e77ab3be717ce43660dab484cd11f3be31e957eaf4ea4aa6f652e5a",
+      "artifact": "native-evidence-Linux-X64"
+    }
+  },
+  "archive_digest_encoding": "SHA-256 of archived UTF-8 LF bytes; original artifact hash also preserved",
+  "artifact_metadata": [
+    {
+      "name": "procfs-fuzz-evidence",
+      "digest": "sha256:d63793c5ed5e67e5456bccead58bffbed937c0caca52831d10a4a6cbcda8d804",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "digest": "sha256:a995bee50433cb5fb49b98471812e0a22748001ee3d92576cdc6cb4cc449060d",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "digest": "sha256:727846692411b7f87602ea1eaa078173cc36f798b6ca2a3621ab08fe21d3fc26",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "native-evidence-Linux-X64",
+      "digest": "sha256:f83996c699b5c2bfaa84708b0149e58ac34f5faae96c8a6ced2ee849086aee98",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "digest": "sha256:b8a88cb0c31dcf7e19b44f6655e2c62d9e9270d28f0d007ccc2b09064e3b4021",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "native-evidence-Windows-X64",
+      "digest": "sha256:64aa018b9bb57867cd2eb955ec6d9b2d05601883a4c672f0ad057b70ef6de83d",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "linux-container-evidence",
+      "digest": "sha256:caeadddafe3c443f0834129efd7cc1c82b51b4589cdf2e09346420d6ea218347",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "digest": "sha256:b5e23acdd2c22c74e4b1bf97da493e40c894e2602d53c9b5de92a34533751a0f",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "package-evidence-Windows-X64",
+      "digest": "sha256:dfe5b82bf6df1784b185a3f0acf14b4f1598234fb8905dcbc0443f7ed261c752",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "digest": "sha256:87992a3e25e906e2f826c4652083e92d95fefa0fd1c176477c1d5e9df06728d8",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "package-evidence-Linux-X64",
+      "digest": "sha256:6c069039cd8f8e7abc592c91a8c8bd86617a08f916fcf2c67341c82fde2b4f2a",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "digest": "sha256:a04087b883adfbedd702fe4c4a98154fb7a583cb40a0a09a6a1417d4dc7e10f8",
+      "head_sha": "a5f50557a3032e9adb897eaede36ee449c97b1d3"
+    }
+  ],
+  "all_jobs_log_sha256": "6643b8b7a6ffb761a3e57131c09c345248e5d276fbb0e04c56c48625e8212d53",
+  "quality_gates": {
+    "miri_passed": 8,
+    "asan_passed": 10,
+    "short_fuzz_targets": 12,
+    "fuzz_runs_and_seconds": [
+      {
+        "runs": 697262,
+        "seconds": 61
+      },
+      {
+        "runs": 8681989,
+        "seconds": 61
+      },
+      {
+        "runs": 24265644,
+        "seconds": 61
+      },
+      {
+        "runs": 1177911,
+        "seconds": 61
+      },
+      {
+        "runs": 4007355,
+        "seconds": 61
+      },
+      {
+        "runs": 25165780,
+        "seconds": 61
+      },
+      {
+        "runs": 25103536,
+        "seconds": 61
+      },
+      {
+        "runs": 24606052,
+        "seconds": 61
+      },
+      {
+        "runs": 1953709,
+        "seconds": 61
+      },
+      {
+        "runs": 5740851,
+        "seconds": 61
+      },
+      {
+        "runs": 36574415,
+        "seconds": 61
+      },
+      {
+        "runs": 38951291,
+        "seconds": 61
+      }
+    ],
+    "empty_proc": {
+      "status": "not_run",
+      "process_started": false
+    }
+  },
+  "measurement_scope": "format 2: Linux fork before Rust calls, direct Windows/macOS; 64 MiB calibration, 300 cached and 30 fresh calls. Linux adds held 128 MiB Python parent control with 2x300 cached calls and actual parent-kill lifecycle validation. Not installed SDK or allocator performance",
+  "public_api_changed": false,
+  "abi": 1,
+  "snapshot_schema": 1,
+  "license": "MIT",
+  "dependencies_or_features_changed": false,
+  "published": false,
+  "private_probe_format": 2,
+  "linux_launch_control": {
+    "accepted": true,
+    "held_bytes": 134217728,
+    "direct": {
+      "format": 2,
+      "mode": "cached",
+      "launch": {
+        "strategy": "direct",
+        "launcher_pid": 9862,
+        "measurement_pid": 9862,
+        "parent_death_signal": 0
+      },
+      "metric": "ru_maxrss",
+      "raw_unit": "kibibytes",
+      "multiplier": 1024,
+      "pressure_bytes": 0,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 160104,
+          "peak_bytes": 163946496,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0
+        },
+        {
+          "phase": "collected",
+          "calls": 1,
+          "peak_raw": 160104,
+          "peak_bytes": 163946496,
+          "elapsed_ns": 1257948,
+          "max_json_bytes": 9765
+        },
+        {
+          "phase": "collected",
+          "calls": 100,
+          "peak_raw": 160104,
+          "peak_bytes": 163946496,
+          "elapsed_ns": 27439615,
+          "max_json_bytes": 9765
+        },
+        {
+          "phase": "collected",
+          "calls": 300,
+          "peak_raw": 160104,
+          "peak_bytes": 163946496,
+          "elapsed_ns": 55988087,
+          "max_json_bytes": 9765
+        }
+      ]
+    },
+    "isolated": {
+      "format": 2,
+      "mode": "cached",
+      "launch": {
+        "strategy": "linux_fork",
+        "launcher_pid": 9864,
+        "measurement_pid": 9865,
+        "parent_death_signal": 9
+      },
+      "metric": "ru_maxrss",
+      "raw_unit": "kibibytes",
+      "multiplier": 1024,
+      "pressure_bytes": 0,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 1292,
+          "peak_bytes": 1323008,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0
+        },
+        {
+          "phase": "collected",
+          "calls": 1,
+          "peak_raw": 2520,
+          "peak_bytes": 2580480,
+          "elapsed_ns": 1169125,
+          "max_json_bytes": 9765
+        },
+        {
+          "phase": "collected",
+          "calls": 100,
+          "peak_raw": 2520,
+          "peak_bytes": 2580480,
+          "elapsed_ns": 28919833,
+          "max_json_bytes": 9765
+        },
+        {
+          "phase": "collected",
+          "calls": 300,
+          "peak_raw": 2520,
+          "peak_bytes": 2580480,
+          "elapsed_ns": 57010025,
+          "max_json_bytes": 9765
+        }
+      ]
+    }
+  },
+  "linux_lifecycle": {
+    "passed": true,
+    "launch": {
+      "strategy": "linux_fork",
+      "launcher_pid": 9867,
+      "measurement_pid": 9868,
+      "parent_death_signal": 9
+    },
+    "worker_exit_state": "gone",
+    "worker_running": false,
+    "launcher_reaped": true
+  },
+  "not_verified": [
+    "long-term memory growth or allocator attribution",
+    "peak memory with synthetic 100 sensors/1024 interfaces",
+    "long-term fuzz",
+    "physical Linux/macOS and multi-group Windows",
+    "macOS distribution materials",
+    "exact minimum runtimes",
+    "formal release"
+  ]
+}

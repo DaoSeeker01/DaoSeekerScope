@@ -1,0 +1,244 @@
+{
+  "report_version": 1,
+  "overall": "passed",
+  "profiles": {
+    "bookworm": {
+      "status": "passed",
+      "image": "python@sha256:f576b530293e74140ea91d262232648d5c4f45640a95ec447757701bfcacf034",
+      "phase": "complete",
+      "image_id": "sha256:2e6b5bbf5b2f372ef9b208e7c7c300675be97a6dc1bbe7e3ac0b9c20035fd70e",
+      "configuration": {
+        "user": "65534:65534",
+        "network": "none",
+        "readonly_root": true,
+        "readonly_candidate_mount": true,
+        "writable_tmpfs": "/work",
+        "memory_bytes": 268435456,
+        "pids": 32,
+        "cpus": 1
+      },
+      "expected": "runs",
+      "runtime": {
+        "glibc": "2.36",
+        "debian": "12",
+        "python": "3.13.13",
+        "kernel": "7.0.0-1017-azure",
+        "machine": "x86_64",
+        "uid": 65534,
+        "cargo_available": false,
+        "rustc_available": false
+      },
+      "binary_sha256": {
+        "cli": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905",
+        "library": "5bb39c224b3e37dd858a76f297bf87beecf9b66581858619a5cc15530b98b13c",
+        "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+      },
+      "installed_payload_files": {
+        "cli": 43,
+        "sdk": 47
+      },
+      "rebuilt_in_container": false,
+      "installation_storage": {
+        "capacity_bytes": 67108864,
+        "reserve_bytes": 16777216,
+        "available_before_copy_bytes": 67108864,
+        "available_after_copy_bytes": 32432128
+      },
+      "snapshot_schema_and_default_privacy": true,
+      "python_collect_free_cycles": 100,
+      "child_processes": 4,
+      "output_sha256": {
+        "cli_version": "492d0083a0d1e9de8fbfc97174806c46f68dd007a649cc18d398383c657cbe9d",
+        "cli_json": "9b70d61c9c411011e201ec860320139dc3c3776cec8edca7235e212fd7af63da",
+        "c": "10c91c122cc28793e7b27e382ac57551c5314c9423f9198ee2af6be732f7f90a",
+        "python": "57adedfa84f5ded89ada46a8084320007d4aa190f5ab67db6cc062d1699bdd66"
+      },
+      "container_removed": true
+    },
+    "bullseye": {
+      "status": "passed",
+      "image": "python@sha256:4ea2e567da526afcd5655339f71295ca6ef72271ff6123bb5c7144ae8fdc1692",
+      "phase": "complete",
+      "image_id": "sha256:932831e2e7dc0aebbabca90d6c78087538e5c3ecf38151069ab418d1ec4532d2",
+      "configuration": {
+        "user": "65534:65534",
+        "network": "none",
+        "readonly_root": true,
+        "readonly_candidate_mount": true,
+        "writable_tmpfs": "/work",
+        "memory_bytes": 268435456,
+        "pids": 32,
+        "cpus": 1
+      },
+      "expected": "loader_rejects",
+      "runtime": {
+        "glibc": "2.31",
+        "debian": "11",
+        "python": "3.13.5",
+        "kernel": "7.0.0-1017-azure",
+        "machine": "x86_64",
+        "uid": 65534,
+        "cargo_available": false,
+        "rustc_available": false
+      },
+      "binary_sha256": {
+        "cli": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905",
+        "library": "5bb39c224b3e37dd858a76f297bf87beecf9b66581858619a5cc15530b98b13c",
+        "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+      },
+      "installed_payload_files": {
+        "cli": 43,
+        "sdk": 47
+      },
+      "rebuilt_in_container": false,
+      "installation_storage": {
+        "capacity_bytes": 67108864,
+        "reserve_bytes": 16777216,
+        "available_before_copy_bytes": 67108864,
+        "available_after_copy_bytes": 32432128
+      },
+      "collection_started": false,
+      "child_processes": 2,
+      "missing_glibc_versions": {
+        "cli": [
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "c": [
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "ctypes_load": [
+          "GLIBC_2.32"
+        ]
+      },
+      "container_removed": true
+    }
+  },
+  "physical_device_validation": false,
+  "minimum_kernel_or_distribution_verified": false,
+  "published": false,
+  "source_commit": "a5f50557a3032e9adb897eaede36ee449c97b1d3",
+  "source_dirty": false,
+  "docker_version": "28.0.4",
+  "payload_bytes": {
+    "cli": 17215833,
+    "sdk": 17210766
+  },
+  "binary_sha256": {
+    "cli": "c400fe4547859cadf2023b22ec82818e688957238ec43d2fdbd81e97e19e2905",
+    "library": "5bb39c224b3e37dd858a76f297bf87beecf9b66581858619a5cc15530b98b13c",
+    "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+  },
+  "archive_sha256": {
+    "cli": "fc3c80bfa9733b223b9c984e1d7268d8fec826789cac9109b949919d556298a1",
+    "sdk": "5fe6cfd87dc0cbb76ecaae12b18aaccd53ade1f2500d6b56c9229af058fa3073"
+  },
+  "elf_requirements": {
+    "cli": {
+      "direct_dependencies": [
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "required_symbol_versions": {
+        "ld-linux-x86-64.so.2": [
+          "GLIBC_2.3"
+        ],
+        "libc.so.6": [
+          "GLIBC_2.14",
+          "GLIBC_2.16",
+          "GLIBC_2.17",
+          "GLIBC_2.18",
+          "GLIBC_2.2.5",
+          "GLIBC_2.25",
+          "GLIBC_2.28",
+          "GLIBC_2.3",
+          "GLIBC_2.3.4",
+          "GLIBC_2.30",
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "libgcc_s.so.1": [
+          "GCC_3.0",
+          "GCC_3.3",
+          "GCC_4.2.0"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [],
+      "highest_glibc_numeric_requirement": "GLIBC_2.34",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    },
+    "library": {
+      "direct_dependencies": [
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "required_symbol_versions": {
+        "ld-linux-x86-64.so.2": [
+          "GLIBC_2.3"
+        ],
+        "libc.so.6": [
+          "GLIBC_2.14",
+          "GLIBC_2.16",
+          "GLIBC_2.17",
+          "GLIBC_2.18",
+          "GLIBC_2.2.5",
+          "GLIBC_2.25",
+          "GLIBC_2.28",
+          "GLIBC_2.3",
+          "GLIBC_2.3.4",
+          "GLIBC_2.30",
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "libgcc_s.so.1": [
+          "GCC_3.0",
+          "GCC_3.3",
+          "GCC_4.2.0"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [],
+      "highest_glibc_numeric_requirement": "GLIBC_2.34",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    },
+    "consumer": {
+      "direct_dependencies": [
+        "libdaoseeker_scope_ffi.so",
+        "libc.so.6"
+      ],
+      "required_symbol_versions": {
+        "libc.so.6": [
+          "GLIBC_2.2.5",
+          "GLIBC_2.34",
+          "GLIBC_2.4"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [
+        "libdaoseeker_scope_ffi.so"
+      ],
+      "highest_glibc_numeric_requirement": "GLIBC_2.34",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    }
+  },
+  "work_budget": {
+    "capacity_bytes": 67108864,
+    "reserve_bytes": 16777216,
+    "logical_bytes": 34442903,
+    "estimated_copy_bytes": 34832384,
+    "allocation_block_bytes": 4096,
+    "files": 93,
+    "directories": 38
+  }
+}

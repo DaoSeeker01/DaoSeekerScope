@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "a5f50557a3032e9adb897eaede36ee449c97b1d3",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 261,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "140e41e22f09fbe3a8ed83b43a12007f324e9425fa58a86c5a09ca495a1e5245",
+      "files": 16
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "876159ae4c539d8cbf91a60b86f677937f8565452c2c28479a7377ce9d9ff395",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "b1b9bc6b104fb4c8f22b54cf5cab74e493a3484f33025ff146391518e1a380ff",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "7f261eab98f74a1b88b518dd50f706f7bd5c568abf944dfb1914409f7abf7922",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "b8d9b93e955699a44e11b5b47693653d944b153913c8da3ca5846c76d33a14f5",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "f3ac993689018a15d5df60274b0e5a1585e0a0b5793146827bb91245e2eae859",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "c82d5e34214ba07dca22cf2e39ae9e7d8850e6cc1e9d3d2f3233d58e02872d14",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "e3df5ae70e514380e0d6326b5517cb4c0bdf7a643298eb9a28817e69a9c8d500",
+      "files": 7
+    }
+  ]
+}

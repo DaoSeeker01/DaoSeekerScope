@@ -1,10 +1,23 @@
 # 性能基线
 
-## Linux 启动阶段隔离
+## Linux 启动阶段隔离（2026-10-29）
 
-2026-10-29 开发增量：Linux 探针在任何 Rust 调用前 fork，将 Python 启动阶段的历史峰值与测量进程分开。新增 128 MiB 父进程对照和父退出清理实验；私有探针 JSON 为格式 2，硬件 Schema 与 C ABI 仍为 1。实现与边界见 [ADR 0039](adr/0039-linux-peak-launch-isolation.md)。
+干净源码 `a5f50557a3032e9adb897eaede36ee449c97b1d3` 的 [CI 40792258046](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40792258046)八项任务全部通过；C 探针、Python 入口及测试与本机实现 `f1c354d` 逐字节一致。私有探针 JSON 为格式 2，硬件 Schema 和 C ABI 仍为 1。实现与边界见 [ADR 0039](adr/0039-linux-peak-launch-isolation.md)，逐报告来源与哈希见[验收索引](evidence/peak-isolation-ci-40792258046.json)。
 
-Windows 编译、26 项探针单元测试和现有回归已通过；Linux 原生验证待本轮 CI。下方保留上一轮直接启动的原始结果，不把新旧启动方式作性能提升比较。
+本次原生 Linux CI 为 7.0.0-1017-azure x64，系统报告 AMD EPYC 9V74 80-Core Processor、4 逻辑 CPU、16760344576 字节总可用内存。Rust 1.96.0、release、默认 serde/Linux backend；C 编译器与完整计数见[原始报告](evidence/peak-isolation-linux-40792258046.json)。采集仍为 max_entries=128、2000 ms、默认脱敏。
+
+| Linux 隔离样本 | 采集前峰值 bytes | 首次采集后峰值 bytes | 累计调用数 / 最终峰值 bytes | 首次 collect/free |
+|---|---|---|---|---|
+| 默认缓存 | 1196032 | 2392064 | 300 / 2392064 | 1.27 ms |
+| 每次重建 | 1376256 | 2666496 | 30 / 2666496 | 1.21 ms |
+
+64 MiB 校准从 1196032 增至 68304896 字节，增长 67108864 字节。另在同一 Python 父进程持有并逐页写入 128 MiB 时，直接启动基线为 163946496 字节，fork 隔离基线为 1323008 字节，启动污染对照通过。对照各执行 300 次默认调用，与常规 300/30 次样本分别记录。
+
+父退出实验已实际终止所创建的 C 父进程，测量进程最终状态为 `gone`，不再运行；父进程已 wait 回收，pidfd 已关闭。本轮进程退出不代表长期运行无泄漏。失败清理通过 pidfd 指向原进程，不向可能复用的数字 PID 发信号；工具需要 Linux 5.3+/Python pidfd API 与自身子进程的 `/proc`，不要求 root，也不提高核心库的最低内核声明。
+
+Windows/macOS 仍直接启动，格式 2 和原有校准/采集回归已通过；[Windows CI](evidence/peak-isolation-windows-40792258046.json)、[macOS CI](evidence/peak-isolation-macos-40792258046.json)。三平台各八包及 CLI/C/Python、Windows/Linux 候选安装与回滚、较低版本 Linux 用户空间回归通过。独立 Rust 测试为 Windows/Linux/macOS 264/256/261；Python 通过 233/238/237，跳过 5/0/1。Miri 8、ASan 10、12 个 Rust fuzz 目标各至少 60 秒通过；空 `/proc` 整体覆盖仍被 OCI 拒绝，未运行。
+
+新旧报告的启动方式、机器与内核不同，这些数值不是内存优化幅度，也不是 allocator 用量。隔离后的当前 C 映像仍属于基线，较小变化仍可能不可见。长期增长、合成 100 传感器/1024 接口峰值、实体 Linux/macOS 和正式发布仍未执行。以下保留上一轮直接启动记录。
 
 ## C ABI 进程峰值内存
 
