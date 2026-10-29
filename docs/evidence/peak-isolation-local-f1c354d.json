@@ -1,0 +1,60 @@
+{
+  "overall": "passed",
+  "date": "2026-10-29",
+  "source_commit": "f1c354d371781be5841dbc435e51d66bb7f54df3",
+  "reports": {
+    "peak-isolation-windows-local-f1c354d.json": {
+      "sha256": "1ee7ea1275d6c2a2f22212103c08e3975379ba65c69d269d2d984d5f42149af1",
+      "original_sha256": "1ee7ea1275d6c2a2f22212103c08e3975379ba65c69d269d2d984d5f42149af1"
+    },
+    "peak-isolation-native-windows-local-f1c354d.json": {
+      "sha256": "2d062a24d2a9de46d81d9ead80942ccf50971a0c108874fd524b3f17c9cd8521",
+      "original_sha256": "8ac85ddde03a5eb92da55769391ffdca3e2a3264d7298a8917e231888049ab14"
+    }
+  },
+  "archive_digest_encoding": "SHA-256 of UTF-8 LF Git blob bytes; original report hash retained",
+  "frozen_source_checks": [
+    "release Windows format-2 process peak calibration/collect/free",
+    "native Windows CLI/C/Python"
+  ],
+  "precommit_checks": {
+    "note": "Commands ran on the subsequently committed file content; source tuple asserted separately by frozen native reports",
+    "rust_passed": 264,
+    "rust_failed": 0,
+    "python_passed": 233,
+    "python_skipped": 5,
+    "python_failed": 0,
+    "probe_unit_tests": 26,
+    "new_probe_unit_tests": 12,
+    "commands": [
+      "pwsh -NoProfile -File scripts/check.ps1 -Cross",
+      "ruff format --check scripts tests examples/collect.py",
+      "ruff check scripts tests examples/collect.py",
+      "mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+      "python -m unittest discover -s tests -p test_*.py",
+      "python scripts/check_project.py",
+      "actionlint",
+      "git diff --check"
+    ],
+    "rust_log_sha256": "3406fde761203622e308d68dddb20bfa461443f28c5b28b270958144f3bb28bf",
+    "python_log_sha256": "acbb17909e53a6303f4cafd3fbb2a3ed062ccfdafe4f8686754caee06855b76e"
+  },
+  "development_failure_fixed": {
+    "initial": "Windows mypy reported 2 missing signal.SIGKILL attributes; one of 24 unit tests errored for the same unavailable attribute",
+    "fix": "Linux cleanup uses pidfd and Linux signal number; type-safe Windows mock regressions added",
+    "latest_probe_unit_tests_passed": 26
+  },
+  "not_run_locally": [
+    "Linux fork/128 MiB control/lifecycle (pending native CI)",
+    "macOS native format-2 regression",
+    "independent eight-crate package rerun (scheduled in CI)",
+    "long-term memory growth",
+    "formal publication"
+  ],
+  "public_rust_api_changed": false,
+  "c_abi": 1,
+  "snapshot_schema": 1,
+  "private_probe_format": 2,
+  "license": "MIT",
+  "dependencies_or_features_changed": false
+}

@@ -1,0 +1,200 @@
+{
+  "overall": "passed",
+  "recorded_at": "2026-10-29T00:08:58.761372+00:00",
+  "git_revision": "f1c354d371781be5841dbc435e51d66bb7f54df3",
+  "git_dirty": false,
+  "system": "Windows",
+  "os_release": "11",
+  "machine": "AMD64",
+  "profile": "release",
+  "probe_format": 2,
+  "features": "default serde; target desktop backend",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "target": "x86_64-pc-windows-msvc",
+  "scope": "process lifetime high-water; not allocator bytes or leak proof",
+  "options": {
+    "timeout_ms": 2000,
+    "max_entries": 128,
+    "sensitive": false
+  },
+  "c_compiler": "19.51.36260.0",
+  "c_build": "MSVC /W4 /WX /O2 /std:c11; release import library; Psapi.lib",
+  "binary_sha256": {
+    "ffi-memory-probe.exe": "6f8f776ffaacaec2ba70502d1a6a3ecf5c6f9c18dae7226944651d6b3c5fbc42",
+    "daoseeker_scope_ffi.dll": "d920619e278cd4c7b8cb837d639ad062ae6f9aa6d901e918cf22c5e814080bff",
+    "dscope.exe": "55bc23ec56da995c9bfa71edb8b86ca6dee877886b0c427ac89f23fb6d716089"
+  },
+  "hardware": {
+    "cpu_brand": {
+      "value": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793232540665,
+      "reason": null
+    },
+    "logical_count": {
+      "value": 12,
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793232540665,
+      "reason": null
+    },
+    "total_usable_bytes": {
+      "value": 17009004544,
+      "availability": "available",
+      "source": "win32",
+      "observed_at": 1793232540687,
+      "reason": null
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "measurements": {
+    "calibrate": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "calibrate",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 15456,
+          "measurement_pid": 15456,
+          "parent_death_signal": 0
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 7802880,
+            "peak_bytes": 7802880,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 74915840,
+            "peak_bytes": 74915840,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 74915840,
+            "peak_bytes": 74915840,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          }
+        ]
+      }
+    },
+    "cached": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "cached",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 14080,
+          "measurement_pid": 14080,
+          "parent_death_signal": 0
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 7811072,
+            "peak_bytes": 7811072,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 11620352,
+            "peak_bytes": 11620352,
+            "elapsed_ns": 23442800,
+            "max_json_bytes": 25464
+          },
+          {
+            "phase": "collected",
+            "calls": 100,
+            "peak_raw": 11845632,
+            "peak_bytes": 11845632,
+            "elapsed_ns": 272341000,
+            "max_json_bytes": 25464
+          },
+          {
+            "phase": "collected",
+            "calls": 300,
+            "peak_raw": 11845632,
+            "peak_bytes": 11845632,
+            "elapsed_ns": 553897600,
+            "max_json_bytes": 25464
+          }
+        ]
+      }
+    },
+    "fresh": {
+      "accepted": true,
+      "observation": {
+        "format": 2,
+        "mode": "fresh",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 6844,
+          "measurement_pid": 6844,
+          "parent_death_signal": 0
+        },
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 0,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 7819264,
+            "peak_bytes": 7819264,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0
+          },
+          {
+            "phase": "collected",
+            "calls": 1,
+            "peak_raw": 11640832,
+            "peak_bytes": 11640832,
+            "elapsed_ns": 24650399,
+            "max_json_bytes": 25464
+          },
+          {
+            "phase": "collected",
+            "calls": 10,
+            "peak_raw": 11825152,
+            "peak_bytes": 11825152,
+            "elapsed_ns": 36847600,
+            "max_json_bytes": 25464
+          },
+          {
+            "phase": "collected",
+            "calls": 30,
+            "peak_raw": 11915264,
+            "peak_bytes": 11915264,
+            "elapsed_ns": 82200300,
+            "max_json_bytes": 25464
+          }
+        ]
+      }
+    }
+  },
+  "source_and_binaries_unchanged": true,
+  "phase": "complete"
+}
