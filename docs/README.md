@@ -22,6 +22,7 @@
 - [进程峰值内存契约](adr/0038-process-peak-memory.md)：C ABI 校准、缓存与新采集器调用的计量边界。
 - [Linux 启动阶段隔离](adr/0039-linux-peak-launch-isolation.md)：隔离 Python 启动计账，并验证父退出清理。
 - [合成规模内存测量](adr/0040-synthetic-memory.md)：两后端、100 传感器、1024 网络条目与超限字段隔离。
+- [驻留内存回归](adr/0041-resident-regression.md)：固定重复轮次、当前驻留计量、校准与预算。
 
 ## 设计决策
 

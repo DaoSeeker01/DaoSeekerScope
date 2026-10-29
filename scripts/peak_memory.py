@@ -22,11 +22,14 @@ from native_smoke import check_snapshot
 ROOT = Path(__file__).resolve().parent.parent
 PRESSURE = 64 * 1024 * 1024
 LAUNCH_PRESSURE = 128 * 1024 * 1024
+TAIL_BUDGET = 16 * 1024 * 1024
 STAGES = {
     "cached": [0, 1, 100, 300],
     "fresh": [0, 1, 10, 30],
     "synthetic": [0, 1, 2],
     "over_limit": [0, 1, 2],
+    "growth_cached": [0, 1, 100, 1000, 2000, 3000, 4000, 5000],
+    "growth_synthetic": [0, 1, 10, 20, 30, 40, 50, 60],
 }
 
 
@@ -85,7 +88,7 @@ def validate(
         launch = expected_launch or ("linux_fork" if system == "Linux" else "direct")
         validate_launch(data.get("launch"), launch)
     require(data.get("mode") == mode, "mode")
-    if mode in ("synthetic", "over_limit"):
+    if mode in ("synthetic", "over_limit", "growth_synthetic"):
         workload = data.get("workload")
         require(isinstance(workload, dict), "synthetic_workload")
         require(
@@ -93,14 +96,18 @@ def validate(
             and workload.get("json_roundtrip") is True,
             "synthetic_contract",
         )
-        for key, expected in {
+        scale = {
             "backends": 2,
             "sensors_generated": 100,
             "networks_generated": 1025 if mode == "over_limit" else 1024,
             "max_entries": 1024,
-            "first_batch_refreshes": 0,
-            "second_batch_refreshes": 100,
-        }.items():
+        }
+        scale.update(
+            {"refreshes_per_batch": 100, "batches": 60}
+            if mode == "growth_synthetic"
+            else {"first_batch_refreshes": 0, "second_batch_refreshes": 100}
+        )
+        for key, expected in scale.items():
             require(
                 type(workload.get(key)) is int and workload[key] == expected,
                 "synthetic_scale",
@@ -117,11 +124,13 @@ def validate(
     )
     require(
         type(data.get("pressure_bytes")) is int
-        and data["pressure_bytes"] == (PRESSURE if mode == "calibrate" else 0),
+        and data["pressure_bytes"]
+        == (PRESSURE if mode in ("calibrate", "resident_calibrate") else 0),
         "pressure",
     )
     samples = data.get("samples")
-    stages = [0, 0, 0] if mode == "calibrate" else STAGES[mode]
+    calibration = mode in ("calibrate", "resident_calibrate")
+    stages = [0, 0, 0] if calibration else STAGES[mode]
     require(isinstance(samples, list) and len(samples) == len(stages), "stages")
     previous_peak = 0
     for index, (sample, calls) in enumerate(zip(samples, stages, strict=True)):
@@ -130,7 +139,7 @@ def validate(
             require(type(sample.get(key)) is int, "counter_type")
         expected_phase = (
             ["baseline", "touched", "freed"][index]
-            if mode == "calibrate"
+            if calibration
             else ("baseline" if index == 0 else "collected")
         )
         require(sample.get("phase") == expected_phase, "phase")
@@ -145,11 +154,99 @@ def validate(
             require(sample["elapsed_ns"] == sample["max_json_bytes"] == 0, "idle")
         else:
             require(sample["max_json_bytes"] > 0, "json_empty")
-    if mode == "calibrate":
+    if calibration:
         growth = samples[1]["peak_bytes"] - samples[0]["peak_bytes"]
         # Tolerate baseline/OS noise, while rejecting a missing or extra 1024 factor.
         require(PRESSURE // 2 <= growth <= PRESSURE * 2, "calibration_growth")
     return data
+
+
+def resident_analysis(data: Any, mode: str, system: str) -> dict[str, Any]:
+    """Validate current OS accounting; return a finite tail-range budget result."""
+    require(
+        mode in ("resident_calibrate", "growth_cached", "growth_synthetic"),
+        "resident_mode",
+    )
+    validate(
+        data,
+        mode,
+        system,
+        expected_launch="linux_fork" if system == "Linux" else "direct",
+    )
+    metric, unit = {
+        "Windows": ("working_set_size", "bytes"),
+        "Linux": ("proc_statm_resident", "pages"),
+        "Darwin": ("mach_task_basic_resident", "bytes"),
+    }[system]
+    require(
+        data.get("resident_metric") == metric and data.get("resident_raw_unit") == unit,
+        "resident_metric",
+    )
+    factor = data.get("resident_multiplier")
+    require(type(factor) is int, "resident_multiplier_type")
+    require(
+        (512 <= factor <= 65536 and factor & (factor - 1) == 0)
+        if system == "Linux"
+        else factor == 1,
+        "resident_multiplier",
+    )
+    values = []
+    for sample in data["samples"]:
+        raw, value = sample.get("resident_raw"), sample.get("resident_bytes")
+        require(type(raw) is int and type(value) is int, "resident_counter_type")
+        require(
+            0 < raw <= (2**64 - 1) // factor and value == raw * factor,
+            "resident_conversion",
+        )
+        values.append(value)
+    if mode == "resident_calibrate":
+        growth = values[1] - values[0]
+        require(PRESSURE // 2 <= growth <= PRESSURE * 2, "resident_calibration_growth")
+        return {"calibration_growth_bytes": growth, "passed": True}
+    warmup = 1000 if mode == "growth_cached" else 10
+    plan = data.get("growth_plan")
+    require(
+        isinstance(plan, dict)
+        and type(plan.get("warmup_calls")) is int
+        and plan["warmup_calls"] == warmup,
+        "resident_warmup",
+    )
+    require(
+        type(plan.get("tail_budget_bytes")) is int
+        and plan["tail_budget_bytes"] == TAIL_BUDGET,
+        "resident_budget_changed",
+    )
+    tail = [
+        value
+        for value, sample in zip(values, data["samples"], strict=True)
+        if sample["calls"] >= warmup
+    ]
+    span = max(tail) - min(tail)
+    return {
+        "warmup_calls": warmup,
+        "tail_samples": len(tail),
+        "first_resident_bytes": tail[0],
+        "last_resident_bytes": tail[-1],
+        "net_change_bytes": tail[-1] - tail[0],
+        "tail_min_bytes": min(tail),
+        "tail_max_bytes": max(tail),
+        "tail_range_bytes": span,
+        "budget_bytes": TAIL_BUDGET,
+        "within_budget": span <= TAIL_BUDGET,
+        "scope": "finite sampled OS resident accounting; not allocator attribution or leak proof",
+    }
+
+
+def accept_resident_entry(item: dict[str, Any], mode: str, system: str) -> None:
+    """Retain failed observations/analysis; never turn an exceeded budget into a pass."""
+    item["accepted"] = False
+    analysis = resident_analysis(item["observation"], mode, system)
+    item["analysis"] = analysis
+    require(
+        analysis.get("passed", analysis.get("within_budget")) is True,
+        "resident_budget_exceeded",
+    )
+    item["accepted"] = True
 
 
 def check_launch_control(direct: dict[str, Any], isolated: dict[str, Any]) -> None:
@@ -482,6 +579,30 @@ def measure(report: dict[str, Any]) -> None:
             expected_launch="linux_fork" if system == "Linux" else "direct",
         )
         synthetic_modes[mode]["accepted"] = True
+    report["phase"] = "resident_regression"
+    growth_modes: dict[str, Any] = {}
+    report["resident_regression"] = growth_modes
+    for label, executable, mode in (
+        ("native_calibration", probe, "resident_calibrate"),
+        ("synthetic_calibration", synthetic, "resident_calibrate"),
+        ("cached", probe, "growth_cached"),
+        ("synthetic_rebuild", synthetic, "growth_synthetic"),
+    ):
+        data = json.loads(run([str(executable), mode]))
+        item = {"accepted": False, "observation": data}
+        growth_modes[label] = item
+        if mode != "resident_calibrate":
+            calibration_label = (
+                "native_calibration" if label == "cached" else "synthetic_calibration"
+            )
+            require(
+                data["resident_multiplier"]
+                == growth_modes[calibration_label]["observation"][
+                    "resident_multiplier"
+                ],
+                "resident_calibration_unit_changed",
+            )
+        accept_resident_entry(item, mode, system)
     verify_unchanged(initial, binaries, hashes)
     report["source_and_binaries_unchanged"] = True
     report["phase"] = "complete"

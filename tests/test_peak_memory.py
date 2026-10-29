@@ -16,17 +16,18 @@ import peak_memory as probe
 
 def observation(mode: str = "cached", system: str = "Windows") -> dict[str, Any]:
     multiplier = 1024 if system == "Linux" else 1
-    calls = [0, 0, 0] if mode == "calibrate" else probe.STAGES[mode]
+    calibration = mode in ("calibrate", "resident_calibrate")
+    calls = [0, 0, 0] if calibration else probe.STAGES[mode]
     samples = []
     for index, count in enumerate(calls):
         peak = 8 * 1024 * 1024
-        if index and mode == "calibrate":
+        if index and calibration:
             peak += probe.PRESSURE
         samples.append(
             {
                 "phase": (
                     ["baseline", "touched", "freed"][index]
-                    if mode == "calibrate"
+                    if calibration
                     else ("baseline" if index == 0 else "collected")
                 ),
                 "calls": count,
@@ -42,7 +43,7 @@ def observation(mode: str = "cached", system: str = "Windows") -> dict[str, Any]
         "metric": "peak_working_set" if system == "Windows" else "ru_maxrss",
         "raw_unit": "kibibytes" if system == "Linux" else "bytes",
         "multiplier": multiplier,
-        "pressure_bytes": probe.PRESSURE if mode == "calibrate" else 0,
+        "pressure_bytes": probe.PRESSURE if calibration else 0,
         "samples": samples,
     }
 
@@ -61,7 +62,7 @@ def current_observation(
             "parent_death_signal": 9 if strategy == "linux_fork" else 0,
         },
     )
-    if mode in ("synthetic", "over_limit"):
+    if mode in ("synthetic", "over_limit", "growth_synthetic"):
         data["workload"] = {
             "synthetic_data": True,
             "backends": 2,
@@ -72,10 +73,128 @@ def current_observation(
             "second_batch_refreshes": 100,
             "json_roundtrip": True,
         }
+        if mode == "growth_synthetic":
+            del data["workload"]["first_batch_refreshes"]
+            del data["workload"]["second_batch_refreshes"]
+            data["workload"].update(refreshes_per_batch=100, batches=60)
+    return data
+
+
+def resident_observation(
+    mode: str = "growth_cached", system: str = "Windows"
+) -> dict[str, Any]:
+    data = current_observation(mode, system)
+    factor = 4096 if system == "Linux" else 1
+    data.update(
+        resident_metric={
+            "Windows": "working_set_size",
+            "Linux": "proc_statm_resident",
+            "Darwin": "mach_task_basic_resident",
+        }[system],
+        resident_raw_unit="pages" if system == "Linux" else "bytes",
+        resident_multiplier=factor,
+    )
+    if mode != "resident_calibrate":
+        data["growth_plan"] = {
+            "warmup_calls": 1000 if mode == "growth_cached" else 10,
+            "tail_budget_bytes": probe.TAIL_BUDGET,
+        }
+    for index, sample in enumerate(data["samples"]):
+        value = 8 * 1024 * 1024 + (
+            probe.PRESSURE if mode == "resident_calibrate" and index == 1 else 0
+        )
+        sample.update(resident_raw=value // factor, resident_bytes=value)
     return data
 
 
 class PeakMemory(unittest.TestCase):
+    def test_resident_calibration_and_growth_modes_on_all_platforms(self) -> None:
+        for system in ("Windows", "Linux", "Darwin"):
+            for mode in ("resident_calibrate", "growth_cached", "growth_synthetic"):
+                item = {"observation": resident_observation(mode, system)}
+                with self.subTest(system=system, mode=mode):
+                    probe.accept_resident_entry(item, mode, system)
+                    self.assertTrue(item["accepted"])
+
+    def test_current_residency_can_fall_while_historical_peak_stays_high(self) -> None:
+        data = resident_observation()
+        for sample in data["samples"]:
+            sample["peak_raw"] = sample["peak_bytes"] = 128 * 1024 * 1024
+        data["samples"][-1].update(
+            resident_raw=4 * 1024 * 1024, resident_bytes=4 * 1024 * 1024
+        )
+        analysis = probe.resident_analysis(data, "growth_cached", "Windows")
+        self.assertEqual(analysis["net_change_bytes"], -4 * 1024 * 1024)
+        self.assertTrue(analysis["within_budget"])
+
+    def test_peak_alone_cannot_be_accepted_as_current_resident_measurement(
+        self,
+    ) -> None:
+        with self.assertRaisesRegex(ValueError, "resident_metric"):
+            probe.resident_analysis(
+                current_observation("growth_cached", "Windows"),
+                "growth_cached",
+                "Windows",
+            )
+
+    def test_exceeded_budget_is_retained_and_rejected(self) -> None:
+        data = resident_observation()
+        value = 8 * 1024 * 1024 + probe.TAIL_BUDGET + 1
+        data["samples"][-1].update(resident_raw=value, resident_bytes=value)
+        item: dict[str, Any] = {"observation": data, "accepted": True}
+        with self.assertRaisesRegex(ValueError, "resident_budget_exceeded"):
+            probe.accept_resident_entry(item, "growth_cached", "Windows")
+        self.assertFalse(item["accepted"])
+        self.assertEqual(item["analysis"]["tail_range_bytes"], probe.TAIL_BUDGET + 1)
+
+    def test_budget_and_warmup_cannot_be_changed_to_hide_growth(self) -> None:
+        for key, value in (
+            ("tail_budget_bytes", probe.TAIL_BUDGET * 2),
+            ("warmup_calls", 5000),
+        ):
+            data = resident_observation()
+            data["growth_plan"][key] = value
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                probe.resident_analysis(data, "growth_cached", "Windows")
+
+    def test_missing_checkpoints_are_not_accepted(self) -> None:
+        data = resident_observation()
+        data["samples"].pop(4)
+        with self.assertRaisesRegex(ValueError, "stages"):
+            probe.resident_analysis(data, "growth_cached", "Windows")
+
+    def test_resident_units_and_counter_ranges_are_strict(self) -> None:
+        for key, value in (
+            ("resident_raw", True),
+            ("resident_bytes", -1),
+            ("resident_raw", 2**64),
+            ("resident_bytes", "1"),
+        ):
+            data = resident_observation(system="Linux")
+            data["samples"][0][key] = value
+            with self.subTest(key=key, value=value), self.assertRaises(ValueError):
+                probe.resident_analysis(data, "growth_cached", "Linux")
+        data = resident_observation(system="Darwin")
+        data["resident_multiplier"] = 1024
+        with self.assertRaisesRegex(ValueError, "resident_multiplier"):
+            probe.resident_analysis(data, "growth_cached", "Darwin")
+
+    def test_calibration_without_visible_current_increase_is_rejected(self) -> None:
+        data = resident_observation("resident_calibrate")
+        for sample in data["samples"]:
+            sample.update(resident_raw=8 * 1024 * 1024, resident_bytes=8 * 1024 * 1024)
+        with self.assertRaisesRegex(ValueError, "resident_calibration_growth"):
+            probe.resident_analysis(data, "resident_calibrate", "Windows")
+
+    def test_tail_range_checks_middle_spikes_not_only_endpoints(self) -> None:
+        data = resident_observation()
+        data["samples"][4].update(
+            resident_raw=128 * 1024 * 1024, resident_bytes=128 * 1024 * 1024
+        )
+        analysis = probe.resident_analysis(data, "growth_cached", "Windows")
+        self.assertEqual(analysis["net_change_bytes"], 0)
+        self.assertFalse(analysis["within_budget"])
+
     def test_synthetic_profiles_have_their_own_bounded_stages(self) -> None:
         for system in ("Windows", "Linux", "Darwin"):
             for mode in ("synthetic", "over_limit"):

@@ -1,5 +1,11 @@
 # 性能基线
 
+## 固定轮次驻留内存回归
+
+2026-10-29 开发增量：为历史峰值增加当前驻留计量。固定执行 5000 次缓存 collect/free 和 60 批合成重建（每批 collect 一次、refresh 100 次并逐次 JSON 往返），预先设定热身后 16 MiB 波动预算。另有独立 64 MiB 校准；口径见 [ADR 0041](adr/0041-resident-regression.md)。
+
+Windows 开发试跑与三平台验收结果待归档。这是有限规模回归，不是长期无泄漏或 allocator 用量证明。
+
 ## 合成规模峰值验证（2026-10-29）
 
 干净源码 `614982cba8fffdd6e47bbc5823a93aeda498cbd4` 的 [CI 40796845854](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40796845854)八项任务全部通过。本机与 CI 使用同一实现提交，报告与代码哈希见[验收索引](evidence/synthetic-memory-ci-40796845854.json)；Windows 本机另有[记录](evidence/synthetic-memory-local-614982c.json)。
