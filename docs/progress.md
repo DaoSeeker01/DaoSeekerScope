@@ -2,6 +2,8 @@
 
 首版交付门槛与本轮修复分别见 [v0.1 清单](v0.1-checklist.md)和[当前审计](project-review-2026-10-27.md)。下面保留平台增强工作包，不将它们全部视作首版的必要阻塞项。
 
+2026-10-30 定时缓存采集：本机 600 秒与三平台 CI 120 秒试验完成并通过事前预算，逐分钟记录与退出标记、源码/二进制哈希已核对，见[验收记录](timed-soak-validation.md)。小时／天级、FD/句柄与 allocator 分析仍待执行。
+
 2026-10-30 许可材料预检：同一依赖闭包与文件发现规则现可一次列出全部缺口，本机与三平台 CI 40973873976 已验收。macOS 六项文件缺口仍阻止分发；具体来源与界限见[预检说明](notice-preflight.md)。
 
 2026-10-29 glibc 2.34 验证：固定 UBI 9 用户空间已运行相同 CLI/SDK/C 消费者，Python 100 次 collect/free、Schema、隐私、实际入口和清理通过；[CI 40854571297](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40854571297)八项任务成功。Debian 2.36 成功与 2.31 拒绝回归保留，不据此建立所有发行版或最低内核保证，见[记录](linux-glibc234-validation.md)。

@@ -1,5 +1,9 @@
 # 性能基线
 
+## 定时缓存采集试验（2026-10-30）
+
+本机 600 秒、三平台 CI 120 秒的缓存 C ABI 采集试验已通过事前 16 MiB 驻留范围预算、独立校准与来源核对。逐分钟记录、实际调用次数、环境和结论限制见[验收记录](timed-soak-validation.md)。这些是有限时长采样，小时／天级和无泄漏结论仍未验证。历史固定轮次、峰值与失败记录保留如下。
+
 ## 固定轮次驻留内存回归（2026-10-29）
 
 干净源码 `da378db4038b9792ac9ac15c016cb93ce08ba60b` 的 [CI 40801172470](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40801172470)八项任务通过；同一源码的 Windows 本机也已通过，[本机索引](evidence/resident-regression-local-da378db.json)与[三平台索引](evidence/resident-regression-ci-40801172470.json)保留原始报告、源码及产物哈希。

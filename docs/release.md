@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-截至 2026-10-30，最新[三平台 CI 40973873976](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40973873976)八项任务通过，新增[许可材料预检](notice-preflight.md)。macOS 六项文件缺口仍阻止分发；此前 [glibc 2.34 实测](linux-glibc234-validation.md)保留。此前[契约评审](v0.1-contract-review.md)与[性能证据](benchmarks.md)保留。当前仍为未发布 0.1.0；发布门槛与未完成项以 [v0.1 清单](v0.1-checklist.md)为准。
+截至 2026-10-30，最新[三平台 CI 40976829533](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40976829533)八项任务通过，补充[定时缓存采集试验](timed-soak-validation.md)；此前[许可材料预检](notice-preflight.md)保留。macOS 六项文件缺口仍阻止分发；此前 [glibc 2.34 实测](linux-glibc234-validation.md)保留。此前[契约评审](v0.1-contract-review.md)与[性能证据](benchmarks.md)保留。当前仍为未发布 0.1.0；发布门槛与未完成项以 [v0.1 清单](v0.1-checklist.md)为准。
 
 ## 当前发布门槛
 

@@ -1,0 +1,143 @@
+{
+  "format": 1,
+  "overall": "passed",
+  "source_before": {
+    "revision": "3d17320a7854c541c4ff6f9123b7320f806f13e9",
+    "status": ""
+  },
+  "system": "Darwin",
+  "os_release": "25.6.0",
+  "target": "aarch64-apple-darwin",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: aarch64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "c_compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+  "binary_sha256": {
+    "ffi-memory-probe": "56d34bff9e0c588c6ff58956b2b813e46b93f768cfc74cd25d5b712701278b60",
+    "libdaoseeker_scope_ffi.dylib": "aa292bfae2d06898bd85a62d743010845e97fab8281c6c10ca5be3b7454f6ad7",
+    "dscope": "daf256137f26b333cc8c0102f63388ccde115978ff4ca1f2c671a7a435e48f44"
+  },
+  "profile": "release; default serde",
+  "duration_seconds": 120,
+  "options": {
+    "default_cached_collector": true,
+    "sensitive": false,
+    "timeout_ms": 2000
+  },
+  "limits": "requested 100 ms between completed calls; scheduling and OS residency affect samples; not hour/day or leak proof",
+  "environment": {
+    "cpu": {
+      "value": "Apple M1 (Virtual)",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793318625663,
+      "reason": null
+    },
+    "memory": {
+      "value": 7516192768,
+      "availability": "available",
+      "source": "sysctl",
+      "observed_at": 1793318625703,
+      "reason": null
+    },
+    "os": {
+      "name": {
+        "value": "Darwin",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793318625663,
+        "reason": null
+      },
+      "version": {
+        "value": "26.6.2",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793318625663,
+        "reason": null
+      },
+      "kernel_version": {
+        "value": "25.6.0",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793318625663,
+        "reason": null
+      }
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "calibration": {
+    "format": 2,
+    "mode": "resident_calibrate",
+    "launch": {
+      "strategy": "direct",
+      "launcher_pid": 8222,
+      "measurement_pid": 8222,
+      "parent_death_signal": 0
+    },
+    "resident_metric": "mach_task_basic_resident",
+    "resident_raw_unit": "bytes",
+    "resident_multiplier": 1,
+    "metric": "ru_maxrss",
+    "raw_unit": "bytes",
+    "multiplier": 1,
+    "pressure_bytes": 67108864,
+    "samples": [
+      {
+        "phase": "baseline",
+        "calls": 0,
+        "peak_raw": 5767168,
+        "peak_bytes": 5767168,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 5750784,
+        "resident_bytes": 5750784
+      },
+      {
+        "phase": "touched",
+        "calls": 0,
+        "peak_raw": 72892416,
+        "peak_bytes": 72892416,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 72892416,
+        "resident_bytes": 72892416
+      },
+      {
+        "phase": "freed",
+        "calls": 0,
+        "peak_raw": 72892416,
+        "peak_bytes": 72892416,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 72892416,
+        "resident_bytes": 72892416
+      }
+    ]
+  },
+  "calibration_analysis": {
+    "calibration_growth_bytes": 67141632,
+    "passed": true
+  },
+  "invalid_duration_cases": 8,
+  "probe_exit_code": 0,
+  "trace_utf8": "{\"record\":\"header\",\"format\":1,\"mode\":\"soak_cached\",\"launch\":{\"strategy\":\"direct\",\"launcher_pid\":8231,\"measurement_pid\":8231,\"parent_death_signal\":0},\"duration_seconds\":120,\"checkpoint_seconds\":60,\"call_interval_ms\":100,\"warmup_seconds\":60,\"tail_budget_bytes\":16777216,\"resident_metric\":\"mach_task_basic_resident\",\"resident_raw_unit\":\"bytes\",\"resident_multiplier\":1,\"metric\":\"ru_maxrss\",\"raw_unit\":\"bytes\",\"multiplier\":1}\n{\"record\":\"sample\",\"ordinal\":0,\"observation\":{\"phase\":\"baseline\",\"calls\":0,\"peak_raw\":5767168,\"peak_bytes\":5767168,\"elapsed_ns\":0,\"max_json_bytes\":0,\"resident_raw\":5750784,\"resident_bytes\":5750784}}\n{\"record\":\"sample\",\"ordinal\":1,\"observation\":{\"phase\":\"collected\",\"calls\":333,\"peak_raw\":10829824,\"peak_bytes\":10829824,\"elapsed_ns\":60084982000,\"max_json_bytes\":11710,\"resident_raw\":10813440,\"resident_bytes\":10813440}}\n{\"record\":\"sample\",\"ordinal\":2,\"observation\":{\"phase\":\"collected\",\"calls\":674,\"peak_raw\":10829824,\"peak_bytes\":10829824,\"elapsed_ns\":120079098000,\"max_json_bytes\":11710,\"resident_raw\":10813440,\"resident_bytes\":10813440}}\n{\"record\":\"complete\",\"calls\":674,\"samples\":3}\n",
+  "trace_sha256": "596fdd8c56cfd1dbd8ee1fd9aeffb6d8b944e0e3c9e4719b566ff600520091eb",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "probe_error": null,
+  "analysis": {
+    "within_budget": true,
+    "budget_bytes": 16777216,
+    "tail_samples": 2,
+    "tail_min_bytes": 10813440,
+    "tail_max_bytes": 10813440,
+    "tail_range_bytes": 0,
+    "net_change_bytes": 0,
+    "calls": 674,
+    "elapsed_ns": 120079098000,
+    "max_json_bytes": 11710,
+    "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+  },
+  "source_after": {
+    "revision": "3d17320a7854c541c4ff6f9123b7320f806f13e9",
+    "status": ""
+  },
+  "checked_at": "2026-10-30T00:05:46.483389+00:00"
+}

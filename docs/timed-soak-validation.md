@@ -14,4 +14,21 @@ python scripts/timed_soak.py --seconds 600
 
 600 秒试验预先设置 300 秒热身，此后六个分钟检查点的驻留范围不得超过 16 MiB；120 秒试验只有两个热身后检查点，证据更有限。每次调用后请求休眠 100 ms，实际频率受采集耗时与调度影响。当前驻留值允许下降；历史峰值不应下降，二者不能互换。
 
-本轮实测与测试结果在冻结源码后补充。未执行的小时／天级运行、长期 fuzz、实体 Linux/macOS 和 allocator 归因继续保留为待办。
+冻结提交 `3d17320` 的本机 600 秒试验与[三平台 CI 40976829533](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40976829533)八项任务已完成；四份试验报告与来源/哈希见[验收索引](evidence/timed-soak-ci-40976829533.json)。每组均通过独立 64 MiB 驻留计量校准、完成标记、时间/单位/计数、事前预算和源码/二进制一致性核对。
+
+| 环境 | 计划秒数 | 实际 collect/free 次数 | 热身后采样数 | 驻留范围 bytes |
+|---|---:|---:|---:|---:|
+| Windows 本机 | 600 | 5441 | 6 | 180224 |
+| Windows x64 CI | 120 | 1105 | 2 | 184320 |
+| Linux x64 CI | 120 | 1190 | 2 | 0 |
+| macOS ARM64 CI | 120 | 674 | 2 | 0 |
+
+各环境硬件与时长不同，表内结果仅用于各自的预算核对。范围为 0 只表示这些采样点相同，不表示没有分配或泄漏。原始报告包含 CPU、内存、OS、Rust/C 编译器、release/default serde、每个检查点的原始单位和历史峰值；没有把峰值与当前驻留值互换。C 编译沿用开发探针的优化 C11 配置（Windows `/W4 /WX /O2 /std:c11`；Linux/macOS `-O2 -Wall -Wextra -Werror -std=c11`）。
+
+采样前另行运行一次 CLI，检查 Schema、最低读取和默认隐私；计时循环逐次检查返回码、Buffer 长度/指针/token 和释放清零结果。原始 NDJSON 有界保留，非固定探针诊断脱敏；stderr 摘要覆盖最多 4097 字节的诊断前缀。此试验不分析 FD/句柄数或 allocator。
+
+新增 8 项 Python 协议回归；本机全套 290 项中 285 通过、5 跳过。首轮发现一个未使用的测试 import，已在提交前修正；一次补丁上下文不匹配在应用前失败，修正后重新验证。MSVC 严格编译同时覆盖普通与合成探针；Ruff、mypy（71 文件）、文档和 actionlint 检查通过。
+
+CI 各八包独立 Rust 测试为 Windows 269、Linux 261、macOS 266，Python 通过/跳过分别为 285/5、290/0、289/1；fmt、严格 Clippy/doc、无默认功能、Schema、原生 C/Python、候选安装回滚及原有固定轮次内存回归通过。Miri 8、ASan 11、12 个短 fuzz 目标至少各 60 秒通过；完整空 `/proc` 挂载仍为 `not_run`。这些结果不替代延期设备验证。
+
+未执行的小时／天级运行、长期 fuzz、实体 Linux/macOS 和 allocator 归因继续保留为待办。正式 API、ABI 1、硬件 Schema 1、依赖/features、MIT 不变；未发布软件。

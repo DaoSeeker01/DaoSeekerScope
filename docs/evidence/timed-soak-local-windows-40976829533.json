@@ -1,0 +1,143 @@
+{
+  "format": 1,
+  "overall": "passed",
+  "source_before": {
+    "revision": "3d17320a7854c541c4ff6f9123b7320f806f13e9",
+    "status": ""
+  },
+  "system": "Windows",
+  "os_release": "11",
+  "target": "x86_64-pc-windows-msvc",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "c_compiler": "19.51.36260.0",
+  "binary_sha256": {
+    "ffi-memory-probe.exe": "d55183cef917770d9a43e3d768531b61a03e3f09551cd3c96cdbac73a59c9067",
+    "daoseeker_scope_ffi.dll": "0f2743c942860e821ba3c2377e1143e6ce7ef42e9bb66574afa4467bba7953a8",
+    "dscope.exe": "e92736e90e5a57a3d8135ab239fd42458a4e28f4579c4fb82de28a1194e761e7"
+  },
+  "profile": "release; default serde",
+  "duration_seconds": 600,
+  "options": {
+    "default_cached_collector": true,
+    "sensitive": false,
+    "timeout_ms": 2000
+  },
+  "limits": "requested 100 ms between completed calls; scheduling and OS residency affect samples; not hour/day or leak proof",
+  "environment": {
+    "cpu": {
+      "value": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793318425976,
+      "reason": null
+    },
+    "memory": {
+      "value": 17009004544,
+      "availability": "available",
+      "source": "win32",
+      "observed_at": 1793318425998,
+      "reason": null
+    },
+    "os": {
+      "name": {
+        "value": "Windows",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793318425976,
+        "reason": null
+      },
+      "version": {
+        "value": "11 (26300)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793318425976,
+        "reason": null
+      },
+      "kernel_version": {
+        "value": "26300",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793318425976,
+        "reason": null
+      }
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "calibration": {
+    "format": 2,
+    "mode": "resident_calibrate",
+    "launch": {
+      "strategy": "direct",
+      "launcher_pid": 20624,
+      "measurement_pid": 20624,
+      "parent_death_signal": 0
+    },
+    "resident_metric": "working_set_size",
+    "resident_raw_unit": "bytes",
+    "resident_multiplier": 1,
+    "metric": "peak_working_set",
+    "raw_unit": "bytes",
+    "multiplier": 1,
+    "pressure_bytes": 67108864,
+    "samples": [
+      {
+        "phase": "baseline",
+        "calls": 0,
+        "peak_raw": 8757248,
+        "peak_bytes": 8757248,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 8757248,
+        "resident_bytes": 8757248
+      },
+      {
+        "phase": "touched",
+        "calls": 0,
+        "peak_raw": 75870208,
+        "peak_bytes": 75870208,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 75870208,
+        "resident_bytes": 75870208
+      },
+      {
+        "phase": "freed",
+        "calls": 0,
+        "peak_raw": 75870208,
+        "peak_bytes": 75870208,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 8757248,
+        "resident_bytes": 8757248
+      }
+    ]
+  },
+  "calibration_analysis": {
+    "calibration_growth_bytes": 67112960,
+    "passed": true
+  },
+  "invalid_duration_cases": 8,
+  "probe_exit_code": 0,
+  "trace_utf8": "{\"record\":\"header\",\"format\":1,\"mode\":\"soak_cached\",\"launch\":{\"strategy\":\"direct\",\"launcher_pid\":6812,\"measurement_pid\":6812,\"parent_death_signal\":0},\"duration_seconds\":600,\"checkpoint_seconds\":60,\"call_interval_ms\":100,\"warmup_seconds\":300,\"tail_budget_bytes\":16777216,\"resident_metric\":\"working_set_size\",\"resident_raw_unit\":\"bytes\",\"resident_multiplier\":1,\"metric\":\"peak_working_set\",\"raw_unit\":\"bytes\",\"multiplier\":1}\r\n{\"record\":\"sample\",\"ordinal\":0,\"observation\":{\"phase\":\"baseline\",\"calls\":0,\"peak_raw\":7925760,\"peak_bytes\":7925760,\"elapsed_ns\":0,\"max_json_bytes\":0,\"resident_raw\":7925760,\"resident_bytes\":7925760}}\r\n{\"record\":\"sample\",\"ordinal\":1,\"observation\":{\"phase\":\"collected\",\"calls\":545,\"peak_raw\":12156928,\"peak_bytes\":12156928,\"elapsed_ns\":60079395100,\"max_json_bytes\":25475,\"resident_raw\":11907072,\"resident_bytes\":11907072}}\r\n{\"record\":\"sample\",\"ordinal\":2,\"observation\":{\"phase\":\"collected\",\"calls\":1090,\"peak_raw\":12156928,\"peak_bytes\":12156928,\"elapsed_ns\":120050516700,\"max_json_bytes\":25475,\"resident_raw\":12136448,\"resident_bytes\":12136448}}\r\n{\"record\":\"sample\",\"ordinal\":3,\"observation\":{\"phase\":\"collected\",\"calls\":1635,\"peak_raw\":12156928,\"peak_bytes\":12156928,\"elapsed_ns\":180106731999,\"max_json_bytes\":25475,\"resident_raw\":11886592,\"resident_bytes\":11886592}}\r\n{\"record\":\"sample\",\"ordinal\":4,\"observation\":{\"phase\":\"collected\",\"calls\":2179,\"peak_raw\":12222464,\"peak_bytes\":12222464,\"elapsed_ns\":240055037000,\"max_json_bytes\":25475,\"resident_raw\":12222464,\"resident_bytes\":12222464}}\r\n{\"record\":\"sample\",\"ordinal\":5,\"observation\":{\"phase\":\"collected\",\"calls\":2724,\"peak_raw\":12222464,\"peak_bytes\":12222464,\"elapsed_ns\":300002985799,\"max_json_bytes\":25475,\"resident_raw\":12222464,\"resident_bytes\":12222464}}\r\n{\"record\":\"sample\",\"ordinal\":6,\"observation\":{\"phase\":\"collected\",\"calls\":3267,\"peak_raw\":12402688,\"peak_bytes\":12402688,\"elapsed_ns\":360054106199,\"max_json_bytes\":25475,\"resident_raw\":12402688,\"resident_bytes\":12402688}}\r\n{\"record\":\"sample\",\"ordinal\":7,\"observation\":{\"phase\":\"collected\",\"calls\":3811,\"peak_raw\":12402688,\"peak_bytes\":12402688,\"elapsed_ns\":420086701799,\"max_json_bytes\":25475,\"resident_raw\":12341248,\"resident_bytes\":12341248}}\r\n{\"record\":\"sample\",\"ordinal\":8,\"observation\":{\"phase\":\"collected\",\"calls\":4353,\"peak_raw\":12402688,\"peak_bytes\":12402688,\"elapsed_ns\":480058651299,\"max_json_bytes\":25475,\"resident_raw\":12341248,\"resident_bytes\":12341248}}\r\n{\"record\":\"sample\",\"ordinal\":9,\"observation\":{\"phase\":\"collected\",\"calls\":4898,\"peak_raw\":12402688,\"peak_bytes\":12402688,\"elapsed_ns\":540102845599,\"max_json_bytes\":25475,\"resident_raw\":12341248,\"resident_bytes\":12341248}}\r\n{\"record\":\"sample\",\"ordinal\":10,\"observation\":{\"phase\":\"collected\",\"calls\":5441,\"peak_raw\":12402688,\"peak_bytes\":12402688,\"elapsed_ns\":600022468600,\"max_json_bytes\":25475,\"resident_raw\":12382208,\"resident_bytes\":12382208}}\r\n{\"record\":\"complete\",\"calls\":5441,\"samples\":11}\r\n",
+  "trace_sha256": "60a2178e7f6faca867da5b9e56ffcb2d5c5dd7f5593d9b4ab2fed9a3b33c74cd",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "probe_error": null,
+  "analysis": {
+    "within_budget": true,
+    "budget_bytes": 16777216,
+    "tail_samples": 6,
+    "tail_min_bytes": 12222464,
+    "tail_max_bytes": 12402688,
+    "tail_range_bytes": 180224,
+    "net_change_bytes": 159744,
+    "calls": 5441,
+    "elapsed_ns": 600022468600,
+    "max_json_bytes": 25475,
+    "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+  },
+  "source_after": {
+    "revision": "3d17320a7854c541c4ff6f9123b7320f806f13e9",
+    "status": ""
+  },
+  "checked_at": "2026-10-30T00:10:26.343339+00:00"
+}

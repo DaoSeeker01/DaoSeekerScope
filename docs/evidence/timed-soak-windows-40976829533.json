@@ -1,0 +1,143 @@
+{
+  "format": 1,
+  "overall": "passed",
+  "source_before": {
+    "revision": "3d17320a7854c541c4ff6f9123b7320f806f13e9",
+    "status": ""
+  },
+  "system": "Windows",
+  "os_release": "2025Server",
+  "target": "x86_64-pc-windows-msvc",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "c_compiler": "19.51.36260.0",
+  "binary_sha256": {
+    "ffi-memory-probe.exe": "0688df9d91cf2e2beec6acdabea13ed86f51a7e7e82e31eba2e88022171bc799",
+    "daoseeker_scope_ffi.dll": "3bdea0edd94c61b1589e57f07fb6340ec59eb0b3afda364f585072c1030a1862",
+    "dscope.exe": "551f55b0f063c89d7634c1c8dfada378295f3b4851de5087649e10aadefe5f46"
+  },
+  "profile": "release; default serde",
+  "duration_seconds": 120,
+  "options": {
+    "default_cached_collector": true,
+    "sensitive": false,
+    "timeout_ms": 2000
+  },
+  "limits": "requested 100 ms between completed calls; scheduling and OS residency affect samples; not hour/day or leak proof",
+  "environment": {
+    "cpu": {
+      "value": "AMD EPYC 7763 64-Core Processor",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793319108093,
+      "reason": null
+    },
+    "memory": {
+      "value": 17174360064,
+      "availability": "available",
+      "source": "win32",
+      "observed_at": 1793319108101,
+      "reason": null
+    },
+    "os": {
+      "name": {
+        "value": "Windows",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793319108093,
+        "reason": null
+      },
+      "version": {
+        "value": "11 (26100)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793319108093,
+        "reason": null
+      },
+      "kernel_version": {
+        "value": "26100",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793319108093,
+        "reason": null
+      }
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "calibration": {
+    "format": 2,
+    "mode": "resident_calibrate",
+    "launch": {
+      "strategy": "direct",
+      "launcher_pid": 5416,
+      "measurement_pid": 5416,
+      "parent_death_signal": 0
+    },
+    "resident_metric": "working_set_size",
+    "resident_raw_unit": "bytes",
+    "resident_multiplier": 1,
+    "metric": "peak_working_set",
+    "raw_unit": "bytes",
+    "multiplier": 1,
+    "pressure_bytes": 67108864,
+    "samples": [
+      {
+        "phase": "baseline",
+        "calls": 0,
+        "peak_raw": 8552448,
+        "peak_bytes": 8552448,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 8552448,
+        "resident_bytes": 8552448
+      },
+      {
+        "phase": "touched",
+        "calls": 0,
+        "peak_raw": 75665408,
+        "peak_bytes": 75665408,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 75665408,
+        "resident_bytes": 75665408
+      },
+      {
+        "phase": "freed",
+        "calls": 0,
+        "peak_raw": 75665408,
+        "peak_bytes": 75665408,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 8552448,
+        "resident_bytes": 8552448
+      }
+    ]
+  },
+  "calibration_analysis": {
+    "calibration_growth_bytes": 67112960,
+    "passed": true
+  },
+  "invalid_duration_cases": 8,
+  "probe_exit_code": 0,
+  "trace_utf8": "{\"record\":\"header\",\"format\":1,\"mode\":\"soak_cached\",\"launch\":{\"strategy\":\"direct\",\"launcher_pid\":7768,\"measurement_pid\":7768,\"parent_death_signal\":0},\"duration_seconds\":120,\"checkpoint_seconds\":60,\"call_interval_ms\":100,\"warmup_seconds\":60,\"tail_budget_bytes\":16777216,\"resident_metric\":\"working_set_size\",\"resident_raw_unit\":\"bytes\",\"resident_multiplier\":1,\"metric\":\"peak_working_set\",\"raw_unit\":\"bytes\",\"multiplier\":1}\r\n{\"record\":\"sample\",\"ordinal\":0,\"observation\":{\"phase\":\"baseline\",\"calls\":0,\"peak_raw\":7749632,\"peak_bytes\":7749632,\"elapsed_ns\":0,\"max_json_bytes\":0,\"resident_raw\":7749632,\"resident_bytes\":7749632}}\r\n{\"record\":\"sample\",\"ordinal\":1,\"observation\":{\"phase\":\"collected\",\"calls\":553,\"peak_raw\":11374592,\"peak_bytes\":11374592,\"elapsed_ns\":60024980900,\"max_json_bytes\":13376,\"resident_raw\":11173888,\"resident_bytes\":11173888}}\r\n{\"record\":\"sample\",\"ordinal\":2,\"observation\":{\"phase\":\"collected\",\"calls\":1105,\"peak_raw\":11374592,\"peak_bytes\":11374592,\"elapsed_ns\":120042795000,\"max_json_bytes\":13376,\"resident_raw\":11358208,\"resident_bytes\":11358208}}\r\n{\"record\":\"complete\",\"calls\":1105,\"samples\":3}\r\n",
+  "trace_sha256": "5b636d098c62d17fa991a1dd186b6a8e933f1635627feee030a6e54d775b88af",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "probe_error": null,
+  "analysis": {
+    "within_budget": true,
+    "budget_bytes": 16777216,
+    "tail_samples": 2,
+    "tail_min_bytes": 11173888,
+    "tail_max_bytes": 11358208,
+    "tail_range_bytes": 184320,
+    "net_change_bytes": 184320,
+    "calls": 1105,
+    "elapsed_ns": 120042795000,
+    "max_json_bytes": 13376,
+    "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+  },
+  "source_after": {
+    "revision": "3d17320a7854c541c4ff6f9123b7320f806f13e9",
+    "status": ""
+  },
+  "checked_at": "2026-10-30T00:13:48.395612+00:00"
+}
