@@ -1,0 +1,349 @@
+{
+  "overall": "passed",
+  "date": "2026-10-30",
+  "source_commit": "29cab6e47e3eaa4472ad21208533f7225ed1494a",
+  "run_id": 41036279407,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41036279407",
+  "jobs": [
+    {
+      "databaseId": 123997786831,
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41036279407/job/123997786831"
+    },
+    {
+      "databaseId": 123997787068,
+      "name": "linux-container",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41036279407/job/123997787068"
+    },
+    {
+      "databaseId": 123997787172,
+      "name": "miri",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41036279407/job/123997787172"
+    },
+    {
+      "databaseId": 123997787231,
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41036279407/job/123997787231"
+    },
+    {
+      "databaseId": 123997787257,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41036279407/job/123997787257"
+    },
+    {
+      "databaseId": 123997787324,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41036279407/job/123997787324"
+    },
+    {
+      "databaseId": 123997787333,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41036279407/job/123997787333"
+    },
+    {
+      "databaseId": 123997787413,
+      "name": "supply-chain",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41036279407/job/123997787413"
+    }
+  ],
+  "reports": {
+    "resources-windows-41036279407.json": {
+      "sha256": "bc43e1338c32c45a5e8c6cfccdd3ea9014bce191f4f3b5aa7a293ce22c947c30",
+      "original_sha256": "bc43e1338c32c45a5e8c6cfccdd3ea9014bce191f4f3b5aa7a293ce22c947c30",
+      "origin": "target/resource-ci-41036279407/native-evidence-Windows-X64/resource-evidence.json"
+    },
+    "resources-linux-41036279407.json": {
+      "sha256": "f6d3ade6b18d270a143fe0b05854d2112c5011a37e5016e9165f52cf76dc3a5b",
+      "original_sha256": "f6d3ade6b18d270a143fe0b05854d2112c5011a37e5016e9165f52cf76dc3a5b",
+      "origin": "target/resource-ci-41036279407/native-evidence-Linux-X64/resource-evidence.json"
+    },
+    "resources-macos-41036279407.json": {
+      "sha256": "32a055d3119b5c48434608ce67c3543409e8fa1f9fee01b9a20ef3ed4dc66560",
+      "original_sha256": "32a055d3119b5c48434608ce67c3543409e8fa1f9fee01b9a20ef3ed4dc66560",
+      "origin": "target/resource-ci-41036279407/native-evidence-macOS-ARM64/resource-evidence.json"
+    },
+    "resources-local-windows-41036279407.json": {
+      "sha256": "98db6f5c59271fee9ce663c58c2d7aa55fd5361752da530d22b7c605e0b7c174",
+      "original_sha256": "98db6f5c59271fee9ce663c58c2d7aa55fd5361752da530d22b7c605e0b7c174",
+      "origin": "target/resource-local-windows.json"
+    }
+  },
+  "platforms": {
+    "windows": {
+      "analyses": {
+        "calibrate": {
+          "opened_delta": 32,
+          "closed_delta": 0,
+          "passed": true
+        },
+        "cached": {
+          "tail_samples": 10,
+          "first_count": 149,
+          "last_count": 149,
+          "net_change": 0,
+          "tail_range": 0,
+          "budget": 8,
+          "within_budget": true
+        },
+        "control": {
+          "tail_samples": 10,
+          "first_count": 149,
+          "last_count": 165,
+          "net_change": 16,
+          "tail_range": 16,
+          "budget": 8,
+          "within_budget": false
+        }
+      },
+      "isolated_rust_tests": 269,
+      "python_passed": 292,
+      "python_skipped": 5
+    },
+    "linux": {
+      "analyses": {
+        "calibrate": {
+          "opened_delta": 32,
+          "closed_delta": 0,
+          "passed": true
+        },
+        "cached": {
+          "tail_samples": 10,
+          "first_count": 3,
+          "last_count": 3,
+          "net_change": 0,
+          "tail_range": 0,
+          "budget": 8,
+          "within_budget": true
+        },
+        "control": {
+          "tail_samples": 10,
+          "first_count": 3,
+          "last_count": 19,
+          "net_change": 16,
+          "tail_range": 16,
+          "budget": 8,
+          "within_budget": false
+        }
+      },
+      "isolated_rust_tests": 261,
+      "python_passed": 297,
+      "python_skipped": 0
+    },
+    "macos": {
+      "analyses": {
+        "calibrate": {
+          "opened_delta": 32,
+          "closed_delta": 0,
+          "passed": true
+        },
+        "cached": {
+          "tail_samples": 10,
+          "first_count": 3,
+          "last_count": 3,
+          "net_change": 0,
+          "tail_range": 0,
+          "budget": 8,
+          "within_budget": true
+        },
+        "control": {
+          "tail_samples": 10,
+          "first_count": 3,
+          "last_count": 19,
+          "net_change": 16,
+          "tail_range": 16,
+          "budget": 8,
+          "within_budget": false
+        }
+      },
+      "isolated_rust_tests": 266,
+      "python_passed": 296,
+      "python_skipped": 1
+    }
+  },
+  "local_windows": {
+    "analyses": {
+      "calibrate": {
+        "opened_delta": 32,
+        "closed_delta": 0,
+        "passed": true
+      },
+      "cached": {
+        "tail_samples": 10,
+        "first_count": 151,
+        "last_count": 151,
+        "net_change": 0,
+        "tail_range": 0,
+        "budget": 8,
+        "within_budget": true
+      },
+      "control": {
+        "tail_samples": 10,
+        "first_count": 151,
+        "last_count": 167,
+        "net_change": 16,
+        "tail_range": 16,
+        "budget": 8,
+        "within_budget": false
+      }
+    },
+    "python_passed": 292,
+    "python_skipped": 5,
+    "mypy_files": 73,
+    "new_protocol_tests": 7
+  },
+  "source_files": {
+    ".github/workflows/ci.yml": "d95195c6b01fc9ebe9e235298782aba54572bd72dced2f3364cef3bc863b36bc",
+    "CHANGELOG.md": "cffe8a644e6c6a47778a5ddd90f72e984cf799d437cb6cbd3961db626d18c847",
+    "docs/README.md": "53e81ec2a33fe7b1651d464d15452e260c574c90606d2e2c074965ed6f440584",
+    "docs/adr/0046-resource-count-regression.md": "9270cdb96252290bb341b43e1ff5ab08fef743a0e1e97a80fc477fd4c34b9206",
+    "docs/research/ffi_resource_probe.c": "82591c5ec81bf215bcc16dbce8fb8a2ab234bd248452676698a230d8133eebd2",
+    "docs/resource-validation.md": "93ca1d6445967ef1a9d66c85f4d35fe42019fa97afe366bc528301b28608ee9c",
+    "scripts/build_c_example.ps1": "434e464f1291b384a94fbc8f80cebc051d5bcaac97b1c81c62939c5b0cc4fe13",
+    "scripts/resource_regression.py": "338d4fe001fcb8d0d1f64113c50f25571793340660d0662f8ee1b30055f634c4",
+    "tests/test_resource_regression.py": "675cfa505f783c186961bfca6c4ed4e80839d85d16a795e33e91a243090fb8d5"
+  },
+  "artifact_metadata": [
+    {
+      "name": "native-evidence-Windows-X64",
+      "digest": "sha256:d816ddff235fbaf1d08348ad4bbd76293318c826738c5ae35091583ca0ca7f1c",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "digest": "sha256:dcddd5ca3a25d7e782c3c9e50f8fd4636bfefe6590f286244bda473f962f3006",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "procfs-fuzz-evidence",
+      "digest": "sha256:991b0235149e43025acc2fc3f3795491be482b685f782b7ec783916778b3d915",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "digest": "sha256:792632fc0ee0a784d4b595e067e8f29c5304115017bd7a925d9d75ae0d9ddf9b",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "digest": "sha256:7a355e2329c6eaa1216a9936172189b5344b9e800bd42f748a96a01dc391460f",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "native-evidence-Linux-X64",
+      "digest": "sha256:38c5be654c712e341fbfb0c0da1eb1589294b4ec8b639659fcf7609b04d47897",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "digest": "sha256:b4bb50e9add07476f8ceefea75822b60a71d5b5bf36712506486c192c8dcb594",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "digest": "sha256:2e0f00562162a67960dae68774da9e619b728dc33ebe7b7e4f44f4252a43fad1",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "linux-container-evidence",
+      "digest": "sha256:a65da6d363b4a24716b482919fcf3525e0dcbfe68fd071883cdf47705e21559d",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "package-evidence-Windows-X64",
+      "digest": "sha256:c1c71a944b1773ccd6ea69b47420e146fd3be78c843c5a094326fc10dbb5e619",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "digest": "sha256:96c1b67bdbb5db685398f71310c4de8e86bc0174aae118f76d2f8b11fff7884d",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    },
+    {
+      "name": "package-evidence-Linux-X64",
+      "digest": "sha256:586de8b448cf779b6add59ac4bf906759a45ec36ef246a8037a492e20fbe7f4e",
+      "head_sha": "29cab6e47e3eaa4472ad21208533f7225ed1494a"
+    }
+  ],
+  "all_jobs_log_sha256": "f0fdaa69842d73107db545e0c0d6d865bb2e677a2e7f80a90d63b6c185544dc0",
+  "safety": {
+    "miri": 8,
+    "asan": 11,
+    "short_fuzz_targets": 12,
+    "campaigns": [
+      {
+        "runs": 550363,
+        "seconds": 61
+      },
+      {
+        "runs": 8139339,
+        "seconds": 61
+      },
+      {
+        "runs": 17843282,
+        "seconds": 61
+      },
+      {
+        "runs": 1024787,
+        "seconds": 61
+      },
+      {
+        "runs": 3451491,
+        "seconds": 61
+      },
+      {
+        "runs": 19237620,
+        "seconds": 61
+      },
+      {
+        "runs": 19577110,
+        "seconds": 61
+      },
+      {
+        "runs": 19086827,
+        "seconds": 61
+      },
+      {
+        "runs": 3287887,
+        "seconds": 61
+      },
+      {
+        "runs": 4613049,
+        "seconds": 61
+      },
+      {
+        "runs": 28586802,
+        "seconds": 61
+      },
+      {
+        "runs": 30917391,
+        "seconds": 61
+      }
+    ],
+    "empty_proc": "not_run"
+  },
+  "initial_issues": [
+    "One test first failed due to sandbox temporary-directory permissions; unchanged test passed in the existing non-sandbox environment.",
+    "One patch context failed before applying changes; corrected and verified."
+  ],
+  "abi": 1,
+  "hardware_schema": 1,
+  "private_resource_format": 1,
+  "license": "MIT",
+  "production_api_or_dependencies_changed": false,
+  "published": false,
+  "limits": [
+    "Finite 1000-call cached process workload; not long-duration or no-leak proof.",
+    "macOS covers only descriptors 0..65535; no private libproc API.",
+    "Not Mach ports, threads, GDI/USER objects or allocator analysis.",
+    "No physical Linux/macOS or multi-group Windows evidence.",
+    "macOS distribution materials and minimum OS/kernel scope remain pending."
+  ]
+}

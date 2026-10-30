@@ -1,0 +1,175 @@
+{
+  "format": 1,
+  "overall": "passed",
+  "source_before": {
+    "revision": "29cab6e47e3eaa4472ad21208533f7225ed1494a",
+    "status": ""
+  },
+  "system": "Windows",
+  "os_release": "11",
+  "target": "x86_64-pc-windows-msvc",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "c_compiler": "19.51.36260.0",
+  "profile": "release; default serde",
+  "binary_sha256": {
+    "ffi-resource-probe.exe": "f27d9b05bf18301e528a284f8947c4dab8b39b7b9a4819ec35f962b86f6ab0da",
+    "daoseeker_scope_ffi.dll": "0f2743c942860e821ba3c2377e1143e6ce7ef42e9bb66574afa4467bba7953a8"
+  },
+  "options": {
+    "default_cached_collector": true,
+    "sensitive": false,
+    "timeout_ms": 2000
+  },
+  "scope": "finite process handle/FD sampling; macOS checks only FD 0..65535; not Mach ports, GDI/USER objects, allocator or long-duration proof",
+  "observations": {
+    "calibrate": {
+      "format": 1,
+      "mode": "calibrate",
+      "metric": "process_handle_count",
+      "opened_resources": 32,
+      "counts": [
+        114,
+        146,
+        114
+      ]
+    },
+    "cached": {
+      "format": 1,
+      "mode": "cached",
+      "metric": "process_handle_count",
+      "warmup_calls": 100,
+      "total_calls": 1000,
+      "interval_calls": 100,
+      "tail_budget": 8,
+      "control_resources": 0,
+      "max_json_bytes": 22232,
+      "samples": [
+        {
+          "calls": 100,
+          "count": 151
+        },
+        {
+          "calls": 200,
+          "count": 151
+        },
+        {
+          "calls": 300,
+          "count": 151
+        },
+        {
+          "calls": 400,
+          "count": 151
+        },
+        {
+          "calls": 500,
+          "count": 151
+        },
+        {
+          "calls": 600,
+          "count": 151
+        },
+        {
+          "calls": 700,
+          "count": 151
+        },
+        {
+          "calls": 800,
+          "count": 151
+        },
+        {
+          "calls": 900,
+          "count": 151
+        },
+        {
+          "calls": 1000,
+          "count": 151
+        }
+      ],
+      "completed": true
+    },
+    "control": {
+      "format": 1,
+      "mode": "control",
+      "metric": "process_handle_count",
+      "warmup_calls": 100,
+      "total_calls": 1000,
+      "interval_calls": 100,
+      "tail_budget": 8,
+      "control_resources": 16,
+      "max_json_bytes": 22232,
+      "samples": [
+        {
+          "calls": 100,
+          "count": 151
+        },
+        {
+          "calls": 200,
+          "count": 167
+        },
+        {
+          "calls": 300,
+          "count": 167
+        },
+        {
+          "calls": 400,
+          "count": 167
+        },
+        {
+          "calls": 500,
+          "count": 167
+        },
+        {
+          "calls": 600,
+          "count": 167
+        },
+        {
+          "calls": 700,
+          "count": 167
+        },
+        {
+          "calls": 800,
+          "count": 167
+        },
+        {
+          "calls": 900,
+          "count": 167
+        },
+        {
+          "calls": 1000,
+          "count": 167
+        }
+      ],
+      "completed": true
+    }
+  },
+  "analyses": {
+    "calibrate": {
+      "opened_delta": 32,
+      "closed_delta": 0,
+      "passed": true
+    },
+    "cached": {
+      "tail_samples": 10,
+      "first_count": 151,
+      "last_count": 151,
+      "net_change": 0,
+      "tail_range": 0,
+      "budget": 8,
+      "within_budget": true
+    },
+    "control": {
+      "tail_samples": 10,
+      "first_count": 151,
+      "last_count": 167,
+      "net_change": 16,
+      "tail_range": 16,
+      "budget": 8,
+      "within_budget": false
+    }
+  },
+  "source_after": {
+    "revision": "29cab6e47e3eaa4472ad21208533f7225ed1494a",
+    "status": ""
+  },
+  "checked_at": "2026-10-30T09:49:43.078334+00:00"
+}
