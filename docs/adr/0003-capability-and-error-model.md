@@ -10,4 +10,6 @@ Options：timeout 1..60000ms、条目上限 1..1024、字符串/单文件上限 
 
 敏感采集要求 include_sensitive 与 caller_authorized 同时 true；后者是调用方声明，不是本库获取 OS 授权。默认不读取序列号。自定义 Backend 被信任且需遵守契约；出口再次脱敏。日志不保存完整原始错误。
 
+2026-10-31 取消检查修正：每次 backend 返回后，先检查调用上下文，再处理返回值或记录 backend 错误。这样，调用期间发生的取消/到期不会因最后一个 backend 失败而被合并为 BackendFailure。正常故障隔离、缓存提交条件及原生阻塞调用的限制不变，见[本轮审查](../project-review-2026-10-31.md)。
+
 2026-10-11 审查修正：增强层 Unsupported 不覆盖已注册的实现能力；出现 Available 而声明为 Unsupported/Restricted/NotApplicable 的字段，能力降为 Partial 并采用实际来源。冲突只比较值，不把时间戳或来源变化当作值冲突。核心出口对零核数/零容量及可用内存大于缓存总量按字段返回 InvalidData；诊断 backend 名称按 UTF-8 字节限制且拒绝控制字符。签名、布局和 ABI/Schema 主版本不变。见[检查报告](../project-review-2026-10-11.md)。

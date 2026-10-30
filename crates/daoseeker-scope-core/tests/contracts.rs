@@ -336,6 +336,79 @@ fn dynamic_requires_a_static_baseline() {
         ErrorCode::InvalidArgument
     );
 }
+
+#[test]
+fn cancelled_backend_failure_can_retry_without_committing_static_cache() {
+    struct CancelOnce {
+        cancellation: Option<CancelToken>,
+        during_dynamic: bool,
+        static_calls: Arc<AtomicUsize>,
+        dynamic_calls: Arc<AtomicUsize>,
+    }
+    impl Backend for CancelOnce {
+        fn name(&self) -> &'static str {
+            "cancel-once"
+        }
+        fn capabilities(&self) -> Capabilities {
+            Vec::new()
+        }
+        fn collect_static(&mut self, _: &CollectContext) -> Result<StaticSnapshot, ScopeError> {
+            self.static_calls.fetch_add(1, Ordering::SeqCst);
+            if !self.during_dynamic
+                && let Some(token) = self.cancellation.take()
+            {
+                token.cancel();
+                return Err(ScopeError::new(ErrorCode::BackendFailure));
+            }
+            Ok(StaticSnapshot::default())
+        }
+        fn refresh_dynamic(&mut self, _: &CollectContext) -> Result<DynamicSnapshot, ScopeError> {
+            self.dynamic_calls.fetch_add(1, Ordering::SeqCst);
+            if self.during_dynamic
+                && let Some(token) = self.cancellation.take()
+            {
+                token.cancel();
+                return Err(ScopeError::new(ErrorCode::BackendFailure));
+            }
+            Ok(DynamicSnapshot::default())
+        }
+    }
+
+    for during_dynamic in [false, true] {
+        let token = CancelToken::default();
+        let static_calls = Arc::new(AtomicUsize::new(0));
+        let dynamic_calls = Arc::new(AtomicUsize::new(0));
+        let hardware = HardwareBuilder::default()
+            .with_backend(
+                0,
+                CancelOnce {
+                    cancellation: Some(token.clone()),
+                    during_dynamic,
+                    static_calls: static_calls.clone(),
+                    dynamic_calls: dynamic_calls.clone(),
+                },
+            )
+            .build()
+            .expect("hardware");
+        let capabilities = hardware.capabilities();
+        assert_eq!(
+            hardware.collect_with(token).expect_err("cancelled").code,
+            ErrorCode::Cancelled
+        );
+        assert_eq!(hardware.capabilities(), capabilities);
+        let recovered = hardware.collect().expect("fresh token can retry");
+        assert!(recovered.issues.is_empty());
+        assert_eq!(static_calls.load(Ordering::SeqCst), 2);
+        hardware
+            .refresh_dynamic()
+            .expect("successful cache baseline");
+        assert_eq!(static_calls.load(Ordering::SeqCst), 2);
+        assert_eq!(
+            dynamic_calls.load(Ordering::SeqCst),
+            if during_dynamic { 3 } else { 2 }
+        );
+    }
+}
 #[test]
 fn concurrent_call_is_busy_and_active_call_can_be_cancelled() {
     let fake = Fake {

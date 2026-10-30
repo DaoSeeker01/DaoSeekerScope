@@ -504,6 +504,7 @@ fn collect_static(
         context.check()?;
         let result = catch_unwind(AssertUnwindSafe(|| entry.backend.collect_static(context)))
             .unwrap_or_else(|_| Err(ScopeError::new(ErrorCode::Panic)));
+        context.check()?;
         match result {
             Ok(mut next) => {
                 successes += 1;
@@ -709,6 +710,7 @@ fn collect_dynamic(
         context.check()?;
         let result = catch_unwind(AssertUnwindSafe(|| entry.backend.refresh_dynamic(context)))
             .unwrap_or_else(|_| Err(ScopeError::new(ErrorCode::Panic)));
+        context.check()?;
         match result {
             Ok(mut next) => {
                 successes += 1;
@@ -829,4 +831,65 @@ fn collect_dynamic(
         return Err(ScopeError::new(ErrorCode::BackendFailure));
     }
     Ok((output, conflicts, issues))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    struct CancelAndFail(CancelToken);
+    impl Backend for CancelAndFail {
+        fn name(&self) -> &'static str {
+            "cancel-and-fail"
+        }
+        fn capabilities(&self) -> Capabilities {
+            Vec::new()
+        }
+        fn collect_static(&mut self, _: &CollectContext) -> Result<StaticSnapshot, ScopeError> {
+            self.0.cancel();
+            Err(ScopeError::new(ErrorCode::BackendFailure))
+        }
+        fn refresh_dynamic(&mut self, _: &CollectContext) -> Result<DynamicSnapshot, ScopeError> {
+            self.0.cancel();
+            Err(ScopeError::new(ErrorCode::BackendFailure))
+        }
+    }
+
+    fn cancelled_backend() -> (Vec<Registered>, CollectContext) {
+        let cancellation = CancelToken::default();
+        let context = CollectContext {
+            options: Options::default(),
+            cancellation: cancellation.clone(),
+            deadline: Instant::now() + Duration::from_secs(60),
+        };
+        (
+            vec![Registered {
+                priority: 0,
+                backend: Box::new(CancelAndFail(cancellation)),
+            }],
+            context,
+        )
+    }
+
+    #[test]
+    fn backend_cancellation_is_preserved_after_static_failure() {
+        let (mut backends, context) = cancelled_backend();
+        assert_eq!(
+            collect_static(&mut backends, &context)
+                .expect_err("cancellation must survive the last backend error")
+                .code,
+            ErrorCode::Cancelled
+        );
+    }
+
+    #[test]
+    fn backend_cancellation_is_preserved_after_dynamic_failure() {
+        let (mut backends, context) = cancelled_backend();
+        assert_eq!(
+            collect_dynamic(&mut backends, &context, None)
+                .expect_err("cancellation must survive the last backend error")
+                .code,
+            ErrorCode::Cancelled
+        );
+    }
 }

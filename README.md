@@ -69,7 +69,7 @@ fn main() -> Result<(), daoseeker_scope::ScopeError> {
 
 报告问题或建议，请使用 [Issue 模板](https://github.com/DaoSeeker01/DaoSeekerScope/issues/new/choose)；提交代码前请阅读[贡献指南](CONTRIBUTING.md)和[社区规范](CODE_OF_CONDUCT.md)。漏洞请按[安全政策](SECURITY.md)私密报告。
 
-[更新日志](CHANGELOG.md) · [v0.1 交付清单](docs/v0.1-checklist.md) · [开发进度](docs/progress.md) · [本轮审计](docs/project-review-2026-10-27.md)
+[更新日志](CHANGELOG.md) · [v0.1 交付清单](docs/v0.1-checklist.md) · [开发进度](docs/progress.md) · [近期审查](docs/project-review-2026-10-31.md)
 
 ## 许可证
 

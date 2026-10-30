@@ -8,7 +8,8 @@
 - [定时采集试验](timed-soak-validation.md)：按持续时长记录内存，保留完整和中断检查点。
 - [句柄与描述符检查](resource-validation.md)：固定轮次计数、独立校准与增长检测对照。
 - [glibc 2.34 运行验证](linux-glibc234-validation.md)：固定 UBI 用户空间中的候选测试及结论边界。
-- [当前审计与修复](project-review-2026-10-27.md)：2026-10-27 的问题、处理和验证状态。
+- [基础审计与修复](project-review-2026-10-27.md)：2026-10-27 的问题、处理和验证状态。
+- [核心取消与缓存审查](project-review-2026-10-31.md)：取消状态误报的复现、修复与重试回归。
 
 - [使用指南](usage.md)：Rust、CLI、JSON、C/Python、刷新与隐私。
 - [剩余工作](progress.md)：首版工作包、延期设备验证与后续扩展。
