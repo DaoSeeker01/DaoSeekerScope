@@ -198,6 +198,9 @@ jobs:
       - name: Two-minute cached C ABI sampling trial
         timeout-minutes: 8
         run: python scripts/timed_soak.py --seconds 120
+      - name: Cached C ABI handle and descriptor regression
+        timeout-minutes: 8
+        run: python scripts/resource_regression.py
       - name: macOS public IOMedia SDK probe
         if: runner.os == 'macOS'
         run: |
@@ -268,6 +271,7 @@ jobs:
             target/peak-memory-evidence.json
             target/timed-soak-evidence.json
             target/timed-soak-evidence.ndjson
+            target/resource-evidence.json
           if-no-files-found: ignore
           retention-days: 14
   linux-container:

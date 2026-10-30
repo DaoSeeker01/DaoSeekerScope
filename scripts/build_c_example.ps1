@@ -11,6 +11,7 @@ param(
     [switch]$PeakMemoryProbe,
     [switch]$SyntheticMemoryProbe,
     [switch]$AbiContractProbe,
+    [switch]$ResourceProbe,
     [string]$AbiContractDirectory = 'target\debug',
     [string]$PeakMemoryDirectory = 'target\release'
 )
@@ -47,6 +48,16 @@ try {
     $env:INCLUDE = @((Join-Path $VcRoot 'include'), (Join-Path $SdkRoot "Include\$SdkVersion\ucrt"), (Join-Path $SdkRoot "Include\$SdkVersion\shared"), (Join-Path $SdkRoot "Include\$SdkVersion\um")) -join ';'
     $env:LIB = @((Join-Path $VcRoot 'lib\x64'), (Join-Path $SdkRoot "Lib\$SdkVersion\ucrt\x64"), (Join-Path $SdkRoot "Lib\$SdkVersion\um\x64")) -join ';'
     $env:PATH = (Join-Path $VcRoot 'bin\Hostx64\x64') + ';' + $oldPath
+    if ($ResourceProbe) {
+        $resourceRoot = (Resolve-Path -LiteralPath $PeakMemoryDirectory).Path
+        $resourceExe = Join-Path $resourceRoot 'ffi-resource-probe.exe'
+        $resourceObj = Join-Path $resourceRoot 'ffi-resource-probe.obj'
+        $resourceLib = Join-Path $resourceRoot 'daoseeker_scope_ffi.dll.lib'
+        & $compiler /nologo /W4 /WX /O2 /std:c11 "/Fe$resourceExe" "/Fo$resourceObj" docs\research\ffi_resource_probe.c $resourceLib
+        if ($LASTEXITCODE -ne 0) { throw "FFI resource probe compile failed: $LASTEXITCODE" }
+        Write-Output "c_compiler_version=$((Get-Item -LiteralPath $compiler).VersionInfo.FileVersion)"
+        return
+    }
     if ($AbiContractProbe) {
         $abiRoot = (Resolve-Path -LiteralPath $AbiContractDirectory).Path
         $abiExe = Join-Path $abiRoot 'abi-contract-probe.exe'
