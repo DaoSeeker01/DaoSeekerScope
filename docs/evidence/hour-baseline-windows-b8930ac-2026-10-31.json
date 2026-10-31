@@ -1,0 +1,143 @@
+{
+  "format": 1,
+  "overall": "passed",
+  "source_before": {
+    "revision": "b8930acaa9652a43e44acdfeb6561d87e2999199",
+    "status": ""
+  },
+  "system": "Windows",
+  "os_release": "11",
+  "target": "x86_64-pc-windows-msvc",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "c_compiler": "19.51.36260.0",
+  "binary_sha256": {
+    "ffi-memory-probe.exe": "635b6322b519899f41376c6230652c57967e0564f8aee7a90bb0b959f6cf2e6a",
+    "daoseeker_scope_ffi.dll": "d72e2595e9f10fc907a62621a3d6a038de6f51894590296e52908376f93d2320",
+    "dscope.exe": "43fb13a3e35bd4bbae2a3f7d3b3e4d59cbf980c6762daaf6158caa2758a7f8d0"
+  },
+  "profile": "release; default serde",
+  "duration_seconds": 3600,
+  "options": {
+    "default_cached_collector": true,
+    "sensitive": false,
+    "timeout_ms": 2000
+  },
+  "limits": "requested 100 ms between completed calls; scheduling and OS residency affect samples; not hour/day or leak proof",
+  "environment": {
+    "cpu": {
+      "value": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793403761227,
+      "reason": null
+    },
+    "memory": {
+      "value": 17009004544,
+      "availability": "available",
+      "source": "win32",
+      "observed_at": 1793403761263,
+      "reason": null
+    },
+    "os": {
+      "name": {
+        "value": "Windows",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793403761227,
+        "reason": null
+      },
+      "version": {
+        "value": "11 (26300)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793403761227,
+        "reason": null
+      },
+      "kernel_version": {
+        "value": "26300",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793403761227,
+        "reason": null
+      }
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "calibration": {
+    "format": 2,
+    "mode": "resident_calibrate",
+    "launch": {
+      "strategy": "direct",
+      "launcher_pid": 8452,
+      "measurement_pid": 8452,
+      "parent_death_signal": 0
+    },
+    "resident_metric": "working_set_size",
+    "resident_raw_unit": "bytes",
+    "resident_multiplier": 1,
+    "metric": "peak_working_set",
+    "raw_unit": "bytes",
+    "multiplier": 1,
+    "pressure_bytes": 67108864,
+    "samples": [
+      {
+        "phase": "baseline",
+        "calls": 0,
+        "peak_raw": 8654848,
+        "peak_bytes": 8654848,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 8654848,
+        "resident_bytes": 8654848
+      },
+      {
+        "phase": "touched",
+        "calls": 0,
+        "peak_raw": 75767808,
+        "peak_bytes": 75767808,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 75767808,
+        "resident_bytes": 75767808
+      },
+      {
+        "phase": "freed",
+        "calls": 0,
+        "peak_raw": 75767808,
+        "peak_bytes": 75767808,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 8654848,
+        "resident_bytes": 8654848
+      }
+    ]
+  },
+  "calibration_analysis": {
+    "calibration_growth_bytes": 67112960,
+    "passed": true
+  },
+  "invalid_duration_cases": 8,
+  "probe_exit_code": 0,
+  "trace_utf8": "{\"record\":\"header\",\"format\":1,\"mode\":\"soak_cached\",\"launch\":{\"strategy\":\"direct\",\"launcher_pid\":18184,\"measurement_pid\":18184,\"parent_death_signal\":0},\"duration_seconds\":3600,\"checkpoint_seconds\":60,\"call_interval_ms\":100,\"warmup_seconds\":300,\"tail_budget_bytes\":16777216,\"resident_metric\":\"working_set_size\",\"resident_raw_unit\":\"bytes\",\"resident_multiplier\":1,\"metric\":\"peak_working_set\",\"raw_unit\":\"bytes\",\"multiplier\":1}\r\n{\"record\":\"sample\",\"ordinal\":0,\"observation\":{\"phase\":\"baseline\",\"calls\":0,\"peak_raw\":7839744,\"peak_bytes\":7839744,\"elapsed_ns\":0,\"max_json_bytes\":0,\"resident_raw\":7839744,\"resident_bytes\":7839744}}\r\n{\"record\":\"sample\",\"ordinal\":1,\"observation\":{\"phase\":\"collected\",\"calls\":532,\"peak_raw\":12054528,\"peak_bytes\":12054528,\"elapsed_ns\":60008430699,\"max_json_bytes\":22243,\"resident_raw\":11870208,\"resident_bytes\":11870208}}\r\n{\"record\":\"sample\",\"ordinal\":2,\"observation\":{\"phase\":\"collected\",\"calls\":1081,\"peak_raw\":12054528,\"peak_bytes\":12054528,\"elapsed_ns\":120030409500,\"max_json_bytes\":22243,\"resident_raw\":12005376,\"resident_bytes\":12005376}}\r\n{\"record\":\"sample\",\"ordinal\":3,\"observation\":{\"phase\":\"collected\",\"calls\":1634,\"peak_raw\":12054528,\"peak_bytes\":12054528,\"elapsed_ns\":180002926700,\"max_json_bytes\":22243,\"resident_raw\":11980800,\"resident_bytes\":11980800}}\r\n{\"record\":\"sample\",\"ordinal\":4,\"observation\":{\"phase\":\"collected\",\"calls\":2152,\"peak_raw\":12165120,\"peak_bytes\":12165120,\"elapsed_ns\":240081246399,\"max_json_bytes\":22243,\"resident_raw\":12152832,\"resident_bytes\":12152832}}\r\n{\"record\":\"sample\",\"ordinal\":5,\"observation\":{\"phase\":\"collected\",\"calls\":2698,\"peak_raw\":12165120,\"peak_bytes\":12165120,\"elapsed_ns\":300011489200,\"max_json_bytes\":22244,\"resident_raw\":12165120,\"resident_bytes\":12165120}}\r\n{\"record\":\"sample\",\"ordinal\":6,\"observation\":{\"phase\":\"collected\",\"calls\":3248,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":360084183500,\"max_json_bytes\":22244,\"resident_raw\":12230656,\"resident_bytes\":12230656}}\r\n{\"record\":\"sample\",\"ordinal\":7,\"observation\":{\"phase\":\"collected\",\"calls\":3796,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":420071397800,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":8,\"observation\":{\"phase\":\"collected\",\"calls\":4340,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":480016080199,\"max_json_bytes\":22244,\"resident_raw\":11976704,\"resident_bytes\":11976704}}\r\n{\"record\":\"sample\",\"ordinal\":9,\"observation\":{\"phase\":\"collected\",\"calls\":4812,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":540117610700,\"max_json_bytes\":22244,\"resident_raw\":11976704,\"resident_bytes\":11976704}}\r\n{\"record\":\"sample\",\"ordinal\":10,\"observation\":{\"phase\":\"collected\",\"calls\":5330,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":600066626700,\"max_json_bytes\":22244,\"resident_raw\":12017664,\"resident_bytes\":12017664}}\r\n{\"record\":\"sample\",\"ordinal\":11,\"observation\":{\"phase\":\"collected\",\"calls\":5871,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":660063865600,\"max_json_bytes\":22244,\"resident_raw\":12017664,\"resident_bytes\":12017664}}\r\n{\"record\":\"sample\",\"ordinal\":12,\"observation\":{\"phase\":\"collected\",\"calls\":6419,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":720041048400,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":13,\"observation\":{\"phase\":\"collected\",\"calls\":6932,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":780027273999,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":14,\"observation\":{\"phase\":\"collected\",\"calls\":7469,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":840018496300,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":15,\"observation\":{\"phase\":\"collected\",\"calls\":8016,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":900001163099,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":16,\"observation\":{\"phase\":\"collected\",\"calls\":8563,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":960101809899,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":17,\"observation\":{\"phase\":\"collected\",\"calls\":9108,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1020014736400,\"max_json_bytes\":22244,\"resident_raw\":11976704,\"resident_bytes\":11976704}}\r\n{\"record\":\"sample\",\"ordinal\":18,\"observation\":{\"phase\":\"collected\",\"calls\":9653,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1080003620000,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":19,\"observation\":{\"phase\":\"collected\",\"calls\":10202,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1140090874500,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":20,\"observation\":{\"phase\":\"collected\",\"calls\":10749,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1200103442799,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":21,\"observation\":{\"phase\":\"collected\",\"calls\":11295,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1260087960400,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":22,\"observation\":{\"phase\":\"collected\",\"calls\":11840,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1320014181099,\"max_json_bytes\":22244,\"resident_raw\":11976704,\"resident_bytes\":11976704}}\r\n{\"record\":\"sample\",\"ordinal\":23,\"observation\":{\"phase\":\"collected\",\"calls\":12384,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1380020435500,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":24,\"observation\":{\"phase\":\"collected\",\"calls\":12931,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1440068043299,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":25,\"observation\":{\"phase\":\"collected\",\"calls\":13479,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1500024199000,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":26,\"observation\":{\"phase\":\"collected\",\"calls\":14024,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1560049941899,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":27,\"observation\":{\"phase\":\"collected\",\"calls\":14552,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1620001066999,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":28,\"observation\":{\"phase\":\"collected\",\"calls\":15067,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1680097859000,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":29,\"observation\":{\"phase\":\"collected\",\"calls\":15608,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1740092814100,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":30,\"observation\":{\"phase\":\"collected\",\"calls\":16149,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1800039829800,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":31,\"observation\":{\"phase\":\"collected\",\"calls\":16691,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1860041190699,\"max_json_bytes\":22244,\"resident_raw\":11976704,\"resident_bytes\":11976704}}\r\n{\"record\":\"sample\",\"ordinal\":32,\"observation\":{\"phase\":\"collected\",\"calls\":17231,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1920047858500,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":33,\"observation\":{\"phase\":\"collected\",\"calls\":17774,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":1980081441500,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":34,\"observation\":{\"phase\":\"collected\",\"calls\":18318,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2040023481800,\"max_json_bytes\":22244,\"resident_raw\":11976704,\"resident_bytes\":11976704}}\r\n{\"record\":\"sample\",\"ordinal\":35,\"observation\":{\"phase\":\"collected\",\"calls\":18865,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2100096311500,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":36,\"observation\":{\"phase\":\"collected\",\"calls\":19411,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2160085116700,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":37,\"observation\":{\"phase\":\"collected\",\"calls\":19959,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2220081922300,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":38,\"observation\":{\"phase\":\"collected\",\"calls\":20507,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2280031593899,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":39,\"observation\":{\"phase\":\"collected\",\"calls\":21058,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2340087497400,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":40,\"observation\":{\"phase\":\"collected\",\"calls\":21606,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2400101396300,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":41,\"observation\":{\"phase\":\"collected\",\"calls\":22152,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2460000706999,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":42,\"observation\":{\"phase\":\"collected\",\"calls\":22697,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2520053126099,\"max_json_bytes\":22244,\"resident_raw\":11976704,\"resident_bytes\":11976704}}\r\n{\"record\":\"sample\",\"ordinal\":43,\"observation\":{\"phase\":\"collected\",\"calls\":23245,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2580060842999,\"max_json_bytes\":22244,\"resident_raw\":11976704,\"resident_bytes\":11976704}}\r\n{\"record\":\"sample\",\"ordinal\":44,\"observation\":{\"phase\":\"collected\",\"calls\":23793,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2640103926400,\"max_json_bytes\":22244,\"resident_raw\":11976704,\"resident_bytes\":11976704}}\r\n{\"record\":\"sample\",\"ordinal\":45,\"observation\":{\"phase\":\"collected\",\"calls\":24339,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2700102173200,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":46,\"observation\":{\"phase\":\"collected\",\"calls\":24885,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2760030899500,\"max_json_bytes\":22244,\"resident_raw\":11976704,\"resident_bytes\":11976704}}\r\n{\"record\":\"sample\",\"ordinal\":47,\"observation\":{\"phase\":\"collected\",\"calls\":25432,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2820042859100,\"max_json_bytes\":22244,\"resident_raw\":12169216,\"resident_bytes\":12169216}}\r\n{\"record\":\"sample\",\"ordinal\":48,\"observation\":{\"phase\":\"collected\",\"calls\":25984,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2880105617200,\"max_json_bytes\":22244,\"resident_raw\":11997184,\"resident_bytes\":11997184}}\r\n{\"record\":\"sample\",\"ordinal\":49,\"observation\":{\"phase\":\"collected\",\"calls\":26533,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":2940067354000,\"max_json_bytes\":22244,\"resident_raw\":12189696,\"resident_bytes\":12189696}}\r\n{\"record\":\"sample\",\"ordinal\":50,\"observation\":{\"phase\":\"collected\",\"calls\":27078,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":3000009163800,\"max_json_bytes\":22244,\"resident_raw\":12148736,\"resident_bytes\":12148736}}\r\n{\"record\":\"sample\",\"ordinal\":51,\"observation\":{\"phase\":\"collected\",\"calls\":27596,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":3060066660300,\"max_json_bytes\":22244,\"resident_raw\":12148736,\"resident_bytes\":12148736}}\r\n{\"record\":\"sample\",\"ordinal\":52,\"observation\":{\"phase\":\"collected\",\"calls\":28139,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":3120078391799,\"max_json_bytes\":22244,\"resident_raw\":12148736,\"resident_bytes\":12148736}}\r\n{\"record\":\"sample\",\"ordinal\":53,\"observation\":{\"phase\":\"collected\",\"calls\":28686,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":3180098551100,\"max_json_bytes\":25482,\"resident_raw\":12148736,\"resident_bytes\":12148736}}\r\n{\"record\":\"sample\",\"ordinal\":54,\"observation\":{\"phase\":\"collected\",\"calls\":29231,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":3240002778499,\"max_json_bytes\":25482,\"resident_raw\":12148736,\"resident_bytes\":12148736}}\r\n{\"record\":\"sample\",\"ordinal\":55,\"observation\":{\"phase\":\"collected\",\"calls\":29778,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":3300021250600,\"max_json_bytes\":25482,\"resident_raw\":11964416,\"resident_bytes\":11964416}}\r\n{\"record\":\"sample\",\"ordinal\":56,\"observation\":{\"phase\":\"collected\",\"calls\":30324,\"peak_raw\":12230656,\"peak_bytes\":12230656,\"elapsed_ns\":3360004724099,\"max_json_bytes\":25482,\"resident_raw\":12148736,\"resident_bytes\":12148736}}\r\n{\"record\":\"sample\",\"ordinal\":57,\"observation\":{\"phase\":\"collected\",\"calls\":30873,\"peak_raw\":12320768,\"peak_bytes\":12320768,\"elapsed_ns\":3420039195999,\"max_json_bytes\":25482,\"resident_raw\":12304384,\"resident_bytes\":12304384}}\r\n{\"record\":\"sample\",\"ordinal\":58,\"observation\":{\"phase\":\"collected\",\"calls\":31422,\"peak_raw\":12320768,\"peak_bytes\":12320768,\"elapsed_ns\":3480096524200,\"max_json_bytes\":25482,\"resident_raw\":12304384,\"resident_bytes\":12304384}}\r\n{\"record\":\"sample\",\"ordinal\":59,\"observation\":{\"phase\":\"collected\",\"calls\":31969,\"peak_raw\":12320768,\"peak_bytes\":12320768,\"elapsed_ns\":3540040067500,\"max_json_bytes\":25482,\"resident_raw\":12304384,\"resident_bytes\":12304384}}\r\n{\"record\":\"sample\",\"ordinal\":60,\"observation\":{\"phase\":\"collected\",\"calls\":32523,\"peak_raw\":12320768,\"peak_bytes\":12320768,\"elapsed_ns\":3600035846400,\"max_json_bytes\":25482,\"resident_raw\":12304384,\"resident_bytes\":12304384}}\r\n{\"record\":\"complete\",\"calls\":32523,\"samples\":61}\r\n",
+  "trace_sha256": "55d331e6fe9add672a3f5c4e3f440c84b89affde40f453b0a316a078370063ae",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "probe_error": null,
+  "analysis": {
+    "within_budget": true,
+    "budget_bytes": 16777216,
+    "tail_samples": 56,
+    "tail_min_bytes": 11964416,
+    "tail_max_bytes": 12304384,
+    "tail_range_bytes": 339968,
+    "net_change_bytes": 139264,
+    "calls": 32523,
+    "elapsed_ns": 3600035846400,
+    "max_json_bytes": 25482,
+    "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+  },
+  "source_after": {
+    "revision": "b8930acaa9652a43e44acdfeb6561d87e2999199",
+    "status": ""
+  },
+  "checked_at": "2026-10-31T00:42:41.694579+00:00"
+}

@@ -74,6 +74,10 @@ Linux 另用 fork 隔离启动阶段，并执行 128 MiB 父进程对照和父�
 
 `resident_regression` 另记录 5000 次缓存 collect/free 和 60 批合成重建的当前驻留内存。预算与采样点预先固定，超预算即失败；它只覆盖有限轮次，不能据此判断长期无泄漏。计量接口、近似误差与 16 MiB 热身后波动预算见 [ADR 0041](docs/adr/0041-resident-regression.md)。
 
+需要按持续时长检查时，运行 `python scripts/timed_soak.py --seconds 120`；支持 120–3600 秒、60 秒的整数倍，详见[定时试验](docs/timed-soak-validation.md)。每分钟的检查点用于观察，只有计划完成、预算与来源核对均通过才算验收。长时试验应固定源码；需要同时开发时，可使用独立检出目录。
+
+句柄和文件描述符另用 `python scripts/resource_regression.py` 检查，包含独立校准和故意保留资源的对照。它与内存采样的计量范围不同，见[资源检查](docs/resource-validation.md)；不能用其中一项替代另一项，也不把有限轮次结果称为长期无泄漏。
+
 ## 提交变更
 
 保持 `Observed<T>` 的状态、来源和原因语义；公共类型不要泄漏平台依赖。新增字段、能力和兼容性行为应更新 [ADR](docs/README.md)、Schema 与回归测试。不要将编译、模拟输入测试或空集合称作真实设备验收。历史证据保留原始 source commit 和失败记录；当前验证另存新报告。

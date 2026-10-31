@@ -1,0 +1,67 @@
+{
+  "overall": "passed",
+  "date": "2026-10-31",
+  "source_commit": "b8930acaa9652a43e44acdfeb6561d87e2999199",
+  "environment": "local Windows host, with concurrent development activity",
+  "report": {
+    "name": "hour-baseline-windows-b8930ac-2026-10-31.json",
+    "sha256": "4ac1f69ff73a52eaa04c2aa27151050e9734a4f7e6695c623ba9bea18db81092",
+    "original_sha256": "4ac1f69ff73a52eaa04c2aa27151050e9734a4f7e6695c623ba9bea18db81092",
+    "origin": "target/hour-soak-source/target/hour-soak-windows.json"
+  },
+  "trace_sha256": "55d331e6fe9add672a3f5c4e3f440c84b89affde40f453b0a316a078370063ae",
+  "trace_records": 63,
+  "analysis": {
+    "within_budget": true,
+    "budget_bytes": 16777216,
+    "tail_samples": 56,
+    "tail_min_bytes": 11964416,
+    "tail_max_bytes": 12304384,
+    "tail_range_bytes": 339968,
+    "net_change_bytes": 139264,
+    "calls": 32523,
+    "elapsed_ns": 3600035846400,
+    "max_json_bytes": 25482,
+    "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+  },
+  "calibration_analysis": {
+    "calibration_growth_bytes": 67112960,
+    "passed": true
+  },
+  "source_files": {
+    "Cargo.toml": "50f2d0fcf6ca9ab533fae57d3030a08ad09640320da3a23c5d8fa0c905bac509",
+    "Cargo.lock": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae",
+    "rust-toolchain.toml": "2c388180d0d5476ed0d69975b382feaf709bb072d51a342add3030cfb3d1bdb2",
+    "crates/daoseeker-scope-core/src/hardware.rs": "2e1c7a50baacb72bc18336668a588ab902133ac4e2970388987588ca65b2ece5",
+    "crates/daoseeker-scope-ffi/src/lib.rs": "93c88d98332aedc42ef80cffcc58319d193952bad76979c38ecbfad62e70eea3",
+    "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+    "docs/schema/snapshot-v1.schema.json": "914f41cf400ada7c25ed931bb0ac76896242fc9ea3dff1df7f3b4b1e9b471e6b",
+    "scripts/timed_soak.py": "261ed16259825d625d56105cbddc35fad440e9f42897c31de5606936d585149e",
+    "scripts/peak_memory.py": "59686797d3e4187b6a3a7fdcfd2ac817769e2bbb1aefcc53a53e9254cacbfb6e",
+    "scripts/build_c_example.ps1": "434e464f1291b384a94fbc8f80cebc051d5bcaac97b1c81c62939c5b0cc4fe13",
+    "docs/research/ffi_memory_probe.c": "7b0b3da790575e7b20abc0579a9835efbb558ca25d0cf9c8f78f4cdd5ac1e90d"
+  },
+  "binary_sha256_rechecked": {
+    "ffi-memory-probe.exe": "635b6322b519899f41376c6230652c57967e0564f8aee7a90bb0b959f6cf2e6a",
+    "daoseeker_scope_ffi.dll": "d72e2595e9f10fc907a62621a3d6a038de6f51894590296e52908376f93d2320",
+    "dscope.exe": "43fb13a3e35bd4bbae2a3f7d3b3e4d59cbf980c6762daaf6158caa2758a7f8d0"
+  },
+  "worktree_after": {
+    "revision": "b8930acaa9652a43e44acdfeb6561d87e2999199",
+    "status": ""
+  },
+  "launch_issue": "Initial shell redirection failed because the new worktree had no target directory; Python and collection did not start. Created target directory before the actual trial.",
+  "cancellation_fix_commit": "0dd634639e4890511092f0f8e3e6f6fd086ba24f",
+  "validates_cancellation_fix": false,
+  "abi": 1,
+  "hardware_schema": 1,
+  "license": "MIT",
+  "published": false,
+  "limits": [
+    "One Windows host and one run; not other hosts or platforms.",
+    "Fixed 5-minute warmup and 16 MiB sampled resident-range budget; no post-result adjustment.",
+    "Not allocator attribution, no-leak proof, day-duration or long-term fuzz acceptance.",
+    "Concurrent development and OS working-set management may affect samples; no causal attribution.",
+    "The later cancellation fix has separate native unit/package/contract and 120-second evidence."
+  ]
+}
