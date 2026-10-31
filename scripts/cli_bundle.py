@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path, PurePosixPath
 import platform
 import re
@@ -27,6 +28,7 @@ MAX_FILE = 64 * 1024 * 1024
 MAX_TOTAL = 128 * 1024 * 1024
 MAX_ENTRIES = 512
 MAX_MANIFEST = 256 * 1024
+REPARSE_POINT = 0x400  # Windows FILE_ATTRIBUTE_REPARSE_POINT, also checked on fixtures.
 FFI_FILES = frozenset(
     {
         "bin/daoseeker_scope_ffi.dll",
@@ -258,12 +260,53 @@ def dependency_packages(
 def notice_files(package: dict[str, Any]) -> list[Path]:
     """Use the same root notice discovery for packaging and preflight reports."""
     base = Path(package["manifest_path"]).parent
-    return sorted(
-        path
-        for path in base.iterdir()
-        if path.is_file()
-        and path.name.upper().startswith(("LICENSE", "COPYING", "COPYRIGHT", "NOTICE"))
-    )
+    result = []
+    for path in base.iterdir():
+        if not path.name.upper().startswith(
+            ("LICENSE", "COPYING", "COPYRIGHT", "NOTICE")
+        ):
+            continue
+        info = path.lstat()
+        require(
+            not stat.S_ISLNK(info.st_mode)
+            and not getattr(info, "st_file_attributes", 0) & REPARSE_POINT,
+            "unsafe_notice_file",
+        )
+        if stat.S_ISDIR(info.st_mode):
+            continue  # Root-only discovery does not recurse into notice directories.
+        require(stat.S_ISREG(info.st_mode), "unsafe_notice_file")
+        result.append(path)
+    return sorted(result)
+
+
+def read_notice(path: Path, limit: int) -> bytes:
+    """Read one regular notice, checking opened identity before reading bytes."""
+    try:
+        before = path.lstat()
+        require(
+            stat.S_ISREG(before.st_mode)
+            and not getattr(before, "st_file_attributes", 0) & REPARSE_POINT,
+            "unsafe_notice_file",
+        )
+        flags = os.O_RDONLY
+        for name in ("O_BINARY", "O_NOFOLLOW", "O_NONBLOCK"):
+            flags |= getattr(os, name, 0)
+        descriptor = os.open(path, flags)
+        try:
+            opened = os.fstat(descriptor)
+            require(
+                stat.S_ISREG(opened.st_mode) and os.path.samestat(before, opened),
+                "unsafe_notice_file",
+            )
+            require(0 < opened.st_size <= limit, "notice_limit")
+            with os.fdopen(descriptor, "rb", closefd=False) as source:
+                data = source.read(limit + 1)
+        finally:
+            os.close(descriptor)
+    except OSError:
+        raise ValueError("notice_read_failed") from None
+    require(0 < len(data) <= limit, "notice_limit")
+    return data
 
 
 def dependency_payload(
@@ -296,10 +339,7 @@ def dependency_payload(
         for path in notices:
             name = f"licenses/{label}/{path.name}"
             require(safe_name(name), "unsafe_notice_name")
-            with path.open("rb") as source:
-                data = source.read(MAX_FILE + 1)
-            require(0 < len(data) <= MAX_FILE, "notice_limit")
-            payload[name] = data
+            payload[name] = read_notice(path, MAX_FILE)
     payload["THIRD_PARTY.md"] = ("\n".join(inventory) + "\n").encode()
     return payload
 
@@ -394,10 +434,7 @@ def main() -> None:
     require(len(rust_notices) > 2, "missing_rust_notices")
     for path in rust_notices:
         require(path.is_file() and not path.is_symlink(), "missing_rust_notice")
-        with path.open("rb") as source:
-            data = source.read(MAX_FILE + 1)
-        require(0 < len(data) <= MAX_FILE, "notice_limit")
-        payload[f"licenses/rust/{path.name}"] = data
+        payload[f"licenses/rust/{path.name}"] = read_notice(path, MAX_FILE)
     # A fresh explicit target-dir prevents a redirected Cargo output directory or
     # an old executable from being mistaken for this build's successful output.
     with tempfile.TemporaryDirectory(

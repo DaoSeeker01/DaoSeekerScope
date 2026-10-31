@@ -18,6 +18,7 @@ from cli_bundle import (
     dependency_packages,
     digest,
     notice_files,
+    read_notice,
     safe_name,
     require,
     run,
@@ -35,27 +36,36 @@ def inventory(metadata: dict[str, Any], root_package: str) -> dict[str, Any]:
             errors.append("non_registry_dependency")
         if not package["license"]:
             errors.append("missing_spdx")
-        files = notice_files(package)
-        if not files:
-            errors.append("missing_dependency_notice")
-        elif not any(
-            path.name.upper().startswith(("LICENSE", "COPYING")) for path in files
-        ):
-            errors.append("missing_dependency_license")
+        try:
+            files = notice_files(package)
+        except ValueError:
+            files = []
+            errors.append("unsafe_notice_file")
+        except OSError:
+            files = []
+            errors.append("notice_read_failed")
+        else:
+            if not files:
+                errors.append("missing_dependency_notice")
+            elif not any(
+                path.name.upper().startswith(("LICENSE", "COPYING")) for path in files
+            ):
+                errors.append("missing_dependency_license")
         notices = []
         for path in files:
             if not safe_name(
                 f"licenses/{package['name']}-{package['version']}/{path.name}"
             ):
                 errors.append("unsafe_notice_name")
-            with path.open("rb") as source:
-                data = source.read(MAX_FILE + 1)
-            if not 0 < len(data) <= MAX_FILE:
-                errors.append("notice_limit")
-            else:
-                notices.append(
-                    {"name": path.name, "bytes": len(data), "sha256": digest(data)}
-                )
+                continue
+            try:
+                data = read_notice(path, MAX_FILE)
+            except ValueError as error:
+                errors.append(str(error))
+                continue
+            notices.append(
+                {"name": path.name, "bytes": len(data), "sha256": digest(data)}
+            )
         packages.append(
             {
                 "name": package["name"],

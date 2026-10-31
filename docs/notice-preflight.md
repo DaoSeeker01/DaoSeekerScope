@@ -20,6 +20,8 @@ python scripts/notice_audit.py --offline --target aarch64-apple-darwin --output 
 
 报告只含版本、SPDX、文件名、大小及哈希，不记录本机 Cargo 缓存路径。扫描范围与现有打包器共用依赖闭包和文件发现规则：保守包含 build 依赖，排除 dev 依赖。只检查第三方 crate 根目录材料，不包含 Rust 工具链或系统 SDK 的许可；完整打包还需要其他检查。只读取包根目录原有材料，不从其他来源补写许可文件；未使用 `--offline` 时，Cargo 本身仍可能下载依赖。预检不会改写已缓存的文件。失败或中断作废旧报告；提交、工作区和锁文件须在前后保持一致。
 
+许可候选文件必须是普通文件。符号链接、Windows reparse 项和 FIFO 等特殊文件会阻止打包，即使同一包另有有效 LICENSE；普通许可目录仍不递归读取。文件被替换或读取失败时不收录内容，预检记录脱敏错误并继续检查其他依赖。具体规则、测试和边界见[许可输入验证](notice-input-validation.md)。
+
 ## macOS 当前材料
 
 2026-10-30 复查：上游 [issue 826](https://github.com/madsmtm/objc2/issues/826)已记录添加仓库级许可全文，但关于较旧发布版完整版权材料的后续讨论仍未给出完整答案；[issue 23](https://github.com/madsmtm/objc2/issues/23)的重新许可提案仍为另一事项。不能把 issue 关闭、SPDX 声明或许可摘要链接等同于本项目已经收齐所需文件，也不据此断言现有许可证无效。

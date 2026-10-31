@@ -1,16 +1,20 @@
 """Notice inventory fixtures do not establish upstream licensing completeness."""
 
 import json
+import os
 from pathlib import Path
+import stat
 import sys
 import tempfile
+from types import SimpleNamespace
 from typing import Any
 import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 import notice_audit as audit
-from cli_bundle import dependency_payload, digest
+import cli_bundle as bundle
+from cli_bundle import dependency_payload, digest, notice_files
 
 
 def metadata(root: Path) -> dict[str, Any]:
@@ -37,6 +41,117 @@ def metadata(root: Path) -> dict[str, Any]:
 
 
 class NoticeAuditTests(unittest.TestCase):
+    def test_notice_directories_are_not_recursed_into(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = metadata(root)
+            (root / "a/LICENSE").write_bytes(b"synthetic notice")
+            (root / "a/LICENSES").mkdir()
+            (root / "a/LICENSES/nested").write_bytes(b"not a root notice")
+            self.assertEqual(notice_files(value["packages"][1]), [root / "a/LICENSE"])
+
+    def test_changed_opened_identity_is_rejected_before_read_and_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = root / "LICENSE"
+            path.write_bytes(b"synthetic notice")
+            other = root / "outside"
+            other.write_bytes(b"synthetic private content")
+            descriptor = os.open(other, os.O_RDONLY)
+            with (
+                patch.object(bundle.os, "open", return_value=descriptor),
+                patch.object(bundle.os, "fdopen") as read,
+            ):
+                with self.assertRaisesRegex(ValueError, "unsafe_notice_file"):
+                    bundle.read_notice(path, 1024)
+                read.assert_not_called()
+            with self.assertRaises(OSError):
+                os.fstat(descriptor)
+
+    def test_read_error_closes_descriptor_and_scan_errors_are_isolated(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = metadata(root)
+            for name in ("a", "b"):
+                (root / name / "LICENSE").write_bytes(b"synthetic notice")
+            path = root / "a/LICENSE"
+            descriptor = os.open(path, os.O_RDONLY)
+            with (
+                patch.object(bundle.os, "open", return_value=descriptor),
+                patch.object(bundle.os, "fdopen", side_effect=OSError("PRIVATE")),
+            ):
+                with self.assertRaisesRegex(ValueError, "^notice_read_failed$"):
+                    bundle.read_notice(path, 1024)
+            with self.assertRaises(OSError):
+                os.fstat(descriptor)
+            with patch.object(
+                audit,
+                "notice_files",
+                side_effect=[PermissionError("PRIVATE"), [root / "b/LICENSE"]],
+            ):
+                report = audit.inventory(value, "daoseeker-scope-cli")
+            self.assertEqual(report["packages"][0]["errors"], ["notice_read_failed"])
+            self.assertTrue(report["packages"][1]["notices"])
+            self.assertNotIn("PRIVATE", json.dumps(report))
+
+    def test_symlink_notices_block_even_with_another_valid_license(self) -> None:
+        for target in ("outside.txt", "missing.txt", "outside-dir"):
+            with (
+                self.subTest(target=target),
+                tempfile.TemporaryDirectory() as directory,
+            ):
+                root = Path(directory)
+                value = metadata(root)
+                (root / "outside.txt").write_bytes(b"synthetic private content")
+                (root / "outside-dir").mkdir()
+                for name in ("a", "b"):
+                    (root / name / "LICENSE-MIT").write_bytes(b"synthetic notice")
+                try:
+                    (root / "a/NOTICE").symlink_to(
+                        root / target, target_is_directory=target == "outside-dir"
+                    )
+                except OSError as error:
+                    if os.name == "nt" and error.winerror == 1314:
+                        self.skipTest("Windows account cannot create symbolic links")
+                    raise
+                with self.assertRaisesRegex(ValueError, "unsafe_notice_file"):
+                    dependency_payload(value)
+                report = audit.inventory(value, "daoseeker-scope-cli")
+                self.assertEqual(report["blocking_packages"], 1)
+                self.assertEqual(
+                    report["packages"][0]["errors"], ["unsafe_notice_file"]
+                )
+                self.assertTrue(report["packages"][1]["notices"])
+                self.assertNotIn("synthetic private content", json.dumps(report))
+
+    @unittest.skipUnless(hasattr(os, "mkfifo"), "POSIX FIFO required")
+    def test_fifo_notice_blocks_before_open(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = metadata(root)
+            for name in ("a", "b"):
+                (root / name / "LICENSE").write_bytes(b"synthetic notice")
+            getattr(os, "mkfifo")(root / "a/NOTICE")
+            with patch.object(
+                Path, "open", side_effect=AssertionError("must not open")
+            ):
+                with self.assertRaisesRegex(ValueError, "unsafe_notice_file"):
+                    notice_files(value["packages"][1])
+            report = audit.inventory(value, "daoseeker-scope-cli")
+            self.assertEqual(report["packages"][0]["errors"], ["unsafe_notice_file"])
+
+    def test_reparse_metadata_is_rejected_before_open(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            value = metadata(Path(directory))
+            (Path(directory) / "a/LICENSE").write_bytes(b"synthetic notice")
+            info = SimpleNamespace(st_mode=stat.S_IFREG, st_file_attributes=0x400)
+            with (
+                patch.object(Path, "lstat", return_value=info),
+                patch.object(Path, "open", side_effect=AssertionError("must not open")),
+            ):
+                with self.assertRaisesRegex(ValueError, "unsafe_notice_file"):
+                    notice_files(value["packages"][1])
+
     def test_all_missing_build_and_normal_notices_reported_without_dev(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             value = metadata(Path(directory))
