@@ -1,6 +1,6 @@
 # 发布与迁移路线
 
-截至 2026-10-31，[三平台 CI 41146601854](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41146601854)八项任务通过，本轮修复[采集取消误报](project-review-2026-10-31.md)，并另行归档[Windows 一小时基线](timed-soak-validation.md)。当前仍为未发布的 0.1.0；macOS 分发许可材料、最低系统范围与最终评审等未完成项见 [v0.1 清单](v0.1-checklist.md)。历史验收记录保留各自的来源与范围。
+截至 2026-10-31，[三平台 CI 41190519410](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41190519410)八项任务通过，本轮加入 [Linux amdgpu 温度读取](amdgpu-temperature-validation.md)。此前的[取消修复](project-review-2026-10-31.md)和 [Windows 一小时基线](timed-soak-validation.md)保留各自验收来源。当前仍为未发布的 0.1.0；macOS 分发许可材料、最低系统范围与最终评审等未完成项见 [v0.1 清单](v0.1-checklist.md)。历史验收记录保留各自的来源与范围。
 
 ## 当前发布门槛
 

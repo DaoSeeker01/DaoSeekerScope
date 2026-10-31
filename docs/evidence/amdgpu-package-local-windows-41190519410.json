@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "33433c182a7072c0987b7c36350b55bf17000efe",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 274,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "efc3d097a46b9c03463493a46c7e304b5e37c99bfa40febbfcf559e9c490d66c",
+      "files": 17
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "45dba35c077e2cbe84462b51659e681b5027181a968e94a40f152657aab33800",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "54211ebd9d78d47e2365423e1ea8779c7c1939ddbe061c3ecaf42f524ec2d1f6",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "391e4d91ab2775cdd60e2732cfb58ae70825ace52d0a159dd5f6ac102ee60ba4",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "05d86c6dd847300954492146d48a4baf5a1a67bcc76f813ac5c9362ac5102642",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "2c57a7d204a63a7e8aa2e78cb0efdf39701ccbe6b1f5dc14f15fea9dd302d5eb",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "2904cf98d8fcb47382191f98318b105ab4aba5108be227b69585b143f31d66d1",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "ca83714134070202e6a144ca50c42cae22a4d967f6fb1654ce7e9267ed1dd696",
+      "files": 8
+    }
+  ]
+}

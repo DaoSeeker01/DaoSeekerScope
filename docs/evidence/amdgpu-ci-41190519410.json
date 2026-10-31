@@ -1,0 +1,393 @@
+{
+  "overall": "passed",
+  "date": "2026-10-31",
+  "source_commit": "33433c182a7072c0987b7c36350b55bf17000efe",
+  "run_id": 41190519410,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41190519410",
+  "jobs": [
+    {
+      "databaseId": 124506197645,
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41190519410/job/124506197645"
+    },
+    {
+      "databaseId": 124506197759,
+      "name": "linux-container",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41190519410/job/124506197759"
+    },
+    {
+      "databaseId": 124506197768,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41190519410/job/124506197768"
+    },
+    {
+      "databaseId": 124506197772,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41190519410/job/124506197772"
+    },
+    {
+      "databaseId": 124506197801,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41190519410/job/124506197801"
+    },
+    {
+      "databaseId": 124506197805,
+      "name": "supply-chain",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41190519410/job/124506197805"
+    },
+    {
+      "databaseId": 124506197809,
+      "name": "miri",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41190519410/job/124506197809"
+    },
+    {
+      "databaseId": 124506198037,
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41190519410/job/124506198037"
+    }
+  ],
+  "reports": {
+    "amdgpu-package-windows-41190519410.json": {
+      "sha256": "1710c29f541ce34bd7d3d8ac9f9f93a31f9b4f1a75dc5ed096c06794658a6459",
+      "original_sha256": "5c0919ea9a1dcdb032299704c12200f7f19af4d2444fe7305dbe79d6c9d95a37",
+      "origin": "target/amdgpu-ci-41190519410/package-evidence-Windows-X64/package-evidence.json"
+    },
+    "amdgpu-contract-windows-41190519410.json": {
+      "sha256": "7900c410803da1ee8eddf67001e78f2c288b337e6fc1904a0c12b821403ca062",
+      "original_sha256": "7900c410803da1ee8eddf67001e78f2c288b337e6fc1904a0c12b821403ca062",
+      "origin": "target/amdgpu-ci-41190519410/native-evidence-Windows-X64/contract-evidence.json"
+    },
+    "amdgpu-timed-windows-41190519410.json": {
+      "sha256": "315b132f31229270a47d2f532bebbccd579f2ae59b933ab4551d92e3c3c43d70",
+      "original_sha256": "315b132f31229270a47d2f532bebbccd579f2ae59b933ab4551d92e3c3c43d70",
+      "origin": "target/amdgpu-ci-41190519410/native-evidence-Windows-X64/timed-soak-evidence.json"
+    },
+    "amdgpu-package-linux-41190519410.json": {
+      "sha256": "b525db946aa36f53376cca59b63ba60302ebee7433816160db8eef12d3a06369",
+      "original_sha256": "b525db946aa36f53376cca59b63ba60302ebee7433816160db8eef12d3a06369",
+      "origin": "target/amdgpu-ci-41190519410/package-evidence-Linux-X64/package-evidence.json"
+    },
+    "amdgpu-contract-linux-41190519410.json": {
+      "sha256": "2a9a699c53020e8391368796a23833cc63bf67934bebd0400b7cd43816094d42",
+      "original_sha256": "2a9a699c53020e8391368796a23833cc63bf67934bebd0400b7cd43816094d42",
+      "origin": "target/amdgpu-ci-41190519410/native-evidence-Linux-X64/contract-evidence.json"
+    },
+    "amdgpu-timed-linux-41190519410.json": {
+      "sha256": "7a52956df40c8e82f53b1ecb20cb5b5bd40cc13cdfde59a6dbaee73da1fa63c3",
+      "original_sha256": "7a52956df40c8e82f53b1ecb20cb5b5bd40cc13cdfde59a6dbaee73da1fa63c3",
+      "origin": "target/amdgpu-ci-41190519410/native-evidence-Linux-X64/timed-soak-evidence.json"
+    },
+    "amdgpu-package-macos-41190519410.json": {
+      "sha256": "2a84c347e95c7b3e6976068fd5190daa5faf1f55faf0e15c888bf2cac8afd364",
+      "original_sha256": "2a84c347e95c7b3e6976068fd5190daa5faf1f55faf0e15c888bf2cac8afd364",
+      "origin": "target/amdgpu-ci-41190519410/package-evidence-macOS-ARM64/package-evidence.json"
+    },
+    "amdgpu-contract-macos-41190519410.json": {
+      "sha256": "368d6ead786204a09667abe0c7e9ee516f6a2f88a4cc549948933687986b2b20",
+      "original_sha256": "368d6ead786204a09667abe0c7e9ee516f6a2f88a4cc549948933687986b2b20",
+      "origin": "target/amdgpu-ci-41190519410/native-evidence-macOS-ARM64/contract-evidence.json"
+    },
+    "amdgpu-timed-macos-41190519410.json": {
+      "sha256": "b18df577912172971070c62542d3df5ae6cd125021757e6872ea9f76b0800a63",
+      "original_sha256": "b18df577912172971070c62542d3df5ae6cd125021757e6872ea9f76b0800a63",
+      "origin": "target/amdgpu-ci-41190519410/native-evidence-macOS-ARM64/timed-soak-evidence.json"
+    },
+    "amdgpu-hwmon-linux-container-41190519410.json": {
+      "sha256": "31bf51ad0b01f4dcd61f0179c68f8952c549c608710122538079637f9bae4fc2",
+      "original_sha256": "31bf51ad0b01f4dcd61f0179c68f8952c549c608710122538079637f9bae4fc2",
+      "origin": "target/amdgpu-ci-41190519410/linux-container-evidence/linux-hwmon-evidence.json"
+    },
+    "amdgpu-package-local-windows-41190519410.json": {
+      "sha256": "c3cc70197b274bb8b7f37eef6fa962e2acd1c20238f37176f48369aba7d72133",
+      "original_sha256": "ea9524500a6ad81ab1c7406125f36cee81e61cd98c141422790657ad0be71bd6",
+      "origin": "target/package-evidence.json"
+    },
+    "amdgpu-contract-local-windows-41190519410.json": {
+      "sha256": "b38a7e4f804389426cfe37c92242b7b508c08186bf35d81b1335eee64b57a4e6",
+      "original_sha256": "b38a7e4f804389426cfe37c92242b7b508c08186bf35d81b1335eee64b57a4e6",
+      "origin": "target/contract-evidence.json"
+    },
+    "amdgpu-timed-local-windows-41190519410.json": {
+      "sha256": "1f20695cbf01d274def77456dc3511646dffa0316a997957324991adf547b350",
+      "original_sha256": "1f20695cbf01d274def77456dc3511646dffa0316a997957324991adf547b350",
+      "origin": "target/amdgpu-timed-local.json"
+    }
+  },
+  "platforms": {
+    "windows": {
+      "isolated_rust_tests": 274,
+      "python_passed": 292,
+      "python_skipped": 5,
+      "amdgpu_rust_tests": [
+        "amdgpu_channels_refresh_isolation_and_privacy",
+        "amdgpu_optional_channels_flags_zero_and_limits"
+      ],
+      "timed_120_seconds": {
+        "within_budget": true,
+        "budget_bytes": 16777216,
+        "tail_samples": 2,
+        "tail_min_bytes": 11120640,
+        "tail_max_bytes": 11374592,
+        "tail_range_bytes": 253952,
+        "net_change_bytes": 253952,
+        "calls": 1158,
+        "elapsed_ns": 120070003299,
+        "max_json_bytes": 11210,
+        "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+      },
+      "resource_regression_passed": true
+    },
+    "linux": {
+      "isolated_rust_tests": 267,
+      "python_passed": 297,
+      "python_skipped": 0,
+      "amdgpu_rust_tests": [
+        "amdgpu_channels_refresh_isolation_and_privacy",
+        "amdgpu_optional_channels_flags_zero_and_limits",
+        "amdgpu_read_errno_does_not_claim_permission_for_an_ambiguous_reset"
+      ],
+      "timed_120_seconds": {
+        "within_budget": true,
+        "budget_bytes": 16777216,
+        "tail_samples": 2,
+        "tail_min_bytes": 2781184,
+        "tail_max_bytes": 2789376,
+        "tail_range_bytes": 8192,
+        "net_change_bytes": 8192,
+        "calls": 1190,
+        "elapsed_ns": 120032373622,
+        "max_json_bytes": 9765,
+        "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+      },
+      "resource_regression_passed": true
+    },
+    "macos": {
+      "isolated_rust_tests": 271,
+      "python_passed": 296,
+      "python_skipped": 1,
+      "amdgpu_rust_tests": [
+        "amdgpu_channels_refresh_isolation_and_privacy",
+        "amdgpu_optional_channels_flags_zero_and_limits"
+      ],
+      "timed_120_seconds": {
+        "within_budget": true,
+        "budget_bytes": 16777216,
+        "tail_samples": 2,
+        "tail_min_bytes": 10731520,
+        "tail_max_bytes": 10731520,
+        "tail_range_bytes": 0,
+        "net_change_bytes": 0,
+        "calls": 781,
+        "elapsed_ns": 120008963999,
+        "max_json_bytes": 11717,
+        "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+      },
+      "resource_regression_passed": true
+    }
+  },
+  "local_windows": {
+    "rust_tests": 274,
+    "python_passed": 292,
+    "python_skipped": 5,
+    "isolated_rust_tests": 274,
+    "new_rust_tests_executed": 2,
+    "linux_errno_test_executed_locally": false,
+    "cross_check_targets": [
+      "x86_64-unknown-linux-gnu",
+      "aarch64-apple-darwin"
+    ],
+    "timed_120_seconds": {
+      "within_budget": true,
+      "budget_bytes": 16777216,
+      "tail_samples": 2,
+      "tail_min_bytes": 11841536,
+      "tail_max_bytes": 11845632,
+      "tail_range_bytes": 4096,
+      "net_change_bytes": 4096,
+      "calls": 1057,
+      "elapsed_ns": 120099888300,
+      "max_json_bytes": 22232,
+      "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+    },
+    "full_gate_log_sha256": "c32c472c7ca829cbf0abbeb83aea3f1d34338843a57e642510219f81d69c531d"
+  },
+  "linux_hwmon": {
+    "samples_passed": 59,
+    "new_amdgpu_samples": [
+      "amdgpu_routes",
+      "amdgpu_bad_channel_isolated",
+      "amdgpu_input_denied",
+      "amdgpu_recovery",
+      "amdgpu_disabled",
+      "amdgpu_fault",
+      "amdgpu_unsupported_channel_fifo",
+      "amdgpu_optional_channels_absent",
+      "amdgpu_zero_celsius",
+      "amdgpu_out_of_range",
+      "amdgpu_negative_celsius",
+      "amdgpu_exit_recovery"
+    ],
+    "synthetic_input": true,
+    "physical_device": false
+  },
+  "source_files": {
+    "CHANGELOG.md": "ace312b6777bfd46b3f7bbeb388b6cd4f58550bb926d7b1300d4da3affe50086",
+    "crates/daoseeker-scope-core/src/lib.rs": "941821a4a8748b6ac778c1ac39d2b5c5ab97b275f9580c4ed6f0fb1a9fd8a6ee",
+    "crates/daoseeker-scope-linux/src/hwmon.rs": "465c36f80e2e4dbbad60d8994fae829663c68f90523361eb3a60e7d5c47d1d43",
+    "docs/README.md": "75b23961416cbf82df4512ffbfadb5e56e990994f73bb2d98d4ecc9b4648d505",
+    "docs/adr/0005-platform-support-matrix.md": "12eeeea392b9cb3112b490f84b7edef7c177853d0688d561c599cafe18afa029",
+    "docs/adr/0047-linux-amdgpu-temperature.md": "941bff7373e165befcdb62f303cfd8bbc8aa09e127fd6fad6b45c75d9e6c1c39",
+    "docs/amdgpu-temperature-validation.md": "f48ccd0300f8f75dd046c1abda8db72b5cf680ac55b0ae0dd1708daba5a1ac02",
+    "docs/contracts/v0.1.json": "0140eb2e18b3be347ddcdeaef728a1d726dc9d9aa1ac0def2bb32ad4df385636",
+    "docs/evidence/amdgpu-schema-review-2026-10-31.json": "7dcb63122718031ef3ce10ecd46335bdc3bd8f9fa3e8a981039dc9c4d3dc671d",
+    "docs/schema/snapshot-v1.schema.json": "8ead781b53c539fb9116f95be44484add3a6343a52876e7da75c9ab93e6c659f",
+    "scripts/linux_hwmon_smoke.py": "1bbe3245c3cb120b9b7b615b5babda91cf44fe9255b92d16c04dcfed75bb88d2"
+  },
+  "schema_review": {
+    "path": "docs/evidence/amdgpu-schema-review-2026-10-31.json",
+    "sha256": "7dcb63122718031ef3ce10ecd46335bdc3bd8f9fa3e8a981039dc9c4d3dc671d",
+    "annotation_only": true,
+    "validation_constraints_identical": true
+  },
+  "artifact_metadata": [
+    {
+      "name": "procfs-fuzz-evidence",
+      "digest": "sha256:eb155d2e269feba07b6c6163415b16bec7b56dce68fddb3e6474721098127dbc",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "package-evidence-Windows-X64",
+      "digest": "sha256:5ca0ebd6c9327a3fd8fdd0f080c4d37ff4d277aa3f219c11ef22b1ebf8b8e631",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "linux-container-evidence",
+      "digest": "sha256:94b2a5fa6a11a88b11845558ea8c800a1a39ec30085bc5c32be3e91e9a84a1d1",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "native-evidence-Windows-X64",
+      "digest": "sha256:e416ad0b30710beb0ed9a6b1e9f1d89b5a731d35af090d8e855c9d953bc6d86f",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "digest": "sha256:66f01dc6fd0c09b144108d2950a7de3e6cfb501ecfe37cfd6f056195865b2967",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "digest": "sha256:4d9bd80392e42fde7c8fdf3f7860a7d8584353ad441c24450e87a0028fb32bf7",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "digest": "sha256:02a0de55ea7a4ac42353cea5acabed4e1f929332124d6898c9dfb5043be7ff3e",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "digest": "sha256:7da01479cf4119d889ac911cd12de4e86e29f7fd19494c10527a49811405b0f4",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "digest": "sha256:62a12c245a8c6f7ae5a22bdba556f2a2c9cbc659f53816d6e8013b3dab1aef6c",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "package-evidence-Linux-X64",
+      "digest": "sha256:96cce8e0c531dfa4b9489a3c8caf4b04a698251ac9c12b69ce7fd6ea1d4d7274",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "native-evidence-Linux-X64",
+      "digest": "sha256:becc44880b88e5ad83e614a2c869a8d45036e9cdb492270f6d4b3b54538f0136",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "digest": "sha256:636d3166c88f5fa6aba8d02fa0e2318c26f4396f36b4a1c23bb4d98ee9f46aa8",
+      "head_sha": "33433c182a7072c0987b7c36350b55bf17000efe"
+    }
+  ],
+  "all_jobs_log_sha256": "858f3bfd4ab2dc237a17728a56a13984836fdcca15a34a24529ed2dc21e2e071",
+  "observer_issues": [
+    "One GitHub artifact-list download returned EOF before extraction; the read-only retry succeeded. No CI job was restarted for that observer failure."
+  ],
+  "safety": {
+    "miri": 8,
+    "asan": 11,
+    "short_fuzz_targets": 12,
+    "campaigns": [
+      {
+        "runs": 693734,
+        "seconds": 61
+      },
+      {
+        "runs": 9586286,
+        "seconds": 61
+      },
+      {
+        "runs": 22879635,
+        "seconds": 61
+      },
+      {
+        "runs": 1148361,
+        "seconds": 61
+      },
+      {
+        "runs": 3898174,
+        "seconds": 61
+      },
+      {
+        "runs": 24406645,
+        "seconds": 61
+      },
+      {
+        "runs": 23915523,
+        "seconds": 61
+      },
+      {
+        "runs": 23742606,
+        "seconds": 61
+      },
+      {
+        "runs": 1885560,
+        "seconds": 61
+      },
+      {
+        "runs": 5569252,
+        "seconds": 61
+      },
+      {
+        "runs": 36811363,
+        "seconds": 61
+      },
+      {
+        "runs": 37773246,
+        "seconds": 61
+      }
+    ]
+  },
+  "abi": 1,
+  "hardware_schema": 1,
+  "license": "MIT",
+  "public_signatures_or_dependencies_changed": false,
+  "published": false,
+  "limits": [
+    "Synthetic hwmon values and real container permissions; no physical AMD GPU validation.",
+    "Read-stage EPERM alone cannot identify reset, suspend or policy denial.",
+    "Read-only sysfs access may resume a device; power and latency not measured.",
+    "No physical Linux/macOS, multi-group Windows or long-duration claim.",
+    "macOS distribution materials and final release review remain pending."
+  ]
+}

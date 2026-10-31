@@ -1,0 +1,87 @@
+{
+  "format": 1,
+  "overall": "passed",
+  "checked_at": "2026-10-31T09:54:24.569731+00:00",
+  "source_before": {
+    "revision": "33433c182a7072c0987b7c36350b55bf17000efe",
+    "status": ""
+  },
+  "target": "x86_64-unknown-linux-gnu",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "c_compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "c": {
+    "abi_version": 1,
+    "pointer_bytes": 8,
+    "options": {
+      "size": 20,
+      "alignment": 4,
+      "offsets": [
+        0,
+        4,
+        8,
+        12,
+        16
+      ]
+    },
+    "buffer": {
+      "size": 24,
+      "alignment": 8,
+      "offsets": [
+        0,
+        8,
+        16
+      ]
+    },
+    "status_codes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  },
+  "rust": {
+    "abi_version": 1,
+    "schema_version": 1,
+    "pointer_bytes": 8,
+    "options": {
+      "size": 20,
+      "alignment": 4,
+      "offsets": [
+        0,
+        4,
+        8,
+        12,
+        16
+      ]
+    },
+    "buffer": {
+      "size": 24,
+      "alignment": 8,
+      "offsets": [
+        0,
+        8,
+        16
+      ]
+    }
+  },
+  "schema_sha256": "dbd27a12b987c2d4fc269c31b0b289ea2cf9a230c3c274a0e6225bd3b3b45be3",
+  "inputs_sha256_lf": {
+    "docs/contracts/v0.1.json": "0140eb2e18b3be347ddcdeaef728a1d726dc9d9aa1ac0def2bb32ad4df385636",
+    "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+    "scripts/check_contract.py": "0ce9c9442eed7ffa70eb818af75f030aac13e37af0645bf4911876f8dab55803",
+    "docs/research/abi_contract_probe.c": "7e086b2b5b15dca9367dd7183b8d543ac29eb7ac95ff3f51cf158cf802fe058e",
+    "crates/daoseeker-scope-ffi/examples/abi_contract.rs": "4cf981fc6efa34f4507edb6c095e949548d8d61a1901f91face7099d3b52eedc"
+  },
+  "library_sha256": "037e3f8703571f205fb76d51499d88d85b012f04b30c1f28576c15298ac6ef72",
+  "limits": "native debug build; not a complete Rust semver or behavior audit",
+  "source_after": {
+    "revision": "33433c182a7072c0987b7c36350b55bf17000efe",
+    "status": ""
+  }
+}
