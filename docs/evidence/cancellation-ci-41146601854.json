@@ -1,0 +1,371 @@
+{
+  "overall": "passed",
+  "date": "2026-10-31",
+  "source_commit": "0dd634639e4890511092f0f8e3e6f6fd086ba24f",
+  "run_id": 41146601854,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41146601854",
+  "jobs": [
+    {
+      "databaseId": 124373049559,
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41146601854/job/124373049559"
+    },
+    {
+      "databaseId": 124373049789,
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41146601854/job/124373049789"
+    },
+    {
+      "databaseId": 124373049913,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41146601854/job/124373049913"
+    },
+    {
+      "databaseId": 124373049924,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41146601854/job/124373049924"
+    },
+    {
+      "databaseId": 124373049926,
+      "name": "miri",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41146601854/job/124373049926"
+    },
+    {
+      "databaseId": 124373049987,
+      "name": "linux-container",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41146601854/job/124373049987"
+    },
+    {
+      "databaseId": 124373050008,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41146601854/job/124373050008"
+    },
+    {
+      "databaseId": 124373050109,
+      "name": "supply-chain",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41146601854/job/124373050109"
+    }
+  ],
+  "reports": {
+    "cancellation-package-windows-41146601854.json": {
+      "sha256": "c5d036439d9898b61bc75791519d005f8a1479fa745c35d29ad52ea48ac4c873",
+      "original_sha256": "5ae57c18084ef8efb064519bd32ad663fe8b4cda6d6b8ca2c836c368dfb635bd",
+      "origin": "target/cancellation-ci-41146601854/package-evidence-Windows-X64/package-evidence.json"
+    },
+    "cancellation-contract-windows-41146601854.json": {
+      "sha256": "5ecba5b4eb1ba57a6ba3ab08f2fab9b8bace53543cb6b9bc95395b05ea828619",
+      "original_sha256": "5ecba5b4eb1ba57a6ba3ab08f2fab9b8bace53543cb6b9bc95395b05ea828619",
+      "origin": "target/cancellation-ci-41146601854/native-evidence-Windows-X64/contract-evidence.json"
+    },
+    "cancellation-timed-windows-41146601854.json": {
+      "sha256": "a43f43c8ea010c28614744ad2e20a0859bc62c046c2f3d4189f2f1b844801d9b",
+      "original_sha256": "a43f43c8ea010c28614744ad2e20a0859bc62c046c2f3d4189f2f1b844801d9b",
+      "origin": "target/cancellation-ci-41146601854/native-evidence-Windows-X64/timed-soak-evidence.json"
+    },
+    "cancellation-package-linux-41146601854.json": {
+      "sha256": "b1817b6c337d58eb071e6e20efb3b8151ba882bb7b80f83bc8a799b78ce6b912",
+      "original_sha256": "b1817b6c337d58eb071e6e20efb3b8151ba882bb7b80f83bc8a799b78ce6b912",
+      "origin": "target/cancellation-ci-41146601854/package-evidence-Linux-X64/package-evidence.json"
+    },
+    "cancellation-contract-linux-41146601854.json": {
+      "sha256": "dc6d6a65d8c73c5c3104e5196c369e5ed9be43950d5399f8121b183b8aecd71b",
+      "original_sha256": "dc6d6a65d8c73c5c3104e5196c369e5ed9be43950d5399f8121b183b8aecd71b",
+      "origin": "target/cancellation-ci-41146601854/native-evidence-Linux-X64/contract-evidence.json"
+    },
+    "cancellation-timed-linux-41146601854.json": {
+      "sha256": "7aa6969a5b383aaf08a47f68bd6664947a0a7c0b672ad7ee40aa054378447bc0",
+      "original_sha256": "7aa6969a5b383aaf08a47f68bd6664947a0a7c0b672ad7ee40aa054378447bc0",
+      "origin": "target/cancellation-ci-41146601854/native-evidence-Linux-X64/timed-soak-evidence.json"
+    },
+    "cancellation-package-macos-41146601854.json": {
+      "sha256": "1c9f5d67209b47dcf5a995c2f19bc2f1544ac5b3dfb492eda13a3796b5dd981c",
+      "original_sha256": "1c9f5d67209b47dcf5a995c2f19bc2f1544ac5b3dfb492eda13a3796b5dd981c",
+      "origin": "target/cancellation-ci-41146601854/package-evidence-macOS-ARM64/package-evidence.json"
+    },
+    "cancellation-contract-macos-41146601854.json": {
+      "sha256": "969a54c64b415fc0a165cb569ff1febac9231064935cb644fb9db5692f179a19",
+      "original_sha256": "969a54c64b415fc0a165cb569ff1febac9231064935cb644fb9db5692f179a19",
+      "origin": "target/cancellation-ci-41146601854/native-evidence-macOS-ARM64/contract-evidence.json"
+    },
+    "cancellation-timed-macos-41146601854.json": {
+      "sha256": "a20e83b7e9e03b3aa4dca09239faf3109e7419920df9320e2e80b1a3499d4495",
+      "original_sha256": "a20e83b7e9e03b3aa4dca09239faf3109e7419920df9320e2e80b1a3499d4495",
+      "origin": "target/cancellation-ci-41146601854/native-evidence-macOS-ARM64/timed-soak-evidence.json"
+    },
+    "cancellation-package-local-windows-41146601854.json": {
+      "sha256": "e0c0eec84f1b8046d3f8039154fc506cf3ca414b30ad552496c67dcd802c9885",
+      "original_sha256": "fd021fdc1096f5d7330c737594519127c8dda8b34df782144dc7140c051dd4d3",
+      "origin": "target/package-evidence.json"
+    },
+    "cancellation-contract-local-windows-41146601854.json": {
+      "sha256": "2526d1ebce0b40f38784788930924b8a2e8eb2de56e9fc4a4d7a80a99e0505ba",
+      "original_sha256": "2526d1ebce0b40f38784788930924b8a2e8eb2de56e9fc4a4d7a80a99e0505ba",
+      "origin": "target/contract-evidence.json"
+    },
+    "cancellation-timed-local-windows-41146601854.json": {
+      "sha256": "067b9e24c1e9058e18cc676abc15bba7f6835f2f207bcfd29d1fd56d28808199",
+      "original_sha256": "067b9e24c1e9058e18cc676abc15bba7f6835f2f207bcfd29d1fd56d28808199",
+      "origin": "target/cancellation-timed-local.json"
+    }
+  },
+  "platforms": {
+    "windows": {
+      "isolated_rust_tests": 272,
+      "python_passed": 292,
+      "python_skipped": 5,
+      "new_rust_regressions_passed": [
+        "backend_cancellation_is_preserved_after_static_failure",
+        "backend_cancellation_is_preserved_after_dynamic_failure",
+        "cancelled_backend_failure_can_retry_without_committing_static_cache"
+      ],
+      "timed_120_seconds": {
+        "within_budget": true,
+        "budget_bytes": 16777216,
+        "tail_samples": 2,
+        "tail_min_bytes": 11169792,
+        "tail_max_bytes": 11358208,
+        "tail_range_bytes": 188416,
+        "net_change_bytes": 188416,
+        "calls": 1105,
+        "elapsed_ns": 120060403500,
+        "max_json_bytes": 13377,
+        "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+      },
+      "resource_regression_passed": true
+    },
+    "linux": {
+      "isolated_rust_tests": 264,
+      "python_passed": 297,
+      "python_skipped": 0,
+      "new_rust_regressions_passed": [
+        "backend_cancellation_is_preserved_after_static_failure",
+        "backend_cancellation_is_preserved_after_dynamic_failure",
+        "cancelled_backend_failure_can_retry_without_committing_static_cache"
+      ],
+      "timed_120_seconds": {
+        "within_budget": true,
+        "budget_bytes": 16777216,
+        "tail_samples": 2,
+        "tail_min_bytes": 2605056,
+        "tail_max_bytes": 2609152,
+        "tail_range_bytes": 4096,
+        "net_change_bytes": 4096,
+        "calls": 1195,
+        "elapsed_ns": 120091885997,
+        "max_json_bytes": 9525,
+        "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+      },
+      "resource_regression_passed": true
+    },
+    "macos": {
+      "isolated_rust_tests": 269,
+      "python_passed": 296,
+      "python_skipped": 1,
+      "new_rust_regressions_passed": [
+        "backend_cancellation_is_preserved_after_static_failure",
+        "backend_cancellation_is_preserved_after_dynamic_failure",
+        "cancelled_backend_failure_can_retry_without_committing_static_cache"
+      ],
+      "timed_120_seconds": {
+        "within_budget": true,
+        "budget_bytes": 16777216,
+        "tail_samples": 2,
+        "tail_min_bytes": 8749056,
+        "tail_max_bytes": 8749056,
+        "tail_range_bytes": 0,
+        "net_change_bytes": 0,
+        "calls": 666,
+        "elapsed_ns": 120228864999,
+        "max_json_bytes": 11710,
+        "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+      },
+      "resource_regression_passed": true
+    }
+  },
+  "local_windows": {
+    "rust_tests": 272,
+    "isolated_rust_tests": 272,
+    "core_default_tests": 23,
+    "new_rust_tests": 3,
+    "cross_check_targets": [
+      "x86_64-unknown-linux-gnu",
+      "aarch64-apple-darwin"
+    ],
+    "timed_120_seconds": {
+      "within_budget": true,
+      "budget_bytes": 16777216,
+      "tail_samples": 2,
+      "tail_min_bytes": 11730944,
+      "tail_max_bytes": 11857920,
+      "tail_range_bytes": 126976,
+      "net_change_bytes": 126976,
+      "calls": 1092,
+      "elapsed_ns": 120054780199,
+      "max_json_bytes": 22244,
+      "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+    },
+    "full_gate_log_sha256": "34cdcb446be4b4ca81563b6ff11c5c588d866af76c68ea5b2f24ea8f15f6bbaa"
+  },
+  "reproduction_before_fix": {
+    "production_baseline": "b8930acaa9652a43e44acdfeb6561d87e2999199",
+    "test_source_state": "new unit tests added before production logic was changed; not a clean checkout acceptance",
+    "passed": 0,
+    "failed": 2,
+    "actual": "BackendFailure",
+    "expected": "Cancelled",
+    "raw_local_log_sha256": "2f7c64db70ed29d3e5c179f17ecdc591ffac628cd6a21e84d07237325fd9c5e9"
+  },
+  "source_files": {
+    "CHANGELOG.md": "3b6fa5a7618364c169a0c4aae56bdca984e190e68369cde31f3ce4bcf8aa5317",
+    "README.md": "97740d28f2b8a2ae7fcc29b17c3b07674a7c3a28d9e4da0eeb8385958ea47705",
+    "crates/daoseeker-scope-core/src/hardware.rs": "be8a5fae4cd2104c88bad03e44895dee7f36c2afb11494b82c684559d3779d0a",
+    "crates/daoseeker-scope-core/tests/contracts.rs": "2c9954b8b628363a55e6d3fd0aa43f5ef53eb06197e9647aa0b3fb652ae53964",
+    "docs/README.md": "ff88f8aabdeccc6605b445218bb906fd3490ef380bdf3c3d5834622cfe21b152",
+    "docs/adr/0003-capability-and-error-model.md": "068d5dd43e3ddb003ea3437f1a62c58e516a2f1b1aaa6d571f36324980908de2",
+    "docs/progress.md": "188efd0ebe03f141b45d0beb39b879e38c2f1d32cc0e7cfd20feb841034b554d",
+    "docs/project-review-2026-10-31.md": "04a8828104e4082101429547a55473fd9a540db04a3f6ff27df9c9e8e7f9dcaf"
+  },
+  "artifact_metadata": [
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "digest": "sha256:7ea1007b9ebd6fdbc3fe9620d556562c0bc1ede9b1e72940b5cca8365cba452f",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "digest": "sha256:75adab6853f52b8e62e81a035ea66b67ee9bf4e7b267e26cfd0ba7b348645147",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "package-evidence-Linux-X64",
+      "digest": "sha256:9c47deeb93c3089428f14093667b196a2801e8153cf904401df6113c6c2a92ba",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "linux-container-evidence",
+      "digest": "sha256:2efadcfb7ef964d3723dfcb302c9292a4bb5c916b5bdc34129c9ec9ae9515d0b",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "digest": "sha256:49de4bbdeb11ee6aec1654ade2f8893e360b2dd66aab86baa9a88f0597c750ff",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "native-evidence-Linux-X64",
+      "digest": "sha256:5bd3355133082fe2050b986b1169d358cf227d1514bb57c01d0752d2ecc66272",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "native-evidence-Windows-X64",
+      "digest": "sha256:5fcf4e984e7cc62c415fa9217e1ebd3cd74f834a17560dcbe59cc97ffd440c0a",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "digest": "sha256:5ed55b544e865339a9f1c1eccadaef8fc4ce2348cf3c44bc6cfe5bcc20a45b9f",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "procfs-fuzz-evidence",
+      "digest": "sha256:a40c7badc3c1897ec2f8a1319f398aa3379ab44c7bbb36b9f1aa1a8e5b8a3277",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "package-evidence-Windows-X64",
+      "digest": "sha256:23f25a51dbd3a30246b6f8069bddaca2883fc3a8deb338ac9d29d91c5d2a16ae",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "digest": "sha256:e823d8a282aa413e41fe689718270ec57842bcb5b35875cb6e8404d35da45ece",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    },
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "digest": "sha256:9e011d9ba2daf4b29be55224e6d35f491ad0895db9aa9c62ceae55612273ee55",
+      "head_sha": "0dd634639e4890511092f0f8e3e6f6fd086ba24f"
+    }
+  ],
+  "all_jobs_log_sha256": "fe966fca86aed1dd590d5d6a8bc550bce3bb88fc26d44b224bfd5739bf253854",
+  "safety": {
+    "miri": 8,
+    "asan": 11,
+    "short_fuzz_targets": 12,
+    "campaigns": [
+      {
+        "runs": 300655,
+        "seconds": 61
+      },
+      {
+        "runs": 7593778,
+        "seconds": 61
+      },
+      {
+        "runs": 18870898,
+        "seconds": 61
+      },
+      {
+        "runs": 1050892,
+        "seconds": 61
+      },
+      {
+        "runs": 3908107,
+        "seconds": 61
+      },
+      {
+        "runs": 18882075,
+        "seconds": 61
+      },
+      {
+        "runs": 19374990,
+        "seconds": 61
+      },
+      {
+        "runs": 18726713,
+        "seconds": 61
+      },
+      {
+        "runs": 3308033,
+        "seconds": 61
+      },
+      {
+        "runs": 4562338,
+        "seconds": 61
+      },
+      {
+        "runs": 27797664,
+        "seconds": 61
+      },
+      {
+        "runs": 30326906,
+        "seconds": 61
+      }
+    ],
+    "empty_proc": "not_run"
+  },
+  "initial_issues": [
+    "Two deterministic regressions failed before the fix and are retained as the negative control.",
+    "rustfmt requested one test line wrap; formatted before the successful full gate."
+  ],
+  "abi": 1,
+  "hardware_schema": 1,
+  "license": "MIT",
+  "public_signatures_or_dependencies_changed": false,
+  "published": false,
+  "limits": [
+    "Cooperative post-backend context check; blocking native calls are not forcibly stopped.",
+    "Existing operation cancellation/deadline errors take precedence; ordinary backend isolation unchanged.",
+    "The separate 3600-second Windows baseline uses b8930ac and is not acceptance of this fix.",
+    "No physical Linux/macOS, multi-group Windows, day-duration or long-term fuzz claim.",
+    "macOS distribution materials and minimum OS/kernel scope remain pending."
+  ]
+}

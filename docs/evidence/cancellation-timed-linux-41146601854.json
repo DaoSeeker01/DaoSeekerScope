@@ -1,0 +1,143 @@
+{
+  "format": 1,
+  "overall": "passed",
+  "source_before": {
+    "revision": "0dd634639e4890511092f0f8e3e6f6fd086ba24f",
+    "status": ""
+  },
+  "system": "Linux",
+  "os_release": "7.0.0-1017-azure",
+  "target": "x86_64-unknown-linux-gnu",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "c_compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "binary_sha256": {
+    "ffi-memory-probe": "8310cba803b925528f07fa21013755fe7ac3d530fff3e8b0dcc698f82436a660",
+    "libdaoseeker_scope_ffi.so": "695f4044ef69d747a36352d2ee173fddf9673d52b8a456217ab0670f197228d9",
+    "dscope": "b6fcd2093fc3b117a3997c8fec425cb208296a66e060847f26362ebea01652f4"
+  },
+  "profile": "release; default serde",
+  "duration_seconds": 120,
+  "options": {
+    "default_cached_collector": true,
+    "sensitive": false,
+    "timeout_ms": 2000
+  },
+  "limits": "requested 100 ms between completed calls; scheduling and OS residency affect samples; not hour/day or leak proof",
+  "environment": {
+    "cpu": {
+      "value": "AMD EPYC 7763 64-Core Processor",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793404302223,
+      "reason": null
+    },
+    "memory": {
+      "value": 16760344576,
+      "availability": "available",
+      "source": "procfs",
+      "observed_at": 1793404302223,
+      "reason": null
+    },
+    "os": {
+      "name": {
+        "value": "Ubuntu",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793404302223,
+        "reason": null
+      },
+      "version": {
+        "value": "24.04",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793404302223,
+        "reason": null
+      },
+      "kernel_version": {
+        "value": "7.0.0-1017-azure",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793404302223,
+        "reason": null
+      }
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "calibration": {
+    "format": 2,
+    "mode": "resident_calibrate",
+    "launch": {
+      "strategy": "linux_fork",
+      "launcher_pid": 11604,
+      "measurement_pid": 11605,
+      "parent_death_signal": 9
+    },
+    "resident_metric": "proc_statm_resident",
+    "resident_raw_unit": "pages",
+    "resident_multiplier": 4096,
+    "metric": "ru_maxrss",
+    "raw_unit": "kibibytes",
+    "multiplier": 1024,
+    "pressure_bytes": 67108864,
+    "samples": [
+      {
+        "phase": "baseline",
+        "calls": 0,
+        "peak_raw": 1168,
+        "peak_bytes": 1196032,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 311,
+        "resident_bytes": 1273856
+      },
+      {
+        "phase": "touched",
+        "calls": 0,
+        "peak_raw": 66704,
+        "peak_bytes": 68304896,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 16711,
+        "resident_bytes": 68448256
+      },
+      {
+        "phase": "freed",
+        "calls": 0,
+        "peak_raw": 66704,
+        "peak_bytes": 68304896,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 326,
+        "resident_bytes": 1335296
+      }
+    ]
+  },
+  "calibration_analysis": {
+    "calibration_growth_bytes": 67174400,
+    "passed": true
+  },
+  "invalid_duration_cases": 8,
+  "probe_exit_code": 0,
+  "trace_utf8": "{\"record\":\"header\",\"format\":1,\"mode\":\"soak_cached\",\"launch\":{\"strategy\":\"linux_fork\",\"launcher_pid\":11614,\"measurement_pid\":11615,\"parent_death_signal\":9},\"duration_seconds\":120,\"checkpoint_seconds\":60,\"call_interval_ms\":100,\"warmup_seconds\":60,\"tail_budget_bytes\":16777216,\"resident_metric\":\"proc_statm_resident\",\"resident_raw_unit\":\"pages\",\"resident_multiplier\":4096,\"metric\":\"ru_maxrss\",\"raw_unit\":\"kibibytes\",\"multiplier\":1024}\n{\"record\":\"sample\",\"ordinal\":0,\"observation\":{\"phase\":\"baseline\",\"calls\":0,\"peak_raw\":1324,\"peak_bytes\":1355776,\"elapsed_ns\":0,\"max_json_bytes\":0,\"resident_raw\":366,\"resident_bytes\":1499136}}\n{\"record\":\"sample\",\"ordinal\":1,\"observation\":{\"phase\":\"collected\",\"calls\":598,\"peak_raw\":2292,\"peak_bytes\":2347008,\"elapsed_ns\":60098112382,\"max_json_bytes\":9525,\"resident_raw\":636,\"resident_bytes\":2605056}}\n{\"record\":\"sample\",\"ordinal\":2,\"observation\":{\"phase\":\"collected\",\"calls\":1195,\"peak_raw\":2292,\"peak_bytes\":2347008,\"elapsed_ns\":120091885997,\"max_json_bytes\":9525,\"resident_raw\":637,\"resident_bytes\":2609152}}\n{\"record\":\"complete\",\"calls\":1195,\"samples\":3}\n",
+  "trace_sha256": "5eb79d49a0382bad5534eda03d916ccb7d84b4be81f2164cd116decfecb8f3a8",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "probe_error": null,
+  "analysis": {
+    "within_budget": true,
+    "budget_bytes": 16777216,
+    "tail_samples": 2,
+    "tail_min_bytes": 2605056,
+    "tail_max_bytes": 2609152,
+    "tail_range_bytes": 4096,
+    "net_change_bytes": 4096,
+    "calls": 1195,
+    "elapsed_ns": 120091885997,
+    "max_json_bytes": 9525,
+    "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+  },
+  "source_after": {
+    "revision": "0dd634639e4890511092f0f8e3e6f6fd086ba24f",
+    "status": ""
+  },
+  "checked_at": "2026-10-30T23:53:42.466475+00:00"
+}

@@ -1,0 +1,143 @@
+{
+  "format": 1,
+  "overall": "passed",
+  "source_before": {
+    "revision": "0dd634639e4890511092f0f8e3e6f6fd086ba24f",
+    "status": ""
+  },
+  "system": "Windows",
+  "os_release": "11",
+  "target": "x86_64-pc-windows-msvc",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "c_compiler": "19.51.36260.0",
+  "binary_sha256": {
+    "ffi-memory-probe.exe": "acde9467722b5cc7cf9ab43b4b85a33f7032284cfc0c6dc28ed80d3dfed22d70",
+    "daoseeker_scope_ffi.dll": "fa057511697ca1c725388b6d659fd6685b36878eb64a69aaa02319d84c7d9e71",
+    "dscope.exe": "336a0e35106e47155d102d384b2c12e4bf6cff3e94a1e32d8cb92ac45cc6676b"
+  },
+  "profile": "release; default serde",
+  "duration_seconds": 120,
+  "options": {
+    "default_cached_collector": true,
+    "sensitive": false,
+    "timeout_ms": 2000
+  },
+  "limits": "requested 100 ms between completed calls; scheduling and OS residency affect samples; not hour/day or leak proof",
+  "environment": {
+    "cpu": {
+      "value": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+      "availability": "available",
+      "source": "sysinfo",
+      "observed_at": 1793404382538,
+      "reason": null
+    },
+    "memory": {
+      "value": 17009004544,
+      "availability": "available",
+      "source": "win32",
+      "observed_at": 1793404382563,
+      "reason": null
+    },
+    "os": {
+      "name": {
+        "value": "Windows",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793404382538,
+        "reason": null
+      },
+      "version": {
+        "value": "11 (26300)",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793404382538,
+        "reason": null
+      },
+      "kernel_version": {
+        "value": "26300",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793404382538,
+        "reason": null
+      }
+    }
+  },
+  "snapshot_schema_and_privacy": true,
+  "calibration": {
+    "format": 2,
+    "mode": "resident_calibrate",
+    "launch": {
+      "strategy": "direct",
+      "launcher_pid": 18040,
+      "measurement_pid": 18040,
+      "parent_death_signal": 0
+    },
+    "resident_metric": "working_set_size",
+    "resident_raw_unit": "bytes",
+    "resident_multiplier": 1,
+    "metric": "peak_working_set",
+    "raw_unit": "bytes",
+    "multiplier": 1,
+    "pressure_bytes": 67108864,
+    "samples": [
+      {
+        "phase": "baseline",
+        "calls": 0,
+        "peak_raw": 7811072,
+        "peak_bytes": 7811072,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 7811072,
+        "resident_bytes": 7811072
+      },
+      {
+        "phase": "touched",
+        "calls": 0,
+        "peak_raw": 74924032,
+        "peak_bytes": 74924032,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 74924032,
+        "resident_bytes": 74924032
+      },
+      {
+        "phase": "freed",
+        "calls": 0,
+        "peak_raw": 74924032,
+        "peak_bytes": 74924032,
+        "elapsed_ns": 0,
+        "max_json_bytes": 0,
+        "resident_raw": 7811072,
+        "resident_bytes": 7811072
+      }
+    ]
+  },
+  "calibration_analysis": {
+    "calibration_growth_bytes": 67112960,
+    "passed": true
+  },
+  "invalid_duration_cases": 8,
+  "probe_exit_code": 0,
+  "trace_utf8": "{\"record\":\"header\",\"format\":1,\"mode\":\"soak_cached\",\"launch\":{\"strategy\":\"direct\",\"launcher_pid\":2528,\"measurement_pid\":2528,\"parent_death_signal\":0},\"duration_seconds\":120,\"checkpoint_seconds\":60,\"call_interval_ms\":100,\"warmup_seconds\":60,\"tail_budget_bytes\":16777216,\"resident_metric\":\"working_set_size\",\"resident_raw_unit\":\"bytes\",\"resident_multiplier\":1,\"metric\":\"peak_working_set\",\"raw_unit\":\"bytes\",\"multiplier\":1}\r\n{\"record\":\"sample\",\"ordinal\":0,\"observation\":{\"phase\":\"baseline\",\"calls\":0,\"peak_raw\":7819264,\"peak_bytes\":7819264,\"elapsed_ns\":0,\"max_json_bytes\":0,\"resident_raw\":7819264,\"resident_bytes\":7819264}}\r\n{\"record\":\"sample\",\"ordinal\":1,\"observation\":{\"phase\":\"collected\",\"calls\":547,\"peak_raw\":11898880,\"peak_bytes\":11898880,\"elapsed_ns\":60005077099,\"max_json_bytes\":22244,\"resident_raw\":11730944,\"resident_bytes\":11730944}}\r\n{\"record\":\"sample\",\"ordinal\":2,\"observation\":{\"phase\":\"collected\",\"calls\":1092,\"peak_raw\":11898880,\"peak_bytes\":11898880,\"elapsed_ns\":120054780199,\"max_json_bytes\":22244,\"resident_raw\":11857920,\"resident_bytes\":11857920}}\r\n{\"record\":\"complete\",\"calls\":1092,\"samples\":3}\r\n",
+  "trace_sha256": "88a07250187fb8cdb71ad9c84cd0b03fe840bc83e7e4b18f514d150865aed992",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "probe_error": null,
+  "analysis": {
+    "within_budget": true,
+    "budget_bytes": 16777216,
+    "tail_samples": 2,
+    "tail_min_bytes": 11730944,
+    "tail_max_bytes": 11857920,
+    "tail_range_bytes": 126976,
+    "net_change_bytes": 126976,
+    "calls": 1092,
+    "elapsed_ns": 120054780199,
+    "max_json_bytes": 22244,
+    "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+  },
+  "source_after": {
+    "revision": "0dd634639e4890511092f0f8e3e6f6fd086ba24f",
+    "status": ""
+  },
+  "checked_at": "2026-10-30T23:55:03.120622+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "0dd634639e4890511092f0f8e3e6f6fd086ba24f",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 272,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "4c48c003f90b05e29d88faea916ebcb3c35056ec112347ed0bdb47db1fb1ed75",
+      "files": 17
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "f470a60228f1f35c543bb7778ba69c3bc8b21667485ef10f36e78a8225b87fdd",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "8182a76817f7f68ef26322179984520cf0750195b512585efdbf402e8af0c8cd",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "1c8e5f0cb550b1905f696a1b67f133df40435ab504ead2e99402862841a0b3f8",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "c0ab533ee96afed563b8765fc13199f62375e11f07fc09664735130e9469c4fd",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "e522ebfd73cd74211dd47c1315dde9467799a0164da36470e228c8e798a140ed",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "42c20cfb33f1bd84d5e2c6a7701e701b524f494cb178dee326ea26c05ed29bbf",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "c9b6c4f242765e8aeff3bc5fbd3a379eb7b7ee9dcd7beb966044e0a8a1c931c1",
+      "files": 8
+    }
+  ]
+}
