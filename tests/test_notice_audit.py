@@ -111,7 +111,7 @@ class NoticeAuditTests(unittest.TestCase):
                         root / target, target_is_directory=target == "outside-dir"
                     )
                 except OSError as error:
-                    if os.name == "nt" and error.winerror == 1314:
+                    if os.name == "nt" and getattr(error, "winerror", None) == 1314:
                         self.skipTest("Windows account cannot create symbolic links")
                     raise
                 with self.assertRaisesRegex(ValueError, "unsafe_notice_file"):
