@@ -381,7 +381,8 @@ pub struct SensorInfo {
     /// privacy-redacted; array indices are not stable device identifiers.
     pub label: Observed<String>,
     /// Fresh backend-reported Celsius observation, not a control value or voltage.
-    /// Linux routes coretemp, k10temp Tdie (channel 2) and nvme (channels 1..9).
+    /// Linux routes coretemp, k10temp Tdie (channel 2), nvme (channels 1..9)
+    /// and amdgpu (channels 1..3), when exposed by the driver.
     /// NVMe Composite may be computed and need not represent a physical point.
     pub temperature_celsius: Observed<f64>,
 }

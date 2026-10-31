@@ -7,7 +7,7 @@
     "aarch64-apple-darwin"
   ],
   "schema_version": 1,
-  "schema_sha256": "b99bff6b948e6cc2ae69d51a0e6cf34c315df4ed8f3d65a2d1f421c624299078",
+  "schema_sha256": "dbd27a12b987c2d4fc269c31b0b289ea2cf9a230c3c274a0e6225bd3b3b45be3",
   "manifests": {
     "package": {
       "version": "0.1.0",

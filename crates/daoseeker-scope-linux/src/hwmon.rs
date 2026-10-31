@@ -29,6 +29,31 @@ fn failure<T>(error: io::Error) -> Observed<T> {
         }
     }
 }
+fn input_failure<T>(error: io::Error, driver: &str) -> Observed<T> {
+    if cfg!(target_os = "linux") && driver == "amdgpu" {
+        match (error.raw_os_error(), error.kind()) {
+            // The driver also returns EPERM while resetting/suspended. A read
+            // error alone cannot distinguish that from a policy denial.
+            (Some(1), _) => return Observed::unavailable(Source::Hwmon, ReasonCode::Unknown),
+            (_, io::ErrorKind::WouldBlock | io::ErrorKind::ResourceBusy) => {
+                return Observed::unavailable(Source::Hwmon, ReasonCode::TemporarilyUnavailable);
+            }
+            (_, io::ErrorKind::Unsupported) => {
+                return Observed::missing(
+                    Availability::Unsupported,
+                    Source::Hwmon,
+                    ReasonCode::NotSupported,
+                )
+                .expect("unsupported observation");
+            }
+            (_, io::ErrorKind::TimedOut) => {
+                return Observed::unavailable(Source::Hwmon, ReasonCode::Timeout);
+            }
+            _ => {}
+        }
+    }
+    failure(error)
+}
 fn propagate<T, U>(value: &Observed<T>) -> Result<Observed<U>, ScopeError> {
     Observed::missing(
         value.availability(),
@@ -60,6 +85,7 @@ fn routed(driver: &str, index: usize) -> bool {
     driver == "coretemp"
         || (driver == "k10temp" && index == 2)
         || (driver == "nvme" && (1..=9).contains(&index))
+        || (driver == "amdgpu" && (1..=3).contains(&index))
 }
 fn driver_temperature(driver: &str, index: usize, bytes: &[u8], at: Timestamp) -> Observed<f64> {
     let value = temperature(bytes, at);
@@ -81,6 +107,13 @@ fn driver_temperature(driver: &str, index: usize, bytes: &[u8], at: Timestamp) -
     }
 }
 fn read(path: &Path, context: &CollectContext) -> Result<Observed<Vec<u8>>, ScopeError> {
+    read_with(path, context, None)
+}
+fn read_with(
+    path: &Path,
+    context: &CollectContext,
+    input_driver: Option<&str>,
+) -> Result<Observed<Vec<u8>>, ScopeError> {
     context.check()?;
     let metadata = std::fs::symlink_metadata(path);
     context.check()?;
@@ -102,7 +135,10 @@ fn read(path: &Path, context: &CollectContext) -> Result<Observed<Vec<u8>>, Scop
         .read_to_end(&mut bytes);
     context.check()?;
     Ok(match result {
-        Err(error) => failure(error),
+        Err(error) => match input_driver {
+            Some(driver) => input_failure(error, driver),
+            None => failure(error),
+        },
         Ok(_) if bytes.len() > MAX_ATTRIBUTE => invalid(),
         Ok(_) => Observed::available(bytes, Source::Hwmon, Timestamp::now()?),
     })
@@ -158,7 +194,11 @@ fn sample(
             ));
         }
     }
-    let raw = read(&path.join(format!("temp{index}_input")), context)?;
+    let raw = read_with(
+        &path.join(format!("temp{index}_input")),
+        context,
+        Some(driver),
+    )?;
     match (raw.value(), raw.observed_at()) {
         (Some(bytes), Some(at)) => Ok(driver_temperature(driver, index, bytes, at)),
         _ => propagate(&raw),
@@ -471,6 +511,122 @@ mod tests {
         assert_eq!(items[7].temperature_celsius.value(), Some(&27.85));
         assert_eq!(hw.collect().expect("cached").static_info, first.static_info);
     }
+    #[test]
+    fn amdgpu_channels_refresh_isolation_and_privacy() {
+        let f = Fixture::new();
+        f.chip("hwmon0", b"amdgpu\n");
+        for (index, raw) in [(1, b"42500"), (2, b"68500"), (3, b"71500")] {
+            f.write("hwmon0", &format!("temp{index}_input"), raw);
+            f.write("hwmon0", &format!("temp{index}_label"), b"PRIVATE");
+        }
+        f.write("hwmon0", "unique_id", b"PRIVATE");
+        std::fs::create_dir(f.0.join("hwmon0/temp4_input")).expect("unsupported channel");
+        let hw = f.hardware(128);
+        let first = hw.collect().expect("baseline");
+        let items = values(&first.dynamic.sensors);
+        assert_eq!(items.len(), 4);
+        for (index, expected) in [42.5, 68.5, 71.5].into_iter().enumerate() {
+            assert_eq!(items[index].temperature_celsius.value(), Some(&expected));
+            assert_eq!(items[index].temperature_celsius.source(), Source::Hwmon);
+            assert!(items[index].temperature_celsius.observed_at().is_some());
+        }
+        missing(&items[3].temperature_celsius, ReasonCode::NotSupported);
+        for sensor in items {
+            missing(&sensor.label, ReasonCode::PrivacyRedacted);
+        }
+        f.write("hwmon0", "temp1_input", b"47000");
+        f.write("hwmon0", "temp2_input", b"NaN");
+        std::fs::remove_file(f.0.join("hwmon0/temp3_input")).expect("unplug");
+        let refreshed = hw.refresh_dynamic().expect("refresh");
+        let items = values(&refreshed.sensors);
+        assert_eq!(items.len(), 3);
+        assert_eq!(items[0].temperature_celsius.value(), Some(&47.0));
+        missing(&items[1].temperature_celsius, ReasonCode::InvalidData);
+        missing(&items[2].temperature_celsius, ReasonCode::NotSupported);
+        assert_eq!(hw.collect().expect("cached").static_info, first.static_info);
+    }
+
+    #[test]
+    fn amdgpu_optional_channels_flags_zero_and_limits() {
+        let f = Fixture::new();
+        f.chip("hwmon0", b"amdgpu");
+        f.write("hwmon0", "temp1_input", b"0");
+        let hw = f.hardware(128);
+        let first = hw.collect().expect("one existing channel");
+        assert_eq!(values(&first.dynamic.sensors).len(), 1);
+        assert_eq!(
+            values(&first.dynamic.sensors)[0]
+                .temperature_celsius
+                .value(),
+            Some(&0.0)
+        );
+        for (attr, raw) in [("temp1_enable", b"0"), ("temp1_fault", b"1")] {
+            f.write("hwmon0", attr, raw);
+            let refreshed = hw.refresh_dynamic().expect("unready channel");
+            missing(
+                &values(&refreshed.sensors)[0].temperature_celsius,
+                ReasonCode::TemporarilyUnavailable,
+            );
+            std::fs::remove_file(f.0.join("hwmon0").join(attr)).expect("restore flag");
+        }
+        f.write("hwmon0", "temp1_input", b"-150");
+        let refreshed = hw.refresh_dynamic().expect("signed Celsius");
+        assert_eq!(
+            values(&refreshed.sensors)[0].temperature_celsius.value(),
+            Some(&-0.15)
+        );
+        f.write("hwmon0", "temp2_input", b"1000001");
+        let refreshed = hw.refresh_dynamic().expect("bad field isolated");
+        missing(
+            &values(&refreshed.sensors)[1].temperature_celsius,
+            ReasonCode::InvalidData,
+        );
+        missing(
+            &f.hardware(1)
+                .collect()
+                .expect("collection limit")
+                .dynamic
+                .sensors,
+            ReasonCode::InvalidData,
+        );
+    }
+
+    #[cfg(target_os = "linux")]
+    #[test]
+    fn amdgpu_read_errno_does_not_claim_permission_for_an_ambiguous_reset() {
+        for (raw, state, reason) in [
+            (1, Availability::Unavailable, ReasonCode::Unknown),
+            (13, Availability::Restricted, ReasonCode::PermissionDenied),
+            (
+                11,
+                Availability::Unavailable,
+                ReasonCode::TemporarilyUnavailable,
+            ),
+            (
+                16,
+                Availability::Unavailable,
+                ReasonCode::TemporarilyUnavailable,
+            ),
+            (
+                61,
+                Availability::Unavailable,
+                ReasonCode::TemporarilyUnavailable,
+            ),
+            (95, Availability::Unsupported, ReasonCode::NotSupported),
+            (110, Availability::Unavailable, ReasonCode::Timeout),
+            (5, Availability::Unavailable, ReasonCode::Unknown),
+        ] {
+            let field: Observed<f64> = input_failure(io::Error::from_raw_os_error(raw), "amdgpu");
+            assert_eq!(field.availability(), state);
+            missing(&field, reason);
+        }
+        let other: Observed<f64> = input_failure(io::Error::from_raw_os_error(1), "coretemp");
+        assert_eq!(other.availability(), Availability::Restricted);
+        // Open/metadata errors keep their original permission classification.
+        let open: Observed<f64> = failure(io::Error::from_raw_os_error(1));
+        assert_eq!(open.reason(), Some(ReasonCode::PermissionDenied));
+    }
+
     #[test]
     fn empty_missing_and_each_enumeration_limit_are_distinct() {
         let f = Fixture::new();

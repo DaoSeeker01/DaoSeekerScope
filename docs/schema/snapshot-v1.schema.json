@@ -1581,7 +1581,7 @@
             "source": "custom",
             "value": null
           },
-          "description": "Fresh backend-reported Celsius observation, not a control value or voltage.\nLinux routes coretemp, k10temp Tdie (channel 2) and nvme (channels 1..9).\nNVMe Composite may be computed and need not represent a physical point."
+          "description": "Fresh backend-reported Celsius observation, not a control value or voltage.\nLinux routes coretemp, k10temp Tdie (channel 2), nvme (channels 1..9)\nand amdgpu (channels 1..3), when exposed by the driver.\nNVMe Composite may be computed and need not represent a physical point."
         }
       },
       "type": "object"

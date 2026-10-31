@@ -10,6 +10,7 @@
 - [glibc 2.34 运行验证](linux-glibc234-validation.md)：固定 UBI 用户空间中的候选测试及结论边界。
 - [基础审计与修复](project-review-2026-10-27.md)：2026-10-27 的问题、处理和验证状态。
 - [核心取消与缓存审查](project-review-2026-10-31.md)：取消状态误报的复现、修复与重试回归。
+- [amdgpu 温度采集](amdgpu-temperature-validation.md)：限定通道、错误歧义与合成/设备验证边界。
 
 - [使用指南](usage.md)：Rust、CLI、JSON、C/Python、刷新与隐私。
 - [剩余工作](progress.md)：首版工作包、延期设备验证与后续扩展。

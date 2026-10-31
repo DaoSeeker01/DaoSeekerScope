@@ -1,0 +1,19 @@
+{
+  "review_kind": "schema_annotation_only",
+  "date": "2026-10-31",
+  "previous_commit": "346e907d6de7ac1f640577f077c1240b8353d280",
+  "changed_paths": [
+    "/$defs/SensorInfo/properties/temperature_celsius/description"
+  ],
+  "before_description": "Fresh backend-reported Celsius observation, not a control value or voltage.\nLinux routes coretemp, k10temp Tdie (channel 2) and nvme (channels 1..9).\nNVMe Composite may be computed and need not represent a physical point.",
+  "after_description": "Fresh backend-reported Celsius observation, not a control value or voltage.\nLinux routes coretemp, k10temp Tdie (channel 2), nvme (channels 1..9)\nand amdgpu (channels 1..3), when exposed by the driver.\nNVMe Composite may be computed and need not represent a physical point.",
+  "before_canonical_sha256": "b99bff6b948e6cc2ae69d51a0e6cf34c315df4ed8f3d65a2d1f421c624299078",
+  "after_canonical_sha256": "dbd27a12b987c2d4fc269c31b0b289ea2cf9a230c3c274a0e6225bd3b3b45be3",
+  "validation_constraints_identical": true,
+  "schema_version": 1,
+  "abi_version": 1,
+  "migration_required": false,
+  "public_fields_or_enums_changed": false,
+  "license": "MIT",
+  "not_a_runtime_or_release_approval": true
+}
