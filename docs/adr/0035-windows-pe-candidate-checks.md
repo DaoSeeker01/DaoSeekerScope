@@ -1,6 +1,6 @@
 # ADR 0035：Windows 候选包的 PE 检查
 
-日期：2026-10-27。状态：实现，原生候选包与 CI 验收见[验证记录](../windows-pe-validation.md)。
+日期：2026-10-27。状态：实现，原生候选包与 CI 验收见[验证记录](../windows-pe-validation.md)。2026-11-01 的 [ADR 0048](0048-windows-import-symbols.md)补充符号读取，本页保留当时的模块级边界。
 
 ## 要解决的问题
 

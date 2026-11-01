@@ -1,0 +1,396 @@
+{
+  "overall": "passed",
+  "date": "2026-11-01",
+  "source_commit": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61",
+  "run_id": 41257426560,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41257426560",
+  "jobs": [
+    {
+      "databaseId": 124703456434,
+      "name": "linux-container",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41257426560/job/124703456434"
+    },
+    {
+      "databaseId": 124703456516,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41257426560/job/124703456516"
+    },
+    {
+      "databaseId": 124703456529,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41257426560/job/124703456529"
+    },
+    {
+      "databaseId": 124703456530,
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41257426560/job/124703456530"
+    },
+    {
+      "databaseId": 124703456552,
+      "name": "miri",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41257426560/job/124703456552"
+    },
+    {
+      "databaseId": 124703456563,
+      "name": "supply-chain",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41257426560/job/124703456563"
+    },
+    {
+      "databaseId": 124703456595,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41257426560/job/124703456595"
+    },
+    {
+      "databaseId": 124703456622,
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41257426560/job/124703456622"
+    }
+  ],
+  "reports": {
+    "pe-symbols-package-windows-41257426560.json": {
+      "sha256": "0f557d0b882f50420eed48992630584f07e5c339ba2ffd064a13d6c3e2ae8f5f",
+      "original_sha256": "f3f96aa1589b4b6d16b3e8f3f4e7b7cd47d259b7dc83dbc75671de3ad52c6951",
+      "origin": "target/pe-symbols-ci-41257426560/package-evidence-Windows-X64/package-evidence.json"
+    },
+    "pe-symbols-contract-windows-41257426560.json": {
+      "sha256": "5b5268fcb9d92cf90698b650767276f7286869bcda14d62a38bb1da9dd7fc834",
+      "original_sha256": "5b5268fcb9d92cf90698b650767276f7286869bcda14d62a38bb1da9dd7fc834",
+      "origin": "target/pe-symbols-ci-41257426560/native-evidence-Windows-X64/contract-evidence.json"
+    },
+    "pe-symbols-cli-windows-41257426560.json": {
+      "sha256": "152630d6fa2a925fd7deaa6e683175d7366dc4e8f26322708d9a2f482d3a67af",
+      "original_sha256": "7b12c4c8f32935868a9f318d491822e4fbd95e6b4d0053cdef3a919947f57c77",
+      "origin": "target/pe-symbols-ci-41257426560/cli-bundle-evidence-Windows-X64/cli-bundle-evidence.json"
+    },
+    "pe-symbols-sdk-windows-41257426560.json": {
+      "sha256": "b784787a37fa743f79b512ea83fc850d524039e63262d8cc0d6efce84ef9c1fc",
+      "original_sha256": "2afc697fe4843dc8a7884ca26b4e923a1c27f9ab13c65094144344e737cee1da",
+      "origin": "target/pe-symbols-ci-41257426560/ffi-sdk-evidence-Windows-X64/ffi-bundle-evidence.json"
+    },
+    "pe-symbols-oracle-windows-41257426560.json": {
+      "sha256": "4d7a471f642524fb4ed82b983e3c8dee13f3b1d83a47909cf7a23b79513cd2e7",
+      "original_sha256": "4d7a471f642524fb4ed82b983e3c8dee13f3b1d83a47909cf7a23b79513cd2e7",
+      "origin": "target/pe-symbols-ci-41257426560/native-evidence-Windows-X64/windows-imports-evidence.json"
+    },
+    "pe-symbols-package-linux-41257426560.json": {
+      "sha256": "eba2b865b74fe1cc00a94c96cb0cd106c56052b3438e01e2be37aa58b5542bca",
+      "original_sha256": "eba2b865b74fe1cc00a94c96cb0cd106c56052b3438e01e2be37aa58b5542bca",
+      "origin": "target/pe-symbols-ci-41257426560/package-evidence-Linux-X64/package-evidence.json"
+    },
+    "pe-symbols-contract-linux-41257426560.json": {
+      "sha256": "35dc08362ab9e8fc767b14c1141871e837133b5962edf049be1ab1f59893f890",
+      "original_sha256": "35dc08362ab9e8fc767b14c1141871e837133b5962edf049be1ab1f59893f890",
+      "origin": "target/pe-symbols-ci-41257426560/native-evidence-Linux-X64/contract-evidence.json"
+    },
+    "pe-symbols-cli-linux-41257426560.json": {
+      "sha256": "212c8b828d8c7ae3b42fa58534654c6c56bc39d28eb76add6314aba13cf57c59",
+      "original_sha256": "212c8b828d8c7ae3b42fa58534654c6c56bc39d28eb76add6314aba13cf57c59",
+      "origin": "target/pe-symbols-ci-41257426560/cli-bundle-evidence-Linux-X64/cli-bundle-evidence.json"
+    },
+    "pe-symbols-sdk-linux-41257426560.json": {
+      "sha256": "4834ee86467a961ef9e7d5ed2036eb1e8a6baa91db781cef033c5c659abecc6f",
+      "original_sha256": "4834ee86467a961ef9e7d5ed2036eb1e8a6baa91db781cef033c5c659abecc6f",
+      "origin": "target/pe-symbols-ci-41257426560/ffi-sdk-evidence-Linux-X64/ffi-bundle-evidence.json"
+    },
+    "pe-symbols-package-macos-41257426560.json": {
+      "sha256": "a52894fa7f4a48346a2fb798a4f61b87eb16bc3851a71c713351cdfce33b97fe",
+      "original_sha256": "a52894fa7f4a48346a2fb798a4f61b87eb16bc3851a71c713351cdfce33b97fe",
+      "origin": "target/pe-symbols-ci-41257426560/package-evidence-macOS-ARM64/package-evidence.json"
+    },
+    "pe-symbols-contract-macos-41257426560.json": {
+      "sha256": "fe01d2f0de0fd19d94926a35e951ea99da00a5dc6cb9b03622145145b523ff6a",
+      "original_sha256": "fe01d2f0de0fd19d94926a35e951ea99da00a5dc6cb9b03622145145b523ff6a",
+      "origin": "target/pe-symbols-ci-41257426560/native-evidence-macOS-ARM64/contract-evidence.json"
+    },
+    "pe-symbols-cli-local-windows-41257426560.json": {
+      "sha256": "693daf6f27e74d565569f352327d193b1284479b858ca247f6bf35826ac0ac62",
+      "original_sha256": "862bac5cb8201eff35e5345c8345793ab29289e8bcaeba8b20476ae963cf88bf",
+      "origin": "target/cli-bundle-evidence.json"
+    },
+    "pe-symbols-sdk-local-windows-41257426560.json": {
+      "sha256": "0d3bb2c5c91c85637b259e6a5a58b7ff303525387c0766269583a4a7c6f1b828",
+      "original_sha256": "f087de43abdbcfb1d3735fbe59eb816f5a29cb7932c3458eadae3373e24c2894",
+      "origin": "target/ffi-bundle-evidence.json"
+    },
+    "pe-symbols-oracle-local-windows-41257426560.json": {
+      "sha256": "f7f8169bc3ec88a82c6ceaf48ea1bce07e28f17ec295289260b9c17cb54b1d70",
+      "original_sha256": "f7f8169bc3ec88a82c6ceaf48ea1bce07e28f17ec295289260b9c17cb54b1d70",
+      "origin": "target/windows-imports-evidence.json"
+    },
+    "pe-symbols-contract-local-windows-41257426560.json": {
+      "sha256": "11f556968f0e1877b37eb7ba9280b3161229d87756d0249a1081f92b5a3ed0e3",
+      "original_sha256": "11f556968f0e1877b37eb7ba9280b3161229d87756d0249a1081f92b5a3ed0e3",
+      "origin": "target/contract-evidence.json"
+    }
+  },
+  "platforms": {
+    "windows": {
+      "rust_tests": 274,
+      "isolated_archives": 8,
+      "python_passed": 309,
+      "python_skipped": 6,
+      "symbol_oracle": {
+        "cli": {
+          "direct_modules": 21,
+          "direct_names": 142,
+          "direct_ordinals": 0,
+          "delay_names": 0,
+          "delay_ordinals": 0
+        },
+        "library": {
+          "direct_modules": 18,
+          "direct_names": 120,
+          "direct_ordinals": 0,
+          "delay_names": 0,
+          "delay_ordinals": 0
+        },
+        "consumer": {
+          "direct_modules": 2,
+          "direct_names": 75,
+          "direct_ordinals": 0,
+          "delay_names": 0,
+          "delay_ordinals": 0
+        },
+        "delay_probe": {
+          "direct_modules": 1,
+          "direct_names": 73,
+          "direct_ordinals": 0,
+          "delay_names": 1,
+          "delay_ordinals": 0
+        }
+      }
+    },
+    "linux": {
+      "rust_tests": 267,
+      "isolated_archives": 8,
+      "python_passed": 315,
+      "python_skipped": 0
+    },
+    "macos": {
+      "rust_tests": 271,
+      "isolated_archives": 8,
+      "python_passed": 314,
+      "python_skipped": 1
+    }
+  },
+  "local_windows": {
+    "python_passed": 309,
+    "python_skipped": 6,
+    "pe_tests": 19,
+    "new_pe_tests": 7,
+    "oracle_tests": 5,
+    "mypy_targets": [
+      "win32",
+      "linux",
+      "darwin"
+    ],
+    "rust_suite_executed": false,
+    "oracle": {
+      "cli": {
+        "direct_modules": 21,
+        "direct_names": 142,
+        "direct_ordinals": 0,
+        "delay_names": 0,
+        "delay_ordinals": 0
+      },
+      "library": {
+        "direct_modules": 18,
+        "direct_names": 120,
+        "direct_ordinals": 0,
+        "delay_names": 0,
+        "delay_ordinals": 0
+      },
+      "consumer": {
+        "direct_modules": 2,
+        "direct_names": 75,
+        "direct_ordinals": 0,
+        "delay_names": 0,
+        "delay_ordinals": 0
+      },
+      "delay_probe": {
+        "direct_modules": 1,
+        "direct_names": 73,
+        "direct_ordinals": 0,
+        "delay_names": 1,
+        "delay_ordinals": 0
+      }
+    }
+  },
+  "before_implementation": {
+    "baseline": "b0c1bc5ad8ab421ed4aa5f483d65dfbe6dd878ce",
+    "source_state": "new symbol test and expanded PE byte fixture, before production implementation; not clean-checkout acceptance",
+    "tests": 13,
+    "passed": 12,
+    "errors": 1,
+    "error": "KeyError: 'direct_symbols'",
+    "log_sha256": "caa210627e5c851c16a6477ec16ab4f3a6ae54fda3bbbf78135a7d3aa18550c7",
+    "sanitized_log_utf8": "........E....\r\n======================================================================\r\nERROR: test_named_and_ordinal_symbols_preserve_case_and_kind (test_pe_inspect.PeTests.test_named_and_ordinal_symbols_preserve_case_and_kind)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"<repo>\\tests\\test_pe_inspect.py\", line 65, in test_named_and_ordinal_symbols_preserve_case_and_kind\r\n    report[\"direct_symbols\"],\r\n    ~~~~~~^^^^^^^^^^^^^^^^^^\r\nKeyError: 'direct_symbols'\r\n\r\n----------------------------------------------------------------------\r\nRan 13 tests in 0.262s\r\n\r\nFAILED (errors=1)\r\n"
+  },
+  "preparation_issues": [
+    "Historical hardcoded DUMPBIN path no longer existed; retained failure and used the existing MSVC discovery.",
+    "Microsoft DUMPBIN raised LNK1000/C0000094 on the minimal synthetic PE header; not accepted as an oracle pass. Native oracle uses compiler-produced images.",
+    "Checksum CRLF handling, one unused import and type narrowing were fixed before source commit."
+  ],
+  "observer_issues": [
+    "One GitHub artifact-list download returned EOF; the same read-only retry succeeded without restarting CI."
+  ],
+  "source_files": {
+    ".github/workflows/ci.yml": "a826806dead7a824b8cf3662beef1ff2b214b203c91a43b22c1f9a6abb070a46",
+    "CHANGELOG.md": "c030a8fc0279442997134fb1141ed3e0e0d4e05342358139553cdce5426c5761",
+    "docs/README.md": "8209849e3335f4b5895e91af1a9f4504758148d3eec5440dec05b140686f996b",
+    "docs/adr/0048-windows-import-symbols.md": "8a87e384b11594d110946a12ecc7a4e7da720425de1f7a3db61d641d5aefd4a2",
+    "docs/research/pe_delay_probe.c": "3a7f145cd9466ad06bdc899ee33a84379baa4aa899a6cdb6f21193e89b118e81",
+    "docs/windows-imports-validation.md": "4a1b9c5cf4978acfeb61c9b5ad78b295249d420a4f5a66a8cf81d3ec18aeafa5",
+    "scripts/build_c_example.ps1": "0146dee335649f0b855e683d8f0bdf02010248f142b5ca4067386c0e66068bc8",
+    "scripts/pe_inspect.py": "6a50464eb2b862012d13aa01b3983d4dd82126268169c79342af8f1ded9a49da",
+    "scripts/windows_imports_smoke.py": "fcbdd5ace87046dadf077ebd041bcbba6a811efee8aa6fcd86d5eff08c97319d",
+    "tests/test_pe_inspect.py": "e0e2f2281f0325a808dcb381da247e90c1fc54881cbf09d72254d9609fa42d17",
+    "tests/test_windows_imports.py": "3cab53799ec4efb1fda69a239c8bca8dc3a634a1218d576c5f4ccc1620d22d6c"
+  },
+  "unchanged_contract_files": {
+    "Cargo.toml": "50f2d0fcf6ca9ab533fae57d3030a08ad09640320da3a23c5d8fa0c905bac509",
+    "Cargo.lock": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae",
+    "docs/contracts/v0.1.json": "0140eb2e18b3be347ddcdeaef728a1d726dc9d9aa1ac0def2bb32ad4df385636",
+    "docs/schema/snapshot-v1.schema.json": "8ead781b53c539fb9116f95be44484add3a6343a52876e7da75c9ab93e6c659f",
+    "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd"
+  },
+  "artifact_metadata": [
+    {
+      "name": "procfs-fuzz-evidence",
+      "digest": "sha256:2061e5071b9e65cb14fe3b48ff356ae951d075ba569b0cd4ab670ea87aa42372",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "native-evidence-Windows-X64",
+      "digest": "sha256:8d9dfced06b8f21d6c5075d3f2d4e0d98e126f40cd52f8fc5e916aea5683159b",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "package-evidence-Windows-X64",
+      "digest": "sha256:d04cdec9d48d5cf88f96cc291e9f54becc9aedcde222c30bcc14684e865b2740",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "digest": "sha256:1cb3ab8bba15c8d9bc7164db9643a6ca466b79517a0811de3f8b5717144f3537",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "native-evidence-Linux-X64",
+      "digest": "sha256:6d0e8671b7d47159be728e92e0315443416042b992bff530636c0c0c3def1228",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "package-evidence-Linux-X64",
+      "digest": "sha256:e263192a9e26a36ec2c6f1255e0ed45ae34ebd8259d085c11c96a726ae046334",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "digest": "sha256:aece7e33dd4b9e1271f7c19e950adf0e372100ebf4f485da20068cdf3a8f42a5",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "linux-container-evidence",
+      "digest": "sha256:d6a057a656db1a1099809b8b34d2ca84114271fc7b3b92fb8f1fc3c7ccaaa86b",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "digest": "sha256:3808e3e598fe7ddf82ae8d4ddc20d3685a7adb29b052161e72f88ccb5cb02a54",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "digest": "sha256:6e0ff9f843c40c05ca0ce1c4adf7496046a4e687487116b7721b519a040f09bb",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "digest": "sha256:38a2e70a29d6befdd649f6eb583741af97ca73b534717d4a3cd8ab305f8cd83c",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "digest": "sha256:797c2f0c29c123a4d403eaf224454d959bba03fea14f8c272adb901a3a94d9d4",
+      "head_sha": "5ceba4904b05dfa362e67f1a0d7c4f771b9fee61"
+    }
+  ],
+  "all_jobs_log_sha256": "12438dc3fab3b8fd116191cf844ff87eeb38c9e3ca625fd42d05c2e6fce8e299",
+  "safety": {
+    "miri": 8,
+    "asan": 11,
+    "existing_rust_fuzz_targets": 12,
+    "campaigns": [
+      {
+        "runs": 409512,
+        "seconds": 61
+      },
+      {
+        "runs": 7886007,
+        "seconds": 61
+      },
+      {
+        "runs": 18341286,
+        "seconds": 61
+      },
+      {
+        "runs": 992708,
+        "seconds": 61
+      },
+      {
+        "runs": 3662626,
+        "seconds": 61
+      },
+      {
+        "runs": 19491271,
+        "seconds": 61
+      },
+      {
+        "runs": 19088323,
+        "seconds": 61
+      },
+      {
+        "runs": 18525063,
+        "seconds": 61
+      },
+      {
+        "runs": 2578873,
+        "seconds": 61
+      },
+      {
+        "runs": 4517648,
+        "seconds": 61
+      },
+      {
+        "runs": 28016673,
+        "seconds": 61
+      },
+      {
+        "runs": 30056991,
+        "seconds": 61
+      }
+    ],
+    "pe_bounded_mutations": 256,
+    "long_term_pe_fuzz": false
+  },
+  "abi": 1,
+  "hardware_schema": 1,
+  "license": "MIT",
+  "dependencies_or_features_changed": false,
+  "published": false,
+  "limits": [
+    "No minimum Windows, clean machine without VC Runtime, recursive/forwarded/runtime-loaded dependency or signature acceptance.",
+    "Named native delay imports are verified; ordinal decoding uses byte fixtures and an unexecuted static mutation, not a real ordinal-based DLL consumer.",
+    "PE parser is a bounded candidate subset, not a Windows loader or sandbox.",
+    "Mac distribution notice gaps and final release review remain pending; no expanded hardware/physical-device claims."
+  ]
+}
