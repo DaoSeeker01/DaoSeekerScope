@@ -1,0 +1,41 @@
+{
+  "overall": "passed",
+  "source_before": {
+    "revision": "c3e0c239e949225e27fb693fd12de269a8456036",
+    "status": ""
+  },
+  "source_after": {
+    "revision": "c3e0c239e949225e27fb693fd12de269a8456036",
+    "status": ""
+  },
+  "artifact_sha256": {
+    "sdk": "6c7e3909d0a1646d1a9992056f9ff10688eaff536c7dee5179c84873ac1b2148",
+    "cli": "479fcb59487d51e3b7fab50b15b0e2df25ffb178a287212a1d20e73dd547d4ea"
+  },
+  "observations": [
+    {
+      "sdk_before": {
+        "status": "ok",
+        "source_count": 0,
+        "records": []
+      },
+      "sdk_after": {
+        "status": "ok",
+        "source_count": 0,
+        "records": []
+      },
+      "stable_anonymous_view": true
+    }
+  ],
+  "entries_compared": 0,
+  "battery_fields": {
+    "value": [],
+    "availability": "available",
+    "source": "iokit",
+    "observed_at": 1793526536824,
+    "reason": null
+  },
+  "snapshot_schema_and_privacy": true,
+  "physical_battery_verified": false,
+  "published": false
+}

@@ -1,0 +1,403 @@
+{
+  "overall": "passed",
+  "date": "2026-11-01",
+  "source_commit": "c3e0c239e949225e27fb693fd12de269a8456036",
+  "run_id": 41294415147,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41294415147",
+  "jobs": [
+    {
+      "databaseId": 124812144360,
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41294415147/job/124812144360"
+    },
+    {
+      "databaseId": 124812144493,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41294415147/job/124812144493"
+    },
+    {
+      "databaseId": 124812144521,
+      "name": "linux-container",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41294415147/job/124812144521"
+    },
+    {
+      "databaseId": 124812144561,
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41294415147/job/124812144561"
+    },
+    {
+      "databaseId": 124812144563,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41294415147/job/124812144563"
+    },
+    {
+      "databaseId": 124812144568,
+      "name": "supply-chain",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41294415147/job/124812144568"
+    },
+    {
+      "databaseId": 124812144577,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41294415147/job/124812144577"
+    },
+    {
+      "databaseId": 124812144591,
+      "name": "miri",
+      "conclusion": "success",
+      "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41294415147/job/124812144591"
+    }
+  ],
+  "reports": {
+    "macos-battery-package-windows-41294415147.json": {
+      "sha256": "7b88701c731661dd06ce6dec7fac776424b9f8bebfa7185d6be7141da5eeeef6",
+      "original_sha256": "b00c0fdc2b2917092d837d68d65fd803f6b5cf79043d8bde429aea9e0ed7f936",
+      "origin": "target/macos-battery-ci-41294415147/package-evidence-Windows-X64/package-evidence.json"
+    },
+    "macos-battery-contract-windows-41294415147.json": {
+      "sha256": "92c3f8bee451fceff3c7682841491f58299f193c229af6a75e8fb5c146efc1bb",
+      "original_sha256": "92c3f8bee451fceff3c7682841491f58299f193c229af6a75e8fb5c146efc1bb",
+      "origin": "target/macos-battery-ci-41294415147/native-evidence-Windows-X64/contract-evidence.json"
+    },
+    "macos-battery-notice-windows-41294415147.json": {
+      "sha256": "27fd84edbd7a23e57c88c597a5a017b81996dd46e5e78007559ff51f3845e590",
+      "original_sha256": "27fd84edbd7a23e57c88c597a5a017b81996dd46e5e78007559ff51f3845e590",
+      "origin": "target/macos-battery-ci-41294415147/native-evidence-Windows-X64/notice-audit-evidence.json"
+    },
+    "macos-battery-cli-windows-41294415147.json": {
+      "sha256": "064cfe4fbfc37c45dc14821e721cade7040c8719fe895467c880516294294fcd",
+      "original_sha256": "cf5cf9294f2e4a9d097f3087cb1febace04b3990f8907a995a4c36fe94120808",
+      "origin": "target/macos-battery-ci-41294415147/cli-bundle-evidence-Windows-X64/cli-bundle-evidence.json"
+    },
+    "macos-battery-sdk-windows-41294415147.json": {
+      "sha256": "239f44b81f28ee58c265f592bd9bcf2346356c19ee0efba703c15162670bce0e",
+      "original_sha256": "d4e94047a413fa444a6ae4c14894fe15e388e5b1e6b561637181a10764abccd0",
+      "origin": "target/macos-battery-ci-41294415147/ffi-sdk-evidence-Windows-X64/ffi-bundle-evidence.json"
+    },
+    "macos-battery-package-linux-41294415147.json": {
+      "sha256": "0cb0487b681e1593353ef1023a7ed7ee351e26ca3245ba8abd99e20df577089f",
+      "original_sha256": "0cb0487b681e1593353ef1023a7ed7ee351e26ca3245ba8abd99e20df577089f",
+      "origin": "target/macos-battery-ci-41294415147/package-evidence-Linux-X64/package-evidence.json"
+    },
+    "macos-battery-contract-linux-41294415147.json": {
+      "sha256": "e6cdf825f6380fee9152002c66a483c1fcfc1cfaa9f03190788f9178981d4147",
+      "original_sha256": "e6cdf825f6380fee9152002c66a483c1fcfc1cfaa9f03190788f9178981d4147",
+      "origin": "target/macos-battery-ci-41294415147/native-evidence-Linux-X64/contract-evidence.json"
+    },
+    "macos-battery-notice-linux-41294415147.json": {
+      "sha256": "8195ab28826510e3ce6012d18c34d1f3890e96fa003bf403a2dbe00286258fbe",
+      "original_sha256": "8195ab28826510e3ce6012d18c34d1f3890e96fa003bf403a2dbe00286258fbe",
+      "origin": "target/macos-battery-ci-41294415147/native-evidence-Linux-X64/notice-audit-evidence.json"
+    },
+    "macos-battery-cli-linux-41294415147.json": {
+      "sha256": "5764968f661db1fa188cd252e9f652f6848fa73dbe965157d375fcb0926a8d96",
+      "original_sha256": "5764968f661db1fa188cd252e9f652f6848fa73dbe965157d375fcb0926a8d96",
+      "origin": "target/macos-battery-ci-41294415147/cli-bundle-evidence-Linux-X64/cli-bundle-evidence.json"
+    },
+    "macos-battery-sdk-linux-41294415147.json": {
+      "sha256": "18cc9a2471e4d235b22a2fefb4164252f9965bbfa4b9726cd38769525957dff0",
+      "original_sha256": "18cc9a2471e4d235b22a2fefb4164252f9965bbfa4b9726cd38769525957dff0",
+      "origin": "target/macos-battery-ci-41294415147/ffi-sdk-evidence-Linux-X64/ffi-bundle-evidence.json"
+    },
+    "macos-battery-package-macos-41294415147.json": {
+      "sha256": "26848e516ff3caf99c9eb817c0bfc3e641fd8c5532a98a023c531abf26b8e195",
+      "original_sha256": "26848e516ff3caf99c9eb817c0bfc3e641fd8c5532a98a023c531abf26b8e195",
+      "origin": "target/macos-battery-ci-41294415147/package-evidence-macOS-ARM64/package-evidence.json"
+    },
+    "macos-battery-contract-macos-41294415147.json": {
+      "sha256": "8838b641b4e91b8e015bc700b2fed56f4620619dd81e6fb5fa9f774e7e9b2565",
+      "original_sha256": "8838b641b4e91b8e015bc700b2fed56f4620619dd81e6fb5fa9f774e7e9b2565",
+      "origin": "target/macos-battery-ci-41294415147/native-evidence-macOS-ARM64/contract-evidence.json"
+    },
+    "macos-battery-notice-macos-41294415147.json": {
+      "sha256": "5f32bf06c261f0d4f303c223eecc0111b0ae4a09be32484e0d7b91ffc5306b91",
+      "original_sha256": "5f32bf06c261f0d4f303c223eecc0111b0ae4a09be32484e0d7b91ffc5306b91",
+      "origin": "target/macos-battery-ci-41294415147/native-evidence-macOS-ARM64/notice-audit-evidence.json"
+    },
+    "macos-battery-sdk-macos-41294415147.json": {
+      "sha256": "ae11e0c790138de026d87af01cf1e0c5bbbfc3b65fc855815337043a78f20142",
+      "original_sha256": "ae11e0c790138de026d87af01cf1e0c5bbbfc3b65fc855815337043a78f20142",
+      "origin": "target/macos-battery-ci-41294415147/native-evidence-macOS-ARM64/macos-battery-evidence.json"
+    },
+    "macos-battery-native-macos-41294415147.json": {
+      "sha256": "cd984723ba2745e7a93922a8d917db76585a8c3b78cb1151c6fe964c470edb8e",
+      "original_sha256": "cd984723ba2745e7a93922a8d917db76585a8c3b78cb1151c6fe964c470edb8e",
+      "origin": "target/macos-battery-ci-41294415147/native-evidence-macOS-ARM64/native-evidence.json"
+    },
+    "macos-battery-package-local-windows-41294415147.json": {
+      "sha256": "b47ab9caecf4a60a9c14a6696c5b8fcebdedb82a8952f64f7c3f469e350c18df",
+      "original_sha256": "9e44f5e57b923be2bd93098a85c3b864d0f4d4200b2abaf63f7a4811950fd82d",
+      "origin": "target/package-evidence.json"
+    },
+    "macos-battery-contract-local-windows-41294415147.json": {
+      "sha256": "94e5e42add1f134b206f93a00dacd9e2f5010b46137515b014e9784bcd9d9f1b",
+      "original_sha256": "94e5e42add1f134b206f93a00dacd9e2f5010b46137515b014e9784bcd9d9f1b",
+      "origin": "target/contract-evidence.json"
+    },
+    "macos-battery-notice-local-macos-query-41294415147.json": {
+      "sha256": "5f32bf06c261f0d4f303c223eecc0111b0ae4a09be32484e0d7b91ffc5306b91",
+      "original_sha256": "5f32bf06c261f0d4f303c223eecc0111b0ae4a09be32484e0d7b91ffc5306b91",
+      "origin": "target/macos-battery-notice.json"
+    }
+  },
+  "platforms": {
+    "windows": {
+      "rust_tests_including_doctests": 280,
+      "archives": 8,
+      "python_passed": 314,
+      "python_skipped": 6
+    },
+    "linux": {
+      "rust_tests_including_doctests": 273,
+      "archives": 8,
+      "python_passed": 320,
+      "python_skipped": 0
+    },
+    "macos": {
+      "rust_tests_including_doctests": 278,
+      "archives": 8,
+      "python_passed": 319,
+      "python_skipped": 1
+    }
+  },
+  "local_windows": {
+    "rust_tests_including_doctests": 280,
+    "archives": 8,
+    "python_passed": 314,
+    "python_skipped": 6,
+    "mypy_files": 77,
+    "mypy_targets": [
+      "win32",
+      "linux",
+      "darwin"
+    ]
+  },
+  "battery": {
+    "sdk_source_count": 0,
+    "entries_compared": 0,
+    "cli_and_c_abi_empty_view": true,
+    "native_cf_synthetic_test_passed": true,
+    "physical_battery_verified": false
+  },
+  "macos_collection_benchmark": {
+    "command": "cargo bench --locked -p daoseeker-scope --bench collect",
+    "profile": "bench (Cargo default optimized)",
+    "features": "default serde and desktop backends",
+    "cpu": "Apple M1 (Virtual)",
+    "kernel": "25.6.0",
+    "architecture": "arm64",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: aarch64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+    "battery_entries": 0,
+    "raw_log_sha256": "93e656ca14081d9a46cdb43e2fff3a35f55166e88d85b96a9d3d795af23f3e97",
+    "raw_log_utf8": "first_collect_us=18038\nrefresh_n=100 p50_us=105 p95_us=244 max_us=300\ncpu_usage_state=Available\nsynthetic_sensors=100 synthetic_networks=1024 collect_us=370 serialized_bytes=373541\n",
+    "performance_guarantee": false
+  },
+  "preparation": [
+    {
+      "log": "target/macos-battery-cross.log",
+      "result": "failed",
+      "scope": "Ten compile errors: private re-export, non-exhaustive construction and opaque CF collection generics.",
+      "sha256": "a28a3dcd1c09974813075661df93a2cb6ba372ed37835f5ac552b09c593a3604"
+    },
+    {
+      "log": "target/macos-battery-cross-fixed.log",
+      "result": "passed",
+      "scope": "Corrected typed CF casts and visibility; desktop ARM64 cross-check.",
+      "sha256": "8bd13b69b18b9a7ff88e0c09b1bba0fd130187c98507ad9405631e92e3f3b784"
+    },
+    {
+      "log": "target/macos-battery-tests.log",
+      "result": "failed",
+      "scope": "Test called ScopeError::new with two arguments; corrected to existing one-argument API.",
+      "sha256": "73c4b5f4474b0e0ef29c5548d908665e9795776338308cb2163301c079d031d3"
+    },
+    {
+      "log": "target/macos-battery-tests-fixed.log",
+      "result": "passed",
+      "scope": "Six pure Rust battery tests.",
+      "sha256": "ea5da5a2bd5636a93d511e858620dd5fe91a17a9027c3103b3e2982de0486aa1"
+    },
+    {
+      "log": "target/macos-battery-native-test-check.log",
+      "result": "passed",
+      "scope": "Native CF test cross-check, not a native run.",
+      "sha256": "b583a5829cf4a35fd7073556454059ac432e5d7a7ff306ac9d7a8172a2a9c274"
+    },
+    {
+      "log": "target/macos-battery-full-rust.log",
+      "result": "passed",
+      "scope": "Pre-commit working-tree full Rust gate and cross-checks, not clean-commit acceptance.",
+      "sha256": "9259fa9c5543f81fc7dbc588f98e5f9ebd541db3ada813db14c1bcdde25f84f5"
+    },
+    {
+      "log": "target/macos-battery-python-fixed.log",
+      "result": "passed",
+      "scope": "320 tests: 314 passed, 6 platform skips.",
+      "sha256": "647f90a25a84b94382d0589f9446713a106afd82da328e6e5d9ee32a6f910bd9"
+    }
+  ],
+  "preparation_issues": [
+    "Python type annotations corrected before final Ruff/mypy gates.",
+    "SDK observer initially rejected clean git status empty output; corrected and covered by a real empty-output subprocess regression before source commit."
+  ],
+  "source_files": {
+    ".github/workflows/ci.yml": "ada80ae2c86efbb17e048542e45af4dfec0c388fb367a92e0b38e65798acb5f1",
+    "CHANGELOG.md": "0edfe821fe3c02faa95a6ba03ea7c2e4d8e83f005aa711cbd3beb8b8171a3e7a",
+    "README.md": "c2e9728559be315c72b69cbdcf1e316ec98c3098f0bbde03bf4275d240344ef3",
+    "crates/daoseeker-scope-macos/Cargo.toml": "9b5150f3757ad97ada1210aabd9710b13e49dd4727a5644ac65336fa963bb736",
+    "crates/daoseeker-scope-macos/src/battery.rs": "5a589745a304e3429c87c8b5089d5c3f602984c329497c9332a585f112be4628",
+    "crates/daoseeker-scope-macos/src/lib.rs": "3ea4dbc4cfa101fcba2d0f8177c7439f9b0368cac6b67dccf4ece4f8c8f9766b",
+    "docs/README.md": "aeb6e42f308386658b1b090eb0616e3d0c8e8d591d7d3137ff4425c745f11511",
+    "docs/adr/0005-platform-support-matrix.md": "9fb27099a0162b52410c7680250928b57dd26c324804758e1d206490b41a7f1f",
+    "docs/adr/0049-macos-battery.md": "1ec08c986486eb878f09bc2583403d5fb13a6c9a6add5c1782e4d22c4373eebc",
+    "docs/macos-battery-validation.md": "f23202be9e91738edcc818d66589637aed3162953cd7aec338abfd3b4846486c",
+    "docs/progress.md": "c79d9e895a05d33b493fa9fa3c990beda1ef37940fa41918ec46e47c7ad21dc9",
+    "docs/research/macos_battery_probe.c": "17cb23d0b83e37abc25d4622dc6bdf2a64dc45e02561ae95928376452e2c2913",
+    "docs/usage.md": "9335a7acc84a5c03e1543f513ce57ba26a6a65eb80e4688594db7f1ae86202b4",
+    "scripts/macos_battery_smoke.py": "8b361a63dfad94e1cd7d2cf8b0cfcee6c5aca8882dffa80f8c3f31886cd63ca2",
+    "tests/test_macos_battery_smoke.py": "84133ff8bc02e45cf0f3aa2b50c9ea01710f10ce21e765b0c0b771b455f466d6"
+  },
+  "unchanged_contract_files": {
+    "Cargo.toml": "50f2d0fcf6ca9ab533fae57d3030a08ad09640320da3a23c5d8fa0c905bac509",
+    "Cargo.lock": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae",
+    "docs/contracts/v0.1.json": "0140eb2e18b3be347ddcdeaef728a1d726dc9d9aa1ac0def2bb32ad4df385636",
+    "docs/schema/snapshot-v1.schema.json": "8ead781b53c539fb9116f95be44484add3a6343a52876e7da75c9ab93e6c659f",
+    "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd"
+  },
+  "artifact_metadata": [
+    {
+      "name": "native-evidence-Linux-X64",
+      "digest": "sha256:b4e6bc418fdb7243c37ce878a5c4f93227a0911e4f4bf9aea2c5b0e415971608",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "procfs-fuzz-evidence",
+      "digest": "sha256:6227386356e059bcb51af9fa2e6a4f2f3ed1ad1aea6ba4d32b0887f9d28899ea",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "ffi-sdk-evidence-Linux-X64",
+      "digest": "sha256:48a0c4fa9bd418b3bd1cd30e5d312382287d893c0b5664b052db0644cb67dd56",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "native-evidence-Windows-X64",
+      "digest": "sha256:98de9058ad7eca2ac15cfbcdfcb04155889da44f2f1897f74da97f2624c9e848",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "linux-container-evidence",
+      "digest": "sha256:b55e37c535f26f03532d40d5ea90ee8a867a0c1a209e2c3bcabe1832a336e097",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "package-evidence-Windows-X64",
+      "digest": "sha256:3cfc4bc1d3c729b910a974397746c86270625edc23981b0dbc03a75c303656b4",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "native-evidence-macOS-ARM64",
+      "digest": "sha256:e19e47d89e5893c05e9e024795a3686efc23f4e9be9a87f7bdad652ff0bac5c5",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "package-evidence-macOS-ARM64",
+      "digest": "sha256:74b9e42eab29cedfdb8a77c339ae829db3fe19ba3acd8ebfc577bab0637deea6",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "cli-bundle-evidence-Windows-X64",
+      "digest": "sha256:a1938f9a9eb3b1db3eee28cd13489336696d7608351a254e8a853788c3d67128",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "cli-bundle-evidence-Linux-X64",
+      "digest": "sha256:bb3650b0acacf0a3141b073fd9ddbf0f8d6651cab166eac1a395b9652b9652ce",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "ffi-sdk-evidence-Windows-X64",
+      "digest": "sha256:3f4e6c5f66cc9eeb105e38ee514812a01e99fea87c45e80c4c056f9d0d0638ff",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    },
+    {
+      "name": "package-evidence-Linux-X64",
+      "digest": "sha256:237817ee7fb1447237f09b24db980d4f3071c2116c541a9a7044afeabd681590",
+      "head_sha": "c3e0c239e949225e27fb693fd12de269a8456036"
+    }
+  ],
+  "all_jobs_log_sha256": "e083434f85d73a00dbeffe17c83cedccbab27a4c99eb2c8d2ed544c191c60bdb",
+  "safety": {
+    "miri": 8,
+    "asan": 11,
+    "existing_fuzz_targets": 12,
+    "campaigns": [
+      {
+        "runs": 571789,
+        "seconds": 61
+      },
+      {
+        "runs": 9341070,
+        "seconds": 61
+      },
+      {
+        "runs": 20421458,
+        "seconds": 61
+      },
+      {
+        "runs": 1054134,
+        "seconds": 61
+      },
+      {
+        "runs": 3603343,
+        "seconds": 61
+      },
+      {
+        "runs": 23634048,
+        "seconds": 61
+      },
+      {
+        "runs": 21466750,
+        "seconds": 61
+      },
+      {
+        "runs": 21353050,
+        "seconds": 61
+      },
+      {
+        "runs": 1895236,
+        "seconds": 61
+      },
+      {
+        "runs": 4705509,
+        "seconds": 61
+      },
+      {
+        "runs": 32393832,
+        "seconds": 61
+      },
+      {
+        "runs": 34386431,
+        "seconds": 61
+      }
+    ]
+  },
+  "abi": 1,
+  "hardware_schema": 1,
+  "license": "MIT",
+  "lock_unchanged": true,
+  "dependency_feature_change": "Existing objc2-io-kit 0.3.2 macOS target dependency enables ps; public features and 20-package CLI/SDK closures unchanged.",
+  "published": false,
+  "limits": [
+    "Native SDK, CLI and C ABI only observed empty IOPowerSources views; synthetic CF values are not physical battery evidence.",
+    "Physical Mac battery, AC transitions, Intel native, sandbox and permission failures remain unverified.",
+    "Miri, ASan and existing short fuzz do not exercise the macOS IOPowerSources interface; no new long-term or leak-free claim.",
+    "Six macOS notice material gaps remain blocked; minimum OS and final release review remain pending."
+  ]
+}

@@ -19,10 +19,22 @@ python scripts/macos_battery_smoke.py
 
 ## 当前结果
 
-Windows 本机完整 Rust 检查已完成，包括 280 项测试、fmt、Clippy、严格文档、无默认功能和 Linux/macOS 交叉检查。六项纯 Rust 电池测试覆盖容量边界、属性失败、过滤、条目上限、取消/超时以及动态刷新不重读静态缓存。macOS CF 类型测试已交叉检查，尚未在本机执行。
+源码 `c3e0c23` 的[三平台 CI 41294415147](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41294415147)八项任务全部通过。[验收索引](evidence/macos-battery-ci-41294415147.json)记录 18 份报告的来源和哈希，并保留准备阶段失败与修复的记录。2026-11-01 执行，11-02 完成文档归档。
 
-Python 全套 320 项中 314 通过、6 跳过；Ruff 与 Windows/Linux/macOS 三种 mypy 目标的 77 个文件检查通过。对照工具原先误拒绝干净工作树的空 `git status` 输出，已修复并补上子进程回归。准备阶段的 Rust 构建、Python 类型检查失败保留为失败记录，修复后重新检查。原生 SDK 编译、CF 运行测试和三平台 CI 待执行，不用交叉检查替代这些结果。
+| 环境 | 八包 Rust 测试（含文档测试） | Python 通过 / 跳过 |
+|---|---:|---:|
+| Windows 本机及原生 CI | 280 | 314 / 6 |
+| Linux 原生 CI | 273 | 320 / 0 |
+| macOS ARM64 原生 CI | 278 | 319 / 1 |
 
-实体 Mac 电池、电源切换、真实权限或沙盒拒绝仍待设备验证。若 CI 只有空列表，只验收空视图路径；合成正值不计作真实电池成功。系统调用仅在调用边界检查取消/期限，不能强行中止系统 API。
+本机 fmt、Clippy、严格文档、无默认功能及 Linux/macOS 交叉检查通过；干净提交的原生契约、Schema、八包独立构建/测试与 CLI 安装通过。Ruff、77 文件的 Windows/Linux/macOS 三种 mypy 目标、actionlint 和项目检查通过。CI 同时完成两平台候选安装/回滚、C/Python 消费者与既有容器回归。
 
-未增加锁定包或升级依赖，仅启用已用 objc2-io-kit 0.3.2 的 `ps` 模块。公开 Rust 签名/features、MIT、C ABI 1 与硬件 Schema 1 不变；macOS 现有分发许可材料缺口继续保留。没有正式发布。
+六项纯 Rust 电池测试覆盖容量边界、属性失败、过滤、条目上限、取消/超时以及动态刷新不重读静态缓存。新增原生 Core Foundation 测试使用合成字典，验证实际 CF 类型、字段错误隔离及分类过滤。对照脚本的五项测试包括子进程空输出回归：此前干净工作树的空 `git status` 输出会被误拒绝，已在源码提交前修复。
+
+macOS 公开 C SDK 探针编译和运行通过。SDK 前后均返回零个电源条目，CLI 与 C ABI 的 `batteries` 均为 `Available []`、来源 Iokit；只验收空视图路径。源码与探针/CLI 哈希前后一致，完整 JSON 的 Schema 和默认隐私检查通过。报告见[SDK 对照](evidence/macos-battery-sdk-macos-41294415147.json)与[原生 CLI/C](evidence/macos-battery-native-macos-41294415147.json)。
+
+Miri 8 项、FFI ASan 11 项与 12 个既有短 fuzz 目标通过，每个目标至少 60 秒；它们没有执行 macOS 电源接口，不构成该接口的长期 fuzz 或无泄漏证明。[性能基线](benchmarks.md)记录本轮原生采集时间。
+
+实体 Mac 电池、电源切换、Intel Mac 原生运行、真实权限或沙盒拒绝仍待验证。合成正值不计作真实电池成功；系统调用仅在调用边界检查取消/期限，不能强行中止系统 API。
+
+未增加锁定包或升级依赖，仅启用已用 objc2-io-kit 0.3.2 的 `ps` 模块。CLI/SDK 各 20 包的名称、版本、SPDX 和缺口与上轮逐项一致；六项材料缺口仍阻止 macOS 分发。公开 Rust 签名/features、MIT、C ABI 1 与硬件 Schema 1 不变。没有正式发布。

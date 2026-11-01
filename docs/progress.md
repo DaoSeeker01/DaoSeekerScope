@@ -2,7 +2,7 @@
 
 首版交付门槛与近期修复分别见 [v0.1 清单](v0.1-checklist.md)和[核心取消与缓存审查](project-review-2026-10-31.md)。下面保留平台增强工作包，不将它们全部视作首版的必要阻塞项。
 
-2026-11-01 macOS 内置电池：电量与供电状态已接入动态刷新，单位、字段隔离、过滤、刷新/缓存及取消回归通过本机测试；原生 SDK 与实体电池待验，见[记录](macos-battery-validation.md)。
+2026-11-01 macOS 内置电池（11-02 归档）：电量与供电状态已接入动态刷新；本机门禁、八包和三平台 CI 41294415147 八项任务通过。macOS 原生 CF 合成类型测试及 SDK/CLI/C ABI 空视图通过，实体电池读数仍待验，见[记录](macos-battery-validation.md)。
 
 2026-11-01 Windows 导入符号：普通/延迟名称和序号读取已接入候选检查，本机与 Windows CI 的四个文件 DUMPBIN 对照、两平台候选回归及三平台 CI 41257426560 八项任务通过。静态清单不推断最低 Windows，见[记录](windows-imports-validation.md)。
 
@@ -44,7 +44,7 @@
 |---|---|---|
 | GPU | Windows DXGI、Linux 有限 DRM 枚举/名称已验收；macOS Metal 名称/内存状态通过三平台 CI 与独立 SDK 探针 | Linux 独占显存及更多名称来源；实体 Mac/AMD/NVIDIA 验证延期 |
 | 显示器 | Windows 活动路径/信号像素通过本机 SDK 与 CI；Linux 连接视图通过原生 CLI/C、授权合成名称和 26 项权限/缓存容器验证；macOS 活动视图/模式状态通过原生 CI 与 SDK 对照；CLI 文本通过本机和三平台原生 CI，见 [记录](display-text-validation.md) | Linux 当前像素、真实名称阳性；实体多屏等验证 |
-| 平台增强 | Linux 部分 DMI/电池/温度、macOS 设备型号、Windows 电池摘要；Windows 设备/主板/固件六值本机与 CI SDK/缓存通过，[记录](windows-hardware-summary-validation.md) | 更多设备/OEM 与主板/固件来源，其他平台电池/传感器可靠来源评估 |
+| 平台增强 | Linux 部分 DMI/电池/温度、macOS 设备型号、Windows 电池摘要；Windows 设备/主板/固件六值本机与 CI SDK/缓存通过；macOS 内置电池原生类型测试与空视图通过，[记录](macos-battery-validation.md) | 更多设备/OEM 与主板/固件来源、实体电池与其他传感器可靠来源评估 |
 | 动态数据可靠性 | Linux CPU/内存/网络读取与失败回归；Windows/macOS 网络；Windows 内存与单组 CPU 通过本机和三平台 CI；macOS CPU/内存/uptime、Windows uptime 已通过原生 SDK/CI/八包；Windows 多组采样实现通过三平台 CI，单组 helper/SDK 在本机和 CI 通过，[记录](windows-cpu-groups-validation.md) | Windows 真实多组、Job/hotplug/真实故障覆盖 |
 | 深入质量验证 | 单元、负向、原生 CI、容器、短 fuzz、Miri/ASan，以及有限轮次的句柄/描述符校准与增长对照 | 长期 fuzz、更多故障场景、小时／天级运行与 allocator 归因；已有三平台峰值、固定轮次驻留回归 |
 | 发行制品 | 8 crate 的归档与独立构建检查；Windows CLI ZIP/checksum/隔离安装回滚通过本机与 CI 六进程验收，[记录](cli-bundle-validation.md)；Linux ZIP v2/权限与六进程安装回滚通过原生 CI，[记录](linux-cli-bundle-validation.md)；Windows FFI SDK 本机及 CI C/Python 与回滚通过，[记录](windows-ffi-sdk-validation.md)；Linux SDK v4 原生构建/C/Python/权限与回滚通过三平台 CI，[记录](linux-ffi-sdk-validation.md) | macOS CLI 许可材料、macOS FFI 制品、运行时/许可最终评审和旧版回滚；registry 验收另需发布授权 |

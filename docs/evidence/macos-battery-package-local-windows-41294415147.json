@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "c3e0c239e949225e27fb693fd12de269a8456036",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 280,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "26cf541cd76f4bfcc3c401f7dfb685702cfaf337ebaa4437272c2d2f82df8b59",
+      "files": 17
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "5a303fa3db2da5f8dd39dbdd3eb7ca49a630e41361c561d9a26175dd9eec70d9",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "3feb81dee6ae7b06e23719d9f35b1e3292d3e7b47453371d316ae1d77074039a",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "8737a3b853e8296311ef730ef7c89581535eb15748bc3d1130f06e2c60540065",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "38a78865ff3f78ef1a7eb02ae760ae36b5fe0303008f56f3cfe3c927e6c3a93b",
+      "files": 16
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "a42d90a9a3f3b3a026ef6dc836bf8dbe47e17f28b2ae97395ffb499efb79d3c6",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "17268e5cc9e2c43cc8625236edae551bf8e559eda92c99d2565842ad2f8166b9",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "2f7eeaf3e24b8311b5882450a75c028ce4bde917c21b27553df6fa0149f5795d",
+      "files": 8
+    }
+  ]
+}

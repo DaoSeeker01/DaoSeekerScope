@@ -1,5 +1,11 @@
 # 性能基线
 
+## macOS 内置电池增量（2026-11-01）
+
+源码 `c3e0c23` 在 ARM64 CI（Apple M1 Virtual、Darwin 25.6.0、Rust 1.96.0）运行 `cargo bench --locked -p daoseeker-scope --bench collect`，使用 Cargo 默认优化 bench profile、默认 serde 和桌面 backend。首次 collect 为 18038 微秒；100 次动态刷新中位数 105、p95 244、最大 300 微秒。计时从 Hardware 构造后开始；本次电源 API 返回零条目，不能代表真实电池采集开销。
+
+同一基准的独立合成 backend 提供 100 个传感器与 1024 条网络数据，collect 为 370 微秒，序列化后 373541 字节。该计时不含序列化，不是硬件规模实验或内存占用测量。环境、原始输出及哈希见[验收索引](evidence/macos-battery-ci-41294415147.json)；数值仅属于该次 runner，不作为跨机器性能保证。
+
 ## Windows 一小时基线（2026-10-31）
 
 Windows 本机冻结提交 `b8930ac` 的一小时基线已完成：实际 3600.036 秒、32523 次 collect/free，5 分钟热身后 56 个采样点的驻留范围为 339968 bytes，符合原定 16 MiB 预算。 详细来源、环境与限制见[定时试验记录](timed-soak-validation.md)。这份旧提交基线与随后取消修复的验收分开，不能代表其他机器、平台或长期无泄漏。
