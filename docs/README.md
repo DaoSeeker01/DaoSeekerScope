@@ -7,6 +7,7 @@
 - [分发材料预检](notice-preflight.md)：一次列出依赖许可文件缺口，区分扫描完成与分发批准。
 - [许可输入验证](notice-input-validation.md)：拒绝链接和特殊文件，核对读取身份与异常释放。
 - [Windows 导入符号](windows-imports-validation.md)：名称/序号清单、DUMPBIN 对照与最低系统验证边界。
+- [macOS 内置电池](macos-battery-validation.md)：容量换算、供电状态、SDK 对照与设备验证边界。
 - [定时采集试验](timed-soak-validation.md)：按持续时长记录内存，保留完整和中断检查点。
 - [句柄与描述符检查](resource-validation.md)：固定轮次计数、独立校准与增长检测对照。
 - [glibc 2.34 运行验证](linux-glibc234-validation.md)：固定 UBI 用户空间中的候选测试及结论边界。

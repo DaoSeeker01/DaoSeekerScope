@@ -1,5 +1,7 @@
 //! macOS public sysctl and IOMedia metadata; no private sensor interfaces.
 #[cfg(any(target_os = "macos", test))]
+mod battery;
+#[cfg(any(target_os = "macos", test))]
 mod cpu;
 #[cfg(target_os = "macos")]
 pub use cpu::MacosCpuBackend;
@@ -67,6 +69,11 @@ mod native {
                 "gpus",
                 CapabilityLevel::Partial,
                 Source::AppleApi,
+            ));
+            capabilities.push(Capability::new(
+                "batteries",
+                CapabilityLevel::Partial,
+                Source::Iokit,
             ));
             capabilities.push(Capability::new(
                 "displays",
@@ -143,6 +150,7 @@ mod native {
             let mut result = DynamicSnapshot::default();
             result.runtime.uptime_seconds = crate::uptime::collect(context)?;
             result.networks = crate::network::collect(context)?;
+            result.batteries = crate::battery::collect(context)?;
             Ok(result)
         }
     }

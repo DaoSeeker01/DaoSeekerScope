@@ -15,7 +15,7 @@
 | 安装物理内存 | D，SMBIOS可损坏 | U | D/P hw.memsize | Win32 / sysctl；与 OS 可用总量分开 |
 | 设备model/vendor、主板、固件 | D/P，Win32 注册表 Partial；本机与 Windows CI 六值/SDK 通过，三平台 CI 已验 | D/P sysfs DMI | D/P hw.model（仅model） | Windows 固定六值缓存，不读 serial/UUID，[边界](../windows-hardware-summary-validation.md)；Linux 固定 DMI 文件；macOS sysctl |
 | 设备serial | U | P，显式授权后 sysfs | U（IOKit候选） | 默认 Restricted/PrivacyRedacted |
-| 电池 | D/N GetSystemPowerStatus | D/P power_supply、Partial，CI枚举/权限fixture通过 | U，IOKit候选 | Linux capacity/Mains online受控枚举；原生runner无条目，USB拓扑/真实电池未验 |
+| 电池 | D/N GetSystemPowerStatus | D/P power_supply、Partial，CI枚举/权限fixture通过 | Iokit Partial，内置电池；原生验证待完成 | Linux capacity/Mains online 受控枚举；macOS 排除 UPS，不读标识；真实 Linux/macOS 电池待验，[macOS 契约](0049-macos-battery.md) |
 | 温度 | U，WMI质量不一 | D/P hwmon、Partial | U，公开接口不足 | coretemp、k10temp Tdie；NVMe1..9已有[验收](../nvme-temperature-validation.md)，设备计算值不等于物理点。amdgpu1..3通过原生 CI 与合成输入/权限回归，真实 AMD 设备待验，见[记录](../amdgpu-temperature-validation.md)；不承诺所有 GPU 均有这些通道 |
 | GPU/独占显存 | D/P，Partial DXGI | D/P，Partial DRM 视图；部分 AMD/NVIDIA 名称，显存 U | D/P，Partial Metal 名称；显存 N/U | 不是物理卡数；Linux 不覆盖未绑定 DRM 的 GPU，不将 VRAM/GTT 推断成独占显存 |
 | 存储设备容量 | D/P Setupapi/Win32、Partial | D/P Sysfs、Partial | D/P Iokit、Partial | 整块设备含虚拟对象，不代表文件系统可用空间或物理总量；[Linux 契约](0013-storage-capacity.md)与[验证](../storage-validation.md)、[Windows 契约](0014-windows-storage-capacity.md)与[验证](../windows-storage-validation.md)、[macOS 契约](0015-macos-storage-capacity.md)与[验证](../macos-storage-validation.md)，名称默认脱敏、serial/UUID不查询 |

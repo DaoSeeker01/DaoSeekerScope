@@ -19,4 +19,4 @@ objc2-foundation = { version = "=0.3.2", default-features = false, features = ["
 objc2-metal = { version = "=0.3.2", default-features = false, features = ["std", "MTLDevice"] }
 libc.workspace = true
 objc2-core-foundation = { version = "0.3.2", default-features = false, features = ["std", "CFBase", "CFDictionary", "CFNumber", "CFString"] }
-objc2-io-kit = { version = "0.3.2", default-features = false, features = ["std", "libc"] }
+objc2-io-kit = { version = "0.3.2", default-features = false, features = ["std", "libc", "ps"] }
