@@ -25,7 +25,7 @@ DENIED: Expectation = ("restricted", "permission_denied", None)
 UNREADY: Expectation = ("unavailable", "temporarily_unavailable", None)
 UNSUPPORTED: Expectation = ("unsupported", "not_supported", None)
 PRIVATE = "Synthetic-hwmon-private-label-must-not-be-read"
-SAMPLE_COUNT = 59
+SAMPLE_COUNT = 86
 
 
 def check(item: dict[str, Any], expected: Expectation) -> None:
@@ -257,6 +257,34 @@ def observe(
     write("temp1_input", b"42500")
     write("temp2_input", b"NaN")
     sample("amdgpu_exit_recovery", [edge, INVALID])
+    # No EEPROM/SPD, labels or sticky alarm reads, even when present as FIFOs.
+    (root / "hwmon0/temp2_input").unlink()
+    for driver in ("jc42", "spd5118", "lm75"):
+        write("name", driver.encode())
+        for attr in ("eeprom", "temp1_max_alarm"):
+            mkfifo(root / "hwmon0" / attr, 0o644)
+        write("temp1_input", b"43125")
+        sample(f"{driver}_positive", [("available", None, 43.125)])
+        write("temp1_input", b"-1250")
+        sample(f"{driver}_negative", [("available", None, -1.25)])
+        write("temp1_input", b"0")
+        sample(f"{driver}_zero", [("available", None, 0.0)])
+        write("temp1_input", b"2147483648")
+        sample(f"{driver}_overflow", [INVALID])
+        write("temp1_input", b"45000", 0)
+        sample(f"{driver}_denied", [DENIED])
+        write("temp1_input", b"45000")
+        sample(f"{driver}_recovery", [("available", None, 45.0)])
+        write("temp1_enable", b"0")
+        sample(f"{driver}_disabled", [UNREADY])
+        (root / "hwmon0/temp1_enable").unlink()
+        write("temp1_fault", b"1")
+        sample(f"{driver}_fault", [UNREADY])
+        (root / "hwmon0/temp1_fault").unlink()
+        mkfifo(root / "hwmon0/temp2_input", 0o644)
+        sample(f"{driver}_unsupported_fifo", [("available", None, 45.0), UNSUPPORTED])
+        for attr in ("eeprom", "temp1_max_alarm", "temp2_input"):
+            (root / "hwmon0" / attr).unlink()
     write("name", b"coretemp")
     write("temp1_input", b"42500")
     write("temp2_input", b"NaN")

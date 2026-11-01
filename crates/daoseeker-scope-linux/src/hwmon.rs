@@ -86,6 +86,7 @@ fn routed(driver: &str, index: usize) -> bool {
         || (driver == "k10temp" && index == 2)
         || (driver == "nvme" && (1..=9).contains(&index))
         || (driver == "amdgpu" && (1..=3).contains(&index))
+        || (matches!(driver, "jc42" | "spd5118" | "lm75" | "lm75a" | "lm75b") && index == 1)
 }
 fn driver_temperature(driver: &str, index: usize, bytes: &[u8], at: Timestamp) -> Observed<f64> {
     let value = temperature(bytes, at);
@@ -344,6 +345,86 @@ mod tests {
         assert_eq!(observation.source(), Source::Hwmon);
         assert!(observation.value().is_none());
         assert!(observation.observed_at().is_none());
+    }
+    #[test]
+    fn memory_and_lm75_single_channel_refresh_privacy_and_isolation() {
+        for driver in ["jc42", "spd5118", "lm75", "lm75a", "lm75b"] {
+            let f = Fixture::new();
+            f.chip("hwmon0", driver.as_bytes());
+            f.write("hwmon0", "temp1_input", b"43125\n");
+            // These must never be opened, including the unsupported input.
+            for attr in ["eeprom", "temp1_label", "temp1_max_alarm", "temp2_input"] {
+                std::fs::create_dir(f.0.join("hwmon0").join(attr)).expect("unreadable attribute");
+            }
+            let hw = f.hardware(128);
+            let first = hw.collect().expect("baseline");
+            let items = values(&first.dynamic.sensors);
+            assert_eq!(items.len(), 2);
+            assert_eq!(items[0].temperature_celsius.value(), Some(&43.125));
+            missing(&items[0].label, ReasonCode::PrivacyRedacted);
+            missing(&items[1].temperature_celsius, ReasonCode::NotSupported);
+            for (raw, value) in [(b"0".as_slice(), 0.0), (b"-1250", -1.25)] {
+                f.write("hwmon0", "temp1_input", raw);
+                let next = hw.refresh_dynamic().expect("fresh value");
+                assert_eq!(
+                    values(&next.sensors)[0].temperature_celsius.value(),
+                    Some(&value)
+                );
+            }
+            f.write("hwmon0", "temp1_input", b"NaN");
+            missing(
+                &values(&hw.refresh_dynamic().expect("bad input").sensors)[0].temperature_celsius,
+                ReasonCode::InvalidData,
+            );
+            f.write("hwmon0", "temp1_input", b"45000");
+            assert_eq!(
+                values(&hw.refresh_dynamic().expect("recovery").sensors)[0]
+                    .temperature_celsius
+                    .value(),
+                Some(&45.0)
+            );
+            assert_eq!(
+                hw.collect().expect("cached static").static_info,
+                first.static_info
+            );
+        }
+    }
+    #[test]
+    fn memory_and_lm75_flags_limits_and_driver_changes() {
+        for driver in ["jc42", "spd5118", "lm75", "lm75a", "lm75b"] {
+            let f = Fixture::new();
+            f.chip("hwmon0", driver.as_bytes());
+            f.write("hwmon0", "temp1_input", b"30000");
+            let hw = f.hardware(1);
+            for (attr, raw) in [("temp1_enable", b"0"), ("temp1_fault", b"1")] {
+                f.write("hwmon0", attr, raw);
+                missing(
+                    &values(&hw.refresh_dynamic().expect("disabled").sensors)[0]
+                        .temperature_celsius,
+                    ReasonCode::TemporarilyUnavailable,
+                );
+                std::fs::remove_file(f.0.join("hwmon0").join(attr)).expect("restore flag");
+            }
+            f.write("hwmon0", "name", b"unrecognized");
+            missing(
+                &values(&hw.refresh_dynamic().expect("changed driver").sensors)[0]
+                    .temperature_celsius,
+                ReasonCode::NotSupported,
+            );
+            f.write("hwmon0", "name", driver.as_bytes());
+            f.write("hwmon0", "temp2_input", b"30000");
+            missing(
+                &hw.refresh_dynamic().expect("count limit").sensors,
+                ReasonCode::InvalidData,
+            );
+            std::fs::remove_file(f.0.join("hwmon0/temp2_input")).expect("remove extra channel");
+            assert_eq!(
+                values(&hw.refresh_dynamic().expect("limit recovery").sensors)[0]
+                    .temperature_celsius
+                    .value(),
+                Some(&30.0)
+            );
+        }
     }
     #[test]
     fn route_units_isolate_bad_fields_and_refresh_members_without_static_reread() {

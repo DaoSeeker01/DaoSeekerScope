@@ -2,6 +2,8 @@
 
 以下为实现路线/权限预期，运行证据单列于 docs/validation.md。D=普通用户直接读取、P=可能权限/沙盒受限、A=增强需管理员（不选默认路径）、U=本切片未实现、N=平台无此通用语义。不是设备上所有字段可用的保证。
 
+2026-11-02 温度增量：JC42、SPD5118 与 LM75/LM75A/LM75B 的 `temp1_input` 已实现，本机纯逻辑与文件 fixture 测试通过，Linux 原生非 root 容器验证待执行。来源 Hwmon、能力 Partial，不读取 SPD/EEPROM 或告警属性；实体内存和 LM75 传感器尚未验证。[内核 JC42](https://docs.kernel.org/hwmon/jc42.html)、[SPD5118](https://docs.kernel.org/hwmon/spd5118.html)、[LM75](https://docs.kernel.org/hwmon/lm75.html)给出各自接口依据。历史轮次的计数和限制保留原样。
+
 2026-10-09实际验收：Windows x64（windows-2025-vs2026）、Linux x64（ubuntu-24.04）、macOS arm64（macos-26-arm64）原生CI均完成CPU/内存/OS最小读取、Rust门禁及C/Python调用，见[CI证据](../ci-validation.md)。Windows安装内存来自win32、macOS安装内存来自sysctl，Linux该字段仍Unsupported。这些托管runner结果不证明所有发行版、架构、硬件字段或受限容器可用；下表仍为字段能力路线。
 
 2026-10-09运行、2026-10-10归档的[Linux容器证据](../linux-container-validation.md)增加7个真实production CLI场景：非root内核权限拒绝、DMI缺失/损坏、serial授权与权限分离、三个proc输入为空。DMI内容为合成Fixture，不是实际硬件识别。缺失DMI字段为Unavailable/NotPresent、能力Supported且附原因；拒绝权限为Restricted/PermissionDenied；空proc输入为Unavailable/Unknown，sysinfo能力Partial。完整/proc覆盖被OCI拒绝、进程未运行，不能宣称完全缺失procfs可用。当前仅覆盖Ubuntu24.04/Docker28.0.4 x86_64配置；更多安全策略与动态刷新仍待验证。

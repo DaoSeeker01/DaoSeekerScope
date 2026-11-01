@@ -11,7 +11,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     io::stdout().flush()?;
     let stdin = io::stdin();
     let mut input = stdin.lock();
-    for _ in 0..64 {
+    for _ in 0..128 {
         let mut command = String::new();
         if input.by_ref().take(16).read_line(&mut command)? == 0 {
             break;
