@@ -1,0 +1,64 @@
+{
+  "overall": "passed",
+  "git_revision": "cb80fa88d05c25e68f2f18118eb29fabc2bc498f",
+  "git_dirty": false,
+  "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+  "native_cargo_verification": true,
+  "registry_publication_verified": false,
+  "unpublished_siblings": "local patches to extracted archives",
+  "third_party_lock_unchanged": true,
+  "installed_cli_version": "dscope 0.1.0",
+  "snapshot_schema_validated": true,
+  "minimum_read_and_default_privacy": true,
+  "rust_tests_including_doctests": 274,
+  "archives": [
+    {
+      "name": "daoseeker-scope",
+      "version": "0.1.0",
+      "sha256": "13860e90386732a791dbe6afb2553b3fb9e4caa3ad0ae07d4c141e87f2f0a2df",
+      "files": 17
+    },
+    {
+      "name": "daoseeker-scope-core",
+      "version": "0.1.0",
+      "sha256": "26b0177afe8d6c8d83a94ff954c42629be86843c997c199bd07180d2d3755fb0",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-sysinfo",
+      "version": "0.1.0",
+      "sha256": "45b8baa3d952161d1cef2aabdc873e6f490e0e469afde1502517d3ac7cd0ed5f",
+      "files": 6
+    },
+    {
+      "name": "daoseeker-scope-linux",
+      "version": "0.1.0",
+      "sha256": "f2b93814b15e1c937b92d80c456863e2a72bcbf16a27f2e114ab70de2c0429b7",
+      "files": 19
+    },
+    {
+      "name": "daoseeker-scope-macos",
+      "version": "0.1.0",
+      "sha256": "5059d3ac14159c3aac19206c20db9992d4f8878679624039987300b33fb0a9ce",
+      "files": 15
+    },
+    {
+      "name": "daoseeker-scope-windows",
+      "version": "0.1.0",
+      "sha256": "3b9de4b3a4c5812ae12f477aa347ff10fa24666305689f06d2e847fbc5326030",
+      "files": 18
+    },
+    {
+      "name": "daoseeker-scope-cli",
+      "version": "0.1.0",
+      "sha256": "7392a8a13cf0ac63ae87ab5929fda569c9ad5ea3904945f6016a1dc64659a5f9",
+      "files": 9
+    },
+    {
+      "name": "daoseeker-scope-ffi",
+      "version": "0.1.0",
+      "sha256": "43133c1bcb1b9340bae001047e5e54d3fabb1d664197e9b7cabcfa4234110626",
+      "files": 8
+    }
+  ]
+}

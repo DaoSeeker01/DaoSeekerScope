@@ -1,0 +1,23 @@
+{
+  "overall": "passed",
+  "source_before": {
+    "revision": "cb80fa88d05c25e68f2f18118eb29fabc2bc498f",
+    "status": ""
+  },
+  "source_after": {
+    "revision": "cb80fa88d05c25e68f2f18118eb29fabc2bc498f",
+    "status": ""
+  },
+  "real_windows_junction": true,
+  "synthetic_contents": true,
+  "reparse_tag": 2684354563,
+  "ordinary_license_present": true,
+  "rejected_before_read": true,
+  "packager_notice_gate": "blocked",
+  "errors": [
+    "unsafe_notice_file"
+  ],
+  "published": false,
+  "helper_sha256": "bfeeca70575de3c1c8209566a75660bec3fcd39fab430a9e79f4f70a29eb0871",
+  "limits": "Local synthetic package and real NTFS junction; not a concurrent mutation or general filesystem sandbox test."
+}
