@@ -49,10 +49,129 @@ def fixture(*, dll: bool = False, name: bytes = b"KERNEL32.dll") -> bytearray:
     put(data, 0x600, 1)
     put(data, 0x604, 0x1300)
     data[0x700:0x70A] = b"USER32.dll"
+    put(data, 0x610, 0x1480)
+    put(data, 0x800, 0x1500, 8)
+    put(data, 0x808, (1 << 63) | 7, 8)
+    data[0x902:0x911] = b"GetTickCount64\0"
+    put(data, 0x880, 0x1540, 8)
+    data[0x942:0x953] = b"GetSystemMetrics\0"
     return data
 
 
 class PeTests(unittest.TestCase):
+    def test_lookup_uses_int_and_only_unbound_iat_fallback(self) -> None:
+        data = fixture()
+        put(data, 0x840, 0xFFFFFFFFFFFFFFFF, 8)
+        self.assertEqual(
+            inspect_pe(bytes(data), dll=False)["direct_symbols"]["kernel32.dll"][
+                "ordinals"
+            ],
+            [7],
+        )
+        data[0x840:0x858] = data[0x800:0x818]
+        put(data, 0x400, 0)
+        expected = inspect_pe(bytes(fixture()), dll=False)["direct_symbols"]
+        self.assertEqual(inspect_pe(bytes(data), dll=False)["direct_symbols"], expected)
+        put(data, 0x404, 1)
+        with self.assertRaisesRegex(ValueError, "pe_bound_import_lookup"):
+            inspect_pe(bytes(data), dll=False)
+
+    def test_symbol_reserved_bits_and_full_ordinal_range(self) -> None:
+        for value, error in (
+            ((1 << 63) | (1 << 16) | 7, "pe_symbol_ordinal"),
+            (1 << 31, "pe_symbol_name_rva"),
+            (1 << 40, "pe_symbol_name_rva"),
+        ):
+            data = fixture()
+            put(data, 0x800, value, 8)
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError, error):
+                inspect_pe(bytes(data), dll=False)
+        for ordinal in (0, 65535):
+            data = fixture()
+            put(data, 0x808, (1 << 63) | ordinal, 8)
+            self.assertEqual(
+                inspect_pe(bytes(data), dll=False)["direct_symbols"]["kernel32.dll"][
+                    "ordinals"
+                ],
+                [ordinal],
+            )
+
+    def test_symbol_names_are_case_sensitive_and_bounded(self) -> None:
+        for name in (b"", b"bad name", b"bad\x1bname", b"bad\xffname"):
+            data = fixture()
+            data[0x902 : 0x902 + len(name) + 1] = name + b"\0"
+            with (
+                self.subTest(name=name),
+                self.assertRaisesRegex(ValueError, "pe_symbol_name$"),
+            ):
+                inspect_pe(bytes(data), dll=False)
+        data = fixture()
+        data[0x902:0x910] = b"getTickCount64"
+        self.assertEqual(
+            inspect_pe(bytes(data), dll=False)["direct_symbols"]["kernel32.dll"][
+                "names"
+            ],
+            ["getTickCount64"],
+        )
+        with patch("pe_inspect.MAX_SYMBOL_NAME", 13):
+            with self.assertRaisesRegex(ValueError, "pe_symbol_name_terminator"):
+                inspect_pe(bytes(fixture()), dll=False)
+
+    def test_symbol_tables_and_names_cannot_cross_file_ranges(self) -> None:
+        data = fixture()
+        put(data, 0x400, 0x1BF8)
+        put(data, 0xFF8, (1 << 63) | 7, 8)
+        with self.assertRaisesRegex(ValueError, "pe_symbol_terminator"):
+            inspect_pe(bytes(data), dll=False)
+        data = fixture()
+        put(data, 0x800, 0x1BFD, 8)
+        data[0xFFF] = ord("x")
+        with self.assertRaisesRegex(ValueError, "pe_symbol_name_terminator"):
+            inspect_pe(bytes(data), dll=False)
+        data = fixture()
+        put(data, 0x400, 0x1C00)
+        with self.assertRaisesRegex(ValueError, "pe_unmapped_rva"):
+            inspect_pe(bytes(data), dll=False)
+
+    def test_symbol_caps_include_both_tables_before_deduplication(self) -> None:
+        with patch("pe_inspect.MAX_SYMBOLS", 1):
+            with self.assertRaisesRegex(ValueError, "pe_symbol_limit"):
+                inspect_pe(bytes(fixture()), dll=False)
+        with patch("pe_inspect.MAX_TOTAL_SYMBOLS", 2):
+            with self.assertRaisesRegex(ValueError, "pe_symbol_limit"):
+                inspect_pe(bytes(fixture()), dll=False)
+        data = fixture()
+        put(data, 0x808, 0x1500, 8)
+        report = inspect_pe(bytes(data), dll=False)
+        self.assertEqual(
+            report["direct_symbols"]["kernel32.dll"]["names"], ["GetTickCount64"]
+        )
+        with patch("pe_inspect.MAX_TOTAL_SYMBOLS", 2):
+            with self.assertRaisesRegex(ValueError, "pe_symbol_limit"):
+                inspect_pe(bytes(data), dll=False)
+
+    def test_delay_lookup_is_separate_and_requires_name_table(self) -> None:
+        data = fixture()
+        put(data, 0x880, (1 << 63) | 23, 8)
+        report = inspect_pe(bytes(data), dll=False)
+        self.assertEqual(
+            report["delay_symbols"]["user32.dll"], {"names": [], "ordinals": [23]}
+        )
+        put(data, 0x610, 0)
+        with self.assertRaisesRegex(ValueError, "pe_rva"):
+            inspect_pe(bytes(data), dll=False)
+
+    def test_named_and_ordinal_symbols_preserve_case_and_kind(self) -> None:
+        report = inspect_pe(bytes(fixture()), dll=False)
+        self.assertEqual(
+            report["direct_symbols"],
+            {"kernel32.dll": {"names": ["GetTickCount64"], "ordinals": [7]}},
+        )
+        self.assertEqual(
+            report["delay_symbols"],
+            {"user32.dll": {"names": ["GetSystemMetrics"], "ordinals": []}},
+        )
+
     def test_inventory_and_explicit_evidence_limits(self) -> None:
         for dll in (False, True):
             report = inspect_pe(bytes(fixture(dll=dll)), dll=dll)

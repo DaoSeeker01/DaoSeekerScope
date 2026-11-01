@@ -78,6 +78,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'CLI candidate build failed' }
           python scripts/cli_bundle_smoke.py $bundle
           if ($LASTEXITCODE -ne 0) { throw 'CLI candidate rehearsal failed' }
+          [System.IO.File]::WriteAllText('target/windows-cli-archive.txt', $bundle.Trim())
       - name: Preserve Windows CLI candidate evidence
         if: always() && runner.os == 'Windows'
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
@@ -110,6 +111,15 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'FFI SDK build failed' }
           python scripts/ffi_bundle_smoke.py $sdk
           if ($LASTEXITCODE -ne 0) { throw 'FFI SDK rehearsal failed' }
+          [System.IO.File]::WriteAllText('target/windows-sdk-archive.txt', $sdk.Trim())
+      - name: Windows import symbols against Microsoft DUMPBIN
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $cli = [System.IO.File]::ReadAllText('target/windows-cli-archive.txt').Trim()
+          $sdk = [System.IO.File]::ReadAllText('target/windows-sdk-archive.txt').Trim()
+          python scripts/windows_imports_smoke.py $cli $sdk
+          if ($LASTEXITCODE -ne 0) { throw 'Windows import symbol comparison failed' }
       - name: Preserve Windows FFI SDK evidence
         if: always() && runner.os == 'Windows'
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
@@ -249,6 +259,7 @@ jobs:
             target/native-evidence.json
             target/contract-evidence.json
             target/notice-audit-evidence.json
+            target/windows-imports-evidence.json
             target/windows-display-probe.json
             target/windows-memory-evidence.json
             target/windows-cpu-evidence.json

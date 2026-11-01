@@ -14,6 +14,9 @@ from typing import Any
 
 MAX_IMAGE = 64 * 1024 * 1024
 MAX_IMPORTS = 128
+MAX_SYMBOLS = 8192
+MAX_TOTAL_SYMBOLS = 16384
+MAX_SYMBOL_NAME = 1024
 
 
 def require(condition: bool, code: str) -> None:
@@ -37,6 +40,7 @@ class Image:
     def __init__(self, data: bytes, *, dll: bool) -> None:
         require(64 <= len(data) <= MAX_IMAGE, "pe_size")
         self.data = data
+        self.symbol_count = 0
         require(data[:2] == b"MZ", "pe_dos_signature")
         pe = self.uint(60, 4)
         require(pe >= 64 and self.span(pe, 4) == b"PE\0\0", "pe_signature")
@@ -116,24 +120,72 @@ class Image:
         )
         return name.decode("ascii").lower()
 
-    def imports(self, index: int, *, delay: bool = False) -> list[str]:
+    def symbol_name(self, rva: int) -> str:
+        offset, end = self.file_range(rva, 3)  # Two-byte hint, then the name.
+        start = offset + 2
+        terminator = self.data.find(b"\0", start, min(end, start + MAX_SYMBOL_NAME + 1))
+        require(terminator != -1, "pe_symbol_name_terminator")
+        name = self.data[start:terminator]
+        require(
+            bool(name) and all(0x21 <= byte <= 0x7E for byte in name),
+            "pe_symbol_name",
+        )
+        return name.decode("ascii")  # Import names are case-sensitive.
+
+    def symbols(self, rva: int) -> tuple[set[str], set[int]]:
+        offset, end = self.file_range(rva, 8)
+        names: set[str] = set()
+        ordinals: set[int] = set()
+        for position in range(min((end - offset) // 8, MAX_SYMBOLS + 1)):
+            value = self.uint(offset + position * 8, 8)
+            if value == 0:
+                return names, ordinals
+            self.symbol_count += 1
+            require(
+                position < MAX_SYMBOLS and self.symbol_count <= MAX_TOTAL_SYMBOLS,
+                "pe_symbol_limit",
+            )
+            if value & (1 << 63):
+                require(value & ~((1 << 63) | 0xFFFF) == 0, "pe_symbol_ordinal")
+                ordinals.add(value & 0xFFFF)
+            else:
+                require(value < (1 << 31), "pe_symbol_name_rva")
+                names.add(self.symbol_name(value))
+        raise ValueError("pe_symbol_terminator")
+
+    def import_symbols(self, lookups: list[tuple[str, int]]) -> dict[str, Any]:
+        gathered: dict[str, tuple[set[str], set[int]]] = {}
+        for name, rva in lookups:
+            names, ordinals = self.symbols(rva)
+            target = gathered.setdefault(name, (set(), set()))
+            target[0].update(names)
+            target[1].update(ordinals)
+        return {
+            name: {"names": sorted(values[0]), "ordinals": sorted(values[1])}
+            for name, values in sorted(gathered.items())
+        }
+
+    def imports(
+        self, index: int, *, delay: bool = False
+    ) -> tuple[list[str], dict[str, Any]]:
         if index >= self.directories:
-            return []
+            return [], {}
         directory = self.optional + 112 + index * 8
         rva, size = struct.unpack("<2I", self.span(directory, 8))
         if rva == size == 0:
-            return []
+            return [], {}
         stride = 32 if delay else 20
         require(
             rva > 0 and stride <= size <= stride * (MAX_IMPORTS + 1),
             "pe_import_limit",
         )
         offset, _ = self.file_range(rva, size)
-        names: list[str] = []
+        lookups: list[tuple[str, int]] = []
         for position in range(size // stride):
             descriptor = self.span(offset + position * stride, stride)
             if not any(descriptor):
-                return sorted(set(names))
+                symbols = self.import_symbols(lookups)
+                return sorted(symbols), symbols
             if delay:
                 # The old VA-based format is outside our x64 candidate contract.
                 require(int.from_bytes(descriptor[:4], "little") == 1, "pe_delay_mode")
@@ -142,15 +194,23 @@ class Image:
                 descriptor[name_offset : name_offset + 4], "little"
             )
             require(position < MAX_IMPORTS, "pe_import_limit")
-            names.append(self.module_name(name_rva))
+            lookup_offset = 16 if delay else 0
+            lookup = int.from_bytes(
+                descriptor[lookup_offset : lookup_offset + 4], "little"
+            )
+            if not delay and lookup == 0:
+                # Only an unbound IAT still contains name/ordinal lookup entries.
+                require(not any(descriptor[4:8]), "pe_bound_import_lookup")
+                lookup = int.from_bytes(descriptor[16:20], "little")
+            lookups.append((self.module_name(name_rva), lookup))
         raise ValueError("pe_import_terminator")
 
 
 def inspect_pe(data: bytes, *, dll: bool) -> dict[str, Any]:
     """Validate this project's x64 PE subset and inventory declared DLL imports."""
     image = Image(data, dll=dll)
-    imports = image.imports(1)
-    delayed = image.imports(13, delay=True)
+    imports, direct_symbols = image.imports(1)
+    delayed, delay_symbols = image.imports(13, delay=True)
     require(bool(imports) and len(imports) + len(delayed) <= MAX_IMPORTS, "pe_imports")
     require(
         not any(
@@ -176,6 +236,8 @@ def inspect_pe(data: bytes, *, dll: bool) -> dict[str, Any]:
         ],
         "direct_imports": imports,
         "delay_imports": delayed,
+        "direct_symbols": direct_symbols,
+        "delay_symbols": delay_symbols,
         "minimum_windows_verified": False,
         "transitive_or_dynamic_loads_inspected": False,
     }

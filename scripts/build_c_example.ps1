@@ -12,6 +12,8 @@ param(
     [switch]$SyntheticMemoryProbe,
     [switch]$AbiContractProbe,
     [switch]$ResourceProbe,
+    [switch]$PeImportsProbe,
+    [string]$PeImportsDirectory = 'target\debug',
     [string]$AbiContractDirectory = 'target\debug',
     [string]$PeakMemoryDirectory = 'target\release'
 )
@@ -48,6 +50,17 @@ try {
     $env:INCLUDE = @((Join-Path $VcRoot 'include'), (Join-Path $SdkRoot "Include\$SdkVersion\ucrt"), (Join-Path $SdkRoot "Include\$SdkVersion\shared"), (Join-Path $SdkRoot "Include\$SdkVersion\um")) -join ';'
     $env:LIB = @((Join-Path $VcRoot 'lib\x64'), (Join-Path $SdkRoot "Lib\$SdkVersion\ucrt\x64"), (Join-Path $SdkRoot "Lib\$SdkVersion\um\x64")) -join ';'
     $env:PATH = (Join-Path $VcRoot 'bin\Hostx64\x64') + ';' + $oldPath
+    if ($PeImportsProbe) {
+        $probeRoot = (Resolve-Path -LiteralPath $PeImportsDirectory).Path
+        $probeExe = Join-Path $probeRoot 'delay-import-probe.exe'
+        $probeObj = Join-Path $probeRoot 'delay-import-probe.obj'
+        & $compiler /nologo /W4 /WX /std:c11 "/Fe$probeExe" "/Fo$probeObj" docs\research\pe_delay_probe.c user32.lib delayimp.lib /link /DELAYLOAD:user32.dll
+        if ($LASTEXITCODE -ne 0) { throw "PE delay import probe compile failed: $LASTEXITCODE" }
+        $dumpbin = Join-Path $VcRoot 'bin\Hostx64\x64\dumpbin.exe'
+        if (!(Test-Path -LiteralPath $dumpbin)) { throw 'DUMPBIN not found in selected MSVC toolchain' }
+        @{ dumpbin = $dumpbin; compiler_version = (Get-Item -LiteralPath $compiler).VersionInfo.FileVersion } | ConvertTo-Json -Compress
+        return
+    }
     if ($ResourceProbe) {
         $resourceRoot = (Resolve-Path -LiteralPath $PeakMemoryDirectory).Path
         $resourceExe = Join-Path $resourceRoot 'ffi-resource-probe.exe'
