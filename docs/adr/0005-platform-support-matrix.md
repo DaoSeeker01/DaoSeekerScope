@@ -2,7 +2,7 @@
 
 以下为实现路线/权限预期，运行证据单列于 docs/validation.md。D=普通用户直接读取、P=可能权限/沙盒受限、A=增强需管理员（不选默认路径）、U=本切片未实现、N=平台无此通用语义。不是设备上所有字段可用的保证。
 
-2026-11-02 温度增量：JC42、SPD5118 与 LM75/LM75A/LM75B 的 `temp1_input` 已实现，本机纯逻辑与文件 fixture 测试通过，Linux 原生非 root 容器验证待执行。来源 Hwmon、能力 Partial，不读取 SPD/EEPROM 或告警属性；实体内存和 LM75 传感器尚未验证。[内核 JC42](https://docs.kernel.org/hwmon/jc42.html)、[SPD5118](https://docs.kernel.org/hwmon/spd5118.html)、[LM75](https://docs.kernel.org/hwmon/lm75.html)给出各自接口依据。历史轮次的计数和限制保留原样。
+2026-11-02 温度增量：JC42、SPD5118 与 LM75/LM75A/LM75B 的 `temp1_input` 已实现，本机测试与 Linux 原生非 root 容器的 86 项合成观察通过，含新增 27 项；[验证记录](../hwmon-validation.md)。来源 Hwmon、能力 Partial，不读取 SPD/EEPROM 或告警属性；实体内存和 LM75 传感器尚未验证。[内核 JC42](https://docs.kernel.org/hwmon/jc42.html)、[SPD5118](https://docs.kernel.org/hwmon/spd5118.html)、[LM75](https://docs.kernel.org/hwmon/lm75.html)给出各自接口依据。历史轮次的计数和限制保留原样。
 
 2026-10-09实际验收：Windows x64（windows-2025-vs2026）、Linux x64（ubuntu-24.04）、macOS arm64（macos-26-arm64）原生CI均完成CPU/内存/OS最小读取、Rust门禁及C/Python调用，见[CI证据](../ci-validation.md)。Windows安装内存来自win32、macOS安装内存来自sysctl，Linux该字段仍Unsupported。这些托管runner结果不证明所有发行版、架构、硬件字段或受限容器可用；下表仍为字段能力路线。
 

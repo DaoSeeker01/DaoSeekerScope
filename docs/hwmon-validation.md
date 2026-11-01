@@ -6,7 +6,9 @@
 
 Windows 本机 11 项 hwmon 测试通过，含新增两项覆盖五种名称的循环回归；受影响 crate 的 Clippy、Linux x64 交叉 check，以及脚本 Ruff/mypy 和 6 项 Python 守卫通过。容器验收从 59 扩展至 86 项，新增 27 项覆盖正值、负值、零、溢出、权限拒绝/恢复、禁用、故障、未支持输入及 EEPROM/告警 FIFO 不读取。测试探针命令上限从 64 调到 128，以容纳本批场景；生产接口不变。
 
-Linux 原生容器验收待执行；以上 Windows fixture 测试不是实际 Linux 驱动或物理设备读取。未新增依赖或公开 feature，Rust 模型、C ABI 1、Schema 1 与 MIT 不变。以下为早期版本记录。
+实现提交 `0c3228b` 的 [CI 41364482299](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41364482299)中，Linux 容器任务已通过；[原始报告](evidence/linux-single-channel-41364482299.json)保存全部 86 项观察及探针哈希、源码与容器配置，其中新增 27 项。报告的每项 Schema、默认隐私、内存字段与静态缓存检查通过，探针和容器均正常退出。合成文件权限测试不是实际传感器读取；其余完整 CI 任务在本次归档时仍在运行，不宣称全套通过。
+
+本批只保留一份新增功能相关报告，不重复归档未修改功能的既有验收。未新增依赖或公开 feature，Rust 模型、C ABI 1、Schema 1 与 MIT 不变。以下为早期版本记录。
 
 2026-10-10实施、2026-10-11归档；本机与最终三平台CI通过。未发布；实机物理温度尚未验证。
 
