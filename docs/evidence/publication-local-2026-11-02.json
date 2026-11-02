@@ -1,0 +1,50 @@
+{
+  "overall": "passed",
+  "date": "2026-11-02",
+  "scope": "pre-commit Windows working-tree validation; not clean-commit or native Linux/macOS acceptance",
+  "basis_commit": "9185d5466467b21fef0ffc88aab9c541d523fbde",
+  "code_sha256_lf": {
+    "crates/daoseeker-scope-core/src/hardware.rs": "c5d132fe6caefdb4c48212bf6c426517e1c6b58a29ae804ff1046710b4199055"
+  },
+  "before": {
+    "scope": "production publication boundary extracted with previous unchecked behavior",
+    "passed": 1,
+    "failed": 2,
+    "tests": [
+      "publication_reply_rechecks_cancellation_and_deadline",
+      "publication_stopped_after_collection_preserves_cache_and_capabilities"
+    ],
+    "log_sha256": "dca58217299c7f2ba2abe0e1bc48f6b0992f8efd6bac3f03021d6b751d1b8014"
+  },
+  "after": {
+    "rust_tests_including_doctests": 286,
+    "commands": [
+      "scripts/check.ps1 -Cross"
+    ],
+    "checks": [
+      "fmt",
+      "clippy -D warnings",
+      "workspace all-features tests",
+      "core/facade no-default-features",
+      "rustdoc -D warnings",
+      "CLI/FFI build",
+      "Linux x64 and macOS arm64 cross-check"
+    ],
+    "new_regressions": 4,
+    "log_sha256": "29d0b5db206c4c05aa1fe4f17d45729c58f9d96dd6cdb3f9fcf813fba0d48371"
+  },
+  "ci": "not yet executed for this change at recording",
+  "unchanged": [
+    "public Rust API",
+    "features",
+    "dependencies",
+    "C ABI 1",
+    "hardware Schema 1",
+    "MIT"
+  ],
+  "limitations": [
+    "Cancellation is checked at worker commit and caller delivery; valid completed commits are not rolled back.",
+    "No native blocking-call termination, shared-library unloading or long-term leak proof."
+  ],
+  "published": false
+}

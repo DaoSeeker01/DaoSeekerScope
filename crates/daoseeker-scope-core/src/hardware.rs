@@ -88,6 +88,7 @@ struct Registered {
     priority: i32,
     backend: Box<dyn Backend>,
 }
+type StaticCache = (StaticSnapshot, Vec<MergeEvent>, Vec<BackendIssue>);
 #[derive(Default)]
 pub struct HardwareBuilder {
     options: Options,
@@ -162,7 +163,7 @@ impl HardwareBuilder {
             .name("dscope-collect".into())
             .spawn(move || {
                 let _permit = permit;
-                let mut cache: Option<(StaticSnapshot, Vec<MergeEvent>, Vec<BackendIssue>)> = None;
+                let mut cache: Option<StaticCache> = None;
                 while let Ok(request) = receiver.recv() {
                     let result = catch_unwind(AssertUnwindSafe(|| {
                         if request.dynamic_only && cache.is_none() {
@@ -181,15 +182,12 @@ impl HardwareBuilder {
                         )?;
                         request.context.check()?;
                         let collected_at = Timestamp::now()?;
-                        cache = Some(static_result.clone());
+                        let pending_cache = static_result.clone();
                         conflicts.splice(0..0, static_result.1.clone());
                         issues.splice(0..0, static_result.2.clone());
                         let mut capabilities = worker_caps.clone();
                         update_capabilities(&mut capabilities, &static_result.0, &dynamic);
-                        *worker_published_caps
-                            .lock()
-                            .unwrap_or_else(|error| error.into_inner()) = capabilities.clone();
-                        Ok(Snapshot {
+                        let snapshot = Snapshot {
                             schema_version: SCHEMA_VERSION,
                             collected_at,
                             static_info: static_result.0,
@@ -197,7 +195,14 @@ impl HardwareBuilder {
                             capabilities,
                             conflicts,
                             issues,
-                        })
+                        };
+                        publish_snapshot(
+                            &mut cache,
+                            &worker_published_caps,
+                            &request.context,
+                            snapshot,
+                            pending_cache,
+                        )
                     }))
                     .unwrap_or_else(|_| Err(ScopeError::new(ErrorCode::Panic)));
                     let _ = request.reply.send(result);
@@ -212,6 +217,36 @@ impl HardwareBuilder {
     }
 }
 struct WorkerPermit;
+fn publish_snapshot(
+    cache: &mut Option<StaticCache>,
+    published: &Mutex<Capabilities>,
+    context: &CollectContext,
+    snapshot: Snapshot,
+    pending_cache: StaticCache,
+) -> Result<Snapshot, ScopeError> {
+    let capabilities = snapshot.capabilities.clone();
+    let mut published = published.lock().unwrap_or_else(|error| error.into_inner());
+    // Cloning and lock acquisition can outlive the collection checks. Prepare
+    // everything first, then use one final check as the commit point.
+    context.check()?;
+    *cache = Some(pending_cache);
+    *published = capabilities;
+    Ok(snapshot)
+}
+fn checked_reply(
+    value: Result<Snapshot, ScopeError>,
+    cancellation: &CancelToken,
+    deadline: Instant,
+) -> Result<Snapshot, ScopeError> {
+    if cancellation.is_cancelled() {
+        Err(ScopeError::new(ErrorCode::Cancelled))
+    } else if Instant::now() >= deadline {
+        cancellation.cancel();
+        Err(ScopeError::new(ErrorCode::Timeout))
+    } else {
+        value
+    }
+}
 impl Drop for WorkerPermit {
     fn drop(&mut self) {
         WORKERS.fetch_sub(1, Ordering::AcqRel);
@@ -288,7 +323,7 @@ impl Hardware {
                 return Err(ScopeError::new(ErrorCode::Timeout));
             }
             match result.recv_timeout(left.min(Duration::from_millis(5))) {
-                Ok(value) => return value,
+                Ok(value) => return checked_reply(value, &cancellation, deadline),
                 Err(mpsc::RecvTimeoutError::Timeout) => {}
                 Err(mpsc::RecvTimeoutError::Disconnected) => {
                     return Err(ScopeError::new(ErrorCode::BackendFailure));
@@ -495,7 +530,7 @@ fn diagnostic_name(backend: &dyn Backend) -> String {
 fn collect_static(
     backends: &mut [Registered],
     context: &CollectContext,
-) -> Result<(StaticSnapshot, Vec<MergeEvent>, Vec<BackendIssue>), ScopeError> {
+) -> Result<StaticCache, ScopeError> {
     let mut output = StaticSnapshot::default();
     let mut conflicts = Vec::new();
     let mut issues = Vec::new();
@@ -836,6 +871,138 @@ fn collect_dynamic(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn publication_fixture() -> (CollectContext, Snapshot, StaticCache) {
+        let context = CollectContext {
+            options: Options::default(),
+            cancellation: CancelToken::default(),
+            deadline: Instant::now() + Duration::from_secs(60),
+        };
+        let mut static_info = StaticSnapshot::default();
+        static_info.system.cpu.brand =
+            Observed::available("fresh".into(), Source::Custom, Timestamp(1));
+        let pending = (static_info.clone(), Vec::new(), Vec::new());
+        let snapshot = Snapshot {
+            schema_version: SCHEMA_VERSION,
+            collected_at: Timestamp(1),
+            static_info,
+            dynamic: DynamicSnapshot::default(),
+            capabilities: vec![Capability::new(
+                "system.cpu.brand",
+                CapabilityLevel::Supported,
+                Source::Custom,
+            )],
+            conflicts: Vec::new(),
+            issues: Vec::new(),
+        };
+        (context, snapshot, pending)
+    }
+    #[test]
+    fn publication_stopped_after_collection_preserves_cache_and_capabilities() {
+        for code in [ErrorCode::Cancelled, ErrorCode::Timeout] {
+            for initialized in [false, true] {
+                let (mut context, snapshot, pending) = publication_fixture();
+                let previous =
+                    initialized.then(|| (StaticSnapshot::default(), Vec::new(), Vec::new()));
+                let mut cache = previous.clone();
+                let published = Mutex::new(Vec::new());
+                // Model cancellation/preemption after collection's last check,
+                // before acquiring the publication lock. No sleeps or native calls.
+                context.check().expect("collection was live");
+                if code == ErrorCode::Cancelled {
+                    context.cancellation.cancel();
+                } else {
+                    context.deadline = Instant::now();
+                }
+                assert_eq!(
+                    publish_snapshot(&mut cache, &published, &context, snapshot, pending)
+                        .expect_err("stopped publication")
+                        .code,
+                    code
+                );
+                assert_eq!(
+                    cache, previous,
+                    "failed publication must preserve the previous cache"
+                );
+                assert!(published.lock().expect("published capabilities").is_empty());
+            }
+        }
+    }
+    #[test]
+    fn publication_success_commits_the_same_snapshot_and_capabilities() {
+        let (context, snapshot, pending) = publication_fixture();
+        let mut cache = None;
+        let published = Mutex::new(Vec::new());
+        let expected = snapshot.clone();
+        let expected_cache = pending.clone();
+        assert_eq!(
+            publish_snapshot(&mut cache, &published, &context, snapshot, pending)
+                .expect("publication"),
+            expected
+        );
+        assert_eq!(cache, Some(expected_cache));
+        assert_eq!(
+            *published.lock().expect("published capabilities"),
+            expected.capabilities
+        );
+    }
+    #[test]
+    fn publication_reply_rechecks_cancellation_and_deadline() {
+        for failed_backend in [false, true] {
+            for code in [ErrorCode::Cancelled, ErrorCode::Timeout] {
+                let (context, snapshot, _) = publication_fixture();
+                let value = if failed_backend {
+                    Err(ScopeError::new(ErrorCode::BackendFailure))
+                } else {
+                    Ok(snapshot)
+                };
+                let deadline = if code == ErrorCode::Cancelled {
+                    context.cancellation.cancel();
+                    context.deadline
+                } else {
+                    Instant::now()
+                };
+                assert_eq!(
+                    checked_reply(value, &context.cancellation, deadline)
+                        .expect_err("reply received after stop")
+                        .code,
+                    code
+                );
+            }
+        }
+        let (context, snapshot, _) = publication_fixture();
+        assert_eq!(
+            checked_reply(
+                Ok(snapshot.clone()),
+                &context.cancellation,
+                context.deadline
+            )
+            .expect("live reply"),
+            snapshot
+        );
+    }
+
+    #[test]
+    fn publication_already_committed_is_not_rolled_back_by_late_cancellation() {
+        let (context, snapshot, pending) = publication_fixture();
+        let mut cache = None;
+        let published = Mutex::new(Vec::new());
+        let reply = publish_snapshot(&mut cache, &published, &context, snapshot, pending)
+            .expect("committed while live");
+        let committed = cache.clone();
+        context.cancellation.cancel();
+        assert_eq!(
+            checked_reply(Ok(reply.clone()), &context.cancellation, context.deadline)
+                .expect_err("late cancellation stops delivery")
+                .code,
+            ErrorCode::Cancelled
+        );
+        assert_eq!(cache, committed);
+        assert_eq!(
+            *published.lock().expect("published capabilities"),
+            reply.capabilities
+        );
+    }
 
     struct CancelAndFail(CancelToken);
     impl Backend for CancelAndFail {
