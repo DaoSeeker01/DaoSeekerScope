@@ -17,6 +17,8 @@ python scripts/macos_macho_smoke.py
 
 程序头里声明的最低系统版本不等于已经实测支持的最低版本。检查不验证完整 segment/linkedit、全部导入符号、间接或运行时依赖、签名、notarization 或沙盒加载；不是加载器或恶意文件执行沙箱。只有原生 runner 上的对照通过后，才能记录对应构建结果，不能用合成字节测试替代。
 
-本机 Windows 已通过 8 项新增测试，含 512 次固定种子的有界字节变异、工具文本、输入漂移和失败/中断报告验证；Python 全套 328 项中 322 通过、6 跳过。Ruff、79 文件的 Windows/Linux/macOS 三种 mypy 目标与 actionlint 通过。准备阶段两处测试变量类型复用已修复。macOS 原生工具对照待执行；不宣称最低系统兼容或准许分发。
+本机 Windows 已通过 8 项新增测试，含 512 次固定种子的有界字节变异、工具文本、输入漂移和失败/中断报告验证；Python 全套 328 项中 322 通过、6 跳过。Ruff、79 文件的 Windows/Linux/macOS 三种 mypy 目标与 actionlint 通过。准备阶段两处测试变量类型复用已修复。
+
+源码 `d76e8a9` 的 [CI 41368963038](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41368963038)中，macOS ARM64 桌面任务及新对照步骤通过；[原始报告](evidence/macos-macho-41368963038.json)绑定该提交和两个产物哈希。CLI 与动态库分别记录 8 个依赖、没有 rpath；架构、依赖和版本声明均与 Apple 工具一致。两者均声明最低 macOS 11.0.0、链接 SDK 26.5.0；这是头部数据，不是 macOS 11 上的运行证明。本轮没有执行这些镜像或批准分发。完整 CI 的其他任务在归档时仍在运行。
 
 Rust 公共 API、依赖、锁文件、MIT、C ABI 1 和硬件 Schema 1 不变。macOS CLI/SDK 打包目标仍未开放，六项许可材料缺口继续保留。

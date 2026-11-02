@@ -1,0 +1,144 @@
+{
+  "overall": "passed",
+  "source_before": {
+    "revision": "d76e8a99ccea28c77bc4c05eee1c916d7d331b80",
+    "status": ""
+  },
+  "source_after": {
+    "revision": "d76e8a99ccea28c77bc4c05eee1c916d7d331b80",
+    "status": ""
+  },
+  "images": {
+    "cli": {
+      "sha256": "c0eba2d77406a54bc954a2a2270920dcf1b104be6b470b54f3ef5798d832bb4f",
+      "otool_and_lipo_matched": true,
+      "metadata": {
+        "architecture": "arm64",
+        "kind": "executable",
+        "minimum_declared_os": [
+          11,
+          0,
+          0
+        ],
+        "link_sdk": [
+          26,
+          5,
+          0
+        ],
+        "libraries": [
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/System/Library/Frameworks/Metal.framework/Versions/A/Metal"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/usr/lib/libSystem.B.dylib"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/usr/lib/libiconv.2.dylib"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/usr/lib/libobjc.A.dylib"
+          }
+        ],
+        "rpath_kinds": []
+      }
+    },
+    "library": {
+      "sha256": "cffb80484231e16a61befbf5fb7f2b61e31470bf039ae2a2b4a7d142622ba091",
+      "otool_and_lipo_matched": true,
+      "metadata": {
+        "architecture": "arm64",
+        "kind": "dylib",
+        "minimum_declared_os": [
+          11,
+          0,
+          0
+        ],
+        "link_sdk": [
+          26,
+          5,
+          0
+        ],
+        "libraries": [
+          {
+            "command": "LC_ID_DYLIB",
+            "path_kind": "absolute",
+            "name": "<redacted>"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/System/Library/Frameworks/Metal.framework/Versions/A/Metal"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/usr/lib/libSystem.B.dylib"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/usr/lib/libiconv.2.dylib"
+          },
+          {
+            "command": "LC_LOAD_DYLIB",
+            "path_kind": "system",
+            "name": "/usr/lib/libobjc.A.dylib"
+          }
+        ],
+        "rpath_kinds": []
+      }
+    }
+  },
+  "images_executed": false,
+  "minimum_macos_verified": false,
+  "distribution_approved": false,
+  "published": false
+}

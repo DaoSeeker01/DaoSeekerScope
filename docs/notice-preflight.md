@@ -24,6 +24,8 @@ python scripts/notice_audit.py --offline --target aarch64-apple-darwin --output 
 
 ## macOS 当前材料
 
+2026-11-02 复核：提交 `d76e8a9` 的原生 macOS CI 扫描与本机跨目标扫描仍为 CLI/SDK 各 20 个依赖包、6 项材料阻塞。新增的 [Mach-O 原生对照](macos-binary-validation.md)已通过，但没有改变文件门槛或开放打包；元数据检查不代替材料补齐。
+
 2026-10-30 复查：上游 [issue 826](https://github.com/madsmtm/objc2/issues/826)已记录添加仓库级许可全文，但关于较旧发布版完整版权材料的后续讨论仍未给出完整答案；[issue 23](https://github.com/madsmtm/objc2/issues/23)的重新许可提案仍为另一事项。不能把 issue 关闭、SPDX 声明或许可摘要链接等同于本项目已经收齐所需文件，也不据此断言现有许可证无效。
 
 原有六个 objc2 系列依赖的版本与源码调查见[历史记录](evidence/macos-license-research-2026-10-26.json)。冻结提交 `5124d16` 的实际扫描结果已归档，历史记录不覆盖。没有联系上游、改许可证、升级依赖或打开 macOS 二进制分发入口。
