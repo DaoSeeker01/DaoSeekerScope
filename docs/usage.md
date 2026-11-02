@@ -22,6 +22,7 @@ fn main() -> Result<(), daoseeker_scope::ScopeError> {
     std::thread::sleep(std::time::Duration::from_millis(300));
     let dynamic = hardware.refresh_dynamic()?;
     println!("CPU usage: {:?}", dynamic.cpu_usage_percent.value());
+    hardware.shutdown()?;
     Ok(())
 }
 ```
@@ -55,6 +56,10 @@ fn main() -> Result<(), daoseeker_scope::ScopeError> {
 需要取消时，为本次调用创建 `CancelToken`，将其传给 `collect_with` 或 `refresh_dynamic_with`；取消按钮或另一个线程持有它的克隆并调用 `cancel()`。已取消的 token 不能重置，重试时使用新 token。核心检查到取消时会返回 `Cancelled`，即使 backend 同时返回错误，也不应把这次取消误认为设备读取故障。
 
 每个实例有一个采集 worker，全进程最多 16 个；并发调用可能返回 `Busy`。超时和取消限制调用方的等待，不能杀死阻塞中的系统 API；阻塞 worker 继续占用额度。需要强制终止时，用独立进程采集。详见 [ADR 0003](adr/0003-capability-and-error-model.md)。
+
+Rust 调用方可用 `hardware.shutdown()?` 消费采集器，等待采集循环退出和 backend 资源释放；等待预算为该实例的 `Options::timeout`。成功关闭后，已经取得的快照仍可使用。返回 `Timeout` 时，该句柄已消耗，阻塞任务仍可能继续占用配额；backend 析构发生可展开 panic 时返回 `Panic`。直接丢弃实例仍不会等待关闭。
+
+关闭确认不涵盖操作系统线程或线程局部变量的最终收尾，不表示整个动态库可以卸载。C ABI 1 没有新增关闭入口，仍须保持库加载至进程结束。
 
 ## 命令行
 

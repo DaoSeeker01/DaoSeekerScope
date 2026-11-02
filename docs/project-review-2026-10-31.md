@@ -1,5 +1,15 @@
 # 2026-10-31 核心取消与缓存审查
 
+## 2026-11-02：显式关闭和析构配额
+
+发现 worker 配额守卫早于 backend 所有者释放。合成 backend 在析构中等待时，采集线程仍存活，但配额已被归还；单独回归在原实现上失败，日志为 `target/shutdown-quota-before.log`。现由 WorkerState 依次拥有 backends 和配额，保证 backend 析构完成或展开结束后才归还配额。
+
+core 和桌面门面新增 `Hardware::shutdown(self) -> Result<(), ScopeError>`。关闭发送端后，以实例 Options.timeout 等待有界完成通知；通知在采集循环、缓存与 backend 析构结束后发出。可展开的析构 panic 转为 Panic。普通 Drop 不等待；shutdown 超时会消费句柄，但未完成的调用/析构仍占配额。成功关闭后已有快照仍归调用方所有。这个通知不是 OS 线程或 TLS 收尾证明，C ABI 的动态库加载期限不变。
+
+新增六项 core 回归覆盖析构期间配额、正常关闭/快照所有权、未采集即关闭及 32 次容量复用、析构 panic、阻塞采集、阻塞析构和普通 Drop 的兼容行为；现有桌面原生最小读取测试增加 shutdown。`scripts/check.ps1 -Cross` 的 fmt、Clippy、292 项 Rust 测试、无默认功能、严格文档、CLI/FFI 构建与双平台交叉检查通过。[本机输入与失败记录](evidence/shutdown-local-2026-11-02.json)明确属于提交前检查；新代码 CI 另行执行。
+
+这是 Rust API 的兼容新增；C ABI 1、Schema 1、公开 features、依赖及 MIT 不变，不新增 FFI 关闭符号，也没有强制终止原生调用或动态库卸载能力。以下保留既有批次结论。
+
 ## 2026-11-02：缓存和响应发布边界
 
 原实现完成 backend 检查后，还要克隆数据、更新能力并取得共享锁。这些步骤结束前可能取消或过期，但缓存已提前写入，能力发布和返回响应也没有再次检查。将原发布行为提取为内部边界后，新增三项确定性测试中两项失败、一项正常路径通过；不依赖真实系统故障或线程调度复现。原始失败日志为 `target/publication-before.log`，不能作为通过记录。

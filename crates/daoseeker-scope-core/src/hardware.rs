@@ -88,6 +88,11 @@ struct Registered {
     priority: i32,
     backend: Box<dyn Backend>,
 }
+// Fields drop in declaration order, keeping the quota until backend teardown ends.
+struct WorkerState {
+    backends: Vec<Registered>,
+    _permit: WorkerPermit,
+}
 type StaticCache = (StaticSnapshot, Vec<MergeEvent>, Vec<BackendIssue>);
 #[derive(Default)]
 pub struct HardwareBuilder {
@@ -152,67 +157,78 @@ impl HardwareBuilder {
         let published_caps = Arc::new(Mutex::new(capabilities.clone()));
         let worker_published_caps = published_caps.clone();
         let (sender, receiver) = mpsc::sync_channel::<Request>(1);
+        let (finished_sender, finished) = mpsc::sync_channel(1);
         WORKERS
             .fetch_update(Ordering::AcqRel, Ordering::Acquire, |n| {
                 (n < MAX_WORKERS).then_some(n + 1)
             })
             .map_err(|_| ScopeError::new(ErrorCode::ResourceLimit))?;
-        let permit = WorkerPermit;
+        let state = WorkerState {
+            backends: self.backends,
+            _permit: WorkerPermit,
+        };
         let worker_caps = capabilities.clone();
         std::thread::Builder::new()
             .name("dscope-collect".into())
             .spawn(move || {
-                let _permit = permit;
-                let mut cache: Option<StaticCache> = None;
-                while let Ok(request) = receiver.recv() {
-                    let result = catch_unwind(AssertUnwindSafe(|| {
-                        if request.dynamic_only && cache.is_none() {
-                            return Err(ScopeError::new(ErrorCode::InvalidArgument));
-                        }
-                        request.context.check()?;
-                        let static_result = if let Some(cached) = &cache {
-                            cached.clone()
-                        } else {
-                            collect_static(&mut self.backends, &request.context)?
-                        };
-                        let (dynamic, mut conflicts, mut issues) = collect_dynamic(
-                            &mut self.backends,
-                            &request.context,
-                            static_result.0.system.memory.total_usable_bytes.value,
-                        )?;
-                        request.context.check()?;
-                        let collected_at = Timestamp::now()?;
-                        let pending_cache = static_result.clone();
-                        conflicts.splice(0..0, static_result.1.clone());
-                        issues.splice(0..0, static_result.2.clone());
-                        let mut capabilities = worker_caps.clone();
-                        update_capabilities(&mut capabilities, &static_result.0, &dynamic);
-                        let snapshot = Snapshot {
-                            schema_version: SCHEMA_VERSION,
-                            collected_at,
-                            static_info: static_result.0,
-                            dynamic,
-                            capabilities,
-                            conflicts,
-                            issues,
-                        };
-                        publish_snapshot(
-                            &mut cache,
-                            &worker_published_caps,
-                            &request.context,
-                            snapshot,
-                            pending_cache,
-                        )
-                    }))
-                    .unwrap_or_else(|_| Err(ScopeError::new(ErrorCode::Panic)));
-                    let _ = request.reply.send(result);
-                }
+                let outcome = catch_unwind(AssertUnwindSafe(move || {
+                    let mut state = state;
+                    let mut cache: Option<StaticCache> = None;
+                    while let Ok(request) = receiver.recv() {
+                        let result = catch_unwind(AssertUnwindSafe(|| {
+                            if request.dynamic_only && cache.is_none() {
+                                return Err(ScopeError::new(ErrorCode::InvalidArgument));
+                            }
+                            request.context.check()?;
+                            let static_result = if let Some(cached) = &cache {
+                                cached.clone()
+                            } else {
+                                collect_static(&mut state.backends, &request.context)?
+                            };
+                            let (dynamic, mut conflicts, mut issues) = collect_dynamic(
+                                &mut state.backends,
+                                &request.context,
+                                static_result.0.system.memory.total_usable_bytes.value,
+                            )?;
+                            request.context.check()?;
+                            let collected_at = Timestamp::now()?;
+                            let pending_cache = static_result.clone();
+                            conflicts.splice(0..0, static_result.1.clone());
+                            issues.splice(0..0, static_result.2.clone());
+                            let mut capabilities = worker_caps.clone();
+                            update_capabilities(&mut capabilities, &static_result.0, &dynamic);
+                            let snapshot = Snapshot {
+                                schema_version: SCHEMA_VERSION,
+                                collected_at,
+                                static_info: static_result.0,
+                                dynamic,
+                                capabilities,
+                                conflicts,
+                                issues,
+                            };
+                            publish_snapshot(
+                                &mut cache,
+                                &worker_published_caps,
+                                &request.context,
+                                snapshot,
+                                pending_cache,
+                            )
+                        }))
+                        .unwrap_or_else(|_| Err(ScopeError::new(ErrorCode::Panic)));
+                        let _ = request.reply.send(result);
+                    }
+                }));
+                // This acknowledges collector/backend teardown, not OS thread or
+                // thread-local cleanup. Never use it as permission to unload code.
+                let _ =
+                    finished_sender.send(outcome.map_err(|_| ScopeError::new(ErrorCode::Panic)));
             })
             .map_err(|_| ScopeError::new(ErrorCode::ResourceLimit))?;
         Ok(Hardware {
             sender: Mutex::new(sender),
             capabilities: published_caps,
             options: self.options,
+            finished: Mutex::new(finished),
         })
     }
 }
@@ -262,8 +278,34 @@ pub struct Hardware {
     sender: Mutex<mpsc::SyncSender<Request>>,
     capabilities: Arc<Mutex<Capabilities>>,
     options: Options,
+    finished: Mutex<mpsc::Receiver<Result<(), ScopeError>>>,
 }
 impl Hardware {
+    /// Consumes the collector and waits up to `Options::timeout` for its request
+    /// loop and backend destruction to finish. Existing owned snapshots remain valid.
+    /// A timeout consumes this handle but leaves the bounded worker alive until
+    /// native calls/destructors return. An unwinding teardown panic returns `Panic`.
+    /// This does not confirm OS thread/TLS cleanup or make library unloading safe.
+    /// Ordinary Drop remains nonblocking and does not report teardown completion.
+    pub fn shutdown(self) -> Result<(), ScopeError> {
+        let Self {
+            sender,
+            finished,
+            options,
+            ..
+        } = self;
+        drop(sender);
+        let finished = finished
+            .into_inner()
+            .map_err(|_| ScopeError::new(ErrorCode::Panic))?;
+        match finished.recv_timeout(options.timeout) {
+            Ok(outcome) => outcome,
+            Err(mpsc::RecvTimeoutError::Timeout) => Err(ScopeError::new(ErrorCode::Timeout)),
+            Err(mpsc::RecvTimeoutError::Disconnected) => {
+                Err(ScopeError::new(ErrorCode::BackendFailure))
+            }
+        }
+    }
     pub fn capabilities(&self) -> Capabilities {
         self.capabilities
             .lock()
@@ -1002,6 +1044,227 @@ mod tests {
             *published.lock().expect("published capabilities"),
             reply.capabilities
         );
+    }
+
+    struct DropProbe {
+        entered: mpsc::SyncSender<usize>,
+        release: mpsc::Receiver<()>,
+    }
+    impl Backend for DropProbe {
+        fn name(&self) -> &'static str {
+            "drop-probe"
+        }
+        fn capabilities(&self) -> Capabilities {
+            Vec::new()
+        }
+        fn collect_static(&mut self, _: &CollectContext) -> Result<StaticSnapshot, ScopeError> {
+            Ok(StaticSnapshot::default())
+        }
+        fn refresh_dynamic(&mut self, _: &CollectContext) -> Result<DynamicSnapshot, ScopeError> {
+            Ok(DynamicSnapshot::default())
+        }
+    }
+    impl Drop for DropProbe {
+        fn drop(&mut self) {
+            let _ = self.entered.send(WORKERS.load(Ordering::Acquire));
+            let _ = self.release.recv_timeout(Duration::from_secs(5));
+        }
+    }
+    #[test]
+    fn worker_quota_covers_backend_destruction() {
+        let (entered, count) = mpsc::sync_channel(1);
+        let (release, gate) = mpsc::sync_channel(1);
+        let hardware = HardwareBuilder::default()
+            .with_backend(
+                0,
+                DropProbe {
+                    entered,
+                    release: gate,
+                },
+            )
+            .build()
+            .expect("hardware");
+        drop(hardware);
+        let held = count
+            .recv_timeout(Duration::from_secs(2))
+            .expect("backend destruction started");
+        release.send(()).expect("release backend");
+        assert!(
+            held > 0,
+            "worker quota released before its backend resources"
+        );
+    }
+
+    struct ExitProbe {
+        dropped: Arc<AtomicBool>,
+        panic_on_drop: bool,
+        block: Option<mpsc::Receiver<()>>,
+    }
+    impl Backend for ExitProbe {
+        fn name(&self) -> &'static str {
+            "exit-probe"
+        }
+        fn capabilities(&self) -> Capabilities {
+            Vec::new()
+        }
+        fn collect_static(
+            &mut self,
+            context: &CollectContext,
+        ) -> Result<StaticSnapshot, ScopeError> {
+            if let Some(block) = self.block.take() {
+                let _ = block.recv_timeout(Duration::from_secs(5));
+            }
+            context.check()?;
+            let mut result = StaticSnapshot::default();
+            result.system.cpu.brand =
+                Observed::available("owned snapshot".into(), Source::Custom, Timestamp(1));
+            Ok(result)
+        }
+        fn refresh_dynamic(&mut self, _: &CollectContext) -> Result<DynamicSnapshot, ScopeError> {
+            Ok(DynamicSnapshot::default())
+        }
+    }
+    impl Drop for ExitProbe {
+        fn drop(&mut self) {
+            self.dropped.store(true, Ordering::Release);
+            assert!(!self.panic_on_drop, "synthetic teardown panic");
+        }
+    }
+    fn exit_probe(panic_on_drop: bool) -> (Hardware, Arc<AtomicBool>) {
+        let dropped = Arc::new(AtomicBool::new(false));
+        let hardware = HardwareBuilder::default()
+            .with_backend(
+                0,
+                ExitProbe {
+                    dropped: dropped.clone(),
+                    panic_on_drop,
+                    block: None,
+                },
+            )
+            .build()
+            .expect("hardware");
+        (hardware, dropped)
+    }
+    #[test]
+    fn shutdown_confirms_backend_drop_and_keeps_owned_snapshots_valid() {
+        fn send_sync<T: Send + Sync>() {}
+        send_sync::<Hardware>();
+        let (hardware, dropped) = exit_probe(false);
+        let snapshot = hardware.collect().expect("snapshot");
+        hardware.shutdown().expect("teardown complete");
+        assert!(dropped.load(Ordering::Acquire));
+        assert_eq!(
+            snapshot
+                .static_info
+                .system
+                .cpu
+                .brand
+                .value()
+                .map(String::as_str),
+            Some("owned snapshot")
+        );
+    }
+    #[test]
+    fn shutdown_before_collection_reuses_worker_capacity() {
+        for _ in 0..MAX_WORKERS * 2 {
+            let (hardware, dropped) = exit_probe(false);
+            hardware.shutdown().expect("idle shutdown");
+            assert!(dropped.load(Ordering::Acquire));
+        }
+    }
+    #[test]
+    fn shutdown_reports_unwinding_backend_destructor_panic() {
+        let (hardware, dropped) = exit_probe(true);
+        assert_eq!(
+            hardware.shutdown().expect_err("teardown panic").code,
+            ErrorCode::Panic
+        );
+        assert!(dropped.load(Ordering::Acquire));
+    }
+    #[test]
+    fn shutdown_timeout_does_not_claim_blocked_backend_has_stopped() {
+        let dropped = Arc::new(AtomicBool::new(false));
+        let (release, block) = mpsc::sync_channel(1);
+        let hardware = HardwareBuilder::new(Options {
+            timeout: Duration::from_millis(20),
+            ..Options::default()
+        })
+        .with_backend(
+            0,
+            ExitProbe {
+                dropped: dropped.clone(),
+                panic_on_drop: false,
+                block: Some(block),
+            },
+        )
+        .build()
+        .expect("hardware");
+        assert_eq!(
+            hardware.collect().expect_err("blocked collection").code,
+            ErrorCode::Timeout
+        );
+        let started = Instant::now();
+        let shutdown = hardware.shutdown();
+        let elapsed = started.elapsed();
+        let was_dropped = dropped.load(Ordering::Acquire);
+        // Release even when an assertion below fails; never leave a stuck test worker.
+        release.send(()).expect("release collection");
+        assert_eq!(
+            shutdown.expect_err("shutdown budget").code,
+            ErrorCode::Timeout
+        );
+        assert!(elapsed < Duration::from_secs(2));
+        assert!(!was_dropped, "timeout is not a teardown acknowledgement");
+        let deadline = Instant::now() + Duration::from_secs(2);
+        while !dropped.load(Ordering::Acquire) && Instant::now() < deadline {
+            std::thread::yield_now();
+        }
+        assert!(
+            dropped.load(Ordering::Acquire),
+            "backend is freed after its call returns"
+        );
+    }
+    #[test]
+    fn shutdown_waits_for_destructor_and_ordinary_drop_does_not() {
+        for explicit in [false, true] {
+            let (entered, count) = mpsc::sync_channel(1);
+            let (release, gate) = mpsc::sync_channel(1);
+            let hardware = HardwareBuilder::new(Options {
+                timeout: Duration::from_millis(20),
+                ..Options::default()
+            })
+            .with_backend(
+                0,
+                DropProbe {
+                    entered,
+                    release: gate,
+                },
+            )
+            .build()
+            .expect("hardware");
+            let started = Instant::now();
+            let outcome = if explicit {
+                hardware.shutdown()
+            } else {
+                drop(hardware);
+                Ok(())
+            };
+            let elapsed = started.elapsed();
+            let held = count
+                .recv_timeout(Duration::from_secs(2))
+                .expect("backend teardown started");
+            release.send(()).expect("release destructor");
+            assert!(held > 0);
+            assert!(elapsed < Duration::from_secs(2));
+            if explicit {
+                assert_eq!(
+                    outcome.expect_err("blocked destructor").code,
+                    ErrorCode::Timeout
+                );
+            } else {
+                outcome.expect("nonblocking Drop");
+            }
+        }
     }
 
     struct CancelAndFail(CancelToken);

@@ -1,0 +1,45 @@
+{
+  "overall": "passed",
+  "date": "2026-11-02",
+  "scope": "pre-commit working-tree native Windows validation, not native Linux/macOS acceptance",
+  "basis_commit": "50d220ed2cd072d65842a78796cbf086025cafa3",
+  "host": {
+    "os": "Windows",
+    "architecture": "AMD64"
+  },
+  "code_sha256_lf": {
+    "crates/daoseeker-scope-core/src/hardware.rs": "78cd74469e1d13df4c890d97ead18ceb470ccbeaeb808a2c711502396ace5511",
+    "crates/daoseeker-scope/src/lib.rs": "7d89dde4580c5425f8e3e3bed793b0b0a1b123353360062cb2c383d5136c87be",
+    "crates/daoseeker-scope/tests/desktop.rs": "32febbab278fd9d1bb75caf04fd62e593ca4abfff99a6c02bbdf456c947398e2"
+  },
+  "before": {
+    "failed": 1,
+    "test": "worker_quota_covers_backend_destruction",
+    "scope": "Synthetic blocked backend destructor using existing real worker ownership",
+    "log_sha256": "ffbb2591288d566f4164b14df16cdf2f7e44d612b85241d24ab54690dd088444"
+  },
+  "after": {
+    "rust_tests_including_doctests": 292,
+    "new_core_tests": 6,
+    "idle_shutdown_cycles": 32,
+    "native_minimum_read_and_shutdown": true,
+    "command": "scripts/check.ps1 -Cross",
+    "log_sha256": "0fe09af8040b96f08f15383acd1010fd73c1e693852b3e3283ad49706b72a2ba"
+  },
+  "rust_api_change": "Additive consuming Hardware::shutdown in core and facade",
+  "unchanged": [
+    "existing call signatures and ordinary Drop",
+    "C ABI 1 symbols and layouts",
+    "hardware Schema 1",
+    "public features",
+    "dependencies",
+    "MIT"
+  ],
+  "ci": "not run for this change at recording",
+  "limits": [
+    "Completion acknowledges request loop, cache and backend destruction, not OS-thread or TLS cleanup.",
+    "Timeout consumes the handle and does not kill blocked native calls or destructors.",
+    "No C ABI shutdown or shared-library unloading guarantee."
+  ],
+  "published": false
+}

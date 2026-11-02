@@ -124,6 +124,8 @@ fn desktop_minimum_real_read_and_refresh() {
                 .is_some_and(|n| n.is_finite() && (0.0..=100.0).contains(n))
         );
     }
+    hardware.shutdown().expect("desktop collector teardown");
+    assert!(snapshot.static_info.system.os.name.value().is_some());
 }
 #[cfg(feature = "serde")]
 #[test]

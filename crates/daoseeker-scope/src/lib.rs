@@ -47,6 +47,11 @@ impl Hardware {
     pub fn capabilities(&self) -> Capabilities {
         self.0.capabilities()
     }
+    /// Consumes this collector and waits for collector/backend teardown using
+    /// the configured timeout. Does not permit shared-library unloading.
+    pub fn shutdown(self) -> Result<(), ScopeError> {
+        self.0.shutdown()
+    }
     pub fn collect(&self) -> Result<Snapshot, ScopeError> {
         self.0.collect()
     }
