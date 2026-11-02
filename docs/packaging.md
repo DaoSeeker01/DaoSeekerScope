@@ -1,5 +1,7 @@
 # 打包与安装验证
 
+macOS 源码构建文件现有独立的 [Mach-O 检查](macos-binary-validation.md)，核对架构、依赖及系统版本声明。它不开放候选包入口，也不替代许可材料、最低系统或真实安装验收。
+
 Linux 候选现在记录所需符号版本；CLI 验收也清除加载器覆盖变量，增加一次 readelf 调用。SDK 原有 15 次调用不变，见[本轮验证状态](linux-runtime-validation.md)。版本声明不能替代最低系统环境实测。
 
 Windows CLI/SDK 候选验收增加了安装前 PE 检查，记录架构、直接 DLL 依赖和版本声明，并拒绝已知 MSVC 调试运行库。ZIP 格式不变；头部声明不能作为最低系统版本保证，见[验证状态](windows-pe-validation.md)。

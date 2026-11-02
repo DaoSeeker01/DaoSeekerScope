@@ -227,6 +227,9 @@ jobs:
         run: |
           cc -Wall -Wextra -Werror -std=c11 docs/research/macos_battery_probe.c -framework IOKit -framework CoreFoundation -o target/macos-battery-probe
           python scripts/macos_battery_smoke.py
+      - name: macOS Mach-O metadata versus Apple tools
+        if: runner.os == 'macOS'
+        run: python scripts/macos_macho_smoke.py
       - name: macOS collection benchmark
         if: runner.os == 'macOS'
         run: cargo bench --locked -p daoseeker-scope --bench collect > target/macos-collect-benchmark.log
@@ -280,6 +283,7 @@ jobs:
             target/macos-uptime-initial-sdk.json
             target/macos-uptime-evidence.json
             target/macos-battery-evidence.json
+            target/macos-macho-evidence.json
             target/macos-metal-probe.json
             target/macos-display-probe.json
             target/macos-display-comparison.json
