@@ -23,6 +23,8 @@ cargo doc --locked --workspace --all-features --no-deps
 
 仅修复 Linux 交付工具时，可手动启动 `desktop-contracts`，选择 `scope=linux-candidate`，执行完整 Linux 桌面与候选检查。常规 push/PR 仍运行全部任务；定向通过不代替三平台验收。
 
+仅改动共享 C 探针或 Python 验证工具时，可选择 `scope=native-probe`，运行三个桌面任务，跳过未涉及的 Rust fuzz、Miri、ASan、供应链和 Linux 容器任务；验收记录应说明跳过范围。Rust 库改动仍使用完整检查。
+
 ## 工具、Schema 与文档
 
 更改公共模型、features、C 头文件或版本前，先读[发布前契约评审](docs/v0.1-contract-review.md)。在干净提交上运行 `python scripts/check_contract.py`，独立构建本机 C/Rust 探针并检查冻结基线；需要 C11 编译器，Windows 需 PowerShell 7、MSVC 与 Windows SDK。该检查触发兼容性评审，不代替 API、行为或完整平台验证；不得只重生成基线来消除失败。
@@ -76,7 +78,7 @@ Linux 另用 fork 隔离启动阶段，并执行 128 MiB 父进程对照和父�
 
 `resident_regression` 另记录 5000 次缓存 collect/free 和 60 批合成重建的当前驻留内存。预算与采样点预先固定，超预算即失败；它只覆盖有限轮次，不能据此判断长期无泄漏。计量接口、近似误差与 16 MiB 热身后波动预算见 [ADR 0041](docs/adr/0041-resident-regression.md)。
 
-需要按持续时长检查时，运行 `python scripts/timed_soak.py --seconds 120`；支持 120–3600 秒、60 秒的整数倍，详见[定时试验](docs/timed-soak-validation.md)。每分钟的检查点用于观察，只有计划完成、预算与来源核对均通过才算验收。长时试验应固定源码；需要同时开发时，可使用独立检出目录。
+需要按持续时长检查时，运行 `python scripts/timed_soak.py --seconds 120`；支持 120–86400 秒、60 秒的整数倍，详见[定时试验](docs/timed-soak-validation.md)。每分钟的检查点用于观察，只有计划完成、预算与来源核对均通过才算验收。长时试验应固定源码；需要同时开发时，可使用独立检出目录。
 
 句柄和文件描述符另用 `python scripts/resource_regression.py` 检查，包含独立校准和故意保留资源的对照。它与内存采样的计量范围不同，见[资源检查](docs/resource-validation.md)；不能用其中一项替代另一项，也不把有限轮次结果称为长期无泄漏。
 

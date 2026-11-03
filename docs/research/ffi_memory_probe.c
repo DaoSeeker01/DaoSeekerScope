@@ -47,7 +47,7 @@ extern uint64_t scope_probe_synthetic(uint32_t profile, uint32_t refreshes);
 #if defined(DSCOPE_SYNTHETIC)
 #define USAGE "choose a workload: calibrate, resident_calibrate, synthetic, over_limit, growth_synthetic"
 #else
-#define USAGE "choose a workload: calibrate, resident_calibrate, cached, fresh, growth_cached; or soak_cached <120..3600 seconds, multiple of 60>"
+#define USAGE "choose a workload: calibrate, resident_calibrate, cached, fresh, growth_cached; or soak_cached <120..86400 seconds, multiple of 60>"
 #endif
 #if defined(_WIN32)
 #define RESIDENT_METRIC "working_set_size"
@@ -315,12 +315,12 @@ int main(int argc, char **argv) {
 #if !defined(DSCOPE_SYNTHETIC)
     if (argc == 3 && strcmp(argv[1], "soak_cached") == 0) {
         const char *digit = argv[2];
-        if (*digit == '\0' || strlen(digit) > 4) return failure(USAGE);
+        if (*digit == '\0' || strlen(digit) > 5) return failure(USAGE);
         for (; *digit; ++digit) {
             if (*digit < '0' || *digit > '9') return failure(USAGE);
             duration = duration * 10u + (unsigned)(*digit - '0');
         }
-        timed = duration >= 120 && duration <= 3600 && duration % 60 == 0;
+        timed = duration >= 120 && duration <= 86400 && duration % 60 == 0;
         if (!timed) return failure(USAGE);
     }
 #endif

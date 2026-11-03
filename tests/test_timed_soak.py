@@ -1,13 +1,16 @@
 """Timed-memory protocol fixtures; native time trials run separately."""
 
 import argparse
+import io
 import json
 from pathlib import Path
 import sys
+import subprocess
 import tempfile
+import threading
 from typing import Any
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 import timed_soak as soak
@@ -72,9 +75,48 @@ def records(system: str = "Windows", seconds: int = 120) -> list[Any]:
 
 
 class TimedSoakTests(unittest.TestCase):
+    def test_real_child_is_reaped_after_cancel_marker(self) -> None:
+        # Exercise OS process cleanup without a hardware read or a long trial.
+        native_spawn = subprocess.Popen
+        children = []
+
+        def spawn(_arguments: list[str], **kwargs: Any) -> subprocess.Popen[bytes]:
+            child = native_spawn(
+                [sys.executable, "-c", "import time; time.sleep(2)"], **kwargs
+            )
+            children.append(child)
+            return child
+
+        with (
+            tempfile.TemporaryDirectory() as directory,
+            tempfile.TemporaryFile() as output,
+            tempfile.TemporaryFile() as error,
+        ):
+            marker = Path(directory) / "cancel"
+            timer = threading.Timer(0.05, marker.touch)
+            report: dict[str, Any] = {}
+            timer.start()
+            try:
+                with patch.object(soak.subprocess, "Popen", side_effect=spawn):
+                    with self.assertRaises(soak.TrialCancelled):
+                        soak.run_trial(
+                            Path("probe"),
+                            120,
+                            output,
+                            error,
+                            report,
+                            cancel_file=marker,
+                        )
+                self.assertEqual(len(children), 1)
+                self.assertIsNotNone(children[0].poll())
+                self.assertTrue(report["probe_exit_confirmed"])
+            finally:
+                timer.cancel()
+                timer.join()
+
     def test_native_units_and_duration_plans(self) -> None:
         for system in ("Windows", "Linux", "Darwin"):
-            for seconds in (120, 600, 3600):
+            for seconds in (120, 600, 3600, 86400):
                 result = soak.analyse(records(system, seconds), seconds, system)
                 self.assertTrue(result["within_budget"])
                 self.assertEqual(result["elapsed_ns"], seconds * 10**9)
@@ -155,9 +197,136 @@ class TimedSoakTests(unittest.TestCase):
 
     def test_duration_input_is_bounded(self) -> None:
         self.assertEqual(soak.duration("3600"), 3600)
-        for value in ("0", "60", "119", "121", "3601", "-120", "abc"):
+        self.assertEqual(soak.duration("86400"), 86400)
+        for value in (
+            "0",
+            "60",
+            "119",
+            "121",
+            "3601",
+            "86401",
+            "86460",
+            "999999",
+            "-120",
+            "abc",
+        ):
             with self.assertRaises(argparse.ArgumentTypeError):
                 soak.duration(value)
+
+    def test_day_trace_fits_limit_and_requires_every_checkpoint(self) -> None:
+        value = records(seconds=86400)
+        raw = b"\n".join(json.dumps(item).encode() for item in value) + b"\n"
+        self.assertEqual(len(value), 1443)
+        self.assertLess(len(raw), soak.MAX_TRACE)
+        self.assertEqual(soak.analyse(value, 86400, "Windows")["tail_samples"], 1436)
+        with self.assertRaises(ValueError):
+            soak.analyse(value[:-1], 86400, "Windows")
+        value[721]["observation"]["resident_raw"] += soak.BUDGET
+        value[721]["observation"]["resident_bytes"] += soak.BUDGET
+        self.assertFalse(soak.analyse(value, 86400, "Windows")["within_budget"])
+
+    def test_finished_probe_has_confirmed_exit_without_termination(self) -> None:
+        child = Mock(pid=123)
+        child.wait.return_value = 0
+        report: dict[str, Any] = {"overall": "incomplete"}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "progress.json"
+            with patch.object(soak.subprocess, "Popen", return_value=child):
+                self.assertEqual(
+                    soak.run_trial(
+                        Path("probe"),
+                        120,
+                        io.BytesIO(),
+                        io.BytesIO(),
+                        report,
+                        report_path=path,
+                    ),
+                    0,
+                )
+            progress = json.loads(path.read_bytes())
+            self.assertEqual(progress["probe_pid"], 123)
+            self.assertEqual(progress["overall"], "incomplete")
+        self.assertTrue(report["probe_exit_confirmed"])
+        child.kill.assert_not_called()
+
+    def test_cancel_and_interrupt_terminate_and_confirm_exit(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            marker = Path(directory) / "stop"
+            marker.touch()
+            for requested in ("cancel", "interrupt", "already_exited"):
+                child = Mock(pid=123)
+                child.wait.side_effect = (
+                    [KeyboardInterrupt(), -9] if requested == "interrupt" else [-9]
+                )
+                if requested == "already_exited":
+                    child.kill.side_effect = PermissionError()
+                report: dict[str, Any] = {}
+                with patch.object(soak.subprocess, "Popen", return_value=child):
+                    with self.assertRaises(
+                        KeyboardInterrupt
+                        if requested == "interrupt"
+                        else soak.TrialCancelled
+                    ):
+                        soak.run_trial(
+                            Path("probe"),
+                            120,
+                            io.BytesIO(),
+                            io.BytesIO(),
+                            report,
+                            cancel_file=None if requested == "interrupt" else marker,
+                        )
+                child.kill.assert_called_once()
+                self.assertTrue(report["probe_exit_confirmed"])
+                self.assertTrue(marker.exists())
+
+    def test_deadline_and_unconfirmed_termination_are_failures(self) -> None:
+        child = Mock(pid=123)
+        child.wait.return_value = -9
+        report: dict[str, Any] = {}
+        with (
+            patch.object(soak.subprocess, "Popen", return_value=child),
+            patch.object(soak.time, "monotonic", side_effect=[0, 181]),
+        ):
+            with self.assertRaises(subprocess.TimeoutExpired):
+                soak.run_trial(Path("probe"), 120, io.BytesIO(), io.BytesIO(), report)
+        self.assertTrue(report["probe_exit_confirmed"])
+        child.kill.assert_called_once()
+        child = Mock(pid=456)
+        child.wait.side_effect = [
+            KeyboardInterrupt(),
+            subprocess.TimeoutExpired("probe", 10),
+        ]
+        report = {}
+        with patch.object(soak.subprocess, "Popen", return_value=child):
+            with self.assertRaisesRegex(ValueError, "probe_cleanup_unconfirmed"):
+                soak.run_trial(Path("probe"), 120, io.BytesIO(), io.BytesIO(), report)
+        self.assertFalse(report["probe_exit_confirmed"])
+        self.assertEqual(report["probe_pid"], 456)
+
+    def test_existing_cancel_marker_invalidates_old_pass_without_building(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "trial.json"
+            marker = Path(directory) / "stop"
+            marker.touch()
+            output.write_text('{"overall":"passed"}', encoding="utf-8")
+            with (
+                patch.object(
+                    sys,
+                    "argv",
+                    [
+                        "timed_soak",
+                        "--output",
+                        str(output),
+                        "--cancel-file",
+                        str(marker),
+                    ],
+                ),
+                patch.object(soak, "measure") as measure,
+            ):
+                with self.assertRaises(soak.TrialCancelled):
+                    soak.main()
+            measure.assert_not_called()
+            self.assertEqual(json.loads(output.read_bytes())["overall"], "cancelled")
 
     def test_failed_and_interrupted_trials_invalidate_old_pass(self) -> None:
         for error, expected in (

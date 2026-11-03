@@ -10,8 +10,10 @@ from pathlib import Path
 import platform
 import re
 import subprocess
+import sys
 import tempfile
-from typing import Any
+import time
+from typing import Any, IO
 
 import jsonschema
 
@@ -20,7 +22,12 @@ from native_smoke import check_snapshot
 
 ROOT = Path(__file__).resolve().parent.parent
 BUDGET = 16 * 1024 * 1024
-MAX_TRACE = 128 * 1024
+MAX_SECONDS = 24 * 60 * 60
+MAX_TRACE = 1024 * 1024
+
+
+class TrialCancelled(Exception):
+    """A requested stop, with checkpoints retained but no acceptance result."""
 
 
 def require(value: bool, code: str) -> None:
@@ -35,15 +42,18 @@ def duration(value: str) -> int:
         raise argparse.ArgumentTypeError(
             "duration must be an integer number of seconds"
         ) from error
-    if seconds < 120 or seconds > 3600 or seconds % 60:
+    if seconds < 120 or seconds > MAX_SECONDS or seconds % 60:
         raise argparse.ArgumentTypeError(
-            "duration must be 120..3600 seconds, in multiples of 60"
+            "duration must be 120..86400 seconds, in multiples of 60"
         )
     return seconds
 
 
 def analyse(records: list[Any], seconds: int, system: str) -> dict[str, Any]:
-    require(120 <= seconds <= 3600 and seconds % 60 == 0, "duration")
+    require(
+        type(seconds) is int and 120 <= seconds <= MAX_SECONDS and seconds % 60 == 0,
+        "duration",
+    )
     require(len(records) == seconds // 60 + 3, "record_count")
     header, complete = records[0], records[-1]
     require(isinstance(header, dict) and isinstance(complete, dict), "record_object")
@@ -178,7 +188,77 @@ def analyse(records: list[Any], seconds: int, system: str) -> dict[str, Any]:
     }
 
 
-def measure(seconds: int, report: dict[str, Any], trace_path: Path) -> None:
+def run_trial(
+    probe: Path,
+    seconds: int,
+    output: IO[bytes],
+    error: IO[bytes],
+    report: dict[str, Any],
+    *,
+    cancel_file: Path | None = None,
+    report_path: Path | None = None,
+) -> int:
+    """Supervise the directly launched probe, including cancellation and reaping."""
+    arguments = [str(probe), "soak_cached", str(seconds)]
+    deadline = time.monotonic() + seconds + 60
+    creation_flags = 0
+    if sys.platform == "win32":
+        creation_flags = subprocess.CREATE_NO_WINDOW
+    child = subprocess.Popen(
+        arguments,
+        cwd=ROOT,
+        stdin=subprocess.DEVNULL,
+        stdout=output,
+        stderr=error,
+        creationflags=creation_flags,
+    )
+    finished = False
+    try:
+        report.update(
+            probe_pid=child.pid,
+            sampling_started_at=datetime.now(timezone.utc).isoformat(),
+            cancellation_poll_seconds=1,
+            cleanup_wait_seconds=10,
+        )
+        if report_path is not None:
+            report_path.write_text(
+                json.dumps(report, indent=2) + "\n", encoding="utf-8"
+            )
+        while True:
+            if cancel_file is not None and cancel_file.exists():
+                raise TrialCancelled()
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise subprocess.TimeoutExpired(arguments, seconds + 60)
+            try:
+                code = child.wait(timeout=min(1, remaining))
+                finished = True
+                report.update(probe_exit_code=code, probe_exit_confirmed=True)
+                return code
+            except subprocess.TimeoutExpired:
+                continue
+    finally:
+        if not finished:
+            try:
+                child.kill()
+            except OSError:
+                pass  # It may already have exited; wait must still confirm that.
+            try:
+                code = child.wait(timeout=10)
+                report.update(probe_exit_code=code, probe_exit_confirmed=True)
+            except (OSError, subprocess.TimeoutExpired):
+                report["probe_exit_confirmed"] = False
+                raise ValueError("timed_soak: probe_cleanup_unconfirmed") from None
+
+
+def measure(
+    seconds: int,
+    report: dict[str, Any],
+    trace_path: Path,
+    *,
+    cancel_file: Path | None = None,
+    report_path: Path | None = None,
+) -> None:
     initial = peak.source_state()
     require(not initial[1], "dirty_checkout")
     system = platform.system()
@@ -240,7 +320,7 @@ def measure(seconds: int, report: dict[str, Any], trace_path: Path) -> None:
             "sensitive": False,
             "timeout_ms": 2000,
         },
-        limits="requested 100 ms between completed calls; scheduling and OS residency affect samples; not hour/day or leak proof",
+        limits="requested 100 ms between completed calls; minute samples do not prove continuous stability or absence of leaks",
     )
     snapshot = json.loads(peak.run([str(cli), "--json"], 15))
     schema = json.loads((ROOT / "docs/schema/snapshot-v1.schema.json").read_bytes())
@@ -258,7 +338,18 @@ def measure(seconds: int, report: dict[str, Any], trace_path: Path) -> None:
     report["calibration_analysis"] = peak.resident_analysis(
         calibration, "resident_calibrate", system
     )
-    invalid_arguments = ("0", "60", "119", "121", "3601", "-120", "abc", "--direct")
+    invalid_arguments = (
+        "0",
+        "60",
+        "119",
+        "121",
+        "86401",
+        "86460",
+        "999999",
+        "-120",
+        "abc",
+        "--direct",
+    )
     for invalid in invalid_arguments:
         result = subprocess.run(
             [str(probe), "soak_cached", invalid],
@@ -270,17 +361,18 @@ def measure(seconds: int, report: dict[str, Any], trace_path: Path) -> None:
             result.returncode != 0 and not result.stdout, "invalid_duration_accepted"
         )
     report["invalid_duration_cases"] = len(invalid_arguments)
-    # The C stream is bounded to 63 records; retain complete checkpoints on failure.
+    # At most 1443 records for one day; flushed minute checkpoints remain readable.
     with trace_path.open("w+b") as output, tempfile.TemporaryFile() as error:
         try:
-            result = subprocess.run(
-                [str(probe), "soak_cached", str(seconds)],
-                cwd=ROOT,
-                stdout=output,
-                stderr=error,
-                timeout=seconds + 60,
+            code = run_trial(
+                probe,
+                seconds,
+                output,
+                error,
+                report,
+                cancel_file=cancel_file,
+                report_path=report_path,
             )
-            report["probe_exit_code"] = result.returncode
         finally:
             output.seek(0)
             raw = output.read(MAX_TRACE + 1)
@@ -295,7 +387,7 @@ def measure(seconds: int, report: dict[str, Any], trace_path: Path) -> None:
                 if re.fullmatch(rb"ffi_memory_probe: [a-z_]+\n", diagnostic)
                 else ("redacted_non_probe_diagnostic" if diagnostic else None)
             )
-    require(result.returncode == 0, "probe_failed")
+    require(code == 0, "probe_failed")
     records = [json.loads(line) for line in raw.splitlines()]
     report["analysis"] = analyse(records, seconds, system)
     require(report["analysis"]["within_budget"], "resident_budget_exceeded")
@@ -312,18 +404,38 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seconds", type=duration, default=120)
     parser.add_argument(
+        "--cancel-file",
+        type=Path,
+        help="stop sampling when this marker exists; the marker is not removed",
+    )
+    parser.add_argument(
         "--output", type=Path, default=ROOT / "target/timed-soak-evidence.json"
     )
     options = parser.parse_args()
-    report: dict[str, Any] = {"format": 1, "overall": "incomplete"}
+    report: dict[str, Any] = {
+        "format": 1,
+        "overall": "incomplete",
+        "duration_seconds": options.seconds,
+    }
     options.output.parent.mkdir(parents=True, exist_ok=True)
     trace_path = options.output.with_suffix(".ndjson")
     require(trace_path != options.output, "report_trace_conflict")
     trace_path.write_bytes(b"")
     options.output.write_bytes((json.dumps(report) + "\n").encode())
     try:
-        measure(options.seconds, report, trace_path)
+        if options.cancel_file is not None and options.cancel_file.exists():
+            raise TrialCancelled()
+        measure(
+            options.seconds,
+            report,
+            trace_path,
+            cancel_file=options.cancel_file,
+            report_path=options.output,
+        )
         report["overall"] = "passed"
+    except TrialCancelled:
+        report["overall"] = "cancelled"
+        raise
     except Exception:
         report["overall"] = "failed"
         raise
@@ -334,4 +446,17 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except TrialCancelled:
+        print(
+            "timed_soak: cancelled; checkpoints are not an acceptance result",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
+    except KeyboardInterrupt:
+        print(
+            "timed_soak: interrupted; checkpoints are not an acceptance result",
+            file=sys.stderr,
+        )
+        raise SystemExit(130)
