@@ -1,5 +1,15 @@
 # Linux hwmon 温度验证
 
+## 2026-11-04 AMD CPU CCD 温度
+
+支持读取 Linux k10temp 驱动暴露的 CCD 温度（通道 3 至 18）。每次刷新只返回当前可枚举的通道。通道 1 仍是 Tctl，不作为温度读取。权限拒绝或无效读数只影响对应温度，标签沿用默认脱敏。
+
+Windows 本机通过 Linux 后端 68 项 Rust 测试、6 项 Python 守卫，以及 fmt、Linux x64 交叉 Clippy、Ruff、mypy 和 Schema 检查。提交 `3ff12a4` 的 [CI 41726098037](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41726098037)通过 Linux 容器任务。非 root、只读、断网环境中的 90 项合成观察全部通过，含新增的稀疏通道、错误隔离、恢复和移除四项。探针和容器均以 0 退出，报告记录了源码、探针与锁文件校验值。[原始报告](evidence/linux-k10temp-41726098037.json)
+
+同一轮 Ubuntu 桌面任务因冻结契约仍引用旧 Schema 哈希而失败（schema_drift）。修复前逐项比较两版 Schema，确认只有温度字段的说明变化，随后同步基线哈希。本机完整 Python 门禁 335 项中 329 项通过、6 项跳过。
+
+尚未在实体 AMD 设备上验证 CCD 温度。此次改变的是已有字段的可用性，Rust 类型、C ABI 1、JSON Schema 1 的结构、feature 和依赖许可证保持原样。
+
 ## 2026-11-02 单通道传感器增量
 
 新增 JC42、SPD5118 与 LM75/LM75A/LM75B，仅将 `temp1_input` 的毫摄氏度整数转换为摄氏度；其他通道返回 Unsupported，不打开对应输入。沿用 enable/fault、字段隔离、动态重读、静态缓存、匿名标签及枚举/输出上限。不读取 EEPROM、SPD、标签、阈值或告警寄存器，不扫描总线、加载模块或写控制项。传感器可能由内核缓存，不推断物理测点或内存条数量。接口依据见[能力矩阵](adr/0005-platform-support-matrix.md)。

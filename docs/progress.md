@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-04 Linux AMD CCD 温度已接入 k10temp。Linux 后端本机 68 项 Rust 测试通过，原生 Linux 非 root 容器 90 项观察通过，新增 4 项覆盖稀疏通道、错误隔离、恢复和移除。实体 AMD CCD 温度待验。[hwmon 验证](hwmon-validation.md)
+
 2026-11-04 C ABI 饱和验证。真实 C 调用持有 64 个缓冲区，验证第 65 次拒绝、释放后恢复和退役 token 拒绝，并逐字节比较仍持有的 63 个缓冲区。本机及三平台定向 CI 通过。[原生结果](evidence/buffer-limit-ci-41717899173.json)
 
 2026-11-04 扩展 fuzz 验证。现有 12 个目标在四组 Linux CI 任务中各运行 301 秒，共执行 929160798 次。四组全部通过，另外五项任务按运行范围跳过。逐目标次数、实际随机种子和日志哈希已归档。[扩展 fuzz 记录](evidence/extended-fuzz-41714025797.json)
