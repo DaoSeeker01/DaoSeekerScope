@@ -1,5 +1,7 @@
 # Fuzz 目标
 
+需要扩大测试时，在 GitHub Actions 手动运行 `desktop-contracts`，选择 `fuzz-extended`。12 个目标分四组并行运行，每个目标配置 300 秒。普通 push 和 PR 使用 60 秒检查。每组保存逐目标日志及失败复现输入，验收时核对完成标记、实际执行时长和次数。输入长度与内存门限沿用普通检查。单次输入与整个测试的时间设置参见 [libFuzzer 参数说明](https://llvm.org/docs/LibFuzzer.html#options)。
+
 2026-10-27 v0.1 审计回归：[最终 CI 40423886083](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40423886083)12 个现有目标各至少 60 秒，4 项 harness 通过；未修改目标或种子。[验收索引](../docs/evidence/v01-audit-ci-40423886083.json)保留实际次数与日志哈希，早期取消的运行不作为通过证据。
 
 2026-10-26 Linux SDK 回归：[CI 40304816716](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40304816716)十二个既有目标各至少 60 秒，4 项 harness 通过。未改目标、解析器或种子；实际次数与日志哈希见[索引](../docs/evidence/linux-ffi-sdk-ci-40304816716.json)。

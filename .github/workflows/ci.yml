@@ -8,7 +8,7 @@ on:
         description: Validation scope (normal pushes always run all jobs)
         type: choice
         default: all
-        options: [all, linux-candidate, native-probe]
+        options: [all, linux-candidate, native-probe, fuzz-extended]
 permissions:
   contents: read
 concurrency:
@@ -19,6 +19,7 @@ env:
   CARGO_HTTP_MULTIPLEXING: "false"
 jobs:
   desktop:
+    if: inputs.scope != 'fuzz-extended'
     timeout-minutes: 45
     strategy:
       fail-fast: false
@@ -305,7 +306,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
   linux-container:
-    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe'
+    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe' && inputs.scope != 'fuzz-extended'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -347,7 +348,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
   supply-chain:
-    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe'
+    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe' && inputs.scope != 'fuzz-extended'
     timeout-minutes: 20
     runs-on: ubuntu-24.04
     steps:
@@ -358,7 +359,14 @@ jobs:
   fuzz-smoke:
     if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe'
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    name: ${{ matrix.group == 'all' && 'fuzz-smoke' || format('fuzz-extended ({0})', matrix.group) }}
+    timeout-minutes: ${{ inputs.scope == 'fuzz-extended' && 35 || 20 }}
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ${{ fromJSON(inputs.scope == 'fuzz-extended' && '["interfaces","procfs","sysfs","binary-layouts"]' || '["all"]') }}
+    env:
+      FUZZ_SECONDS: ${{ inputs.scope == 'fuzz-extended' && '300' || '60' }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
       - run: rustup toolchain install nightly-2026-10-08 --profile minimal
@@ -367,67 +375,79 @@ jobs:
       - run: cargo +nightly-2026-10-08 check --locked --manifest-path fuzz/Cargo.toml
       - name: Fuzz harness observation regression
         run: cargo +nightly-2026-10-08 test --locked --manifest-path fuzz/Cargo.toml --lib
-      - run: cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time=60 -max_len=1048577 -rss_limit_mb=512
-      - run: cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512
-      - run: cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time=60 -max_len=8192 -rss_limit_mb=512
+      - run: mkdir -p target/procfs-fuzz
+      - name: Fuzz snapshot_json
+        if: matrix.group == 'all' || matrix.group == 'interfaces'
+        run: |
+          set -o pipefail
+          cargo +nightly-2026-10-08 fuzz run snapshot_json -- -max_total_time="$FUZZ_SECONDS" -max_len=1048577 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/snapshot_json.log
+      - name: Fuzz dmi_text
+        if: matrix.group == 'all' || matrix.group == 'interfaces'
+        run: |
+          set -o pipefail
+          cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time="$FUZZ_SECONDS" -max_len=8192 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/dmi_text.log
+      - name: Fuzz cli_args
+        if: matrix.group == 'all' || matrix.group == 'interfaces'
+        run: |
+          set -o pipefail
+          cargo +nightly-2026-10-08 fuzz run cli_args -- -max_total_time="$FUZZ_SECONDS" -max_len=8192 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/cli_args.log
       - name: Fuzz CPU state and bounded stat parsing
+        if: matrix.group == 'all' || matrix.group == 'procfs'
         run: |
           set -o pipefail
-          mkdir -p target/procfs-fuzz
-          cargo +nightly-2026-10-08 fuzz run cpu_stat -- -seed=20261010 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/cpu_stat.log
+          cargo +nightly-2026-10-08 fuzz run cpu_stat -- -seed=20261010 -max_total_time="$FUZZ_SECONDS" -max_len=8192 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/cpu_stat.log
       - name: Fuzz meminfo parsing and field isolation
+        if: matrix.group == 'all' || matrix.group == 'procfs'
         run: |
           set -o pipefail
-          cargo +nightly-2026-10-08 fuzz run meminfo -- -seed=20261010 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/meminfo.log
+          cargo +nightly-2026-10-08 fuzz run meminfo -- -seed=20261010 -max_total_time="$FUZZ_SECONDS" -max_len=8192 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/meminfo.log
       - name: Fuzz uptime parsing and numeric boundaries
+        if: matrix.group == 'all' || matrix.group == 'procfs'
         run: |
           set -o pipefail
-          cargo +nightly-2026-10-08 fuzz run uptime -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/uptime.log
+          cargo +nightly-2026-10-08 fuzz run uptime -- -seed=20261010 -max_total_time="$FUZZ_SECONDS" -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/uptime.log
       - name: Fuzz power supply attribute boundaries
+        if: matrix.group == 'all' || matrix.group == 'sysfs'
         run: |
           set -o pipefail
-          cargo +nightly-2026-10-08 fuzz run power_supply -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/power_supply.log
+          cargo +nightly-2026-10-08 fuzz run power_supply -- -seed=20261010 -max_total_time="$FUZZ_SECONDS" -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/power_supply.log
       - name: Fuzz bounded hwmon millidegrees
+        if: matrix.group == 'all' || matrix.group == 'sysfs'
         run: |
           set -o pipefail
-          cargo +nightly-2026-10-08 fuzz run hwmon_temperature -- -seed=20261010 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/hwmon_temperature.log
+          cargo +nightly-2026-10-08 fuzz run hwmon_temperature -- -seed=20261010 -max_total_time="$FUZZ_SECONDS" -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/hwmon_temperature.log
       - name: Fuzz bounded network counters and privacy
+        if: matrix.group == 'all' || matrix.group == 'binary-layouts'
         run: |
           set -o pipefail
-          cargo +nightly-2026-10-08 fuzz run network_dev -- -seed=20261011 -max_total_time=60 -max_len=524289 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/network_dev.log
+          cargo +nightly-2026-10-08 fuzz run network_dev -- -seed=20261011 -max_total_time="$FUZZ_SECONDS" -max_len=524289 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/network_dev.log
       - name: Fuzz Darwin routing message boundaries
+        if: matrix.group == 'all' || matrix.group == 'binary-layouts'
         run: |
           set -o pipefail
-          cargo +nightly-2026-10-08 fuzz run macos_network -- -seed=20261011 -max_total_time=60 -max_len=524289 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/macos_network.log
+          cargo +nightly-2026-10-08 fuzz run macos_network -- -seed=20261011 -max_total_time="$FUZZ_SECONDS" -max_len=524289 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/macos_network.log
       - name: Fuzz checked block sector conversion
+        if: matrix.group == 'all' || matrix.group == 'sysfs'
         run: |
           set -o pipefail
-          cargo +nightly-2026-10-08 fuzz run storage_capacity -- -seed=20261012 -max_total_time=60 -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/storage_capacity.log
+          cargo +nightly-2026-10-08 fuzz run storage_capacity -- -seed=20261012 -max_total_time="$FUZZ_SECONDS" -max_len=512 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/storage_capacity.log
       - name: Fuzz bounded Windows processor group topology
+        if: matrix.group == 'all' || matrix.group == 'binary-layouts'
         run: |
           set -o pipefail
-          cargo +nightly-2026-10-08 fuzz run windows_cpu_groups -- -seed=20261024 -max_total_time=60 -max_len=1025 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/windows_cpu_groups.log
-      - name: Preserve procfs fuzz logs and failure reproducers
-        # Includes hwmon temperature parsing alongside procfs/power_supply.
+          cargo +nightly-2026-10-08 fuzz run windows_cpu_groups -- -seed=20261024 -max_total_time="$FUZZ_SECONDS" -max_len=1025 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/windows_cpu_groups.log
+      - name: Preserve fuzz logs and failure reproducers
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
-          name: procfs-fuzz-evidence
+          name: ${{ matrix.group == 'all' && 'procfs-fuzz-evidence' || format('extended-fuzz-{0}', matrix.group) }}
           path: |
             target/procfs-fuzz/*.log
-            fuzz/artifacts/cpu_stat/
-            fuzz/artifacts/meminfo/
-            fuzz/artifacts/uptime/
-            fuzz/artifacts/power_supply/
-            fuzz/artifacts/hwmon_temperature/
-            fuzz/artifacts/network_dev/
-            fuzz/artifacts/macos_network/
-            fuzz/artifacts/storage_capacity/
-            fuzz/artifacts/windows_cpu_groups/
+            fuzz/artifacts/
           if-no-files-found: ignore
           retention-days: 14
   miri:
-    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe'
+    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe' && inputs.scope != 'fuzz-extended'
     timeout-minutes: 20
     runs-on: ubuntu-24.04
     steps:
@@ -435,7 +455,7 @@ jobs:
       - run: rustup toolchain install nightly-2026-10-08 --profile minimal --component miri --component rust-src
       - run: cargo +nightly-2026-10-08 miri test --locked -p daoseeker-scope-ffi --target x86_64-unknown-linux-gnu memory_contracts -- --test-threads=1
   ffi-asan:
-    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe'
+    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe' && inputs.scope != 'fuzz-extended'
     timeout-minutes: 25
     runs-on: ubuntu-24.04
     env:
