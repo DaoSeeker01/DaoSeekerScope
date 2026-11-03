@@ -75,6 +75,6 @@ JSON v1：对象新增字段可向前兼容（未知字段忽略），新增枚�
 
 开发版Linux电池扩展：原Unsupported类别现在由LinuxBackend提供Partial、SourceSysfs的有界动态power_supply枚举。完整可读视图无Battery是Available空集合；缺路径、分类不完整/受限、数值错误或超限各按观察返回。仅Mains聚合提供AC状态，没有Mains不可推断false；不采集电池ID，不保证索引跨热插拔稳定。旧消费者应继续检查集合及字段Availability，不能把新空集合当作真实电池字段成功。公共类型/签名/feature集合、ABI1/Schema1和锁不变，仅增加Schema描述元数据；尚未发布。30项内核权限/合成观测与七目标短fuzz已验，真实Linux电池与发行性能仍待独立验证，见[报告](battery-validation.md)。
 
-开发版Linux传感器扩展：sensors从Unsupported转为Partial/SourceHwmon。调用方仍需逐项检查温度状态，完整集合Available并不表示每个温度Available；未知单位/驱动和相对Tctl保持Unsupported，默认标签Restricted/PrivacyRedacted。仅coretemp与k10temp的Tdie路由，索引不保证跨热插拔稳定；不提供完整hwmon或主板校正能力。Rust模型形状、签名、依赖、feature、ABI1/Schema1不变，仅增加Schema description。实测与未验证范围见[hwmon验收](hwmon-validation.md)。
+开发版Linux传感器扩展：sensors从Unsupported转为Partial/SourceHwmon。调用方仍需逐项检查温度状态，完整集合Available并不表示每个温度Available；未知单位/驱动和相对Tctl保持Unsupported，默认标签Restricted/PrivacyRedacted。支持的驱动和通道见[能力矩阵](adr/0005-platform-support-matrix.md)。索引在热插拔后可能变化，部分 hwmon 通道和主板校正功能暂未覆盖。Rust模型形状、签名、依赖、feature、ABI1/Schema1不变，仅增加Schema description。实测与未验证范围见[hwmon验收](hwmon-validation.md)。
 
 2026-10-11开发增量：NVMe hwmon通道1..9加入现有路由；独立通道零Kelvin返回NotPresent，Composite零Kelvin为InvalidData。Composite可为设备计算值，SensorInfo说明相应修正，Schema只改description；默认不采集磁盘标识，存储集合仍Unsupported。无版本/feature/依赖/许可证变化，非发行制品；[独立验收](nvme-temperature-validation.md)。

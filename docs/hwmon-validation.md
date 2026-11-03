@@ -61,4 +61,4 @@ hwmon容器配置实际核验UID/GID65534、只读rootfs/挂载、断网、cap-d
 
 ## 未验证与下一步
 
-未知驱动、k10temp Tctl/Tccd、热敏电阻校正、风扇/电压/阈值/告警结构、稳定设备标识、Windows/macOS传感器仍不支持。未做实机温度计比对、更多安全策略、长期fuzz、分配profiling、新benchmark或打包发布。先完成本轮CI与证据归档，再逐项扩展有资料和设备证据的驱动路由。
+当时未支持的能力包括未知驱动、k10temp Tctl/Tccd、热敏电阻校正、风扇/电压/阈值/告警结构、稳定设备标识、Windows/macOS传感器仍不支持。未做实机温度计比对、更多安全策略、长期fuzz、分配profiling、新benchmark或打包发布。先完成本轮CI与证据归档，再逐项扩展有资料和设备证据的驱动路由。

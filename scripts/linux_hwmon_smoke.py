@@ -25,7 +25,7 @@ DENIED: Expectation = ("restricted", "permission_denied", None)
 UNREADY: Expectation = ("unavailable", "temporarily_unavailable", None)
 UNSUPPORTED: Expectation = ("unsupported", "not_supported", None)
 PRIVATE = "Synthetic-hwmon-private-label-must-not-be-read"
-SAMPLE_COUNT = 86
+SAMPLE_COUNT = 90
 
 
 def check(item: dict[str, Any], expected: Expectation) -> None:
@@ -186,7 +186,30 @@ def observe(
     sample("unknown_driver", [UNSUPPORTED])
     write("name", b"k10temp")
     write("temp2_input", b"-1250")
-    sample("k10_routes", [UNSUPPORTED, ("available", None, -1.25)])
+    tdie: Expectation = ("available", None, -1.25)
+    sample("k10_routes", [UNSUPPORTED, tdie])
+    ccd1: Expectation = ("available", None, 42.125)
+    ccd8: Expectation = ("available", None, 47.875)
+    ccd16: Expectation = ("available", None, 51.0)
+    write("temp3_input", b"42125")
+    write("temp10_input", b"47875")
+    write("temp18_input", b"51000")
+    mkfifo(root / "hwmon0/temp19_input", 0o644)
+    sample("k10_sparse_ccds", [UNSUPPORTED, tdie, ccd1, ccd8, ccd16, UNSUPPORTED])
+    write("temp3_input", b"42125", 0)
+    write("temp10_input", b"NaN")
+    sample(
+        "k10_ccd_errors_isolated",
+        [UNSUPPORTED, tdie, DENIED, INVALID, ccd16, UNSUPPORTED],
+    )
+    write("temp3_input", b"42500")
+    write("temp10_input", b"47875")
+    ccd1 = ("available", None, 42.5)
+    sample("k10_ccd_recovery", [UNSUPPORTED, tdie, ccd1, ccd8, ccd16, UNSUPPORTED])
+    (root / "hwmon0/temp10_input").unlink()
+    sample("k10_ccd_removed", [UNSUPPORTED, tdie, ccd1, ccd16, UNSUPPORTED])
+    for index in (3, 18, 19):
+        (root / f"hwmon0/temp{index}_input").unlink()
     write("name", b"coretemp")
     write("temp2_input", b"NaN")
     sample("name_recovery_bad_channel_isolated", [good, INVALID])

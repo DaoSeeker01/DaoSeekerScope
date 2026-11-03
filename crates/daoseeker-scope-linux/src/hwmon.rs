@@ -83,7 +83,8 @@ fn temperature(bytes: &[u8], at: Timestamp) -> Observed<f64> {
 }
 fn routed(driver: &str, index: usize) -> bool {
     driver == "coretemp"
-        || (driver == "k10temp" && index == 2)
+        // Tdie is channel 2, followed by up to 16 CCD temperatures.
+        || (driver == "k10temp" && (2..=18).contains(&index))
         || (driver == "nvme" && (1..=9).contains(&index))
         || (driver == "amdgpu" && (1..=3).contains(&index))
         || (matches!(driver, "jc42" | "spd5118" | "lm75" | "lm75a" | "lm75b") && index == 1)
@@ -425,6 +426,14 @@ mod tests {
                 Some(&30.0)
             );
         }
+    }
+    #[test]
+    fn k10temp_routes_only_tdie_and_ccd_channels() {
+        assert!(!routed("k10temp", 1), "Tctl is a control value");
+        for channel in 2..=18 {
+            assert!(routed("k10temp", channel), "channel {channel}");
+        }
+        assert!(!routed("k10temp", 19));
     }
     #[test]
     fn route_units_isolate_bad_fields_and_refresh_members_without_static_reread() {
