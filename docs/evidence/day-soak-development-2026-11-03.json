@@ -1,7 +1,7 @@
 {
   "recorded_at": "2026-11-03T16:01:43.632338+00:00",
   "source_commit": "9536d546500802452eca6c35cf0bf4e37026af3c",
-  "development_validation": "local and Windows/Linux native checks passed; macOS retry pending",
+  "development_validation": "local and native Windows/Linux/macOS checks passed; day trial remains incomplete",
   "python_tests": {
     "total": 334,
     "passed": 328,
@@ -605,6 +605,157 @@
         },
         "checked_at": "2026-11-03T15:49:50.781934+00:00"
       }
+    },
+    "macos_ci_120": {
+      "original_report_sha256": "a2ed1bf235d71ee86d1e201bb042891d9ebcd2d7df922ac1b77204dfab531784",
+      "report": {
+        "format": 1,
+        "overall": "passed",
+        "duration_seconds": 120,
+        "source_before": {
+          "revision": "9536d546500802452eca6c35cf0bf4e37026af3c",
+          "status": ""
+        },
+        "system": "Darwin",
+        "os_release": "25.6.0",
+        "target": "aarch64-apple-darwin",
+        "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: aarch64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+        "c_compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "binary_sha256": {
+          "ffi-memory-probe": "a84df8547aa30f11cee6c88ce3b7b0fbfd2c5116fc50eba83f45d0084bb4b252",
+          "libdaoseeker_scope_ffi.dylib": "01826c1db7b38e6559e33e6171ac2a39fff1c5c080e98c3e36d57a5abc1f6933",
+          "dscope": "4bc67037dad74bccf059d312683c84d22a2fa2c58191a797bcc11b088af811dc"
+        },
+        "profile": "release; default serde",
+        "options": {
+          "default_cached_collector": true,
+          "sensitive": false,
+          "timeout_ms": 2000
+        },
+        "limits": "requested 100 ms between completed calls; minute samples do not prove continuous stability or absence of leaks",
+        "environment": {
+          "cpu": {
+            "value": "Apple M1 (Virtual)",
+            "availability": "available",
+            "source": "sysinfo",
+            "observed_at": 1793722203529,
+            "reason": null
+          },
+          "memory": {
+            "value": 7516192768,
+            "availability": "available",
+            "source": "sysctl",
+            "observed_at": 1793722203546,
+            "reason": null
+          },
+          "os": {
+            "name": {
+              "value": "Darwin",
+              "availability": "available",
+              "source": "sysinfo",
+              "observed_at": 1793722203529,
+              "reason": null
+            },
+            "version": {
+              "value": "26.6.2",
+              "availability": "available",
+              "source": "sysinfo",
+              "observed_at": 1793722203529,
+              "reason": null
+            },
+            "kernel_version": {
+              "value": "25.6.0",
+              "availability": "available",
+              "source": "sysinfo",
+              "observed_at": 1793722203529,
+              "reason": null
+            }
+          }
+        },
+        "snapshot_schema_and_privacy": true,
+        "calibration": {
+          "format": 2,
+          "mode": "resident_calibrate",
+          "launch": {
+            "strategy": "direct",
+            "launcher_pid": 8269,
+            "measurement_pid": 8269,
+            "parent_death_signal": 0
+          },
+          "resident_metric": "mach_task_basic_resident",
+          "resident_raw_unit": "bytes",
+          "resident_multiplier": 1,
+          "metric": "ru_maxrss",
+          "raw_unit": "bytes",
+          "multiplier": 1,
+          "pressure_bytes": 67108864,
+          "samples": [
+            {
+              "phase": "baseline",
+              "calls": 0,
+              "peak_raw": 5767168,
+              "peak_bytes": 5767168,
+              "elapsed_ns": 0,
+              "max_json_bytes": 0,
+              "resident_raw": 5750784,
+              "resident_bytes": 5750784
+            },
+            {
+              "phase": "touched",
+              "calls": 0,
+              "peak_raw": 72892416,
+              "peak_bytes": 72892416,
+              "elapsed_ns": 0,
+              "max_json_bytes": 0,
+              "resident_raw": 72892416,
+              "resident_bytes": 72892416
+            },
+            {
+              "phase": "freed",
+              "calls": 0,
+              "peak_raw": 72892416,
+              "peak_bytes": 72892416,
+              "elapsed_ns": 0,
+              "max_json_bytes": 0,
+              "resident_raw": 72892416,
+              "resident_bytes": 72892416
+            }
+          ]
+        },
+        "calibration_analysis": {
+          "calibration_growth_bytes": 67141632,
+          "passed": true
+        },
+        "invalid_duration_cases": 10,
+        "probe_pid": 8280,
+        "sampling_started_at": "2026-11-03T16:10:03.688465+00:00",
+        "cancellation_poll_seconds": 1,
+        "cleanup_wait_seconds": 10,
+        "probe_exit_code": 0,
+        "probe_exit_confirmed": true,
+        "trace_utf8": "{\"record\":\"header\",\"format\":1,\"mode\":\"soak_cached\",\"launch\":{\"strategy\":\"direct\",\"launcher_pid\":8280,\"measurement_pid\":8280,\"parent_death_signal\":0},\"duration_seconds\":120,\"checkpoint_seconds\":60,\"call_interval_ms\":100,\"warmup_seconds\":60,\"tail_budget_bytes\":16777216,\"resident_metric\":\"mach_task_basic_resident\",\"resident_raw_unit\":\"bytes\",\"resident_multiplier\":1,\"metric\":\"ru_maxrss\",\"raw_unit\":\"bytes\",\"multiplier\":1}\n{\"record\":\"sample\",\"ordinal\":0,\"observation\":{\"phase\":\"baseline\",\"calls\":0,\"peak_raw\":5783552,\"peak_bytes\":5783552,\"elapsed_ns\":0,\"max_json_bytes\":0,\"resident_raw\":5767168,\"resident_bytes\":5767168}}\n{\"record\":\"sample\",\"ordinal\":1,\"observation\":{\"phase\":\"collected\",\"calls\":337,\"peak_raw\":10895360,\"peak_bytes\":10895360,\"elapsed_ns\":60132965000,\"max_json_bytes\":11687,\"resident_raw\":10878976,\"resident_bytes\":10878976}}\n{\"record\":\"sample\",\"ordinal\":2,\"observation\":{\"phase\":\"collected\",\"calls\":653,\"peak_raw\":10895360,\"peak_bytes\":10895360,\"elapsed_ns\":120015025999,\"max_json_bytes\":11687,\"resident_raw\":9125888,\"resident_bytes\":9125888}}\n{\"record\":\"complete\",\"calls\":653,\"samples\":3}\n",
+        "trace_sha256": "2a6c0fdaf5acb28eb8b19179a05b70542de3b3c8eea72125217ec62d84072e99",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "probe_error": null,
+        "analysis": {
+          "within_budget": true,
+          "budget_bytes": 16777216,
+          "tail_samples": 2,
+          "tail_min_bytes": 9125888,
+          "tail_max_bytes": 10878976,
+          "tail_range_bytes": 1753088,
+          "net_change_bytes": -1753088,
+          "calls": 653,
+          "elapsed_ns": 120015025999,
+          "max_json_bytes": 11687,
+          "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+        },
+        "source_after": {
+          "revision": "9536d546500802452eca6c35cf0bf4e37026af3c",
+          "status": ""
+        },
+        "checked_at": "2026-11-03T16:12:04.032933+00:00"
+      }
     }
   },
   "ci": {
@@ -619,7 +770,7 @@
       "reason": "The job was not acquired by Runner of type hosted even after multiple attempts",
       "capacity_notice": "GitHub reported capacity constraints on macOS arm64 runners"
     },
-    "retry": "only macOS job requested; not yet accepted",
+    "retry": "only macOS job rerun; successful on attempt 2",
     "skipped": [
       "fuzz-smoke",
       "miri",
@@ -628,15 +779,15 @@
       "supply-chain"
     ],
     "latest_observation": {
-      "observed_at": "2026-11-03T16:03:57.764871+00:00",
+      "observed_at": "2026-11-03T16:17:38.403707+00:00",
       "attempt": 2,
-      "status": "queued",
-      "conclusion": "",
+      "status": "completed",
+      "conclusion": "success",
       "jobs": [
         {
           "name": "desktop (macos-latest)",
-          "status": "queued",
-          "conclusion": ""
+          "status": "completed",
+          "conclusion": "success"
         },
         {
           "name": "ffi-asan",
@@ -746,5 +897,6 @@
     "gh workflow run ci.yml --ref main -f scope=native-probe",
     "gh run rerun 41666171040 --job 126021976481"
   ],
-  "public_crates_manifests_and_c_header_unchanged_from_previous_delivery": true
+  "public_crates_manifests_and_c_header_unchanged_from_previous_delivery": true,
+  "updated_at": "2026-11-03T16:17:38.403707+00:00"
 }

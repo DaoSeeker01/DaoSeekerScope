@@ -49,7 +49,7 @@ CI 各八包独立 Rust 测试为 Windows 269、Linux 261、macOS 266，Python �
 
 提交 `9536d54` 的一天时长、取消、中断、超时和退出确认共 14 项定向测试通过；本机 Python 334 项中 328 通过、6 跳过。两分钟完整试验完成 1090 次采集/释放，热身后两个采样点的驻留范围为 192512 字节，符合原定预算。取消入口返回 2、确认探针退出并保留两条初始记录，没有完成标记。
 
-[CI 41666171040](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41666171040)的 Windows/Linux 桌面任务通过，两分钟试验分别完成 1157/1191 次调用。macOS 首次未取得 runner，GitHub 报告 ARM64 容量不足，已单独重试；目前不能写作三平台通过。本次定向检查跳过五项未涉及的 Rust/容器任务。
+[CI 41666171040](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41666171040)的 Windows/Linux/macOS 桌面任务通过，两分钟试验分别完成 1157/1191/653 次调用。macOS 首次未取得 runner，GitHub 报告 ARM64 容量不足；仅重试该作业后通过，初次取消记录保留。本次定向检查为 3 项通过、5 项未涉及的 Rust/容器任务跳过。
 
 同一提交的 Windows 一天试验已在独立冻结目录启动。启动记录保留来源、二进制哈希和一个完整的分钟检查点，**不是一天试验结果**。只有原始报告完成并通过全部检查后，才能另行验收；短测、取消和启动记录见[本轮数据](evidence/day-soak-development-2026-11-03.json)。
 
