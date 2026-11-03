@@ -1,0 +1,186 @@
+{
+  "report_version": 1,
+  "date": "2026-11-04",
+  "overall": "passed",
+  "source_commit": "ba239baad271936152e079e659f083af3c159e8c",
+  "run_id": 41714025797,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41714025797",
+  "scope": "fuzz-extended",
+  "runner": "ubuntu-24.04 x64",
+  "toolchain": "nightly-2026-10-08",
+  "cargo_fuzz": "0.13.2",
+  "configured_seconds_per_target": 300,
+  "rss_limit_mb": 512,
+  "passed_jobs": 4,
+  "skipped_jobs": 5,
+  "jobs": [
+    {
+      "id": 126189204786,
+      "name": "fuzz-extended (interfaces)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126189204946,
+      "name": "fuzz-extended (binary-layouts)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126189204997,
+      "name": "fuzz-extended (sysfs)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126189205177,
+      "name": "fuzz-extended (procfs)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126189206909,
+      "name": "supply-chain",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 126189206941,
+      "name": "desktop",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 126189206960,
+      "name": "miri",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 126189206990,
+      "name": "ffi-asan",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 126189271744,
+      "name": "linux-container",
+      "conclusion": "skipped"
+    }
+  ],
+  "total_executions": 929160798,
+  "targets": {
+    "macos_network": {
+      "log_path_in_download": "extended-fuzz-binary-layouts/target/procfs-fuzz/macos_network.log",
+      "log_sha256": "76a4a97f1301154d21dcf0c2315519f470acf550d10ace787e29c9951ebb38d4",
+      "seconds": 301,
+      "executions": 21985544,
+      "seed": 20261011,
+      "coverage_edges": 218,
+      "features": 511,
+      "final_rss_mb": 389
+    },
+    "network_dev": {
+      "log_path_in_download": "extended-fuzz-binary-layouts/target/procfs-fuzz/network_dev.log",
+      "log_sha256": "bd968bc606aeb083972b759f7a8e95da3ac462604dd7e543464a8add4e0ef6a5",
+      "seconds": 301,
+      "executions": 8048672,
+      "seed": 20261011,
+      "coverage_edges": 445,
+      "features": 1412,
+      "final_rss_mb": 337
+    },
+    "windows_cpu_groups": {
+      "log_path_in_download": "extended-fuzz-binary-layouts/target/procfs-fuzz/windows_cpu_groups.log",
+      "log_sha256": "e21a7f68f61f4073f3971533086a1e64ebae56ebe3ddd4ccf07caa43c319d017",
+      "seconds": 301,
+      "executions": 144794631,
+      "seed": 20261024,
+      "coverage_edges": 82,
+      "features": 90,
+      "final_rss_mb": 271
+    },
+    "cli_args": {
+      "log_path_in_download": "extended-fuzz-interfaces/target/procfs-fuzz/cli_args.log",
+      "log_sha256": "977416a6075125ad6c0280df58cd7d878a7d834facb62ccbc0e314be87d46cb1",
+      "seconds": 301,
+      "executions": 89885096,
+      "seed": 843279546,
+      "coverage_edges": 176,
+      "features": 310,
+      "final_rss_mb": 277
+    },
+    "dmi_text": {
+      "log_path_in_download": "extended-fuzz-interfaces/target/procfs-fuzz/dmi_text.log",
+      "log_sha256": "1171fb4d34a1e5fddc436172ce6a3700dc07ecba50eff9bdfa596d5fa41ce736",
+      "seconds": 301,
+      "executions": 33601394,
+      "seed": 4195558208,
+      "coverage_edges": 671,
+      "features": 2093,
+      "final_rss_mb": 309
+    },
+    "snapshot_json": {
+      "log_path_in_download": "extended-fuzz-interfaces/target/procfs-fuzz/snapshot_json.log",
+      "log_sha256": "9caa051463593fa327fb82536f01ac445abcd4104febfd708d1e0b47711738a7",
+      "seconds": 301,
+      "executions": 2454614,
+      "seed": 3273592501,
+      "coverage_edges": 5359,
+      "features": 14212,
+      "final_rss_mb": 387
+    },
+    "cpu_stat": {
+      "log_path_in_download": "extended-fuzz-procfs/target/procfs-fuzz/cpu_stat.log",
+      "log_sha256": "f29e3de463b46ebd62c1d7741a002f157d61f7758a6fa2d723b8f304c25251bc",
+      "seconds": 301,
+      "executions": 9757270,
+      "seed": 20261010,
+      "coverage_edges": 201,
+      "features": 830,
+      "final_rss_mb": 364
+    },
+    "meminfo": {
+      "log_path_in_download": "extended-fuzz-procfs/target/procfs-fuzz/meminfo.log",
+      "log_sha256": "07b7070712c39f4002b756be14fd3549857b59c90dc1b28c3f6964fb5695dcb2",
+      "seconds": 301,
+      "executions": 29273030,
+      "seed": 20261010,
+      "coverage_edges": 253,
+      "features": 1044,
+      "final_rss_mb": 303
+    },
+    "uptime": {
+      "log_path_in_download": "extended-fuzz-procfs/target/procfs-fuzz/uptime.log",
+      "log_sha256": "0299c7ce392f31725f671597ebc1034b382e884c47ad77d86990580167c5756f",
+      "seconds": 301,
+      "executions": 169473247,
+      "seed": 20261010,
+      "coverage_edges": 148,
+      "features": 414,
+      "final_rss_mb": 267
+    },
+    "hwmon_temperature": {
+      "log_path_in_download": "extended-fuzz-sysfs/target/procfs-fuzz/hwmon_temperature.log",
+      "log_sha256": "ab2858367fa27c06db0f9de12e46e5000a758df507c7a1921ab3b3d416452347",
+      "seconds": 301,
+      "executions": 119209083,
+      "seed": 20261010,
+      "coverage_edges": 153,
+      "features": 342,
+      "final_rss_mb": 285
+    },
+    "power_supply": {
+      "log_path_in_download": "extended-fuzz-sysfs/target/procfs-fuzz/power_supply.log",
+      "log_sha256": "0e3db68cca95b74eb44f94b66901f1d2e3450b147fd9fce3215ae41e46cfbdf4",
+      "seconds": 301,
+      "executions": 119947439,
+      "seed": 20261010,
+      "coverage_edges": 138,
+      "features": 393,
+      "final_rss_mb": 285
+    },
+    "storage_capacity": {
+      "log_path_in_download": "extended-fuzz-sysfs/target/procfs-fuzz/storage_capacity.log",
+      "log_sha256": "4843faf996d88871b8e4d5f886aa616982d704796bacbb0bc1f8ba5d80d481bc",
+      "seconds": 301,
+      "executions": 180730778,
+      "seed": 20261012,
+      "coverage_edges": 106,
+      "features": 318,
+      "final_rss_mb": 327
+    }
+  }
+}
