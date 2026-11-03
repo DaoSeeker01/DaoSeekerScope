@@ -50,6 +50,8 @@ dscope system
 dscope --help
 ```
 
+脚本需要超时后结束采集任务时，可用 `dscope --isolate --json --timeout-ms=10000`。参数与限制见[使用指南](docs/usage.md#在独立进程中采集)。
+
 Rust 调用示例：
 
 ```rust

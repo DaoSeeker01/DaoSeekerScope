@@ -1,3 +1,4 @@
+#![forbid(unsafe_code)]
 use daoseeker_scope::*;
 use daoseeker_scope_cli::{Command, Invocation, MAX_ARGUMENTS, parse_args};
 use std::{
@@ -6,7 +7,28 @@ use std::{
     process::ExitCode,
     time::Duration,
 };
-const HELP: &str = "寻道者观微 DaoSeekerScope\nUsage: dscope [cpu|memory|gpu|disk|display|network|battery|sensors|system|capabilities] [--json]\n  --include-sensitive --authorized   Explicit sensitive access (caller authorization)\n  cpu samples usage over at least 300 ms\n  disk shows whole-device capacity in bytes and IEC units\n  display shows OS display views and pixel field states\n  --version  --help\nExit codes: 0 success, 2 usage, 3 collection error\nUnavailable fields are successful structured results, not process errors.";
+mod isolation;
+const HELP: &str = concat!(
+    "寻道者观微 DaoSeekerScope\n",
+    "Usage: dscope [cpu|memory|gpu|disk|display|network|battery|sensors|system|capabilities] [--json]\n",
+    "  --isolate       Collect in a child process with a total deadline\n",
+    "  --timeout-ms=N  1..60000 milliseconds (default 2000); per call without --isolate\n",
+    "  --include-sensitive --authorized   Explicit sensitive access (caller authorization)\n",
+    "  cpu samples usage over at least 300 ms\n",
+    "  disk shows whole-device capacity in bytes and IEC units\n",
+    "  display shows OS display views and pixel field states\n",
+    "  --version  --help\n",
+    "Exit codes: 0 success, 2 usage, 3 collection error\n",
+    "Unavailable fields are successful structured results, not process errors."
+);
+fn json_output(snapshot: &Snapshot) -> Result<String, ScopeError> {
+    let mut output = to_json(snapshot)?;
+    // The public decoder counts trailing whitespace against its 1 MiB limit.
+    if output.len() < MAX_JSON_BYTES {
+        output.push('\n');
+    }
+    Ok(output)
+}
 fn total_memory_label(source: Source) -> &'static str {
     if source == Source::Sysctl {
         "Physical total proxy bytes"
@@ -146,8 +168,25 @@ fn displays(output: &mut String, observed: &Observed<Vec<DisplayInfo>>) {
     .expect("string formatting");
 }
 fn run(args: &[String]) -> Result<String, (u8, String)> {
+    if args.len() > MAX_ARGUMENTS {
+        return Err((2, "invalid arguments".into()));
+    }
+    let worker = args.first().is_some_and(|arg| arg == isolation::WORKER);
+    let args = if worker { &args[1..] } else { args };
+    let isolated = args
+        .iter()
+        .filter(|arg| arg.as_str() == "--isolate")
+        .count();
+    if isolated > 1 || (worker && isolated != 0) {
+        return Err((2, "invalid isolation arguments".into()));
+    }
+    let args: Vec<_> = args
+        .iter()
+        .filter(|arg| arg.as_str() != "--isolate")
+        .cloned()
+        .collect();
     let mut output = String::new();
-    let (command, json, options) = match parse_args(args).map_err(|text| (2, text.to_owned()))? {
+    let (command, json, options) = match parse_args(&args).map_err(|text| (2, text.to_owned()))? {
         Invocation::Help => {
             writeln!(output, "{HELP}").expect("string formatting");
             return Ok(output);
@@ -168,20 +207,23 @@ fn run(args: &[String]) -> Result<String, (u8, String)> {
             "Warning: sensitive identifiers requested; caller asserts authorization."
         );
     }
-    let hardware = Hardware::with_options(options).map_err(|e| (3, e.to_string()))?;
-    let mut snapshot = hardware.collect().map_err(|e| (3, e.to_string()))?;
-    if command == Command::Cpu {
-        std::thread::sleep(Duration::from_millis(300));
-        snapshot = hardware.collect().map_err(|e| (3, e.to_string()))?;
+    if worker {
+        isolation::watch_parent().map_err(|e| (3, e.to_string()))?;
     }
-    if json {
+    let snapshot = if isolated != 0 {
+        isolation::collect(command, &options).map_err(|e| (3, e.to_string()))?
+    } else {
+        let hardware = Hardware::with_options(options).map_err(|e| (3, e.to_string()))?;
+        let mut snapshot = hardware.collect().map_err(|e| (3, e.to_string()))?;
+        if command == Command::Cpu {
+            std::thread::sleep(Duration::from_millis(300));
+            snapshot = hardware.collect().map_err(|e| (3, e.to_string()))?;
+        }
+        snapshot
+    };
+    if json || worker {
         // All data commands emit a full versioned snapshot so every JSON result round-trips.
-        writeln!(
-            output,
-            "{}",
-            to_json(&snapshot).map_err(|e| (3, e.to_string()))?
-        )
-        .expect("string formatting");
+        output = json_output(&snapshot).map_err(|e| (3, e.to_string()))?;
         return Ok(output);
     }
     render_text(&mut output, command, &snapshot);
@@ -322,6 +364,55 @@ fn main() -> ExitCode {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn isolation_flags_validate_before_starting_a_collector() {
+        for args in [
+            vec!["--isolate", "--isolate"],
+            vec![isolation::WORKER, "--isolate"],
+            vec!["--isolate", "--include-sensitive"],
+            vec!["--isolate", "--timeout-ms=0"],
+        ] {
+            let args = args.into_iter().map(str::to_owned).collect::<Vec<_>>();
+            assert_eq!(run(&args).expect_err("usage error").0, 2);
+        }
+        assert!(
+            run(&["--isolate".into(), "--help".into()])
+                .expect("help")
+                .contains("--timeout-ms")
+        );
+    }
+    #[test]
+    fn maximum_json_output_roundtrips_without_an_extra_byte() {
+        let mut snapshot = fixture();
+        let mut networks = Vec::new();
+        for _ in 0..300 {
+            let mut network = NetworkInfo::default();
+            network.interface_name = Observed::available("X".into(), Source::Custom, Timestamp(1));
+            networks.push(network);
+        }
+        snapshot.dynamic.networks =
+            Observed::available(networks.clone(), Source::Custom, Timestamp(1));
+        let mut remaining = MAX_JSON_BYTES - to_json(&snapshot).expect("base snapshot").len();
+        for network in &mut networks {
+            let extra = remaining.min(4095);
+            network.interface_name =
+                Observed::available("X".repeat(extra + 1), Source::Custom, Timestamp(1));
+            remaining -= extra;
+        }
+        assert_eq!(remaining, 0);
+        snapshot.dynamic.networks = Observed::available(networks, Source::Custom, Timestamp(1));
+        let output = json_output(&snapshot).expect("maximum snapshot");
+        assert_eq!(output.len(), MAX_JSON_BYTES);
+        assert_eq!(
+            from_json(output.as_bytes()).expect("CLI bytes decode"),
+            snapshot
+        );
+        assert!(
+            json_output(&fixture())
+                .expect("normal snapshot")
+                .ends_with('\n')
+        );
+    }
     fn fixture() -> Snapshot {
         // Self-contained so tests also compile from an extracted .crate archive.
         let mut snapshot = from_json(br#"{"schema_version":1,"collected_at":1,"static_info":{},"dynamic":{},"capabilities":[],"conflicts":[],"issues":[]}"#).expect("fixture");

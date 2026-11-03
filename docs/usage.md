@@ -55,7 +55,7 @@ fn main() -> Result<(), daoseeker_scope::ScopeError> {
 
 需要取消时，为本次调用创建 `CancelToken`，将其传给 `collect_with` 或 `refresh_dynamic_with`；取消按钮或另一个线程持有它的克隆并调用 `cancel()`。已取消的 token 不能重置，重试时使用新 token。核心检查到取消时会返回 `Cancelled`，即使 backend 同时返回错误，也不应把这次取消误认为设备读取故障。
 
-每个实例有一个采集 worker，全进程最多 16 个；并发调用可能返回 `Busy`。超时和取消限制调用方的等待，不能杀死阻塞中的系统 API；阻塞 worker 继续占用额度。需要强制终止时，用独立进程采集。详见 [ADR 0003](adr/0003-capability-and-error-model.md)。
+每个实例有一个采集 worker，全进程最多 16 个；并发调用可能返回 `Busy`。超时和取消限制调用方的等待，不能杀死阻塞中的系统 API；阻塞 worker 继续占用额度。需要结束整个采集进程时，可使用下述 CLI 隔离模式。详见 [ADR 0003](adr/0003-capability-and-error-model.md)。
 
 Rust 调用方可用 `hardware.shutdown()?` 消费采集器，等待采集循环退出和 backend 资源释放；等待预算为该实例的 `Options::timeout`。成功关闭后，已经取得的快照仍可使用。返回 `Timeout` 时，该句柄已消耗，阻塞任务仍可能继续占用配额；backend 析构发生可展开 panic 时返回 `Panic`。直接丢弃实例仍不会等待关闭。
 
@@ -79,6 +79,21 @@ dscope --help
 
 文本保留来源和原因，例如 `Available bytes: 0 (Procfs)`、`Name: Restricted (Sysfs, PrivacyRedacted)`。条目编号仅代表本次顺序，不是设备的稳定身份。程序集成使用 JSON，不解析文本格式。
 
+### 在独立进程中采集
+
+自动化脚本需要在超时后结束采集任务时，使用 `--isolate`：
+
+```sh
+dscope --isolate --json --timeout-ms=10000
+dscope cpu --isolate --timeout-ms=1000
+```
+
+`--timeout-ms=N` 接受 1–60000 的十进制整数，默认 2000。隔离模式只启动当前 `dscope` 自身，沿用相同的公共 API、字段状态和隐私选项；父进程验证完整 JSON 和子进程成功退出后，才输出 JSON 或所选文本。输出超过 1 MiB、无效 JSON、子进程失败或超时时返回退出码 3，不输出部分结果。
+
+预算从启动子进程前开始计时，包括 CPU 命令的两次采样和至少 300 毫秒间隔。到期后请求终止子进程，再用最多 1 秒确认退出并回收；未确认时，错误会给出进程号，便于检查 OS 进程状态。子进程已启动父管道监测后，管道关闭也会使它退出。
+
+这不是实时期限或通用沙盒：操作系统的进程创建不能在中途取消，JSON 校验在有界输入上同步完成，最终终端写入不受采集预算控制；无法保证立即结束不可中断的内核操作，也不管理任意后代进程。默认仍在当前进程采集，此时超时按每次库调用计算。Rust 库和 C ABI 的阻塞调用、动态库卸载限制不变。
+
 ### 容易误解的数据
 
 - **存储**：整设备容量，不是文件系统可用空间。虚拟对象和底层设备可能重叠，不能把条目容量相加当作物理总量。文本同时显示精确字节数和 KiB/MiB/GiB。
@@ -94,6 +109,8 @@ dscope --help
 ## JSON
 
 Rust 使用 `to_json` / `from_json` 交换 Schema v1。输入和展开后的输出均限 1 MiB。未知对象字段忽略，未知枚举值或错误版本拒绝；还会检查数值、字符串、集合及内存关系。显示像素尺寸为正整数，缺失时使用状态而非零。
+
+CLI 通常在 JSON 后添加换行；编码恰好达到 1 MiB 时省略换行，保证原始输出仍能直接传给 `from_json`。不要依赖换行判断 JSON 是否完整。
 
 [JSON Schema](schema/snapshot-v1.schema.json)用于交换验证，不能代替 Rust 的全部领域检查。ABI、Schema 和 Rust 包版本分别管理，见[发布路线](release.md)。
 

@@ -7,6 +7,74 @@ fn cli(args: &[&str]) -> std::process::Output {
 }
 
 #[test]
+fn isolated_json_and_text_preserve_public_snapshot_and_privacy() {
+    for command in ["system", "cpu"] {
+        let output = cli(&[command, "--isolate", "--json", "--timeout-ms=10000"]);
+        assert!(
+            output.status.success(),
+            "{}",
+            String::from_utf8_lossy(&output.stderr)
+        );
+        assert!(output.stderr.is_empty());
+        let snapshot = daoseeker_scope::from_json(&output.stdout).expect("isolated snapshot");
+        assert!(
+            snapshot
+                .static_info
+                .system
+                .cpu
+                .logical_count
+                .value()
+                .is_some_and(|n| *n > 0)
+        );
+        assert!(
+            snapshot
+                .static_info
+                .system
+                .memory
+                .total_usable_bytes
+                .value()
+                .is_some_and(|n| *n > 0)
+        );
+        assert_eq!(
+            snapshot.static_info.system.device.serial_number.reason(),
+            Some(daoseeker_scope::ReasonCode::PrivacyRedacted)
+        );
+    }
+    let output = cli(&["memory", "--isolate", "--timeout-ms=10000"]);
+    assert!(output.status.success() && output.stderr.is_empty());
+    assert!(String::from_utf8_lossy(&output.stdout).contains("bytes"));
+}
+
+#[test]
+fn isolated_cpu_deadline_returns_no_partial_json_and_reaps_child() {
+    let started = std::time::Instant::now();
+    // CPU mode always requires a 300 ms second sample, beyond this total budget.
+    let output = cli(&["cpu", "--isolate", "--json", "--timeout-ms=100"]);
+    assert_eq!(output.status.code(), Some(3));
+    assert!(output.stdout.is_empty());
+    assert!(String::from_utf8_lossy(&output.stderr).contains("timed out; child exited"));
+    assert!(started.elapsed() < std::time::Duration::from_secs(5));
+}
+
+#[test]
+fn isolation_usage_and_sensitive_rejection_happen_before_collection() {
+    for args in [
+        vec!["--isolate", "--isolate"],
+        vec!["--isolate", "--include-sensitive"],
+        vec!["--timeout-ms=60001"],
+        vec!["--timeout-ms=10", "--timeout-ms=20"],
+    ] {
+        let output = cli(&args);
+        assert_eq!(output.status.code(), Some(2));
+        assert!(output.stdout.is_empty());
+    }
+    for flag in ["--help", "--version"] {
+        let output = cli(&["--isolate", flag]);
+        assert!(output.status.success() && output.stderr.is_empty());
+    }
+}
+
+#[test]
 fn display_json_keeps_real_states_without_fabricating_resolution() {
     let output = cli(&["--json"]);
     assert!(output.status.success() && output.stderr.is_empty());

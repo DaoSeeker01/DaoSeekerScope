@@ -46,6 +46,7 @@ pub fn parse_args(args: &[String]) -> Result<Invocation, &'static str> {
     let mut command = None;
     let mut json = false;
     let mut options = Options::default();
+    let mut timeout_seen = false;
     for arg in args {
         let selected = match arg.as_str() {
             "cpu" => Command::Cpu,
@@ -68,6 +69,19 @@ pub fn parse_args(args: &[String]) -> Result<Invocation, &'static str> {
             }
             "--authorized" if !options.privacy.caller_authorized => {
                 options.privacy.caller_authorized = true;
+                continue;
+            }
+            _ if arg.starts_with("--timeout-ms=") && !timeout_seen => {
+                let digits = &arg["--timeout-ms=".len()..];
+                let milliseconds = digits
+                    .bytes()
+                    .all(|b| b.is_ascii_digit())
+                    .then(|| digits.parse::<u64>().ok())
+                    .flatten()
+                    .filter(|n| (1..=60_000).contains(n))
+                    .ok_or("invalid --timeout-ms; expected 1..60000 milliseconds")?;
+                options.timeout = std::time::Duration::from_millis(milliseconds);
+                timeout_seen = true;
                 continue;
             }
             _ => return Err("invalid argument; use --help"),
@@ -164,6 +178,33 @@ mod tests {
                 options.validate().expect("validated options");
             }
         }
+    }
+    #[test]
+    fn timeout_is_bounded_decimal_and_cannot_be_duplicated() {
+        for milliseconds in [1, 20, 2000, 60000] {
+            let flag = format!("--timeout-ms={milliseconds}");
+            let Invocation::Collect { options, .. } = parse(&["cpu", &flag]).expect("timeout")
+            else {
+                panic!("collect")
+            };
+            assert_eq!(options.timeout.as_millis(), milliseconds);
+        }
+        for value in [
+            "",
+            "0",
+            "60001",
+            "-1",
+            "+20",
+            "1.5",
+            "NaN",
+            " 2",
+            "2 ",
+            "18446744073709551616",
+        ] {
+            assert!(parse(&[&format!("--timeout-ms={value}")]).is_err());
+        }
+        assert!(parse(&["--timeout-ms=20", "--timeout-ms=30"]).is_err());
+        assert!(parse(&["--timeout-ms=20", "--include-sensitive"]).is_err());
     }
     #[test]
     fn display_selection_preserves_json_and_explicit_privacy_contract() {
