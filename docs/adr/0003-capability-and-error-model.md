@@ -14,7 +14,7 @@ Options：timeout 1..60000ms、条目上限 1..1024、字符串/单文件上限 
 
 完成通知不证明 OS 线程或 TLS 收尾已结束，不使用可能继续等待这些析构的 join 作为硬超时实现，也不开放动态库卸载。依据 [Rust JoinHandle 文档](https://doc.rust-lang.org/std/thread/struct.JoinHandle.html)，join 会等待线程局部变量析构，而 is_finished 只反映主函数结束。新接口仅改善采集器资源管理，强终止仍需独立进程或原生可取消 API。
 
-2026-11-02 CLI 可选隔离：`dscope --isolate --timeout-ms=N` 只启动当前可执行文件，使用 stdin 管道表示父进程存活，stdout 传输不超过 1 MiB 的 Schema v1 JSON。父进程要求 JSON 有效且退出成功；超时或协议失败时先终止，再以最多 1 秒轮询确认退出，无法确认则报告 PID。依据 [Rust Child 文档](https://doc.rust-lang.org/std/process/struct.Child.html)，丢弃 Child 不会终止进程，kill 也不能替代等待回收，因此显式使用 kill 与 try_wait。原生进程创建不可中途取消、有界 JSON 校验同步完成，终端写入不在采集预算内；该模式不承诺实时上限或管理任意后代进程。CLI 参数为兼容性增加，不修改 Backend、Options、C ABI 或 Schema 的结构与版本。默认模式及库调用的阻塞限制保留。
+2026-11-03 CLI 可选隔离：`dscope --isolate --timeout-ms=N` 只启动当前可执行文件，使用 stdin 管道表示父进程存活，stdout 传输不超过 1 MiB 的 Schema v1 JSON。父进程要求 JSON 有效且退出成功；超时或协议失败时先终止，再以最多 1 秒轮询确认退出，无法确认则报告 PID。依据 [Rust Child 文档](https://doc.rust-lang.org/std/process/struct.Child.html)，丢弃 Child 不会终止进程，kill 也不能替代等待回收，因此显式使用 kill 与 try_wait。原生进程创建不可中途取消、有界 JSON 校验同步完成，终端写入不在采集预算内；该模式不承诺实时上限或管理任意后代进程。CLI 参数为兼容性增加，不修改 Backend、Options、C ABI 或 Schema 的结构与版本。默认模式及库调用的阻塞限制保留。
 
 2026-11-02 发布边界修正：快照和缓存副本准备完成、取得能力状态锁后，统一复核上下文再提交缓存和能力。响应接收后同样复核，避免把已经取消或过期的响应返回为成功。提交前已停止的请求不改变旧缓存；提交后才发生的取消或响应延迟不撤销已完成的提交。这是现有同步接口的边界，不承诺调用方接收与 worker 提交是同一个原子操作，也不增加原生调用强终止或动态库卸载能力。
 

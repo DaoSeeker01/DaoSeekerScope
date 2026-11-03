@@ -1,0 +1,231 @@
+{
+  "rust_source_commit": "1a4bb47614e8ae9be5854bb4603c9698ffcc6445",
+  "rust_files_match_current_worktree": {
+    "crates/daoseeker-scope-cli/src/lib.rs": "070a4cb9e7007eadce1618512680806cef2716bc36db6504228ed934c263cdce",
+    "crates/daoseeker-scope-cli/src/main.rs": "c91b51c99379b19fb5fad88e6937d4c7e3237a22ade3c11959d9ec122991626a",
+    "crates/daoseeker-scope-cli/src/isolation.rs": "c3d15c61c00f1133e9c88c4ce244101ca3a9ede87b90088722972e557ffe53f7",
+    "crates/daoseeker-scope-cli/tests/cli.rs": "6d9d21facc9b9f9d8e7210b9702fa866d9e0d1b0cb31562da4e5b6c0d0e11966"
+  },
+  "local_rust": {
+    "passed": 302,
+    "failed": 0,
+    "fixture_ignored_by_default": 1,
+    "fmt": true,
+    "clippy_deny_warnings": true,
+    "strict_docs": true,
+    "no_default_features": true,
+    "linux_cross_check": true,
+    "macos_cross_check": true
+  },
+  "local_python": {
+    "total": 328,
+    "passed": 322,
+    "skipped": 6,
+    "failed": 0
+  },
+  "local_archive_and_contract_checks": "passed",
+  "local_portable": {
+    "source_commit": "1a4bb47614e8ae9be5854bb4603c9698ffcc6445",
+    "build_profile": "release",
+    "environment": "local Windows",
+    "renamed_binary_with_spaces_and_unicode": true,
+    "observations": [
+      {
+        "command": "system",
+        "timeout_ms": 10000,
+        "exit_code": 0,
+        "elapsed_ms": 89.384,
+        "stdout_bytes": 25518
+      },
+      {
+        "command": "cpu",
+        "timeout_ms": 10000,
+        "exit_code": 0,
+        "elapsed_ms": 375.273,
+        "stdout_bytes": 25497
+      },
+      {
+        "command": "cpu",
+        "timeout_ms": 100,
+        "exit_code": 3,
+        "elapsed_ms": 120.186,
+        "stdout_bytes": 0
+      }
+    ]
+  },
+  "known_first_ci_failure": {
+    "run": 41655876712,
+    "source_commit": "1a4bb47614e8ae9be5854bb4603c9698ffcc6445",
+    "passed_jobs": 7,
+    "failed_jobs": 1,
+    "reason": "new GLIBC_2.39 candidate load requirement",
+    "report_sha256": "3cab0722437d4eeb4d14624a3103bebcc1344da136074834dcb070394f9f9d3b"
+  },
+  "minimum_os_verified": false,
+  "rust_or_c_abi_hard_cancellation": false,
+  "formal_release": false,
+  "initial_native_ci": {
+    "run": 41655876712,
+    "source_commit": "1a4bb47614e8ae9be5854bb4603c9698ffcc6445",
+    "jobs": {
+      "desktop (macos-latest)": {
+        "job_id": 125985903598,
+        "conclusion": "success",
+        "workspace_tests": {
+          "passed": 300,
+          "failed": 0,
+          "ignored_fixture": 1
+        }
+      },
+      "desktop (windows-latest)": {
+        "job_id": 125985903910,
+        "conclusion": "success",
+        "workspace_tests": {
+          "passed": 302,
+          "failed": 0,
+          "ignored_fixture": 1
+        }
+      }
+    }
+  },
+  "current_crate_tree_identical_to_initial_ci": true,
+  "linux_fixed_ci": {
+    "run": 41660002663,
+    "source_commit": "a1b4cbca1adbeb6a7122f7adfb3f3fa168c234ff",
+    "job_id": 126000390722,
+    "conclusion": "success",
+    "scope": "linux-candidate",
+    "passed_jobs": 1,
+    "skipped_jobs": 5,
+    "workspace_tests": {
+      "passed": 295,
+      "failed": 0,
+      "ignored_fixture": 1
+    },
+    "cli_highest_glibc_numeric_requirement": "GLIBC_2.34",
+    "runtime_profiles": {
+      "bookworm": {
+        "status": "passed",
+        "expected": "runs",
+        "runtime": {
+          "glibc": "2.36",
+          "distribution": {
+            "id": "debian",
+            "version_id": "12"
+          },
+          "python": "3.13.13",
+          "debian": "12",
+          "kernel": "7.0.0-1017-azure",
+          "machine": "x86_64",
+          "uid": 65534,
+          "cargo_available": false,
+          "rustc_available": false
+        },
+        "isolated_cli_completed": true,
+        "snapshot_schema_and_default_privacy": true,
+        "child_processes": 5,
+        "collection_started": null,
+        "container_removed": true
+      },
+      "bullseye": {
+        "status": "passed",
+        "expected": "loader_rejects",
+        "runtime": {
+          "glibc": "2.31",
+          "distribution": {
+            "id": "debian",
+            "version_id": "11"
+          },
+          "python": "3.13.5",
+          "debian": "11",
+          "kernel": "7.0.0-1017-azure",
+          "machine": "x86_64",
+          "uid": 65534,
+          "cargo_available": false,
+          "rustc_available": false
+        },
+        "isolated_cli_completed": null,
+        "snapshot_schema_and_default_privacy": null,
+        "child_processes": 2,
+        "collection_started": false,
+        "container_removed": true
+      },
+      "ubi9": {
+        "status": "passed",
+        "expected": "runs",
+        "runtime": {
+          "glibc": "2.34",
+          "distribution": {
+            "id": "rhel",
+            "version_id": "9.8"
+          },
+          "python": "3.12.15",
+          "kernel": "7.0.0-1017-azure",
+          "machine": "x86_64",
+          "uid": 65534,
+          "cargo_available": false,
+          "rustc_available": false
+        },
+        "isolated_cli_completed": true,
+        "snapshot_schema_and_default_privacy": true,
+        "child_processes": 5,
+        "collection_started": null,
+        "container_removed": true
+      }
+    },
+    "runtime_report": "cli-isolation-linux-runtime-41660002663.json",
+    "runtime_report_sha256": "064f32a0d60db3f48133bdb43640d7aa52e73013391a62fdbf5e45ee627e035c",
+    "builder_image_ids": [
+      "sha256:399e3c223d67a18fd87a90237b68a2d91ea1def153b9cdbc242e6a4da43799dc"
+    ]
+  },
+  "builder_preparation_failure": {
+    "run": 41658833944,
+    "source_commit": "472a322d5f85dae732329db44982fd6691f41d1e",
+    "failed_job": 125996336829,
+    "phase": "builder preparation",
+    "reason": "fixed runtime base had no git executable; source build did not start",
+    "passed_jobs": 7,
+    "failed_jobs": 1,
+    "conclusion": "failure"
+  },
+  "verification_note": "Windows/macOS used the initial code commit; current crates are byte-identical. Linux build tools changed and were verified separately. This is not an all-jobs pass for one final commit.",
+  "acceptance_status": "passed_with_split_ci_sources",
+  "local_commands": [
+    "mise exec -- cargo fmt --all --check",
+    "mise exec -- cargo clippy --locked --workspace --all-targets --all-features -- -D warnings",
+    "mise exec -- cargo test --locked --workspace --all-features -- --test-threads=1",
+    "mise exec -- cargo check --locked -p daoseeker-scope-core --no-default-features",
+    "mise exec -- cargo check --locked -p daoseeker-scope --no-default-features",
+    "mise exec -- cargo doc --locked --workspace --all-features --no-deps (RUSTDOCFLAGS=-D warnings)",
+    "mise exec -- cargo check --locked --workspace --target x86_64-unknown-linux-gnu",
+    "mise exec -- cargo check --locked --workspace --target aarch64-apple-darwin",
+    "mise exec -- cargo build --locked -p daoseeker-scope-cli -p daoseeker-scope-ffi",
+    "mise exec -- cargo build --locked --release -p daoseeker-scope-cli",
+    ".venv/Scripts/python.exe scripts/check_packages.py --offline",
+    ".venv/Scripts/python.exe scripts/check_contract.py",
+    ".venv/Scripts/python.exe -m unittest discover -s tests -p test_*.py",
+    ".venv/Scripts/python.exe scripts/check_schema.py",
+    ".venv/Scripts/python.exe scripts/check_project.py",
+    ".venv/Scripts/ruff.exe format --check scripts tests examples/collect.py",
+    ".venv/Scripts/ruff.exe check scripts tests examples/collect.py",
+    ".venv/Scripts/mypy.exe --no-incremental --ignore-missing-imports --platform {linux,darwin,win32} scripts tests examples/collect.py (three runs)",
+    ".tools/actionlint/actionlint.exe",
+    "E:/DevTools/Git/bin/bash.exe -n scripts/build_linux_candidate.sh"
+  ],
+  "local_probe_correction": "The first ad hoc portable probe used nonexistent device.serial; it was corrected to serial_number and rerun successfully.",
+  "unverified": [
+    "OS process creation blocking and uninterruptible kernel operations",
+    "Termination-denied / StopUnconfirmed on a real OS",
+    "Physical Linux and macOS device validation",
+    "Rust/C ABI hard cancellation and dynamic library unloading",
+    "Long-term fuzz and day-scale resource testing"
+  ],
+  "versions": {
+    "rust_package": "0.1.0-unreleased",
+    "c_abi": 1,
+    "json_schema": 1,
+    "license": "MIT",
+    "rust_dependency_changes": false
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "report_version": 2,
+  "overall": "passed",
+  "profiles": {
+    "bookworm": {
+      "status": "passed",
+      "image": "python@sha256:f576b530293e74140ea91d262232648d5c4f45640a95ec447757701bfcacf034",
+      "phase": "complete",
+      "image_id": "sha256:2e6b5bbf5b2f372ef9b208e7c7c300675be97a6dc1bbe7e3ac0b9c20035fd70e",
+      "configuration": {
+        "user": "65534:65534",
+        "network": "none",
+        "readonly_root": true,
+        "readonly_candidate_mount": true,
+        "writable_tmpfs": "/work",
+        "entrypoint": "python",
+        "memory_bytes": 268435456,
+        "pids": 32,
+        "cpus": 1
+      },
+      "expected": "runs",
+      "runtime": {
+        "glibc": "2.36",
+        "distribution": {
+          "id": "debian",
+          "version_id": "12"
+        },
+        "python": "3.13.13",
+        "debian": "12",
+        "kernel": "7.0.0-1017-azure",
+        "machine": "x86_64",
+        "uid": 65534,
+        "cargo_available": false,
+        "rustc_available": false
+      },
+      "binary_sha256": {
+        "cli": "f5eda97ab24e2d0bc065bda7c638fb0804205478d0a0b89482c7ae7404691d11",
+        "library": "650d88e477031927c76d15d206440162b95aa0f5dfbf9e3a5add0ec1b51e16f5",
+        "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+      },
+      "installed_payload_files": {
+        "cli": 43,
+        "sdk": 47
+      },
+      "rebuilt_in_container": false,
+      "installation_storage": {
+        "capacity_bytes": 67108864,
+        "reserve_bytes": 16777216,
+        "available_before_copy_bytes": 67108864,
+        "available_after_copy_bytes": 31936512
+      },
+      "snapshot_schema_and_default_privacy": true,
+      "python_collect_free_cycles": 100,
+      "child_processes": 5,
+      "isolated_cli_completed": true,
+      "output_sha256": {
+        "cli_version": "492d0083a0d1e9de8fbfc97174806c46f68dd007a649cc18d398383c657cbe9d",
+        "cli_json": "71130854dd6bfcb24fcb215bd9f3d0673fcc9dfbd0a4b9cf8b6f845c1bcdc020",
+        "cli_isolated_json": "3315c555818c0d6fb04243fe3c7e489f9b9381b07476e099e2b22ced15215db5",
+        "c": "37519bef7c73a675e752b92a26660fc0b6a914b383b4ea7d732a405e7708910b",
+        "python": "57adedfa84f5ded89ada46a8084320007d4aa190f5ab67db6cc062d1699bdd66"
+      },
+      "container_removed": true
+    },
+    "bullseye": {
+      "status": "passed",
+      "image": "python@sha256:4ea2e567da526afcd5655339f71295ca6ef72271ff6123bb5c7144ae8fdc1692",
+      "phase": "complete",
+      "image_id": "sha256:932831e2e7dc0aebbabca90d6c78087538e5c3ecf38151069ab418d1ec4532d2",
+      "configuration": {
+        "user": "65534:65534",
+        "network": "none",
+        "readonly_root": true,
+        "readonly_candidate_mount": true,
+        "writable_tmpfs": "/work",
+        "entrypoint": "python",
+        "memory_bytes": 268435456,
+        "pids": 32,
+        "cpus": 1
+      },
+      "expected": "loader_rejects",
+      "runtime": {
+        "glibc": "2.31",
+        "distribution": {
+          "id": "debian",
+          "version_id": "11"
+        },
+        "python": "3.13.5",
+        "debian": "11",
+        "kernel": "7.0.0-1017-azure",
+        "machine": "x86_64",
+        "uid": 65534,
+        "cargo_available": false,
+        "rustc_available": false
+      },
+      "binary_sha256": {
+        "cli": "f5eda97ab24e2d0bc065bda7c638fb0804205478d0a0b89482c7ae7404691d11",
+        "library": "650d88e477031927c76d15d206440162b95aa0f5dfbf9e3a5add0ec1b51e16f5",
+        "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+      },
+      "installed_payload_files": {
+        "cli": 43,
+        "sdk": 47
+      },
+      "rebuilt_in_container": false,
+      "installation_storage": {
+        "capacity_bytes": 67108864,
+        "reserve_bytes": 16777216,
+        "available_before_copy_bytes": 67108864,
+        "available_after_copy_bytes": 31936512
+      },
+      "collection_started": false,
+      "child_processes": 2,
+      "missing_glibc_versions": {
+        "cli": [
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "c": [
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "ctypes_load": [
+          "GLIBC_2.32"
+        ]
+      },
+      "container_removed": true
+    },
+    "ubi9": {
+      "status": "passed",
+      "image": "registry.access.redhat.com/ubi9/python-312@sha256:d2cacc387d43e61513038694222980f774cae60b2b8afea8b6846654e25da9e7",
+      "phase": "complete",
+      "image_id": "sha256:06e426750a52b32e8d258fa8a8e7f237421fa8167a0e38ad8307d6af4d4d68c6",
+      "configuration": {
+        "user": "65534:65534",
+        "network": "none",
+        "readonly_root": true,
+        "readonly_candidate_mount": true,
+        "writable_tmpfs": "/work",
+        "entrypoint": "/usr/bin/python3.12",
+        "memory_bytes": 268435456,
+        "pids": 32,
+        "cpus": 1
+      },
+      "expected": "runs",
+      "runtime": {
+        "glibc": "2.34",
+        "distribution": {
+          "id": "rhel",
+          "version_id": "9.8"
+        },
+        "python": "3.12.15",
+        "kernel": "7.0.0-1017-azure",
+        "machine": "x86_64",
+        "uid": 65534,
+        "cargo_available": false,
+        "rustc_available": false
+      },
+      "binary_sha256": {
+        "cli": "f5eda97ab24e2d0bc065bda7c638fb0804205478d0a0b89482c7ae7404691d11",
+        "library": "650d88e477031927c76d15d206440162b95aa0f5dfbf9e3a5add0ec1b51e16f5",
+        "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+      },
+      "installed_payload_files": {
+        "cli": 43,
+        "sdk": 47
+      },
+      "rebuilt_in_container": false,
+      "installation_storage": {
+        "capacity_bytes": 67108864,
+        "reserve_bytes": 16777216,
+        "available_before_copy_bytes": 67108864,
+        "available_after_copy_bytes": 31936512
+      },
+      "snapshot_schema_and_default_privacy": true,
+      "python_collect_free_cycles": 100,
+      "child_processes": 5,
+      "isolated_cli_completed": true,
+      "output_sha256": {
+        "cli_version": "492d0083a0d1e9de8fbfc97174806c46f68dd007a649cc18d398383c657cbe9d",
+        "cli_json": "4efa68c89b50f81fc9ad9d2ff01c9d517c80ea92c25149c7619a6f915f926c72",
+        "cli_isolated_json": "3912d82f75f4272ae196df4c9dd8e10114f94c20573fdbeeafe088f614a9efe0",
+        "c": "19e27959ad521212cfa5f561bc78678f1614db82e300fee021b207da77e5d0ee",
+        "python": "57adedfa84f5ded89ada46a8084320007d4aa190f5ab67db6cc062d1699bdd66"
+      },
+      "container_removed": true
+    }
+  },
+  "physical_device_validation": false,
+  "minimum_kernel_or_distribution_verified": false,
+  "published": false,
+  "source_commit": "a1b4cbca1adbeb6a7122f7adfb3f3fa168c234ff",
+  "source_dirty": false,
+  "docker_version": "28.0.4",
+  "payload_bytes": {
+    "cli": 17686569,
+    "sdk": 17235478
+  },
+  "binary_sha256": {
+    "cli": "f5eda97ab24e2d0bc065bda7c638fb0804205478d0a0b89482c7ae7404691d11",
+    "library": "650d88e477031927c76d15d206440162b95aa0f5dfbf9e3a5add0ec1b51e16f5",
+    "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+  },
+  "archive_sha256": {
+    "cli": "b1eec5a5ba911f8ed225d68ccbcc4b8dd851e5f9dff07caf0f3b0bf0aebb19d3",
+    "sdk": "2b4146e5b48e49734a38edb4b9b8791d9655a6ff95de2c15d4bab3de5f61e646"
+  },
+  "elf_requirements": {
+    "cli": {
+      "direct_dependencies": [
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "required_symbol_versions": {
+        "ld-linux-x86-64.so.2": [
+          "GLIBC_2.3"
+        ],
+        "libc.so.6": [
+          "GLIBC_2.14",
+          "GLIBC_2.15",
+          "GLIBC_2.16",
+          "GLIBC_2.17",
+          "GLIBC_2.18",
+          "GLIBC_2.2.5",
+          "GLIBC_2.25",
+          "GLIBC_2.28",
+          "GLIBC_2.29",
+          "GLIBC_2.3",
+          "GLIBC_2.3.4",
+          "GLIBC_2.30",
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34",
+          "GLIBC_2.9"
+        ],
+        "libgcc_s.so.1": [
+          "GCC_3.0",
+          "GCC_3.3",
+          "GCC_4.2.0"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [],
+      "highest_glibc_numeric_requirement": "GLIBC_2.34",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    },
+    "library": {
+      "direct_dependencies": [
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "required_symbol_versions": {
+        "ld-linux-x86-64.so.2": [
+          "GLIBC_2.3"
+        ],
+        "libc.so.6": [
+          "GLIBC_2.14",
+          "GLIBC_2.16",
+          "GLIBC_2.17",
+          "GLIBC_2.18",
+          "GLIBC_2.2.5",
+          "GLIBC_2.25",
+          "GLIBC_2.28",
+          "GLIBC_2.3",
+          "GLIBC_2.3.4",
+          "GLIBC_2.30",
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "libgcc_s.so.1": [
+          "GCC_3.0",
+          "GCC_3.3",
+          "GCC_4.2.0"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [],
+      "highest_glibc_numeric_requirement": "GLIBC_2.34",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    },
+    "consumer": {
+      "direct_dependencies": [
+        "libdaoseeker_scope_ffi.so",
+        "libc.so.6"
+      ],
+      "required_symbol_versions": {
+        "libc.so.6": [
+          "GLIBC_2.2.5",
+          "GLIBC_2.34",
+          "GLIBC_2.4"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [
+        "libdaoseeker_scope_ffi.so"
+      ],
+      "highest_glibc_numeric_requirement": "GLIBC_2.34",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    }
+  },
+  "work_budget": {
+    "capacity_bytes": 67108864,
+    "reserve_bytes": 16777216,
+    "logical_bytes": 34938351,
+    "estimated_copy_bytes": 35328000,
+    "allocation_block_bytes": 4096,
+    "files": 93,
+    "directories": 38
+  }
+}

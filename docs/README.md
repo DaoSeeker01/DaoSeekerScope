@@ -17,6 +17,7 @@
 - [amdgpu 温度采集](amdgpu-temperature-validation.md)：限定通道、错误歧义与合成/设备验证边界。
 
 - [使用指南](usage.md)：Rust、CLI、JSON、C/Python、刷新与隐私。
+- [CLI 隔离验收](evidence/cli-isolation-acceptance-2026-11-03.json)：三平台测试、超时回收、Linux 构建兼容修复与失败记录。
 - [剩余工作](progress.md)：首版工作包、延期设备验证与后续扩展。
 - [开发指南](../CONTRIBUTING.md)：构建、检查、跨语言、fuzz 和性能命令。
 - [平台能力矩阵](adr/0005-platform-support-matrix.md)：逐字段来源和支持范围。
