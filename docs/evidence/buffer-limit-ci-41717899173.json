@@ -1,0 +1,167 @@
+{
+  "report_version": 1,
+  "date": "2026-11-04",
+  "overall": "passed",
+  "source_commit": "92f18068fdadba4ec9048618f8be4cca780aae31",
+  "run_id": 41717899173,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41717899173",
+  "scope": "native-probe",
+  "jobs": [
+    {
+      "id": 126202644675,
+      "name": "desktop (windows-latest)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126202644751,
+      "name": "desktop (macos-latest)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126202645002,
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126202646411,
+      "name": "matrix.group == 'all' && 'fuzz-smoke' || format('fuzz-extended ({0})', matrix.group)",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 126202647024,
+      "name": "ffi-asan",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 126202647436,
+      "name": "miri",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 126202722219,
+      "name": "supply-chain",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 126202736213,
+      "name": "linux-container",
+      "conclusion": "skipped"
+    }
+  ],
+  "windows_python_tests": {
+    "total": 335,
+    "passed": 329,
+    "skipped": 6,
+    "resource_protocol": 8
+  },
+  "evidence": {
+    "windows_local": {
+      "original_report_sha256": "46ce9c8b4b2cd7656047c5abea057c3c3e0783371375ecab212857ffb3215815",
+      "target": "x86_64-pc-windows-msvc",
+      "c_compiler": "19.51.36260.0",
+      "binary_sha256": {
+        "ffi-resource-probe.exe": "b24cafc46101b1263ea226a8b691e22851c3a925735b4d9ef51ee059c4735c45",
+        "daoseeker_scope_ffi.dll": "c58fa088e9792355b89f5562b736b9702d845b37a4071bd85565835fb059ca9d"
+      },
+      "buffer_limit": {
+        "format": 1,
+        "mode": "buffer_limit",
+        "metric": "process_handle_count",
+        "held_buffers": 64,
+        "overflow_status": 7,
+        "recovery_status": 0,
+        "retired_token_status": 9,
+        "verified_live_buffers": 63,
+        "completed": true
+      },
+      "resource_calibration": {
+        "opened_delta": 32,
+        "closed_delta": 0,
+        "passed": true
+      },
+      "normal_range": 0,
+      "control_range": 16
+    },
+    "windows_ci": {
+      "original_report_sha256": "4e98e6bacac970501bb17e5681e83752564c97c5745d2d30e3a8108a7ccab9ca",
+      "target": "x86_64-pc-windows-msvc",
+      "c_compiler": "19.51.36260.0",
+      "binary_sha256": {
+        "ffi-resource-probe.exe": "6b3cf259dbc604072d3fb8ce5f5beb17b3ba4f6d6f867d1247b142f7f03da4d3",
+        "daoseeker_scope_ffi.dll": "207da34240d875777312aff96fe246bf9911d2af781a4386c64aaf99cfa800d2"
+      },
+      "buffer_limit": {
+        "format": 1,
+        "mode": "buffer_limit",
+        "metric": "process_handle_count",
+        "held_buffers": 64,
+        "overflow_status": 7,
+        "recovery_status": 0,
+        "retired_token_status": 9,
+        "verified_live_buffers": 63,
+        "completed": true
+      },
+      "resource_calibration": {
+        "opened_delta": 32,
+        "closed_delta": 0,
+        "passed": true
+      },
+      "normal_range": 0,
+      "control_range": 16
+    },
+    "linux_ci": {
+      "original_report_sha256": "30fb2e93b43cb100ad2931b7dfd616aca937b3a749713a64143d3d97128c138a",
+      "target": "x86_64-unknown-linux-gnu",
+      "c_compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "binary_sha256": {
+        "ffi-resource-probe": "09051d765b72c31c62fc3ef283bdadcdb52ba4e6e6a5ba4c6a6e660d57344d55",
+        "libdaoseeker_scope_ffi.so": "cc5e157e4156ccce2a816f54cdc7817fd6ea86cf018e9e60afd4b03b5649a532"
+      },
+      "buffer_limit": {
+        "format": 1,
+        "mode": "buffer_limit",
+        "metric": "proc_self_fd_count",
+        "held_buffers": 64,
+        "overflow_status": 7,
+        "recovery_status": 0,
+        "retired_token_status": 9,
+        "verified_live_buffers": 63,
+        "completed": true
+      },
+      "resource_calibration": {
+        "opened_delta": 32,
+        "closed_delta": 0,
+        "passed": true
+      },
+      "normal_range": 0,
+      "control_range": 16
+    },
+    "macos_ci": {
+      "original_report_sha256": "7026e5827cedb04b71d315d255765873c4a725789aaef3925895391e8cc3c4f6",
+      "target": "aarch64-apple-darwin",
+      "c_compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+      "binary_sha256": {
+        "ffi-resource-probe": "b9d35a7063a281b7a53d5a27e8a7478693e3c0f4c943c02b5a861c7ee988c2f5",
+        "libdaoseeker_scope_ffi.dylib": "01826c1db7b38e6559e33e6171ac2a39fff1c5c080e98c3e36d57a5abc1f6933"
+      },
+      "buffer_limit": {
+        "format": 1,
+        "mode": "buffer_limit",
+        "metric": "fcntl_fd_count_0_65535",
+        "held_buffers": 64,
+        "overflow_status": 7,
+        "recovery_status": 0,
+        "retired_token_status": 9,
+        "verified_live_buffers": 63,
+        "completed": true
+      },
+      "resource_calibration": {
+        "opened_delta": 32,
+        "closed_delta": 0,
+        "passed": true
+      },
+      "normal_range": 0,
+      "control_range": 16
+    }
+  }
+}
