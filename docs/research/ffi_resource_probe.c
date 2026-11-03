@@ -98,14 +98,69 @@ static int release_many(resource *items, unsigned count) {
     for (index = 0; index < count; ++index) if (!release(items[index])) okay = 0;
     return okay;
 }
+static int valid_buffer(const dsc_buffer *buffer) {
+    return buffer->data != NULL && buffer->len > 0
+        && buffer->len <= 1048576 && buffer->token != 0;
+}
+static int empty_buffer(const dsc_buffer *buffer) {
+    return buffer->data == NULL && buffer->len == 0 && buffer->token == 0;
+}
 static int collect_once(size_t *largest) {
     dsc_buffer buffer = {0};
     int32_t code = dsc_collect_json(NULL, &buffer);
-    int okay = code == DSC_OK && buffer.data != NULL && buffer.len > 0
-        && buffer.len <= 1048576 && buffer.token != 0;
+    int okay = code == DSC_OK && valid_buffer(&buffer);
     if (okay && buffer.len > *largest) *largest = buffer.len;
     if (dsc_buffer_free(&buffer) != DSC_OK) okay = 0;
-    return okay && buffer.data == NULL && buffer.len == 0 && buffer.token == 0;
+    return okay && empty_buffer(&buffer);
+}
+static int buffer_limit(void) {
+    enum { LIMIT = 64 };
+    dsc_buffer held[LIMIT] = {0}, extra = {0}, old_token_test;
+    uint8_t *copies[LIMIT] = {0};
+    const char *problem = NULL;
+    uint64_t retired_token;
+    int32_t overflow = DSC_PANIC, recovery = DSC_PANIC, retired = DSC_PANIC;
+    unsigned i, j;
+    for (i = 0; i < LIMIT; ++i) {
+        problem = "fill_buffers";
+        if (dsc_collect_json(NULL, &held[i]) != DSC_OK || !valid_buffer(&held[i]))
+            goto cleanup;
+        for (j = 0; j < i; ++j) if (held[i].token == held[j].token) goto cleanup;
+        copies[i] = malloc(held[i].len);
+        if (copies[i] == NULL) goto cleanup;
+        memcpy(copies[i], held[i].data, held[i].len);
+    }
+    problem = "buffer_limit";
+    overflow = dsc_collect_json(NULL, &extra);
+    if (overflow != DSC_RESOURCE_LIMIT || !empty_buffer(&extra)) goto cleanup;
+    retired_token = held[0].token;
+    if (dsc_buffer_free(&held[0]) != DSC_OK || !empty_buffer(&held[0])) goto cleanup;
+    problem = "buffer_recovery";
+    recovery = dsc_collect_json(NULL, &extra);
+    if (recovery != DSC_OK || !valid_buffer(&extra) || extra.token == retired_token) goto cleanup;
+    /* Use the live address and length so rejection depends on the retired token. */
+    old_token_test = extra;
+    old_token_test.token = retired_token;
+    retired = dsc_buffer_free(&old_token_test);
+    if (retired != DSC_INVALID_BUFFER) goto cleanup;
+    problem = "retained_buffer_changed";
+    for (i = 1; i < LIMIT; ++i) {
+        if (extra.token == held[i].token || memcmp(copies[i], held[i].data, held[i].len))
+            goto cleanup;
+    }
+    problem = NULL;
+cleanup:
+    if (dsc_buffer_free(&extra) != DSC_OK || !empty_buffer(&extra)) problem = "buffer_cleanup";
+    for (i = 0; i < LIMIT; ++i) {
+        if (dsc_buffer_free(&held[i]) != DSC_OK || !empty_buffer(&held[i])) problem = "buffer_cleanup";
+        free(copies[i]);
+    }
+    if (problem != NULL) return failure(problem);
+    printf("{\"format\":1,\"mode\":\"buffer_limit\",\"metric\":\"%s\","
+           "\"held_buffers\":%d,\"overflow_status\":%" PRId32 ",\"recovery_status\":%" PRId32 ","
+           "\"retired_token_status\":%" PRId32 ",\"verified_live_buffers\":%d,\"completed\":true}\n",
+           METRIC, LIMIT, overflow, recovery, retired, LIMIT - 1);
+    return fflush(stdout) != 0 ? failure("output") : 0;
 }
 int main(int argc, char **argv) {
     uint64_t values[10], before, opened, closed;
@@ -113,8 +168,10 @@ int main(int argc, char **argv) {
     size_t largest = 0;
     unsigned call, index;
     int control, okay = 1;
-    if (argc != 2 || (strcmp(argv[1], "calibrate") && strcmp(argv[1], "cached")
-        && strcmp(argv[1], "control"))) return failure("invalid_mode");
+    if (argc != 2) return failure("invalid_mode");
+    if (!strcmp(argv[1], "buffer_limit")) return buffer_limit();
+    if (strcmp(argv[1], "calibrate") && strcmp(argv[1], "cached")
+        && strcmp(argv[1], "control")) return failure("invalid_mode");
     if (!strcmp(argv[1], "calibrate")) {
         if (!count_resources(&before) || !acquire_many(items, 32)) return failure("calibration_open");
         okay = count_resources(&opened);

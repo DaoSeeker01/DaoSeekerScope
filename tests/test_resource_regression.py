@@ -20,6 +20,15 @@ def observation(mode: str = "cached", system: str = "Windows") -> dict[str, Any]
     }
     if mode == "calibrate":
         return base | {"opened_resources": 32, "counts": [10, 42, 10]}
+    if mode == "buffer_limit":
+        return base | {
+            "held_buffers": 64,
+            "overflow_status": 7,
+            "recovery_status": 0,
+            "retired_token_status": 9,
+            "verified_live_buffers": 63,
+            "completed": True,
+        }
     return base | {
         "warmup_calls": 100,
         "total_calls": 1000,
@@ -41,11 +50,25 @@ def observation(mode: str = "cached", system: str = "Windows") -> dict[str, Any]
 class ResourceRegressionTests(unittest.TestCase):
     def test_native_metrics_calibrate_and_detect_control(self) -> None:
         for system in resource.METRICS:
-            for mode in ("calibrate", "cached", "control"):
+            for mode in ("calibrate", "cached", "control", "buffer_limit"):
                 result = resource.analyse(observation(mode, system), mode, system)
                 self.assertIs(
                     result.get("passed", result.get("within_budget")), mode != "control"
                 )
+
+    def test_buffer_limit_rejects_partial_or_wrong_status(self) -> None:
+        for key, value in (
+            ("held_buffers", 63),
+            ("overflow_status", 0),
+            ("recovery_status", False),
+            ("retired_token_status", 0),
+            ("verified_live_buffers", 62),
+            ("completed", False),
+        ):
+            data = observation("buffer_limit")
+            data[key] = value
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                resource.analyse(data, "buffer_limit", "Windows")
 
     def test_bad_calibration_and_failed_close(self) -> None:
         for counts in (

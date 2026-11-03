@@ -1,4 +1,4 @@
-"""Check finite cached C ABI handle/FD growth with an independent positive control."""
+"""Check cached C ABI resource growth and recovery from buffer saturation."""
 
 from __future__ import annotations
 
@@ -54,6 +54,20 @@ def analyse(data: Any, mode: str, system: str) -> dict[str, Any]:
             counts[1] - counts[0] == 32 and counts[2] == counts[0], "calibration_delta"
         )
         return {"opened_delta": 32, "closed_delta": 0, "passed": True}
+    if mode == "buffer_limit":
+        for field, expected in {
+            "held_buffers": 64,
+            "overflow_status": 7,
+            "recovery_status": 0,
+            "retired_token_status": 9,
+            "verified_live_buffers": 63,
+        }.items():
+            require(
+                type(data.get(field)) is int and data[field] == expected,
+                "buffer_limit_contract",
+            )
+        require(data.get("completed") is True, "incomplete")
+        return {"passed": True}
     require(mode in ("cached", "control"), "workload_mode")
     for field, value in {
         "warmup_calls": 100,
@@ -190,11 +204,11 @@ def measure(report: dict[str, Any]) -> None:
             "sensitive": False,
             "timeout_ms": 2000,
         },
-        scope="finite process handle/FD sampling; macOS checks only FD 0..65535; not Mach ports, GDI/USER objects, allocator or long-duration proof",
+        scope="Finite handle and FD sampling plus buffer saturation recovery. macOS FD numbers 0..65535.",
         observations={},
         analyses={},
     )
-    for mode in ("calibrate", "cached", "control"):
+    for mode in ("calibrate", "cached", "control", "buffer_limit"):
         data = json.loads(peak.run([str(probe), mode], 210))
         report["observations"][mode] = data
         result = analyse(data, mode, system)
