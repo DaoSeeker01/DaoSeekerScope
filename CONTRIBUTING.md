@@ -21,6 +21,8 @@ cargo doc --locked --workspace --all-features --no-deps
 
 文档检查设置 `RUSTDOCFLAGS="-D warnings"`。PowerShell 可执行 `pwsh -NoProfile -File scripts/check.ps1`；加 `-Cross` 时，需要先安装 `x86_64-unknown-linux-gnu` 和 `aarch64-apple-darwin` 两个目标。交叉 check 只代表编译，不代表原生运行。
 
+仅修复 Linux 交付工具时，可手动启动 `desktop-contracts`，选择 `scope=linux-candidate`，执行完整 Linux 桌面与候选检查。常规 push/PR 仍运行全部任务；定向通过不代替三平台验收。
+
 ## 工具、Schema 与文档
 
 更改公共模型、features、C 头文件或版本前，先读[发布前契约评审](docs/v0.1-contract-review.md)。在干净提交上运行 `python scripts/check_contract.py`，独立构建本机 C/Rust 探针并检查冻结基线；需要 C11 编译器，Windows 需 PowerShell 7、MSVC 与 Windows SDK。该检查触发兼容性评审，不代替 API、行为或完整平台验证；不得只重生成基线来消除失败。

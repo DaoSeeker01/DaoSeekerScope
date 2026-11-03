@@ -11,6 +11,10 @@ cargo_cache=$(realpath "${CARGO_HOME:-$HOME/.cargo}")
 read -r image expected_id <<< "$(python -c 'import sys; sys.path.insert(0, "scripts"); from linux_runtime_container_smoke import PROFILES; p = PROFILES["bookworm"]; print(p["image"], p["config_digest"])')"
 docker pull --platform linux/amd64 "$image" >&2
 test "$(docker image inspect --format '{{.Id}} {{.Architecture}} {{.Os}}' "$image")" = "$expected_id amd64 linux"
+build_image="dscope-candidate-build:${expected_id#sha256:}"
+docker build --file .github/linux-candidate.Dockerfile --build-arg "BASE_IMAGE=$image" \
+  --tag "$build_image" .github >&2
+docker image inspect --format 'candidate builder {{.Id}}' "$build_image" >&2
 name="dscope-build-$(python -c 'import uuid; print(uuid.uuid4().hex)')"
 docker create --name "$name" --platform linux/amd64 \
   --network none --read-only --cap-drop ALL --security-opt no-new-privileges \
@@ -19,11 +23,11 @@ docker create --name "$name" --platform linux/amd64 \
   --mount "type=bind,src=$workspace,dst=$workspace" \
   --mount "type=bind,src=$toolchain,dst=$toolchain,readonly" \
   --mount "type=bind,src=$cargo_cache,dst=$cargo_cache" \
-  --workdir "$workspace" --env "CARGO_HOME=$cargo_cache" \
+  --workdir "$workspace" --env "CARGO_HOME=$cargo_cache" --env HOME=/tmp \
   --env "PATH=$toolchain/bin:/usr/local/bin:/usr/bin:/bin" \
   --env CARGO_NET_OFFLINE=true --env CARGO_BUILD_JOBS=2 \
-  --entrypoint /bin/bash "$image" --noprofile --norc -c \
-  'set -e; test "$(getconf GNU_LIBC_VERSION)" = "glibc 2.36"; exec python scripts/cli_bundle.py --offline --product "$1"' _ "$product" >/dev/null
+  --entrypoint /bin/bash "$build_image" --noprofile --norc -c \
+  'set -e; test "$(getconf GNU_LIBC_VERSION)" = "glibc 2.36"; command -v git cc >&2; exec python scripts/cli_bundle.py --offline --product "$1"' _ "$product" >/dev/null
 cleanup() {
   local result=$?
   if ! docker rm --force "$name" >/dev/null; then
