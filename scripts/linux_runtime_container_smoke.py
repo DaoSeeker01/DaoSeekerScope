@@ -278,7 +278,9 @@ def validate_result(
     }
     if profile["expected"] == "runs":
         require(
-            set(calls) == {"cli_version", "cli_json", "c", "python"}, "runtime_calls"
+            set(calls)
+            == {"cli_version", "cli_json", "cli_isolated_json", "c", "python"},
+            "runtime_calls",
         )
         require(
             all(
@@ -297,14 +299,15 @@ def validate_result(
             "runtime_python_contract",
         )
         schema = json.loads((ROOT / "docs/schema/snapshot-v1.schema.json").read_bytes())
-        for label in ("cli_json", "c"):
+        for label in ("cli_json", "cli_isolated_json", "c"):
             snapshot = json.loads(calls[label]["stdout"])
             jsonschema.Draft202012Validator(schema).validate(snapshot)
             check_snapshot(snapshot)
         result.update(
             snapshot_schema_and_default_privacy=True,
             python_collect_free_cycles=100,
-            child_processes=4,
+            child_processes=5,
+            isolated_cli_completed=True,
             output_sha256={
                 label: digest(item["stdout"].encode()) for label, item in calls.items()
             },

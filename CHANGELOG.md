@@ -15,6 +15,8 @@
 
 - CLI 新增可选 `--isolate` 和 `--timeout-ms=N`：独立进程采集，超时后终止并确认回收，父管道关闭时退出；默认运行方式不变。同步修复 JSON 达到 1 MiB 时额外换行导致公共解码器拒绝的问题。
 
+- Linux CLI/SDK 候选改用固定 Debian 12 用户空间链接，避免较新宿主的 glibc 符号要求破坏已有运行范围；旧用户空间验收增加隔离模式的实际 JSON 读取。
+
 - 增加 macOS 源码构建文件的有界 Mach-O 元数据检查与 Apple 工具对照；报告声明的系统版本，不据此承诺最低系统或批准二进制分发。
 
 - Rust core 与门面新增消费式 `Hardware::shutdown()`，按配置超时等待采集循环及 backend 释放；修复 backend 析构尚未结束就释放 worker 配额的问题。现有 Drop 与 C ABI 行为保留，不增加动态库卸载保证。

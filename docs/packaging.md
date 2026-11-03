@@ -22,6 +22,10 @@ Windows CLI 二进制候选包另见[离线安装与回滚验证](cli-bundle-val
 
 ## 验证入口
 
+Linux CLI/SDK 候选的 CI 构建使用 `bash scripts/build_linux_candidate.sh cli` 或 `ffi_sdk`：复用运行验证所固定的 Debian 12 镜像，在 glibc 2.36 用户空间链接，随后仍执行既有 glibc 2.34/2.36 运行和 2.31 拒绝测试。需要 Docker、宿主 Rust 工具链及已缓存的依赖；镜像按摘要和配置 ID 核对，构建时断网，使用普通用户，结束后移除容器。源码、Cargo 缓存可写，工具链只读，这不是执行不可信代码的沙盒。常规三平台 Rust 测试环境不变。
+
+该构建入口用于避免较新宿主 glibc 为可选符号建立版本要求，不声明所有同版本 Linux 环境均可运行，也不改变包格式、ABI 或 Schema。直接运行 `cli_bundle.py` 仍使用当前宿主链接器。
+
 需要 Python 3.12+（使用 tar 归档安全过滤 API）。在干净的仓库目录运行：
 
 ```sh

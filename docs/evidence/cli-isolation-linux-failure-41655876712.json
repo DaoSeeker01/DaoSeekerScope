@@ -1,0 +1,154 @@
+{
+  "report_version": 2,
+  "overall": "failed",
+  "profiles": {
+    "bookworm": {
+      "status": "failed",
+      "image": "python@sha256:f576b530293e74140ea91d262232648d5c4f45640a95ec447757701bfcacf034",
+      "phase": "result",
+      "image_id": "sha256:2e6b5bbf5b2f372ef9b208e7c7c300675be97a6dc1bbe7e3ac0b9c20035fd70e",
+      "configuration": {
+        "user": "65534:65534",
+        "network": "none",
+        "readonly_root": true,
+        "readonly_candidate_mount": true,
+        "writable_tmpfs": "/work",
+        "entrypoint": "python",
+        "memory_bytes": 268435456,
+        "pids": 32,
+        "cpus": 1
+      },
+      "probe_failure": "runtime_child_failed",
+      "container_removed": true
+    }
+  },
+  "physical_device_validation": false,
+  "minimum_kernel_or_distribution_verified": false,
+  "published": false,
+  "source_commit": "1a4bb47614e8ae9be5854bb4603c9698ffcc6445",
+  "source_dirty": false,
+  "docker_version": "28.0.4",
+  "payload_bytes": {
+    "cli": 17686601,
+    "sdk": 17235478
+  },
+  "binary_sha256": {
+    "cli": "12d71c6615247a9e1c8953b3d4e33e3632797e7c41145e333b88ead457a9619c",
+    "library": "cc5e157e4156ccce2a816f54cdc7817fd6ea86cf018e9e60afd4b03b5649a532",
+    "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+  },
+  "archive_sha256": {
+    "cli": "29f3b1fa6cd3d6ee327465d4f5f1c276f0e8f870f042668564f0fdb0d4a87876",
+    "sdk": "3f5543cd6b67adfeef89e6973dccba9d500ab2df463257a00e023ef2d949800f"
+  },
+  "elf_requirements": {
+    "cli": {
+      "direct_dependencies": [
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "required_symbol_versions": {
+        "ld-linux-x86-64.so.2": [
+          "GLIBC_2.3"
+        ],
+        "libc.so.6": [
+          "GLIBC_2.14",
+          "GLIBC_2.15",
+          "GLIBC_2.16",
+          "GLIBC_2.17",
+          "GLIBC_2.18",
+          "GLIBC_2.2.5",
+          "GLIBC_2.25",
+          "GLIBC_2.28",
+          "GLIBC_2.29",
+          "GLIBC_2.3",
+          "GLIBC_2.3.4",
+          "GLIBC_2.30",
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34",
+          "GLIBC_2.39",
+          "GLIBC_2.9"
+        ],
+        "libgcc_s.so.1": [
+          "GCC_3.0",
+          "GCC_3.3",
+          "GCC_4.2.0"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [],
+      "highest_glibc_numeric_requirement": "GLIBC_2.39",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    },
+    "library": {
+      "direct_dependencies": [
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "required_symbol_versions": {
+        "ld-linux-x86-64.so.2": [
+          "GLIBC_2.3"
+        ],
+        "libc.so.6": [
+          "GLIBC_2.14",
+          "GLIBC_2.16",
+          "GLIBC_2.17",
+          "GLIBC_2.18",
+          "GLIBC_2.2.5",
+          "GLIBC_2.25",
+          "GLIBC_2.28",
+          "GLIBC_2.3",
+          "GLIBC_2.3.4",
+          "GLIBC_2.30",
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34"
+        ],
+        "libgcc_s.so.1": [
+          "GCC_3.0",
+          "GCC_3.3",
+          "GCC_4.2.0"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [],
+      "highest_glibc_numeric_requirement": "GLIBC_2.34",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    },
+    "consumer": {
+      "direct_dependencies": [
+        "libdaoseeker_scope_ffi.so",
+        "libc.so.6"
+      ],
+      "required_symbol_versions": {
+        "libc.so.6": [
+          "GLIBC_2.2.5",
+          "GLIBC_2.34",
+          "GLIBC_2.4"
+        ]
+      },
+      "weak_symbol_versions": {},
+      "direct_dependencies_without_version_entries": [
+        "libdaoseeker_scope_ffi.so"
+      ],
+      "highest_glibc_numeric_requirement": "GLIBC_2.34",
+      "minimum_glibc_or_distribution_verified": false,
+      "transitive_or_runtime_loads_inspected": false
+    }
+  },
+  "work_budget": {
+    "capacity_bytes": 67108864,
+    "reserve_bytes": 16777216,
+    "logical_bytes": 34938383,
+    "estimated_copy_bytes": 35328000,
+    "allocation_block_bytes": 4096,
+    "files": 93,
+    "directories": 38
+  },
+  "failure": "runtime_probe_contract"
+}

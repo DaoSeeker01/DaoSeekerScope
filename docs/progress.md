@@ -1,6 +1,6 @@
 # 剩余工作
 
-2026-11-03 CLI 隔离批次：新增可选 `--isolate` 与 `--timeout-ms=N`，超时后终止并确认子进程退出，限制结果为 1 MiB；父管道监测启动后可随管道关闭退出。本机完整 Rust 门禁 302 项通过、1 项夹具由监督测试启动，严格 Clippy、文档、无默认功能和 Linux/macOS 交叉 check 通过；三平台原生 CI 待验收。覆盖实际文本/JSON、默认脱敏、挂起、超时、超大输出、异常退出及满 1 MiB JSON 往返。接口与限制见[使用指南](usage.md#在独立进程中采集)，不增加 Rust/C ABI 的强终止或卸载能力。
+2026-11-03 CLI 隔离批次：新增可选 `--isolate` 与 `--timeout-ms=N`，超时后终止并确认子进程退出，限制结果为 1 MiB；父管道监测启动后可随管道关闭退出。本机完整 Rust 门禁 302 项、严格 Clippy、文档、双平台交叉 check、八包与契约检查通过；1 项夹具由监督测试启动。Python 328 项中 322 通过、6 跳过，Release CLI 中文/空格路径三项运行通过。首轮 CI 41655876712 七项成功，Linux 桌面因新增 GLIBC_2.39 加载要求失败，[原始报告](evidence/cli-isolation-linux-failure-41655876712.json)保留；现改为固定 Debian 12 用户空间链接候选，旧环境验收增加隔离 JSON 实读，修复后原生 CI 待验收。接口与限制见[使用指南](usage.md#在独立进程中采集)，不增加 Rust/C ABI 的强终止或卸载能力。
 
 2026-11-02 macOS 制品批次：已实现 Mach-O 头、链接依赖和系统版本声明检查；8 项新增 Python 回归及本机全套通过，提交 `d76e8a9` 的 ARM64 原生 CLI/动态库与 otool/lipo 对照、三平台 CI 41368963038 全部八项通过。六项许可材料缺口不变，未开放 macOS 打包。[范围与复现](macos-binary-validation.md)。
 

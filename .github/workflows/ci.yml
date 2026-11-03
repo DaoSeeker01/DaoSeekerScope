@@ -92,7 +92,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          bundle=$(python scripts/cli_bundle.py)
+          bundle=$(bash scripts/build_linux_candidate.sh cli)
           python scripts/cli_bundle_smoke.py "$bundle"
           printf '%s\n' "$bundle" > target/linux-cli-archive.txt
       - name: Preserve Linux CLI candidate evidence
@@ -133,7 +133,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          sdk=$(python scripts/cli_bundle.py --product ffi_sdk)
+          sdk=$(bash scripts/build_linux_candidate.sh ffi_sdk)
           python scripts/ffi_bundle_smoke.py "$sdk"
           printf '%s\n' "$sdk" > target/linux-sdk-archive.txt
       - name: Linux candidates in pinned older userlands

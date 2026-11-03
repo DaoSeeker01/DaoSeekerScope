@@ -112,6 +112,7 @@ def result(label: str) -> dict[str, Any]:
         outputs = {
             "cli_version": "dscope 0.1.0\n",
             "cli_json": json.dumps(snapshot()),
+            "cli_isolated_json": json.dumps(snapshot()),
             "c": json.dumps(snapshot()),
             "python": "ctypes: 100 real collect/free cycles, stale copy rejection, privacy and schema passed\n",
         }
@@ -174,6 +175,8 @@ class RuntimeContainerTests(unittest.TestCase):
             result("ubi9"), smoke.PROFILES["ubi9"], HASHES, "0.1.0"
         )
         self.assertEqual(report["python_collect_free_cycles"], 100)
+        self.assertEqual(report["child_processes"], 5)
+        self.assertTrue(report["isolated_cli_completed"])
         self.assertEqual(
             report["runtime"]["distribution"], {"id": "rhel", "version_id": "9.7"}
         )
@@ -361,6 +364,8 @@ class RuntimeContainerTests(unittest.TestCase):
             lambda v: v["runtime"].update(glibc="9.0"),
             lambda v: v["binary_sha256"].update(cli="0" * 64),
             lambda v: v["calls"]["c"].update(exit_code=1),
+            lambda v: v["calls"]["cli_isolated_json"].update(exit_code=1),
+            lambda v: v["calls"].pop("cli_isolated_json"),
             lambda v: v["calls"]["cli_version"].update(stdout="dscope old"),
             lambda v: v.update(rebuilt_in_container=True),
         ):
@@ -372,7 +377,7 @@ class RuntimeContainerTests(unittest.TestCase):
                 )
 
     def test_positive_report_rejects_schema_and_privacy_failure(self) -> None:
-        for label in ("cli_json", "c"):
+        for label in ("cli_json", "cli_isolated_json", "c"):
             value = result("bookworm")
             payload = json.loads(value["calls"][label]["stdout"])
             payload["static_info"]["system"]["device"]["serial_number"]["value"] = (

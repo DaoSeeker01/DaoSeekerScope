@@ -208,6 +208,12 @@ def execute(root: Path, work: Path, config: dict[str, Any]) -> dict[str, Any]:
         jobs = {
             "cli_version": [str(cli), "--version"],
             "cli_json": [str(cli), "--json"],
+            "cli_isolated_json": [
+                str(cli),
+                "--isolate",
+                "--json",
+                "--timeout-ms=10000",
+            ],
             "c": [str(consumer)],
             "python": [sys.executable, str(sdk / "examples/collect.py"), str(library)],
         }
