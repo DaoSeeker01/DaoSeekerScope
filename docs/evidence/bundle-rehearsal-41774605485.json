@@ -1,0 +1,1765 @@
+{
+  "report_version": 1,
+  "recorded_at": "2026-11-04T04:54:44.703116+00:00",
+  "overall": "passed",
+  "source_commit": "6718c0d4431f35d02de687e5bb5642481dfd77ac",
+  "run_id": 41774605485,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41774605485",
+  "ci_scope": "native-probe",
+  "jobs": [
+    {
+      "name": "desktop (ubuntu-24.04)",
+      "id": 126391930319,
+      "conclusion": "success"
+    },
+    {
+      "name": "desktop (windows-latest)",
+      "id": 126391930501,
+      "conclusion": "success"
+    },
+    {
+      "name": "desktop (macos-latest)",
+      "id": 126391930662,
+      "conclusion": "success"
+    },
+    {
+      "name": "miri",
+      "id": 126391931544,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "matrix.group == 'all' && 'fuzz-smoke' || format('fuzz-extended ({0})', matrix.group)",
+      "id": 126391931627,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "linux-container",
+      "id": 126391931884,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "ffi-asan",
+      "id": 126391932078,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "supply-chain",
+      "id": 126391932122,
+      "conclusion": "skipped"
+    }
+  ],
+  "local_python_tests": {
+    "total": 336,
+    "passed": 330,
+    "skipped": 6
+  },
+  "forced_exit_regression": {
+    "modules": [
+      "cli_bundle_smoke",
+      "ffi_bundle_smoke"
+    ],
+    "process_exit_code": 23,
+    "report_state_before_exit": "incomplete",
+    "previous_success_retained": false,
+    "method": "os._exit bypasses the rehearsal's finally block"
+  },
+  "commands_run": [
+    ".venv/Scripts/ruff.exe format --check scripts/cli_bundle_smoke.py scripts/ffi_bundle_smoke.py tests/test_cli_bundle.py",
+    ".venv/Scripts/ruff.exe check scripts/cli_bundle_smoke.py scripts/ffi_bundle_smoke.py tests/test_cli_bundle.py",
+    ".venv/Scripts/mypy.exe --no-incremental --ignore-missing-imports scripts/cli_bundle_smoke.py scripts/ffi_bundle_smoke.py tests/test_cli_bundle.py",
+    ".venv/Scripts/python.exe -m unittest discover -s tests -p '*bundle*.py'",
+    ".venv/Scripts/python.exe -m unittest discover -s tests -p 'test_*.py'",
+    "mise exec -- .venv/Scripts/python.exe scripts/cli_bundle.py --offline",
+    ".venv/Scripts/python.exe scripts/cli_bundle_smoke.py <candidate> --output target/rehearsal-local-cli.json",
+    "mise exec -- .venv/Scripts/python.exe scripts/cli_bundle.py --product ffi_sdk --offline",
+    "mise exec -- .venv/Scripts/python.exe scripts/ffi_bundle_smoke.py <sdk> --output target/rehearsal-local-sdk.json",
+    "gh workflow run ci.yml --ref main -f scope=native-probe",
+    ".venv/Scripts/python.exe scripts/check_project.py",
+    "git diff --check"
+  ],
+  "reports": {
+    "windows_local_cli": {
+      "raw_report_sha256": "d001060a3905b042e1726852e5bdac7175b0ec5e772bc4f8e010e9defcc97100",
+      "report": {
+        "overall": "passed",
+        "source_commit": "6718c0d4431f35d02de687e5bb5642481dfd77ac",
+        "source_dirty": false,
+        "target": "x86_64-pc-windows-msvc",
+        "host": {
+          "system": "Windows",
+          "version": "10.0.26300",
+          "machine": "AMD64"
+        },
+        "version": "0.1.0",
+        "bundle_format": 1,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "2e606d403a17758000b288227d4fdab071599d6bc68b1857e526ee30e3044096",
+        "cli_sha256": "5cfb4de7bd48180f7583c475e4a956e98ba43a86b1510868b0cf2941bd867f29",
+        "payload_files": 73,
+        "processes": 9,
+        "process_count_scope": "top_level_subprocesses",
+        "cli_invocations": 9,
+        "isolated_cli_completed": true,
+        "minimum_read_and_default_privacy": true,
+        "snapshot_schema_validated": true,
+        "posix_modes_verified": false,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false,
+        "pe_image": {
+          "format": "PE32+",
+          "machine": "x86_64",
+          "kind": "exe",
+          "subsystem": "windows_cui",
+          "declared_os_version": [
+            6,
+            0
+          ],
+          "declared_subsystem_version": [
+            6,
+            0
+          ],
+          "direct_imports": [
+            "advapi32.dll",
+            "api-ms-win-core-synch-l1-2-0.dll",
+            "api-ms-win-crt-heap-l1-1-0.dll",
+            "api-ms-win-crt-locale-l1-1-0.dll",
+            "api-ms-win-crt-math-l1-1-0.dll",
+            "api-ms-win-crt-runtime-l1-1-0.dll",
+            "api-ms-win-crt-stdio-l1-1-0.dll",
+            "api-ms-win-crt-string-l1-1-0.dll",
+            "bcryptprimitives.dll",
+            "dxgi.dll",
+            "iphlpapi.dll",
+            "kernel32.dll",
+            "ntdll.dll",
+            "oleaut32.dll",
+            "pdh.dll",
+            "powrprof.dll",
+            "psapi.dll",
+            "setupapi.dll",
+            "shell32.dll",
+            "user32.dll",
+            "vcruntime140.dll"
+          ],
+          "delay_imports": [],
+          "direct_symbols": {
+            "advapi32.dll": {
+              "names": [
+                "CopySid",
+                "GetLengthSid",
+                "GetTokenInformation",
+                "IsValidSid",
+                "OpenProcessToken",
+                "RegCloseKey",
+                "RegGetValueW",
+                "RegOpenKeyExW",
+                "RegQueryValueExW"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-core-synch-l1-2-0.dll": {
+              "names": [
+                "WaitOnAddress",
+                "WakeByAddressAll",
+                "WakeByAddressSingle"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-heap-l1-1-0.dll": {
+              "names": [
+                "_set_new_mode",
+                "free"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-locale-l1-1-0.dll": {
+              "names": [
+                "_configthreadlocale"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-math-l1-1-0.dll": {
+              "names": [
+                "__setusermatherr"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-runtime-l1-1-0.dll": {
+              "names": [
+                "__p___argc",
+                "__p___argv",
+                "_c_exit",
+                "_cexit",
+                "_configure_narrow_argv",
+                "_crt_atexit",
+                "_exit",
+                "_get_initial_narrow_environment",
+                "_initialize_narrow_environment",
+                "_initialize_onexit_table",
+                "_initterm",
+                "_initterm_e",
+                "_register_onexit_function",
+                "_register_thread_local_exe_atexit_callback",
+                "_seh_filter_exe",
+                "_set_app_type",
+                "exit",
+                "terminate"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-stdio-l1-1-0.dll": {
+              "names": [
+                "__p__commode",
+                "_set_fmode"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-string-l1-1-0.dll": {
+              "names": [
+                "wcslen"
+              ],
+              "ordinals": []
+            },
+            "bcryptprimitives.dll": {
+              "names": [
+                "ProcessPrng"
+              ],
+              "ordinals": []
+            },
+            "dxgi.dll": {
+              "names": [
+                "CreateDXGIFactory1"
+              ],
+              "ordinals": []
+            },
+            "iphlpapi.dll": {
+              "names": [
+                "GetIfEntry2",
+                "GetIfTable"
+              ],
+              "ordinals": []
+            },
+            "kernel32.dll": {
+              "names": [
+                "AddVectoredExceptionHandler",
+                "CloseHandle",
+                "CompareStringOrdinal",
+                "CreateFileW",
+                "CreateMutexA",
+                "CreateProcessW",
+                "CreateThread",
+                "CreateToolhelp32Snapshot",
+                "CreateWaitableTimerExW",
+                "DeviceIoControl",
+                "DuplicateHandle",
+                "ExitProcess",
+                "FormatMessageW",
+                "FreeEnvironmentStringsW",
+                "GetActiveProcessorCount",
+                "GetActiveProcessorGroupCount",
+                "GetCommandLineW",
+                "GetConsoleMode",
+                "GetConsoleOutputCP",
+                "GetCurrentDirectoryW",
+                "GetCurrentProcess",
+                "GetCurrentProcessId",
+                "GetCurrentThread",
+                "GetCurrentThreadId",
+                "GetEnvironmentStringsW",
+                "GetEnvironmentVariableW",
+                "GetExitCodeProcess",
+                "GetFileAttributesW",
+                "GetFullPathNameW",
+                "GetLastError",
+                "GetLogicalProcessorInformationEx",
+                "GetModuleFileNameW",
+                "GetModuleHandleA",
+                "GetModuleHandleW",
+                "GetPhysicallyInstalledSystemMemory",
+                "GetProcAddress",
+                "GetProcessHeap",
+                "GetProcessId",
+                "GetProcessIoCounters",
+                "GetProcessTimes",
+                "GetStdHandle",
+                "GetSystemDirectoryW",
+                "GetSystemInfo",
+                "GetSystemPowerStatus",
+                "GetSystemTimeAsFileTime",
+                "GetSystemTimePreciseAsFileTime",
+                "GetSystemTimes",
+                "GetTickCount64",
+                "GetWindowsDirectoryW",
+                "GlobalMemoryStatusEx",
+                "HeapAlloc",
+                "HeapFree",
+                "HeapReAlloc",
+                "InitializeSListHead",
+                "K32GetPerformanceInfo",
+                "LoadLibraryA",
+                "LocalFree",
+                "MultiByteToWideChar",
+                "OpenProcess",
+                "Process32FirstW",
+                "Process32NextW",
+                "QueryPerformanceCounter",
+                "QueryPerformanceFrequency",
+                "ReadConsoleW",
+                "ReadFileEx",
+                "ReadProcessMemory",
+                "ReleaseMutex",
+                "SetFileInformationByHandle",
+                "SetFileTime",
+                "SetLastError",
+                "SetThreadGroupAffinity",
+                "SetThreadStackGuarantee",
+                "SetUnhandledExceptionFilter",
+                "SetWaitableTimer",
+                "Sleep",
+                "SleepEx",
+                "SwitchToThread",
+                "TerminateProcess",
+                "VirtualQueryEx",
+                "WaitForSingleObject",
+                "WaitForSingleObjectEx",
+                "WideCharToMultiByte",
+                "WriteConsoleW",
+                "WriteFileEx",
+                "lstrlenW"
+              ],
+              "ordinals": []
+            },
+            "ntdll.dll": {
+              "names": [
+                "NtCreateNamedPipeFile",
+                "NtOpenFile",
+                "NtQueryInformationProcess",
+                "NtReadFile",
+                "NtWriteFile",
+                "RtlCaptureContext",
+                "RtlGetVersion",
+                "RtlLookupFunctionEntry",
+                "RtlNtStatusToDosError",
+                "RtlVirtualUnwind"
+              ],
+              "ordinals": []
+            },
+            "oleaut32.dll": {
+              "names": [
+                "GetErrorInfo"
+              ],
+              "ordinals": []
+            },
+            "pdh.dll": {
+              "names": [
+                "PdhAddEnglishCounterW",
+                "PdhCloseQuery",
+                "PdhCollectQueryData",
+                "PdhEnumObjectsW",
+                "PdhGetFormattedCounterValue",
+                "PdhOpenQueryW",
+                "PdhRemoveCounter"
+              ],
+              "ordinals": []
+            },
+            "powrprof.dll": {
+              "names": [
+                "CallNtPowerInformation"
+              ],
+              "ordinals": []
+            },
+            "psapi.dll": {
+              "names": [
+                "GetModuleFileNameExW",
+                "GetProcessMemoryInfo"
+              ],
+              "ordinals": []
+            },
+            "setupapi.dll": {
+              "names": [
+                "SetupDiDestroyDeviceInfoList",
+                "SetupDiEnumDeviceInterfaces",
+                "SetupDiGetClassDevsW",
+                "SetupDiGetDeviceInterfaceDetailW"
+              ],
+              "ordinals": []
+            },
+            "shell32.dll": {
+              "names": [
+                "CommandLineToArgvW"
+              ],
+              "ordinals": []
+            },
+            "user32.dll": {
+              "names": [
+                "DisplayConfigGetDeviceInfo",
+                "GetDisplayConfigBufferSizes",
+                "QueryDisplayConfig"
+              ],
+              "ordinals": []
+            },
+            "vcruntime140.dll": {
+              "names": [
+                "_CxxThrowException",
+                "__C_specific_handler",
+                "__CxxFrameHandler3",
+                "__current_exception",
+                "__current_exception_context",
+                "memcmp",
+                "memcpy",
+                "memmove",
+                "memset"
+              ],
+              "ordinals": []
+            }
+          },
+          "delay_symbols": {},
+          "minimum_windows_verified": false,
+          "transitive_or_dynamic_loads_inspected": false
+        },
+        "pe_archive_inspections": 1
+      }
+    },
+    "windows_local_sdk": {
+      "raw_report_sha256": "c02f3228932e335d04613802482c41249f5bfc19ccf0859b02c7d5d2fdba850c",
+      "report": {
+        "overall": "passed",
+        "source_commit": "6718c0d4431f35d02de687e5bb5642481dfd77ac",
+        "source_dirty": false,
+        "product": "ffi_sdk",
+        "target": "x86_64-pc-windows-msvc",
+        "host": {
+          "system": "Windows",
+          "version": "10.0.26300",
+          "machine": "AMD64"
+        },
+        "bundle_format": 3,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "fc8f95095c78915728986b1bb1fc7a5bf638ef9dda7e30b65d93d1bc793c994a",
+        "header_sha256": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+        "payload_files": 78,
+        "processes": 9,
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "stale_copy_and_empty_free": true,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false,
+        "dll_sha256": "34fa4efe0b759457806d9c6efd56a906bddbef2e4a20be38f8c9cebdafff4d44",
+        "import_library_sha256": "78214f2b47ae59f00921e35c5b672c253348d5e0a9d94cd574dccb2b7c33ddd2",
+        "pe_archive_inspections": 1,
+        "pe_installed_inspections": 6,
+        "pe_images": {
+          "consumer": {
+            "format": "PE32+",
+            "machine": "x86_64",
+            "kind": "exe",
+            "subsystem": "windows_cui",
+            "declared_os_version": [
+              6,
+              0
+            ],
+            "declared_subsystem_version": [
+              6,
+              0
+            ],
+            "direct_imports": [
+              "daoseeker_scope_ffi.dll",
+              "kernel32.dll"
+            ],
+            "delay_imports": [],
+            "direct_symbols": {
+              "daoseeker_scope_ffi.dll": {
+                "names": [
+                  "dsc_abi_version",
+                  "dsc_buffer_free",
+                  "dsc_collect_json",
+                  "dsc_last_error"
+                ],
+                "ordinals": []
+              },
+              "kernel32.dll": {
+                "names": [
+                  "CloseHandle",
+                  "CompareStringW",
+                  "CreateFileW",
+                  "DeleteCriticalSection",
+                  "EncodePointer",
+                  "EnterCriticalSection",
+                  "ExitProcess",
+                  "FindClose",
+                  "FindFirstFileExW",
+                  "FindNextFileW",
+                  "FlsAlloc",
+                  "FlsFree",
+                  "FlsGetValue",
+                  "FlsSetValue",
+                  "FlushFileBuffers",
+                  "FreeEnvironmentStringsW",
+                  "FreeLibrary",
+                  "GetACP",
+                  "GetCPInfo",
+                  "GetCommandLineA",
+                  "GetCommandLineW",
+                  "GetConsoleMode",
+                  "GetConsoleOutputCP",
+                  "GetCurrentProcess",
+                  "GetCurrentProcessId",
+                  "GetCurrentThreadId",
+                  "GetEnvironmentStringsW",
+                  "GetFileSizeEx",
+                  "GetFileType",
+                  "GetLastError",
+                  "GetModuleFileNameW",
+                  "GetModuleHandleExW",
+                  "GetModuleHandleW",
+                  "GetOEMCP",
+                  "GetProcAddress",
+                  "GetProcessHeap",
+                  "GetStartupInfoW",
+                  "GetStdHandle",
+                  "GetStringTypeW",
+                  "GetSystemTimeAsFileTime",
+                  "HeapAlloc",
+                  "HeapFree",
+                  "HeapReAlloc",
+                  "HeapSize",
+                  "InitializeCriticalSectionEx",
+                  "InitializeSListHead",
+                  "IsDebuggerPresent",
+                  "IsProcessorFeaturePresent",
+                  "IsValidCodePage",
+                  "LCMapStringW",
+                  "LeaveCriticalSection",
+                  "LoadLibraryExW",
+                  "MultiByteToWideChar",
+                  "QueryPerformanceCounter",
+                  "RaiseException",
+                  "RtlCaptureContext",
+                  "RtlLookupFunctionEntry",
+                  "RtlPcToFileHeader",
+                  "RtlUnwindEx",
+                  "RtlVirtualUnwind",
+                  "SetEnvironmentVariableW",
+                  "SetFilePointerEx",
+                  "SetLastError",
+                  "SetStdHandle",
+                  "SetUnhandledExceptionFilter",
+                  "TerminateProcess",
+                  "UnhandledExceptionFilter",
+                  "VirtualProtect",
+                  "WideCharToMultiByte",
+                  "WriteConsoleW",
+                  "WriteFile"
+                ],
+                "ordinals": []
+              }
+            },
+            "delay_symbols": {},
+            "minimum_windows_verified": false,
+            "transitive_or_dynamic_loads_inspected": false
+          },
+          "library": {
+            "format": "PE32+",
+            "machine": "x86_64",
+            "kind": "dll",
+            "subsystem": "windows_gui",
+            "declared_os_version": [
+              6,
+              0
+            ],
+            "declared_subsystem_version": [
+              6,
+              0
+            ],
+            "direct_imports": [
+              "advapi32.dll",
+              "api-ms-win-core-synch-l1-2-0.dll",
+              "api-ms-win-crt-heap-l1-1-0.dll",
+              "api-ms-win-crt-runtime-l1-1-0.dll",
+              "api-ms-win-crt-string-l1-1-0.dll",
+              "bcryptprimitives.dll",
+              "dxgi.dll",
+              "iphlpapi.dll",
+              "kernel32.dll",
+              "ntdll.dll",
+              "oleaut32.dll",
+              "pdh.dll",
+              "powrprof.dll",
+              "psapi.dll",
+              "setupapi.dll",
+              "shell32.dll",
+              "user32.dll",
+              "vcruntime140.dll"
+            ],
+            "delay_imports": [],
+            "direct_symbols": {
+              "advapi32.dll": {
+                "names": [
+                  "CopySid",
+                  "GetLengthSid",
+                  "GetTokenInformation",
+                  "IsValidSid",
+                  "OpenProcessToken",
+                  "RegCloseKey",
+                  "RegGetValueW",
+                  "RegOpenKeyExW",
+                  "RegQueryValueExW"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-core-synch-l1-2-0.dll": {
+                "names": [
+                  "WaitOnAddress",
+                  "WakeByAddressAll",
+                  "WakeByAddressSingle"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-heap-l1-1-0.dll": {
+                "names": [
+                  "free"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-runtime-l1-1-0.dll": {
+                "names": [
+                  "_cexit",
+                  "_configure_narrow_argv",
+                  "_execute_onexit_table",
+                  "_initialize_narrow_environment",
+                  "_initialize_onexit_table",
+                  "_initterm",
+                  "_initterm_e",
+                  "_seh_filter_dll"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-string-l1-1-0.dll": {
+                "names": [
+                  "wcslen"
+                ],
+                "ordinals": []
+              },
+              "bcryptprimitives.dll": {
+                "names": [
+                  "ProcessPrng"
+                ],
+                "ordinals": []
+              },
+              "dxgi.dll": {
+                "names": [
+                  "CreateDXGIFactory1"
+                ],
+                "ordinals": []
+              },
+              "iphlpapi.dll": {
+                "names": [
+                  "GetIfEntry2",
+                  "GetIfTable"
+                ],
+                "ordinals": []
+              },
+              "kernel32.dll": {
+                "names": [
+                  "CloseHandle",
+                  "CreateFileW",
+                  "CreateMutexA",
+                  "CreateThread",
+                  "CreateToolhelp32Snapshot",
+                  "DeviceIoControl",
+                  "DisableThreadLibraryCalls",
+                  "FormatMessageW",
+                  "GetActiveProcessorCount",
+                  "GetActiveProcessorGroupCount",
+                  "GetConsoleMode",
+                  "GetConsoleOutputCP",
+                  "GetCurrentDirectoryW",
+                  "GetCurrentProcess",
+                  "GetCurrentProcessId",
+                  "GetCurrentThread",
+                  "GetCurrentThreadId",
+                  "GetEnvironmentVariableW",
+                  "GetLastError",
+                  "GetLogicalProcessorInformationEx",
+                  "GetModuleHandleA",
+                  "GetModuleHandleW",
+                  "GetPhysicallyInstalledSystemMemory",
+                  "GetProcAddress",
+                  "GetProcessHeap",
+                  "GetProcessIoCounters",
+                  "GetProcessTimes",
+                  "GetStdHandle",
+                  "GetSystemInfo",
+                  "GetSystemPowerStatus",
+                  "GetSystemTimeAsFileTime",
+                  "GetSystemTimePreciseAsFileTime",
+                  "GetSystemTimes",
+                  "GetTickCount64",
+                  "GlobalMemoryStatusEx",
+                  "HeapAlloc",
+                  "HeapFree",
+                  "HeapReAlloc",
+                  "InitializeSListHead",
+                  "K32GetPerformanceInfo",
+                  "LoadLibraryA",
+                  "LocalFree",
+                  "MultiByteToWideChar",
+                  "OpenProcess",
+                  "Process32FirstW",
+                  "Process32NextW",
+                  "QueryPerformanceCounter",
+                  "QueryPerformanceFrequency",
+                  "ReadProcessMemory",
+                  "ReleaseMutex",
+                  "SetLastError",
+                  "SetThreadGroupAffinity",
+                  "SetThreadStackGuarantee",
+                  "SwitchToThread",
+                  "VirtualQueryEx",
+                  "WaitForSingleObject",
+                  "WaitForSingleObjectEx",
+                  "WideCharToMultiByte",
+                  "WriteConsoleW",
+                  "lstrlenW"
+                ],
+                "ordinals": []
+              },
+              "ntdll.dll": {
+                "names": [
+                  "NtQueryInformationProcess",
+                  "NtWriteFile",
+                  "RtlCaptureContext",
+                  "RtlGetVersion",
+                  "RtlLookupFunctionEntry",
+                  "RtlNtStatusToDosError",
+                  "RtlVirtualUnwind"
+                ],
+                "ordinals": []
+              },
+              "oleaut32.dll": {
+                "names": [
+                  "GetErrorInfo"
+                ],
+                "ordinals": []
+              },
+              "pdh.dll": {
+                "names": [
+                  "PdhAddEnglishCounterW",
+                  "PdhCloseQuery",
+                  "PdhCollectQueryData",
+                  "PdhEnumObjectsW",
+                  "PdhGetFormattedCounterValue",
+                  "PdhOpenQueryW",
+                  "PdhRemoveCounter"
+                ],
+                "ordinals": []
+              },
+              "powrprof.dll": {
+                "names": [
+                  "CallNtPowerInformation"
+                ],
+                "ordinals": []
+              },
+              "psapi.dll": {
+                "names": [
+                  "GetModuleFileNameExW",
+                  "GetProcessMemoryInfo"
+                ],
+                "ordinals": []
+              },
+              "setupapi.dll": {
+                "names": [
+                  "SetupDiDestroyDeviceInfoList",
+                  "SetupDiEnumDeviceInterfaces",
+                  "SetupDiGetClassDevsW",
+                  "SetupDiGetDeviceInterfaceDetailW"
+                ],
+                "ordinals": []
+              },
+              "shell32.dll": {
+                "names": [
+                  "CommandLineToArgvW"
+                ],
+                "ordinals": []
+              },
+              "user32.dll": {
+                "names": [
+                  "DisplayConfigGetDeviceInfo",
+                  "GetDisplayConfigBufferSizes",
+                  "QueryDisplayConfig"
+                ],
+                "ordinals": []
+              },
+              "vcruntime140.dll": {
+                "names": [
+                  "_CxxThrowException",
+                  "__C_specific_handler",
+                  "__CxxFrameHandler3",
+                  "__std_type_info_destroy_list",
+                  "memcmp",
+                  "memcpy",
+                  "memmove",
+                  "memset"
+                ],
+                "ordinals": []
+              }
+            },
+            "delay_symbols": {},
+            "minimum_windows_verified": false,
+            "transitive_or_dynamic_loads_inspected": false
+          }
+        }
+      }
+    },
+    "linux_ci_cli": {
+      "raw_report_sha256": "b17542a1985890eccc3c98504b8e1df20e02e7f86ebf0cd4d1ede43a40b06b1d",
+      "report": {
+        "overall": "passed",
+        "source_commit": "6718c0d4431f35d02de687e5bb5642481dfd77ac",
+        "source_dirty": false,
+        "target": "x86_64-unknown-linux-gnu",
+        "host": {
+          "system": "Linux",
+          "version": "#17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026",
+          "machine": "x86_64"
+        },
+        "version": "0.1.0",
+        "bundle_format": 2,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "db13e9e3e42707e6cfe3cc2d76c61c5029a849d9e2d5726959afc5135e4824e6",
+        "cli_sha256": "1c9f71e19b10f43d66229a16944fabde0acb2d20bebe05ec07765f88121450dc",
+        "payload_files": 43,
+        "processes": 10,
+        "process_count_scope": "top_level_subprocesses",
+        "cli_invocations": 9,
+        "isolated_cli_completed": true,
+        "minimum_read_and_default_privacy": true,
+        "snapshot_schema_validated": true,
+        "posix_modes_verified": true,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false,
+        "elf_image": {
+          "direct_dependencies": [
+            "libgcc_s.so.1",
+            "libc.so.6",
+            "ld-linux-x86-64.so.2"
+          ],
+          "required_symbol_versions": {
+            "ld-linux-x86-64.so.2": [
+              "GLIBC_2.3"
+            ],
+            "libc.so.6": [
+              "GLIBC_2.14",
+              "GLIBC_2.15",
+              "GLIBC_2.16",
+              "GLIBC_2.17",
+              "GLIBC_2.18",
+              "GLIBC_2.2.5",
+              "GLIBC_2.25",
+              "GLIBC_2.28",
+              "GLIBC_2.29",
+              "GLIBC_2.3",
+              "GLIBC_2.3.4",
+              "GLIBC_2.30",
+              "GLIBC_2.32",
+              "GLIBC_2.33",
+              "GLIBC_2.34",
+              "GLIBC_2.9"
+            ],
+            "libgcc_s.so.1": [
+              "GCC_3.0",
+              "GCC_3.3",
+              "GCC_4.2.0"
+            ]
+          },
+          "weak_symbol_versions": {},
+          "direct_dependencies_without_version_entries": [],
+          "highest_glibc_numeric_requirement": "GLIBC_2.34",
+          "minimum_glibc_or_distribution_verified": false,
+          "transitive_or_runtime_loads_inspected": false
+        },
+        "elf_inspections": 1,
+        "child_loader_overrides_cleared": true
+      }
+    },
+    "linux_ci_sdk": {
+      "raw_report_sha256": "64bec52e67531f1457c22ac4c3d112120438713f09fe71ad0c49b2bc1fc7f2d5",
+      "report": {
+        "overall": "passed",
+        "source_commit": "6718c0d4431f35d02de687e5bb5642481dfd77ac",
+        "source_dirty": false,
+        "product": "ffi_sdk",
+        "target": "x86_64-unknown-linux-gnu",
+        "host": {
+          "system": "Linux",
+          "version": "#17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026",
+          "machine": "x86_64"
+        },
+        "bundle_format": 4,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "668108336dcf5d5f8a81e9411cbfa50d91733f6075ce6d6a64dca16e35c2d69d",
+        "header_sha256": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+        "payload_files": 47,
+        "processes": 15,
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "stale_copy_and_empty_free": true,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false,
+        "library_sha256": "1b090672d70338ff1d3146fd683079434495c64bf77035af42ab31794541ace8",
+        "elf_inspections": 6,
+        "elf_needed": {
+          "consumer": [
+            "libdaoseeker_scope_ffi.so",
+            "libc.so.6"
+          ],
+          "library": [
+            "libgcc_s.so.1",
+            "libc.so.6",
+            "ld-linux-x86-64.so.2"
+          ]
+        },
+        "elf_images": {
+          "consumer": {
+            "direct_dependencies": [
+              "libdaoseeker_scope_ffi.so",
+              "libc.so.6"
+            ],
+            "required_symbol_versions": {
+              "libc.so.6": [
+                "GLIBC_2.2.5",
+                "GLIBC_2.34",
+                "GLIBC_2.4"
+              ]
+            },
+            "weak_symbol_versions": {},
+            "direct_dependencies_without_version_entries": [
+              "libdaoseeker_scope_ffi.so"
+            ],
+            "highest_glibc_numeric_requirement": "GLIBC_2.34",
+            "minimum_glibc_or_distribution_verified": false,
+            "transitive_or_runtime_loads_inspected": false
+          },
+          "library": {
+            "direct_dependencies": [
+              "libgcc_s.so.1",
+              "libc.so.6",
+              "ld-linux-x86-64.so.2"
+            ],
+            "required_symbol_versions": {
+              "ld-linux-x86-64.so.2": [
+                "GLIBC_2.3"
+              ],
+              "libc.so.6": [
+                "GLIBC_2.14",
+                "GLIBC_2.16",
+                "GLIBC_2.17",
+                "GLIBC_2.18",
+                "GLIBC_2.2.5",
+                "GLIBC_2.25",
+                "GLIBC_2.28",
+                "GLIBC_2.3",
+                "GLIBC_2.3.4",
+                "GLIBC_2.30",
+                "GLIBC_2.32",
+                "GLIBC_2.33",
+                "GLIBC_2.34"
+              ],
+              "libgcc_s.so.1": [
+                "GCC_3.0",
+                "GCC_3.3",
+                "GCC_4.2.0"
+              ]
+            },
+            "weak_symbol_versions": {},
+            "direct_dependencies_without_version_entries": [],
+            "highest_glibc_numeric_requirement": "GLIBC_2.34",
+            "minimum_glibc_or_distribution_verified": false,
+            "transitive_or_runtime_loads_inspected": false
+          }
+        },
+        "consumer_runpath": "$ORIGIN/../lib",
+        "child_loader_overrides_cleared": true,
+        "posix_modes_verified": true,
+        "minimum_glibc_or_distribution_verified": false
+      }
+    },
+    "windows_ci_cli": {
+      "raw_report_sha256": "7fab8e6562bd81ff20d84d830ffc041a0176fc70fe0de35064e9ff833cbb0694",
+      "report": {
+        "overall": "passed",
+        "source_commit": "6718c0d4431f35d02de687e5bb5642481dfd77ac",
+        "source_dirty": false,
+        "target": "x86_64-pc-windows-msvc",
+        "host": {
+          "system": "Windows",
+          "version": "10.0.26100",
+          "machine": "AMD64"
+        },
+        "version": "0.1.0",
+        "bundle_format": 1,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "e473b280372971b0a2af94041ba5f020aa3d41d89f580adcab5d93213f3ad8f9",
+        "cli_sha256": "2d9b5121199696806075f481f7ab60e81bee25b6408b57ae450e95a93a450fe0",
+        "payload_files": 73,
+        "processes": 9,
+        "process_count_scope": "top_level_subprocesses",
+        "cli_invocations": 9,
+        "isolated_cli_completed": true,
+        "minimum_read_and_default_privacy": true,
+        "snapshot_schema_validated": true,
+        "posix_modes_verified": false,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false,
+        "pe_image": {
+          "format": "PE32+",
+          "machine": "x86_64",
+          "kind": "exe",
+          "subsystem": "windows_cui",
+          "declared_os_version": [
+            6,
+            0
+          ],
+          "declared_subsystem_version": [
+            6,
+            0
+          ],
+          "direct_imports": [
+            "advapi32.dll",
+            "api-ms-win-core-synch-l1-2-0.dll",
+            "api-ms-win-crt-heap-l1-1-0.dll",
+            "api-ms-win-crt-locale-l1-1-0.dll",
+            "api-ms-win-crt-math-l1-1-0.dll",
+            "api-ms-win-crt-runtime-l1-1-0.dll",
+            "api-ms-win-crt-stdio-l1-1-0.dll",
+            "api-ms-win-crt-string-l1-1-0.dll",
+            "bcryptprimitives.dll",
+            "dxgi.dll",
+            "iphlpapi.dll",
+            "kernel32.dll",
+            "ntdll.dll",
+            "oleaut32.dll",
+            "pdh.dll",
+            "powrprof.dll",
+            "psapi.dll",
+            "setupapi.dll",
+            "shell32.dll",
+            "user32.dll",
+            "vcruntime140.dll"
+          ],
+          "delay_imports": [],
+          "direct_symbols": {
+            "advapi32.dll": {
+              "names": [
+                "CopySid",
+                "GetLengthSid",
+                "GetTokenInformation",
+                "IsValidSid",
+                "OpenProcessToken",
+                "RegCloseKey",
+                "RegGetValueW",
+                "RegOpenKeyExW",
+                "RegQueryValueExW"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-core-synch-l1-2-0.dll": {
+              "names": [
+                "WaitOnAddress",
+                "WakeByAddressAll",
+                "WakeByAddressSingle"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-heap-l1-1-0.dll": {
+              "names": [
+                "_set_new_mode",
+                "free"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-locale-l1-1-0.dll": {
+              "names": [
+                "_configthreadlocale"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-math-l1-1-0.dll": {
+              "names": [
+                "__setusermatherr"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-runtime-l1-1-0.dll": {
+              "names": [
+                "__p___argc",
+                "__p___argv",
+                "_c_exit",
+                "_cexit",
+                "_configure_narrow_argv",
+                "_crt_atexit",
+                "_exit",
+                "_get_initial_narrow_environment",
+                "_initialize_narrow_environment",
+                "_initialize_onexit_table",
+                "_initterm",
+                "_initterm_e",
+                "_register_onexit_function",
+                "_register_thread_local_exe_atexit_callback",
+                "_seh_filter_exe",
+                "_set_app_type",
+                "exit",
+                "terminate"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-stdio-l1-1-0.dll": {
+              "names": [
+                "__p__commode",
+                "_set_fmode"
+              ],
+              "ordinals": []
+            },
+            "api-ms-win-crt-string-l1-1-0.dll": {
+              "names": [
+                "wcslen"
+              ],
+              "ordinals": []
+            },
+            "bcryptprimitives.dll": {
+              "names": [
+                "ProcessPrng"
+              ],
+              "ordinals": []
+            },
+            "dxgi.dll": {
+              "names": [
+                "CreateDXGIFactory1"
+              ],
+              "ordinals": []
+            },
+            "iphlpapi.dll": {
+              "names": [
+                "GetIfEntry2",
+                "GetIfTable"
+              ],
+              "ordinals": []
+            },
+            "kernel32.dll": {
+              "names": [
+                "AddVectoredExceptionHandler",
+                "CloseHandle",
+                "CompareStringOrdinal",
+                "CreateFileW",
+                "CreateMutexA",
+                "CreateProcessW",
+                "CreateThread",
+                "CreateToolhelp32Snapshot",
+                "CreateWaitableTimerExW",
+                "DeviceIoControl",
+                "DuplicateHandle",
+                "ExitProcess",
+                "FormatMessageW",
+                "FreeEnvironmentStringsW",
+                "GetActiveProcessorCount",
+                "GetActiveProcessorGroupCount",
+                "GetCommandLineW",
+                "GetConsoleMode",
+                "GetConsoleOutputCP",
+                "GetCurrentDirectoryW",
+                "GetCurrentProcess",
+                "GetCurrentProcessId",
+                "GetCurrentThread",
+                "GetCurrentThreadId",
+                "GetEnvironmentStringsW",
+                "GetEnvironmentVariableW",
+                "GetExitCodeProcess",
+                "GetFileAttributesW",
+                "GetFullPathNameW",
+                "GetLastError",
+                "GetLogicalProcessorInformationEx",
+                "GetModuleFileNameW",
+                "GetModuleHandleA",
+                "GetModuleHandleW",
+                "GetPhysicallyInstalledSystemMemory",
+                "GetProcAddress",
+                "GetProcessHeap",
+                "GetProcessId",
+                "GetProcessIoCounters",
+                "GetProcessTimes",
+                "GetStdHandle",
+                "GetSystemDirectoryW",
+                "GetSystemInfo",
+                "GetSystemPowerStatus",
+                "GetSystemTimeAsFileTime",
+                "GetSystemTimePreciseAsFileTime",
+                "GetSystemTimes",
+                "GetTickCount64",
+                "GetWindowsDirectoryW",
+                "GlobalMemoryStatusEx",
+                "HeapAlloc",
+                "HeapFree",
+                "HeapReAlloc",
+                "InitializeSListHead",
+                "K32GetPerformanceInfo",
+                "LoadLibraryA",
+                "LocalFree",
+                "MultiByteToWideChar",
+                "OpenProcess",
+                "Process32FirstW",
+                "Process32NextW",
+                "QueryPerformanceCounter",
+                "QueryPerformanceFrequency",
+                "ReadConsoleW",
+                "ReadFileEx",
+                "ReadProcessMemory",
+                "ReleaseMutex",
+                "SetFileInformationByHandle",
+                "SetFileTime",
+                "SetLastError",
+                "SetThreadGroupAffinity",
+                "SetThreadStackGuarantee",
+                "SetUnhandledExceptionFilter",
+                "SetWaitableTimer",
+                "Sleep",
+                "SleepEx",
+                "SwitchToThread",
+                "TerminateProcess",
+                "VirtualQueryEx",
+                "WaitForSingleObject",
+                "WaitForSingleObjectEx",
+                "WideCharToMultiByte",
+                "WriteConsoleW",
+                "WriteFileEx",
+                "lstrlenW"
+              ],
+              "ordinals": []
+            },
+            "ntdll.dll": {
+              "names": [
+                "NtCreateNamedPipeFile",
+                "NtOpenFile",
+                "NtQueryInformationProcess",
+                "NtReadFile",
+                "NtWriteFile",
+                "RtlCaptureContext",
+                "RtlGetVersion",
+                "RtlLookupFunctionEntry",
+                "RtlNtStatusToDosError",
+                "RtlVirtualUnwind"
+              ],
+              "ordinals": []
+            },
+            "oleaut32.dll": {
+              "names": [
+                "GetErrorInfo"
+              ],
+              "ordinals": []
+            },
+            "pdh.dll": {
+              "names": [
+                "PdhAddEnglishCounterW",
+                "PdhCloseQuery",
+                "PdhCollectQueryData",
+                "PdhEnumObjectsW",
+                "PdhGetFormattedCounterValue",
+                "PdhOpenQueryW",
+                "PdhRemoveCounter"
+              ],
+              "ordinals": []
+            },
+            "powrprof.dll": {
+              "names": [
+                "CallNtPowerInformation"
+              ],
+              "ordinals": []
+            },
+            "psapi.dll": {
+              "names": [
+                "GetModuleFileNameExW",
+                "GetProcessMemoryInfo"
+              ],
+              "ordinals": []
+            },
+            "setupapi.dll": {
+              "names": [
+                "SetupDiDestroyDeviceInfoList",
+                "SetupDiEnumDeviceInterfaces",
+                "SetupDiGetClassDevsW",
+                "SetupDiGetDeviceInterfaceDetailW"
+              ],
+              "ordinals": []
+            },
+            "shell32.dll": {
+              "names": [
+                "CommandLineToArgvW"
+              ],
+              "ordinals": []
+            },
+            "user32.dll": {
+              "names": [
+                "DisplayConfigGetDeviceInfo",
+                "GetDisplayConfigBufferSizes",
+                "QueryDisplayConfig"
+              ],
+              "ordinals": []
+            },
+            "vcruntime140.dll": {
+              "names": [
+                "_CxxThrowException",
+                "__C_specific_handler",
+                "__CxxFrameHandler3",
+                "__current_exception",
+                "__current_exception_context",
+                "memcmp",
+                "memcpy",
+                "memmove",
+                "memset"
+              ],
+              "ordinals": []
+            }
+          },
+          "delay_symbols": {},
+          "minimum_windows_verified": false,
+          "transitive_or_dynamic_loads_inspected": false
+        },
+        "pe_archive_inspections": 1
+      }
+    },
+    "windows_ci_sdk": {
+      "raw_report_sha256": "d508ddf766425e2e24a5b64a507b07650a6f963026f4c8ac7afd24fdd899bc72",
+      "report": {
+        "overall": "passed",
+        "source_commit": "6718c0d4431f35d02de687e5bb5642481dfd77ac",
+        "source_dirty": false,
+        "product": "ffi_sdk",
+        "target": "x86_64-pc-windows-msvc",
+        "host": {
+          "system": "Windows",
+          "version": "10.0.26100",
+          "machine": "AMD64"
+        },
+        "bundle_format": 3,
+        "abi_version": 1,
+        "schema_version": 1,
+        "archive_sha256": "c436845be773a39caffb718a37f73e2e47c94dcbb8c9385dd05d692448fe53b5",
+        "header_sha256": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+        "payload_files": 78,
+        "processes": 9,
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "stale_copy_and_empty_free": true,
+        "corrupt_update_rejected_before_install": true,
+        "same_candidate_two_slot_rollback": true,
+        "older_version_compatibility_tested": false,
+        "published": false,
+        "global_install_or_path_modified": false,
+        "publisher_authenticated": false,
+        "dll_sha256": "50f649fe3ff1b8267f1847d336beee4b5d4984e7c064c31f207286e4444aac41",
+        "import_library_sha256": "78214f2b47ae59f00921e35c5b672c253348d5e0a9d94cd574dccb2b7c33ddd2",
+        "pe_archive_inspections": 1,
+        "pe_installed_inspections": 6,
+        "pe_images": {
+          "consumer": {
+            "format": "PE32+",
+            "machine": "x86_64",
+            "kind": "exe",
+            "subsystem": "windows_cui",
+            "declared_os_version": [
+              6,
+              0
+            ],
+            "declared_subsystem_version": [
+              6,
+              0
+            ],
+            "direct_imports": [
+              "daoseeker_scope_ffi.dll",
+              "kernel32.dll"
+            ],
+            "delay_imports": [],
+            "direct_symbols": {
+              "daoseeker_scope_ffi.dll": {
+                "names": [
+                  "dsc_abi_version",
+                  "dsc_buffer_free",
+                  "dsc_collect_json",
+                  "dsc_last_error"
+                ],
+                "ordinals": []
+              },
+              "kernel32.dll": {
+                "names": [
+                  "CloseHandle",
+                  "CompareStringW",
+                  "CreateFileW",
+                  "DeleteCriticalSection",
+                  "EncodePointer",
+                  "EnterCriticalSection",
+                  "ExitProcess",
+                  "FindClose",
+                  "FindFirstFileExW",
+                  "FindNextFileW",
+                  "FlsAlloc",
+                  "FlsFree",
+                  "FlsGetValue",
+                  "FlsSetValue",
+                  "FlushFileBuffers",
+                  "FreeEnvironmentStringsW",
+                  "FreeLibrary",
+                  "GetACP",
+                  "GetCPInfo",
+                  "GetCommandLineA",
+                  "GetCommandLineW",
+                  "GetConsoleMode",
+                  "GetConsoleOutputCP",
+                  "GetCurrentProcess",
+                  "GetCurrentProcessId",
+                  "GetCurrentThreadId",
+                  "GetEnvironmentStringsW",
+                  "GetFileSizeEx",
+                  "GetFileType",
+                  "GetLastError",
+                  "GetModuleFileNameW",
+                  "GetModuleHandleExW",
+                  "GetModuleHandleW",
+                  "GetOEMCP",
+                  "GetProcAddress",
+                  "GetProcessHeap",
+                  "GetStartupInfoW",
+                  "GetStdHandle",
+                  "GetStringTypeW",
+                  "GetSystemTimeAsFileTime",
+                  "HeapAlloc",
+                  "HeapFree",
+                  "HeapReAlloc",
+                  "HeapSize",
+                  "InitializeCriticalSectionEx",
+                  "InitializeSListHead",
+                  "IsDebuggerPresent",
+                  "IsProcessorFeaturePresent",
+                  "IsValidCodePage",
+                  "LCMapStringW",
+                  "LeaveCriticalSection",
+                  "LoadLibraryExW",
+                  "MultiByteToWideChar",
+                  "QueryPerformanceCounter",
+                  "RaiseException",
+                  "RtlCaptureContext",
+                  "RtlLookupFunctionEntry",
+                  "RtlPcToFileHeader",
+                  "RtlUnwindEx",
+                  "RtlVirtualUnwind",
+                  "SetEnvironmentVariableW",
+                  "SetFilePointerEx",
+                  "SetLastError",
+                  "SetStdHandle",
+                  "SetUnhandledExceptionFilter",
+                  "TerminateProcess",
+                  "UnhandledExceptionFilter",
+                  "VirtualProtect",
+                  "WideCharToMultiByte",
+                  "WriteConsoleW",
+                  "WriteFile"
+                ],
+                "ordinals": []
+              }
+            },
+            "delay_symbols": {},
+            "minimum_windows_verified": false,
+            "transitive_or_dynamic_loads_inspected": false
+          },
+          "library": {
+            "format": "PE32+",
+            "machine": "x86_64",
+            "kind": "dll",
+            "subsystem": "windows_gui",
+            "declared_os_version": [
+              6,
+              0
+            ],
+            "declared_subsystem_version": [
+              6,
+              0
+            ],
+            "direct_imports": [
+              "advapi32.dll",
+              "api-ms-win-core-synch-l1-2-0.dll",
+              "api-ms-win-crt-heap-l1-1-0.dll",
+              "api-ms-win-crt-runtime-l1-1-0.dll",
+              "api-ms-win-crt-string-l1-1-0.dll",
+              "bcryptprimitives.dll",
+              "dxgi.dll",
+              "iphlpapi.dll",
+              "kernel32.dll",
+              "ntdll.dll",
+              "oleaut32.dll",
+              "pdh.dll",
+              "powrprof.dll",
+              "psapi.dll",
+              "setupapi.dll",
+              "shell32.dll",
+              "user32.dll",
+              "vcruntime140.dll"
+            ],
+            "delay_imports": [],
+            "direct_symbols": {
+              "advapi32.dll": {
+                "names": [
+                  "CopySid",
+                  "GetLengthSid",
+                  "GetTokenInformation",
+                  "IsValidSid",
+                  "OpenProcessToken",
+                  "RegCloseKey",
+                  "RegGetValueW",
+                  "RegOpenKeyExW",
+                  "RegQueryValueExW"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-core-synch-l1-2-0.dll": {
+                "names": [
+                  "WaitOnAddress",
+                  "WakeByAddressAll",
+                  "WakeByAddressSingle"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-heap-l1-1-0.dll": {
+                "names": [
+                  "free"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-runtime-l1-1-0.dll": {
+                "names": [
+                  "_cexit",
+                  "_configure_narrow_argv",
+                  "_execute_onexit_table",
+                  "_initialize_narrow_environment",
+                  "_initialize_onexit_table",
+                  "_initterm",
+                  "_initterm_e",
+                  "_seh_filter_dll"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-string-l1-1-0.dll": {
+                "names": [
+                  "wcslen"
+                ],
+                "ordinals": []
+              },
+              "bcryptprimitives.dll": {
+                "names": [
+                  "ProcessPrng"
+                ],
+                "ordinals": []
+              },
+              "dxgi.dll": {
+                "names": [
+                  "CreateDXGIFactory1"
+                ],
+                "ordinals": []
+              },
+              "iphlpapi.dll": {
+                "names": [
+                  "GetIfEntry2",
+                  "GetIfTable"
+                ],
+                "ordinals": []
+              },
+              "kernel32.dll": {
+                "names": [
+                  "CloseHandle",
+                  "CreateFileW",
+                  "CreateMutexA",
+                  "CreateThread",
+                  "CreateToolhelp32Snapshot",
+                  "DeviceIoControl",
+                  "DisableThreadLibraryCalls",
+                  "FormatMessageW",
+                  "GetActiveProcessorCount",
+                  "GetActiveProcessorGroupCount",
+                  "GetConsoleMode",
+                  "GetConsoleOutputCP",
+                  "GetCurrentDirectoryW",
+                  "GetCurrentProcess",
+                  "GetCurrentProcessId",
+                  "GetCurrentThread",
+                  "GetCurrentThreadId",
+                  "GetEnvironmentVariableW",
+                  "GetLastError",
+                  "GetLogicalProcessorInformationEx",
+                  "GetModuleHandleA",
+                  "GetModuleHandleW",
+                  "GetPhysicallyInstalledSystemMemory",
+                  "GetProcAddress",
+                  "GetProcessHeap",
+                  "GetProcessIoCounters",
+                  "GetProcessTimes",
+                  "GetStdHandle",
+                  "GetSystemInfo",
+                  "GetSystemPowerStatus",
+                  "GetSystemTimeAsFileTime",
+                  "GetSystemTimePreciseAsFileTime",
+                  "GetSystemTimes",
+                  "GetTickCount64",
+                  "GlobalMemoryStatusEx",
+                  "HeapAlloc",
+                  "HeapFree",
+                  "HeapReAlloc",
+                  "InitializeSListHead",
+                  "K32GetPerformanceInfo",
+                  "LoadLibraryA",
+                  "LocalFree",
+                  "MultiByteToWideChar",
+                  "OpenProcess",
+                  "Process32FirstW",
+                  "Process32NextW",
+                  "QueryPerformanceCounter",
+                  "QueryPerformanceFrequency",
+                  "ReadProcessMemory",
+                  "ReleaseMutex",
+                  "SetLastError",
+                  "SetThreadGroupAffinity",
+                  "SetThreadStackGuarantee",
+                  "SwitchToThread",
+                  "VirtualQueryEx",
+                  "WaitForSingleObject",
+                  "WaitForSingleObjectEx",
+                  "WideCharToMultiByte",
+                  "WriteConsoleW",
+                  "lstrlenW"
+                ],
+                "ordinals": []
+              },
+              "ntdll.dll": {
+                "names": [
+                  "NtQueryInformationProcess",
+                  "NtWriteFile",
+                  "RtlCaptureContext",
+                  "RtlGetVersion",
+                  "RtlLookupFunctionEntry",
+                  "RtlNtStatusToDosError",
+                  "RtlVirtualUnwind"
+                ],
+                "ordinals": []
+              },
+              "oleaut32.dll": {
+                "names": [
+                  "GetErrorInfo"
+                ],
+                "ordinals": []
+              },
+              "pdh.dll": {
+                "names": [
+                  "PdhAddEnglishCounterW",
+                  "PdhCloseQuery",
+                  "PdhCollectQueryData",
+                  "PdhEnumObjectsW",
+                  "PdhGetFormattedCounterValue",
+                  "PdhOpenQueryW",
+                  "PdhRemoveCounter"
+                ],
+                "ordinals": []
+              },
+              "powrprof.dll": {
+                "names": [
+                  "CallNtPowerInformation"
+                ],
+                "ordinals": []
+              },
+              "psapi.dll": {
+                "names": [
+                  "GetModuleFileNameExW",
+                  "GetProcessMemoryInfo"
+                ],
+                "ordinals": []
+              },
+              "setupapi.dll": {
+                "names": [
+                  "SetupDiDestroyDeviceInfoList",
+                  "SetupDiEnumDeviceInterfaces",
+                  "SetupDiGetClassDevsW",
+                  "SetupDiGetDeviceInterfaceDetailW"
+                ],
+                "ordinals": []
+              },
+              "shell32.dll": {
+                "names": [
+                  "CommandLineToArgvW"
+                ],
+                "ordinals": []
+              },
+              "user32.dll": {
+                "names": [
+                  "DisplayConfigGetDeviceInfo",
+                  "GetDisplayConfigBufferSizes",
+                  "QueryDisplayConfig"
+                ],
+                "ordinals": []
+              },
+              "vcruntime140.dll": {
+                "names": [
+                  "_CxxThrowException",
+                  "__C_specific_handler",
+                  "__CxxFrameHandler3",
+                  "__std_type_info_destroy_list",
+                  "memcmp",
+                  "memcpy",
+                  "memmove",
+                  "memset"
+                ],
+                "ordinals": []
+              }
+            },
+            "delay_symbols": {},
+            "minimum_windows_verified": false,
+            "transitive_or_dynamic_loads_inspected": false
+          }
+        }
+      }
+    }
+  },
+  "versions": {
+    "c_abi": 1,
+    "snapshot_schema": 1,
+    "license": "MIT"
+  },
+  "dependency_feature_or_public_rust_api_changes": false,
+  "macos_candidate_packaging_verified": false,
+  "formally_published": false
+}

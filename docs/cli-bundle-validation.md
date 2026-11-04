@@ -1,5 +1,15 @@
 # Windows CLI 候选包验证
 
+## 候选包演练回归（2026-11-04）
+
+CLI 与 FFI SDK 演练在读取校验清单前将旧报告置为 incomplete，检查通过后才写入 passed。正常错误写入 failed，提前终止则保留 incomplete。验收同时核对进程退出码。新增子进程回归直接调用 os._exit，确认绕过 finally 后两种演练都不会留下旧的通过结果。
+
+CLI 在首次安装、切换和回滚后分别执行版本、普通 JSON 和隔离模式 JSON 检查，共九次 CLI 调用。Linux 另运行一次 readelf。报告明确只计入脚本直接启动的进程。
+
+干净提交 `6718c0d` 的 Windows 本机候选及 Windows/Linux CI 候选全部通过。每个 SDK 演练完成三次 C 编译运行和 300 次 Python 采集/释放。本机 Python 336 项中 330 项通过、6 项跳过，Ruff、mypy 和项目检查通过。定向 CI 41774605485 为三个桌面任务成功、五个未涉及任务跳过，包含 macOS 的源码与脚本回归。六份候选包原始报告、哈希与命令见[本轮验收记录](evidence/bundle-rehearsal-41774605485.json)。
+
+macOS 候选包仍受许可材料缺口限制，当前回滚测试使用同一候选的两个目录。以下记录保留对应历史来源。
+
 2026-10-26 原生回归：源码 `98172d0` 的[CI 40245533279](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40245533279)Windows v1 六进程再次通过，Linux v2 同轮完成原生验收，见[本轮记录](linux-cli-bundle-validation.md)。以下已归档提交仍保留原日期结果。
 
 2026-10-26 共享工具增加 Linux v2 权限契约，Windows v1 保持；此前实际 Windows ZIP 用新读取器验证通过。新的 Linux 原生执行与 Windows 回归结果分别归档，见[Linux 本轮状态](linux-cli-bundle-validation.md)。以下 2026-10-25 数据属于对应已验收提交。

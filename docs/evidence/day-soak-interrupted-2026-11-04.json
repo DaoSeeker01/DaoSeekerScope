@@ -1,0 +1,298 @@
+{
+  "report_version": 1,
+  "observed_at": "2026-11-04T04:42:38.909118+00:00",
+  "overall": "incomplete",
+  "state": "interrupted",
+  "planned_seconds": 86400,
+  "last_checkpoint_seconds": 23400.030637,
+  "last_checkpoint_calls": 213384,
+  "cause": "unknown",
+  "launcher_pid": 8916,
+  "probe_pid": 3968,
+  "launcher_and_probe_present_when_checked": false,
+  "boot_time_local": "2026-11-03T22:35:34+08:00",
+  "last_trace_write_local": "2026-11-04T06:11:09+08:00",
+  "completion_marker_present": false,
+  "exit_code_file_present": false,
+  "source_after": {
+    "revision": "9536d546500802452eca6c35cf0bf4e37026af3c",
+    "status": ""
+  },
+  "startup_report_sha256": "2823617d428fe75535a213967b8a6840ef68913e8bebb8c537a839f51f1461d4",
+  "startup_report": {
+    "format": 1,
+    "overall": "incomplete",
+    "duration_seconds": 86400,
+    "source_before": {
+      "revision": "9536d546500802452eca6c35cf0bf4e37026af3c",
+      "status": ""
+    },
+    "system": "Windows",
+    "os_release": "11",
+    "target": "x86_64-pc-windows-msvc",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+    "c_compiler": "19.51.36260.0",
+    "binary_sha256": {
+      "ffi-memory-probe.exe": "23e1c679ab782741ff3adbd9074cb2d40830e33ab4a85c869310acb6c5ebafb7",
+      "daoseeker_scope_ffi.dll": "3e516ed72f030f236f98586a8758e6b7d1b08f41574363423e9e89483311578e",
+      "dscope.exe": "6b57c739dccea116a4673006f4d066916d76b876c8c7650957be15b9d089f56a"
+    },
+    "profile": "release; default serde",
+    "options": {
+      "default_cached_collector": true,
+      "sensitive": false,
+      "timeout_ms": 2000
+    },
+    "limits": "requested 100 ms between completed calls; minute samples do not prove continuous stability or absence of leaks",
+    "environment": {
+      "cpu": {
+        "value": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "availability": "available",
+        "source": "sysinfo",
+        "observed_at": 1793720468602,
+        "reason": null
+      },
+      "memory": {
+        "value": 17009004544,
+        "availability": "available",
+        "source": "win32",
+        "observed_at": 1793720468625,
+        "reason": null
+      },
+      "os": {
+        "name": {
+          "value": "Windows",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1793720468602,
+          "reason": null
+        },
+        "version": {
+          "value": "11 (26300)",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1793720468602,
+          "reason": null
+        },
+        "kernel_version": {
+          "value": "26300",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1793720468602,
+          "reason": null
+        }
+      }
+    },
+    "snapshot_schema_and_privacy": true,
+    "calibration": {
+      "format": 2,
+      "mode": "resident_calibrate",
+      "launch": {
+        "strategy": "direct",
+        "launcher_pid": 10252,
+        "measurement_pid": 10252,
+        "parent_death_signal": 0
+      },
+      "resident_metric": "working_set_size",
+      "resident_raw_unit": "bytes",
+      "resident_multiplier": 1,
+      "metric": "peak_working_set",
+      "raw_unit": "bytes",
+      "multiplier": 1,
+      "pressure_bytes": 67108864,
+      "samples": [
+        {
+          "phase": "baseline",
+          "calls": 0,
+          "peak_raw": 8683520,
+          "peak_bytes": 8683520,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0,
+          "resident_raw": 8683520,
+          "resident_bytes": 8683520
+        },
+        {
+          "phase": "touched",
+          "calls": 0,
+          "peak_raw": 75796480,
+          "peak_bytes": 75796480,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0,
+          "resident_raw": 75796480,
+          "resident_bytes": 75796480
+        },
+        {
+          "phase": "freed",
+          "calls": 0,
+          "peak_raw": 75796480,
+          "peak_bytes": 75796480,
+          "elapsed_ns": 0,
+          "max_json_bytes": 0,
+          "resident_raw": 8683520,
+          "resident_bytes": 8683520
+        }
+      ]
+    },
+    "calibration_analysis": {
+      "calibration_growth_bytes": 67112960,
+      "passed": true
+    },
+    "invalid_duration_cases": 10,
+    "probe_pid": 3968,
+    "sampling_started_at": "2026-11-03T15:41:08.887670+00:00",
+    "cancellation_poll_seconds": 1,
+    "cleanup_wait_seconds": 10
+  },
+  "trace_file": "day-soak-interrupted-2026-11-04.ndjson",
+  "trace_sha256": "1f94570aca8809175fe5831d24295d8f30dac3a9f399c7f9177e5bc9037f695d",
+  "trace_records": 392,
+  "accepted_as_day_validation": false,
+  "retry_observation": {
+    "observed_at": "2026-11-04T04:45:15.618045+00:00",
+    "output_basename": "target/day-retry-2026-11-04",
+    "launcher_pid": 16960,
+    "probe_pid": 8380,
+    "launcher_and_probe_present_when_checked": true,
+    "startup_report_sha256": "ad394ce85bfb21e75cfc848733e5ca18e50438f13ab3b02bc893b8222588cf09",
+    "startup_report": {
+      "format": 1,
+      "overall": "incomplete",
+      "duration_seconds": 86400,
+      "source_before": {
+        "revision": "9536d546500802452eca6c35cf0bf4e37026af3c",
+        "status": ""
+      },
+      "system": "Windows",
+      "os_release": "11",
+      "target": "x86_64-pc-windows-msvc",
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+      "c_compiler": "19.51.36260.0",
+      "binary_sha256": {
+        "ffi-memory-probe.exe": "6c6a81263a9136e9d2f6af029b575314dbdc4ab6d472b47ddf6493fbd6b3f924",
+        "daoseeker_scope_ffi.dll": "3e516ed72f030f236f98586a8758e6b7d1b08f41574363423e9e89483311578e",
+        "dscope.exe": "6b57c739dccea116a4673006f4d066916d76b876c8c7650957be15b9d089f56a"
+      },
+      "profile": "release; default serde",
+      "options": {
+        "default_cached_collector": true,
+        "sensitive": false,
+        "timeout_ms": 2000
+      },
+      "limits": "requested 100 ms between completed calls; minute samples do not prove continuous stability or absence of leaks",
+      "environment": {
+        "cpu": {
+          "value": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1793767392305,
+          "reason": null
+        },
+        "memory": {
+          "value": 17009004544,
+          "availability": "available",
+          "source": "win32",
+          "observed_at": 1793767392338,
+          "reason": null
+        },
+        "os": {
+          "name": {
+            "value": "Windows",
+            "availability": "available",
+            "source": "sysinfo",
+            "observed_at": 1793767392305,
+            "reason": null
+          },
+          "version": {
+            "value": "11 (26300)",
+            "availability": "available",
+            "source": "sysinfo",
+            "observed_at": 1793767392305,
+            "reason": null
+          },
+          "kernel_version": {
+            "value": "26300",
+            "availability": "available",
+            "source": "sysinfo",
+            "observed_at": 1793767392305,
+            "reason": null
+          }
+        }
+      },
+      "snapshot_schema_and_privacy": true,
+      "calibration": {
+        "format": 2,
+        "mode": "resident_calibrate",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 12672,
+          "measurement_pid": 12672,
+          "parent_death_signal": 0
+        },
+        "resident_metric": "working_set_size",
+        "resident_raw_unit": "bytes",
+        "resident_multiplier": 1,
+        "metric": "peak_working_set",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 8937472,
+            "peak_bytes": 8937472,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 8937472,
+            "resident_bytes": 8937472
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 76050432,
+            "peak_bytes": 76050432,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 76050432,
+            "resident_bytes": 76050432
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 76050432,
+            "peak_bytes": 76050432,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 8937472,
+            "resident_bytes": 8937472
+          }
+        ]
+      },
+      "calibration_analysis": {
+        "calibration_growth_bytes": 67112960,
+        "passed": true
+      },
+      "invalid_duration_cases": 10,
+      "probe_pid": 8380,
+      "sampling_started_at": "2026-11-04T04:43:12.667047+00:00",
+      "cancellation_poll_seconds": 1,
+      "cleanup_wait_seconds": 10
+    },
+    "latest_checkpoint_at_observation": {
+      "record": "sample",
+      "ordinal": 2,
+      "observation": {
+        "phase": "collected",
+        "calls": 1095,
+        "peak_raw": 14389248,
+        "peak_bytes": 14389248,
+        "elapsed_ns": 120069119599,
+        "max_json_bytes": 25537,
+        "resident_raw": 14368768,
+        "resident_bytes": 14368768
+      }
+    },
+    "overall": "incomplete",
+    "accepted_as_day_validation": false
+  }
+}

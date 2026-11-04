@@ -1,5 +1,7 @@
 # Windows FFI SDK 候选包验证
 
+2026-11-04 演练回归已通过 Windows 本机与 Windows/Linux 原生 CI，新增启动时作废旧报告和强制退出回归。每份 SDK 报告确认三次 C 编译运行与 300 次 Python 采集/释放，详见[候选包演练验收](cli-bundle-validation.md)。下文保留早期 SDK 引入时的记录。
+
 SDK 将 DLL、C 头文件、导入库、C/Python 示例、Schema 和许可材料放在一起，便于其他语言接入。设计与当前 macOS 材料缺口见 [ADR 0033](adr/0033-windows-ffi-sdk.md)。这不是正式发布。
 
 ## 使用和验证入口

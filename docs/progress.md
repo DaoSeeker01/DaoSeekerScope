@@ -1,6 +1,8 @@
 # 剩余工作
 
-2026-11-04 Linux AMD CCD 温度已接入 k10temp。Linux 后端本机 68 项 Rust 测试通过，原生 Linux 非 root 容器 90 项观察通过，新增 4 项覆盖稀疏通道、错误隔离、恢复和移除。实体 AMD CCD 温度待验。[hwmon 验证](hwmon-validation.md)
+2026-11-04 候选包演练修复已完成。CLI/SDK 在演练前作废旧报告，强制退出回归通过。Windows 本机及 Windows/Linux CI 完成安装、切换和回滚，CLI 各九次调用含三次隔离 JSON，SDK 各三次 C 编译运行与 300 次 Python 采集/释放。本机 Python 330 项通过、6 项跳过，三平台定向 CI 为 3 项成功、5 项按范围跳过。[候选包验收](cli-bundle-validation.md)
+
+2026-11-04 Linux AMD CCD 温度已接入 k10temp。Linux 后端本机 68 项 Rust 测试通过，原生 Linux 非 root 容器 90 项观察通过，新增 4 项覆盖稀疏通道、错误隔离、恢复和移除。修复后的完整 CI 41726560400 八项全部通过。实体 AMD CCD 温度待验。[hwmon 验证](hwmon-validation.md)
 
 2026-11-04 C ABI 饱和验证。真实 C 调用持有 64 个缓冲区，验证第 65 次拒绝、释放后恢复和退役 token 拒绝，并逐字节比较仍持有的 63 个缓冲区。本机及三平台定向 CI 通过。[原生结果](evidence/buffer-limit-ci-41717899173.json)
 
@@ -8,7 +10,7 @@
 
 2026-11-04 长时验证批次：定时工具支持最长一天的有界记录、取消标记和直接探针退出确认。14 项定向测试、本机 334 项 Python（328 通过、6 跳过）、三平台目标类型检查与 MSVC 严格编译通过。本机两分钟试验完成 1090 次采集/释放；三平台原生 CI 的完整桌面任务及两分钟试验通过。macOS 首次因 ARM64 runner 容量不足未启动，单作业重试后通过；CI 41666171040 为 3 项通过、5 项按范围跳过，没有重复执行未改动的 Rust fuzz、Miri/ASan、供应链和容器任务。
 
-冻结提交 `9536d54` 的 Windows 一天试验已在独立目录开始采样，启动时校准与分钟检查点正常；它仍为 `incomplete`，不计入完成验收。停止方法、进度文件和边界见[定时试验](timed-soak-validation.md)，[本轮记录](evidence/day-soak-development-2026-11-03.json)分别保留短测通过、主动取消、macOS 未执行及一天启动观察。Rust API、ABI 1、硬件 Schema 1、依赖、features、MIT 不变。
+冻结提交 `9536d54` 的首次 Windows 一天试验中断，最后检查点为 6 小时 30 分钟、213384 次调用，缺少完成标记和退出码。2026-11-04 12:43 已在独立目录另起一轮，启动进程和首个分钟检查点已核对，仍为 incomplete。[中断与重试观察](evidence/day-soak-interrupted-2026-11-04.json)保留原始记录；完成后另行验收。停止方法与完整边界见[定时试验](timed-soak-validation.md)。
 
 2026-11-03 CLI 隔离批次：新增可选 `--isolate` 与 `--timeout-ms=N`，超时后终止并确认子进程退出；保留 1 MiB 输出上限、默认脱敏和原有默认运行方式。本机完整 Rust 302 项、八包、契约、静态检查通过，Python 328 项中 322 通过、6 跳过；Release CLI 中文/空格路径三项运行通过。Windows/macOS 原生任务分别通过 302/300 项 Rust；Linux 修复后的定向任务 41660002663 通过 295 项及完整交付检查。每个平台均有 1 项夹具由监督测试单独启动。
 

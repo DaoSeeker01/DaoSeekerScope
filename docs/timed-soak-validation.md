@@ -51,7 +51,9 @@ CI 各八包独立 Rust 测试为 Windows 269、Linux 261、macOS 266，Python �
 
 [CI 41666171040](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41666171040)的 Windows/Linux/macOS 桌面任务通过，两分钟试验分别完成 1157/1191/653 次调用。macOS 首次未取得 runner，GitHub 报告 ARM64 容量不足；仅重试该作业后通过，初次取消记录保留。本次定向检查为 3 项通过、5 项未涉及的 Rust/容器任务跳过。
 
-同一提交的 Windows 一天试验已在独立冻结目录启动。启动记录保留来源、二进制哈希和一个完整的分钟检查点，**不是一天试验结果**。只有原始报告完成并通过全部检查后，才能另行验收；短测、取消和启动记录见[本轮数据](evidence/day-soak-development-2026-11-03.json)。
+同一提交的首次 Windows 一天试验在 2026-11-04 06:11 停止记录，最后检查点为 23400.031 秒、213384 次调用。12:41 检查时启动器和 C 探针均已退出，退出原因未知；报告为 incomplete，缺少完成标记和退出码。本次原始记录已保留，不计入一天验收。[中断记录与原始流](evidence/day-soak-interrupted-2026-11-04.json)
+
+已于 2026-11-04 12:43 在同一冻结目录另起一轮，输出前缀为 `target/day-retry-2026-11-04`，取消标记为 `target/day-retry-2026-11-04.cancel`。启动器和探针存活，首个分钟检查点已写入，当前仍为 incomplete。两次试验分别保存，重试完成后另行验收。此前短测、取消和首次启动观察见[工具开发记录](evidence/day-soak-development-2026-11-03.json)。
 
 ## Windows 一小时基线（2026-10-31）
 
