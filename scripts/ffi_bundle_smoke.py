@@ -247,7 +247,9 @@ def main() -> None:
         "--output", type=Path, default=ROOT / "target/ffi-bundle-evidence.json"
     )
     options = parser.parse_args()
-    report: dict[str, Any] = {"overall": "failed", "failure": "not_completed"}
+    options.output.parent.mkdir(parents=True, exist_ok=True)
+    report: dict[str, Any] = {"overall": "incomplete", "failure": "not_completed"}
+    options.output.write_text(json.dumps(report) + "\n", encoding="utf-8")
     try:
         with (options.archive.parent / "SHA256SUMS").open("rb") as source:
             sidecar = source.read(1025)
@@ -257,8 +259,10 @@ def main() -> None:
             len(fields) == 2 and fields[1] == options.archive.name, "checksum_sidecar"
         )
         report = rehearse(options.archive, fields[0])
+    except Exception:
+        report["overall"] = "failed"
+        raise
     finally:
-        options.output.parent.mkdir(parents=True, exist_ok=True)
         options.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print("FFI SDK candidate C/Python install and rollback: passed")
 

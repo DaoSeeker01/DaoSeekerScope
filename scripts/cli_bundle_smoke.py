@@ -64,8 +64,9 @@ def activate(root: Path, slot: str, payload: dict[str, bytes]) -> None:
     os.replace(pending, root / "active")
 
 
-def probe(binary: Path, version: str, target: str = TARGET) -> None:
-    for arguments in (["--version"], ["--json"]):
+def probe(binary: Path, version: str, target: str = TARGET) -> int:
+    commands = (["--version"], ["--json"], ["--json", "--isolate", "--timeout-ms=5000"])
+    for arguments in commands:
         # Spool child output to disk, then read a bounded amount; never log snapshots.
         with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
             result = subprocess.run(
@@ -90,14 +91,15 @@ def probe(binary: Path, version: str, target: str = TARGET) -> None:
             )
             jsonschema.Draft202012Validator(schema).validate(snapshot)
             check_snapshot(snapshot)
+    return len(commands)
 
 
 def probe_selected(
     root: Path, expected_slot: str, version: str, target: str = TARGET
-) -> None:
+) -> int:
     slot = (root / "active").read_text(encoding="ascii")
     require(slot in ("a", "b") and slot == expected_slot, "active_selection")
-    probe(root / slot / executable_name(target), version, target)
+    return probe(root / slot / executable_name(target), version, target)
 
 
 def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
@@ -122,12 +124,12 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
             else None
         )
         activate(root, "a", payload)
-        probe_selected(root, "a", manifest["version"], target)
+        processes = probe_selected(root, "a", manifest["version"], target)
         # Both slots contain the same real candidate: this tests directory selection,
         # not compatibility with an older published version (none exists yet).
         install(archive, checksum, root / "b")
         activate(root, "b", payload)
-        probe_selected(root, "b", manifest["version"], target)
+        processes += probe_selected(root, "b", manifest["version"], target)
         corrupt = root / "corrupt.zip"
         raw = bytearray(archive.read_bytes())
         raw[len(raw) // 2] ^= 1
@@ -143,7 +145,7 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         require((root / "active").read_text() == "b", "active_changed_on_failure")
         activate(root, "a", payload)
         require((root / "active").read_text() == "a", "rollback_selection")
-        probe_selected(root, "a", manifest["version"], target)
+        processes += probe_selected(root, "a", manifest["version"], target)
     report = {
         "overall": "passed",
         "source_commit": manifest["source_commit"],
@@ -161,7 +163,10 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         "archive_sha256": checksum,
         "cli_sha256": digest(payload[executable_name(target)]),
         "payload_files": len(payload) - 1,
-        "processes": 7 if target == LINUX_TARGET else 6,
+        "processes": processes + (1 if target == LINUX_TARGET else 0),
+        "process_count_scope": "top_level_subprocesses",
+        "cli_invocations": processes,
+        "isolated_cli_completed": True,
         "minimum_read_and_default_privacy": True,
         "snapshot_schema_validated": True,
         "posix_modes_verified": target == LINUX_TARGET,
@@ -188,7 +193,9 @@ def main() -> None:
         "--output", type=Path, default=ROOT / "target/cli-bundle-evidence.json"
     )
     options = parser.parse_args()
-    report: dict[str, Any] = {"overall": "failed", "failure": "not_completed"}
+    options.output.parent.mkdir(parents=True, exist_ok=True)
+    report: dict[str, Any] = {"overall": "incomplete", "failure": "not_completed"}
+    options.output.write_text(json.dumps(report) + "\n", encoding="utf-8")
     try:
         with (options.archive.parent / "SHA256SUMS").open("rb") as source:
             sidecar = source.read(1025)
@@ -198,9 +205,10 @@ def main() -> None:
             len(fields) == 2 and fields[1] == options.archive.name, "checksum_sidecar"
         )
         report = rehearse(options.archive, fields[0])
+    except Exception:
+        report["overall"] = "failed"
+        raise
     finally:
-        # A failed rerun replaces a prior pass; never record raw OS errors or data.
-        options.output.parent.mkdir(parents=True, exist_ok=True)
         options.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print("CLI candidate install/rollback: passed")
 

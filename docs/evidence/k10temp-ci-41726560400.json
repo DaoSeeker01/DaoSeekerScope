@@ -1,0 +1,68 @@
+{
+  "report_version": 1,
+  "overall": "passed",
+  "source_commit": "ebf3cd910274b28e3ceffcebb7f36210788ec8b6",
+  "run_id": 41726560400,
+  "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41726560400",
+  "jobs": [
+    {
+      "name": "linux-container",
+      "conclusion": "success",
+      "id": 126233223078
+    },
+    {
+      "name": "desktop (windows-latest)",
+      "conclusion": "success",
+      "id": 126233223444
+    },
+    {
+      "name": "ffi-asan",
+      "conclusion": "success",
+      "id": 126233223593
+    },
+    {
+      "name": "miri",
+      "conclusion": "success",
+      "id": 126233223638
+    },
+    {
+      "name": "fuzz-smoke",
+      "conclusion": "success",
+      "id": 126233223667
+    },
+    {
+      "name": "desktop (macos-latest)",
+      "conclusion": "success",
+      "id": 126233223681
+    },
+    {
+      "name": "supply-chain",
+      "conclusion": "success",
+      "id": 126233223698
+    },
+    {
+      "name": "desktop (ubuntu-24.04)",
+      "conclusion": "success",
+      "id": 126233223914
+    }
+  ],
+  "hwmon": {
+    "samples": 90,
+    "new_ccd_samples": 4,
+    "process_exit_code": 0,
+    "docker_exit_code": 0,
+    "original_report": "linux-k10temp-41726098037.json",
+    "unchanged_collector_and_controller_from": "3ff12a455de3ab4ae46bd7a852d3ebb260fac2c6",
+    "probe_and_lock_hashes_match_original_report": true,
+    "final_ci_raw_sha256": "2b8a77cd3ca145b8014db43602bdad1783062bfce1ff8f2affbd13b907cb4bfc",
+    "artifact_name": "linux-container-evidence",
+    "artifact_member": "linux-hwmon-evidence.json"
+  },
+  "first_run": {
+    "run_id": 41726098037,
+    "failure": "schema_drift",
+    "reason": "The reviewed Schema hash was not updated after a description-only change.",
+    "fix": "Compared the complete Schemas and synchronized the frozen hash."
+  },
+  "physical_ccd_temperature_validated": false
+}

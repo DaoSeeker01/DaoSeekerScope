@@ -3,6 +3,7 @@
 import json
 from pathlib import Path
 import stat
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -126,6 +127,46 @@ class CliBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "checksum_sidecar"):
                 cli_bundle_smoke.main()
         self.assertEqual(json.loads(report.read_text())["overall"], "failed")
+
+    def test_forced_exit_invalidates_both_previous_passes(self) -> None:
+        code = """
+import importlib
+import os
+from pathlib import Path
+import sys
+from unittest.mock import patch
+
+sys.path.insert(0, sys.argv[1])
+script = importlib.import_module(sys.argv[2])
+sys.argv = ["smoke", sys.argv[3], "--output", sys.argv[4]]
+with patch.object(script, "rehearse", side_effect=lambda *_: os._exit(23)):
+    script.main()
+"""
+        report = self.root / "report.json"
+        (self.root / "SHA256SUMS").write_text(
+            f"{self.checksum}  {self.archive.name}\n", encoding="ascii"
+        )
+        for module in ("cli_bundle_smoke", "ffi_bundle_smoke"):
+            with self.subTest(module=module):
+                report.write_text('{"overall":"passed"}', encoding="utf-8")
+                result = subprocess.run(
+                    [
+                        sys.executable,
+                        "-c",
+                        code,
+                        str(Path(cli_bundle_smoke.__file__).parent),
+                        module,
+                        str(self.archive),
+                        str(report),
+                    ],
+                    capture_output=True,
+                    timeout=15,
+                    check=False,
+                )
+                self.assertEqual(result.returncode, 23, result.stderr.decode())
+                self.assertEqual(
+                    json.loads(report.read_bytes())["overall"], "incomplete"
+                )
 
     def test_special_file_rejected(self) -> None:
         path = self.root / "special.zip"
