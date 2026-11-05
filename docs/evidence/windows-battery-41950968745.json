@@ -1,0 +1,147 @@
+{
+  "report_version": 1,
+  "recorded_at": "2026-11-05T01:51:35.334743+00:00",
+  "source_commit": "c32b7f6e45453d3313f3db7798c53e19b7edcfe1",
+  "local": {
+    "windows_crate_tests_passed": 79,
+    "facade_and_cli_tests_passed": 48,
+    "ignored_cli_fixture": 1,
+    "full_targeted_tests_run_before_commit": true,
+    "clean_commit_native_sdk_tests_passed": 1,
+    "clean_commit_source_status": "",
+    "raw_sdk_flag": 1,
+    "raw_sdk_percent": 100,
+    "raw_sdk_ac": 1,
+    "sdk_log_excerpt": [
+      "   Compiling daoseeker-scope-windows v0.1.0 (E:\\Projects\\DaoSeekerScope\\crates\\daoseeker-scope-windows)",
+      "    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.14s",
+      "     Running unittests src\\lib.rs (target\\debug\\deps\\daoseeker_scope_windows-cb32f58e40ff8233.exe)",
+      "",
+      "running 1 test",
+      "DSC_WINDOWS_BATTERY_SDK flag=1 percent=100 ac=1 matched=true",
+      "test battery::tests::native_battery_summary_matches_sdk_and_declares_partial_scope ... ok",
+      "",
+      "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 78 filtered out; finished in 0.04s",
+      ""
+    ],
+    "logs_sha256": {
+      "windows_crate": "d80f23188038bdf3de8fddf500d028ed2d54133a92a8eb1e4c6c0f4ff5cf8452",
+      "facade_and_cli": "80704fbf811d11a88b4a897226ea6aa4605867f7f5fb2712ab2bfc89500f3f9c",
+      "clean_native_sdk": "781b507b49e4f14b96f66e6aa0b403d2d3b21a73d53aae6d94aca7f29852d155"
+    },
+    "json_battery": {
+      "value": [
+        {
+          "charge_percent": {
+            "value": 100.0,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1793843345275,
+            "reason": null
+          },
+          "on_ac_power": {
+            "value": true,
+            "availability": "available",
+            "source": "win32",
+            "observed_at": 1793843345275,
+            "reason": null
+          }
+        }
+      ],
+      "availability": "available",
+      "source": "win32",
+      "observed_at": 1793843345275,
+      "reason": null
+    },
+    "json_capability": {
+      "field": "batteries",
+      "level": "partial",
+      "source": "win32",
+      "reason": null
+    },
+    "schema_and_default_privacy_checked": true,
+    "snapshot_sha256": "14e8f3ff51ce50ae9d01446b38cf219005c8a10d65143e49679a89ba043695de"
+  },
+  "byte_regressions": {
+    "charge_values_checked": 256,
+    "ac_values_checked": 256,
+    "unknown_sentinel": 255,
+    "field_errors_are_isolated": true,
+    "no_battery_and_unknown_membership_are_distinct": true
+  },
+  "official_interface": "https://learn.microsoft.com/en-us/windows/win32/api/winbase/ns-winbase-system_power_status",
+  "commands_run": [
+    "cargo test --locked -p daoseeker-scope-windows --all-features -- --test-threads=1 --nocapture",
+    "cargo test --locked -p daoseeker-scope -p daoseeker-scope-cli --all-features -- --test-threads=1",
+    "cargo fmt --all --check",
+    "cargo clippy --locked -p daoseeker-scope-windows --all-targets --all-features -- -D warnings",
+    "cargo check --locked -p daoseeker-scope-windows --all-features --target x86_64-unknown-linux-gnu",
+    "cargo test --locked -p daoseeker-scope-windows native_battery_summary_matches_sdk_and_declares_partial_scope -- --nocapture",
+    "cargo run --locked --quiet -p daoseeker-scope-cli -- --json",
+    "check_contract.check_static against docs/contracts/v0.1.json",
+    "scripts/check_project.py",
+    "gh workflow run ci.yml --ref main -f scope=native-probe"
+  ],
+  "ci": {
+    "run_id": 41950968745,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41950968745",
+    "scope": "native-probe",
+    "overall": "passed",
+    "jobs": [
+      {
+        "name": "desktop (windows-latest)",
+        "id": 126994543724,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "id": 126994543872,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "id": 126994543991,
+        "conclusion": "success"
+      },
+      {
+        "name": "ffi-asan",
+        "id": 126994545202,
+        "conclusion": "skipped"
+      },
+      {
+        "name": "linux-container",
+        "id": 126994545277,
+        "conclusion": "skipped"
+      },
+      {
+        "name": "miri",
+        "id": 126994545422,
+        "conclusion": "skipped"
+      },
+      {
+        "name": "matrix.group == 'all' && 'fuzz-smoke' || format('fuzz-extended ({0})', matrix.group)",
+        "id": 126994545543,
+        "conclusion": "skipped"
+      },
+      {
+        "name": "supply-chain",
+        "id": 126994587230,
+        "conclusion": "skipped"
+      }
+    ],
+    "windows_native_sdk_test_pass_lines": [
+      "2026-11-05T01:49:51.0999952Z test battery::tests::native_battery_summary_matches_sdk_and_declares_partial_scope ... ok"
+    ],
+    "windows_log_sha256": "519ff10d0d59e01e26ef238ad3a4bc3fa326569cf89457e4821517583f731c8f",
+    "windows_ci_raw_power_fields_recorded": false
+  },
+  "overall": "passed",
+  "versions": {
+    "c_abi": 1,
+    "schema": 1,
+    "license": "MIT"
+  },
+  "dependency_or_feature_changes": false,
+  "physical_no_battery_transition_or_api_failure_injection_verified": false,
+  "verified_at": "2026-11-05T02:03:42.062208+00:00"
+}

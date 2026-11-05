@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-05 Windows 电池摘要修复已完成。AC 未知值与非法数值分别返回 TemporarilyUnavailable 和 InvalidData，能力声明改为 Partial。Windows crate 79 项及门面/CLI 48 项测试通过，另有 1 项 CLI 夹具忽略直接运行；本机 SDK 对照为电量 100%、AC 在线。三平台定向 CI 41950968745 为 3 项成功、5 项按范围跳过。[Windows 电池验收](windows-battery-validation.md)
+
 2026-11-04 候选包演练修复已完成。CLI/SDK 在演练前作废旧报告，强制退出回归通过。Windows 本机及 Windows/Linux CI 完成安装、切换和回滚，CLI 各九次调用含三次隔离 JSON，SDK 各三次 C 编译运行与 300 次 Python 采集/释放。本机 Python 330 项通过、6 项跳过，三平台定向 CI 为 3 项成功、5 项按范围跳过。[候选包验收](cli-bundle-validation.md)
 
 2026-11-04 Linux AMD CCD 温度已接入 k10temp。Linux 后端本机 68 项 Rust 测试通过，原生 Linux 非 root 容器 90 项观察通过，新增 4 项覆盖稀疏通道、错误隔离、恢复和移除。修复后的完整 CI 41726560400 八项全部通过。实体 AMD CCD 温度待验。[hwmon 验证](hwmon-validation.md)
