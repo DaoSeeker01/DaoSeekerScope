@@ -1,0 +1,63 @@
+{
+  "report_version": 1,
+  "recorded_at": "2026-11-05T08:59:35.529672+00:00",
+  "source_commit": "f98d4de1f52c1bdac0bd6f66553bc048ab3a130a",
+  "test_execution": "Tests and static checks ran on these file contents before committing. Clean source and hashes were checked after committing.",
+  "worktree_file_sha256": {
+    "crates/daoseeker-scope-core/src/lib.rs": "fd6509f6d1cbe44fcbd34602c20bb7ab02d48944d3b52c3d650c653512b93fb9",
+    "crates/daoseeker-scope-core/tests/contracts.rs": "76b366c6fea85a0ae649702732e4f329838db97be5312fca64e582d758a1669f",
+    "crates/daoseeker-scope/tests/input_regression.rs": "4ba33d988d80d2ea61165bc79e396f5d43c808ff8533a283f446fe6294cc2543",
+    "scripts/native_smoke.py": "f77f12cf141afd409e0848093e121fa49dc7b3909866ca55702a51fb086ee155",
+    "tests/test_process_diagnostics.py": "66a7d4b11cc30c07299e2a2388385f723b5bf2d3dcfe9020d170b9583b5be9d3"
+  },
+  "local": {
+    "target": "x86_64-pc-windows-msvc",
+    "rust_tests_including_doctests_passed": 307,
+    "rust_tests_failed": 0,
+    "rust_fixture_ignored_directly": 1,
+    "python_tests_passed": 333,
+    "python_tests_skipped": 6,
+    "targeted_process_diagnostic_tests_passed": 8,
+    "fmt": "passed after applying rustfmt changes",
+    "clippy_workspace_all_targets_all_features": "passed",
+    "strict_docs": "passed",
+    "ruff_format": "passed",
+    "ruff_check": "passed",
+    "mypy": "passed",
+    "contract_static_manifest_schema_header_checks": "passed",
+    "cli_timeout_observation": {
+      "exit_code": 3,
+      "stdout_bytes": 0,
+      "stderr": "dscope: operation timed out (background work may still be running)\n"
+    },
+    "cli_error_classification": "timeout",
+    "logs_sha256": {
+      "target/error-text-rust-tests.log": "af7fb41e48d9747caa8408bc2c6e8e574563e0575ad367a6da2d6d265a752e8b",
+      "target/error-text-python-tests.log": "20d3a0a5110efad85a431e697314ec3b8f63f4717494ba58b073190ea15b524c"
+    }
+  },
+  "cross_checks": {
+    "x86_64-unknown-linux-gnu": "passed cargo check for facade with all features",
+    "aarch64-apple-darwin": "passed cargo check for facade with all features"
+  },
+  "boundaries": {
+    "new_native_ci": "not_run; deferred to next combined batch",
+    "new_package_acceptance": "not_run",
+    "extended_fuzz_miri_asan": "not_run",
+    "native_abi_layout_probe": "not_run; static baseline check only",
+    "physical_linux_macos": "not_run"
+  },
+  "compatibility": {
+    "public_signatures_changed": false,
+    "human_error_text_changed": true,
+    "error_codes_changed": false,
+    "cli_exit_codes_changed": false,
+    "c_abi_error_text_changed": false,
+    "dependencies_changed": false,
+    "features_changed": false,
+    "license": "MIT",
+    "abi_version": 1,
+    "hardware_schema_version": 1,
+    "formal_release": false
+  }
+}
