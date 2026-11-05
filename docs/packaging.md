@@ -36,7 +36,19 @@ python scripts/check_packages.py
 
 脚本在全新临时输出目录执行完整 `cargo package --locked --workspace --all-features`，创建并验证 8 个实际 `.crate` 文件，再检查每个包的 MIT 声明和许可证全文，以及 FFI 包的 C 头文件。归档保存在 `target/package/`。随后解包到独立临时目录，运行全部 feature 的 Rust 测试及 doctest，安装 CLI 到该目录，检查 `--version` 和 JSON 输出。源仓库和独立目录的第三方依赖锁文件均不得变化。所有构建文件和临时安装位置位于 `target/`，不修改系统 PATH 或全局 CLI 安装。
 
-独立测试目录通过本地 Cargo patch 连接解包后的同项目依赖。这验证实际包内文件和消费者构建，不验证真实 registry 下载、依赖发布顺序或 crates.io 发布权限。
+独立测试目录通过本地 Cargo patch 连接解包后的同项目依赖。这验证实际包内文件和消费者构建，真实 registry 下载及发布权限另行验收。
+
+## 独立 Rust 消费者
+
+验收脚本还会创建只有一个应用成员的独立 workspace，使用解包后的 core 或门面。每个包分别检查默认、关闭默认、仅 serde、schema 四种配置，共八种。core 默认不启用序列化，门面默认启用 serde，schema 包含 serde。
+
+每种配置都编译运行公开的 Backend、自定义 backend 注入、采集、动态刷新、取消和 shutdown，并在关闭后继续使用已取得的快照。serde 配置验证 JSON 往返，schema 配置生成 Snapshot Schema，四种门面配置还会调用 Hardware::new 采集本机快照。所有配置均使用 std。
+
+脚本读取实际解析的 core feature，拒绝未请求的 serde/schema；关闭序列化时，core 的普通及构建依赖须为空。内部依赖路径必须指向解包目录。消费者以项目锁文件初始化，再加入应用自身的条目，第三方包的版本、来源及校验和须保留在项目锁定集合内。实际编译运行使用 --locked，源仓库锁文件与状态前后须一致。
+
+这些检查补充 workspace 全 feature 测试，防止其他成员启用的 feature 掩盖独立应用的问题。配置、解析结果和运行状态写入 package-evidence.json 的 independent_rust_consumers。Cargo 的规则见[feature 合并说明](https://doc.rust-lang.org/cargo/reference/features.html#feature-unification)。
+
+Cargo JSON 元数据只从 stdout 读取，stderr 单独作为诊断处理。三个新增守卫分别验证诊断不会污染 JSON、feature 合并或 workspace 成员异常会被拒绝，以及锁定的版本、来源、校验和不会被替换。
 
 ## 许可证与头文件
 

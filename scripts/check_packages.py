@@ -26,13 +26,13 @@ def run(arguments: list[str], directory: Path = ROOT) -> str:
         arguments,
         cwd=directory,
         stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
+        stderr=subprocess.PIPE,
         text=True,
         encoding="utf-8",
         timeout=900,
     )
     if result.returncode != 0:
-        print(result.stdout[-8192:])
+        print((result.stdout + result.stderr)[-8192:])
         result.check_returncode()
     return result.stdout
 
@@ -52,6 +52,254 @@ def verify_source(initial: tuple[str, str]) -> None:
     require(
         source_state() == initial, "source checkout changed during package verification"
     )
+
+
+def third_party_lock_entries(data: bytes) -> set[tuple[str, str, str, str | None]]:
+    return {
+        (p["name"], p["version"], p["source"], p.get("checksum"))
+        for p in tomllib.loads(data.decode("utf-8"))["package"]
+        if p.get("source") is not None
+    }
+
+
+def check_consumer_core_features(
+    metadata: dict[str, Any], *, serde_enabled: bool, schema_enabled: bool
+) -> list[str]:
+    require(
+        len(metadata["workspace_members"]) == 1, "consumer workspace is not isolated"
+    )
+    core = [p for p in metadata["packages"] if p["name"] == "daoseeker-scope-core"]
+    require(len(core) == 1, "consumer core dependency is ambiguous")
+    node = next(n for n in metadata["resolve"]["nodes"] if n["id"] == core[0]["id"])
+    features = set(node["features"])
+    expected = set()
+    if serde_enabled:
+        expected.add("serde")
+    if schema_enabled:
+        expected.add("schema")
+    require(features - {"default"} == expected, "consumer core features changed")
+    if not serde_enabled:
+        require(
+            not any(
+                kind["kind"] != "dev"
+                for edge in node["deps"]
+                for kind in edge["dep_kinds"]
+            ),
+            "bare core has a dependency",
+        )
+    return sorted(features)
+
+
+CONSUMER_SOURCE = """
+use scope::*;
+
+struct Fixture;
+
+impl Backend for Fixture {
+    fn name(&self) -> &'static str {
+        "consumer_fixture"
+    }
+
+    fn capabilities(&self) -> Capabilities {
+        ["system.cpu.brand", "runtime.uptime_seconds"]
+            .into_iter()
+            .map(|field| Capability::new(field, CapabilityLevel::Supported, Source::Custom))
+            .collect()
+    }
+
+    fn collect_static(
+        &mut self,
+        context: &CollectContext,
+    ) -> Result<StaticSnapshot, ScopeError> {
+        context.check()?;
+        let mut result = StaticSnapshot::default();
+        result.system.cpu.brand =
+            Observed::available("fixture CPU".to_owned(), Source::Custom, Timestamp::now()?);
+        Ok(result)
+    }
+
+    fn refresh_dynamic(
+        &mut self,
+        context: &CollectContext,
+    ) -> Result<DynamicSnapshot, ScopeError> {
+        context.check()?;
+        let mut result = DynamicSnapshot::default();
+        result.runtime.uptime_seconds =
+            Observed::available(7, Source::Custom, Timestamp::now()?);
+        Ok(result)
+    }
+}
+
+fn main() -> Result<(), ScopeError> {
+    let hardware = HardwareBuilder::default()
+        .with_backend(100, Fixture)
+        .build()?;
+    let snapshot = hardware.collect()?;
+    assert_eq!(
+        snapshot.static_info.system.cpu.brand.value().map(String::as_str),
+        Some("fixture CPU"),
+    );
+    assert_eq!(
+        hardware.refresh_dynamic()?.runtime.uptime_seconds.value(),
+        Some(&7),
+    );
+    let cancelled = CancelToken::default();
+    cancelled.cancel();
+    assert_eq!(
+        hardware.collect_with(cancelled).expect_err("cancelled").code,
+        ErrorCode::Cancelled,
+    );
+    hardware.shutdown()?;
+"""
+
+
+def check_consumers(
+    stage: Path,
+    package_names: list[tuple[str, str]],
+    lock_before: bytes,
+    offline: list[str],
+) -> list[dict[str, Any]]:
+    """Run independent public API clients against extracted archives and exact features."""
+    consumer = stage / "consumer"
+    (consumer / "src").mkdir(parents=True)
+    versions = {
+        p["name"]: p["version"]
+        for p in tomllib.loads(lock_before.decode("utf-8"))["package"]
+    }
+    host = next(
+        line[6:]
+        for line in run(["rustc", "-vV"]).splitlines()
+        if line.startswith("host: ")
+    )
+    locked = third_party_lock_entries(lock_before)
+    packaged_roots = dict(package_names)
+    reports = []
+    profiles = [
+        ("default", True, []),
+        ("bare", False, []),
+        ("serde", False, ["serde"]),
+        ("schema", False, ["schema"]),
+    ]
+    for package in ("daoseeker-scope-core", "daoseeker-scope"):
+        for label, defaults, features in profiles:
+            schema_enabled = label == "schema"
+            serde_enabled = label in ("serde", "schema") or (
+                defaults and package == "daoseeker-scope"
+            )
+            manifest = [
+                "[workspace]",
+                'resolver = "3"',
+                "[package]",
+                'name = "daoseeker-scope-package-consumer"',
+                'version = "0.0.0"',
+                'edition = "2024"',
+                "publish = false",
+                "[dependencies]",
+                f'scope = {{ package = "{package}", version = "={versions[package]}", '
+                f"default-features = {str(defaults).lower()}, features = {json.dumps(features)} }}",
+            ]
+            source = CONSUMER_SOURCE
+            if serde_enabled:
+                manifest.append(f'serde_json = "={versions["serde_json"]}"')
+                if package == "daoseeker-scope":
+                    source += """
+    let encoded = scope::to_json(&snapshot).expect("encode");
+    assert_eq!(scope::from_json(encoded.as_bytes()).expect("decode"), snapshot);
+"""
+                else:
+                    source += """
+    let encoded = serde_json::to_vec(&snapshot).expect("encode");
+    let decoded: Snapshot = serde_json::from_slice(&encoded).expect("decode");
+    assert_eq!(decoded, snapshot);
+"""
+            if schema_enabled:
+                manifest.append(f'schemars = "={versions["schemars"]}"')
+                source += """
+    let schema = serde_json::to_value(schemars::schema_for!(Snapshot)).expect("schema");
+    assert_eq!(schema["title"], "Snapshot");
+"""
+            if package == "daoseeker-scope":
+                source += """
+    let native = scope::Hardware::new()?;
+    assert_eq!(native.collect()?.schema_version, SCHEMA_VERSION);
+    native.shutdown()?;
+"""
+            source += '    println!("consumer passed");\n    Ok(())\n}\n'
+            manifest += [
+                "[patch.crates-io]",
+                *[
+                    f'{name} = {{ path = "../{prefix}" }}'
+                    for name, prefix in package_names
+                ],
+            ]
+            (consumer / "Cargo.toml").write_text(
+                "\n".join(manifest) + "\n", encoding="utf-8"
+            )
+            (consumer / "src/main.rs").write_text(source, encoding="utf-8")
+            (consumer / "Cargo.lock").write_bytes(lock_before)
+            # Add the new application to its own lock, retaining seeded dependency versions.
+            metadata = json.loads(
+                run(
+                    [
+                        "cargo",
+                        "metadata",
+                        "--format-version",
+                        "1",
+                        "--filter-platform",
+                        host,
+                        *offline,
+                    ],
+                    consumer,
+                )
+            )
+            require(
+                third_party_lock_entries((consumer / "Cargo.lock").read_bytes())
+                <= locked,
+                "consumer third-party lock changed",
+            )
+            for item in metadata["packages"]:
+                if item["name"] in packaged_roots:
+                    require(
+                        Path(item["manifest_path"]).parent.resolve()
+                        == (stage / packaged_roots[item["name"]]).resolve(),
+                        "consumer did not use the extracted archive",
+                    )
+                elif item["source"] is None:
+                    require(
+                        item["id"] == metadata["resolve"]["root"],
+                        "consumer has an unarchived path dependency",
+                    )
+            resolved = check_consumer_core_features(
+                metadata, serde_enabled=serde_enabled, schema_enabled=schema_enabled
+            )
+            output = run(
+                [
+                    "cargo",
+                    "run",
+                    "--locked",
+                    "--target",
+                    host,
+                    "--target-dir",
+                    str(stage / "target"),
+                    *offline,
+                ],
+                consumer,
+            )
+            require(output.strip() == "consumer passed", "consumer did not complete")
+            reports.append(
+                {
+                    "package": package,
+                    "profile": label,
+                    "target": host,
+                    "default_features": defaults,
+                    "requested_features": features,
+                    "resolved_core_features": resolved,
+                    "executed": True,
+                    "third_party_lock_preserved": True,
+                    "archive_paths_verified": True,
+                }
+            )
+    return reports
 
 
 def check_packages(options: argparse.Namespace) -> dict[str, Any]:
@@ -172,6 +420,7 @@ def check_packages(options: argparse.Namespace) -> dict[str, Any]:
             ],
             stage,
         )
+        consumers = check_consumers(stage, package_names, lock_before, offline)
         install_root = stage / "install"
         cli = next(prefix for name, prefix in package_names if name.endswith("-cli"))
         run(
@@ -214,11 +463,12 @@ def check_packages(options: argparse.Namespace) -> dict[str, Any]:
         "overall": "passed",
         "git_revision": initial[0],
         "git_dirty": bool(initial[1]),
-        "verification": "native Cargo package + archive contents + isolated workspace tests + CLI install",
+        "verification": "native Cargo package + archive contents + isolated tests + independent Rust feature consumers + CLI install",
         "native_cargo_verification": True,
         "registry_publication_verified": False,
         "unpublished_siblings": "local patches to extracted archives",
         "third_party_lock_unchanged": True,
+        "independent_rust_consumers": consumers,
         "installed_cli_version": cli_version,
         "snapshot_schema_validated": True,
         "minimum_read_and_default_privacy": True,
@@ -227,7 +477,9 @@ def check_packages(options: argparse.Namespace) -> dict[str, Any]:
         ),
         "archives": archives,
     }
-    print(f"package checks passed: {len(archives)} archives; {cli_version}")
+    print(
+        f"package checks passed: {len(archives)} archives; {len(consumers)} consumers; {cli_version}"
+    )
     return report
 
 
