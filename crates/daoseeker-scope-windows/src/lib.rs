@@ -1,5 +1,7 @@
 //! Ordinary-user Windows enhancement, compiled only on Windows.
 #[cfg(any(target_os = "windows", test))]
+mod battery;
+#[cfg(any(target_os = "windows", test))]
 mod cpu;
 #[cfg(any(target_os = "windows", test))]
 mod cpu_groups;
@@ -54,10 +56,14 @@ mod native {
             "windows"
         }
         fn capabilities(&self) -> Capabilities {
-            let mut capabilities: Capabilities = ["system.memory.installed_bytes", "batteries"]
-                .into_iter()
-                .map(|field| Capability::new(field, CapabilityLevel::Supported, Source::Win32))
-                .collect();
+            let mut capabilities = vec![
+                Capability::new(
+                    "system.memory.installed_bytes",
+                    CapabilityLevel::Supported,
+                    Source::Win32,
+                ),
+                Capability::new("batteries", CapabilityLevel::Partial, Source::Win32),
+            ];
             capabilities.push(Capability::new(
                 "runtime.uptime_seconds",
                 CapabilityLevel::Partial,
@@ -120,26 +126,12 @@ mod native {
             let ok = unsafe { GetSystemPowerStatus(&mut status) };
             let batteries = if ok == 0 {
                 missing()
-            } else if status.BatteryFlag == 255 {
-                Observed::unavailable(Source::Win32, ReasonCode::TemporarilyUnavailable)
-            } else if status.BatteryFlag & 128 != 0 {
-                Observed::not_applicable(Source::Win32)
             } else {
-                let at = Timestamp::now()?;
-                let mut battery = BatteryInfo::default();
-                battery.charge_percent = match status.BatteryLifePercent {
-                    0..=100 => {
-                        Observed::available(f64::from(status.BatteryLifePercent), Source::Win32, at)
-                    }
-                    255 => Observed::unavailable(Source::Win32, ReasonCode::TemporarilyUnavailable),
-                    _ => Observed::unavailable(Source::Win32, ReasonCode::InvalidData),
-                };
-                battery.on_ac_power = match status.ACLineStatus {
-                    0 => Observed::available(false, Source::Win32, at),
-                    1 => Observed::available(true, Source::Win32, at),
-                    _ => Observed::unavailable(Source::Win32, ReasonCode::TemporarilyUnavailable),
-                };
-                Observed::available(vec![battery], Source::Win32, at)
+                crate::battery::observe(
+                    status.BatteryFlag,
+                    status.BatteryLifePercent,
+                    status.ACLineStatus,
+                )?
             };
             context.check()?;
             let mut result = DynamicSnapshot::default();

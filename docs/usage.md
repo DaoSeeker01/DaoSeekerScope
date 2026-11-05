@@ -102,6 +102,7 @@ Linux 二进制应在兼容的用户空间中构建，再到目标环境验证�
 - **显示器**：Windows 提供目标信号的活动像素，macOS 提供当前模式像素；都不保证是面板原生分辨率、DPI 逻辑尺寸或物理显示器数量。Linux 当前像素尺寸未实现。
 - **GPU**：Windows 独占显存不是实时用量；Linux 仅有有限 DRM 枚举及部分 AMD/NVIDIA 名称，显存未实现；macOS 统一内存设备的独占显存可为不适用，不能用工作集预算代替容量。
 - **网络**：累计字节数，不是速率。计数可能重置，接口顺序可能变化；Linux 限当前命名空间，其他平台也不保证覆盖所有逻辑接口。
+- **Windows 电池**：返回 GetSystemPowerStatus 的系统级摘要，能力为 Partial，最多一条记录。它不表示电池数量。电量与 AC 状态分别判断，未知值返回 TemporarilyUnavailable，非法数值返回 InvalidData。系统报告没有电池时为 NotApplicable，无法确定是否有电池时为 Unavailable。[微软接口说明](https://learn.microsoft.com/en-us/windows/win32/api/winbase/ns-winbase-system_power_status)
 - **macOS 电池**：只返回系统公开的内置电池。电量按当前容量与最大容量的比值计算；`on_ac_power` 表示系统报告外部供电，不表示正在充电，也不区分电源适配器或 USB-C。UPS 不包含在内；空列表不证明机器物理上没有电池。
 - **macOS 内存**：可用量是非压缩页等计算得到的估计，不等于系统保证可立即分配的内存。
 - **Linux 温度**：另支持 JC42、SPD5118 和 LM75/LM75A/LM75B 的单个 `temp1_input`。它们是驱动提供的传感器读数，不根据总线位置推断 CPU 或主板测点，不保证覆盖每根内存条。驱动可能缓存读数；库不扫描 I²C、不加载模块、不读取 SPD/EEPROM 或告警寄存器。
