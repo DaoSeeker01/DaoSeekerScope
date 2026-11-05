@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-05 独立 Rust 消费者检查已完成。源码包验收增加 core/门面各四种 feature 配置，验证实际归档中的自定义 backend、采集、刷新、取消、关闭及可选 JSON/Schema。修复 Cargo stderr 诊断可能污染 stdout JSON 的问题。本机 Python 333 项通过、6 项跳过；三平台 CI 41992365436 的每个平台均通过八种配置和八个源码包。未改变公共 API、依赖、features 或 ABI/Schema。[打包验收](packaging.md)
+
 2026-11-05 Windows 一天试验已完成。冻结提交 `9536d54` 完成 787352 次 C ABI collect/free，实际 86400.072 秒；热身后驻留范围 360 KiB，符合既定 16 MiB 预算。1443 条记录、完成标记、两个退出码、源码和三个二进制哈希已复核。[一天验收](timed-soak-validation.md)
 
 2026-11-05 Windows 电池摘要修复已完成。AC 未知值与非法数值分别返回 TemporarilyUnavailable 和 InvalidData，能力声明改为 Partial。Windows crate 79 项及门面/CLI 48 项测试通过，另有 1 项 CLI 夹具忽略直接运行；本机 SDK 对照为电量 100%、AC 在线。三平台定向 CI 41950968745 为 3 项成功、5 项按范围跳过。[Windows 电池验收](windows-battery-validation.md)

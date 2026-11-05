@@ -1,0 +1,812 @@
+{
+  "report_version": 1,
+  "recorded_at": "2026-11-05T08:32:22.435251+00:00",
+  "source_commit": "cff4756171efe4122c88a0add476368104245b23",
+  "ci": {
+    "run_id": 41992365436,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41992365436",
+    "event": "workflow_dispatch",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "desktop (windows-latest)",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "conclusion": "success"
+      },
+      {
+        "name": "linux-container",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "matrix.group == 'all' && 'fuzz-smoke' || format('fuzz-extended ({0})', matrix.group)",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "supply-chain",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "ffi-asan",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "miri",
+        "conclusion": "skipped"
+      }
+    ]
+  },
+  "local_checks": {
+    "python_tests_total": 339,
+    "python_tests_passed": 333,
+    "python_tests_skipped": 6,
+    "package_guard_tests_passed": 6,
+    "ruff_format": "passed",
+    "ruff_check": "passed",
+    "mypy": "passed",
+    "logs_sha256": {
+      "consumer-python-tests.log": "afc6adbdeca49a1e773c1107caf9110294859d4f2ca6f422465a7b4c9eae61aa",
+      "consumer-package-local.log": "7382e0888fa4e140768c1ccc5040fcd2cf57516c75a0c3cb7d4d79e265aa2b97"
+    }
+  },
+  "package_reports": {
+    "windows_local": {
+      "original_report_sha256": "49e2be0400d097357284d382cd83c519b3430a563baccc0097103913e2a01134",
+      "report": {
+        "overall": "passed",
+        "git_revision": "cff4756171efe4122c88a0add476368104245b23",
+        "git_dirty": false,
+        "verification": "native Cargo package + archive contents + isolated tests + independent Rust feature consumers + CLI install",
+        "native_cargo_verification": true,
+        "registry_publication_verified": false,
+        "unpublished_siblings": "local patches to extracted archives",
+        "third_party_lock_unchanged": true,
+        "independent_rust_consumers": [
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "default",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "bare",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "serde",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "schema",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "default",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "bare",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "serde",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "schema",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "default",
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          }
+        ],
+        "installed_cli_version": "dscope 0.1.0",
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "rust_tests_including_doctests": 307,
+        "archives": [
+          {
+            "name": "daoseeker-scope",
+            "version": "0.1.0",
+            "sha256": "f6435b6ea3c11109e3571a7aa7a9a9002948d647e92fae7bae092548241a5015",
+            "files": 17
+          },
+          {
+            "name": "daoseeker-scope-core",
+            "version": "0.1.0",
+            "sha256": "279512a89517c09a7913dda1e88c7a1966dec87bc352a78c7b34e73525db2b72",
+            "files": 9
+          },
+          {
+            "name": "daoseeker-scope-sysinfo",
+            "version": "0.1.0",
+            "sha256": "bb073d44c6c0c32ada45feae71dbe8a496c11f240ea27dfcc3ff10f3395430d0",
+            "files": 6
+          },
+          {
+            "name": "daoseeker-scope-linux",
+            "version": "0.1.0",
+            "sha256": "6e71bed8b934f48b11de16782f3881656dfeadc0abd41ff348daac48a083bb0d",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-macos",
+            "version": "0.1.0",
+            "sha256": "ba99758cffed93dce6bfb25d2d2aa24dd1becae896e8e9b4a5c4c3bb70e42fa4",
+            "files": 16
+          },
+          {
+            "name": "daoseeker-scope-windows",
+            "version": "0.1.0",
+            "sha256": "839d80d99c2a74bc46e010ad14600cab408dfddd311fc76d0204eb5fd0a569fd",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-cli",
+            "version": "0.1.0",
+            "sha256": "d4f995ae5a6b3636fccea7a7af7db0c80042cd6c68c397090a8e5d0b966bd571",
+            "files": 10
+          },
+          {
+            "name": "daoseeker-scope-ffi",
+            "version": "0.1.0",
+            "sha256": "eb93e74c84af96bd7076b8a3985f54149e822af170405e2caf0470b8dda34606",
+            "files": 8
+          }
+        ]
+      }
+    },
+    "package-evidence-Linux-X64": {
+      "original_report_sha256": "ada16724a51388dcce7d31b0e8de900d9f5295ee1cdb36503404bfda8489cbcb",
+      "report": {
+        "overall": "passed",
+        "git_revision": "cff4756171efe4122c88a0add476368104245b23",
+        "git_dirty": false,
+        "verification": "native Cargo package + archive contents + isolated tests + independent Rust feature consumers + CLI install",
+        "native_cargo_verification": true,
+        "registry_publication_verified": false,
+        "unpublished_siblings": "local patches to extracted archives",
+        "third_party_lock_unchanged": true,
+        "independent_rust_consumers": [
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "default",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "bare",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "serde",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "schema",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "default",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "bare",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "serde",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "schema",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "default",
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          }
+        ],
+        "installed_cli_version": "dscope 0.1.0",
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "rust_tests_including_doctests": 299,
+        "archives": [
+          {
+            "name": "daoseeker-scope",
+            "version": "0.1.0",
+            "sha256": "41be190b0b3c442d67cd0b64bd37731f232893cbfff218bb72300baa87d800d2",
+            "files": 17
+          },
+          {
+            "name": "daoseeker-scope-core",
+            "version": "0.1.0",
+            "sha256": "279512a89517c09a7913dda1e88c7a1966dec87bc352a78c7b34e73525db2b72",
+            "files": 9
+          },
+          {
+            "name": "daoseeker-scope-sysinfo",
+            "version": "0.1.0",
+            "sha256": "bb073d44c6c0c32ada45feae71dbe8a496c11f240ea27dfcc3ff10f3395430d0",
+            "files": 6
+          },
+          {
+            "name": "daoseeker-scope-linux",
+            "version": "0.1.0",
+            "sha256": "6e71bed8b934f48b11de16782f3881656dfeadc0abd41ff348daac48a083bb0d",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-macos",
+            "version": "0.1.0",
+            "sha256": "ba99758cffed93dce6bfb25d2d2aa24dd1becae896e8e9b4a5c4c3bb70e42fa4",
+            "files": 16
+          },
+          {
+            "name": "daoseeker-scope-windows",
+            "version": "0.1.0",
+            "sha256": "839d80d99c2a74bc46e010ad14600cab408dfddd311fc76d0204eb5fd0a569fd",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-cli",
+            "version": "0.1.0",
+            "sha256": "443efb3c6884ea16747fa286dc955968e0bc4eb027de0338d7985b32f47ec7d9",
+            "files": 10
+          },
+          {
+            "name": "daoseeker-scope-ffi",
+            "version": "0.1.0",
+            "sha256": "e77ee1b744e339101134632e66436992ac3bee4671f2b4d08dfae52ffc5f4033",
+            "files": 8
+          }
+        ]
+      }
+    },
+    "package-evidence-macOS-ARM64": {
+      "original_report_sha256": "d1a53df5136b9b50c933a9af6a0f6f524da8ec3c34650686186e45d4925c1a5c",
+      "report": {
+        "overall": "passed",
+        "git_revision": "cff4756171efe4122c88a0add476368104245b23",
+        "git_dirty": false,
+        "verification": "native Cargo package + archive contents + isolated tests + independent Rust feature consumers + CLI install",
+        "native_cargo_verification": true,
+        "registry_publication_verified": false,
+        "unpublished_siblings": "local patches to extracted archives",
+        "third_party_lock_unchanged": true,
+        "independent_rust_consumers": [
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "default",
+            "target": "aarch64-apple-darwin",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "bare",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "serde",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "schema",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "default",
+            "target": "aarch64-apple-darwin",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "bare",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "serde",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "schema",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "default",
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          }
+        ],
+        "installed_cli_version": "dscope 0.1.0",
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "rust_tests_including_doctests": 304,
+        "archives": [
+          {
+            "name": "daoseeker-scope",
+            "version": "0.1.0",
+            "sha256": "41be190b0b3c442d67cd0b64bd37731f232893cbfff218bb72300baa87d800d2",
+            "files": 17
+          },
+          {
+            "name": "daoseeker-scope-core",
+            "version": "0.1.0",
+            "sha256": "279512a89517c09a7913dda1e88c7a1966dec87bc352a78c7b34e73525db2b72",
+            "files": 9
+          },
+          {
+            "name": "daoseeker-scope-sysinfo",
+            "version": "0.1.0",
+            "sha256": "bb073d44c6c0c32ada45feae71dbe8a496c11f240ea27dfcc3ff10f3395430d0",
+            "files": 6
+          },
+          {
+            "name": "daoseeker-scope-linux",
+            "version": "0.1.0",
+            "sha256": "6e71bed8b934f48b11de16782f3881656dfeadc0abd41ff348daac48a083bb0d",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-macos",
+            "version": "0.1.0",
+            "sha256": "ba99758cffed93dce6bfb25d2d2aa24dd1becae896e8e9b4a5c4c3bb70e42fa4",
+            "files": 16
+          },
+          {
+            "name": "daoseeker-scope-windows",
+            "version": "0.1.0",
+            "sha256": "839d80d99c2a74bc46e010ad14600cab408dfddd311fc76d0204eb5fd0a569fd",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-cli",
+            "version": "0.1.0",
+            "sha256": "443efb3c6884ea16747fa286dc955968e0bc4eb027de0338d7985b32f47ec7d9",
+            "files": 10
+          },
+          {
+            "name": "daoseeker-scope-ffi",
+            "version": "0.1.0",
+            "sha256": "e77ee1b744e339101134632e66436992ac3bee4671f2b4d08dfae52ffc5f4033",
+            "files": 8
+          }
+        ]
+      }
+    },
+    "package-evidence-Windows-X64": {
+      "original_report_sha256": "12e1cb99f5b6b8aa7b8a4a4dd38fa0ba23775fcd10acf72e555077df3158a3a5",
+      "report": {
+        "overall": "passed",
+        "git_revision": "cff4756171efe4122c88a0add476368104245b23",
+        "git_dirty": false,
+        "verification": "native Cargo package + archive contents + isolated tests + independent Rust feature consumers + CLI install",
+        "native_cargo_verification": true,
+        "registry_publication_verified": false,
+        "unpublished_siblings": "local patches to extracted archives",
+        "third_party_lock_unchanged": true,
+        "independent_rust_consumers": [
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "default",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "bare",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "serde",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "schema",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "default",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "bare",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "serde",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "schema",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "default",
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          }
+        ],
+        "installed_cli_version": "dscope 0.1.0",
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "rust_tests_including_doctests": 307,
+        "archives": [
+          {
+            "name": "daoseeker-scope",
+            "version": "0.1.0",
+            "sha256": "41be190b0b3c442d67cd0b64bd37731f232893cbfff218bb72300baa87d800d2",
+            "files": 17
+          },
+          {
+            "name": "daoseeker-scope-core",
+            "version": "0.1.0",
+            "sha256": "279512a89517c09a7913dda1e88c7a1966dec87bc352a78c7b34e73525db2b72",
+            "files": 9
+          },
+          {
+            "name": "daoseeker-scope-sysinfo",
+            "version": "0.1.0",
+            "sha256": "bb073d44c6c0c32ada45feae71dbe8a496c11f240ea27dfcc3ff10f3395430d0",
+            "files": 6
+          },
+          {
+            "name": "daoseeker-scope-linux",
+            "version": "0.1.0",
+            "sha256": "6e71bed8b934f48b11de16782f3881656dfeadc0abd41ff348daac48a083bb0d",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-macos",
+            "version": "0.1.0",
+            "sha256": "ba99758cffed93dce6bfb25d2d2aa24dd1becae896e8e9b4a5c4c3bb70e42fa4",
+            "files": 16
+          },
+          {
+            "name": "daoseeker-scope-windows",
+            "version": "0.1.0",
+            "sha256": "839d80d99c2a74bc46e010ad14600cab408dfddd311fc76d0204eb5fd0a569fd",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-cli",
+            "version": "0.1.0",
+            "sha256": "443efb3c6884ea16747fa286dc955968e0bc4eb027de0338d7985b32f47ec7d9",
+            "files": 10
+          },
+          {
+            "name": "daoseeker-scope-ffi",
+            "version": "0.1.0",
+            "sha256": "e77ee1b744e339101134632e66436992ac3bee4671f2b4d08dfae52ffc5f4033",
+            "files": 8
+          }
+        ]
+      }
+    }
+  },
+  "boundaries": [
+    "Local patches resolve extracted sibling archives; registry publication and download were not tested.",
+    "All eight consumer profiles use std; no no_std support claim.",
+    "These CI runs do not replace deferred physical-device acceptance.",
+    "The five skipped jobs were outside the native-probe scope; no new extended fuzz, Miri, ASan, supply-chain or Linux fixture-container result is claimed.",
+    "Raw report hashes cover downloaded/local bytes before embedding; embedded JSON retains parsed values."
+  ],
+  "compatibility": {
+    "public_api_changed": false,
+    "dependencies_changed": false,
+    "features_changed": false,
+    "license": "MIT",
+    "abi_version": 1,
+    "hardware_schema_version": 1,
+    "published": false
+  }
+}

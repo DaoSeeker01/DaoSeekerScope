@@ -1,5 +1,7 @@
 # 打包与安装验证
 
+2026-11-05，提交 `cff4756` 在 Windows 本机及三个原生 CI 平台通过独立 Rust 消费者检查。每个环境均完成 8 个源码归档、core/门面各四种配置及 CLI 安装验证。包内 Rust 测试含 doctest 为 Windows 307、Linux 299、macOS 304 项，本机 Python 333 项通过、6 项跳过。[CI 41992365436](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41992365436)三个桌面任务成功，五项按范围跳过；[验收报告](evidence/rust-consumers-41992365436.json)保存四份包报告、配置结果与原始报告哈希。此次验证不包含 registry 下载或正式发布。
+
 macOS 源码构建文件现有独立的 [Mach-O 检查](macos-binary-validation.md)，核对架构、依赖及系统版本声明。它不开放候选包入口，也不替代许可材料、最低系统或真实安装验收。
 
 Linux 候选现在记录所需符号版本；CLI 验收也清除加载器覆盖变量，增加一次 readelf 调用。SDK 原有 15 次调用不变，见[本轮验证状态](linux-runtime-validation.md)。版本声明不能替代最低系统环境实测。
