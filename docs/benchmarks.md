@@ -1,5 +1,11 @@
 # 性能基线
 
+## Windows 一天缓存采集（2026-11-05）
+
+本机冻结提交 `9536d54` 完成 86400.072 秒、787352 次 C ABI collect/free。5 分钟热身后的 1436 个分钟采样点，OS 驻留内存范围为 368640 bytes（360 KiB），符合原定 16 MiB 范围预算。探针与启动器退出码均为 0。
+
+使用 Windows 11、Intel Core i7-9750H、Rust 1.96.0、MSVC 19.51.36260、release/default serde，默认缓存采集器和 2000 ms 超时，每次调用后请求休眠 100 ms。本机同时进行其他开发工作。原始记录、校准、源码与二进制哈希见[完整验收](timed-soak-validation.md)。这是该冻结提交的 Windows 本机结果，其他平台长时与分配器归因另行验证。
+
 ## macOS 内置电池增量（2026-11-01）
 
 源码 `c3e0c23` 在 ARM64 CI（Apple M1 Virtual、Darwin 25.6.0、Rust 1.96.0）运行 `cargo bench --locked -p daoseeker-scope --bench collect`，使用 Cargo 默认优化 bench profile、默认 serde 和桌面 backend。首次 collect 为 18038 微秒；100 次动态刷新中位数 105、p95 244、最大 300 微秒。计时从 Hardware 构造后开始；本次电源 API 返回零条目，不能代表真实电池采集开销。

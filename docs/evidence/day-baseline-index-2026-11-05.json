@@ -1,0 +1,83 @@
+{
+  "report_version": 1,
+  "overall": "passed",
+  "reviewed_at": "2026-11-05T06:19:36.242317+00:00",
+  "source_commit": "9536d546500802452eca6c35cf0bf4e37026af3c",
+  "environment": "local Windows laptop, with concurrent development activity",
+  "report": {
+    "file": "day-baseline-windows-9536d54-2026-11-05.json",
+    "sha256": "3dab99b13847867228731375247e60c43b1975020c234998f3f3b43c08c4d7a3"
+  },
+  "raw_trace_embedded_as": "trace_utf8",
+  "trace_sha256": "b1b4cd9de0946a218eac9fa3cd544d3be03e847583347483ff41fe208e4e1fc9",
+  "trace_records": 1443,
+  "analysis": {
+    "within_budget": true,
+    "budget_bytes": 16777216,
+    "tail_samples": 1436,
+    "tail_min_bytes": 14393344,
+    "tail_max_bytes": 14761984,
+    "tail_range_bytes": 368640,
+    "net_change_bytes": -184320,
+    "calls": 787352,
+    "elapsed_ns": 86400072249900,
+    "max_json_bytes": 25543,
+    "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+  },
+  "calibration_analysis": {
+    "calibration_growth_bytes": 67112960,
+    "passed": true
+  },
+  "source_files_sha256": {
+    "Cargo.toml": "50f2d0fcf6ca9ab533fae57d3030a08ad09640320da3a23c5d8fa0c905bac509",
+    "Cargo.lock": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae",
+    "rust-toolchain.toml": "2c388180d0d5476ed0d69975b382feaf709bb072d51a342add3030cfb3d1bdb2",
+    "crates/daoseeker-scope-core/src/hardware.rs": "78cd74469e1d13df4c890d97ead18ceb470ccbeaeb808a2c711502396ace5511",
+    "crates/daoseeker-scope-ffi/src/lib.rs": "93c88d98332aedc42ef80cffcc58319d193952bad76979c38ecbfad62e70eea3",
+    "crates/daoseeker-scope-windows/src/lib.rs": "20036ac67e3038c939c32395175bf520e6d230262fc40f4e95671c98f9f6d50d",
+    "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+    "docs/schema/snapshot-v1.schema.json": "8ead781b53c539fb9116f95be44484add3a6343a52876e7da75c9ab93e6c659f",
+    "scripts/build_c_example.ps1": "0146dee335649f0b855e683d8f0bdf02010248f142b5ca4067386c0e66068bc8",
+    "scripts/timed_soak.py": "e004e03e8d575f9298c1ba69d1c7fbc08a9b07216f673b692984ec620bd94eca",
+    "scripts/peak_memory.py": "59686797d3e4187b6a3a7fdcfd2ac817769e2bbb1aefcc53a53e9254cacbfb6e",
+    "docs/research/ffi_memory_probe.c": "ca68b35bc3fe452cc94baeb3ebcda42c9afff7da7156d36c699ce2f1ceaf3596"
+  },
+  "binary_sha256_rechecked": {
+    "ffi-memory-probe.exe": "6c6a81263a9136e9d2f6af029b575314dbdc4ab6d472b47ddf6493fbd6b3f924",
+    "daoseeker_scope_ffi.dll": "3e516ed72f030f236f98586a8758e6b7d1b08f41574363423e9e89483311578e",
+    "dscope.exe": "6b57c739dccea116a4673006f4d066916d76b876c8c7650957be15b9d089f56a"
+  },
+  "worktree_after": {
+    "revision": "9536d546500802452eca6c35cf0bf4e37026af3c",
+    "status": ""
+  },
+  "wrapper_exit_code": 0,
+  "probe_exit_code": 0,
+  "probe_exit_confirmed": true,
+  "first_interrupted_attempt": "day-soak-interrupted-2026-11-04.json",
+  "validation_tools_unchanged_from_trial_source": true,
+  "first_attempt_included_in_call_total": false,
+  "commands_run": [
+    "& 'E:\\DevTools\\Mise\\bin\\mise.exe' exec -- 'E:\\Projects\\DaoSeekerScope\\.venv\\Scripts\\python.exe' scripts/timed_soak.py --seconds 86400 --output target/day-retry-2026-11-04.json --cancel-file target/day-retry-2026-11-04.cancel 1> target/day-retry-2026-11-04.stdout.log 2> target/day-retry-2026-11-04.stderr.log",
+    "timed_soak.analyse(all 1443 records, 86400, Windows)",
+    "peak_memory.resident_analysis(calibration, resident_calibrate, Windows)",
+    "git -C <frozen-worktree> rev-parse HEAD",
+    "git -C <frozen-worktree> status --porcelain",
+    "SHA-256 comparison of all three retained binaries against the startup report",
+    ".venv/Scripts/python.exe scripts/check_project.py",
+    "git diff --cached --check",
+    "SHA-256 verification of staged report and embedded raw trace"
+  ],
+  "limits": [
+    "The result applies to the frozen source and the recorded Windows host.",
+    "Measurements use OS working-set residency with one-minute sampling.",
+    "Allocator attribution, other-platform day runs and physical-device coverage remain separate."
+  ],
+  "versions": {
+    "c_abi": 1,
+    "hardware_schema": 1,
+    "license": "MIT"
+  },
+  "formally_published": false,
+  "execution_worktree": "independent clean checkout of 9536d546500802452eca6c35cf0bf4e37026af3c"
+}
