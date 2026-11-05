@@ -120,6 +120,8 @@ pub enum ErrorCode {
     InvalidBuffer,
 }
 
+/// A redacted operation error. Match `code` in application logic; display text
+/// is for people and may be clarified without changing the error code.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ScopeError {
     pub code: ErrorCode,
@@ -131,7 +133,17 @@ impl ScopeError {
 }
 impl fmt::Display for ScopeError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "collection error: {:?}", self.code)
+        f.write_str(match self.code {
+            ErrorCode::InvalidArgument => "invalid options or input",
+            ErrorCode::UnsupportedPlatform => "this platform is not supported",
+            ErrorCode::Timeout => "operation timed out (background work may still be running)",
+            ErrorCode::Cancelled => "cancellation requested (background work may still be running)",
+            ErrorCode::Busy => "collector is busy; retry after the current operation finishes",
+            ErrorCode::BackendFailure => "backend could not complete the operation",
+            ErrorCode::ResourceLimit => "resource limit reached",
+            ErrorCode::Panic => "a Rust panic interrupted the operation",
+            ErrorCode::InvalidBuffer => "buffer is invalid or has already been freed",
+        })
     }
 }
 impl std::error::Error for ScopeError {}

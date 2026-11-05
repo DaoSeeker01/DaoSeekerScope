@@ -55,7 +55,9 @@ fn seeded_json_mutations_preserve_invariants_when_accepted() {
 #[test]
 fn excessive_json_nesting_is_rejected_without_stack_overflow() {
     let bytes = format!("{}0{}", "[".repeat(512), "]".repeat(512));
-    assert!(from_json(bytes.as_bytes()).is_err());
+    let error = from_json(bytes.as_bytes()).expect_err("invalid input");
+    assert_eq!(error.code, daoseeker_scope::ErrorCode::InvalidArgument);
+    assert_eq!(error.to_string(), "invalid options or input");
 }
 
 #[test]
@@ -76,6 +78,7 @@ fn compact_json_cannot_expand_beyond_exchange_limit() {
         Ok(_) => panic!("expanded JSON must be rejected"),
     };
     assert_eq!(error.code, daoseeker_scope::ErrorCode::ResourceLimit);
+    assert_eq!(error.to_string(), "resource limit reached");
     let snapshot = serde_json::from_slice(&bytes).unwrap();
     match to_json(&snapshot) {
         Err(error) => assert_eq!(error.code, daoseeker_scope::ErrorCode::ResourceLimit),

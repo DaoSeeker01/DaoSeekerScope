@@ -214,10 +214,9 @@ fn privacy_is_enforced_even_for_custom_backend() {
 fn authorization_and_resource_options_are_validated() {
     let mut options = Options::default();
     options.privacy.include_sensitive = true;
-    assert_eq!(
-        options.validate().expect_err("auth").code,
-        ErrorCode::InvalidArgument
-    );
+    let error = options.validate().expect_err("auth");
+    assert_eq!(error.code, ErrorCode::InvalidArgument);
+    assert_eq!(error.to_string(), "invalid options or input");
     options.privacy.include_sensitive = false;
     options.max_entries = 0;
     assert!(options.validate().is_err());
@@ -316,13 +315,22 @@ fn timeout_and_cancellation_bound_the_caller() {
         .build()
         .expect("build");
     let start = Instant::now();
-    assert_eq!(hw.collect().expect_err("timeout").code, ErrorCode::Timeout);
+    let error = hw.collect().expect_err("timeout");
+    assert_eq!(error.code, ErrorCode::Timeout);
+    assert!(
+        error
+            .to_string()
+            .contains("background work may still be running")
+    );
     assert!(start.elapsed() < Duration::from_millis(500));
     let token = CancelToken::default();
     token.cancel();
-    assert_eq!(
-        hw.collect_with(token).expect_err("cancelled").code,
-        ErrorCode::Cancelled
+    let error = hw.collect_with(token).expect_err("cancelled");
+    assert_eq!(error.code, ErrorCode::Cancelled);
+    assert!(
+        error
+            .to_string()
+            .contains("background work may still be running")
     );
 }
 #[test]

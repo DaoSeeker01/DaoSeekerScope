@@ -57,6 +57,19 @@ SCOPE_ERRORS = {
     b"Panic": "panic",
     b"InvalidBuffer": "invalid_buffer",
 }
+# Exact messages from this CLI plus older candidate binaries. Only recognized
+# text becomes a fixed diagnostic code; raw stderr is never copied to reports.
+CLI_ERRORS = {
+    b"invalid options or input": "invalid_argument",
+    b"this platform is not supported": "unsupported_platform",
+    b"operation timed out (background work may still be running)": "timeout",
+    b"cancellation requested (background work may still be running)": "cancelled",
+    b"collector is busy; retry after the current operation finishes": "busy",
+    b"backend could not complete the operation": "backend_failure",
+    b"resource limit reached": "resource_limit",
+    b"a Rust panic interrupted the operation": "panic",
+    b"buffer is invalid or has already been freed": "invalid_buffer",
+} | {b"collection error: " + token: code for token, code in SCOPE_ERRORS.items()}
 # Other smoke scripts import run(); preserve their existing fixed-label contract.
 SHARED_PROCESS_LABELS = frozenset(
     {
@@ -95,10 +108,8 @@ def scope_error(label: str, return_code: int, stderr: bytes) -> str | None:
     if (
         label == "cli" or label == "storage_text" or label.startswith("cli_text_")
     ) and return_code == 3:
-        prefix = b"dscope: collection error: "
-        return (
-            SCOPE_ERRORS.get(line[len(prefix) :]) if line.startswith(prefix) else None
-        )
+        prefix = b"dscope: "
+        return CLI_ERRORS.get(line[len(prefix) :]) if line.startswith(prefix) else None
     if label == "c_abi" and return_code == 2:
         return C_ERRORS.get(line)
     return None

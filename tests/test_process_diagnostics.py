@@ -35,8 +35,8 @@ class ProcessDiagnostics(unittest.TestCase):
                 self.assertEqual(smoke.run(["unit-command"], label), b"unit")
 
     def test_cli_codes_require_exact_bounded_messages_and_expected_exit(self) -> None:
-        for token, code in smoke.SCOPE_ERRORS.items():
-            message = b"dscope: collection error: " + token + b"\r\n"
+        for text, code in smoke.CLI_ERRORS.items():
+            message = b"dscope: " + text + b"\r\n"
             self.assertEqual(smoke.scope_error("cli_text_cpu", 3, message), code)
             self.assertEqual(smoke.scope_error("storage_text", 3, message), code)
             for bad in [
@@ -131,7 +131,7 @@ class ProcessDiagnostics(unittest.TestCase):
                 [
                     sys.executable,
                     "-c",
-                    "import sys; sys.stdout.write('private-id'); sys.stderr.write('dscope: collection error: Timeout\\n'); sys.exit(3)",
+                    "import sys; sys.stdout.write('private-id'); sys.stderr.write('dscope: operation timed out (background work may still be running)\\n'); sys.exit(3)",
                 ],
                 "cli_text_cpu",
                 diagnostics,

@@ -35,6 +35,12 @@ fn main() -> Result<(), daoseeker_scope::ScopeError> {
 
 一次快照包含多个系统调用，不保证所有字段同一时刻读取。动态采集失败不会假装返回上次的有效值。
 
+### 处理操作错误
+
+构造、采集、关闭和 JSON 函数通过 `ScopeError` 返回操作错误。用 `error.code` 判断错误类型；`error.to_string()` 提供可直接显示的脱敏说明，例如 `invalid options or input`。提示文字可能调整，程序不要据此分支或重试。超时和取消的提示会提醒后台工作可能仍在运行，具体限制见下文。
+
+字段不可用仍通过成功快照中的 `Observed<T>` 表达。CLI 沿用相同错误说明和现有退出码；C ABI 保留独立的状态码及线程局部错误文本。
+
 ### 判断字段是否可用
 
 `Observed<T>` 包含值、状态、来源、采集时间和原因。程序应先判断 `value()` 或 `availability()`，不要把缺失值自动替换为零。
