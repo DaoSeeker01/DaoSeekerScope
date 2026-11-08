@@ -47,6 +47,8 @@ python scripts/ffi_bundle_smoke.py <SDK归档路径>
 
 演练报告分别写入 `target/cli-bundle-evidence.json` 与 `target/ffi-bundle-evidence.json`。CLI 的版本、JSON 和隔离 JSON 调用还要求 stderr 为空；非空或超限时只记录固定错误，不保存原始内容。构建成功不代表安装/回滚演练已通过。
 
+SDK 的 C/Python 消费者及 ELF 检查同样要求 stderr 为空。编译器可输出正常诊断，仍须成功退出；所有 SDK 子进程的 stderr 读取上限为 1 MiB，超限则失败，原始内容不写入报告。
+
 候选构建和演练不上传制品、不安装到全局 PATH。macOS 尚未开放该打包入口。同候选两槽位切换只验证恢复机制，旧正式版存在后再验证跨版本升级与回滚。
 
 6. 对照同一提交核对源码、归档/二进制哈希、平台、退出码、完成标记与原始报告。`failed`、`incomplete`、`not_run` 和跳过结果分别保留，不能以旧 pass 覆盖。

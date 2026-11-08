@@ -50,7 +50,14 @@ def execute(
         require(result.returncode == 0, f"{label}_exit")
         stdout.seek(0)
         data = stdout.read(1024 * 1024 + 1)
+        stderr.seek(0)
+        error_output = stderr.read(1024 * 1024 + 1)
     require(len(data) <= 1024 * 1024, "output_limit")
+    require(len(error_output) <= 1024 * 1024, f"{label}_stderr_limit")
+    # Compilers may emit normal diagnostics. Consumers and readelf must keep
+    # their result channel clean; never copy unexpected stderr into a report.
+    if label != "compile":
+        require(not error_output, f"{label}_unexpected_stderr")
     return data
 
 

@@ -15,6 +15,60 @@ import ffi_bundle_smoke
 
 
 class FfiBundleTests(unittest.TestCase):
+    def test_actual_sdk_children_reject_stderr_without_echoing_it(self) -> None:
+        for label in ("c", "python", "elf"):
+            for size in (23, 1024 * 1024):
+                with self.subTest(label=label, size=size):
+                    with self.assertRaises(ValueError) as error:
+                        ffi_bundle_smoke.execute(
+                            [
+                                sys.executable,
+                                "-c",
+                                "import sys; sys.stdout.write('ok'); "
+                                f"sys.stderr.write('X' * {size})",
+                            ],
+                            self.root,
+                            label,
+                        )
+                    self.assertEqual(str(error.exception), f"{label}_unexpected_stderr")
+
+    def test_actual_sdk_children_reject_oversized_stderr_for_every_label(self) -> None:
+        for label in ("compile", "c", "python", "elf"):
+            with self.subTest(label=label):
+                with self.assertRaises(ValueError) as error:
+                    ffi_bundle_smoke.execute(
+                        [
+                            sys.executable,
+                            "-c",
+                            "import sys; sys.stderr.write('X' * (1024 * 1024 + 1))",
+                        ],
+                        self.root,
+                        label,
+                    )
+                self.assertEqual(str(error.exception), f"{label}_stderr_limit")
+
+    def test_actual_sdk_children_keep_clean_output_and_bounded_compiler_diagnostics(
+        self,
+    ) -> None:
+        for label in ("compile", "c", "python", "elf"):
+            with self.subTest(label=label):
+                output = ffi_bundle_smoke.execute(
+                    [sys.executable, "-c", "import sys; sys.stdout.write('ok')"],
+                    self.root,
+                    label,
+                )
+                self.assertEqual(output, b"ok")
+        output = ffi_bundle_smoke.execute(
+            [
+                sys.executable,
+                "-c",
+                "import sys; sys.stdout.write('ok'); sys.stderr.write('compiler diagnostic')",
+            ],
+            self.root,
+            "compile",
+        )
+        self.assertEqual(output, b"ok")
+
     def setUp(self) -> None:
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
