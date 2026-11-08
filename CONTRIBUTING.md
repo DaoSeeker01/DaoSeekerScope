@@ -4,7 +4,7 @@
 
 一次提交尽量解决一个明确问题。保留现有架构和有效测试，为修复增加能复现问题的回归测试；不用为了增加字段数量而返回占位值。
 
-需要 Rust 1.96、Python 3.11+；Windows 的 C 示例还需要 MSVC 和 Windows SDK。工具通过 PATH 调用，不依赖维护者的磁盘路径。`rust-toolchain.toml` 和 `mise.toml` 记录固定版本；CI 在三个原生桌面系统运行。
+需要 Rust 1.96。完整开发与源码包检查使用 Python 3.12+；Windows 的 C 示例还需要 MSVC 和 Windows SDK。工具通过 PATH 调用，不依赖维护者的磁盘路径。`rust-toolchain.toml` 和 `mise.toml` 记录固定版本；CI 在三个原生桌面系统运行。
 
 ## Rust 检查
 

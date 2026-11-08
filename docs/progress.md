@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-09 发布文档整理完成。[发布指南](release.md)改为当前验收步骤、已验证范围和消费者迁移表，移除重复的逐轮日志及已过时描述，原始验收文档与 Git 历史保留。贡献指南统一完整检查所需的 Python 3.12+；契约表明确 C ABI 无关闭入口、Rust 已有 shutdown。三个工具的帮助入口和项目文件/链接检查通过。本轮只改文档，未重跑 Rust、打包或 CI，不改变已有验收及发布状态。
+
 2026-11-05 错误提示修复已完成本机验收，提交 `f98d4de`。Rust/CLI 说明具体失败原因，超时和取消提示后台工作可能继续；脱敏诊断同时识别新提示与旧候选包文字。307 项 Rust 和 333 项 Python 测试通过，另有 1 项 Rust 夹具忽略直接运行、6 项 Python 平台跳过。实际 CLI 超时返回 3、stdout 为空且正确归类；fmt、Clippy、严格文档、Ruff/mypy、静态契约和双平台交叉 check 通过。原生三平台 CI 留到下批集中回归，未将交叉 check 视为运行验证。[本机报告](evidence/error-messages-f98d4de-2026-11-05.json)
 
 2026-11-05 独立 Rust 消费者检查已完成。源码包验收增加 core/门面各四种 feature 配置，验证实际归档中的自定义 backend、采集、刷新、取消、关闭及可选 JSON/Schema。修复 Cargo stderr 诊断可能污染 stdout JSON 的问题。本机 Python 333 项通过、6 项跳过；三平台 CI 41992365436 的每个平台均通过八种配置和八个源码包。未改变公共 API、依赖、features 或 ABI/Schema。[打包验收](packaging.md)

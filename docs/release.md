@@ -1,80 +1,74 @@
-# 发布与迁移路线
+# 发布与迁移
 
-截至 2026-11-01，[三平台 CI 41257426560](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/41257426560)八项任务通过，本轮增加 [Windows 导入符号对照](windows-imports-validation.md)。此前的[许可文件输入修复](notice-input-validation.md)保留独立验收记录。此前的 [amdgpu 温度读取](amdgpu-temperature-validation.md)、[取消修复](project-review-2026-10-31.md)和 [Windows 一小时基线](timed-soak-validation.md)保留各自验收来源。当前仍为未发布的 0.1.0；macOS 分发许可材料、最低系统范围与最终评审等未完成项见 [v0.1 清单](v0.1-checklist.md)。历史验收记录保留各自的来源与范围。
+当前为未发布的 0.1.0 开发版。交付状态统一维护在 [v0.1 清单](v0.1-checklist.md)，本页说明验收、发布顺序和迁移要求。历史测试、失败与来源见[专项验收文档](README.md)和 Git 历史。
 
-## 当前发布门槛
+## 已验证范围
 
-0.1.0 仍未发布。[v0.1 清单](v0.1-checklist.md)是交付状态入口，[更新日志](../CHANGELOG.md)记录用户可见变化；下面的日期记录保留各轮原始结论。
+| 目标 | 已有证据 | 发布前仍需处理 |
+|---|---|---|
+| Windows x64 / MSVC | 本机和原生 CI；Rust 源码包、CLI/FFI SDK 候选安装与回滚 | 最低 Windows、全新系统运行库及最终分发评审 |
+| Linux x64 / GNU | 原生 CI、受限容器；Rust 源码包、CLI/FFI SDK 候选；固定 glibc 2.34/2.36 用户空间运行，2.31 预期拒绝 | 最低内核、承诺的发行版/运行库范围及最终分发评审 |
+| macOS ARM64 | 原生 CI 的源码构建、Rust 源码包、SDK 对照与 C/Python 调用 | 六项依赖许可材料及 CLI/FFI SDK 候选打包、安装与回滚 |
 
-正式发布前：冻结版本与变更日志 → 运行三平台 Rust/C/Python、八包、Schema、隐私和安全门禁 → 核对许可证与支持范围 → 在全新目录验证候选制品、校验和与恢复方式 → 审阅最终报告 → 取得发布授权。失败、跳过和延期单独列出，不用旧报告覆盖新失败。
+表中是已有验收范围，最终支持承诺仍待确认。架构、CI 与容器结果不能外推到全部同版本系统。实体 Linux/macOS、多处理器组等设备测试按维护者设备安排延期，见[剩余工作](progress.md)。Android、iOS、Web、no_std 和 MCU 属于后续独立路线。
 
-内部版本由 workspace 管理，`python scripts/check_project.py` 检查依赖版本和更新日志一致性。C ABI、Schema 和候选包格式单独管理。按 core、sysinfo/平台 crate、门面、CLI/FFI 的依赖顺序发布；本地 patch 的八包验证不能替代真实 registry 验证。
+macOS 的源码构建结果与二进制分发分别判断。[许可材料预检](notice-preflight.md)尚有缺口，不能用通用许可证文本补位，也不能据此认定上游 SPDX 声明无效。首发制品范围仍需维护者决定。
 
-本仓库没有自动发布到 registry、创建 Release 或上传二进制的工作流。更改社区文件、修复代码和运行 CI 不代表获得正式发布授权。
+## 准备候选版本
 
-## 开发与验收记录
+1. 确认本次要交付的目标、制品和限制，核对 [API/ABI/Schema 契约](v0.1-contract-review.md)、[依赖许可证](dependencies.md)与[更新日志](../CHANGELOG.md)。保留未验证和不适用项。
+2. 冻结待验收提交，记录 `git rev-parse HEAD` 与 `git status --porcelain`。正式候选要求工作区干净；需要并行开发时，使用独立检出目录。
+3. 按[贡献指南](../CONTRIBUTING.md)运行相关本机检查和完整三平台 CI。核对每项任务和报告，不只查看工作流总状态。定向 CI 的跳过项不能补作完整通过。
+4. 执行下列契约、许可材料和源码包检查。构建环境需要项目固定的 Rust、Python 3.12+ 及本机 C 编译器；Windows 还需要 MSVC/Windows SDK。
 
-2026-10-26 Linux FFI SDK 开发增量：新增 GNU x86_64 SDK v4、共享库/头文件/示例/Schema 打包与 ELF 路径检查，源码 af312da 的三平台 CI 40304816716 已全部八项通过。干净提交 f262095 的 Windows SDK/CLI 回归、161 项 Python（157 通过/4 跳过）及 262 项 Rust 门禁通过；Linux 原生构建/C/Python/ELF/权限/回滚与两平台 SDK/CLI 回归已通过，见[记录](linux-ffi-sdk-validation.md)。不改变 Rust API、依赖/features/锁、MIT、C ABI 1 或硬件 Schema 1。未发布二进制。
+```sh
+python scripts/check_contract.py
+python scripts/notice_audit.py
+python scripts/check_packages.py
+```
 
-2026-10-26 Windows FFI SDK 开发增量：共享 ZIP 工具增加 Windows x64 SDK 产品（bundle_format 3），包含 DLL、头文件、导入库、C/Python 示例和 Schema；原有 CLI v1/v2、Rust API、依赖/features/锁、C ABI 1、硬件 Schema 1 和 MIT 不变。干净提交 b3b47b1 本机完成 9 个 SDK 顶层调用、300 次 Python collect/free、CLI 六进程、262 Rust 与 147 Python 测试；2 项 POSIX 测试在本机跳过；随后源码 ba11807 的三平台 CI 40249181949 全部八项、各八包及 Windows SDK 九项顶层调用/300 次 Python 循环已通过，见[记录](windows-ffi-sdk-validation.md)。macOS 候选包因完整许可材料缺口继续待办；调查不构成上游现有 MIT 无效的结论，见 [ADR 0033](adr/0033-windows-ffi-sdk.md)。没有上传或正式分发 SDK。
+依赖已缓存时，后两项可加 `--offline`。许可审计完成后还须检查 `products.*.packager_notice_gate` 与 `errors`；扫描成功不代表分发材料完整。源码包报告写入 `target/package-evidence.json`，包含八个归档和 core/门面的八种独立消费者配置。未发布的相邻 crate 使用本地 patch，不能据此声称 crates.io 下载或安装通过。具体过程见[打包指南](packaging.md)。
 
-2026-10-26 Linux CLI 候选实现增量：共享工具新增 GNU x86_64 原生 host 选择、ZIP/manifest 显式 mode、chmod 和激活前复核，Linux 独立 bundle_format 为 2；Windows v1 不变。干净提交 cdd8760 的 Windows 六进程回归、262 Rust 与 138 Python 测试通过，另两项 POSIX 权限测试跳过；11 项新增测试在本机通过 9 项。随后源码 98172d0 的三平台 CI 40245533279 全部八项、各八包、Linux v2/Windows v1 六进程演练与两项 POSIX 权限测试已通过，见[记录](linux-cli-bundle-validation.md)及 [ADR 0032](adr/0032-linux-cli-candidate.md)。不改变 Rust API、依赖/features/锁、MIT 或 ABI 1/硬件 Schema 1；不宣称 glibc/发行版最低基线或已正式分发。
+5. 为拟分发的 CLI/SDK 构建候选，验证实际安装、切换、回滚及默认隐私。Windows x64 的入口如下，两个产品分别执行并保存报告。
 
-2026-10-25 Windows CLI 候选包增量：独立 release 构建、ZIP/SHA256SUMS/manifest、上游与 Rust 许可文件、临时两槽位安装和回滚已通过干净提交 89fd2f9 的本机验收（262 Rust/129 Python 测试、六个真实 CLI 进程）；三平台 CI 40183166615 全部八项、各八包及 Windows 候选包安装/回滚已通过，见[记录](cli-bundle-validation.md)和 [ADR 0031](adr/0031-windows-cli-candidate.md)。未上传或正式发布；两个槽位使用同一候选，不证明旧版兼容。无 Rust 公共 API、依赖/feature/锁变化，MIT、ABI 1/Schema 1 保持不变；独立 bundle_format 为 1。
+```sh
+python scripts/cli_bundle.py --product cli
+python scripts/cli_bundle.py --product ffi_sdk
+```
 
-2026-10-25 Windows 硬件摘要开发增量：现有 WindowsBackend 静态采集六个固定注册表值，对应既有设备/主板 vendor/model、固件 vendor/version；从 Unsupported 改为 Win32/Partial 有界尝试，不查询序列号/UUID或整份 SMBIOS。成功和缺失均静态缓存，动态刷新不重读，更新需重建 Hardware。没有新消费类型/签名、模型或 JSON 形状，ABI 1/Schema 1、MIT 不变。仅为已锁定 windows-sys 增加 Registry target feature；包/版本/锁不变，复用 dmi_text 解析 fuzz。Windows 本机未提升 token、CI 提升 token 六值/独立 SDK 通过；三平台 CI 40145306966 全部八项、各八包及十二个短 fuzz 已通过，见[ADR 0030](adr/0030-windows-hardware-summary.md)与[记录](windows-hardware-summary-validation.md)。不将注册表报告当作硬件/固件真实性证明；回滚可移除六项读取与能力声明。
+Linux x64 使用已验收的构建用户空间，运行 `bash scripts/build_linux_candidate.sh cli` 和 `bash scripts/build_linux_candidate.sh ffi_sdk`。环境要求与报告边界见[打包指南](packaging.md)、[Linux CLI](linux-cli-bundle-validation.md)及[Linux SDK](linux-ffi-sdk-validation.md)。不要把宿主直接链接的产物当作经过相同用户空间验收的候选。
 
-2026-10-24 Windows CPU 多组开发增量：单组路径不变，64 位多组从固定 Unsupported 改为有界尝试采集，最多 16 组/1024 logical processors；自有线程逐组读取并 join，不改变调用线程亲和性。逐组验证后加权，拓扑变化重新预热，失败不返回部分或旧结果。来源 Win32/Partial、公共消费类型/签名、ABI 1/Schema 1、MIT 不变。新增默认关闭的 Windows `fuzzing` feature，fuzz 锁仅新增直接依赖边，第三方版本/许可证和根锁不变。本机单组 SDK/helper、三平台 CI 40046393393 与全部 12 个短 fuzz 已通过，2026-10-25 归档；实际多组仍未验证，见 [ADR 0029](adr/0029-windows-cpu-groups.md)与[记录](windows-cpu-groups-validation.md)。回滚可恢复原有单组路径，多组消费方必须继续检查字段可用性。
+候选构建和演练不上传制品、不安装到全局 PATH。macOS 尚未开放该打包入口。同候选两槽位切换只验证恢复机制，旧正式版存在后再验证跨版本升级与回滚。
 
-2026-10-22 macOS uptime 开发增量：现有 MacosBackend 直接采集 KERN_BOOTTIME/time/启动时间复核；来源 Sysinfo -> Sysctl/Partial，失败返回缺失而非 epoch 级大数或默认零，不缓存动态值。保持现有日历时间整秒差，非单调 elapsed。单独 SysinfoBackend 用户需补 MacosBackend 或使用门面；回滚须同步恢复 sysinfo 字段。无新公共类型/签名、依赖/features/锁变化，MIT、ABI 1/Schema 1 不变。2026-10-23 CI 39878588965 全部八项、macOS ARM64 原生 SDK/链接/采样/持久刷新与三平台八包已通过，见[ADR 0028](adr/0028-macos-uptime.md)与[验证](macos-uptime-validation.md)。
+6. 对照同一提交核对源码、归档/二进制哈希、平台、退出码、完成标记与原始报告。`failed`、`incomplete`、`not_run` 和跳过结果分别保留，不能以旧 pass 覆盖。
 
-2026-10-22 Windows uptime 开发增量：现有 WindowsBackend 直接读取 GetTickCount64，沿用 sysinfo 0.39.6 的计数与整数秒口径；Source 从 Sysinfo 改为 Win32，能力仍 Partial。单独 SysinfoBackend 不再提供 Windows uptime，需补 WindowsBackend 或使用门面。没有发现原实现缓存/吞错，本轮不声称修复此类缺陷。零合法，包含睡眠/休眠，不是工作时长或启动日期。无新公共类型/依赖/features/锁变更，ABI 1/Schema 1、MIT 不变；回滚须同步恢复 sysinfo 字段。见[ADR 0027](adr/0027-windows-uptime.md)和[验证](windows-uptime-validation.md)；CI 39755735940 全部八项、三平台原生/八包及 Windows SDK 夹取通过，睡眠/休眠等边界仍未实验验证。
+## 正式发布
 
-2026-10-22 macOS 内存增量：新增 MacosMemoryBackend::new()/Default 并由门面注册，SysinfoBackend 停止提供两字段；总量改为 Sysctl/Partial、可用估计改为 AppleApi/Partial。API 失败不返回旧值；保持 hw.memsize 与非压缩估计口径，公开统计仍可能被 OS 缓存，不保证新内核计数。固定前缀请求修复后的三平台 CI 39696658516、ARM64 SDK/持久刷新与八包已通过，失败记录保留，见 [ADR 0026](adr/0026-macos-memory.md) 与[验证](macos-memory-validation.md)。无新增依赖/features/锁文件，模型、ABI 1/Schema 1、MIT 不变；回滚需同步恢复 sysinfo 字段。
+确认最终候选、许可证材料、支持范围、变更日志与待发布清单后，再取得正式发布授权。日常提交、推送、CI 和候选构建的授权不包含标签、GitHub Release 或 registry 发布。仓库当前没有自动正式发布工作流。
 
-2026-10-21 macOS CPU 开发增量：新增 MacosCpuBackend::new()/Default、门面自动注册，保留 MacosBackend 单元构造。逻辑核数与动态利用率转为直接 Mach 读取、AppleApi/Partial，拒绝静默 1 核/0% 回退；首次/失败恢复需两次 300 ms 有效样本，数量变化需重建 Hardware。单独 SysinfoBackend 用户须补注册。模型、ABI 1/Schema 1、包/版本/features/锁文件与 MIT 不变。见 [ADR 0025](adr/0025-macos-cpu.md) 和[本轮验证](macos-cpu-validation.md)，三平台 CI 39518381989、ARM64 原生 SDK/链接/持久刷新与八包验收已通过；实体 Mac、Intel 原生和真实 Mach 故障仍待验证。回滚须同步恢复 sysinfo 的两个字段。
+Rust 包按依赖顺序发布：core → sysinfo 与三个平台 crate → 门面 → CLI/FFI。每一层须确认 registry 已可解析再发布依赖它的包；发布后，在全新目录从 registry 安装并运行消费方，另记录结果。本地 patch 验收保留原结论。
 
-2026-10-20 Windows CPU 开发增量：新增 WindowsCpuBackend::new()/Default，门面自动注册，既有 WindowsBackend 单元构造不变。CPU 动态来源由 Sysinfo 转为 Win32，失败后清基线、重新预热；仅覆盖一个活动处理器组，多组明确不支持，能力 Partial，单独 SysinfoBackend 用户须补注册。新增 windows-sys Threading 绑定 feature，包/版本/锁文件、公共模型、ABI 1/Schema 1 和 MIT 不变。见 [ADR 0024](adr/0024-windows-cpu.md) 与[本轮验证](windows-cpu-validation.md)；三平台原生 CI 39350478223、SDK/八包、短 fuzz/Miri/ASan 已通过。回滚必须同步恢复 Windows sysinfo CPU 字段，不能仅移除新 backend。
+二进制发布须附对应候选、校验和、适用目标、运行要求、第三方许可材料和恢复说明。校验和用于检测文件变化，不能单独证明发布者身份。失败时停止后续分发并保留报告，不覆盖已发布版本的内容。
 
-2026-10-19 Windows 内存增量：新加 `WindowsMemoryBackend::new()` / `Default`，门面自动注册；既有 `WindowsBackend` 单元构造不变。Windows 总内存/可用内存从 sysinfo Partial 迁至直接 Win32 读取，精确处理 BOOL/错误码与总量缓存变化。单独 SysinfoBackend 的 Windows 消费者需迁移。核心模型、C ABI 1/Schema 1、依赖/锁/features 与 MIT 不变；CPU 和 macOS 路径不变，见 [ADR 0023](adr/0023-windows-memory.md) 与[本轮验证](windows-memory-validation.md)；2026-10-20 三平台 CI、SDK/有界压力实验、八包、短 fuzz/内存回归通过。
+## 开发版消费者迁移
 
-2026-10-19 新增 `dscope display`：文本读取现有快照，区分 Windows 信号像素、macOS 模式像素与字段缺失状态；不改变采集或隐私规则。CLI crate 的公开 `Command` 新增 `Display`，开发版穷举匹配调用方须补分支；核心 Rust API、C ABI 1/Schema 1、依赖、feature 与 MIT 不变。见 [ADR 0022](adr/0022-display-cli.md) 和[本轮验证](display-text-validation.md)，三平台原生 CI、八包、短 fuzz 和内存回归已通过。仓库同日经维护者授权改为公开；这不等于 crates.io 或 release 制品已发布。
+使用门面 `daoseeker_scope::Hardware` 会自动组合所需 backend。单独注册 backend 的应用需留意下列变化，详细来源与行为见对应验收文档。
 
-2026-10-18 macOS 显示器开发增量：通过公开 Core Graphics 枚举 active-for-drawing 视图和当前模式像素，名称 Unsupported，不查询名称/EDID/稳定标识。固定 1025 槽位防止截断成功、最多三轮拓扑复核、Copy/Release RAII 与字段隔离见 [ADR 0021](adr/0021-macos-display.md)。Rust 模型/签名、C ABI 1、Schema 1 形状不变，仅补充像素字段描述；无新依赖、锁或公开 feature 变化，仍 MIT。[本轮验证](macos-display-validation.md)完成独立 C SDK/CLI/C 对照、三平台 CI、八包、fuzz/内存与基准归档；实体 Mac 验证延期。
+| 原用法或假设 | 当前用法与限制 |
+|---|---|
+| 单独 SysinfoBackend 读取 Linux CPU 用量、内存和 uptime | 注册 LinuxBackend 或改用门面；新读取失败不返回旧值。见[CPU](cpu-refresh-validation.md)、[内存](memory-refresh-validation.md) |
+| 单独 SysinfoBackend 读取 Windows 内存、CPU 用量和 uptime | 分别注册 WindowsMemoryBackend、WindowsCpuBackend、WindowsBackend，或使用门面。多组 CPU 为有界尝试，实体多组仍待验。见[内存](windows-memory-validation.md)、[CPU 多组](windows-cpu-groups-validation.md)、[uptime](windows-uptime-validation.md) |
+| 单独 SysinfoBackend 读取 macOS 逻辑核数、CPU 用量、内存和 uptime | 注册 MacosCpuBackend、MacosMemoryBackend、MacosBackend，或使用门面。见[CPU](macos-cpu-validation.md)、[内存](macos-memory-validation.md)、[uptime](macos-uptime-validation.md) |
+| CLI crate 穷举匹配 Command | 已增加 Display 分支。见[显示器 CLI](display-text-validation.md) |
+| 根据错误文字分支或重试 | 改为判断 ScopeError.code；显示文字已澄清，CLI 退出码和 C ABI 错误契约保留。见[错误处理](usage.md#处理操作错误) |
+| Drop 后立即卸载库，或把超时当作原生任务已结束 | Rust 可消费式 shutdown 等待 backend 释放；超时后工作仍可能继续。C ABI 采集后保持库加载到进程结束。见[资源与超时](usage.md#资源与超时) |
 
-2026-10-17 Linux 显示器有限增量：提供 DRM connected 连接视图，默认不读取 EDID、名称为 PrivacyRedacted；仅双重显式授权后读取基础块产品名称。当前像素宽高仍 Unsupported，不使用 modes/EDID 时序冒充当前分辨率。静态缓存、错误/限额与隐私契约见 [ADR 0020](adr/0020-linux-display.md)。公共模型、Schema 1、C ABI 1、依赖和锁不变；隐藏 fuzzing 入口扩展既有 dmi_text。动态示例仅为合成 fixture 增加 authorize 指令，不是生产授权协议。测试临时目录加原子序号，修复并发毫秒命名碰撞。[本轮验证](linux-display-validation.md)完成三平台 CI、26 项非 root 显示器场景及既有 fuzz/内存/打包回归；原生 runner 只确认连接视图，实体 Linux/EDID 名称阳性仍待设备验证。
+新增 GPU、存储、显示器、电池和温度来源时，已有模型的值与状态可能从 Unsupported 变为可用或受限。继续逐字段检查 Observed；空集合不证明物理设备不存在，列表下标也不是稳定身份。当前语义以[能力矩阵](adr/0005-platform-support-matrix.md)和[使用指南](usage.md)为准。
 
-2026-10-16 Windows 显示器开发增量：通过公开 CCD API 提供活动路径的 EDID 友好名称及目标信号活动像素尺寸，能力 Partial/Win32。静态缓存、三次缓冲竞争重试、条目/模式上限及会话权限状态见 [ADR 0019](adr/0019-windows-display.md)。既有 `--json` 输出即可消费，没有增加 CLI 命令枚举变体。Rust 模型/签名、C ABI 1/Schema 1 形状不变；Schema 仅补充像素语义说明。windows-sys 0.61.2 增加 Windows target feature，包/锁定版本/许可证不变。名称不是稳定标识，信号尺寸不承诺面板原生分辨率。[本轮三平台验证](windows-display-validation.md)全部通过；本机与 CI 的尺寸/名称可用性分别保留，不用受限或无效字段伪造成功读取。
+## 兼容性规则
 
-2026-10-16 macOS GPU 开发增量：通过公开 Metal API 读取设备名称，gpus 为 Partial/AppleApi；统一内存设备的独占显存为 NotApplicable，其他情况 Unsupported。名称、状态与静态失败均缓存，动态刷新不重扫。不使用工作集预算作为容量。沿用 Rust 模型、C ABI 1/Schema 1；新增四个 macOS 专用锁定依赖，许可证可选 MIT，默认公共 features 不变。扩展既有 dmi_text fuzz 目标和隐藏测试入口。见 [ADR 0018](adr/0018-macos-gpu.md)；[本轮三平台 CI 与 SDK 验证](macos-gpu-validation.md)已通过，实体 Mac 验证延期。
+Rust 包版本由 workspace 统一管理。0.1 系列优先保持源码和行为兼容，破坏性 Rust 变更使用 0.2 并提供迁移说明。C ABI 1、硬件 Schema 1 与候选包格式分别编号，不随 Rust 版本自动变化。
 
-2026-10-15 Linux GPU 开发增量：gpus 从 Unsupported 转为有限 DRM 视图，Partial/Drm；card/render 节点按同一设备去重，名称只支持有文档的 AMDGPU product_name 和 NVIDIA 首行 Model。没有可靠名称的驱动保持字段 Unsupported，缺失/权限/格式失败单列；独占显存仍 Unsupported，不把 VRAM/GTT 填入。静态成功和失败均缓存。Rust 模型形状、签名、C ABI1/Schema1、依赖、锁、许可证与默认 features 不变；复用隐藏 fuzzing 入口扩展既有 dmi_text 目标。见[ADR](adr/0017-linux-gpu.md)，实体 GPU 验证仍延期。
+JSON 未知对象字段可忽略；新增旧解码器不认识的枚举、删除字段或改变单位/语义，需要评审 Schema 主版本与迁移方式。C ABI 已有布局、所有权及错误码不得静默改变或复用。sysinfo 升级仍须经过字段映射、Schema、平台行为与依赖许可回归，不能只以构建通过验收。
 
-2026-10-15 开发版 Windows GPU 增强：gpus 从默认 Unsupported 转为 Partial/Dxgi，采集非软件适配器名称与独占显存字节数。静态缓存不随动态刷新重扫；零值可为真实报告，空集合不证明物理无显卡。新增既有 SDK 的 Windows target 依赖边与 features，锁定包版本和许可证不变。Rust 模型形状、签名、ABI1/Schema1 不变，仅补充 Schema 描述；Windows 字段可用性行为改变，消费方仍须逐字段检查。见[ADR](adr/0016-windows-gpu.md)。
-
-当前 0.1.0 为开发版本，尚未发布。当前构建与检查结果见[项目检查报告](project-review-2026-10-11.md)和 [CI 工作流](https://github.com/DaoSeeker01/DaoSeekerScope/actions/workflows/ci.yml)；下面的日期记录属于对应历史版本。创建私有仓库、推送和 CI 已获授权，crates.io 发布或 release 制品分发仍需单独授权。
-
-2026-10-14 设备验证安排：维护者当前有 Windows 笔记本和 Android 手机。实体 Linux/macOS、真实 Linux 电池/温度及其他缺少设备的测试推迟到设备可用后，不阻塞当前开发；保持待验证状态，不能以 CI/模拟测试替代这些设备证据。三平台原生 CI、容器、Schema、FFI、fuzz 与打包门禁继续执行。Android 适配属于后续独立阶段，持有手机不代表当前库已经支持 Android。
-
-打包准备的可复现入口与限制见[打包与安装验证](packaging.md)。它在新目录执行原生 Cargo package 验证，另验证实际归档和使用本地 patch 的独立构建；真实 registry 安装仍须单独验收，不以 `--list` 或本地 patch 宣称发布准备完成。
-
-发布顺序：维护者ADR/Schema评审 → 三平台原生build/test/doc + C/Python契约 → Linux容器/DMI缺失/权限降级 → fuzz与sanitizer campaign → 依赖/许可证审计 → cargo package逐crate验证 → 制品checksum/安装/回滚演练 → 发布。先core，随后sysinfo及平台crate，再门面、CLI/FFI，避免依赖不存在的crate版本。此顺序是计划，未执行的步骤不算通过。
-
-JSON v1：对象新增字段可向前兼容（未知字段忽略），新增枚举值要求Schema主版本协商；字段删除/语义/单位变化增加Schema主版本并提供v1读取迁移器。C ABI v1：不改变现有options/buffer布局，新增ABI主版本以新入口并存；错误码不复用。Rust0.1破坏变更提高minor，1.0后破坏变更提高major并附迁移说明。sysinfo升级固定版本并重跑状态/单位/CPU采样/黄金样例/Schema/三平台门禁。
-
-回滚：保留上一版库与header、CLI及checksum；上层应用按ABI与Schema版本拒绝不兼容数据，恢复匹配版本，不能只替换DLL却保留不兼容header。静态失败重新构造Hardware刷新，当前无热插拔静态重扫API。
-
-版本1首次发布，没有从旧ABI/Schema迁移。移动/Web/no_std/MCU独立能力矩阵与实际构建证据后再决定接入。
-
-开发版Linux CPU行为迁移：CPU占用率来源改为procfs，失败清基线且恢复首读重新等待300ms采样对；仅单独SysinfoBackend注册者需补LinuxBackend或使用门面。既有Source枚举、Rust签名、ABI/Schema1与feature不变。实际故障回归、三平台及FFI门禁见[CPU刷新验收](cpu-refresh-validation.md)。Windows/macOS sysinfo路径的Partial新鲜度边界仍适用。
-
-
-原生验收入口：scripts/native_smoke.py；先构建当前CLI/FFI/C例子，再执行。CI自动保留14天原生报告，报告overall及job/退出码共同判断，incomplete/failed/not_run不算通过。Windows x64、Linux x64、macOS arm64报告均已保存仓库，见[首次三平台CI验收](ci-validation.md)与[最新容器验收](linux-container-validation.md)。所列Ubuntu24.04/Docker28.0.4 x86_64权限和输入缺失场景已通过，完整/proc覆盖被运行时拒绝且未执行库。短期fuzz、Miri和Rust FFI ASan已通过；其他容器/安全策略、动态源中途失效、长期campaign、峰值分配profiling和发行制品验证仍待完成。
-
-开发版Linux内存/uptime行为迁移：相关字段来源改为Procfs、实现能力Supported；SysinfoBackend在Linux不再提供总内存/可用内存/uptime，需补LinuxBackend或使用门面。错误不保留旧值，缺MemAvailable不估算，缓存MemTotal变化时动态暂不可用，重建Hardware刷新静态总量。既有字段/单位/签名/feature/ABI1/Schema1不变，尚未发布，因此记录为开发版backend行为修正；正式版本仍需按上述兼容规则评审。见[验收与限制](memory-refresh-validation.md)。
-
-开发版Linux电池扩展：原Unsupported类别现在由LinuxBackend提供Partial、SourceSysfs的有界动态power_supply枚举。完整可读视图无Battery是Available空集合；缺路径、分类不完整/受限、数值错误或超限各按观察返回。仅Mains聚合提供AC状态，没有Mains不可推断false；不采集电池ID，不保证索引跨热插拔稳定。旧消费者应继续检查集合及字段Availability，不能把新空集合当作真实电池字段成功。公共类型/签名/feature集合、ABI1/Schema1和锁不变，仅增加Schema描述元数据；尚未发布。30项内核权限/合成观测与七目标短fuzz已验，真实Linux电池与发行性能仍待独立验证，见[报告](battery-validation.md)。
-
-开发版Linux传感器扩展：sensors从Unsupported转为Partial/SourceHwmon。调用方仍需逐项检查温度状态，完整集合Available并不表示每个温度Available；未知单位/驱动和相对Tctl保持Unsupported，默认标签Restricted/PrivacyRedacted。支持的驱动和通道见[能力矩阵](adr/0005-platform-support-matrix.md)。索引在热插拔后可能变化，部分 hwmon 通道和主板校正功能暂未覆盖。Rust模型形状、签名、依赖、feature、ABI1/Schema1不变，仅增加Schema description。实测与未验证范围见[hwmon验收](hwmon-validation.md)。
-
-2026-10-11开发增量：NVMe hwmon通道1..9加入现有路由；独立通道零Kelvin返回NotPresent，Composite零Kelvin为InvalidData。Composite可为设备计算值，SensorInfo说明相应修正，Schema只改description；默认不采集磁盘标识，存储集合仍Unsupported。无版本/feature/依赖/许可证变化，非发行制品；[独立验收](nvme-temperature-validation.md)。
+具体承诺及尚待维护者确认的事项只在[契约评审表](v0.1-contract-review.md)维护。整理本页不改变既有支持范围、许可、ABI/Schema 或发布状态。
