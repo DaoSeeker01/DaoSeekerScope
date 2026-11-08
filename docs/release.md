@@ -38,6 +38,15 @@ python scripts/cli_bundle.py --product ffi_sdk
 
 Linux x64 使用已验收的构建用户空间，运行 `bash scripts/build_linux_candidate.sh cli` 和 `bash scripts/build_linux_candidate.sh ffi_sdk`。环境要求与报告边界见[打包指南](packaging.md)、[Linux CLI](linux-cli-bundle-validation.md)及[Linux SDK](linux-ffi-sdk-validation.md)。不要把宿主直接链接的产物当作经过相同用户空间验收的候选。
 
+上述命令只构建并校验归档。随后在对应原生平台，分别把输出的实际 ZIP 路径传给演练脚本；与 ZIP 同目录的 `SHA256SUMS` 必须保留。
+
+```sh
+python scripts/cli_bundle_smoke.py <CLI归档路径>
+python scripts/ffi_bundle_smoke.py <SDK归档路径>
+```
+
+演练报告分别写入 `target/cli-bundle-evidence.json` 与 `target/ffi-bundle-evidence.json`。CLI 的版本、JSON 和隔离 JSON 调用还要求 stderr 为空；非空或超限时只记录固定错误，不保存原始内容。构建成功不代表安装/回滚演练已通过。
+
 候选构建和演练不上传制品、不安装到全局 PATH。macOS 尚未开放该打包入口。同候选两槽位切换只验证恢复机制，旧正式版存在后再验证跨版本升级与回滚。
 
 6. 对照同一提交核对源码、归档/二进制哈希、平台、退出码、完成标记与原始报告。`failed`、`incomplete`、`not_run` 和跳过结果分别保留，不能以旧 pass 覆盖。

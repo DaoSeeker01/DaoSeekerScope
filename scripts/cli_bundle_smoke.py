@@ -81,7 +81,11 @@ def probe(binary: Path, version: str, target: str = TARGET) -> int:
             require(result.returncode == 0, "cli_exit")
             stdout.seek(0)
             data = stdout.read(1024 * 1024 + 1)
+            stderr.seek(0)
+            error_output = stderr.read(1024 * 1024 + 1)
         require(len(data) <= 1024 * 1024, "cli_output_limit")
+        require(len(error_output) <= 1024 * 1024, "cli_stderr_limit")
+        require(not error_output, "cli_unexpected_stderr")
         if arguments == ["--version"]:
             require(data.decode().strip() == f"dscope {version}", "cli_version")
         else:

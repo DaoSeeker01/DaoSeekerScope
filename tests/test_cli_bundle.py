@@ -6,6 +6,7 @@ import stat
 import subprocess
 import sys
 import tempfile
+from typing import Any
 import unittest
 from unittest.mock import patch
 import zipfile
@@ -24,6 +25,53 @@ import cli_bundle_smoke
 
 
 class CliBundleTests(unittest.TestCase):
+    def test_successful_exit_with_stderr_fails_each_cli_probe_without_echo(
+        self,
+    ) -> None:
+        value = json.loads(
+            (cli_bundle_smoke.ROOT / "tests/fixtures/snapshot-v1.json").read_bytes()
+        )
+        value["static_info"]["system"]["os"]["name"] = {
+            "value": "Fixture OS",
+            "availability": "available",
+            "source": "custom",
+            "observed_at": 1000,
+            "reason": None,
+        }
+        snapshot = json.dumps(value).encode()
+        for stage in (1, 2, 3):
+            for diagnostic, expected in (
+                (b"private warning", "cli_unexpected_stderr"),
+                (b"x" * (1024 * 1024), "cli_unexpected_stderr"),
+                (b"x" * (1024 * 1024 + 1), "cli_stderr_limit"),
+            ):
+                with self.subTest(stage=stage, expected=expected):
+                    calls = 0
+
+                    def child(
+                        arguments: list[str], **options: Any
+                    ) -> subprocess.CompletedProcess:
+                        nonlocal calls
+                        calls += 1
+                        options["stdout"].write(
+                            b"dscope 0.1.0\n"
+                            if arguments[1:] == ["--version"]
+                            else snapshot
+                        )
+                        if calls == stage:
+                            options["stderr"].write(diagnostic)
+                        return subprocess.CompletedProcess(arguments, 0)
+
+                    with (
+                        patch.object(
+                            cli_bundle_smoke.subprocess, "run", side_effect=child
+                        ),
+                        self.assertRaises(ValueError) as failure,
+                    ):
+                        cli_bundle_smoke.probe(Path("never-executed"), "0.1.0")
+                    self.assertEqual(str(failure.exception), expected)
+                    self.assertEqual(calls, stage)
+
     def setUp(self) -> None:
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
