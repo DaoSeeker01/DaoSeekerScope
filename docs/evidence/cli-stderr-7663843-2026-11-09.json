@@ -1,0 +1,53 @@
+{
+  "report_version": 1,
+  "recorded_at": "2026-11-08T23:43:55.961289+00:00",
+  "source_commit": "76638436606d6ed97b69c63e0976974156cb382c",
+  "tests_executed_before_commit": true,
+  "clean_state_checked_after_commit": true,
+  "worktree_sha256": {
+    "scripts\\cli_bundle_smoke.py": "a010900f6489dbcb064c63d9c9ec419fdb1e7eb6fd533325c2e558f6d7bdad4e",
+    "tests\\test_cli_bundle.py": "8298ba57697e21e4f95f9a480098f163945d1d07c55edb4654f73543675c4745"
+  },
+  "local_windows": {
+    "python_total": 340,
+    "python_passed": 334,
+    "python_skipped": 6,
+    "targeted_bundle_tests_passed": 15,
+    "new_negative_cases": 9,
+    "stderr_cases": [
+      "warning",
+      "exactly_1_MiB",
+      "over_1_MiB"
+    ],
+    "phases": [
+      "version",
+      "JSON",
+      "isolated_JSON"
+    ],
+    "ruff_format": "passed",
+    "ruff_check": "passed",
+    "mypy": "passed",
+    "cargo_build_cli": "passed",
+    "real_debug_cli_probe_calls": 3,
+    "real_debug_cli_stderr": "empty in all three calls",
+    "debug_cli_sha256": "cb8720e339135a9fb541fd9f9719ac3f09c09d52f7ef6a94274d8200a1123bc7",
+    "python_log_sha256": "5d939f1e971f9ca79943a1746c2d4293acbe9f2256949005ee8ed5ff97178df0"
+  },
+  "initial_failure": "Three stage-3 fixture cases stopped at minimum OS-name validation. Corrected the synthetic OS observation; no validation gate was relaxed.",
+  "not_run": [
+    "new native Linux/macOS CI",
+    "release candidate archive build/install/rollback",
+    "Rust test suite",
+    "extended fuzz/Miri/ASan"
+  ],
+  "compatibility": {
+    "public_api_changed": false,
+    "dependencies_changed": false,
+    "features_changed": false,
+    "license": "MIT",
+    "abi_version": 1,
+    "schema_version": 1,
+    "bundle_formats_changed": false,
+    "published": false
+  }
+}
