@@ -1,0 +1,323 @@
+{
+  "report_version": 1,
+  "recorded_at": "2026-11-09T00:16:45.688058+00:00",
+  "source_commit": "93b01a24d1fa3f63ba0a4677c1efa0b0af0f52a9",
+  "cargo_lock_sha256": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae",
+  "locked_mac_packages": [
+    {
+      "name": "objc2",
+      "version": "0.6.5",
+      "archive_sha256": "08849bbd4767dfae9457696856ae1c84fe4e0281bbe4a7abff2d0e06fb7981f8",
+      "spdx": "MIT",
+      "license_file": null,
+      "vcs": {
+        "git": {
+          "sha1": "d7d2fa23ceaa5e6096c923b081040e5d81b3b9df"
+        },
+        "path_in_vcs": "crates/objc2"
+      },
+      "root_notice_named_members": [],
+      "upstream_root_license_summary": {
+        "url": "https://github.com/madsmtm/objc2/blob/d7d2fa23ceaa5e6096c923b081040e5d81b3b9df/LICENSE.md",
+        "git_blob_sha1": "540ae4c81adb5f64a9f61e222b688880da24300e"
+      },
+      "published_version_index": "https://docs.rs/crate/objc2/latest"
+    },
+    {
+      "name": "objc2-core-foundation",
+      "version": "0.3.2",
+      "archive_sha256": "2a180dd8642fa45cdb7dd721cd4c11b1cadd4929ce112ebd8b9f5803cc79d536",
+      "spdx": "Zlib OR Apache-2.0 OR MIT",
+      "license_file": null,
+      "vcs": {
+        "git": {
+          "sha1": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b"
+        },
+        "path_in_vcs": "framework-crates/objc2-core-foundation"
+      },
+      "root_notice_named_members": [],
+      "upstream_root_license_summary": {
+        "url": "https://github.com/madsmtm/objc2/blob/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+        "git_blob_sha1": "540ae4c81adb5f64a9f61e222b688880da24300e"
+      },
+      "published_version_index": "https://docs.rs/crate/objc2-core-foundation/latest"
+    },
+    {
+      "name": "objc2-encode",
+      "version": "4.1.0",
+      "archive_sha256": "ef25abbcd74fb2609453eb695bd2f860d389e457f67dc17cafc8b8cbc89d0c33",
+      "spdx": "MIT",
+      "license_file": null,
+      "vcs": {
+        "git": {
+          "sha1": "8d214f5477365ffcbcbb7de058c86ed9a518efb7"
+        },
+        "path_in_vcs": "crates/objc2-encode"
+      },
+      "root_notice_named_members": [],
+      "upstream_root_license_summary": {
+        "url": "https://github.com/madsmtm/objc2/blob/8d214f5477365ffcbcbb7de058c86ed9a518efb7/LICENSE.md",
+        "git_blob_sha1": "540ae4c81adb5f64a9f61e222b688880da24300e"
+      },
+      "published_version_index": "https://docs.rs/crate/objc2-encode/latest"
+    },
+    {
+      "name": "objc2-foundation",
+      "version": "0.3.2",
+      "archive_sha256": "e3e0adef53c21f888deb4fa59fc59f7eb17404926ee8a6f59f5df0fd7f9f3272",
+      "spdx": "MIT",
+      "license_file": null,
+      "vcs": {
+        "git": {
+          "sha1": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b"
+        },
+        "path_in_vcs": "framework-crates/objc2-foundation"
+      },
+      "root_notice_named_members": [],
+      "upstream_root_license_summary": {
+        "url": "https://github.com/madsmtm/objc2/blob/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+        "git_blob_sha1": "540ae4c81adb5f64a9f61e222b688880da24300e"
+      },
+      "published_version_index": "https://docs.rs/crate/objc2-foundation/latest"
+    },
+    {
+      "name": "objc2-io-kit",
+      "version": "0.3.2",
+      "archive_sha256": "33fafba39597d6dc1fb709123dfa8289d39406734be322956a69f0931c73bb15",
+      "spdx": "Zlib OR Apache-2.0 OR MIT",
+      "license_file": null,
+      "vcs": {
+        "git": {
+          "sha1": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b"
+        },
+        "path_in_vcs": "framework-crates/objc2-io-kit"
+      },
+      "root_notice_named_members": [],
+      "upstream_root_license_summary": {
+        "url": "https://github.com/madsmtm/objc2/blob/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+        "git_blob_sha1": "540ae4c81adb5f64a9f61e222b688880da24300e"
+      },
+      "published_version_index": "https://docs.rs/crate/objc2-io-kit/latest"
+    },
+    {
+      "name": "objc2-metal",
+      "version": "0.3.2",
+      "archive_sha256": "a0125f776a10d00af4152d74616409f0d4a2053a6f57fa5b7d6aa2854ac04794",
+      "spdx": "Zlib OR Apache-2.0 OR MIT",
+      "license_file": null,
+      "vcs": {
+        "git": {
+          "sha1": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b"
+        },
+        "path_in_vcs": "framework-crates/objc2-metal"
+      },
+      "root_notice_named_members": [],
+      "upstream_root_license_summary": {
+        "url": "https://github.com/madsmtm/objc2/blob/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+        "git_blob_sha1": "540ae4c81adb5f64a9f61e222b688880da24300e"
+      },
+      "published_version_index": "https://docs.rs/crate/objc2-metal/latest"
+    }
+  ],
+  "upstream": {
+    "notice_issue": "https://github.com/madsmtm/objc2/issues/826",
+    "latest_comment_url": "https://github.com/madsmtm/objc2/issues/826#issuecomment-6121056657",
+    "latest_comment_updated_at": "2026-10-12T09:00:31Z",
+    "full_text_commit": "https://github.com/madsmtm/objc2/commit/ee9a7ada2131f5944b8750428e265c15632f2a19",
+    "comparison_to_objc2_0_6_5": {
+      "status": "diverged",
+      "ahead_by": 2,
+      "behind_by": 438,
+      "merge_base_commit": "8852b424193ca41602281b3d7540d7c8ed51e49a"
+    },
+    "prior_project_root_materials": [
+      {
+        "project": "rust-objc",
+        "revision": "c8696b0cd1932fdf1b5b22c03af86f32a934f42f",
+        "notice": "https://github.com/SSheldon/rust-objc/blob/c8696b0cd1932fdf1b5b22c03af86f32a934f42f/LICENSE.txt",
+        "git_blob_sha1": "e9ab3babc0d8602b83dccde8a462f8f3dc1e52ad"
+      },
+      {
+        "project": "rust-objc-encode",
+        "revision": "0f2c40402ecfd53a461705225fe2e22f5d02f32d",
+        "root_notice_named_files": []
+      },
+      {
+        "project": "rust-objc-foundation",
+        "revision": "15f9ebec1190889e48a4bc2d36601e61d303071f",
+        "root_notice_named_files": []
+      }
+    ],
+    "attribution_review": "Historical references collected. Completeness and applicability to the locked releases require review."
+  },
+  "local_checks": {
+    "before_fix": "Case-colliding notice fixture yielded satisfied instead of blocked.",
+    "targeted_python_passed": 14,
+    "targeted_python_skipped": 1,
+    "python_passed": 338,
+    "python_skipped": 6,
+    "ruff": "passed",
+    "mypy": "passed",
+    "before_log_sha256": "cfd5c30ac859b5cf9740dea2bca3f3b3f938d55e30f860bf978645241e8bd859",
+    "python_log_sha256": "b10f24aaa743657d50222a30e6051b4996e27917354dbc8ebcf83583e49a702a",
+    "python_checks_run_before_commit": true
+  },
+  "clean_commit_offline_notice_scans": {
+    "aarch64-apple-darwin": {
+      "original_report_sha256": "114e7c7cbf79104a61c3ed3e3891717fabf73cf700ae2ae09e17c8d2af6a592a",
+      "products": {
+        "cli": {
+          "gate": "blocked",
+          "dependency_count": 20,
+          "blocking_packages": [
+            {
+              "name": "objc2-core-foundation",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-encode",
+              "version": "4.1.0",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-foundation",
+              "version": "0.3.2",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-io-kit",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-metal",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2",
+              "version": "0.6.5",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            }
+          ]
+        },
+        "ffi_sdk": {
+          "gate": "blocked",
+          "dependency_count": 20,
+          "blocking_packages": [
+            {
+              "name": "objc2-core-foundation",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-encode",
+              "version": "4.1.0",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-foundation",
+              "version": "0.3.2",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-io-kit",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-metal",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2",
+              "version": "0.6.5",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "x86_64-pc-windows-msvc": {
+      "original_report_sha256": "76a8cb0f3b7f4ebacbb2c04eb14576e8f2bbea59f5a49b0c1f4908fba768fec9",
+      "products": {
+        "cli": {
+          "gate": "satisfied",
+          "dependency_count": 28,
+          "blocking_packages": []
+        },
+        "ffi_sdk": {
+          "gate": "satisfied",
+          "dependency_count": 28,
+          "blocking_packages": []
+        }
+      }
+    },
+    "x86_64-unknown-linux-gnu": {
+      "original_report_sha256": "86213b2bb6965d18e9b60a565a72b24e374c77ea8252952278748b65e0ffc170",
+      "products": {
+        "cli": {
+          "gate": "satisfied",
+          "dependency_count": 13,
+          "blocking_packages": []
+        },
+        "ffi_sdk": {
+          "gate": "satisfied",
+          "dependency_count": 13,
+          "blocking_packages": []
+        }
+      }
+    }
+  },
+  "scope": "Windows-host archive inspection and metadata queries for three target triples. Native binaries, new CI and legal review are separate."
+}

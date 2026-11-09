@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-09 修复许可预检和打包对大小写冲突的判断差异，提交 `93b01a2`。Python 338 项通过、6 项跳过，Ruff 和 mypy 通过。干净提交在 Windows 本机完成三目标离线扫描。Windows 与 Linux 满足文件门槛，macOS 的 CLI 和 SDK 各涉及 6 个材料缺口。已核对六个实际 `.crate` 归档与锁文件的哈希，并记录上游发布提交和历史许可来源。[复核报告](evidence/notice-provenance-93b01a2-2026-11-09.json)
+
 2026-11-09 对提交 `ab07073` 运行完整 CI，8 项任务全部通过。Windows、Linux 和 macOS 的源码包内 Rust 测试分别通过 307、299 和 304 项，含 doctest。各平台通过 8 个归档、8 种独立 Rust 消费者配置及原生 C/Rust 契约检查。Windows 与 Linux 的 CLI、SDK 均完成安装、切换和回滚。Linux 用相同归档在固定 glibc 2.34 和 2.36 用户空间运行，2.31 按预期在加载阶段拒绝。12 个短时 fuzz 目标共执行 201,654,833 次。本次 macOS 扫描记录 6 项二进制分发许可材料缺口。[验收报告](evidence/desktop-batch-42537187822.json)
 
 2026-11-09 SDK 候选诊断检查已修复，提交 `165a67f`。C/Python 和 ELF 检查须保持 stderr 为空；编译器允许有界诊断。修复前复现 10 个漏检场景，修复后 12 项 SDK 定向测试与 Ruff/mypy 通过，完整 Python 337 项通过、6 项平台跳过。干净提交的 Windows SDK ZIP 共 78 项载荷，安装、切换与回滚完成 9 次顶层调用，含 3 次 C 编译运行及 300 次 Python 采集/释放。Linux ELF 仅新增子进程负向覆盖，本轮未重跑原生三平台 CI。[验收记录](evidence/sdk-stderr-165a67f-2026-11-09.json)

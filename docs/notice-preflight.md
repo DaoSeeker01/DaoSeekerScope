@@ -26,6 +26,8 @@ python scripts/notice_audit.py --offline --target aarch64-apple-darwin --output 
 
 ## macOS 当前材料
 
+2026-11-09 核对六个锁定 `.crate` 的 SHA-256、发布提交和归档内容。六个归档均缺少根许可材料，三个发布提交的根 `LICENSE.md` 指向同一份许可说明。上游补入完整许可文本的提交与 `objc2 0.6.5` 的发布提交分属不同分支。已定位早期 `rust-objc` 的 MIT 文本，相关历史材料的适用性和完整性仍待评审。[归档与来源记录](evidence/notice-provenance-93b01a2-2026-11-09.json) [上游许可讨论](https://github.com/madsmtm/objc2/issues/826)
+
 2026-11-02 复核：提交 `d76e8a9` 的原生 macOS CI 扫描与本机跨目标扫描仍为 CLI/SDK 各 20 个依赖包、6 项材料阻塞。新增的 [Mach-O 原生对照](macos-binary-validation.md)已通过，但没有改变文件门槛或开放打包；元数据检查不代替材料补齐。
 
 2026-10-30 复查：上游 [issue 826](https://github.com/madsmtm/objc2/issues/826)已记录添加仓库级许可全文，但关于较旧发布版完整版权材料的后续讨论仍未给出完整答案；[issue 23](https://github.com/madsmtm/objc2/issues/23)的重新许可提案仍为另一事项。不能把 issue 关闭、SPDX 声明或许可摘要链接等同于本项目已经收齐所需文件，也不据此断言现有许可证无效。
