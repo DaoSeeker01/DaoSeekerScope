@@ -8,7 +8,7 @@ on:
         description: Validation scope (normal pushes always run all jobs)
         type: choice
         default: all
-        options: [all, linux-candidate, native-probe, fuzz-extended]
+        options: [all, linux-candidate, windows-compat, native-probe, fuzz-extended]
 permissions:
   contents: read
 concurrency:
@@ -24,7 +24,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ${{ fromJSON(inputs.scope == 'linux-candidate' && '["ubuntu-24.04"]' || '["windows-latest","ubuntu-24.04","macos-latest"]') }}
+        os: >-
+          ${{ fromJSON(
+            inputs.scope == 'linux-candidate' && '["ubuntu-24.04"]' ||
+            inputs.scope == 'windows-compat' && '["windows-2022"]' ||
+            '["windows-latest","ubuntu-24.04","macos-latest"]'
+          ) }}
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
@@ -306,7 +311,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
   linux-container:
-    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe' && inputs.scope != 'fuzz-extended'
+    if: github.event_name != 'workflow_dispatch' || inputs.scope == 'all'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -348,7 +353,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
   supply-chain:
-    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe' && inputs.scope != 'fuzz-extended'
+    if: github.event_name != 'workflow_dispatch' || inputs.scope == 'all'
     timeout-minutes: 20
     runs-on: ubuntu-24.04
     steps:
@@ -357,7 +362,7 @@ jobs:
       - run: cargo install cargo-deny --version 0.20.2 --locked
       - run: cargo deny check
   fuzz-smoke:
-    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe'
+    if: github.event_name != 'workflow_dispatch' || inputs.scope == 'all' || inputs.scope == 'fuzz-extended'
     runs-on: ubuntu-24.04
     name: ${{ matrix.group == 'all' && 'fuzz-smoke' || format('fuzz-extended ({0})', matrix.group) }}
     timeout-minutes: ${{ inputs.scope == 'fuzz-extended' && 35 || 20 }}
@@ -447,7 +452,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
   miri:
-    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe' && inputs.scope != 'fuzz-extended'
+    if: github.event_name != 'workflow_dispatch' || inputs.scope == 'all'
     timeout-minutes: 20
     runs-on: ubuntu-24.04
     steps:
@@ -455,7 +460,7 @@ jobs:
       - run: rustup toolchain install nightly-2026-10-08 --profile minimal --component miri --component rust-src
       - run: cargo +nightly-2026-10-08 miri test --locked -p daoseeker-scope-ffi --target x86_64-unknown-linux-gnu memory_contracts -- --test-threads=1
   ffi-asan:
-    if: inputs.scope != 'linux-candidate' && inputs.scope != 'native-probe' && inputs.scope != 'fuzz-extended'
+    if: github.event_name != 'workflow_dispatch' || inputs.scope == 'all'
     timeout-minutes: 25
     runs-on: ubuntu-24.04
     env:

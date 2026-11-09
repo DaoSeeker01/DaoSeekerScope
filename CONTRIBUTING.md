@@ -23,6 +23,8 @@ cargo doc --locked --workspace --all-features --no-deps
 
 仅修复 Linux 交付工具时，可手动启动 `desktop-contracts`，选择 `scope=linux-candidate`，执行完整 Linux 桌面与候选检查。常规 push/PR 仍运行全部任务；定向通过不代替三平台验收。
 
+需要复查 Windows Server 2022 x64 时，可手动选择 `scope=windows-compat`。该任务在同一托管镜像构建并运行 CLI 和 SDK 候选，同时检查源码包和原生契约。报告适用于该镜像及其运行库。
+
 仅改动共享 C 探针或 Python 验证工具时，可选择 `scope=native-probe`，运行三个桌面任务，跳过未涉及的 Rust fuzz、Miri、ASan、供应链和 Linux 容器任务；验收记录应说明跳过范围。Rust 库改动仍使用完整检查。
 
 ## 工具、Schema 与文档
