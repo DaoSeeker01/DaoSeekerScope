@@ -220,6 +220,10 @@ pub unsafe extern "C" fn dsc_buffer_free(buffer: *mut DscBuffer) -> i32 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    // Tests that allocate through REGISTRY share its process-wide capacity.
+    // This guard is only taken by the test harness, not by worker threads.
+    static REGISTRY_TEST_LOCK: Mutex<()> = Mutex::new(());
+
     #[test]
     fn abi_v1_error_numbers_and_redacted_messages_are_stable() {
         for (error, number, message) in [
@@ -251,11 +255,12 @@ mod tests {
     }
     #[test]
     fn live_buffer_limit_and_real_collection_leave_no_registry_entries() {
+        let _guard = REGISTRY_TEST_LOCK.lock().expect("registry test lock");
         let baseline = REGISTRY.lock().expect("registry").entries.len();
         let mut buffers = Vec::new();
         for _ in baseline..64 {
             let mut buffer = DscBuffer::default();
-            // SAFETY: live zero-initialized output, default options; serial test execution.
+            // SAFETY: live zero-initialized output and default options.
             let code = unsafe { dsc_collect_json(std::ptr::null(), &mut buffer) };
             assert_eq!(code, 0);
             // SAFETY: library allocation is live for buffer.len bytes until free below.
@@ -286,6 +291,7 @@ mod tests {
         }
         #[test]
         fn free_rejects_stale_copy_and_tampering() {
+            let _guard = REGISTRY_TEST_LOCK.lock().expect("registry test lock");
             let mut buffer = allocate();
             let mut stale = buffer;
             let mut wrong = buffer;
@@ -366,6 +372,7 @@ mod tests {
         }
         #[test]
         fn independent_threads_read_and_free_owned_buffers() {
+            let _guard = REGISTRY_TEST_LOCK.lock().expect("registry test lock");
             let baseline = REGISTRY.lock().expect("registry").entries.len();
             let threads = (0..8)
                 .map(|_| {
@@ -391,6 +398,7 @@ mod tests {
         }
         #[test]
         fn live_pointers_survive_registry_growth() {
+            let _guard = REGISTRY_TEST_LOCK.lock().expect("registry test lock");
             let baseline = REGISTRY.lock().expect("registry").entries.len();
             let mut buffers = (baseline..64).map(|_| allocate()).collect::<Vec<_>>();
             for buffer in &mut buffers {
@@ -434,6 +442,7 @@ mod tests {
         }
         #[test]
         fn repeated_cycles_reject_forged_and_stale_descriptors() {
+            let _guard = REGISTRY_TEST_LOCK.lock().expect("registry test lock");
             let baseline = REGISTRY.lock().expect("registry").entries.len();
             let mut previous = DscBuffer::default();
             for _ in 0..128 {
