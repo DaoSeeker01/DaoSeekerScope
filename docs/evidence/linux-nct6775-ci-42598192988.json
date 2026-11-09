@@ -1,0 +1,714 @@
+{
+  "report_version": 1,
+  "recorded_at": "2026-11-09T23:32:34.021065+00:00",
+  "source_commit": "7be35bf3272a7736ac5b2275f78b416047ecce9c",
+  "ci": {
+    "run_id": 42598192988,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42598192988",
+    "scope": "all",
+    "conclusion": "success",
+    "created_at": "2026-11-09T10:04:37Z",
+    "updated_at": "2026-11-09T10:20:26Z",
+    "jobs": [
+      {
+        "name": "linux-container",
+        "conclusion": "success"
+      },
+      {
+        "name": "supply-chain",
+        "conclusion": "success"
+      },
+      {
+        "name": "miri",
+        "conclusion": "success"
+      },
+      {
+        "name": "fuzz-smoke",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (windows-latest)",
+        "conclusion": "success"
+      },
+      {
+        "name": "ffi-asan",
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "upstream": {
+    "core_url": "https://github.com/torvalds/linux/blob/v6.12/drivers/hwmon/nct6775-core.c",
+    "header_url": "https://github.com/torvalds/linux/blob/v6.12/drivers/hwmon/nct6775.h",
+    "core_sha256": "d5562c815a4579035ab3d958877d01db1308e65fdef7f74bf6439e4af8b19b99",
+    "header_sha256": "a482931f33bf8224f840b3b50b840ecad506a449e0b3ab50153c3ea3ab6563f4",
+    "hwmon_names": [
+      "nct6106",
+      "nct6116",
+      "nct6775",
+      "nct6776",
+      "nct6779",
+      "nct6791",
+      "nct6792",
+      "nct6793",
+      "nct6795",
+      "nct6796",
+      "nct6797",
+      "nct6798",
+      "nct6799"
+    ],
+    "regular_channels_max": 12,
+    "tsi_channels_max": 8,
+    "unit": "millidegree_celsius"
+  },
+  "local_checks": {
+    "rust_tests_passed": 69,
+    "python_guard_tests_passed": 6,
+    "cargo_fmt": "passed",
+    "linux_cross_clippy": "passed",
+    "ruff": "passed",
+    "mypy": "passed",
+    "project_guard": "passed",
+    "initial_missing_channel_reproduced": true,
+    "before_log_sha256": "17b3b6e86a4da65cf9e41327676d97776a18d7b7a598d88ac77184ed5ed33a89",
+    "rust_test_log_sha256": "5964b5d3bcdeeb84bfca1644e3162ce20395a341d5aa1ce29f5dc4940f07ef06"
+  },
+  "linux_container": {
+    "original_report_sha256": "b15c84eb089b1082700276a2e9eb6d38bdf33c94ae70037a2ea2374180996fb4",
+    "artifact_sha256": {
+      "probe": "f6dd2c4b302d159e1927a88fd198313afbf3f1ae71c42f76813a348c4e0cd437",
+      "cargo_lock": "782f9d9b8e6d9a0ea61cfd2a8c15e5745b5a4d79b8f1c6522af45e98a7d589ae"
+    },
+    "image_reference": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+    "image_id": "sha256:69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9",
+    "configuration": {
+      "user": "65534:65534",
+      "ReadonlyRootfs": true,
+      "NetworkMode": "none",
+      "CapDrop": [
+        "ALL"
+      ],
+      "SecurityOpt": [
+        "no-new-privileges=true"
+      ],
+      "Memory": 268435456,
+      "MemorySwap": 268435456,
+      "PidsLimit": 32,
+      "NanoCpus": 1000000000
+    },
+    "process_exit_code": 0,
+    "docker_exit_code": 0,
+    "synthetic_hwmon": true,
+    "passed_observations": 95,
+    "nct6775_observations": {
+      "nct6775_sparse": {
+        "status": "passed",
+        "sensors": {
+          "value": [
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": -0.5,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726639,
+                "reason": null
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": 41.125,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726639,
+                "reason": null
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": 55.25,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726639,
+                "reason": null
+              }
+            }
+          ],
+          "availability": "available",
+          "source": "hwmon",
+          "observed_at": 1794218726639,
+          "reason": null
+        },
+        "capability": {
+          "field": "sensors",
+          "level": "partial",
+          "source": "hwmon",
+          "reason": null
+        },
+        "healthy_memory": true,
+        "schema_validated": true,
+        "static_cache_unchanged": true
+      },
+      "nct6775_fault_isolated": {
+        "status": "passed",
+        "sensors": {
+          "value": [
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": -0.5,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726660,
+                "reason": null
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": null,
+                "availability": "unavailable",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "temporarily_unavailable"
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": 55.25,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726660,
+                "reason": null
+              }
+            }
+          ],
+          "availability": "available",
+          "source": "hwmon",
+          "observed_at": 1794218726660,
+          "reason": null
+        },
+        "capability": {
+          "field": "sensors",
+          "level": "partial",
+          "source": "hwmon",
+          "reason": null
+        },
+        "healthy_memory": true,
+        "schema_validated": true,
+        "static_cache_unchanged": true
+      },
+      "nct6775_denied_isolated": {
+        "status": "passed",
+        "sensors": {
+          "value": [
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": -0.5,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726680,
+                "reason": null
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "permission_denied"
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": 55.25,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726680,
+                "reason": null
+              }
+            }
+          ],
+          "availability": "available",
+          "source": "hwmon",
+          "observed_at": 1794218726680,
+          "reason": null
+        },
+        "capability": {
+          "field": "sensors",
+          "level": "partial",
+          "source": "hwmon",
+          "reason": null
+        },
+        "healthy_memory": true,
+        "schema_validated": true,
+        "static_cache_unchanged": true
+      },
+      "nct6775_recovery": {
+        "status": "passed",
+        "sensors": {
+          "value": [
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": -0.5,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726701,
+                "reason": null
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": 43.0,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726701,
+                "reason": null
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": 55.25,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726701,
+                "reason": null
+              }
+            }
+          ],
+          "availability": "available",
+          "source": "hwmon",
+          "observed_at": 1794218726701,
+          "reason": null
+        },
+        "capability": {
+          "field": "sensors",
+          "level": "partial",
+          "source": "hwmon",
+          "reason": null
+        },
+        "healthy_memory": true,
+        "schema_validated": true,
+        "static_cache_unchanged": true
+      },
+      "nct6775_upper_bound_fifo": {
+        "status": "passed",
+        "sensors": {
+          "value": [
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": -0.5,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726723,
+                "reason": null
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": 43.0,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726723,
+                "reason": null
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": 55.25,
+                "availability": "available",
+                "source": "hwmon",
+                "observed_at": 1794218726723,
+                "reason": null
+              }
+            },
+            {
+              "label": {
+                "value": null,
+                "availability": "restricted",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "privacy_redacted"
+              },
+              "temperature_celsius": {
+                "value": null,
+                "availability": "unsupported",
+                "source": "hwmon",
+                "observed_at": null,
+                "reason": "not_supported"
+              }
+            }
+          ],
+          "availability": "available",
+          "source": "hwmon",
+          "observed_at": 1794218726723,
+          "reason": null
+        },
+        "capability": {
+          "field": "sensors",
+          "level": "partial",
+          "source": "hwmon",
+          "reason": null
+        },
+        "healthy_memory": true,
+        "schema_validated": true,
+        "static_cache_unchanged": true
+      }
+    }
+  },
+  "package_reports": {
+    "package-evidence-Linux-X64": {
+      "original_report_sha256": "1b98b9fd8f24f3c5a2f0065cdaf13e898b43019f1ff171a83f2627306e7a24d0",
+      "archives": [
+        {
+          "name": "daoseeker-scope",
+          "version": "0.1.0",
+          "sha256": "ef7988031632fd8c76144589d6c213a8458b5a94e90eafccd202ffe39dcd6e80",
+          "files": 17
+        },
+        {
+          "name": "daoseeker-scope-core",
+          "version": "0.1.0",
+          "sha256": "e08b48b0aaedd49b88a3ce19f95735a6cee94b8ce5563d25faea52fb342c5757",
+          "files": 9
+        },
+        {
+          "name": "daoseeker-scope-sysinfo",
+          "version": "0.1.0",
+          "sha256": "d1bbffc28c40aa90503c6e7d49c3f98658ca65a927db0a8ef32a83079ab69a76",
+          "files": 6
+        },
+        {
+          "name": "daoseeker-scope-linux",
+          "version": "0.1.0",
+          "sha256": "3a44a80202b678232ae0ea620bd304ff1fcf4de680bac40872f789ba99b53397",
+          "files": 19
+        },
+        {
+          "name": "daoseeker-scope-macos",
+          "version": "0.1.0",
+          "sha256": "6fe8c0055da157edb1a07d28a3297b135be4f7b3a6541bf8d55d1fedc6afb046",
+          "files": 16
+        },
+        {
+          "name": "daoseeker-scope-windows",
+          "version": "0.1.0",
+          "sha256": "d1bbbf3e675a50ac33b415ce83c1b23bf1aa7cf92f572674bc608e9ddca93e41",
+          "files": 19
+        },
+        {
+          "name": "daoseeker-scope-cli",
+          "version": "0.1.0",
+          "sha256": "6c1a12fafd2a70764f88639be5d4a37db67a3d1562955e9a7ed473a8331cf068",
+          "files": 10
+        },
+        {
+          "name": "daoseeker-scope-ffi",
+          "version": "0.1.0",
+          "sha256": "c55c9dd7eb0566a419a439e28cee683aea77d738aa26e8fb6289213bb043d26a",
+          "files": 8
+        }
+      ],
+      "independent_rust_consumers": 8,
+      "rust_tests_including_doctests": 300
+    },
+    "package-evidence-macOS-ARM64": {
+      "original_report_sha256": "d4288208332ddb98b3704799e6ecedd64d209fca8ee804d6a84bc19424a405d5",
+      "archives": [
+        {
+          "name": "daoseeker-scope",
+          "version": "0.1.0",
+          "sha256": "ef7988031632fd8c76144589d6c213a8458b5a94e90eafccd202ffe39dcd6e80",
+          "files": 17
+        },
+        {
+          "name": "daoseeker-scope-core",
+          "version": "0.1.0",
+          "sha256": "e08b48b0aaedd49b88a3ce19f95735a6cee94b8ce5563d25faea52fb342c5757",
+          "files": 9
+        },
+        {
+          "name": "daoseeker-scope-sysinfo",
+          "version": "0.1.0",
+          "sha256": "d1bbffc28c40aa90503c6e7d49c3f98658ca65a927db0a8ef32a83079ab69a76",
+          "files": 6
+        },
+        {
+          "name": "daoseeker-scope-linux",
+          "version": "0.1.0",
+          "sha256": "3a44a80202b678232ae0ea620bd304ff1fcf4de680bac40872f789ba99b53397",
+          "files": 19
+        },
+        {
+          "name": "daoseeker-scope-macos",
+          "version": "0.1.0",
+          "sha256": "6fe8c0055da157edb1a07d28a3297b135be4f7b3a6541bf8d55d1fedc6afb046",
+          "files": 16
+        },
+        {
+          "name": "daoseeker-scope-windows",
+          "version": "0.1.0",
+          "sha256": "d1bbbf3e675a50ac33b415ce83c1b23bf1aa7cf92f572674bc608e9ddca93e41",
+          "files": 19
+        },
+        {
+          "name": "daoseeker-scope-cli",
+          "version": "0.1.0",
+          "sha256": "6c1a12fafd2a70764f88639be5d4a37db67a3d1562955e9a7ed473a8331cf068",
+          "files": 10
+        },
+        {
+          "name": "daoseeker-scope-ffi",
+          "version": "0.1.0",
+          "sha256": "c55c9dd7eb0566a419a439e28cee683aea77d738aa26e8fb6289213bb043d26a",
+          "files": 8
+        }
+      ],
+      "independent_rust_consumers": 8,
+      "rust_tests_including_doctests": 305
+    },
+    "package-evidence-Windows-X64": {
+      "original_report_sha256": "d743a58adc21688d7a49e85e96fceeb1432a198de7257d08da2fa5479bb3b8f8",
+      "archives": [
+        {
+          "name": "daoseeker-scope",
+          "version": "0.1.0",
+          "sha256": "ef7988031632fd8c76144589d6c213a8458b5a94e90eafccd202ffe39dcd6e80",
+          "files": 17
+        },
+        {
+          "name": "daoseeker-scope-core",
+          "version": "0.1.0",
+          "sha256": "e08b48b0aaedd49b88a3ce19f95735a6cee94b8ce5563d25faea52fb342c5757",
+          "files": 9
+        },
+        {
+          "name": "daoseeker-scope-sysinfo",
+          "version": "0.1.0",
+          "sha256": "d1bbffc28c40aa90503c6e7d49c3f98658ca65a927db0a8ef32a83079ab69a76",
+          "files": 6
+        },
+        {
+          "name": "daoseeker-scope-linux",
+          "version": "0.1.0",
+          "sha256": "3a44a80202b678232ae0ea620bd304ff1fcf4de680bac40872f789ba99b53397",
+          "files": 19
+        },
+        {
+          "name": "daoseeker-scope-macos",
+          "version": "0.1.0",
+          "sha256": "6fe8c0055da157edb1a07d28a3297b135be4f7b3a6541bf8d55d1fedc6afb046",
+          "files": 16
+        },
+        {
+          "name": "daoseeker-scope-windows",
+          "version": "0.1.0",
+          "sha256": "d1bbbf3e675a50ac33b415ce83c1b23bf1aa7cf92f572674bc608e9ddca93e41",
+          "files": 19
+        },
+        {
+          "name": "daoseeker-scope-cli",
+          "version": "0.1.0",
+          "sha256": "6c1a12fafd2a70764f88639be5d4a37db67a3d1562955e9a7ed473a8331cf068",
+          "files": 10
+        },
+        {
+          "name": "daoseeker-scope-ffi",
+          "version": "0.1.0",
+          "sha256": "c55c9dd7eb0566a419a439e28cee683aea77d738aa26e8fb6289213bb043d26a",
+          "files": 8
+        }
+      ],
+      "independent_rust_consumers": 8,
+      "rust_tests_including_doctests": 308
+    }
+  },
+  "short_fuzz": {
+    "targets": [
+      {
+        "target": "cli_args",
+        "executions": 24285920,
+        "seconds": 61,
+        "log_sha256": "6d1eea5b7deb6759df0958fc2331b8c649ce4c63195ab6635619014a13136292"
+      },
+      {
+        "target": "cpu_stat",
+        "executions": 1214585,
+        "seconds": 61,
+        "log_sha256": "70b19ff67f9a269645bcd76320437118e16f95877d107aabc383ebef7f4ba221"
+      },
+      {
+        "target": "dmi_text",
+        "executions": 9106567,
+        "seconds": 61,
+        "log_sha256": "efcd8b36da7f0480c8fff2972fe495da262afb6e85f1c492c29ecdfed5a1128d"
+      },
+      {
+        "target": "hwmon_temperature",
+        "executions": 24464111,
+        "seconds": 61,
+        "log_sha256": "917fe350789dac74935f438ca73e1ec4550d4f95b78cbdfc07cd985b6e83812f"
+      },
+      {
+        "target": "macos_network",
+        "executions": 5754051,
+        "seconds": 61,
+        "log_sha256": "e25ad96e516e76ca5f3bcfac152dbc7ddd2a79fbc67f2a0670fbd36abcdbb2c8"
+      },
+      {
+        "target": "meminfo",
+        "executions": 4290238,
+        "seconds": 61,
+        "log_sha256": "2d571da70fd0fee59f05bb804ca2b4b44c21d4ad716686b501e53b5dec098940"
+      },
+      {
+        "target": "network_dev",
+        "executions": 1965400,
+        "seconds": 61,
+        "log_sha256": "1005f4b32e7d771d4bf5f3e35245f557e6d70e4b4b9bad5e94b35d05aaeda959"
+      },
+      {
+        "target": "power_supply",
+        "executions": 24856064,
+        "seconds": 61,
+        "log_sha256": "88846edebfff3e912e631bd187096ecadaa5a5d27b3922e33b6f8e890f8e113a"
+      },
+      {
+        "target": "snapshot_json",
+        "executions": 613835,
+        "seconds": 61,
+        "log_sha256": "bf64823e2632c1ff5fe4e761586d7166879738699ee81c1d610cddcbe20b6a8f"
+      },
+      {
+        "target": "storage_capacity",
+        "executions": 36150339,
+        "seconds": 61,
+        "log_sha256": "a43b2c405543eb9ff637f54921b001142465a8af64af470b8bcaedf34395fb80"
+      },
+      {
+        "target": "uptime",
+        "executions": 25039060,
+        "seconds": 61,
+        "log_sha256": "83686141df5a5f263d6e749af94610821f916cdc823d774adf2cbe76c001da3a"
+      },
+      {
+        "target": "windows_cpu_groups",
+        "executions": 38316881,
+        "seconds": 61,
+        "log_sha256": "14dd7164d76f0f50f6502c2ca933a133b135b16233645d9acbc97dc691062f2b"
+      }
+    ],
+    "executions_total": 196057051
+  },
+  "scope": "Read-only driver observations and synthetic Linux fixture verification. Physical NCT6775 device tests remain pending."
+}

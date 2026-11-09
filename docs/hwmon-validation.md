@@ -1,6 +1,10 @@
 # Linux hwmon 温度验证
 
+## 2026-11-10 NCT6775 系列温度
+
 NCT6775 系列接入已核对的 `nct6106`、`nct6116`、`nct6775`、`nct6776`、`nct6779`、`nct6791`、`nct6792`、`nct6793`、`nct6795`、`nct6796`、`nct6797`、`nct6798`、`nct6799`。读取驱动实际暴露的 `temp1_input` 至 `temp20_input`，涵盖普通和 TSI 温度，两者都按毫摄氏度转换。由驱动分配的通道编号可能稀疏，标签沿用匿名策略。每个输入独立处理故障和权限，超出范围的输入保持 Unsupported。[内核驱动源码](https://github.com/torvalds/linux/blob/v6.12/drivers/hwmon/nct6775-core.c) [通道上限](https://github.com/torvalds/linux/blob/v6.12/drivers/hwmon/nct6775.h)
+
+提交 `7be35bf` 的 8 项 CI 任务均通过。Linux 非 root 容器完成 95 项合成观测，新增 5 项覆盖稀疏通道、故障、权限拒绝、恢复和通道 21 的 FIFO 跳过。本机 Linux crate 69 项 Rust 测试、6 项 Python 守卫及 fmt、Linux 交叉 Clippy、Ruff 和 mypy 通过。实体设备读数待验证。[验收报告](evidence/linux-nct6775-ci-42598192988.json)
 
 ## 2026-11-04 AMD CPU CCD 温度
 
