@@ -9,6 +9,13 @@ const MAX_CHIP_ENTRIES: usize = 1024;
 const MAX_TOTAL_ENTRIES: usize = 4096;
 const MAX_ATTRIBUTE: usize = 128;
 
+// Linux v6.12 names registered by the nct6775 core. Both regular and TSI
+// temperature inputs report millidegrees Celsius.
+const NCT6775_NAMES: &[&str] = &[
+    "nct6106", "nct6116", "nct6775", "nct6776", "nct6779", "nct6791", "nct6792", "nct6793",
+    "nct6795", "nct6796", "nct6797", "nct6798", "nct6799",
+];
+
 fn invalid<T>() -> Observed<T> {
     Observed::unavailable(Source::Hwmon, ReasonCode::InvalidData)
 }
@@ -87,6 +94,8 @@ fn routed(driver: &str, index: usize) -> bool {
         || (driver == "k10temp" && (2..=18).contains(&index))
         || (driver == "nvme" && (1..=9).contains(&index))
         || (driver == "amdgpu" && (1..=3).contains(&index))
+        // The driver exposes up to 12 regular and 8 TSI temperature channels.
+        || (NCT6775_NAMES.contains(&driver) && (1..=20).contains(&index))
         || (matches!(driver, "jc42" | "spd5118" | "lm75" | "lm75a" | "lm75b") && index == 1)
 }
 fn driver_temperature(driver: &str, index: usize, bytes: &[u8], at: Timestamp) -> Observed<f64> {
@@ -347,6 +356,49 @@ mod tests {
         assert!(observation.value().is_none());
         assert!(observation.observed_at().is_none());
     }
+    #[test]
+    fn nct6775_temperature_channels_preserve_units_and_isolate_failures() {
+        let f = Fixture::new();
+        f.chip("hwmon0", b"nct6798\n");
+        f.write("hwmon0", "temp1_input", b"-500");
+        f.write("hwmon0", "temp12_input", b"41125");
+        f.write("hwmon0", "temp20_input", b"55250");
+        f.write("hwmon0", "temp21_input", b"30000");
+        f.write("hwmon0", "temp1_label", b"private fixture label");
+        let hw = f.hardware(128);
+        let first = hw.refresh_dynamic().expect("NCT refresh");
+        let sensors = values(&first.sensors);
+        assert_eq!(sensors.len(), 4);
+        for (entry, expected) in sensors.iter().zip([-0.5, 41.125, 55.25]) {
+            assert_eq!(entry.temperature_celsius.value(), Some(&expected));
+            assert_eq!(entry.temperature_celsius.source(), Source::Hwmon);
+            assert!(entry.temperature_celsius.observed_at().is_some());
+            missing(&entry.label, ReasonCode::PrivacyRedacted);
+        }
+        missing(&sensors[3].temperature_celsius, ReasonCode::NotSupported);
+
+        f.write("hwmon0", "temp12_fault", b"1");
+        let failed = hw.refresh_dynamic().expect("isolated fault");
+        let sensors = values(&failed.sensors);
+        missing(
+            &sensors[1].temperature_celsius,
+            ReasonCode::TemporarilyUnavailable,
+        );
+        assert_eq!(sensors[2].temperature_celsius.value(), Some(&55.25));
+        f.write("hwmon0", "temp12_fault", b"0");
+        f.write("hwmon0", "temp12_input", b"43000");
+        let recovered = hw.refresh_dynamic().expect("NCT recovery");
+        assert_eq!(
+            values(&recovered.sensors)[1].temperature_celsius.value(),
+            Some(&43.0)
+        );
+        f.write("hwmon0", "name", b"nct9999");
+        let unknown = hw.refresh_dynamic().expect("unknown chip");
+        for entry in values(&unknown.sensors) {
+            missing(&entry.temperature_celsius, ReasonCode::NotSupported);
+        }
+    }
+
     #[test]
     fn memory_and_lm75_single_channel_refresh_privacy_and_isolation() {
         for driver in ["jc42", "spd5118", "lm75", "lm75a", "lm75b"] {

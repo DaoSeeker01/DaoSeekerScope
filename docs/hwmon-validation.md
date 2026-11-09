@@ -1,5 +1,7 @@
 # Linux hwmon 温度验证
 
+NCT6775 系列接入已核对的 `nct6106`、`nct6116`、`nct6775`、`nct6776`、`nct6779`、`nct6791`、`nct6792`、`nct6793`、`nct6795`、`nct6796`、`nct6797`、`nct6798`、`nct6799`。读取驱动实际暴露的 `temp1_input` 至 `temp20_input`，涵盖普通和 TSI 温度，两者都按毫摄氏度转换。由驱动分配的通道编号可能稀疏，标签沿用匿名策略。每个输入独立处理故障和权限，超出范围的输入保持 Unsupported。[内核驱动源码](https://github.com/torvalds/linux/blob/v6.12/drivers/hwmon/nct6775-core.c) [通道上限](https://github.com/torvalds/linux/blob/v6.12/drivers/hwmon/nct6775.h)
+
 ## 2026-11-04 AMD CPU CCD 温度
 
 支持读取 Linux k10temp 驱动暴露的 CCD 温度（通道 3 至 18）。每次刷新只返回当前可枚举的通道。通道 1 仍是 Tctl，不作为温度读取。权限拒绝或无效读数只影响对应温度，标签沿用默认脱敏。

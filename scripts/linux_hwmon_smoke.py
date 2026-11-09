@@ -25,7 +25,7 @@ DENIED: Expectation = ("restricted", "permission_denied", None)
 UNREADY: Expectation = ("unavailable", "temporarily_unavailable", None)
 UNSUPPORTED: Expectation = ("unsupported", "not_supported", None)
 PRIVATE = "Synthetic-hwmon-private-label-must-not-be-read"
-SAMPLE_COUNT = 90
+SAMPLE_COUNT = 95
 
 
 def check(item: dict[str, Any], expected: Expectation) -> None:
@@ -308,6 +308,28 @@ def observe(
         sample(f"{driver}_unsupported_fifo", [("available", None, 45.0), UNSUPPORTED])
         for attr in ("eeprom", "temp1_max_alarm", "temp2_input"):
             (root / "hwmon0" / attr).unlink()
+    write("name", b"nct6798")
+    write("temp1_input", b"-500")
+    write("temp12_input", b"41125")
+    write("temp20_input", b"55250")
+    nct_negative: Expectation = ("available", None, -0.5)
+    nct_middle: Expectation = ("available", None, 41.125)
+    nct_high: Expectation = ("available", None, 55.25)
+    sample("nct6775_sparse", [nct_negative, nct_middle, nct_high])
+    write("temp12_fault", b"1")
+    sample("nct6775_fault_isolated", [nct_negative, UNREADY, nct_high])
+    (root / "hwmon0/temp12_fault").unlink()
+    write("temp12_input", b"41125", 0)
+    sample("nct6775_denied_isolated", [nct_negative, DENIED, nct_high])
+    write("temp12_input", b"43000")
+    nct_recovered: Expectation = ("available", None, 43.0)
+    sample("nct6775_recovery", [nct_negative, nct_recovered, nct_high])
+    mkfifo(root / "hwmon0/temp21_input", 0o644)
+    sample(
+        "nct6775_upper_bound_fifo", [nct_negative, nct_recovered, nct_high, UNSUPPORTED]
+    )
+    for channel in (12, 20, 21):
+        (root / f"hwmon0/temp{channel}_input").unlink()
     write("name", b"coretemp")
     write("temp1_input", b"42500")
     write("temp2_input", b"NaN")
