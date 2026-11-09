@@ -8,7 +8,7 @@ on:
         description: Validation scope (normal pushes always run all jobs)
         type: choice
         default: all
-        options: [all, linux-candidate, windows-compat, native-probe, fuzz-extended]
+        options: [all, linux-candidate, windows-compat, macos-intel, native-probe, fuzz-extended]
 permissions:
   contents: read
 concurrency:
@@ -28,6 +28,7 @@ jobs:
           ${{ fromJSON(
             inputs.scope == 'linux-candidate' && '["ubuntu-24.04"]' ||
             inputs.scope == 'windows-compat' && '["windows-2022"]' ||
+            inputs.scope == 'macos-intel' && '["macos-15-intel"]' ||
             '["windows-latest","ubuntu-24.04","macos-latest"]'
           ) }}
     runs-on: ${{ matrix.os }}
@@ -73,6 +74,7 @@ jobs:
       - name: Dependency notice inventory (not distribution approval)
         run: python scripts/notice_audit.py --offline
       - name: Frozen v0.1 manifest Schema and native ABI contract
+        if: inputs.scope != 'macos-intel'
         run: python scripts/check_contract.py
       - name: Crate archives and isolated consumer
         run: python scripts/check_packages.py
@@ -221,9 +223,11 @@ jobs:
         timeout-minutes: 10
         run: python scripts/peak_memory.py
       - name: Two-minute cached C ABI sampling trial
+        if: inputs.scope != 'macos-intel'
         timeout-minutes: 8
         run: python scripts/timed_soak.py --seconds 120
       - name: Cached C ABI handle and descriptor regression
+        if: inputs.scope != 'macos-intel'
         timeout-minutes: 8
         run: python scripts/resource_regression.py
       - name: macOS public IOMedia SDK probe
