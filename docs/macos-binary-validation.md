@@ -1,5 +1,7 @@
 # macOS 二进制元数据验证
 
+2026-11-09 在 Intel macOS 15.7.9（build 24G830）验证源码构建的 CLI 和动态库。两者的 x86_64 架构与 Mach-O 元数据均与 Apple 工具一致，并通过同镜像的原生 CLI、C 和 Python 检查。两个文件声明的部署目标为 10.12.0，链接 SDK 为 15.5.0。实际运行证据对应 15.7.9。[Intel 验收报告](evidence/macos-intel-ci-42544368733.json)
+
 检查源码构建的 `dscope` 和 `libdaoseeker_scope_ffi.dylib`，将自有解析结果与 `xcrun otool -l`、`xcrun lipo -archs` 对照。它不打包、不安装、不执行被检查文件，也不解除许可材料门槛。
 
 在 macOS 干净提交中，安装项目 Python 开发依赖并运行：

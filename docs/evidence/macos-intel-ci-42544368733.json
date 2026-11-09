@@ -1,0 +1,670 @@
+{
+  "report_version": 1,
+  "recorded_at": "2026-11-09T01:25:09.471771+00:00",
+  "source_commit": "8c1b113ecc8451f41720d87ad05d29385274d3eb",
+  "ci": {
+    "run_id": 42544368733,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42544368733",
+    "event": "workflow_dispatch",
+    "scope": "macos-intel",
+    "conclusion": "success",
+    "created_at": "2026-11-09T01:13:03Z",
+    "updated_at": "2026-11-09T01:23:20Z",
+    "jobs": [
+      {
+        "name": "desktop (macos-15-intel)",
+        "conclusion": "success"
+      },
+      {
+        "name": "supply-chain",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "linux-container",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "matrix.group == 'all' && 'fuzz-smoke' || format('fuzz-extended ({0})', matrix.group)",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "ffi-asan",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "miri",
+        "conclusion": "skipped"
+      }
+    ],
+    "desktop_job_url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42544368733/job/128926060804",
+    "desktop_log_sha256": "a84ce8eb7195f1ee0c4df23d99a9a9c8e7f5b890db848f5259d26c17d8237f26",
+    "scope_skipped_steps": [
+      "Frozen v0.1 manifest Schema and native ABI contract",
+      "Two-minute cached C ABI sampling trial",
+      "Cached C ABI handle and descriptor regression"
+    ]
+  },
+  "runner": {
+    "label": "macos-15-intel",
+    "os_version": "15.7.9",
+    "os_build": "24G830",
+    "architecture": "x86_64",
+    "image_version": "20260824.0482.1",
+    "image_release": "https://github.com/actions/runner-images/releases/tag/macos-15%2F20260824.0482"
+  },
+  "checks": {
+    "python_tests_passed": 343,
+    "python_tests_skipped": 3,
+    "actionlint": "passed",
+    "actionlint_version": "1.7.12",
+    "project_guard": "passed",
+    "local_notice_tests_passed": 14,
+    "local_notice_tests_skipped": 1,
+    "ruff": "passed",
+    "mypy": "passed"
+  },
+  "package_report": {
+    "original_report_sha256": "d1506fb0d5159e3b2e9de5f8f2542f1ca0de2cb9c53fe65909cd1b95d0a0bfcb",
+    "report": {
+      "overall": "passed",
+      "git_revision": "8c1b113ecc8451f41720d87ad05d29385274d3eb",
+      "git_dirty": false,
+      "verification": "native Cargo package + archive contents + isolated tests + independent Rust feature consumers + CLI install",
+      "native_cargo_verification": true,
+      "registry_publication_verified": false,
+      "unpublished_siblings": "local patches to extracted archives",
+      "third_party_lock_unchanged": true,
+      "independent_rust_consumers": [
+        {
+          "package": "daoseeker-scope-core",
+          "profile": "default",
+          "target": "x86_64-apple-darwin",
+          "default_features": true,
+          "requested_features": [],
+          "resolved_core_features": [
+            "default"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope-core",
+          "profile": "bare",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [],
+          "resolved_core_features": [],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope-core",
+          "profile": "serde",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [
+            "serde"
+          ],
+          "resolved_core_features": [
+            "serde"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope-core",
+          "profile": "schema",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [
+            "schema"
+          ],
+          "resolved_core_features": [
+            "schema",
+            "serde"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope",
+          "profile": "default",
+          "target": "x86_64-apple-darwin",
+          "default_features": true,
+          "requested_features": [],
+          "resolved_core_features": [
+            "default",
+            "serde"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope",
+          "profile": "bare",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [],
+          "resolved_core_features": [
+            "default"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope",
+          "profile": "serde",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [
+            "serde"
+          ],
+          "resolved_core_features": [
+            "default",
+            "serde"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope",
+          "profile": "schema",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [
+            "schema"
+          ],
+          "resolved_core_features": [
+            "default",
+            "schema",
+            "serde"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        }
+      ],
+      "installed_cli_version": "dscope 0.1.0",
+      "snapshot_schema_validated": true,
+      "minimum_read_and_default_privacy": true,
+      "rust_tests_including_doctests": 304,
+      "archives": [
+        {
+          "name": "daoseeker-scope",
+          "version": "0.1.0",
+          "sha256": "1b45fd803de60a4c8209ad4336a40a44211557b7bf73462a5dd9600268e91ccf",
+          "files": 17
+        },
+        {
+          "name": "daoseeker-scope-core",
+          "version": "0.1.0",
+          "sha256": "606da598cbfaa18d64774effdb0f88618870b08ba967319b6a450aa6c725339b",
+          "files": 9
+        },
+        {
+          "name": "daoseeker-scope-sysinfo",
+          "version": "0.1.0",
+          "sha256": "f40954ed41edc858a50ac84641180ee356f238b65a4326425470b8282b259e2f",
+          "files": 6
+        },
+        {
+          "name": "daoseeker-scope-linux",
+          "version": "0.1.0",
+          "sha256": "8f31ad90fe94c1c441f5f8c614d387d2023bed1f6df08d03d5403a04b4c69d43",
+          "files": 19
+        },
+        {
+          "name": "daoseeker-scope-macos",
+          "version": "0.1.0",
+          "sha256": "5c51efb67f0fa80ac59f999ca0352dfff36f8f4c2adb3bf49c20b1afea6af3f3",
+          "files": 16
+        },
+        {
+          "name": "daoseeker-scope-windows",
+          "version": "0.1.0",
+          "sha256": "42b98474e8d1144b7202fe508f0184be195ad1e1d2ddf1642661e9e30b2c4322",
+          "files": 19
+        },
+        {
+          "name": "daoseeker-scope-cli",
+          "version": "0.1.0",
+          "sha256": "ff5abbd2a83fcebc123452e57d2597b2de4c2595fe71b12131f8147910243279",
+          "files": 10
+        },
+        {
+          "name": "daoseeker-scope-ffi",
+          "version": "0.1.0",
+          "sha256": "3530d56e19c3bbb5bf6f8e7f2f0a8c3d53dcc05aa90ef7638664bd72c83cf8b0",
+          "files": 8
+        }
+      ]
+    }
+  },
+  "native_smoke": {
+    "checks": {
+      "cli": "passed",
+      "c_abi": "passed",
+      "python_ffi": "passed",
+      "storage_text": "passed",
+      "cli_text": "passed"
+    },
+    "original_report_sha256": "f436c43fc9a85a6a3261e8d829146246dbc75529cec8145bba7f743c24804283"
+  },
+  "macho_report": {
+    "original_report_sha256": "491de06577408e0cda99541988c30cf1da81cbc6133e2397f35c49e61ce40b21",
+    "report": {
+      "overall": "passed",
+      "source_before": {
+        "revision": "8c1b113ecc8451f41720d87ad05d29385274d3eb",
+        "status": ""
+      },
+      "source_after": {
+        "revision": "8c1b113ecc8451f41720d87ad05d29385274d3eb",
+        "status": ""
+      },
+      "images": {
+        "cli": {
+          "sha256": "b22f6f3d50d07cef3beb4a74c54c5c78086eb321170e44e252d8e255f4d3abb1",
+          "otool_and_lipo_matched": true,
+          "metadata": {
+            "architecture": "x86_64",
+            "kind": "executable",
+            "minimum_declared_os": [
+              10,
+              12,
+              0
+            ],
+            "link_sdk": [
+              15,
+              5,
+              0
+            ],
+            "libraries": [
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/System/Library/Frameworks/Metal.framework/Versions/A/Metal"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/usr/lib/libSystem.B.dylib"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/usr/lib/libiconv.2.dylib"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/usr/lib/libobjc.A.dylib"
+              }
+            ],
+            "rpath_kinds": []
+          }
+        },
+        "library": {
+          "sha256": "82cf24f754119d56eac7b3edae7d04043884c83a19c8e11a7e9e1d677f4d649e",
+          "otool_and_lipo_matched": true,
+          "metadata": {
+            "architecture": "x86_64",
+            "kind": "dylib",
+            "minimum_declared_os": [
+              10,
+              12,
+              0
+            ],
+            "link_sdk": [
+              15,
+              5,
+              0
+            ],
+            "libraries": [
+              {
+                "command": "LC_ID_DYLIB",
+                "path_kind": "absolute",
+                "name": "<redacted>"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/System/Library/Frameworks/Metal.framework/Versions/A/Metal"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/usr/lib/libSystem.B.dylib"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/usr/lib/libiconv.2.dylib"
+              },
+              {
+                "command": "LC_LOAD_DYLIB",
+                "path_kind": "system",
+                "name": "/usr/lib/libobjc.A.dylib"
+              }
+            ],
+            "rpath_kinds": []
+          }
+        }
+      },
+      "images_executed": false,
+      "minimum_macos_verified": false,
+      "distribution_approved": false,
+      "published": false
+    }
+  },
+  "peak_memory": {
+    "overall": "passed",
+    "target": "x86_64-apple-darwin",
+    "original_report_sha256": "9b8945d7b6a1ac15040e8b1d8e762b617162353e611ba16dc44f2efc4205eafa"
+  },
+  "notice_audits": {
+    "native_ci": {
+      "original_report_sha256": "8c54e05770b3921cbe4fde0f72b41424f9157755bbfc78faa5dfed558deb8e90",
+      "products": {
+        "cli": {
+          "gate": "blocked",
+          "dependency_count": 20,
+          "blocking_packages": [
+            {
+              "name": "objc2",
+              "version": "0.6.5",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-core-foundation",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-encode",
+              "version": "4.1.0",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-foundation",
+              "version": "0.3.2",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-io-kit",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-metal",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            }
+          ]
+        },
+        "ffi_sdk": {
+          "gate": "blocked",
+          "dependency_count": 20,
+          "blocking_packages": [
+            {
+              "name": "objc2",
+              "version": "0.6.5",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-core-foundation",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-encode",
+              "version": "4.1.0",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-foundation",
+              "version": "0.3.2",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-io-kit",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-metal",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "windows_host": {
+      "original_report_sha256": "8c54e05770b3921cbe4fde0f72b41424f9157755bbfc78faa5dfed558deb8e90",
+      "products": {
+        "cli": {
+          "gate": "blocked",
+          "dependency_count": 20,
+          "blocking_packages": [
+            {
+              "name": "objc2",
+              "version": "0.6.5",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-core-foundation",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-encode",
+              "version": "4.1.0",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-foundation",
+              "version": "0.3.2",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-io-kit",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-metal",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            }
+          ]
+        },
+        "ffi_sdk": {
+          "gate": "blocked",
+          "dependency_count": 20,
+          "blocking_packages": [
+            {
+              "name": "objc2",
+              "version": "0.6.5",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-core-foundation",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-encode",
+              "version": "4.1.0",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-foundation",
+              "version": "0.3.2",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-io-kit",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-metal",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "scope_notes": [
+    "Intel source build and native consumers on the recorded hosted image.",
+    "Frozen ABI layout review, two-minute sampling and descriptor regression were outside the Intel scope.",
+    "Mach-O deployment declarations are recorded separately from the observed OS version.",
+    "macOS candidate packaging requires complete notice materials."
+  ]
+}

@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-09 `macos-intel` 定向 CI 验证提交 `8c1b113`。macOS 15.7.9 x86_64 桌面任务通过，另 5 项任务按范围跳过。通过 8 个源码包、8 种独立消费者配置、304 项包内 Rust 测试、原生 CLI/C/Python、峰值内存和 Mach-O 对照。Python 343 项通过、3 项跳过。冻结 ABI 布局和两项资源检查留待 Intel 专项验收。原生与本机跨目标许可扫描均记录 6 个依赖缺口。[验收报告](evidence/macos-intel-ci-42544368733.json)
+
 2026-11-09 新增 `windows-compat` 手动 CI，提交 `ac9168d`。Windows Server 2022 Datacenter x64（build 20348，镜像 `20261101.353.1`）完成同镜像构建与运行。桌面任务通过，另外 5 项按范围跳过。通过 8 个源码包、8 种独立消费者配置、307 项包内 Rust 测试及 C/Rust 原生契约。Python 340 项通过、6 项跳过。CLI 与 SDK 的系统 PATH 安装、切换和回滚通过，含 9 次 CLI 调用、3 次 C 编译运行和 300 次 Python 采集释放。[验收报告](evidence/windows-server-2022-ci-42542674302.json)
 
 2026-11-09 提交 `f8e1876` 的 Windows CLI 和 SDK 候选通过系统 PATH 演练。CLI 完成 9 次调用，SDK 完成 3 次 C 编译运行和 300 次 Python 采集释放。两份 ZIP 的哈希均已核对。Python 340 项通过、6 项跳过，Ruff 和 mypy 通过。本次主机的 System32 有 `vcruntime140.dll` 14.51.36247.0。全新系统和最低 Windows 版本待验收。[本机报告](evidence/windows-candidate-path-f8e1876-2026-11-09.json)
