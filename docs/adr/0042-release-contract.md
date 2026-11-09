@@ -16,6 +16,8 @@
 
 ## 验证与限制
 
+2026-11-09 将 `x86_64-apple-darwin` 纳入基线目标。原生 C 和 Rust 探针验证该目标满足 ABI 1 的既有大小、对齐、偏移和状态码，Windows 本机复核也通过。基线差异仅涉及 `native_targets`。[验收报告](../evidence/macos-intel-contract-ci-42594542860.json)
+
 `python scripts/check_contract.py` 仅接受干净提交，在专用目录显式构建本机目标，结束后核对提交与工作区状态。报告含输入、共享库哈希、编译器及双方布局；失败或中断先作废旧成功报告。负面测试覆盖布局、版本、错误码、类型、Schema、features、源码漂移和中断。
 
 此检查不是完整 Rust API 提取或自动语义兼容性证明；仍须结合独立消费方、Schema 往返、FFI 生命周期测试与[维护者评审表](../v0.1-contract-review.md)。新增 API/字段和修正说明可能需要更新基线，应在同一提交说明依据、迁移及版本选择。

@@ -1,0 +1,779 @@
+{
+  "report_version": 1,
+  "recorded_at": "2026-11-09T09:48:56.387415+00:00",
+  "source_commit": "ef9d4a10570e5d7e3180b7b0a00d0323434d8156",
+  "ci": {
+    "run_id": 42594542860,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42594542860",
+    "scope": "macos-intel",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "desktop (macos-15-intel)",
+        "conclusion": "success"
+      },
+      {
+        "name": "ffi-asan",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "miri",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "linux-container",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "supply-chain",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "matrix.group == 'all' && 'fuzz-smoke' || format('fuzz-extended ({0})', matrix.group)",
+        "conclusion": "skipped"
+      }
+    ],
+    "desktop_job_url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42594542860/job/129083900211",
+    "desktop_log_sha256": "6e5af99f6a83b5435bc3ecb54061157b22d5eaa6d80218a575aeb3738215a5f2",
+    "new_steps": {
+      "Frozen v0.1 manifest Schema and native ABI contract": "success",
+      "Two-minute cached C ABI sampling trial": "success",
+      "Cached C ABI handle and descriptor regression": "success"
+    }
+  },
+  "runner": {
+    "label": "macos-15-intel",
+    "os_version": "15.7.9",
+    "os_build": "24G830",
+    "architecture": "x86_64",
+    "image_version": "20260824.0482.1",
+    "image_release": "https://github.com/actions/runner-images/releases/tag/macos-15%2F20260824.0482"
+  },
+  "checks": {
+    "local_python_passed": 340,
+    "local_python_skipped": 6,
+    "ci_python_passed": 343,
+    "ci_python_skipped": 3,
+    "local_python_log_sha256": "ab3c37522aaf486d7f3e676f9dec9b50b276e8f11ca30638853957796321ba64",
+    "ruff_format": "passed",
+    "ruff_check": "passed",
+    "mypy": "passed",
+    "actionlint": "passed",
+    "project_guard": "passed",
+    "baseline_fields_changed": [
+      "native_targets"
+    ]
+  },
+  "ci_package_report": {
+    "original_report_sha256": "1bf5d2b676f3538c302d257b39335c3257200975f74be9b2dda1ba78e8ec7d3c",
+    "report": {
+      "overall": "passed",
+      "git_revision": "ef9d4a10570e5d7e3180b7b0a00d0323434d8156",
+      "git_dirty": false,
+      "verification": "native Cargo package + archive contents + isolated tests + independent Rust feature consumers + CLI install",
+      "native_cargo_verification": true,
+      "registry_publication_verified": false,
+      "unpublished_siblings": "local patches to extracted archives",
+      "third_party_lock_unchanged": true,
+      "independent_rust_consumers": [
+        {
+          "package": "daoseeker-scope-core",
+          "profile": "default",
+          "target": "x86_64-apple-darwin",
+          "default_features": true,
+          "requested_features": [],
+          "resolved_core_features": [
+            "default"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope-core",
+          "profile": "bare",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [],
+          "resolved_core_features": [],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope-core",
+          "profile": "serde",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [
+            "serde"
+          ],
+          "resolved_core_features": [
+            "serde"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope-core",
+          "profile": "schema",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [
+            "schema"
+          ],
+          "resolved_core_features": [
+            "schema",
+            "serde"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope",
+          "profile": "default",
+          "target": "x86_64-apple-darwin",
+          "default_features": true,
+          "requested_features": [],
+          "resolved_core_features": [
+            "default",
+            "serde"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope",
+          "profile": "bare",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [],
+          "resolved_core_features": [
+            "default"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope",
+          "profile": "serde",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [
+            "serde"
+          ],
+          "resolved_core_features": [
+            "default",
+            "serde"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        },
+        {
+          "package": "daoseeker-scope",
+          "profile": "schema",
+          "target": "x86_64-apple-darwin",
+          "default_features": false,
+          "requested_features": [
+            "schema"
+          ],
+          "resolved_core_features": [
+            "default",
+            "schema",
+            "serde"
+          ],
+          "executed": true,
+          "third_party_lock_preserved": true,
+          "archive_paths_verified": true
+        }
+      ],
+      "installed_cli_version": "dscope 0.1.0",
+      "snapshot_schema_validated": true,
+      "minimum_read_and_default_privacy": true,
+      "rust_tests_including_doctests": 304,
+      "archives": [
+        {
+          "name": "daoseeker-scope",
+          "version": "0.1.0",
+          "sha256": "181af9751a0a1bd430a08a00ab3931b4b8fbbfecc7c1a77bc029592a5edff155",
+          "files": 17
+        },
+        {
+          "name": "daoseeker-scope-core",
+          "version": "0.1.0",
+          "sha256": "1acc0142f641d1e40bc4394c915d75a690e9cd5329e05e717bf1e8d10abc1e91",
+          "files": 9
+        },
+        {
+          "name": "daoseeker-scope-sysinfo",
+          "version": "0.1.0",
+          "sha256": "7f1eb5bc6ee7808d40a31d9f6755bc0d9fbc737198c464dfa6d3a8545e23644f",
+          "files": 6
+        },
+        {
+          "name": "daoseeker-scope-linux",
+          "version": "0.1.0",
+          "sha256": "e5305a737007fb0b9ed48f9401ef2be65835ec050528d78848c0ffcc11cd6138",
+          "files": 19
+        },
+        {
+          "name": "daoseeker-scope-macos",
+          "version": "0.1.0",
+          "sha256": "dee3a793faaf372b939c917b0d87f6c46d37970c98c975d5aa27e0f9825ddd98",
+          "files": 16
+        },
+        {
+          "name": "daoseeker-scope-windows",
+          "version": "0.1.0",
+          "sha256": "aa8447315ab276e43981ebb36e555934f8b8e4d3cc1c1577e695c3f1332242e7",
+          "files": 19
+        },
+        {
+          "name": "daoseeker-scope-cli",
+          "version": "0.1.0",
+          "sha256": "d01594ae7fe4772df96d790e9a20ad4d7c43d57f715bf9e36cfa3a381ab50fd4",
+          "files": 10
+        },
+        {
+          "name": "daoseeker-scope-ffi",
+          "version": "0.1.0",
+          "sha256": "432549c6a78bde0a3c1a3d6350484fbcbaec2137d3b9d99a66cbfc4bdff887ac",
+          "files": 8
+        }
+      ]
+    }
+  },
+  "ci_native_contract_report": {
+    "original_report_sha256": "daaf8bcf5a9fa9a1a88b646eabdcf202ee19833ad16e72dbd788aa9cb4d9c145",
+    "report": {
+      "format": 1,
+      "overall": "passed",
+      "checked_at": "2026-11-09T09:38:17.349429+00:00",
+      "source_before": {
+        "revision": "ef9d4a10570e5d7e3180b7b0a00d0323434d8156",
+        "status": ""
+      },
+      "target": "x86_64-apple-darwin",
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+      "c_compiler": "Apple clang version 17.0.0 (clang-1700.0.13.5)",
+      "c": {
+        "abi_version": 1,
+        "pointer_bytes": 8,
+        "options": {
+          "size": 20,
+          "alignment": 4,
+          "offsets": [
+            0,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        "buffer": {
+          "size": 24,
+          "alignment": 8,
+          "offsets": [
+            0,
+            8,
+            16
+          ]
+        },
+        "status_codes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "rust": {
+        "abi_version": 1,
+        "schema_version": 1,
+        "pointer_bytes": 8,
+        "options": {
+          "size": 20,
+          "alignment": 4,
+          "offsets": [
+            0,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        "buffer": {
+          "size": 24,
+          "alignment": 8,
+          "offsets": [
+            0,
+            8,
+            16
+          ]
+        }
+      },
+      "schema_sha256": "e7f4f47c664fce603f7ecaf35a04b4afa7ee210afb596c25ef9fd66a20712e9c",
+      "inputs_sha256_lf": {
+        "docs/contracts/v0.1.json": "ef2d103615accb15cfd7570c96a077ed62a0034104c8a8db8b424b12d6485de4",
+        "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+        "scripts/check_contract.py": "0ce9c9442eed7ffa70eb818af75f030aac13e37af0645bf4911876f8dab55803",
+        "docs/research/abi_contract_probe.c": "7e086b2b5b15dca9367dd7183b8d543ac29eb7ac95ff3f51cf158cf802fe058e",
+        "crates/daoseeker-scope-ffi/examples/abi_contract.rs": "4cf981fc6efa34f4507edb6c095e949548d8d61a1901f91face7099d3b52eedc"
+      },
+      "library_sha256": "2263e27f0877c33c78e3464b615aeb027e5be1ef6daba9a1a03d71bfdaba177d",
+      "limits": "native debug build; not a complete Rust semver or behavior audit",
+      "source_after": {
+        "revision": "ef9d4a10570e5d7e3180b7b0a00d0323434d8156",
+        "status": ""
+      }
+    }
+  },
+  "ci_timed_soak_report": {
+    "original_report_sha256": "f44b82b989439676238a5c8f65101f00bf9c1a5116c7e5fc283ce1052c25ab6d",
+    "report": {
+      "format": 1,
+      "overall": "passed",
+      "duration_seconds": 120,
+      "source_before": {
+        "revision": "ef9d4a10570e5d7e3180b7b0a00d0323434d8156",
+        "status": ""
+      },
+      "system": "Darwin",
+      "os_release": "24.6.0",
+      "target": "x86_64-apple-darwin",
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+      "c_compiler": "Apple clang version 17.0.0 (clang-1700.0.13.5)",
+      "binary_sha256": {
+        "ffi-memory-probe": "87ba693ff4e6c99eaabfbc65b5325039d16c8f97dd8ad67031403684e18d22a0",
+        "libdaoseeker_scope_ffi.dylib": "9d3635e88f62c5f65ea06554d3b8d6881306745e897af0aeb4ed6e6bbebbc4b5",
+        "dscope": "7a4ffdeffd9db53da1183ccf54c106ade13819e0ba663e836b06148193616689"
+      },
+      "profile": "release; default serde",
+      "options": {
+        "default_cached_collector": true,
+        "sensitive": false,
+        "timeout_ms": 2000
+      },
+      "limits": "requested 100 ms between completed calls; minute samples do not prove continuous stability or absence of leaks",
+      "environment": {
+        "cpu": {
+          "value": "Intel(R) Core(TM) i7-8700B CPU @ 3.20GHz",
+          "availability": "available",
+          "source": "sysinfo",
+          "observed_at": 1794217443053,
+          "reason": null
+        },
+        "memory": {
+          "value": 15032385536,
+          "availability": "available",
+          "source": "sysctl",
+          "observed_at": 1794217443089,
+          "reason": null
+        },
+        "os": {
+          "name": {
+            "value": "Darwin",
+            "availability": "available",
+            "source": "sysinfo",
+            "observed_at": 1794217443053,
+            "reason": null
+          },
+          "version": {
+            "value": "15.7.9",
+            "availability": "available",
+            "source": "sysinfo",
+            "observed_at": 1794217443053,
+            "reason": null
+          },
+          "kernel_version": {
+            "value": "24.6.0",
+            "availability": "available",
+            "source": "sysinfo",
+            "observed_at": 1794217443053,
+            "reason": null
+          }
+        }
+      },
+      "snapshot_schema_and_privacy": true,
+      "calibration": {
+        "format": 2,
+        "mode": "resident_calibrate",
+        "launch": {
+          "strategy": "direct",
+          "launcher_pid": 12655,
+          "measurement_pid": 12655,
+          "parent_death_signal": 0
+        },
+        "resident_metric": "mach_task_basic_resident",
+        "resident_raw_unit": "bytes",
+        "resident_multiplier": 1,
+        "metric": "ru_maxrss",
+        "raw_unit": "bytes",
+        "multiplier": 1,
+        "pressure_bytes": 67108864,
+        "samples": [
+          {
+            "phase": "baseline",
+            "calls": 0,
+            "peak_raw": 1736704,
+            "peak_bytes": 1736704,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 1703936,
+            "resident_bytes": 1703936
+          },
+          {
+            "phase": "touched",
+            "calls": 0,
+            "peak_raw": 68816896,
+            "peak_bytes": 68816896,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 68816896,
+            "resident_bytes": 68816896
+          },
+          {
+            "phase": "freed",
+            "calls": 0,
+            "peak_raw": 68816896,
+            "peak_bytes": 68816896,
+            "elapsed_ns": 0,
+            "max_json_bytes": 0,
+            "resident_raw": 68816896,
+            "resident_bytes": 68816896
+          }
+        ]
+      },
+      "calibration_analysis": {
+        "calibration_growth_bytes": 67112960,
+        "passed": true
+      },
+      "invalid_duration_cases": 10,
+      "probe_pid": 12666,
+      "sampling_started_at": "2026-11-09T09:44:03.432766+00:00",
+      "cancellation_poll_seconds": 1,
+      "cleanup_wait_seconds": 10,
+      "probe_exit_code": 0,
+      "probe_exit_confirmed": true,
+      "trace_utf8": "{\"record\":\"header\",\"format\":1,\"mode\":\"soak_cached\",\"launch\":{\"strategy\":\"direct\",\"launcher_pid\":12666,\"measurement_pid\":12666,\"parent_death_signal\":0},\"duration_seconds\":120,\"checkpoint_seconds\":60,\"call_interval_ms\":100,\"warmup_seconds\":60,\"tail_budget_bytes\":16777216,\"resident_metric\":\"mach_task_basic_resident\",\"resident_raw_unit\":\"bytes\",\"resident_multiplier\":1,\"metric\":\"ru_maxrss\",\"raw_unit\":\"bytes\",\"multiplier\":1}\n{\"record\":\"sample\",\"ordinal\":0,\"observation\":{\"phase\":\"baseline\",\"calls\":0,\"peak_raw\":1736704,\"peak_bytes\":1736704,\"elapsed_ns\":0,\"max_json_bytes\":0,\"resident_raw\":1708032,\"resident_bytes\":1708032}}\n{\"record\":\"sample\",\"ordinal\":1,\"observation\":{\"phase\":\"collected\",\"calls\":379,\"peak_raw\":4886528,\"peak_bytes\":4886528,\"elapsed_ns\":60037631000,\"max_json_bytes\":9793,\"resident_raw\":4874240,\"resident_bytes\":4874240}}\n{\"record\":\"sample\",\"ordinal\":2,\"observation\":{\"phase\":\"collected\",\"calls\":763,\"peak_raw\":4886528,\"peak_bytes\":4886528,\"elapsed_ns\":120001753000,\"max_json_bytes\":9793,\"resident_raw\":4874240,\"resident_bytes\":4874240}}\n{\"record\":\"complete\",\"calls\":763,\"samples\":3}\n",
+      "trace_sha256": "87122df993a9e61a68c4f5da1dbe3efe837fff4559577f4630c5b475ae161512",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "probe_error": null,
+      "analysis": {
+        "within_budget": true,
+        "budget_bytes": 16777216,
+        "tail_samples": 2,
+        "tail_min_bytes": 4874240,
+        "tail_max_bytes": 4874240,
+        "tail_range_bytes": 0,
+        "net_change_bytes": 0,
+        "calls": 763,
+        "elapsed_ns": 120001753000,
+        "max_json_bytes": 9793,
+        "scope": "sampled OS residency; no allocator attribution or no-leak guarantee"
+      },
+      "source_after": {
+        "revision": "ef9d4a10570e5d7e3180b7b0a00d0323434d8156",
+        "status": ""
+      },
+      "checked_at": "2026-11-09T09:46:03.618800+00:00"
+    }
+  },
+  "ci_resource_report": {
+    "original_report_sha256": "f4f68b41b935d290be06333e9b141a15a8f49ad986af0b19e10051499e11aba1",
+    "report": {
+      "format": 1,
+      "overall": "passed",
+      "source_before": {
+        "revision": "ef9d4a10570e5d7e3180b7b0a00d0323434d8156",
+        "status": ""
+      },
+      "system": "Darwin",
+      "os_release": "24.6.0",
+      "target": "x86_64-apple-darwin",
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+      "c_compiler": "Apple clang version 17.0.0 (clang-1700.0.13.5)",
+      "profile": "release; default serde",
+      "binary_sha256": {
+        "ffi-resource-probe": "d57ba71ab5b20cd86fc9384fb3f0b675027e9d00ace4434f3fd18a0c38795912",
+        "libdaoseeker_scope_ffi.dylib": "9d3635e88f62c5f65ea06554d3b8d6881306745e897af0aeb4ed6e6bbebbc4b5"
+      },
+      "options": {
+        "default_cached_collector": true,
+        "sensitive": false,
+        "timeout_ms": 2000
+      },
+      "scope": "Finite handle and FD sampling plus buffer saturation recovery. macOS FD numbers 0..65535.",
+      "observations": {
+        "calibrate": {
+          "format": 1,
+          "mode": "calibrate",
+          "metric": "fcntl_fd_count_0_65535",
+          "opened_resources": 32,
+          "counts": [
+            3,
+            35,
+            3
+          ]
+        },
+        "cached": {
+          "format": 1,
+          "mode": "cached",
+          "metric": "fcntl_fd_count_0_65535",
+          "warmup_calls": 100,
+          "total_calls": 1000,
+          "interval_calls": 100,
+          "tail_budget": 8,
+          "control_resources": 0,
+          "max_json_bytes": 9793,
+          "samples": [
+            {
+              "calls": 100,
+              "count": 3
+            },
+            {
+              "calls": 200,
+              "count": 3
+            },
+            {
+              "calls": 300,
+              "count": 3
+            },
+            {
+              "calls": 400,
+              "count": 3
+            },
+            {
+              "calls": 500,
+              "count": 3
+            },
+            {
+              "calls": 600,
+              "count": 3
+            },
+            {
+              "calls": 700,
+              "count": 3
+            },
+            {
+              "calls": 800,
+              "count": 3
+            },
+            {
+              "calls": 900,
+              "count": 3
+            },
+            {
+              "calls": 1000,
+              "count": 3
+            }
+          ],
+          "completed": true
+        },
+        "control": {
+          "format": 1,
+          "mode": "control",
+          "metric": "fcntl_fd_count_0_65535",
+          "warmup_calls": 100,
+          "total_calls": 1000,
+          "interval_calls": 100,
+          "tail_budget": 8,
+          "control_resources": 16,
+          "max_json_bytes": 9793,
+          "samples": [
+            {
+              "calls": 100,
+              "count": 3
+            },
+            {
+              "calls": 200,
+              "count": 19
+            },
+            {
+              "calls": 300,
+              "count": 19
+            },
+            {
+              "calls": 400,
+              "count": 19
+            },
+            {
+              "calls": 500,
+              "count": 19
+            },
+            {
+              "calls": 600,
+              "count": 19
+            },
+            {
+              "calls": 700,
+              "count": 19
+            },
+            {
+              "calls": 800,
+              "count": 19
+            },
+            {
+              "calls": 900,
+              "count": 19
+            },
+            {
+              "calls": 1000,
+              "count": 19
+            }
+          ],
+          "completed": true
+        },
+        "buffer_limit": {
+          "format": 1,
+          "mode": "buffer_limit",
+          "metric": "fcntl_fd_count_0_65535",
+          "held_buffers": 64,
+          "overflow_status": 7,
+          "recovery_status": 0,
+          "retired_token_status": 9,
+          "verified_live_buffers": 63,
+          "completed": true
+        }
+      },
+      "analyses": {
+        "calibrate": {
+          "opened_delta": 32,
+          "closed_delta": 0,
+          "passed": true
+        },
+        "cached": {
+          "tail_samples": 10,
+          "first_count": 3,
+          "last_count": 3,
+          "net_change": 0,
+          "tail_range": 0,
+          "budget": 8,
+          "within_budget": true
+        },
+        "control": {
+          "tail_samples": 10,
+          "first_count": 3,
+          "last_count": 19,
+          "net_change": 16,
+          "tail_range": 16,
+          "budget": 8,
+          "within_budget": false
+        },
+        "buffer_limit": {
+          "passed": true
+        }
+      },
+      "source_after": {
+        "revision": "ef9d4a10570e5d7e3180b7b0a00d0323434d8156",
+        "status": ""
+      },
+      "checked_at": "2026-11-09T09:46:06.937821+00:00"
+    }
+  },
+  "local_windows_contract_report": {
+    "original_report_sha256": "1e6888411d83128bfd855ce00168a71ce90ae8e8cb5d6fd40791e23a5f20ef32",
+    "report": {
+      "format": 1,
+      "overall": "passed",
+      "checked_at": "2026-11-09T09:34:49.528232+00:00",
+      "source_before": {
+        "revision": "ef9d4a10570e5d7e3180b7b0a00d0323434d8156",
+        "status": ""
+      },
+      "target": "x86_64-pc-windows-msvc",
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+      "c_compiler": "c_compiler_version=19.51.36260.0",
+      "c": {
+        "abi_version": 1,
+        "pointer_bytes": 8,
+        "options": {
+          "size": 20,
+          "alignment": 4,
+          "offsets": [
+            0,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        "buffer": {
+          "size": 24,
+          "alignment": 8,
+          "offsets": [
+            0,
+            8,
+            16
+          ]
+        },
+        "status_codes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "rust": {
+        "abi_version": 1,
+        "schema_version": 1,
+        "pointer_bytes": 8,
+        "options": {
+          "size": 20,
+          "alignment": 4,
+          "offsets": [
+            0,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        "buffer": {
+          "size": 24,
+          "alignment": 8,
+          "offsets": [
+            0,
+            8,
+            16
+          ]
+        }
+      },
+      "schema_sha256": "e7f4f47c664fce603f7ecaf35a04b4afa7ee210afb596c25ef9fd66a20712e9c",
+      "inputs_sha256_lf": {
+        "docs/contracts/v0.1.json": "ef2d103615accb15cfd7570c96a077ed62a0034104c8a8db8b424b12d6485de4",
+        "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+        "scripts/check_contract.py": "0ce9c9442eed7ffa70eb818af75f030aac13e37af0645bf4911876f8dab55803",
+        "docs/research/abi_contract_probe.c": "7e086b2b5b15dca9367dd7183b8d543ac29eb7ac95ff3f51cf158cf802fe058e",
+        "crates/daoseeker-scope-ffi/examples/abi_contract.rs": "4cf981fc6efa34f4507edb6c095e949548d8d61a1901f91face7099d3b52eedc"
+      },
+      "library_sha256": "ece0277afe1ae25f12fedd54e85842adb5f8a0b913d72669ad6137d074f638d2",
+      "limits": "native debug build; not a complete Rust semver or behavior audit",
+      "source_after": {
+        "revision": "ef9d4a10570e5d7e3180b7b0a00d0323434d8156",
+        "status": ""
+      }
+    }
+  },
+  "scope_notes": [
+    "ABI layout and bounded resource measurements apply to the recorded hosted image and binaries.",
+    "The descriptor probe samples descriptor numbers 0 through 65535.",
+    "Physical-device tests, extended resource attribution and macOS binary distribution have separate acceptance requirements."
+  ]
+}
