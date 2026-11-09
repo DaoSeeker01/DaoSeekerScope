@@ -38,9 +38,13 @@ def inventory(metadata: dict[str, Any], root_package: str) -> dict[str, Any]:
             errors.append("missing_spdx")
         try:
             files = notice_files(package)
-        except ValueError:
+        except ValueError as error:
             files = []
-            errors.append("unsafe_notice_file")
+            errors.append(
+                "duplicate_notice_name"
+                if str(error) == "duplicate_notice_name"
+                else "unsafe_notice_file"
+            )
         except OSError:
             files = []
             errors.append("notice_read_failed")

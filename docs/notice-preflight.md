@@ -22,6 +22,8 @@ python scripts/notice_audit.py --offline --target aarch64-apple-darwin --output 
 
 许可候选文件必须是普通文件。符号链接、Windows reparse 项和 FIFO 等特殊文件会阻止打包，即使同一包另有有效 LICENSE；普通许可目录仍不递归读取。文件被替换或读取失败时不收录内容，预检记录脱敏错误并继续检查其他依赖。具体规则、测试和边界见[许可输入验证](notice-input-validation.md)。
 
+同一个依赖中出现仅大小写不同的许可文件时，预检和打包会在读取内容前返回 `duplicate_notice_name`。预检继续检查其他依赖。
+
 ## macOS 当前材料
 
 2026-11-02 复核：提交 `d76e8a9` 的原生 macOS CI 扫描与本机跨目标扫描仍为 CLI/SDK 各 20 个依赖包、6 项材料阻塞。新增的 [Mach-O 原生对照](macos-binary-validation.md)已通过，但没有改变文件门槛或开放打包；元数据检查不代替材料补齐。

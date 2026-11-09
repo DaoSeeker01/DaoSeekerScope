@@ -2,18 +2,19 @@
 
 import json
 import os
-from pathlib import Path
 import stat
 import sys
 import tempfile
+import unittest
+from collections.abc import Iterator
+from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
-import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
-import notice_audit as audit
 import cli_bundle as bundle
+import notice_audit as audit
 from cli_bundle import dependency_payload, digest, notice_files
 
 
@@ -41,6 +42,36 @@ def metadata(root: Path) -> dict[str, Any]:
 
 
 class NoticeAuditTests(unittest.TestCase):
+    def test_case_colliding_notice_names_block_preflight_and_packaging(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = metadata(root)
+            first = root / "a/LICENSE"
+            second = root / "a/license"
+            first.write_bytes(b"upstream notice")
+            if not second.exists():
+                second.write_bytes(b"second upstream notice")
+            (root / "b/LICENSE").write_bytes(b"another valid notice")
+            iterdir = Path.iterdir
+
+            def list_entries(path: Path) -> Iterator[Path]:
+                # Represent the same case-sensitive listing on Windows as on Unix.
+                if path == first.parent:
+                    return iter((first, second))
+                return iterdir(path)
+
+            with patch.object(Path, "iterdir", list_entries):
+                report = audit.inventory(value, "daoseeker-scope-cli")
+                self.assertEqual(report["packager_notice_gate"], "blocked")
+                self.assertEqual(report["blocking_packages"], 1)
+                self.assertEqual(
+                    report["packages"][0]["errors"], ["duplicate_notice_name"]
+                )
+                self.assertEqual(report["packages"][0]["notices"], [])
+                self.assertTrue(report["packages"][1]["notices"])
+                with self.assertRaisesRegex(ValueError, "^duplicate_notice_name$"):
+                    dependency_payload(value)
+
     def test_notice_directories_are_not_recursed_into(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

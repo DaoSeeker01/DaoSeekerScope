@@ -276,6 +276,10 @@ def notice_files(package: dict[str, Any]) -> list[Path]:
             continue  # Root-only discovery does not recurse into notice directories.
         require(stat.S_ISREG(info.st_mode), "unsafe_notice_file")
         result.append(path)
+    require(
+        len({path.name.lower() for path in result}) == len(result),
+        "duplicate_notice_name",
+    )
     return sorted(result)
 
 
