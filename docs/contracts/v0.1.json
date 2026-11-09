@@ -4,7 +4,8 @@
   "native_targets": [
     "x86_64-pc-windows-msvc",
     "x86_64-unknown-linux-gnu",
-    "aarch64-apple-darwin"
+    "aarch64-apple-darwin",
+    "x86_64-apple-darwin"
   ],
   "schema_version": 1,
   "schema_sha256": "e7f4f47c664fce603f7ecaf35a04b4afa7ee210afb596c25ef9fd66a20712e9c",

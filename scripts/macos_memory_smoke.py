@@ -211,7 +211,7 @@ def run(output: Path) -> int:
             "OS VM counters can be rate-limited/cached; no maximum age or fresh-kernel-counter claim",
             "non-compressed active+inactive+free estimate; not immediately allocatable or per-process limit",
             "SDK and Rust calls differ in time; no equality, fixed delta or pressure claim",
-            "real API/cleanup errors, physical Mac and Intel native remain untested",
+            "real API/cleanup errors and physical Mac require separate tests",
             "cooperative checks cannot interrupt blocked OS calls; no long native leak proof",
         ],
     }

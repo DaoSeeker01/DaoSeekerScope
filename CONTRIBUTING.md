@@ -25,7 +25,7 @@ cargo doc --locked --workspace --all-features --no-deps
 
 需要复查 Windows Server 2022 x64 时，可手动选择 `scope=windows-compat`。该任务在同一托管镜像构建并运行 CLI 和 SDK 候选，同时检查源码包和原生契约。报告适用于该镜像及其运行库。
 
-需要核对 Intel macOS 时，可手动选择 `scope=macos-intel`。该任务在 `macos-15-intel` 上运行源码包、CLI、C/Python 和 Mach-O 检查。冻结 ABI 布局、两分钟采样和描述符回归按范围跳过。Intel 运行结果与发布范围分别评审。
+需要核对 Intel macOS 时，可手动选择 `scope=macos-intel`。该任务在 `macos-15-intel` 上运行源码包、CLI、C/Python、ABI 布局、两分钟采样、描述符和 Mach-O 检查。Intel 运行结果与发布范围分别评审。
 
 仅改动共享 C 探针或 Python 验证工具时，可选择 `scope=native-probe`，运行三个桌面任务，跳过未涉及的 Rust fuzz、Miri、ASan、供应链和 Linux 容器任务；验收记录应说明跳过范围。Rust 库改动仍使用完整检查。
 

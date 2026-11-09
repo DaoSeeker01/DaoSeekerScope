@@ -153,10 +153,10 @@ def measure(report: dict[str, Any]) -> None:
     host = next(line[6:] for line in rustc.splitlines() if line.startswith("host: "))
     require(
         host
-        == {
-            "Windows": "x86_64-pc-windows-msvc",
-            "Linux": "x86_64-unknown-linux-gnu",
-            "Darwin": "aarch64-apple-darwin",
+        in {
+            "Windows": ("x86_64-pc-windows-msvc",),
+            "Linux": ("x86_64-unknown-linux-gnu",),
+            "Darwin": ("aarch64-apple-darwin", "x86_64-apple-darwin"),
         }[system],
         "native_target",
     )
