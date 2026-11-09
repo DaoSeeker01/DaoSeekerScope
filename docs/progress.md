@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-09 对提交 `ab07073` 运行完整 CI，8 项任务全部通过。Windows、Linux 和 macOS 的源码包内 Rust 测试分别通过 307、299 和 304 项，含 doctest。各平台通过 8 个归档、8 种独立 Rust 消费者配置及原生 C/Rust 契约检查。Windows 与 Linux 的 CLI、SDK 均完成安装、切换和回滚。Linux 用相同归档在固定 glibc 2.34 和 2.36 用户空间运行，2.31 按预期在加载阶段拒绝。12 个短时 fuzz 目标共执行 201,654,833 次。本次 macOS 扫描记录 6 项二进制分发许可材料缺口。[验收报告](evidence/desktop-batch-42537187822.json)
+
 2026-11-09 SDK 候选诊断检查已修复，提交 `165a67f`。C/Python 和 ELF 检查须保持 stderr 为空；编译器允许有界诊断。修复前复现 10 个漏检场景，修复后 12 项 SDK 定向测试与 Ruff/mypy 通过，完整 Python 337 项通过、6 项平台跳过。干净提交的 Windows SDK ZIP 共 78 项载荷，安装、切换与回滚完成 9 次顶层调用，含 3 次 C 编译运行及 300 次 Python 采集/释放。Linux ELF 仅新增子进程负向覆盖，本轮未重跑原生三平台 CI。[验收记录](evidence/sdk-stderr-165a67f-2026-11-09.json)
 
 2026-11-09 CLI 候选诊断检查已修复，提交 `7663843`。此前演练忽略成功退出时的 stderr；现在拒绝非空和超过 1 MiB 的错误输出，只返回固定标识。15 项候选测试、完整 Python 334 项通过，另有 6 项平台跳过；新回归覆盖三个调用阶段的九种负向组合。当前 Windows debug CLI 的版本、JSON 和隔离 JSON 三次实跑通过，Ruff/mypy 通过。本轮未重跑 release 候选安装/回滚或原生三平台 CI，不作为这些验收结果。发布指南也已补齐构建后的两个演练入口。[本机报告](evidence/cli-stderr-7663843-2026-11-09.json)

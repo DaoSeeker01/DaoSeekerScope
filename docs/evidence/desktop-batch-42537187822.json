@@ -1,0 +1,2388 @@
+{
+  "report_version": 1,
+  "recorded_at": "2026-11-09T00:09:09.728931+00:00",
+  "source_commit": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+  "ci": {
+    "run_id": 42537187822,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42537187822",
+    "event": "workflow_dispatch",
+    "scope": "all",
+    "conclusion": "success",
+    "created_at": "2026-11-08T23:51:41Z",
+    "updated_at": "2026-11-09T00:07:10Z",
+    "jobs": [
+      {
+        "name": "linux-container",
+        "conclusion": "success",
+        "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42537187822/job/128903990693"
+      },
+      {
+        "name": "miri",
+        "conclusion": "success",
+        "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42537187822/job/128903990827"
+      },
+      {
+        "name": "ffi-asan",
+        "conclusion": "success",
+        "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42537187822/job/128903990829"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "conclusion": "success",
+        "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42537187822/job/128903990845"
+      },
+      {
+        "name": "fuzz-smoke",
+        "conclusion": "success",
+        "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42537187822/job/128903990847"
+      },
+      {
+        "name": "supply-chain",
+        "conclusion": "success",
+        "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42537187822/job/128903990877"
+      },
+      {
+        "name": "desktop (windows-latest)",
+        "conclusion": "success",
+        "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42537187822/job/128903990884"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "conclusion": "success",
+        "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42537187822/job/128903990961"
+      }
+    ]
+  },
+  "package_reports": {
+    "Windows-X64": {
+      "original_report_sha256": "0404f5627d32784870ccb0e96ceafe08d608c906817bf735a9f3292b0b5296dd",
+      "report": {
+        "overall": "passed",
+        "git_revision": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+        "git_dirty": false,
+        "verification": "native Cargo package + archive contents + isolated tests + independent Rust feature consumers + CLI install",
+        "native_cargo_verification": true,
+        "registry_publication_verified": false,
+        "unpublished_siblings": "local patches to extracted archives",
+        "third_party_lock_unchanged": true,
+        "independent_rust_consumers": [
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "default",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "bare",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "serde",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "schema",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "default",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "bare",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "serde",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "schema",
+            "target": "x86_64-pc-windows-msvc",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "default",
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          }
+        ],
+        "installed_cli_version": "dscope 0.1.0",
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "rust_tests_including_doctests": 307,
+        "archives": [
+          {
+            "name": "daoseeker-scope",
+            "version": "0.1.0",
+            "sha256": "0a1001f0a0691eba5647952a0b834f52f4386a120b7d60affb613c93eb4d5775",
+            "files": 17
+          },
+          {
+            "name": "daoseeker-scope-core",
+            "version": "0.1.0",
+            "sha256": "93601f798915682e3765a0629f812691cd3a5b6567850f5978bbd1bb2694a5f2",
+            "files": 9
+          },
+          {
+            "name": "daoseeker-scope-sysinfo",
+            "version": "0.1.0",
+            "sha256": "6d6210c2d649646589ce1ff7aee15457d968caea89e73ea7dbf0a97634267f0b",
+            "files": 6
+          },
+          {
+            "name": "daoseeker-scope-linux",
+            "version": "0.1.0",
+            "sha256": "d0e5ba0093e52c2bf1a2013b7c82b988e308162e743ef52e485e6d4a353a0c0d",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-macos",
+            "version": "0.1.0",
+            "sha256": "59f417def17a424fcf9da198eb9a3cb6e33fb073e13c4ae54ea7bbd8a592f527",
+            "files": 16
+          },
+          {
+            "name": "daoseeker-scope-windows",
+            "version": "0.1.0",
+            "sha256": "a2439033dceb5bebea459a06e45c3f417e65f3837a1bd8abac5fd7a05b906cdf",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-cli",
+            "version": "0.1.0",
+            "sha256": "c81c21d355fbc8bbd90d6b3fd4bb099e58303509d24c028e5b22b279fe9b7297",
+            "files": 10
+          },
+          {
+            "name": "daoseeker-scope-ffi",
+            "version": "0.1.0",
+            "sha256": "4c2a5e9de7388cbe7de8794011258bd3ce2affccce5e7086cee19b2348885f1c",
+            "files": 8
+          }
+        ]
+      }
+    },
+    "Linux-X64": {
+      "original_report_sha256": "2814b12366b1c83fcbd87b769e39dc303f2ef753229925bd88c918078babf91f",
+      "report": {
+        "overall": "passed",
+        "git_revision": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+        "git_dirty": false,
+        "verification": "native Cargo package + archive contents + isolated tests + independent Rust feature consumers + CLI install",
+        "native_cargo_verification": true,
+        "registry_publication_verified": false,
+        "unpublished_siblings": "local patches to extracted archives",
+        "third_party_lock_unchanged": true,
+        "independent_rust_consumers": [
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "default",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "bare",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "serde",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "schema",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "default",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "bare",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "serde",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "schema",
+            "target": "x86_64-unknown-linux-gnu",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "default",
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          }
+        ],
+        "installed_cli_version": "dscope 0.1.0",
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "rust_tests_including_doctests": 299,
+        "archives": [
+          {
+            "name": "daoseeker-scope",
+            "version": "0.1.0",
+            "sha256": "0a1001f0a0691eba5647952a0b834f52f4386a120b7d60affb613c93eb4d5775",
+            "files": 17
+          },
+          {
+            "name": "daoseeker-scope-core",
+            "version": "0.1.0",
+            "sha256": "93601f798915682e3765a0629f812691cd3a5b6567850f5978bbd1bb2694a5f2",
+            "files": 9
+          },
+          {
+            "name": "daoseeker-scope-sysinfo",
+            "version": "0.1.0",
+            "sha256": "6d6210c2d649646589ce1ff7aee15457d968caea89e73ea7dbf0a97634267f0b",
+            "files": 6
+          },
+          {
+            "name": "daoseeker-scope-linux",
+            "version": "0.1.0",
+            "sha256": "d0e5ba0093e52c2bf1a2013b7c82b988e308162e743ef52e485e6d4a353a0c0d",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-macos",
+            "version": "0.1.0",
+            "sha256": "59f417def17a424fcf9da198eb9a3cb6e33fb073e13c4ae54ea7bbd8a592f527",
+            "files": 16
+          },
+          {
+            "name": "daoseeker-scope-windows",
+            "version": "0.1.0",
+            "sha256": "a2439033dceb5bebea459a06e45c3f417e65f3837a1bd8abac5fd7a05b906cdf",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-cli",
+            "version": "0.1.0",
+            "sha256": "c81c21d355fbc8bbd90d6b3fd4bb099e58303509d24c028e5b22b279fe9b7297",
+            "files": 10
+          },
+          {
+            "name": "daoseeker-scope-ffi",
+            "version": "0.1.0",
+            "sha256": "4c2a5e9de7388cbe7de8794011258bd3ce2affccce5e7086cee19b2348885f1c",
+            "files": 8
+          }
+        ]
+      }
+    },
+    "macOS-ARM64": {
+      "original_report_sha256": "dd93f7778d44bb626d5428d1f233cbf1dd8f3f81551fd623f5d1f23543eb7947",
+      "report": {
+        "overall": "passed",
+        "git_revision": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+        "git_dirty": false,
+        "verification": "native Cargo package + archive contents + isolated tests + independent Rust feature consumers + CLI install",
+        "native_cargo_verification": true,
+        "registry_publication_verified": false,
+        "unpublished_siblings": "local patches to extracted archives",
+        "third_party_lock_unchanged": true,
+        "independent_rust_consumers": [
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "default",
+            "target": "aarch64-apple-darwin",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "bare",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "serde",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope-core",
+            "profile": "schema",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "default",
+            "target": "aarch64-apple-darwin",
+            "default_features": true,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "bare",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [],
+            "resolved_core_features": [
+              "default"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "serde",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [
+              "serde"
+            ],
+            "resolved_core_features": [
+              "default",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          },
+          {
+            "package": "daoseeker-scope",
+            "profile": "schema",
+            "target": "aarch64-apple-darwin",
+            "default_features": false,
+            "requested_features": [
+              "schema"
+            ],
+            "resolved_core_features": [
+              "default",
+              "schema",
+              "serde"
+            ],
+            "executed": true,
+            "third_party_lock_preserved": true,
+            "archive_paths_verified": true
+          }
+        ],
+        "installed_cli_version": "dscope 0.1.0",
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true,
+        "rust_tests_including_doctests": 304,
+        "archives": [
+          {
+            "name": "daoseeker-scope",
+            "version": "0.1.0",
+            "sha256": "0a1001f0a0691eba5647952a0b834f52f4386a120b7d60affb613c93eb4d5775",
+            "files": 17
+          },
+          {
+            "name": "daoseeker-scope-core",
+            "version": "0.1.0",
+            "sha256": "93601f798915682e3765a0629f812691cd3a5b6567850f5978bbd1bb2694a5f2",
+            "files": 9
+          },
+          {
+            "name": "daoseeker-scope-sysinfo",
+            "version": "0.1.0",
+            "sha256": "6d6210c2d649646589ce1ff7aee15457d968caea89e73ea7dbf0a97634267f0b",
+            "files": 6
+          },
+          {
+            "name": "daoseeker-scope-linux",
+            "version": "0.1.0",
+            "sha256": "d0e5ba0093e52c2bf1a2013b7c82b988e308162e743ef52e485e6d4a353a0c0d",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-macos",
+            "version": "0.1.0",
+            "sha256": "59f417def17a424fcf9da198eb9a3cb6e33fb073e13c4ae54ea7bbd8a592f527",
+            "files": 16
+          },
+          {
+            "name": "daoseeker-scope-windows",
+            "version": "0.1.0",
+            "sha256": "a2439033dceb5bebea459a06e45c3f417e65f3837a1bd8abac5fd7a05b906cdf",
+            "files": 19
+          },
+          {
+            "name": "daoseeker-scope-cli",
+            "version": "0.1.0",
+            "sha256": "c81c21d355fbc8bbd90d6b3fd4bb099e58303509d24c028e5b22b279fe9b7297",
+            "files": 10
+          },
+          {
+            "name": "daoseeker-scope-ffi",
+            "version": "0.1.0",
+            "sha256": "4c2a5e9de7388cbe7de8794011258bd3ce2affccce5e7086cee19b2348885f1c",
+            "files": 8
+          }
+        ]
+      }
+    }
+  },
+  "native_contract_reports": {
+    "Windows-X64": {
+      "original_report_sha256": "8ad327fbff3a8e724584a52ecc16e24e08383b2f1cb31d70c2f00736e531e06b",
+      "report": {
+        "format": 1,
+        "overall": "passed",
+        "checked_at": "2026-11-08T23:55:51.836605+00:00",
+        "source_before": {
+          "revision": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+          "status": ""
+        },
+        "target": "x86_64-pc-windows-msvc",
+        "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-pc-windows-msvc\nrelease: 1.96.0\nLLVM version: 22.1.2",
+        "c_compiler": "c_compiler_version=19.51.36260.0",
+        "c": {
+          "abi_version": 1,
+          "pointer_bytes": 8,
+          "options": {
+            "size": 20,
+            "alignment": 4,
+            "offsets": [
+              0,
+              4,
+              8,
+              12,
+              16
+            ]
+          },
+          "buffer": {
+            "size": 24,
+            "alignment": 8,
+            "offsets": [
+              0,
+              8,
+              16
+            ]
+          },
+          "status_codes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        "rust": {
+          "abi_version": 1,
+          "schema_version": 1,
+          "pointer_bytes": 8,
+          "options": {
+            "size": 20,
+            "alignment": 4,
+            "offsets": [
+              0,
+              4,
+              8,
+              12,
+              16
+            ]
+          },
+          "buffer": {
+            "size": 24,
+            "alignment": 8,
+            "offsets": [
+              0,
+              8,
+              16
+            ]
+          }
+        },
+        "schema_sha256": "e7f4f47c664fce603f7ecaf35a04b4afa7ee210afb596c25ef9fd66a20712e9c",
+        "inputs_sha256_lf": {
+          "docs/contracts/v0.1.json": "9a6160744e1c99abb8af6503463bce4eda8b87c46f7fe69ec2a531d6cb3c57d3",
+          "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+          "scripts/check_contract.py": "0ce9c9442eed7ffa70eb818af75f030aac13e37af0645bf4911876f8dab55803",
+          "docs/research/abi_contract_probe.c": "7e086b2b5b15dca9367dd7183b8d543ac29eb7ac95ff3f51cf158cf802fe058e",
+          "crates/daoseeker-scope-ffi/examples/abi_contract.rs": "4cf981fc6efa34f4507edb6c095e949548d8d61a1901f91face7099d3b52eedc"
+        },
+        "library_sha256": "6784fa08a87791e54cfee8aafcf9f48b18ca9363465de2d6d683bf8f7baa47c2",
+        "limits": "native debug build; not a complete Rust semver or behavior audit",
+        "source_after": {
+          "revision": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+          "status": ""
+        }
+      }
+    },
+    "Linux-X64": {
+      "original_report_sha256": "9cb8064dcad16536d4dd5426a503775e3b024e0ace113cd387151e041276fc02",
+      "report": {
+        "format": 1,
+        "overall": "passed",
+        "checked_at": "2026-11-08T23:52:49.600792+00:00",
+        "source_before": {
+          "revision": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+          "status": ""
+        },
+        "target": "x86_64-unknown-linux-gnu",
+        "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+        "c_compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "c": {
+          "abi_version": 1,
+          "pointer_bytes": 8,
+          "options": {
+            "size": 20,
+            "alignment": 4,
+            "offsets": [
+              0,
+              4,
+              8,
+              12,
+              16
+            ]
+          },
+          "buffer": {
+            "size": 24,
+            "alignment": 8,
+            "offsets": [
+              0,
+              8,
+              16
+            ]
+          },
+          "status_codes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        "rust": {
+          "abi_version": 1,
+          "schema_version": 1,
+          "pointer_bytes": 8,
+          "options": {
+            "size": 20,
+            "alignment": 4,
+            "offsets": [
+              0,
+              4,
+              8,
+              12,
+              16
+            ]
+          },
+          "buffer": {
+            "size": 24,
+            "alignment": 8,
+            "offsets": [
+              0,
+              8,
+              16
+            ]
+          }
+        },
+        "schema_sha256": "e7f4f47c664fce603f7ecaf35a04b4afa7ee210afb596c25ef9fd66a20712e9c",
+        "inputs_sha256_lf": {
+          "docs/contracts/v0.1.json": "9a6160744e1c99abb8af6503463bce4eda8b87c46f7fe69ec2a531d6cb3c57d3",
+          "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+          "scripts/check_contract.py": "0ce9c9442eed7ffa70eb818af75f030aac13e37af0645bf4911876f8dab55803",
+          "docs/research/abi_contract_probe.c": "7e086b2b5b15dca9367dd7183b8d543ac29eb7ac95ff3f51cf158cf802fe058e",
+          "crates/daoseeker-scope-ffi/examples/abi_contract.rs": "4cf981fc6efa34f4507edb6c095e949548d8d61a1901f91face7099d3b52eedc"
+        },
+        "library_sha256": "5f3ac90de45848b93fc0e853448d5fcd58951c6699537c65afa92b9834407a50",
+        "limits": "native debug build; not a complete Rust semver or behavior audit",
+        "source_after": {
+          "revision": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+          "status": ""
+        }
+      }
+    },
+    "macOS-ARM64": {
+      "original_report_sha256": "f8e46a7e4cc24dfae98e1af93ebc1ba2736b83720358f7c9178ac61da3435489",
+      "report": {
+        "format": 1,
+        "overall": "passed",
+        "checked_at": "2026-11-08T23:53:32.869048+00:00",
+        "source_before": {
+          "revision": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+          "status": ""
+        },
+        "target": "aarch64-apple-darwin",
+        "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: aarch64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+        "c_compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "c": {
+          "abi_version": 1,
+          "pointer_bytes": 8,
+          "options": {
+            "size": 20,
+            "alignment": 4,
+            "offsets": [
+              0,
+              4,
+              8,
+              12,
+              16
+            ]
+          },
+          "buffer": {
+            "size": 24,
+            "alignment": 8,
+            "offsets": [
+              0,
+              8,
+              16
+            ]
+          },
+          "status_codes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        "rust": {
+          "abi_version": 1,
+          "schema_version": 1,
+          "pointer_bytes": 8,
+          "options": {
+            "size": 20,
+            "alignment": 4,
+            "offsets": [
+              0,
+              4,
+              8,
+              12,
+              16
+            ]
+          },
+          "buffer": {
+            "size": 24,
+            "alignment": 8,
+            "offsets": [
+              0,
+              8,
+              16
+            ]
+          }
+        },
+        "schema_sha256": "e7f4f47c664fce603f7ecaf35a04b4afa7ee210afb596c25ef9fd66a20712e9c",
+        "inputs_sha256_lf": {
+          "docs/contracts/v0.1.json": "9a6160744e1c99abb8af6503463bce4eda8b87c46f7fe69ec2a531d6cb3c57d3",
+          "bindings/daoseeker_scope.h": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+          "scripts/check_contract.py": "0ce9c9442eed7ffa70eb818af75f030aac13e37af0645bf4911876f8dab55803",
+          "docs/research/abi_contract_probe.c": "7e086b2b5b15dca9367dd7183b8d543ac29eb7ac95ff3f51cf158cf802fe058e",
+          "crates/daoseeker-scope-ffi/examples/abi_contract.rs": "4cf981fc6efa34f4507edb6c095e949548d8d61a1901f91face7099d3b52eedc"
+        },
+        "library_sha256": "80fe603766796be64963fd31b14bc2b7e984bdb11fa8443fe879f005453a731b",
+        "limits": "native debug build; not a complete Rust semver or behavior audit",
+        "source_after": {
+          "revision": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+          "status": ""
+        }
+      }
+    }
+  },
+  "native_smoke": {
+    "Windows-X64": {
+      "overall": "passed",
+      "original_report_sha256": "5d26ef0426c143618bab47bf1f2f961143f674e66898de4d30e9365da7af76a8"
+    },
+    "Linux-X64": {
+      "overall": "passed",
+      "original_report_sha256": "ba3122dacae8f3da17b72dd8020369ec53e08d316bdc960f30163ec257d0cfa8"
+    },
+    "macOS-ARM64": {
+      "overall": "passed",
+      "original_report_sha256": "91dd04134acdc7ce6c6c1798d8b326785ffd851e1ec91bd0e6df8f9d28651fa2"
+    }
+  },
+  "candidate_reports": {
+    "Windows-X64": {
+      "cli": {
+        "original_report_sha256": "3624ee91c2e430846ee1b70cebf0ddfca92053da0be32b5c476ab59d1883de77",
+        "report": {
+          "overall": "passed",
+          "source_commit": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+          "source_dirty": false,
+          "target": "x86_64-pc-windows-msvc",
+          "host": {
+            "system": "Windows",
+            "version": "10.0.26100",
+            "machine": "AMD64"
+          },
+          "version": "0.1.0",
+          "bundle_format": 1,
+          "abi_version": 1,
+          "schema_version": 1,
+          "archive_sha256": "f6fa6ccfd53a18f9c48ad7c12cd808253688040328bfe302171b5d46e7c3d160",
+          "cli_sha256": "a5ff597e93d779ae1d24d132728c6894661e16fd42ed42bba75a1aae2736d57e",
+          "payload_files": 73,
+          "processes": 9,
+          "process_count_scope": "top_level_subprocesses",
+          "cli_invocations": 9,
+          "isolated_cli_completed": true,
+          "minimum_read_and_default_privacy": true,
+          "snapshot_schema_validated": true,
+          "posix_modes_verified": false,
+          "corrupt_update_rejected_before_install": true,
+          "same_candidate_two_slot_rollback": true,
+          "older_version_compatibility_tested": false,
+          "published": false,
+          "global_install_or_path_modified": false,
+          "publisher_authenticated": false,
+          "pe_image": {
+            "format": "PE32+",
+            "machine": "x86_64",
+            "kind": "exe",
+            "subsystem": "windows_cui",
+            "declared_os_version": [
+              6,
+              0
+            ],
+            "declared_subsystem_version": [
+              6,
+              0
+            ],
+            "direct_imports": [
+              "advapi32.dll",
+              "api-ms-win-core-synch-l1-2-0.dll",
+              "api-ms-win-crt-heap-l1-1-0.dll",
+              "api-ms-win-crt-locale-l1-1-0.dll",
+              "api-ms-win-crt-math-l1-1-0.dll",
+              "api-ms-win-crt-runtime-l1-1-0.dll",
+              "api-ms-win-crt-stdio-l1-1-0.dll",
+              "api-ms-win-crt-string-l1-1-0.dll",
+              "bcryptprimitives.dll",
+              "dxgi.dll",
+              "iphlpapi.dll",
+              "kernel32.dll",
+              "ntdll.dll",
+              "oleaut32.dll",
+              "pdh.dll",
+              "powrprof.dll",
+              "psapi.dll",
+              "setupapi.dll",
+              "shell32.dll",
+              "user32.dll",
+              "vcruntime140.dll"
+            ],
+            "delay_imports": [],
+            "direct_symbols": {
+              "advapi32.dll": {
+                "names": [
+                  "CopySid",
+                  "GetLengthSid",
+                  "GetTokenInformation",
+                  "IsValidSid",
+                  "OpenProcessToken",
+                  "RegCloseKey",
+                  "RegGetValueW",
+                  "RegOpenKeyExW",
+                  "RegQueryValueExW"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-core-synch-l1-2-0.dll": {
+                "names": [
+                  "WaitOnAddress",
+                  "WakeByAddressAll",
+                  "WakeByAddressSingle"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-heap-l1-1-0.dll": {
+                "names": [
+                  "_set_new_mode",
+                  "free"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-locale-l1-1-0.dll": {
+                "names": [
+                  "_configthreadlocale"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-math-l1-1-0.dll": {
+                "names": [
+                  "__setusermatherr"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-runtime-l1-1-0.dll": {
+                "names": [
+                  "__p___argc",
+                  "__p___argv",
+                  "_c_exit",
+                  "_cexit",
+                  "_configure_narrow_argv",
+                  "_crt_atexit",
+                  "_exit",
+                  "_get_initial_narrow_environment",
+                  "_initialize_narrow_environment",
+                  "_initialize_onexit_table",
+                  "_initterm",
+                  "_initterm_e",
+                  "_register_onexit_function",
+                  "_register_thread_local_exe_atexit_callback",
+                  "_seh_filter_exe",
+                  "_set_app_type",
+                  "exit",
+                  "terminate"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-stdio-l1-1-0.dll": {
+                "names": [
+                  "__p__commode",
+                  "_set_fmode"
+                ],
+                "ordinals": []
+              },
+              "api-ms-win-crt-string-l1-1-0.dll": {
+                "names": [
+                  "wcslen"
+                ],
+                "ordinals": []
+              },
+              "bcryptprimitives.dll": {
+                "names": [
+                  "ProcessPrng"
+                ],
+                "ordinals": []
+              },
+              "dxgi.dll": {
+                "names": [
+                  "CreateDXGIFactory1"
+                ],
+                "ordinals": []
+              },
+              "iphlpapi.dll": {
+                "names": [
+                  "GetIfEntry2",
+                  "GetIfTable"
+                ],
+                "ordinals": []
+              },
+              "kernel32.dll": {
+                "names": [
+                  "AddVectoredExceptionHandler",
+                  "CloseHandle",
+                  "CompareStringOrdinal",
+                  "CreateFileW",
+                  "CreateMutexA",
+                  "CreateProcessW",
+                  "CreateThread",
+                  "CreateToolhelp32Snapshot",
+                  "CreateWaitableTimerExW",
+                  "DeviceIoControl",
+                  "DuplicateHandle",
+                  "ExitProcess",
+                  "FormatMessageW",
+                  "FreeEnvironmentStringsW",
+                  "GetActiveProcessorCount",
+                  "GetActiveProcessorGroupCount",
+                  "GetCommandLineW",
+                  "GetConsoleMode",
+                  "GetConsoleOutputCP",
+                  "GetCurrentDirectoryW",
+                  "GetCurrentProcess",
+                  "GetCurrentProcessId",
+                  "GetCurrentThread",
+                  "GetCurrentThreadId",
+                  "GetEnvironmentStringsW",
+                  "GetEnvironmentVariableW",
+                  "GetExitCodeProcess",
+                  "GetFileAttributesW",
+                  "GetFullPathNameW",
+                  "GetLastError",
+                  "GetLogicalProcessorInformationEx",
+                  "GetModuleFileNameW",
+                  "GetModuleHandleA",
+                  "GetModuleHandleW",
+                  "GetPhysicallyInstalledSystemMemory",
+                  "GetProcAddress",
+                  "GetProcessHeap",
+                  "GetProcessId",
+                  "GetProcessIoCounters",
+                  "GetProcessTimes",
+                  "GetStdHandle",
+                  "GetSystemDirectoryW",
+                  "GetSystemInfo",
+                  "GetSystemPowerStatus",
+                  "GetSystemTimeAsFileTime",
+                  "GetSystemTimePreciseAsFileTime",
+                  "GetSystemTimes",
+                  "GetTickCount64",
+                  "GetWindowsDirectoryW",
+                  "GlobalMemoryStatusEx",
+                  "HeapAlloc",
+                  "HeapFree",
+                  "HeapReAlloc",
+                  "InitializeSListHead",
+                  "K32GetPerformanceInfo",
+                  "LoadLibraryA",
+                  "LocalFree",
+                  "MultiByteToWideChar",
+                  "OpenProcess",
+                  "Process32FirstW",
+                  "Process32NextW",
+                  "QueryPerformanceCounter",
+                  "QueryPerformanceFrequency",
+                  "ReadConsoleW",
+                  "ReadFileEx",
+                  "ReadProcessMemory",
+                  "ReleaseMutex",
+                  "SetFileInformationByHandle",
+                  "SetFileTime",
+                  "SetLastError",
+                  "SetThreadGroupAffinity",
+                  "SetThreadStackGuarantee",
+                  "SetUnhandledExceptionFilter",
+                  "SetWaitableTimer",
+                  "Sleep",
+                  "SleepEx",
+                  "SwitchToThread",
+                  "TerminateProcess",
+                  "VirtualQueryEx",
+                  "WaitForSingleObject",
+                  "WaitForSingleObjectEx",
+                  "WideCharToMultiByte",
+                  "WriteConsoleW",
+                  "WriteFileEx",
+                  "lstrlenW"
+                ],
+                "ordinals": []
+              },
+              "ntdll.dll": {
+                "names": [
+                  "NtCreateNamedPipeFile",
+                  "NtOpenFile",
+                  "NtQueryInformationProcess",
+                  "NtReadFile",
+                  "NtWriteFile",
+                  "RtlCaptureContext",
+                  "RtlGetVersion",
+                  "RtlLookupFunctionEntry",
+                  "RtlNtStatusToDosError",
+                  "RtlVirtualUnwind"
+                ],
+                "ordinals": []
+              },
+              "oleaut32.dll": {
+                "names": [
+                  "GetErrorInfo"
+                ],
+                "ordinals": []
+              },
+              "pdh.dll": {
+                "names": [
+                  "PdhAddEnglishCounterW",
+                  "PdhCloseQuery",
+                  "PdhCollectQueryData",
+                  "PdhEnumObjectsW",
+                  "PdhGetFormattedCounterValue",
+                  "PdhOpenQueryW",
+                  "PdhRemoveCounter"
+                ],
+                "ordinals": []
+              },
+              "powrprof.dll": {
+                "names": [
+                  "CallNtPowerInformation"
+                ],
+                "ordinals": []
+              },
+              "psapi.dll": {
+                "names": [
+                  "GetModuleFileNameExW",
+                  "GetProcessMemoryInfo"
+                ],
+                "ordinals": []
+              },
+              "setupapi.dll": {
+                "names": [
+                  "SetupDiDestroyDeviceInfoList",
+                  "SetupDiEnumDeviceInterfaces",
+                  "SetupDiGetClassDevsW",
+                  "SetupDiGetDeviceInterfaceDetailW"
+                ],
+                "ordinals": []
+              },
+              "shell32.dll": {
+                "names": [
+                  "CommandLineToArgvW"
+                ],
+                "ordinals": []
+              },
+              "user32.dll": {
+                "names": [
+                  "DisplayConfigGetDeviceInfo",
+                  "GetDisplayConfigBufferSizes",
+                  "QueryDisplayConfig"
+                ],
+                "ordinals": []
+              },
+              "vcruntime140.dll": {
+                "names": [
+                  "_CxxThrowException",
+                  "__C_specific_handler",
+                  "__CxxFrameHandler3",
+                  "__current_exception",
+                  "__current_exception_context",
+                  "memcmp",
+                  "memcpy",
+                  "memmove",
+                  "memset"
+                ],
+                "ordinals": []
+              }
+            },
+            "delay_symbols": {},
+            "minimum_windows_verified": false,
+            "transitive_or_dynamic_loads_inspected": false
+          },
+          "pe_archive_inspections": 1
+        }
+      },
+      "sdk": {
+        "original_report_sha256": "e17a2b1929cd8a8a9ee7313464b421b28b0de2d4b8390f932b2f016935ff1953",
+        "report": {
+          "overall": "passed",
+          "source_commit": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+          "source_dirty": false,
+          "product": "ffi_sdk",
+          "target": "x86_64-pc-windows-msvc",
+          "host": {
+            "system": "Windows",
+            "version": "10.0.26100",
+            "machine": "AMD64"
+          },
+          "bundle_format": 3,
+          "abi_version": 1,
+          "schema_version": 1,
+          "archive_sha256": "dcdbc279fc4c333fbfaf66aba8d075e1dd441e73230cf969d5895f7111813d9e",
+          "header_sha256": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+          "payload_files": 78,
+          "processes": 9,
+          "c_compile_and_runs": 3,
+          "python_collect_free_cycles": 300,
+          "snapshot_schema_validated": true,
+          "minimum_read_and_default_privacy": true,
+          "stale_copy_and_empty_free": true,
+          "corrupt_update_rejected_before_install": true,
+          "same_candidate_two_slot_rollback": true,
+          "older_version_compatibility_tested": false,
+          "published": false,
+          "global_install_or_path_modified": false,
+          "publisher_authenticated": false,
+          "dll_sha256": "206bcc67b2c79523736807dbae91162b5cc0c648e3c6e234ea0501e0af0f091e",
+          "import_library_sha256": "78214f2b47ae59f00921e35c5b672c253348d5e0a9d94cd574dccb2b7c33ddd2",
+          "pe_archive_inspections": 1,
+          "pe_installed_inspections": 6,
+          "pe_images": {
+            "consumer": {
+              "format": "PE32+",
+              "machine": "x86_64",
+              "kind": "exe",
+              "subsystem": "windows_cui",
+              "declared_os_version": [
+                6,
+                0
+              ],
+              "declared_subsystem_version": [
+                6,
+                0
+              ],
+              "direct_imports": [
+                "daoseeker_scope_ffi.dll",
+                "kernel32.dll"
+              ],
+              "delay_imports": [],
+              "direct_symbols": {
+                "daoseeker_scope_ffi.dll": {
+                  "names": [
+                    "dsc_abi_version",
+                    "dsc_buffer_free",
+                    "dsc_collect_json",
+                    "dsc_last_error"
+                  ],
+                  "ordinals": []
+                },
+                "kernel32.dll": {
+                  "names": [
+                    "CloseHandle",
+                    "CompareStringW",
+                    "CreateFileW",
+                    "DeleteCriticalSection",
+                    "EncodePointer",
+                    "EnterCriticalSection",
+                    "ExitProcess",
+                    "FindClose",
+                    "FindFirstFileExW",
+                    "FindNextFileW",
+                    "FlsAlloc",
+                    "FlsFree",
+                    "FlsGetValue",
+                    "FlsSetValue",
+                    "FlushFileBuffers",
+                    "FreeEnvironmentStringsW",
+                    "FreeLibrary",
+                    "GetACP",
+                    "GetCPInfo",
+                    "GetCommandLineA",
+                    "GetCommandLineW",
+                    "GetConsoleMode",
+                    "GetConsoleOutputCP",
+                    "GetCurrentProcess",
+                    "GetCurrentProcessId",
+                    "GetCurrentThreadId",
+                    "GetEnvironmentStringsW",
+                    "GetFileSizeEx",
+                    "GetFileType",
+                    "GetLastError",
+                    "GetModuleFileNameW",
+                    "GetModuleHandleExW",
+                    "GetModuleHandleW",
+                    "GetOEMCP",
+                    "GetProcAddress",
+                    "GetProcessHeap",
+                    "GetStartupInfoW",
+                    "GetStdHandle",
+                    "GetStringTypeW",
+                    "GetSystemTimeAsFileTime",
+                    "HeapAlloc",
+                    "HeapFree",
+                    "HeapReAlloc",
+                    "HeapSize",
+                    "InitializeCriticalSectionEx",
+                    "InitializeSListHead",
+                    "IsDebuggerPresent",
+                    "IsProcessorFeaturePresent",
+                    "IsValidCodePage",
+                    "LCMapStringW",
+                    "LeaveCriticalSection",
+                    "LoadLibraryExW",
+                    "MultiByteToWideChar",
+                    "QueryPerformanceCounter",
+                    "RaiseException",
+                    "RtlCaptureContext",
+                    "RtlLookupFunctionEntry",
+                    "RtlPcToFileHeader",
+                    "RtlUnwindEx",
+                    "RtlVirtualUnwind",
+                    "SetEnvironmentVariableW",
+                    "SetFilePointerEx",
+                    "SetLastError",
+                    "SetStdHandle",
+                    "SetUnhandledExceptionFilter",
+                    "TerminateProcess",
+                    "UnhandledExceptionFilter",
+                    "VirtualProtect",
+                    "WideCharToMultiByte",
+                    "WriteConsoleW",
+                    "WriteFile"
+                  ],
+                  "ordinals": []
+                }
+              },
+              "delay_symbols": {},
+              "minimum_windows_verified": false,
+              "transitive_or_dynamic_loads_inspected": false
+            },
+            "library": {
+              "format": "PE32+",
+              "machine": "x86_64",
+              "kind": "dll",
+              "subsystem": "windows_gui",
+              "declared_os_version": [
+                6,
+                0
+              ],
+              "declared_subsystem_version": [
+                6,
+                0
+              ],
+              "direct_imports": [
+                "advapi32.dll",
+                "api-ms-win-core-synch-l1-2-0.dll",
+                "api-ms-win-crt-heap-l1-1-0.dll",
+                "api-ms-win-crt-runtime-l1-1-0.dll",
+                "api-ms-win-crt-string-l1-1-0.dll",
+                "bcryptprimitives.dll",
+                "dxgi.dll",
+                "iphlpapi.dll",
+                "kernel32.dll",
+                "ntdll.dll",
+                "oleaut32.dll",
+                "pdh.dll",
+                "powrprof.dll",
+                "psapi.dll",
+                "setupapi.dll",
+                "shell32.dll",
+                "user32.dll",
+                "vcruntime140.dll"
+              ],
+              "delay_imports": [],
+              "direct_symbols": {
+                "advapi32.dll": {
+                  "names": [
+                    "CopySid",
+                    "GetLengthSid",
+                    "GetTokenInformation",
+                    "IsValidSid",
+                    "OpenProcessToken",
+                    "RegCloseKey",
+                    "RegGetValueW",
+                    "RegOpenKeyExW",
+                    "RegQueryValueExW"
+                  ],
+                  "ordinals": []
+                },
+                "api-ms-win-core-synch-l1-2-0.dll": {
+                  "names": [
+                    "WaitOnAddress",
+                    "WakeByAddressAll",
+                    "WakeByAddressSingle"
+                  ],
+                  "ordinals": []
+                },
+                "api-ms-win-crt-heap-l1-1-0.dll": {
+                  "names": [
+                    "free"
+                  ],
+                  "ordinals": []
+                },
+                "api-ms-win-crt-runtime-l1-1-0.dll": {
+                  "names": [
+                    "_cexit",
+                    "_configure_narrow_argv",
+                    "_execute_onexit_table",
+                    "_initialize_narrow_environment",
+                    "_initialize_onexit_table",
+                    "_initterm",
+                    "_initterm_e",
+                    "_seh_filter_dll"
+                  ],
+                  "ordinals": []
+                },
+                "api-ms-win-crt-string-l1-1-0.dll": {
+                  "names": [
+                    "wcslen"
+                  ],
+                  "ordinals": []
+                },
+                "bcryptprimitives.dll": {
+                  "names": [
+                    "ProcessPrng"
+                  ],
+                  "ordinals": []
+                },
+                "dxgi.dll": {
+                  "names": [
+                    "CreateDXGIFactory1"
+                  ],
+                  "ordinals": []
+                },
+                "iphlpapi.dll": {
+                  "names": [
+                    "GetIfEntry2",
+                    "GetIfTable"
+                  ],
+                  "ordinals": []
+                },
+                "kernel32.dll": {
+                  "names": [
+                    "CloseHandle",
+                    "CreateFileW",
+                    "CreateMutexA",
+                    "CreateThread",
+                    "CreateToolhelp32Snapshot",
+                    "DeviceIoControl",
+                    "DisableThreadLibraryCalls",
+                    "FormatMessageW",
+                    "GetActiveProcessorCount",
+                    "GetActiveProcessorGroupCount",
+                    "GetConsoleMode",
+                    "GetConsoleOutputCP",
+                    "GetCurrentDirectoryW",
+                    "GetCurrentProcess",
+                    "GetCurrentProcessId",
+                    "GetCurrentThread",
+                    "GetCurrentThreadId",
+                    "GetEnvironmentVariableW",
+                    "GetLastError",
+                    "GetLogicalProcessorInformationEx",
+                    "GetModuleHandleA",
+                    "GetModuleHandleW",
+                    "GetPhysicallyInstalledSystemMemory",
+                    "GetProcAddress",
+                    "GetProcessHeap",
+                    "GetProcessIoCounters",
+                    "GetProcessTimes",
+                    "GetStdHandle",
+                    "GetSystemInfo",
+                    "GetSystemPowerStatus",
+                    "GetSystemTimeAsFileTime",
+                    "GetSystemTimePreciseAsFileTime",
+                    "GetSystemTimes",
+                    "GetTickCount64",
+                    "GlobalMemoryStatusEx",
+                    "HeapAlloc",
+                    "HeapFree",
+                    "HeapReAlloc",
+                    "InitializeSListHead",
+                    "K32GetPerformanceInfo",
+                    "LoadLibraryA",
+                    "LocalFree",
+                    "MultiByteToWideChar",
+                    "OpenProcess",
+                    "Process32FirstW",
+                    "Process32NextW",
+                    "QueryPerformanceCounter",
+                    "QueryPerformanceFrequency",
+                    "ReadProcessMemory",
+                    "ReleaseMutex",
+                    "SetLastError",
+                    "SetThreadGroupAffinity",
+                    "SetThreadStackGuarantee",
+                    "SwitchToThread",
+                    "VirtualQueryEx",
+                    "WaitForSingleObject",
+                    "WaitForSingleObjectEx",
+                    "WideCharToMultiByte",
+                    "WriteConsoleW",
+                    "lstrlenW"
+                  ],
+                  "ordinals": []
+                },
+                "ntdll.dll": {
+                  "names": [
+                    "NtQueryInformationProcess",
+                    "NtWriteFile",
+                    "RtlCaptureContext",
+                    "RtlGetVersion",
+                    "RtlLookupFunctionEntry",
+                    "RtlNtStatusToDosError",
+                    "RtlVirtualUnwind"
+                  ],
+                  "ordinals": []
+                },
+                "oleaut32.dll": {
+                  "names": [
+                    "GetErrorInfo"
+                  ],
+                  "ordinals": []
+                },
+                "pdh.dll": {
+                  "names": [
+                    "PdhAddEnglishCounterW",
+                    "PdhCloseQuery",
+                    "PdhCollectQueryData",
+                    "PdhEnumObjectsW",
+                    "PdhGetFormattedCounterValue",
+                    "PdhOpenQueryW",
+                    "PdhRemoveCounter"
+                  ],
+                  "ordinals": []
+                },
+                "powrprof.dll": {
+                  "names": [
+                    "CallNtPowerInformation"
+                  ],
+                  "ordinals": []
+                },
+                "psapi.dll": {
+                  "names": [
+                    "GetModuleFileNameExW",
+                    "GetProcessMemoryInfo"
+                  ],
+                  "ordinals": []
+                },
+                "setupapi.dll": {
+                  "names": [
+                    "SetupDiDestroyDeviceInfoList",
+                    "SetupDiEnumDeviceInterfaces",
+                    "SetupDiGetClassDevsW",
+                    "SetupDiGetDeviceInterfaceDetailW"
+                  ],
+                  "ordinals": []
+                },
+                "shell32.dll": {
+                  "names": [
+                    "CommandLineToArgvW"
+                  ],
+                  "ordinals": []
+                },
+                "user32.dll": {
+                  "names": [
+                    "DisplayConfigGetDeviceInfo",
+                    "GetDisplayConfigBufferSizes",
+                    "QueryDisplayConfig"
+                  ],
+                  "ordinals": []
+                },
+                "vcruntime140.dll": {
+                  "names": [
+                    "_CxxThrowException",
+                    "__C_specific_handler",
+                    "__CxxFrameHandler3",
+                    "__std_type_info_destroy_list",
+                    "memcmp",
+                    "memcpy",
+                    "memmove",
+                    "memset"
+                  ],
+                  "ordinals": []
+                }
+              },
+              "delay_symbols": {},
+              "minimum_windows_verified": false,
+              "transitive_or_dynamic_loads_inspected": false
+            }
+          }
+        }
+      }
+    },
+    "Linux-X64": {
+      "cli": {
+        "original_report_sha256": "1fb3656cf8a3ca1f08ad4f0ba6468b2ef1334376f80f65566d9dc712f461c5c7",
+        "report": {
+          "overall": "passed",
+          "source_commit": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+          "source_dirty": false,
+          "target": "x86_64-unknown-linux-gnu",
+          "host": {
+            "system": "Linux",
+            "version": "#17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026",
+            "machine": "x86_64"
+          },
+          "version": "0.1.0",
+          "bundle_format": 2,
+          "abi_version": 1,
+          "schema_version": 1,
+          "archive_sha256": "75223ed0a53be5c2588bde490f9b010565b36b5bf4320f759fdce40d8dfd40d0",
+          "cli_sha256": "89a2c60173390d8ba4c65b3aa59d8b5b439a0b8790d53f7956dae1f4f94a32b5",
+          "payload_files": 43,
+          "processes": 10,
+          "process_count_scope": "top_level_subprocesses",
+          "cli_invocations": 9,
+          "isolated_cli_completed": true,
+          "minimum_read_and_default_privacy": true,
+          "snapshot_schema_validated": true,
+          "posix_modes_verified": true,
+          "corrupt_update_rejected_before_install": true,
+          "same_candidate_two_slot_rollback": true,
+          "older_version_compatibility_tested": false,
+          "published": false,
+          "global_install_or_path_modified": false,
+          "publisher_authenticated": false,
+          "elf_image": {
+            "direct_dependencies": [
+              "libgcc_s.so.1",
+              "libc.so.6",
+              "ld-linux-x86-64.so.2"
+            ],
+            "required_symbol_versions": {
+              "ld-linux-x86-64.so.2": [
+                "GLIBC_2.3"
+              ],
+              "libc.so.6": [
+                "GLIBC_2.14",
+                "GLIBC_2.15",
+                "GLIBC_2.16",
+                "GLIBC_2.17",
+                "GLIBC_2.18",
+                "GLIBC_2.2.5",
+                "GLIBC_2.25",
+                "GLIBC_2.28",
+                "GLIBC_2.29",
+                "GLIBC_2.3",
+                "GLIBC_2.3.4",
+                "GLIBC_2.30",
+                "GLIBC_2.32",
+                "GLIBC_2.33",
+                "GLIBC_2.34",
+                "GLIBC_2.9"
+              ],
+              "libgcc_s.so.1": [
+                "GCC_3.0",
+                "GCC_3.3",
+                "GCC_4.2.0"
+              ]
+            },
+            "weak_symbol_versions": {},
+            "direct_dependencies_without_version_entries": [],
+            "highest_glibc_numeric_requirement": "GLIBC_2.34",
+            "minimum_glibc_or_distribution_verified": false,
+            "transitive_or_runtime_loads_inspected": false
+          },
+          "elf_inspections": 1,
+          "child_loader_overrides_cleared": true
+        }
+      },
+      "sdk": {
+        "original_report_sha256": "4e653c5cbd49a998c3e884929e41689bb939d4431bb4401428cdb80cc5e06989",
+        "report": {
+          "overall": "passed",
+          "source_commit": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+          "source_dirty": false,
+          "product": "ffi_sdk",
+          "target": "x86_64-unknown-linux-gnu",
+          "host": {
+            "system": "Linux",
+            "version": "#17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026",
+            "machine": "x86_64"
+          },
+          "bundle_format": 4,
+          "abi_version": 1,
+          "schema_version": 1,
+          "archive_sha256": "379506d1df922dd7c68fd41575ff8bd0c23f3a2587c675181fef4e23b098be7d",
+          "header_sha256": "193b9d73458124c96dbf4cbdd73dd149d3ff4934704cd659f88bd056d9df92cd",
+          "payload_files": 47,
+          "processes": 15,
+          "c_compile_and_runs": 3,
+          "python_collect_free_cycles": 300,
+          "snapshot_schema_validated": true,
+          "minimum_read_and_default_privacy": true,
+          "stale_copy_and_empty_free": true,
+          "corrupt_update_rejected_before_install": true,
+          "same_candidate_two_slot_rollback": true,
+          "older_version_compatibility_tested": false,
+          "published": false,
+          "global_install_or_path_modified": false,
+          "publisher_authenticated": false,
+          "library_sha256": "ab2ecf39e002811009021afb8481a5f0ccd47763126c65d1b65dbce25a980990",
+          "elf_inspections": 6,
+          "elf_needed": {
+            "consumer": [
+              "libdaoseeker_scope_ffi.so",
+              "libc.so.6"
+            ],
+            "library": [
+              "libgcc_s.so.1",
+              "libc.so.6",
+              "ld-linux-x86-64.so.2"
+            ]
+          },
+          "elf_images": {
+            "consumer": {
+              "direct_dependencies": [
+                "libdaoseeker_scope_ffi.so",
+                "libc.so.6"
+              ],
+              "required_symbol_versions": {
+                "libc.so.6": [
+                  "GLIBC_2.2.5",
+                  "GLIBC_2.34",
+                  "GLIBC_2.4"
+                ]
+              },
+              "weak_symbol_versions": {},
+              "direct_dependencies_without_version_entries": [
+                "libdaoseeker_scope_ffi.so"
+              ],
+              "highest_glibc_numeric_requirement": "GLIBC_2.34",
+              "minimum_glibc_or_distribution_verified": false,
+              "transitive_or_runtime_loads_inspected": false
+            },
+            "library": {
+              "direct_dependencies": [
+                "libgcc_s.so.1",
+                "libc.so.6",
+                "ld-linux-x86-64.so.2"
+              ],
+              "required_symbol_versions": {
+                "ld-linux-x86-64.so.2": [
+                  "GLIBC_2.3"
+                ],
+                "libc.so.6": [
+                  "GLIBC_2.14",
+                  "GLIBC_2.16",
+                  "GLIBC_2.17",
+                  "GLIBC_2.18",
+                  "GLIBC_2.2.5",
+                  "GLIBC_2.25",
+                  "GLIBC_2.28",
+                  "GLIBC_2.3",
+                  "GLIBC_2.3.4",
+                  "GLIBC_2.30",
+                  "GLIBC_2.32",
+                  "GLIBC_2.33",
+                  "GLIBC_2.34"
+                ],
+                "libgcc_s.so.1": [
+                  "GCC_3.0",
+                  "GCC_3.3",
+                  "GCC_4.2.0"
+                ]
+              },
+              "weak_symbol_versions": {},
+              "direct_dependencies_without_version_entries": [],
+              "highest_glibc_numeric_requirement": "GLIBC_2.34",
+              "minimum_glibc_or_distribution_verified": false,
+              "transitive_or_runtime_loads_inspected": false
+            }
+          },
+          "consumer_runpath": "$ORIGIN/../lib",
+          "child_loader_overrides_cleared": true,
+          "posix_modes_verified": true,
+          "minimum_glibc_or_distribution_verified": false
+        }
+      }
+    }
+  },
+  "linux_runtime_report": {
+    "original_report_sha256": "c3b3248cc45a2698d8ec733d0571f84c9e7659cfa875601a4525bcc2b5c62848",
+    "report": {
+      "report_version": 2,
+      "overall": "passed",
+      "profiles": {
+        "bookworm": {
+          "status": "passed",
+          "image": "python@sha256:f576b530293e74140ea91d262232648d5c4f45640a95ec447757701bfcacf034",
+          "phase": "complete",
+          "image_id": "sha256:2e6b5bbf5b2f372ef9b208e7c7c300675be97a6dc1bbe7e3ac0b9c20035fd70e",
+          "configuration": {
+            "user": "65534:65534",
+            "network": "none",
+            "readonly_root": true,
+            "readonly_candidate_mount": true,
+            "writable_tmpfs": "/work",
+            "entrypoint": "python",
+            "memory_bytes": 268435456,
+            "pids": 32,
+            "cpus": 1
+          },
+          "expected": "runs",
+          "runtime": {
+            "glibc": "2.36",
+            "distribution": {
+              "id": "debian",
+              "version_id": "12"
+            },
+            "python": "3.13.13",
+            "debian": "12",
+            "kernel": "7.0.0-1017-azure",
+            "machine": "x86_64",
+            "uid": 65534,
+            "cargo_available": false,
+            "rustc_available": false
+          },
+          "binary_sha256": {
+            "cli": "89a2c60173390d8ba4c65b3aa59d8b5b439a0b8790d53f7956dae1f4f94a32b5",
+            "library": "ab2ecf39e002811009021afb8481a5f0ccd47763126c65d1b65dbce25a980990",
+            "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+          },
+          "installed_payload_files": {
+            "cli": 43,
+            "sdk": 47
+          },
+          "rebuilt_in_container": false,
+          "installation_storage": {
+            "capacity_bytes": 67108864,
+            "reserve_bytes": 16777216,
+            "available_before_copy_bytes": 67108864,
+            "available_after_copy_bytes": 31936512
+          },
+          "snapshot_schema_and_default_privacy": true,
+          "python_collect_free_cycles": 100,
+          "child_processes": 5,
+          "isolated_cli_completed": true,
+          "output_sha256": {
+            "cli_version": "492d0083a0d1e9de8fbfc97174806c46f68dd007a649cc18d398383c657cbe9d",
+            "cli_json": "400e6dc71fb6f7fb74348bf8ffd6f1379b6af86451b0cfc9f71182425e78aa61",
+            "cli_isolated_json": "d17813d18f70daa3cb96fa46dac15da315af69f5cc0d7939d2ca51a3bdac9992",
+            "c": "2f0756179f66d46d1a61ffc790b73aeb70bc99379c5e3be91cebf29b33d4e911",
+            "python": "57adedfa84f5ded89ada46a8084320007d4aa190f5ab67db6cc062d1699bdd66"
+          },
+          "container_removed": true
+        },
+        "bullseye": {
+          "status": "passed",
+          "image": "python@sha256:4ea2e567da526afcd5655339f71295ca6ef72271ff6123bb5c7144ae8fdc1692",
+          "phase": "complete",
+          "image_id": "sha256:932831e2e7dc0aebbabca90d6c78087538e5c3ecf38151069ab418d1ec4532d2",
+          "configuration": {
+            "user": "65534:65534",
+            "network": "none",
+            "readonly_root": true,
+            "readonly_candidate_mount": true,
+            "writable_tmpfs": "/work",
+            "entrypoint": "python",
+            "memory_bytes": 268435456,
+            "pids": 32,
+            "cpus": 1
+          },
+          "expected": "loader_rejects",
+          "runtime": {
+            "glibc": "2.31",
+            "distribution": {
+              "id": "debian",
+              "version_id": "11"
+            },
+            "python": "3.13.5",
+            "debian": "11",
+            "kernel": "7.0.0-1017-azure",
+            "machine": "x86_64",
+            "uid": 65534,
+            "cargo_available": false,
+            "rustc_available": false
+          },
+          "binary_sha256": {
+            "cli": "89a2c60173390d8ba4c65b3aa59d8b5b439a0b8790d53f7956dae1f4f94a32b5",
+            "library": "ab2ecf39e002811009021afb8481a5f0ccd47763126c65d1b65dbce25a980990",
+            "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+          },
+          "installed_payload_files": {
+            "cli": 43,
+            "sdk": 47
+          },
+          "rebuilt_in_container": false,
+          "installation_storage": {
+            "capacity_bytes": 67108864,
+            "reserve_bytes": 16777216,
+            "available_before_copy_bytes": 67108864,
+            "available_after_copy_bytes": 31936512
+          },
+          "collection_started": false,
+          "child_processes": 2,
+          "missing_glibc_versions": {
+            "cli": [
+              "GLIBC_2.32",
+              "GLIBC_2.33",
+              "GLIBC_2.34"
+            ],
+            "c": [
+              "GLIBC_2.32",
+              "GLIBC_2.33",
+              "GLIBC_2.34"
+            ],
+            "ctypes_load": [
+              "GLIBC_2.32"
+            ]
+          },
+          "container_removed": true
+        },
+        "ubi9": {
+          "status": "passed",
+          "image": "registry.access.redhat.com/ubi9/python-312@sha256:d2cacc387d43e61513038694222980f774cae60b2b8afea8b6846654e25da9e7",
+          "phase": "complete",
+          "image_id": "sha256:06e426750a52b32e8d258fa8a8e7f237421fa8167a0e38ad8307d6af4d4d68c6",
+          "configuration": {
+            "user": "65534:65534",
+            "network": "none",
+            "readonly_root": true,
+            "readonly_candidate_mount": true,
+            "writable_tmpfs": "/work",
+            "entrypoint": "/usr/bin/python3.12",
+            "memory_bytes": 268435456,
+            "pids": 32,
+            "cpus": 1
+          },
+          "expected": "runs",
+          "runtime": {
+            "glibc": "2.34",
+            "distribution": {
+              "id": "rhel",
+              "version_id": "9.8"
+            },
+            "python": "3.12.15",
+            "kernel": "7.0.0-1017-azure",
+            "machine": "x86_64",
+            "uid": 65534,
+            "cargo_available": false,
+            "rustc_available": false
+          },
+          "binary_sha256": {
+            "cli": "89a2c60173390d8ba4c65b3aa59d8b5b439a0b8790d53f7956dae1f4f94a32b5",
+            "library": "ab2ecf39e002811009021afb8481a5f0ccd47763126c65d1b65dbce25a980990",
+            "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+          },
+          "installed_payload_files": {
+            "cli": 43,
+            "sdk": 47
+          },
+          "rebuilt_in_container": false,
+          "installation_storage": {
+            "capacity_bytes": 67108864,
+            "reserve_bytes": 16777216,
+            "available_before_copy_bytes": 67108864,
+            "available_after_copy_bytes": 31936512
+          },
+          "snapshot_schema_and_default_privacy": true,
+          "python_collect_free_cycles": 100,
+          "child_processes": 5,
+          "isolated_cli_completed": true,
+          "output_sha256": {
+            "cli_version": "492d0083a0d1e9de8fbfc97174806c46f68dd007a649cc18d398383c657cbe9d",
+            "cli_json": "c8f1495698db23499f0a64828a0dd19a6777f335db767a23d85c53a33549a317",
+            "cli_isolated_json": "28e50ee7f97b50e68df84c550439e26c00c9e84b87fa4816bd645689b2397479",
+            "c": "1832b6b88b17b22d1e4a558c0ad505d42660b05b7e932fd4a1ead8ebd0c2bf9c",
+            "python": "57adedfa84f5ded89ada46a8084320007d4aa190f5ab67db6cc062d1699bdd66"
+          },
+          "container_removed": true
+        }
+      },
+      "physical_device_validation": false,
+      "minimum_kernel_or_distribution_verified": false,
+      "published": false,
+      "source_commit": "ab070738c47fcd9f3d7c78a23821123db5756c86",
+      "source_dirty": false,
+      "docker_version": "28.0.4",
+      "payload_bytes": {
+        "cli": 17686617,
+        "sdk": 17235467
+      },
+      "binary_sha256": {
+        "cli": "89a2c60173390d8ba4c65b3aa59d8b5b439a0b8790d53f7956dae1f4f94a32b5",
+        "library": "ab2ecf39e002811009021afb8481a5f0ccd47763126c65d1b65dbce25a980990",
+        "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+      },
+      "archive_sha256": {
+        "cli": "75223ed0a53be5c2588bde490f9b010565b36b5bf4320f759fdce40d8dfd40d0",
+        "sdk": "379506d1df922dd7c68fd41575ff8bd0c23f3a2587c675181fef4e23b098be7d"
+      },
+      "elf_requirements": {
+        "cli": {
+          "direct_dependencies": [
+            "libgcc_s.so.1",
+            "libc.so.6",
+            "ld-linux-x86-64.so.2"
+          ],
+          "required_symbol_versions": {
+            "ld-linux-x86-64.so.2": [
+              "GLIBC_2.3"
+            ],
+            "libc.so.6": [
+              "GLIBC_2.14",
+              "GLIBC_2.15",
+              "GLIBC_2.16",
+              "GLIBC_2.17",
+              "GLIBC_2.18",
+              "GLIBC_2.2.5",
+              "GLIBC_2.25",
+              "GLIBC_2.28",
+              "GLIBC_2.29",
+              "GLIBC_2.3",
+              "GLIBC_2.3.4",
+              "GLIBC_2.30",
+              "GLIBC_2.32",
+              "GLIBC_2.33",
+              "GLIBC_2.34",
+              "GLIBC_2.9"
+            ],
+            "libgcc_s.so.1": [
+              "GCC_3.0",
+              "GCC_3.3",
+              "GCC_4.2.0"
+            ]
+          },
+          "weak_symbol_versions": {},
+          "direct_dependencies_without_version_entries": [],
+          "highest_glibc_numeric_requirement": "GLIBC_2.34",
+          "minimum_glibc_or_distribution_verified": false,
+          "transitive_or_runtime_loads_inspected": false
+        },
+        "library": {
+          "direct_dependencies": [
+            "libgcc_s.so.1",
+            "libc.so.6",
+            "ld-linux-x86-64.so.2"
+          ],
+          "required_symbol_versions": {
+            "ld-linux-x86-64.so.2": [
+              "GLIBC_2.3"
+            ],
+            "libc.so.6": [
+              "GLIBC_2.14",
+              "GLIBC_2.16",
+              "GLIBC_2.17",
+              "GLIBC_2.18",
+              "GLIBC_2.2.5",
+              "GLIBC_2.25",
+              "GLIBC_2.28",
+              "GLIBC_2.3",
+              "GLIBC_2.3.4",
+              "GLIBC_2.30",
+              "GLIBC_2.32",
+              "GLIBC_2.33",
+              "GLIBC_2.34"
+            ],
+            "libgcc_s.so.1": [
+              "GCC_3.0",
+              "GCC_3.3",
+              "GCC_4.2.0"
+            ]
+          },
+          "weak_symbol_versions": {},
+          "direct_dependencies_without_version_entries": [],
+          "highest_glibc_numeric_requirement": "GLIBC_2.34",
+          "minimum_glibc_or_distribution_verified": false,
+          "transitive_or_runtime_loads_inspected": false
+        },
+        "consumer": {
+          "direct_dependencies": [
+            "libdaoseeker_scope_ffi.so",
+            "libc.so.6"
+          ],
+          "required_symbol_versions": {
+            "libc.so.6": [
+              "GLIBC_2.2.5",
+              "GLIBC_2.34",
+              "GLIBC_2.4"
+            ]
+          },
+          "weak_symbol_versions": {},
+          "direct_dependencies_without_version_entries": [
+            "libdaoseeker_scope_ffi.so"
+          ],
+          "highest_glibc_numeric_requirement": "GLIBC_2.34",
+          "minimum_glibc_or_distribution_verified": false,
+          "transitive_or_runtime_loads_inspected": false
+        }
+      },
+      "work_budget": {
+        "capacity_bytes": 67108864,
+        "reserve_bytes": 16777216,
+        "logical_bytes": 34938388,
+        "estimated_copy_bytes": 35328000,
+        "allocation_block_bytes": 4096,
+        "files": 93,
+        "directories": 38
+      }
+    }
+  },
+  "notice_audits": {
+    "Windows-X64": {
+      "original_report_sha256": "688efc829539605f0799587b24ae1236ac3cc3e633e02159cd506ee71ef862c8",
+      "products": {
+        "cli": {
+          "gate": "satisfied",
+          "blocking_packages": []
+        },
+        "ffi_sdk": {
+          "gate": "satisfied",
+          "blocking_packages": []
+        }
+      }
+    },
+    "Linux-X64": {
+      "original_report_sha256": "72a39ef46f1e63041dc0d537a75363d1dbc936e82be99c755fc7652fc8afe502",
+      "products": {
+        "cli": {
+          "gate": "satisfied",
+          "blocking_packages": []
+        },
+        "ffi_sdk": {
+          "gate": "satisfied",
+          "blocking_packages": []
+        }
+      }
+    },
+    "macOS-ARM64": {
+      "original_report_sha256": "e4e1d7134c2cd4dc9a7550dd9b7605dfda158c9db4d7e52127b1e330e80b8b44",
+      "products": {
+        "cli": {
+          "gate": "blocked",
+          "blocking_packages": [
+            {
+              "name": "objc2-core-foundation",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-encode",
+              "version": "4.1.0",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-foundation",
+              "version": "0.3.2",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-io-kit",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-metal",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2",
+              "version": "0.6.5",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            }
+          ]
+        },
+        "ffi_sdk": {
+          "gate": "blocked",
+          "blocking_packages": [
+            {
+              "name": "objc2-core-foundation",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-encode",
+              "version": "4.1.0",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-foundation",
+              "version": "0.3.2",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-io-kit",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2-metal",
+              "version": "0.3.2",
+              "spdx": "Zlib OR Apache-2.0 OR MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            },
+            {
+              "name": "objc2",
+              "version": "0.6.5",
+              "spdx": "MIT",
+              "notices": [],
+              "errors": [
+                "missing_dependency_notice"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "short_fuzz": {
+    "targets": [
+      {
+        "target": "cli_args",
+        "executions": 24540775,
+        "seconds": 61,
+        "log_sha256": "ec27b81a82283db047b75d11b909edcf7530ddc5dec7b96f4bac2d1038c8ef88"
+      },
+      {
+        "target": "cpu_stat",
+        "executions": 1219527,
+        "seconds": 61,
+        "log_sha256": "80eac866136651066f2c250e8e4922bbcc338f79ee8feb66407847c5f0698a34"
+      },
+      {
+        "target": "dmi_text",
+        "executions": 10156169,
+        "seconds": 61,
+        "log_sha256": "2e46507540b781533d78d8bdbabbbe1ebd206d6362d889eb90f1d54a0c034f94"
+      },
+      {
+        "target": "hwmon_temperature",
+        "executions": 24724722,
+        "seconds": 61,
+        "log_sha256": "ffb572721cad676c0dcd232203807e8139ee36a0a081834481fdbd348b076db7"
+      },
+      {
+        "target": "macos_network",
+        "executions": 5659355,
+        "seconds": 61,
+        "log_sha256": "ec3ea89bd8b76a10feb3d01f65b488c03e51eb0d73d3bfb91b13e8fdf0b6eace"
+      },
+      {
+        "target": "meminfo",
+        "executions": 3656416,
+        "seconds": 61,
+        "log_sha256": "4355e14b6b3004d2018eed2f623c9d846bfbb1d5cb60564e76a125a0da12bdd2"
+      },
+      {
+        "target": "network_dev",
+        "executions": 4318454,
+        "seconds": 61,
+        "log_sha256": "9b72b3c0621ad8fabc9834e9cacb3e4389092bfca0e0f5dd95413332efc73bf6"
+      },
+      {
+        "target": "power_supply",
+        "executions": 25386321,
+        "seconds": 61,
+        "log_sha256": "28b7ba5956714d373b82a84be7c1266f0b5f3f72b1e7ce4a2837ffdeddc41d43"
+      },
+      {
+        "target": "snapshot_json",
+        "executions": 535022,
+        "seconds": 61,
+        "log_sha256": "44ec4d5bb944f1b18369ae4aae1ac631b3e9c4ded73e9456ffed14adf9249699"
+      },
+      {
+        "target": "storage_capacity",
+        "executions": 37409010,
+        "seconds": 61,
+        "log_sha256": "532adf11496ea23aad763c9fcba2f2bc7166beecaea6b8588320745a78a66820"
+      },
+      {
+        "target": "uptime",
+        "executions": 24975386,
+        "seconds": 61,
+        "log_sha256": "d66e2b9325e92326af5bca526f91fa90298fef92fe9cceb1d4e7c3fb8b342173"
+      },
+      {
+        "target": "windows_cpu_groups",
+        "executions": 39073676,
+        "seconds": 61,
+        "log_sha256": "203655c574a057b15708ab5f694ce567caa7917ff0e6f3e6961a08cbfcb5b1e3"
+      }
+    ],
+    "executions_total": 201654833
+  },
+  "scope_notes": [
+    "Candidate rollback used two slots of the same version.",
+    "Linux runtime observations apply to the pinned userlands and candidate archive hashes recorded here.",
+    "macOS binary packaging awaits the recorded dependency notices.",
+    "Physical-device acceptance and formal distribution are separate checklist items.",
+    "Hashes cover original downloaded report bytes. Embedded reports retain the parsed JSON data."
+  ]
+}
