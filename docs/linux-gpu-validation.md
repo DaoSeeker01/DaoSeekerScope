@@ -1,5 +1,13 @@
 # Linux GPU 视图验收
 
+## 2026-11-10 设备移除后恢复
+
+源码 `57d2e90` 在原采集期限和 4096 项总扫描上限内允许一次重扫。Ubuntu 原生测试通过设备移除后恢复、重扫前取消和设备路径持续缺失三个用例。非 root Linux 容器的 20 项 DRM 场景全部通过，持续缺失仍返回 `Unavailable/NotPresent`，内存仍可读取。
+
+本机默认并行运行 Rust 测试通过 308 项，1 项按原设置跳过。FFI 测试显式用 8 个线程复现了 4 项失败。隔离使用同一注册表的测试后，原命令的 11 项全部通过，单个测试内的并发分配和释放仍有覆盖。三平台各验证 8 个源码包与 8 种独立 Rust 消费者配置。实体 GPU 热拔插待验证，独占显存字段为 `Unsupported`。[验收报告](evidence/linux-drm-retry-ci-42722683054.json)
+
+## 首次实现
+
 源码 `b039c18da4521cde087e8e3d76f1c69b40c0c7dd`。实现 DRM 可见设备去重枚举和部分驱动产品名称，独占显存保持 Unsupported。[CI 38660183893](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/38660183893) 的 8 个任务全部通过，2026-10-16 完成[9 份报告及哈希索引](evidence/linux-gpu-ci-38660183893.json)归档。范围与依据见 [ADR 0017](adr/0017-linux-gpu.md)。
 
 ## 真实环境结果

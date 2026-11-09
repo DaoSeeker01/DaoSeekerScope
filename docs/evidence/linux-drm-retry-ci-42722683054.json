@@ -1,0 +1,228 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-11-09T23:58:28.125702+00:00",
+  "source_commit": "57d2e904169a003f8dbadb779870627711800300",
+  "ci": {
+    "run_id": 42722683054,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42722683054",
+    "created_at": "2026-11-09T23:42:59Z",
+    "updated_at": "2026-11-09T23:58:14Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "miri",
+        "databaseId": 129520326840,
+        "conclusion": "success"
+      },
+      {
+        "name": "linux-container",
+        "databaseId": 129520327142,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "databaseId": 129520327148,
+        "conclusion": "success"
+      },
+      {
+        "name": "fuzz-smoke",
+        "databaseId": 129520327180,
+        "conclusion": "success"
+      },
+      {
+        "name": "supply-chain",
+        "databaseId": 129520327184,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (windows-latest)",
+        "databaseId": 129520327186,
+        "conclusion": "success"
+      },
+      {
+        "name": "ffi-asan",
+        "databaseId": 129520327231,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "databaseId": 129520327279,
+        "conclusion": "success"
+      }
+    ]
+  },
+  "linux_drm": {
+    "native_fixture_tests_passed": [
+      "removed_drm_node_triggers_a_fresh_scan",
+      "retry_checks_cancellation_before_reopening_drm",
+      "empty_missing_broken_identity_and_limit_never_return_a_prefix"
+    ],
+    "ubuntu_log_sha256": "b76dbbeee974a483e118153eb53397f9b15a64662445eb89cbd741390a061c54",
+    "container_report_sha256": "2b6a3b9c5170509a5d8fa797cfd2e81eeaab551db8609b1e2bb42bea33239ca5",
+    "container_observations_passed": 20,
+    "container_image": "ubuntu@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
+    "container_configuration": {
+      "user": "65534:65534",
+      "ReadonlyRootfs": true,
+      "NetworkMode": "none",
+      "CapDrop": [
+        "ALL"
+      ],
+      "SecurityOpt": [
+        "no-new-privileges=true"
+      ],
+      "Memory": 268435456,
+      "MemorySwap": 268435456,
+      "PidsLimit": 32,
+      "NanoCpus": 1000000000
+    },
+    "container_inputs_synthetic": true,
+    "physical_hot_unplug_verified": false
+  },
+  "windows_local": {
+    "workspace_tests_passed": 308,
+    "workspace_tests_ignored": 1,
+    "workspace_test_log_sha256": "9de472d4c780d65c3935a74db0835213d783b2d3aa9f952cecb13e4b4b1d1899",
+    "ffi_eight_threads_before": {
+      "passed": 7,
+      "failed": 4,
+      "log_sha256": "5683d8cdf9d0a158f8956dda3f59d35a6c7b2d0562ab6237da08d4ba366184a9"
+    },
+    "ffi_eight_threads_after": {
+      "passed": 11,
+      "failed": 0
+    },
+    "python_tests_passed": 340,
+    "python_tests_skipped": 6,
+    "checks_passed": [
+      "cargo fmt --all --check",
+      "cargo clippy --locked --workspace --all-targets --all-features -- -D warnings",
+      "Linux x86_64 cross Clippy",
+      "cargo doc --locked --workspace --all-features --no-deps with warnings denied",
+      "core and facade check without default features",
+      "project data and documentation links",
+      "Schema drift and round trip",
+      "C and Rust native ABI layout"
+    ],
+    "contract_report_sha256": "556896fbf1636646993c70418626a544b07e0335c7780eea9c6ee157a5230adc",
+    "initial_package_errors": [
+      {
+        "stage": "sandbox with network",
+        "reason": "registry config lookup failed"
+      },
+      {
+        "stage": "sandbox offline",
+        "reason": "Cargo temporary registry had no hash listed for daoseeker-scope-core"
+      }
+    ],
+    "package_recovery": {
+      "online": {
+        "report_sha256": "413a4bef1e6aab856eda89ad94ee3caacb4805709b62856fb6178f421c61a020",
+        "archives": 8,
+        "independent_consumers": 8,
+        "extracted_rust_tests_passed": 308,
+        "cli": "dscope 0.1.0",
+        "registry_publication_verified": false
+      },
+      "offline": {
+        "report_sha256": "413a4bef1e6aab856eda89ad94ee3caacb4805709b62856fb6178f421c61a020",
+        "archives": 8,
+        "independent_consumers": 8,
+        "extracted_rust_tests_passed": 308,
+        "cli": "dscope 0.1.0",
+        "registry_publication_verified": false
+      }
+    }
+  },
+  "ci_packages": {
+    "Linux-X64": {
+      "report_sha256": "86bdc2ea46bdfaf5b45c39b4bdc76f2ec99a2bf8fa403e6deda170ec72663e1c",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 302,
+      "cli": "dscope 0.1.0",
+      "registry_publication_verified": false
+    },
+    "macOS-ARM64": {
+      "report_sha256": "ee9bb36f3c92a7c0abf3643816630becfaa3e780a08be6bb58d80e48e0b46939",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 307,
+      "cli": "dscope 0.1.0",
+      "registry_publication_verified": false
+    },
+    "Windows-X64": {
+      "report_sha256": "13ffb5be03a3519d048594034e2e9678be167881d27116c67cb9d46cfaea1b44",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 308,
+      "cli": "dscope 0.1.0",
+      "registry_publication_verified": false
+    }
+  },
+  "fuzz": {
+    "total_runs": 250280219,
+    "targets": {
+      "cli_args": {
+        "runs": 30509551,
+        "seconds": 61,
+        "log_sha256": "20ea1bd7c7e356fc0563334af2857baf5992bf8556fdbe0dd53b513e99d6609f"
+      },
+      "cpu_stat": {
+        "runs": 1627299,
+        "seconds": 61,
+        "log_sha256": "3aae394d0e859bc15ed398cfcccc72632bbfa0866cfe9563aa792acecef6922b"
+      },
+      "dmi_text": {
+        "runs": 14533135,
+        "seconds": 61,
+        "log_sha256": "57cf6cdb11e51c020688ecaafcad86ba5defc79816fc3ca1b809d3fa079a486b"
+      },
+      "hwmon_temperature": {
+        "runs": 32086548,
+        "seconds": 61,
+        "log_sha256": "a2b7b700a87bbb8daaf09ba8ce5e133f5ac267eb63f106d86ea316e82c804bbe"
+      },
+      "macos_network": {
+        "runs": 7386139,
+        "seconds": 61,
+        "log_sha256": "5e052dcb258775b2ee881ffbf5925ad778548e564176ea988689e470db879696"
+      },
+      "meminfo": {
+        "runs": 5581841,
+        "seconds": 61,
+        "log_sha256": "5d1bc084dbe073a51dd4a6176abf6f0cb9c34456a36bb3c5dab8909a78dfafba"
+      },
+      "network_dev": {
+        "runs": 2258977,
+        "seconds": 61,
+        "log_sha256": "6590bb969eb13cf45bdeb7389f7027f68cbda217a325c8468ba06164faf0af52"
+      },
+      "power_supply": {
+        "runs": 31859662,
+        "seconds": 61,
+        "log_sha256": "a67a17dc23ee28e84b3d79a706571c96d86cd8f71841848e193e7023a75a4911"
+      },
+      "snapshot_json": {
+        "runs": 962397,
+        "seconds": 61,
+        "log_sha256": "de07d98e59476c734d3faccef9e18fd287d7baa8801858aedb9a44a926ea0ebe"
+      },
+      "storage_capacity": {
+        "runs": 44630231,
+        "seconds": 61,
+        "log_sha256": "444ebbf32df2e3d79eaeed565427d336157bd5dc8084994677d2a132f0f41e80"
+      },
+      "uptime": {
+        "runs": 31273008,
+        "seconds": 61,
+        "log_sha256": "0bfbb38b24a859e502e59040f7ef3fd096a0bece741082cb7990e047da6ca3b2"
+      },
+      "windows_cpu_groups": {
+        "runs": 47571431,
+        "seconds": 61,
+        "log_sha256": "47b63eb5f81e4d5b0b2974fbedb4ca94d6837484345c51986edb39ed4dc0dabf"
+      }
+    }
+  }
+}

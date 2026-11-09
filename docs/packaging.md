@@ -70,4 +70,6 @@ Cargo JSON 元数据只从 stdout 读取，stderr 单独作为诊断处理。三
 
 本机 Cargo 1.96.0 在原输出目录执行 `cargo package --workspace --locked --offline` 时，在验证第二个包时失败，报 `no hash listed for daoseeker-scope-core v0.1.0` 并标记为 Cargo 内部错误。移除 `--locked` 后也出现相同错误，源锁文件没有变化。使用全新 `--target-dir`、保留 `--locked --offline --all-features` 后，8 个包的完整 Cargo 验证全部通过；再次使用该目录也通过。因此确切根因尚未确定，不能将目录复用本身或平台 backend 判为故障原因。初次失败与后续成功分别保留证据。
 
+2026-11-10 在 Windows 受限环境的新输出目录中复现同一错误。本机常规环境的联网和离线复跑均验证了 8 个包、8 种独立 Rust 消费者配置及 CLI 安装。[验收报告](evidence/linux-drm-retry-ci-42722683054.json)
+
 脚本每次使用新输出目录，保留原生 Cargo 验证与锁文件约束；额外的独立测试仍记录使用本地 patch 的边界。正式发布前还需真实 registry 安装、制品校验和回滚演练；不要把本地临时 registry 验证当作 crates.io 下载验证。当前没有上传 crate 或发布 release。
