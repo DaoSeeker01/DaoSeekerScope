@@ -25,6 +25,7 @@ fn failure<T>(error: io::ErrorKind, source: Source) -> Observed<T> {
             Observed::restricted(source, ReasonCode::PermissionDenied)
         }
         io::ErrorKind::NotFound => Observed::unavailable(source, ReasonCode::NotPresent),
+        io::ErrorKind::InvalidData => invalid(source),
         io::ErrorKind::TimedOut => Observed::unavailable(source, ReasonCode::Timeout),
         io::ErrorKind::WouldBlock | io::ErrorKind::Interrupted => {
             Observed::unavailable(source, ReasonCode::TemporarilyUnavailable)
@@ -181,53 +182,64 @@ fn collect_with(
     mut check: impl FnMut() -> Result<(), ScopeError>,
 ) -> Result<Observed<Vec<GpuInfo>>, ScopeError> {
     options.validate()?;
-    check()?;
-    let directory = std::fs::read_dir(root);
-    check()?;
-    let mut directory = match directory {
-        Ok(directory) => directory,
-        Err(error) => return Ok(failure(error.kind(), Source::Drm)),
-    };
-    let mut devices = BTreeSet::new();
     let mut scanned = 0;
-    loop {
+    let mut can_retry = true;
+    let devices = 'scan: loop {
         check()?;
-        let next = directory.next();
+        let directory = std::fs::read_dir(root);
         check()?;
-        let entry = match next {
-            None => break,
-            Some(Ok(entry)) => entry,
-            Some(Err(error)) => return Ok(failure(error.kind(), Source::Drm)),
-        };
-        if scanned == MAX_SCANNED {
-            return Ok(invalid(Source::Drm));
-        }
-        scanned += 1;
-        let name = entry.file_name();
-        let Some(name) = name.to_str() else {
-            return Ok(invalid(Source::Drm));
-        };
-        if !node_name(name) {
-            continue;
-        }
-        let device = std::fs::canonicalize(entry.path().join("device"));
-        check()?;
-        let device = match device {
-            Ok(device) => device,
+        let mut directory = match directory {
+            Ok(directory) => directory,
             Err(error) => return Ok(failure(error.kind(), Source::Drm)),
         };
-        let metadata = std::fs::metadata(&device);
-        check()?;
-        match metadata {
-            Ok(metadata) if metadata.is_dir() => {}
-            Ok(_) => return Ok(invalid(Source::Drm)),
-            Err(error) => return Ok(failure(error.kind(), Source::Drm)),
+        let mut devices = BTreeSet::new();
+        loop {
+            check()?;
+            let next = directory.next();
+            check()?;
+            let entry = match next {
+                None => break,
+                Some(Ok(entry)) => entry,
+                Some(Err(error)) => return Ok(failure(error.kind(), Source::Drm)),
+            };
+            if scanned == MAX_SCANNED {
+                return Ok(invalid(Source::Drm));
+            }
+            scanned += 1;
+            let name = entry.file_name();
+            let Some(name) = name.to_str() else {
+                return Ok(invalid(Source::Drm));
+            };
+            if !node_name(name) {
+                continue;
+            }
+            let device = std::fs::canonicalize(entry.path().join("device"));
+            check()?;
+            let device = device.and_then(|device| {
+                if std::fs::metadata(&device)?.is_dir() {
+                    Ok(device)
+                } else {
+                    Err(io::ErrorKind::InvalidData.into())
+                }
+            });
+            check()?;
+            let device = match device {
+                Ok(device) => device,
+                Err(error) if can_retry && error.kind() == io::ErrorKind::NotFound => {
+                    // Hot-unplug can invalidate an entry returned by read_dir.
+                    // Discard the first view and keep the same total scan budget.
+                    can_retry = false;
+                    continue 'scan;
+                }
+                Err(error) => return Ok(failure(error.kind(), Source::Drm)),
+            };
+            if !devices.contains(&device) && devices.len() == options.max_entries {
+                return Ok(invalid(Source::Drm));
+            }
+            devices.insert(device);
         }
-        if !devices.contains(&device) && devices.len() == options.max_entries {
-            return Ok(invalid(Source::Drm));
-        }
-        devices.insert(device);
-    }
+        break devices;
+    };
     let mut entries = Vec::with_capacity(devices.len());
     for device in devices {
         check()?;
@@ -516,6 +528,56 @@ mod tests {
             assert_eq!(f.collect(1).reason(), Some(ReasonCode::NotPresent));
             std::fs::remove_dir_all(f.0.join("drm")).unwrap();
             assert_eq!(f.collect(1).reason(), Some(ReasonCode::NotPresent));
+        }
+        #[test]
+        fn removed_drm_node_triggers_a_fresh_scan() {
+            let f = Fixture::new();
+            let removed = f.node("card0", "old", "amdgpu");
+            let root = f.0.join("drm");
+            let mut checks = 0;
+            let snapshot = collect_with(&root, &f.0.join("nvidia"), &Options::default(), || {
+                checks += 1;
+                if checks == 4 {
+                    // Remove the target after read_dir returned card0.
+                    std::fs::remove_dir_all(&removed).unwrap();
+                }
+                if checks == 5 {
+                    // Finish the unplug after canonicalize saw the dangling link.
+                    std::fs::remove_dir_all(root.join("card0")).unwrap();
+                    let current = f.node("card1", "current", "amdgpu");
+                    std::fs::write(current.join("product_name"), "Remaining GPU\n").unwrap();
+                }
+                Ok(())
+            })
+            .unwrap();
+            let gpus = snapshot.value().unwrap();
+            assert_eq!(gpus.len(), 1);
+            assert_eq!(
+                gpus[0].name.value().map(String::as_str),
+                Some("Remaining GPU")
+            );
+        }
+        #[test]
+        fn retry_checks_cancellation_before_reopening_drm() {
+            let f = Fixture::new();
+            let missing = f.node("card0", "old", "amdgpu");
+            std::fs::remove_dir_all(missing).unwrap();
+            let mut checks = 0;
+            let error = collect_with(
+                &f.0.join("drm"),
+                &f.0.join("nvidia"),
+                &Options::default(),
+                || {
+                    checks += 1;
+                    // Six checks covered the initial directory and identity reads.
+                    if checks == 7 {
+                        return Err(ScopeError::new(ErrorCode::Cancelled));
+                    }
+                    Ok(())
+                },
+            )
+            .unwrap_err();
+            assert_eq!(error.code, ErrorCode::Cancelled);
         }
         #[test]
         fn missing_bad_and_denied_names_are_field_isolated() {
