@@ -1,5 +1,7 @@
 # Windows 候选包 PE 验证
 
+CLI 与 SDK 消费者演练的子进程 PATH 只含 System32 和 Windows 目录。SDK 的编译步骤使用开发环境。报告用 `windows_runtime_path` 记录该条件。加载仍使用本机已安装的系统运行库及 Windows 的其他搜索位置，最低系统和全新安装另行验收。[Microsoft DLL 搜索顺序](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order)
+
 本轮补充 Windows EXE/DLL 的架构、直接依赖和版本声明检查，帮助维护者明确发布前还缺哪些运行环境证据。检查规则见 [ADR 0035](adr/0035-windows-pe-candidate-checks.md)。
 
 2026-11-01 已增加[普通/延迟导入符号与 DUMPBIN 对照](windows-imports-validation.md)。下面保留模块级检查最初实施时的结果与限制，不能把历史清单当成当前构建清单。

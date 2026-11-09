@@ -1,6 +1,7 @@
 """SDK archive tests use synthetic payloads and never load a fabricated DLL."""
 
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -15,6 +16,27 @@ import ffi_bundle_smoke
 
 
 class FfiBundleTests(unittest.TestCase):
+    @unittest.skipUnless(os.name == "nt", "Windows PATH required")
+    def test_windows_sdk_children_separate_runtime_and_compiler_path(self) -> None:
+        system = Path(os.environ["SystemRoot"])
+        expected = os.pathsep.join((str(system / "System32"), str(system)))
+        command = [sys.executable, "-c", "import os; print(os.environ['PATH'])"]
+        with patch.dict(os.environ, {"PATH": "fixture developer path"}):
+            for label in ("c", "python"):
+                self.assertEqual(
+                    ffi_bundle_smoke.execute(command, self.root, label)
+                    .decode()
+                    .strip(),
+                    expected,
+                )
+            self.assertEqual(
+                ffi_bundle_smoke.execute(command, self.root, "compile")
+                .decode()
+                .strip(),
+                "fixture developer path",
+            )
+            self.assertEqual(os.environ["PATH"], "fixture developer path")
+
     def test_actual_sdk_children_reject_stderr_without_echoing_it(self) -> None:
         for label in ("c", "python", "elf"):
             for size in (23, 1024 * 1024):

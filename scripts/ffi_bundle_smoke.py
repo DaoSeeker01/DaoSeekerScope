@@ -24,9 +24,9 @@ from cli_bundle import (
     require_runtime_host,
     verify_bundle,
 )
-from cli_bundle_smoke import activate, install
+from cli_bundle_smoke import activate, install, runtime_environment
 from native_smoke import check_snapshot
-from elf_inspect import inspect_elf, linux_environment, needed_libraries
+from elf_inspect import inspect_elf, needed_libraries
 from pe_inspect import inspect_file, inspect_pe
 
 
@@ -34,10 +34,11 @@ def execute(
     arguments: list[str], directory: Path, label: str, target: str = TARGET
 ) -> bytes:
     require(label in ("compile", "c", "python", "elf"), "invalid_process_label")
-    environment = os.environ.copy()
-    if target == LINUX_TARGET:
-        # Do not inherit developer loader overrides or mutate the parent's environment.
-        environment = linux_environment(environment)
+    environment = (
+        os.environ.copy()
+        if target == TARGET and label == "compile"
+        else runtime_environment(target)
+    )
     with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
         result = subprocess.run(
             arguments,
@@ -243,6 +244,7 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
             pe_archive_inspections=1,
             pe_installed_inspections=6,
             pe_images=dependencies[0],
+            windows_runtime_path="system32_and_windows",
         )
     return report
 

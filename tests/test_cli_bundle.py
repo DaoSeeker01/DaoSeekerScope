@@ -1,6 +1,7 @@
 """Negative archive tests never execute the synthetic executable payload."""
 
 import json
+import os
 from pathlib import Path
 import stat
 import subprocess
@@ -25,6 +26,24 @@ import cli_bundle_smoke
 
 
 class CliBundleTests(unittest.TestCase):
+    @unittest.skipUnless(os.name == "nt", "Windows PATH required")
+    def test_windows_cli_probe_uses_only_system_path(self) -> None:
+        system = Path(os.environ["SystemRoot"])
+        expected = os.pathsep.join((str(system / "System32"), str(system)))
+        with (
+            patch.dict(os.environ, {"PATH": "fixture developer path"}),
+            patch.object(
+                cli_bundle_smoke.subprocess,
+                "run",
+                side_effect=subprocess.TimeoutExpired("fixture", 30),
+            ) as run,
+        ):
+            with self.assertRaises(subprocess.TimeoutExpired):
+                cli_bundle_smoke.probe(self.root / "dscope.exe", "0.1.0")
+            self.assertIsNotNone(run.call_args.kwargs["env"])
+            self.assertEqual(run.call_args.kwargs["env"]["PATH"], expected)
+            self.assertEqual(os.environ["PATH"], "fixture developer path")
+
     def test_successful_exit_with_stderr_fails_each_cli_probe_without_echo(
         self,
     ) -> None:

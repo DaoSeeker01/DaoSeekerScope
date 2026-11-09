@@ -64,8 +64,22 @@ def activate(root: Path, slot: str, payload: dict[str, bytes]) -> None:
     os.replace(pending, root / "active")
 
 
+def runtime_environment(target: str) -> dict[str, str]:
+    """Restrict loader-related child settings for the rehearsal target."""
+    if target == LINUX_TARGET:
+        return linux_environment(os.environ)
+    environment = os.environ.copy()
+    if target == TARGET and os.name == "nt":
+        system_root = environment.get("SYSTEMROOT", "")
+        windows = Path(system_root)
+        require(windows.is_absolute() and ";" not in system_root, "windows_system_root")
+        environment["PATH"] = os.pathsep.join((str(windows / "System32"), str(windows)))
+    return environment
+
+
 def probe(binary: Path, version: str, target: str = TARGET) -> int:
     commands = (["--version"], ["--json"], ["--json", "--isolate", "--timeout-ms=5000"])
+    environment = runtime_environment(target)
     for arguments in commands:
         # Spool child output to disk, then read a bounded amount; never log snapshots.
         with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
@@ -76,7 +90,7 @@ def probe(binary: Path, version: str, target: str = TARGET) -> int:
                 stderr=stderr,
                 timeout=30,
                 check=True,
-                env=linux_environment(os.environ) if target == LINUX_TARGET else None,
+                env=environment,
             )
             require(result.returncode == 0, "cli_exit")
             stdout.seek(0)
@@ -182,7 +196,11 @@ def rehearse(archive: Path, checksum: str) -> dict[str, Any]:
         "publisher_authenticated": False,
     }
     if pe is not None:
-        report.update(pe_image=pe, pe_archive_inspections=1)
+        report.update(
+            pe_image=pe,
+            pe_archive_inspections=1,
+            windows_runtime_path="system32_and_windows",
+        )
     if elf is not None:
         report.update(
             elf_image=elf, elf_inspections=1, child_loader_overrides_cleared=True
