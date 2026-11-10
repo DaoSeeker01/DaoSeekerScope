@@ -1,5 +1,5 @@
 //! Bounded DMI, procfs, power_supply and hwmon readers; no default identifiers.
-#![forbid(unsafe_code)]
+#![deny(unsafe_code)]
 use daoseeker_scope_core::*;
 use std::io::{self, Read};
 use std::path::PathBuf;

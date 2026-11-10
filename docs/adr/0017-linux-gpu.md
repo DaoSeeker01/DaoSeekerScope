@@ -1,10 +1,10 @@
-# ADR 0017：Linux DRM 设备视图与 GPU 名称
+# ADR 0017：Linux DRM 设备视图、GPU 名称和 Xe 专用显存
 
 状态：开发版实现契约，最终公共契约评审仍待维护者完成。
 
 ## 范围与来源
 
-LinuxBackend 增加静态 gpus，能力 Partial/Drm。枚举 `/sys/class/drm` 的 `cardN` 与 `renderDN`，按规范化后的 `device` 路径去重；忽略连接器和其他属性，不打开 `/dev/dri`，不执行 ioctl、外部命令、PCI 数据库查询或管理员操作。视图可能包含显示控制器、软件和虚拟设备，不是物理显卡数量，也不保证覆盖未绑定 DRM 的 GPU。完整空视图是 Available 空集合，缺路径或权限受限必须单列状态。
+LinuxBackend 提供静态 `gpus`，能力为 Partial/Drm。枚举 `/sys/class/drm` 的 `cardN` 与 `renderDN`，按规范化后的 `device` 路径去重，忽略连接器和其他属性。视图可能包含显示控制器、软件和虚拟设备，仅覆盖 DRM 可见设备。完整空视图返回 Available 空集合，路径缺失或权限受限分别返回对应状态。
 
 依据内核 [DRM 用户接口](https://docs.kernel.org/gpu/drm-uapi.html)。驱动提供的属性不同，不能用驱动名、card 编号或 PCI ID 冒充产品型号：
 
@@ -12,7 +12,13 @@ LinuxBackend 增加静态 gpus，能力 Partial/Drm。枚举 `/sys/class/drm` �
 - nvidia：按内部 PCI 位置定位 `/proc/driver/nvidia/gpus/<位置>/information`，来源 Procfs。只读取第一行并要求 `Model:` 前缀，至换行即停止，不读后面的 UUID/固件等字段。依据 NVIDIA [proc 接口文档](https://download.nvidia.com/XFree86/Linux-x86_64/580.95.05/README/procinterface.html)及[官方模块实现](https://github.com/NVIDIA/open-gpu-kernel-modules/blob/main/kernel-open/nvidia/nv-procfs.c)。格式变化返回缺失，不扫描后续行或猜测。
 - 其他驱动或无绑定驱动：name 为 Unsupported/Drm；无法读取路由信息时保留对应错误。驱动名不作为产品名称。
 
-独占显存字段本切片仍为 Unsupported/Drm。AMDGPU 的 VRAM 统计不能普遍证明现有字段所承诺的排除共享内存语义，尤其统一内存设备；不映射它、不读取 GTT、不估算容量。今后需要可靠的设备分类或单独的内存语义后再扩展，不改变现有 GpuInfo 字段含义。
+## Intel Xe 专用显存
+
+Linux x86_64 和 arm64 的 Xe 路径仅打开与该 GPU 对应的唯一 `/dev/dri/renderDN`。它核对字符设备的主次设备号，打开后再次核对设备号和 sysfs 设备路径，再用 `DRM_IOCTL_VERSION` 确认驱动为 Xe。节点以只读、非阻塞方式打开，拒绝末端符号链接。普通用户仍需拥有节点访问权限。
+
+Xe 的 `DRM_XE_DEVICE_QUERY_MEM_REGIONS` 把设备本地显存和共享系统内存分为不同类别。先查响应长度，再读取最多 32 个区域、2824 字节。容量取 VRAM 区域的 `total_size` 之和，即驱动报告的可用容量。ABI 响应同时包含使用量和 CPU 可见容量，采集器只解析容量所需字段。有效响应只有系统内存时返回 NotApplicable/NotPresent。驱动报告的 VRAM 零容量可以作为真实值。依据 [Linux v6.12 Xe UAPI](https://docs.kernel.org/6.12/gpu/driver-uapi.html#intel-xe)、[内核查询实现](https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/xe/xe_query.c)。
+
+节点缺失返回 Unavailable/NotPresent，权限不足返回 Restricted/PermissionDenied，节点与枚举身份不匹配返回 TemporarilyUnavailable，歧义路由、未知内存类别、重复区域和长度错误返回 InvalidData。错误仅影响该 GPU 的显存。其余驱动和未接入此查询的架构返回 Unsupported/Drm。
 
 ## 边界与状态
 
@@ -24,6 +30,6 @@ LinuxBackend 增加静态 gpus，能力 Partial/Drm。枚举 `/sys/class/drm` �
 
 ## 兼容与验证
 
-不增加依赖、unsafe、默认 feature 或公共模型字段。Rust 签名、C ABI 1、Schema 1 不变；Linux GPU 从 Unsupported 转为有限的 DRM 视图。复用默认关闭的 fuzzing 隐藏入口，将两个名称解析器加入现有 dmi_text 目标，不增加 fuzz 目标数量。
+Rust 签名、C ABI 1、Schema 1 保持兼容。Linux Xe 查询复用 workspace 已锁定的 `libc`，只在支持架构上编译。两处 ioctl 调用集中在 Xe 模块，其他 Linux 采集代码继续禁止使用 unsafe。名称解析继续复用现有 `dmi_text` fuzz 目标。
 
-验证使用跨平台纯解析测试、Unix 合成 sysfs/procfs 与真实内核权限/符号链接/FIFO 测试、静态缓存回归、三平台原生 CI、CLI/C/Python 和归档验收。CI 无设备的空集合不算 GPU 名称真机读取；维护者实体 Linux/AMD/NVIDIA 设备测试继续延期，不能据此宣称完整 Linux GPU 支持。
+验证覆盖合成 sysfs/procfs、真实内核文件类型和权限、Xe 响应解析、长度握手、静态缓存、三平台 CI 及 CLI/C/Python。驱动报告的设备名称和 Intel Xe 专用显存容量还需对应的实体设备验证。

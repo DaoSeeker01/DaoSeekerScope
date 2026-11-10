@@ -1,13 +1,22 @@
-//! DRM device view and driver product names; no inferred VRAM or exported IDs.
+//! DRM device view, driver product names, and device-local Xe memory.
 use daoseeker_scope_core::*;
 use std::{
-    collections::BTreeSet,
+    collections::BTreeMap,
     io::{self, Read},
     path::Path,
 };
 
+mod xe;
+
 const MAX_NAME: usize = 4096;
 const MAX_SCANNED: usize = 4096;
+#[derive(Default)]
+enum RenderNode {
+    #[default]
+    Missing,
+    Unique(u32),
+    Ambiguous,
+}
 fn invalid<T>(source: Source) -> Observed<T> {
     Observed::unavailable(source, ReasonCode::InvalidData)
 }
@@ -63,11 +72,12 @@ pub(crate) fn nvidia_name(line: &[u8], at: Timestamp) -> Observed<String> {
         None => invalid(Source::Procfs),
     }
 }
-fn node_name(name: &str) -> bool {
-    name.strip_prefix("card")
-        .or_else(|| name.strip_prefix("renderD"))
-        .and_then(|suffix| suffix.parse::<u32>().ok().map(|n| n.to_string() == suffix))
-        .unwrap_or(false)
+fn node_index(name: &str, prefix: &str) -> Option<u32> {
+    let suffix = name.strip_prefix(prefix)?;
+    suffix
+        .parse::<u32>()
+        .ok()
+        .filter(|n| n.to_string() == suffix)
 }
 fn pci_location(name: &str) -> bool {
     let parts: Vec<&str> = name.split([':', '.']).collect();
@@ -137,21 +147,32 @@ fn read_name(
         })
     }
 }
-fn device_name(
+fn device_info(
     device: &Path,
+    render_node: RenderNode,
+    drm_root: &Path,
     nvidia_root: &Path,
     check: &mut impl FnMut() -> Result<(), ScopeError>,
-) -> Result<Observed<String>, ScopeError> {
+) -> Result<GpuInfo, ScopeError> {
+    let mut info = GpuInfo::default();
+    info.dedicated_memory_bytes = unsupported();
     check()?;
     let driver = std::fs::read_link(device.join("driver"));
     check()?;
     let driver = match driver {
         Ok(driver) => driver,
-        Err(error) if error.kind() == io::ErrorKind::NotFound => return Ok(unsupported()),
-        Err(error) => return Ok(failure(error.kind(), Source::Sysfs)),
+        Err(error) if error.kind() == io::ErrorKind::NotFound => {
+            info.name = unsupported();
+            return Ok(info);
+        }
+        Err(error) => {
+            info.name = failure(error.kind(), Source::Sysfs);
+            info.dedicated_memory_bytes = failure(error.kind(), Source::Drm);
+            return Ok(info);
+        }
     };
-    match driver.file_name().and_then(|name| name.to_str()) {
-        Some("amdgpu") => read_name(&device.join("product_name"), Source::Sysfs, false, check),
+    info.name = match driver.file_name().and_then(|name| name.to_str()) {
+        Some("amdgpu") => read_name(&device.join("product_name"), Source::Sysfs, false, check)?,
         Some("nvidia") => match device
             .file_name()
             .and_then(|name| name.to_str())
@@ -162,11 +183,16 @@ fn device_name(
                 Source::Procfs,
                 true,
                 check,
-            ),
-            None => Ok(invalid(Source::Drm)),
+            )?,
+            None => invalid(Source::Drm),
         },
-        _ => Ok(unsupported()),
-    }
+        Some("xe") => {
+            info.dedicated_memory_bytes = xe::collect(drm_root, device, render_node, check)?;
+            unsupported()
+        }
+        _ => unsupported(),
+    };
+    Ok(info)
 }
 pub(crate) fn collect(
     root: &Path,
@@ -192,7 +218,7 @@ fn collect_with(
             Ok(directory) => directory,
             Err(error) => return Ok(failure(error.kind(), Source::Drm)),
         };
-        let mut devices = BTreeSet::new();
+        let mut devices = BTreeMap::new();
         loop {
             check()?;
             let next = directory.next();
@@ -210,7 +236,8 @@ fn collect_with(
             let Some(name) = name.to_str() else {
                 return Ok(invalid(Source::Drm));
             };
-            if !node_name(name) {
+            let render_minor = node_index(name, "renderD");
+            if render_minor.is_none() && node_index(name, "card").is_none() {
                 continue;
             }
             let device = std::fs::canonicalize(entry.path().join("device"));
@@ -233,20 +260,29 @@ fn collect_with(
                 }
                 Err(error) => return Ok(failure(error.kind(), Source::Drm)),
             };
-            if !devices.contains(&device) && devices.len() == options.max_entries {
+            if !devices.contains_key(&device) && devices.len() == options.max_entries {
                 return Ok(invalid(Source::Drm));
             }
-            devices.insert(device);
+            let render_node = devices.entry(device).or_default();
+            if let Some(minor) = render_minor {
+                *render_node = match render_node {
+                    RenderNode::Missing => RenderNode::Unique(minor),
+                    _ => RenderNode::Ambiguous,
+                };
+            }
         }
         break devices;
     };
     let mut entries = Vec::with_capacity(devices.len());
-    for device in devices {
+    for (device, render_node) in devices {
         check()?;
-        let mut entry = GpuInfo::default();
-        entry.name = device_name(&device, nvidia_root, &mut check)?;
-        entry.dedicated_memory_bytes = unsupported();
-        entries.push(entry);
+        entries.push(device_info(
+            &device,
+            render_node,
+            root,
+            nvidia_root,
+            &mut check,
+        )?);
     }
     check()?;
     Ok(Observed::available(entries, Source::Drm, Timestamp::now()?))
@@ -311,6 +347,8 @@ mod tests {
     }
     #[test]
     fn node_and_location_routes_cannot_escape() {
+        let node_name =
+            |name| node_index(name, "card").is_some() || node_index(name, "renderD").is_some();
         for name in ["card0", "card12", "renderD128"] {
             assert!(node_name(name));
         }

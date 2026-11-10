@@ -49,6 +49,7 @@ name = "daoseeker-scope-linux"
 version = "0.1.0"
 dependencies = [
  "daoseeker-scope-core",
+ "libc",
 ]
 
 [[package]]

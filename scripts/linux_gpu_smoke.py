@@ -20,11 +20,13 @@ INVALID: Expectation = ("unavailable", "invalid_data", None)
 ABSENT: Expectation = ("unavailable", "not_present", None)
 DENIED: Expectation = ("restricted", "permission_denied", None)
 UNSUPPORTED: Expectation = ("unsupported", "not_supported", None)
-SAMPLE_COUNT = 20
+SAMPLE_COUNT = 23
 
 
 def verify(
-    snapshot: dict[str, Any], expected: list[Expectation] | Expectation
+    snapshot: dict[str, Any],
+    expected: list[Expectation] | Expectation,
+    expected_memory: list[Expectation] | None = None,
 ) -> dict[str, Any]:
     import jsonschema
 
@@ -42,14 +44,25 @@ def verify(
                 expected
             ):
                 raise ValidationFailure("gpu: enumeration")
-            for entry, (state, reason, value) in zip(observed["value"], expected):
-                name = entry["name"]
-                if (
-                    name["availability"] != state
-                    or name["reason"] != reason
-                    or name["value"] != value
-                ):
-                    raise ValidationFailure("gpu: name")
+            memory = (
+                expected_memory
+                if expected_memory is not None
+                else [UNSUPPORTED] * len(expected)
+            )
+            for entry, name_state, memory_state in zip(
+                observed["value"], expected, memory, strict=True
+            ):
+                for field, (state, reason, value) in [
+                    ("name", name_state),
+                    ("dedicated_memory_bytes", memory_state),
+                ]:
+                    observed_field = entry[field]
+                    if (
+                        observed_field["availability"] != state
+                        or observed_field["reason"] != reason
+                        or observed_field["value"] != value
+                    ):
+                        raise ValidationFailure(f"gpu: {field}")
         else:
             state, reason, _ = expected
             if observed["availability"] != state or observed["reason"] != reason:
@@ -76,6 +89,8 @@ def observe(
         label: str,
         expected: list[Expectation] | Expectation,
         command: bytes | None = b"rebuild\n",
+        *,
+        memory: list[Expectation] | None = None,
     ) -> None:
         nonlocal previous
         report["samples"][label] = dict(status="running")
@@ -85,7 +100,7 @@ def observe(
             process.stdin.write(command)
             process.stdin.flush()
         snapshot = receive(process)
-        checked = verify(snapshot, expected)
+        checked = verify(snapshot, expected, memory)
         if command == b"refresh\n" and snapshot["static_info"]["gpus"] != previous:
             raise ValidationFailure("gpu: static_cache_changed")
         previous = snapshot["static_info"]["gpus"]
@@ -147,6 +162,25 @@ def observe(
     sample("directory_denied", DENIED)
     root.chmod(0o755)
     sample("directory_recovered", [("available", None, "Unit GPU"), UNSUPPORTED])
+    xe = node("card2", "xe")
+    (xe / "driver").symlink_to("../../bus/pci/drivers/xe")
+    sample(
+        "xe_without_render_node",
+        [("available", None, "Unit GPU"), UNSUPPORTED, UNSUPPORTED],
+        memory=[UNSUPPORTED, UNSUPPORTED, ABSENT],
+    )
+    node("renderD240", "xe")
+    sample(
+        "xe_render_device_missing",
+        [("available", None, "Unit GPU"), UNSUPPORTED, UNSUPPORTED],
+        memory=[UNSUPPORTED, UNSUPPORTED, ABSENT],
+    )
+    node("renderD241", "xe")
+    sample(
+        "xe_ambiguous_render_nodes",
+        [("available", None, "Unit GPU"), UNSUPPORTED, UNSUPPORTED],
+        memory=[UNSUPPORTED, UNSUPPORTED, INVALID],
+    )
     shutil.rmtree(target)
     sample("broken_identity_no_prefix", ABSENT)
     shutil.rmtree(root)

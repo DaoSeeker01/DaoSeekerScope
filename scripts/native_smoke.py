@@ -288,17 +288,28 @@ def check_linux_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
         ):
             raise ValidationFailure("gpu: collection_metadata")
         names = []
+        memory_states = []
+        memory_reasons = {**allowed, "not_applicable": {"not_present"}}
         for entry in entries:
             memory = entry["dedicated_memory_bytes"]
-            expected_memory = dict(
-                value=None,
-                availability="unsupported",
-                source="drm",
-                reason="not_supported",
-                observed_at=None,
-            )
-            if any(memory[key] != value for key, value in expected_memory.items()):
-                raise ValidationFailure("gpu: fabricated_memory")
+            memory_state = memory["availability"]
+            if memory["source"] != "drm":
+                raise ValidationFailure("gpu: memory_source")
+            if memory_state == "available":
+                if (
+                    type(memory["value"]) is not int
+                    or not 0 <= memory["value"] <= (1 << 64) - 1
+                    or type(memory["observed_at"]) is not int
+                    or memory["reason"] is not None
+                ):
+                    raise ValidationFailure("gpu: memory_metadata")
+            elif (
+                memory["value"] is not None
+                or memory["observed_at"] is not None
+                or memory["reason"] not in memory_reasons.get(memory_state, set())
+            ):
+                raise ValidationFailure("gpu: memory_metadata")
+            memory_states.append(memory_state)
             name = entry["name"]
             name_state = name["availability"]
             if name["source"] not in {"sysfs", "procfs", "drm"}:
@@ -332,6 +343,7 @@ def check_linux_gpu(snapshot: dict[str, Any]) -> dict[str, Any]:
             entries=len(entries),
             names_available=sum(name["availability"] == "available" for name in names),
             name_metadata=names,
+            memory_states=memory_states,
         )
         return summary
     except (KeyError, TypeError, UnicodeError) as error:

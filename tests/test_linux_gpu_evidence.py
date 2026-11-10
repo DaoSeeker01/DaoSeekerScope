@@ -47,7 +47,7 @@ class GpuGuards(unittest.TestCase):
             native_smoke.check_linux_gpu(self.snapshot)["names_available"], 1
         )
 
-    def test_memory_must_not_be_promoted_to_zero_or_shared_vram(self) -> None:
+    def test_inconsistent_memory_observations_are_rejected(self) -> None:
         for field, value in [
             ("value", 0),
             ("availability", "available"),
@@ -61,6 +61,34 @@ class GpuGuards(unittest.TestCase):
             )
             with self.assertRaises(native_smoke.ValidationFailure):
                 native_smoke.check_linux_gpu(bad)
+
+    def test_drm_memory_capacity_and_system_memory_only_status(self) -> None:
+        self.entry["dedicated_memory_bytes"] = observed(8 << 30)
+        self.assertEqual(
+            native_smoke.check_linux_gpu(self.snapshot)["memory_states"], ["available"]
+        )
+        for value in [-1, True, 1 << 64]:
+            self.entry["dedicated_memory_bytes"]["value"] = value
+            with self.assertRaises(native_smoke.ValidationFailure):
+                native_smoke.check_linux_gpu(self.snapshot)
+        self.entry["dedicated_memory_bytes"] = dict(
+            value=None,
+            availability="not_applicable",
+            source="drm",
+            reason="not_present",
+            observed_at=None,
+        )
+        self.assertEqual(
+            native_smoke.check_linux_gpu(self.snapshot)["memory_states"],
+            ["not_applicable"],
+        )
+        with self.assertRaises(native_smoke.ValidationFailure):
+            linux_gpu_smoke.verify(self.snapshot, [("available", None, "Unit GPU")])
+        linux_gpu_smoke.verify(
+            self.snapshot,
+            [("available", None, "Unit GPU")],
+            [("not_applicable", "not_present", None)],
+        )
 
     def test_invalid_names_sources_and_metadata_are_rejected(self) -> None:
         for key, value in [

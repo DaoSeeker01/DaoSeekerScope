@@ -19,7 +19,7 @@
 | 设备serial | U | P，显式授权后 sysfs | U（IOKit候选） | 默认 Restricted/PrivacyRedacted |
 | 电池 | D/N GetSystemPowerStatus、Partial，系统级摘要 | D/P power_supply、Partial，CI枚举/权限fixture通过 | Iokit Partial，内置电池；原生空视图与 CF 类型测试通过 | Linux capacity/Mains online 受控枚举；macOS 排除 UPS，不读标识；真实 Linux/macOS 电池待验，[macOS 契约](0049-macos-battery.md)与[验收](../macos-battery-validation.md) |
 | 温度 | U，WMI质量不一 | D/P hwmon、Partial | U，公开接口不足 | coretemp、k10temp Tdie 与 CCD（2 至 18）、NVMe（1 至 9）、amdgpu（1 至 3）及 NCT6775 系列（1 至 20）。各驱动的通道、设备证据和限制见 [hwmon 验证](../hwmon-validation.md)。 |
-| GPU/独占显存 | D/P，Partial DXGI | D/P，Partial DRM 视图；部分 AMD/NVIDIA 名称，显存 U | D/P，Partial Metal 名称；显存 N/U | 不是物理卡数；Linux 不覆盖未绑定 DRM 的 GPU，不将 VRAM/GTT 推断成独占显存 |
+| GPU/独占显存 | D/P，Partial DXGI | D/P，Partial DRM 视图，部分 AMD/NVIDIA 名称，Intel Xe 专用显存 | D/P，Partial Metal 名称，显存 N/U | Linux 仅覆盖 DRM 可见设备。Xe 容量取驱动报告的可用本地显存，依赖渲染节点权限。见 [Linux GPU 契约](0017-linux-gpu.md)。 |
 | 存储设备容量 | D/P Setupapi/Win32、Partial | D/P Sysfs、Partial | D/P Iokit、Partial | 整块设备含虚拟对象，不代表文件系统可用空间或物理总量；[Linux 契约](0013-storage-capacity.md)与[验证](../storage-validation.md)、[Windows 契约](0014-windows-storage-capacity.md)与[验证](../windows-storage-validation.md)、[macOS 契约](0015-macos-storage-capacity.md)与[验证](../macos-storage-validation.md)，名称默认脱敏、serial/UUID不查询 |
 | 网络累计字节数 | D/P Win32、Partial | D/P procfs、Supported | D/P Sysctl、Partial | Windows 有界枚举、不保证所有逻辑接口；[Windows 验证](../windows-network-validation.md)。Linux 仅当前网络命名空间；[Linux 验证](../network-validation.md)。macOS 可能取整/回绕；[契约](0012-macos-network-counters.md)。名称默认脱敏；Windows/macOS 临时原始缓冲仍含未解析保存的标识 |
 | 显示器 | D/P，Partial Win32 活动路径 | D/P，Partial DRM 连接视图；授权 EDID 名称，尺寸 U | D/P，Partial AppleApi 活动视图/模式像素；名称 U，CI/SDK 状态对照已验 | Windows 信号活动像素、可用 EDID 友好名称；会话可受限，不是面板原生分辨率或全部物理显示器 |
