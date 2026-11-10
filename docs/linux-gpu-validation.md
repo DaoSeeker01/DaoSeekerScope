@@ -1,5 +1,15 @@
 # Linux GPU 视图验收
 
+## 2026-11-11 Intel Xe 专用显存
+
+源码 `fec8dca` 的[三平台 CI](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42726746876)八项任务全部通过。Linux x86_64 和 arm64 已接入 Xe 内存区域查询，只合计驱动报告的 VRAM 可用容量。有效响应只有系统内存时返回 `NotApplicable/NotPresent`。容量仍按静态信息缓存，读取前提和错误状态见 [ADR 0017](adr/0017-linux-gpu.md)。
+
+Ubuntu 原生通过四项新增测试，覆盖系统内存排除、多区域合计、零容量、未知类别、重复区域、长度和整数上限，以及查询长度握手和取消。外部字符设备拒绝使用真实内核调用验证，其中外部设备为 `/dev/null`。成功的 Xe 查询响应和权限错误码使用合成输入。非 root 容器通过 23 项 DRM 场景，新增三项分别验证渲染节点缺失、设备文件缺失和节点歧义。
+
+本机通过 308 项 Rust 测试、1 项跳过，Python 341 项通过、6 项跳过。fmt、严格 Clippy、严格文档、Schema、C/Rust 原生 ABI、Linux x86_64 和 arm64 交叉 Clippy 均通过。三个平台各完成 8 个源码包和 8 种独立 Rust 消费者配置，包内测试数分别为 Windows 308、Linux 306、macOS 307。Miri、AddressSanitizer、供应链检查与现有 12 个短时 fuzz 目标通过，fuzz 共执行 152,689,466 次。[验收报告](evidence/linux-xe-memory-ci-42726746876.json)
+
+实体 Xe 显卡容量和 Linux arm64 原生执行待验证。Xe 二进制响应解析器尚未接入专门 fuzz，现有 fuzz 结果仅覆盖原有目标。后续优先补齐该解析器的测试入口与异常响应种子。
+
 ## 2026-11-10 设备移除后恢复
 
 源码 `57d2e90` 在原采集期限和 4096 项总扫描上限内允许一次重扫。Ubuntu 原生测试通过设备移除后恢复、重扫前取消和设备路径持续缺失三个用例。非 root Linux 容器的 20 项 DRM 场景全部通过，持续缺失仍返回 `Unavailable/NotPresent`，内存仍可读取。

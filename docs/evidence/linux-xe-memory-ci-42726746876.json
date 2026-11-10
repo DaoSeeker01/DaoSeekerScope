@@ -1,0 +1,342 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-11-10T23:43:53.410058+00:00",
+  "source_commit": "fec8dcaef532333ead663d34ac3f2f163833ca56",
+  "upstream_linux_v6_12": {
+    "include/uapi/drm/drm.h": {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/include/uapi/drm/drm.h",
+      "sha256": "3ab6ac01bf91067aed96b70d7fa7847a86e7f726d74278151f085143688659cc"
+    },
+    "include/uapi/drm/xe_drm.h": {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/include/uapi/drm/xe_drm.h",
+      "sha256": "49545e2a075a391491eac44774af2065fd6875c24cb9cab4fcd68c90b509ed78"
+    },
+    "drivers/gpu/drm/drm_ioctl.c": {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/drm_ioctl.c",
+      "sha256": "f544251150d1bd786d570c20525bd29f04906a22617d72aed4c12d38326041ea"
+    },
+    "drivers/gpu/drm/drm_sysfs.c": {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/drm_sysfs.c",
+      "sha256": "db29e6da665900c6915087d51f2489c719c87f66fcdeca38df922d2d68709863"
+    },
+    "drivers/gpu/drm/xe/xe_query.c": {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/xe/xe_query.c",
+      "sha256": "46b3d565f2d48df73a91f63a332dd4e58d907452f9daf7181de1b0b80a580d1f"
+    },
+    "drivers/gpu/drm/xe/xe_device.c": {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/xe/xe_device.c",
+      "sha256": "f5c3737cbcd845d28819eab1f86451e7cd72ff438fe190dabe13da12205d0186"
+    }
+  },
+  "ci": {
+    "run_id": 42726746876,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42726746876",
+    "created_at": "2026-11-10T00:14:17Z",
+    "updated_at": "2026-11-10T00:28:44Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "databaseId": 129534220504,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "databaseId": 129534220754,
+        "conclusion": "success"
+      },
+      {
+        "name": "fuzz-smoke",
+        "databaseId": 129534220780,
+        "conclusion": "success"
+      },
+      {
+        "name": "linux-container",
+        "databaseId": 129534220813,
+        "conclusion": "success"
+      },
+      {
+        "name": "miri",
+        "databaseId": 129534220818,
+        "conclusion": "success"
+      },
+      {
+        "name": "ffi-asan",
+        "databaseId": 129534220947,
+        "conclusion": "success"
+      },
+      {
+        "name": "supply-chain",
+        "databaseId": 129534221123,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (windows-latest)",
+        "databaseId": 129534223099,
+        "conclusion": "success"
+      }
+    ]
+  },
+  "xe_validation": {
+    "native_linux_tests": [
+      "sums_device_local_regions_without_system_or_visible_memory",
+      "invalid_or_oversized_responses_never_return_a_partial_sum",
+      "foreign_character_device_is_rejected_before_driver_query",
+      "size_handshake_bounds_the_second_request_and_keeps_observation_status"
+    ],
+    "ubuntu_log_sha256": "1fc09918124da1b46b409146ffb2548db58c0aa01108a7a138154d069ff8b592",
+    "actual_kernel_foreign_device": "/dev/null",
+    "successful_ioctl_reply_synthetic": true,
+    "physical_xe_capacity_verified": false,
+    "arm64_execution_verified": false,
+    "xe_binary_parser_fuzzed": false,
+    "container_report_sha256": "88e344f42a167591c668a2692b1dfefa92f0d2c44f492cb3a5ee7cf3a71c736e",
+    "container_configuration": {
+      "user": "65534:65534",
+      "ReadonlyRootfs": true,
+      "NetworkMode": "none",
+      "CapDrop": [
+        "ALL"
+      ],
+      "SecurityOpt": [
+        "no-new-privileges=true"
+      ],
+      "Memory": 268435456,
+      "MemorySwap": 268435456,
+      "PidsLimit": 32,
+      "NanoCpus": 1000000000
+    },
+    "container_observations_passed": 23,
+    "xe_container_observations": {
+      "xe_without_render_node": {
+        "status": "passed",
+        "new_hardware": true,
+        "gpu_summary": {
+          "availability": "available",
+          "source": "drm",
+          "reason": null,
+          "observed_at": 1794269701242,
+          "entries": 3,
+          "names_available": 1,
+          "name_metadata": [
+            {
+              "availability": "available",
+              "source": "sysfs",
+              "reason": null,
+              "observed_at": 1794269701242
+            },
+            {
+              "availability": "unsupported",
+              "source": "drm",
+              "reason": "not_supported",
+              "observed_at": null
+            },
+            {
+              "availability": "unsupported",
+              "source": "drm",
+              "reason": "not_supported",
+              "observed_at": null
+            }
+          ],
+          "memory_states": [
+            "unsupported",
+            "unsupported",
+            "unavailable"
+          ]
+        },
+        "healthy_memory": true,
+        "schema_validated": true
+      },
+      "xe_render_device_missing": {
+        "status": "passed",
+        "new_hardware": true,
+        "gpu_summary": {
+          "availability": "available",
+          "source": "drm",
+          "reason": null,
+          "observed_at": 1794269701272,
+          "entries": 3,
+          "names_available": 1,
+          "name_metadata": [
+            {
+              "availability": "available",
+              "source": "sysfs",
+              "reason": null,
+              "observed_at": 1794269701272
+            },
+            {
+              "availability": "unsupported",
+              "source": "drm",
+              "reason": "not_supported",
+              "observed_at": null
+            },
+            {
+              "availability": "unsupported",
+              "source": "drm",
+              "reason": "not_supported",
+              "observed_at": null
+            }
+          ],
+          "memory_states": [
+            "unsupported",
+            "unsupported",
+            "unavailable"
+          ]
+        },
+        "healthy_memory": true,
+        "schema_validated": true
+      },
+      "xe_ambiguous_render_nodes": {
+        "status": "passed",
+        "new_hardware": true,
+        "gpu_summary": {
+          "availability": "available",
+          "source": "drm",
+          "reason": null,
+          "observed_at": 1794269701302,
+          "entries": 3,
+          "names_available": 1,
+          "name_metadata": [
+            {
+              "availability": "available",
+              "source": "sysfs",
+              "reason": null,
+              "observed_at": 1794269701302
+            },
+            {
+              "availability": "unsupported",
+              "source": "drm",
+              "reason": "not_supported",
+              "observed_at": null
+            },
+            {
+              "availability": "unsupported",
+              "source": "drm",
+              "reason": "not_supported",
+              "observed_at": null
+            }
+          ],
+          "memory_states": [
+            "unsupported",
+            "unsupported",
+            "unavailable"
+          ]
+        },
+        "healthy_memory": true,
+        "schema_validated": true
+      }
+    }
+  },
+  "local": {
+    "windows_rust_passed": 308,
+    "windows_rust_ignored": 1,
+    "rust_log_sha256": "d4d4977e381e42c0bb68285f86c6796e6e6fe32c12ed7e51da1a410b14ac88f6",
+    "python_passed": 341,
+    "python_skipped": 6,
+    "python_log_sha256": "8dfc95a23f993713e928e989101246497bf50dbcbc43ce2200ae54efc1a5be9a",
+    "native_abi_contract_sha256": "456f12bae5d8acfc49c469d2c95d1cf8cacb06374590dfe2ae7544daf55247dc",
+    "cross_clippy_targets": [
+      "x86_64-unknown-linux-gnu",
+      "aarch64-unknown-linux-gnu"
+    ],
+    "package_check": {
+      "report_sha256": "b1ccd71af46e53a71a94855deeaa76d02c9f947ddc0bd2152c2eef0952955333",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 308,
+      "cli": "dscope 0.1.0",
+      "registry_publication_verified": false
+    }
+  },
+  "ci_packages": {
+    "Linux-X64": {
+      "report_sha256": "9e9e2006116de7fe63091fe57dd8788adaf11b610728a3af1b1c5e97436e8f74",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 306,
+      "cli": "dscope 0.1.0",
+      "registry_publication_verified": false
+    },
+    "macOS-ARM64": {
+      "report_sha256": "8841b15c1b70085853a96f3ba914b4fb41d04e4df8de89c8fb42d40ff763f0ed",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 307,
+      "cli": "dscope 0.1.0",
+      "registry_publication_verified": false
+    },
+    "Windows-X64": {
+      "report_sha256": "9cbf289233db60abe7a50c1aed63a0f47a1d32a35750028b2ce0fcb473943c86",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 308,
+      "cli": "dscope 0.1.0",
+      "registry_publication_verified": false
+    }
+  },
+  "fuzz": {
+    "total_runs": 152689466,
+    "targets": {
+      "cli_args": {
+        "runs": 17532774,
+        "seconds": 61,
+        "log_sha256": "82bd7da517dc4640987302553b42c38593b3ad28692b752151aa8fbf08a5f423"
+      },
+      "cpu_stat": {
+        "runs": 1143335,
+        "seconds": 61,
+        "log_sha256": "637ce8f0f5abbe280e4448e2dd788adc93da550e19c5afaa3ff9b900baad224d"
+      },
+      "dmi_text": {
+        "runs": 7079992,
+        "seconds": 61,
+        "log_sha256": "70a237832e3bb16cd4db5985b45efd6754437f23c59ee084063d89f3be530c27"
+      },
+      "hwmon_temperature": {
+        "runs": 18577515,
+        "seconds": 61,
+        "log_sha256": "d3c7c8efafc3abf98bd3a08b49ff2239abdc2632d1823bb876a6761e3b87abaf"
+      },
+      "macos_network": {
+        "runs": 4581844,
+        "seconds": 61,
+        "log_sha256": "9bb9f4379c35b70357a35c023881d25106b75fbedda8e9f7f1065e99d012977a"
+      },
+      "meminfo": {
+        "runs": 4132800,
+        "seconds": 61,
+        "log_sha256": "527a7794da90b37e1e8b3f3077b6ba5eea6221a7d7ce17d3cf9817610cdafff1"
+      },
+      "network_dev": {
+        "runs": 2365471,
+        "seconds": 61,
+        "log_sha256": "e1fd2332cd8f3a29cf0c61b98b22e0e1263f6ec104afd155fa0276a1e9b218da"
+      },
+      "power_supply": {
+        "runs": 19358506,
+        "seconds": 61,
+        "log_sha256": "5800a124596e8c7f812af126d0903dfac9140f629373dcbf5f3381d2d3277d7f"
+      },
+      "snapshot_json": {
+        "runs": 351070,
+        "seconds": 61,
+        "log_sha256": "f5dfb367da6d80dd5196029bbaa28640eb80fad27af17c88c550517447d0c29c"
+      },
+      "storage_capacity": {
+        "runs": 28439724,
+        "seconds": 61,
+        "log_sha256": "6c76755c3c224ea09398488be158d3f7104f9623c99aa6b871465ce608cae3bf"
+      },
+      "uptime": {
+        "runs": 19047086,
+        "seconds": 61,
+        "log_sha256": "811ddf675ea289c83b3f930b028645cdf2b806be7073244e328b42636999b1d1"
+      },
+      "windows_cpu_groups": {
+        "runs": 30079349,
+        "seconds": 61,
+        "log_sha256": "276f2cae3505581217b69344191aa20aa5aaa5b75715df9c83042b2461fb4c8c"
+      }
+    }
+  }
+}

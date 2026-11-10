@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-11 归档 Intel Xe 专用显存，源码 `fec8dca`。三平台 CI 八项任务通过，包含 Linux 四项新增测试和非 root 容器 23 项 DRM 场景。各平台通过 8 个源码包与 8 种独立消费者配置。Linux arm64 交叉 Clippy 通过，原生执行待验。实体 Xe 容量读数和二进制响应解析器专门 fuzz 待补齐。[验收报告](evidence/linux-xe-memory-ci-42726746876.json)
+
 2026-11-10 修复 Linux GPU 扫描中设备路径消失时的恢复，并隔离并行 FFI 测试使用的共享缓冲区注册表。源码 `57d2e90` 的三平台 CI 八项任务通过。Ubuntu 原生热拔插模拟与取消用例、非 root 容器 20 项 DRM 场景、本机 8 线程 FFI 复验均通过。实体 GPU 热拔插待验证，Linux 独占显存待实现。[验收报告](evidence/linux-drm-retry-ci-42722683054.json)
 
 2026-11-10 归档 NCT6775 系列温度支持，源码提交 `7be35bf`。完整 CI 的 8 项任务通过。Linux 非 root 容器通过 95 项合成观测，含新增 5 项。三平台源码包验证各通过 8 个归档和 8 种独立消费者配置。12 个短时 fuzz 目标共执行 196,057,051 次。实体 NCT6775 系列设备读数待验证。[验收报告](evidence/linux-nct6775-ci-42598192988.json)
@@ -98,7 +100,7 @@
 
 | 工作包 | 已完成部分 | 剩余部分 |
 |---|---|---|
-| GPU | Windows DXGI、Linux 有限 DRM 枚举/名称已验收；macOS Metal 名称/内存状态通过三平台 CI 与独立 SDK 探针 | Linux 独占显存及更多名称来源；实体 Mac/AMD/NVIDIA 验证延期 |
+| GPU | Windows DXGI、Linux DRM 枚举/部分名称和 Xe 专用显存通过 CI；macOS Metal 名称/内存状态通过 CI 与 SDK 探针 | Xe 响应解析器专门 fuzz，其他 Linux 驱动的专用显存与名称来源；实体设备验证延期 |
 | 显示器 | Windows 活动路径/信号像素通过本机 SDK 与 CI；Linux 连接视图通过原生 CLI/C、授权合成名称和 26 项权限/缓存容器验证；macOS 活动视图/模式状态通过原生 CI 与 SDK 对照；CLI 文本通过本机和三平台原生 CI，见 [记录](display-text-validation.md) | Linux 当前像素、真实名称阳性；实体多屏等验证 |
 | 平台增强 | Linux 部分 DMI/电池/温度、macOS 设备型号、Windows 电池摘要；Windows 设备/主板/固件六值本机与 CI SDK/缓存通过；macOS 内置电池原生类型测试与空视图通过，[记录](macos-battery-validation.md) | 更多设备/OEM 与主板/固件来源、实体电池与其他传感器可靠来源评估 |
 | 动态数据可靠性 | Linux CPU/内存/网络读取与失败回归；Windows/macOS 网络；Windows 内存与单组 CPU 通过本机和三平台 CI；macOS CPU/内存/uptime、Windows uptime 已通过原生 SDK/CI/八包；Windows 多组采样实现通过三平台 CI，单组 helper/SDK 在本机和 CI 通过，[记录](windows-cpu-groups-validation.md) | Windows 真实多组、Job/hotplug/真实故障覆盖 |
