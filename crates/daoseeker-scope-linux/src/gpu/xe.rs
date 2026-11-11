@@ -54,6 +54,7 @@ use native::query;
 ))]
 mod native {
     use super::*;
+    use crate::gpu::xe_regions::{MAX_PAYLOAD, observe, valid_size};
     use daoseeker_scope_core::Timestamp;
     use std::{
         fs::{self, File, Metadata, OpenOptions},
@@ -67,10 +68,6 @@ mod native {
 
     const DRM_MAJOR: u32 = 226;
     const FIRST_RENDER_MINOR: u32 = 128;
-    const REGION_HEADER: usize = 8;
-    const REGION_SIZE: usize = 88;
-    const MAX_REGIONS: usize = 32;
-    const MAX_PAYLOAD: usize = REGION_HEADER + MAX_REGIONS * REGION_SIZE;
     const MEM_REGIONS: u32 = 1;
 
     // Linux v6.12 include/uapi/drm/{drm,xe_drm}.h, native LP64 layout.
@@ -193,42 +190,6 @@ mod native {
         }
     }
 
-    fn valid_size(size: usize) -> bool {
-        (REGION_HEADER + REGION_SIZE..=MAX_PAYLOAD).contains(&size)
-            && (size - REGION_HEADER).is_multiple_of(REGION_SIZE)
-    }
-
-    fn capacity(bytes: &[u8]) -> Option<Option<u64>> {
-        if !valid_size(bytes.len()) {
-            return None;
-        }
-        let (header, entries) = bytes.split_at(REGION_HEADER);
-        let count = u32::from_ne_bytes(header[..4].try_into().ok()?) as usize;
-        if count != entries.len() / REGION_SIZE || header[4..] != [0; 4] {
-            return None;
-        }
-        let mut instances = 0u64;
-        let mut total = None::<u64>;
-        for entry in entries.chunks_exact(REGION_SIZE) {
-            let class = u16::from_ne_bytes(entry[..2].try_into().ok()?);
-            let instance = u16::from_ne_bytes(entry[2..4].try_into().ok()?);
-            let bit = 1u64.checked_shl(u32::from(instance))?;
-            if instances & bit != 0 {
-                return None;
-            }
-            instances |= bit;
-            match class {
-                0 => {} // System memory is shared with the CPU.
-                1 => {
-                    let bytes = u64::from_ne_bytes(entry[8..16].try_into().ok()?);
-                    total = Some(total.unwrap_or(0).checked_add(bytes)?);
-                }
-                _ => return None,
-            }
-        }
-        Some(total)
-    }
-
     pub(super) fn query(
         drm_root: &Path,
         device: &Path,
@@ -289,11 +250,7 @@ mod native {
         let result = query(Some(bytes));
         check()?;
         Ok(match result {
-            Ok(actual) if actual == size => match capacity(bytes) {
-                Some(Some(value)) => Observed::available(value, Source::Drm, Timestamp::now()?),
-                Some(None) => Observed::not_applicable(Source::Drm),
-                None => invalid(Source::Drm),
-            },
+            Ok(actual) if actual == size => observe(bytes, Timestamp::now)?,
             Ok(_) => invalid(Source::Drm),
             Err(error) => ioctl_failure(error),
         })
@@ -302,51 +259,8 @@ mod native {
     #[cfg(test)]
     mod tests {
         use super::*;
+        use crate::gpu::xe_regions::{MAX_PAYLOAD, REGION_HEADER, REGION_SIZE, response};
         use daoseeker_scope_core::Availability;
-
-        fn response(regions: &[(u16, u16, u64)]) -> Vec<u8> {
-            let mut bytes = vec![0; REGION_HEADER + regions.len() * REGION_SIZE];
-            bytes[..4].copy_from_slice(&(regions.len() as u32).to_ne_bytes());
-            for (entry, &(class, instance, total)) in bytes[REGION_HEADER..]
-                .chunks_exact_mut(REGION_SIZE)
-                .zip(regions)
-            {
-                entry[..2].copy_from_slice(&class.to_ne_bytes());
-                entry[2..4].copy_from_slice(&instance.to_ne_bytes());
-                entry[8..16].copy_from_slice(&total.to_ne_bytes());
-                entry[16..40].fill(0x55); // Usage and CPU-visible fields are irrelevant.
-            }
-            bytes
-        }
-
-        #[test]
-        fn sums_device_local_regions_without_system_or_visible_memory() {
-            assert_eq!(capacity(&response(&[(0, 0, u64::MAX)])), Some(None));
-            assert_eq!(capacity(&response(&[(1, 0, 0)])), Some(Some(0)));
-            assert_eq!(
-                capacity(&response(&[(1, 4, 4096), (0, 0, u64::MAX), (1, 1, 8192)])),
-                Some(Some(12288))
-            );
-        }
-
-        #[test]
-        fn invalid_or_oversized_responses_never_return_a_partial_sum() {
-            for regions in [
-                &[][..],
-                &[(1, 0, 4096), (1, 0, 8192)],
-                &[(1, 0, 4096), (2, 1, 8192)],
-                &[(1, 0, 4096), (1, 64, 8192)],
-                &[(1, 0, u64::MAX), (1, 1, 1)],
-                &[(1, 0, 4096); MAX_REGIONS + 1],
-            ] {
-                assert_eq!(capacity(&response(regions)), None);
-            }
-            let mut bytes = response(&[(1, 0, 4096)]);
-            assert_eq!(capacity(&bytes[..bytes.len() - 1]), None);
-            bytes[..4].copy_from_slice(&2u32.to_ne_bytes());
-            assert_eq!(capacity(&bytes), None);
-            assert!(!valid_size(usize::MAX));
-        }
 
         #[test]
         fn foreign_character_device_is_rejected_before_driver_query() {

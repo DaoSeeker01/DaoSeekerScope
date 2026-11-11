@@ -18,6 +18,12 @@ pub fn gpu_names(data: &[u8]) -> (Observed<String>, Observed<String>) {
     )
 }
 
+/// Production Xe memory-region parser with a synthetic timestamp and no device I/O.
+pub fn xe_memory(data: &[u8]) -> Observed<u64> {
+    super::gpu::xe_regions::observe(data, || Ok(daoseeker_scope_core::Timestamp(0)))
+        .expect("synthetic timestamp cannot fail")
+}
+
 /// Production bounded 512-byte-sector conversion; synthetic time, no files.
 pub fn storage_capacity(data: &[u8]) -> Observed<u64> {
     super::storage::capacity(data, daoseeker_scope_core::Timestamp(0))

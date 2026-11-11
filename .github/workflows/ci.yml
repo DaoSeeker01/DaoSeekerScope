@@ -391,7 +391,7 @@ jobs:
         if: matrix.group == 'all' || matrix.group == 'interfaces'
         run: |
           set -o pipefail
-          cargo +nightly-2026-10-08 fuzz run dmi_text -- -max_total_time="$FUZZ_SECONDS" -max_len=8192 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/dmi_text.log
+          cargo +nightly-2026-10-08 fuzz run dmi_text -- -seed=20261111 -max_total_time="$FUZZ_SECONDS" -max_len=8192 -timeout=2 -rss_limit_mb=512 2>&1 | tee target/procfs-fuzz/dmi_text.log
       - name: Fuzz cli_args
         if: matrix.group == 'all' || matrix.group == 'interfaces'
         run: |

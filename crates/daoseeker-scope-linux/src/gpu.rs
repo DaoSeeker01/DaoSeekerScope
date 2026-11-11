@@ -7,6 +7,16 @@ use std::{
 };
 
 mod xe;
+#[cfg(any(
+    test,
+    feature = "fuzzing",
+    all(
+        target_os = "linux",
+        target_pointer_width = "64",
+        any(target_arch = "x86_64", target_arch = "aarch64")
+    )
+))]
+pub(super) mod xe_regions;
 
 const MAX_NAME: usize = 4096;
 const MAX_SCANNED: usize = 4096;

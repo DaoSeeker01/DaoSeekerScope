@@ -4,10 +4,52 @@
 mod common;
 
 #[cfg(test)]
+#[path = "../fuzz_targets/xe_memory_checks.rs"]
+mod xe_memory_checks;
+
+#[cfg(test)]
 mod tests {
     use super::common;
     use daoseeker_scope::{Observed, Source, Timestamp};
     use daoseeker_scope_macos::fuzzing::network_route;
+
+    #[test]
+    fn xe_memory_seeds_and_mutations_use_the_production_parser() {
+        let seeds: &[&[u8]] = &[
+            include_bytes!("../corpus/dmi_text/xe_system_memory"),
+            include_bytes!("../corpus/dmi_text/xe_two_local_regions"),
+            include_bytes!("../corpus/dmi_text/xe_zero_local_memory"),
+            include_bytes!("../corpus/dmi_text/xe_duplicate_instance"),
+            include_bytes!("../corpus/dmi_text/xe_unknown_class"),
+            include_bytes!("../corpus/dmi_text/xe_capacity_overflow"),
+            include_bytes!("../corpus/dmi_text/xe_truncated_region"),
+            include_bytes!("../corpus/dmi_text/xe_too_many_regions"),
+            include_bytes!("../corpus/dmi_text/xe_maximum_regions"),
+        ];
+        #[cfg(target_endian = "little")]
+        {
+            use daoseeker_scope::{Availability, ReasonCode};
+            use daoseeker_scope_linux::fuzzing::xe_memory;
+            assert_eq!(
+                xe_memory(seeds[0]).availability(),
+                Availability::NotApplicable
+            );
+            assert_eq!(xe_memory(seeds[1]).value(), Some(&12288));
+            assert_eq!(xe_memory(seeds[2]).value(), Some(&0));
+            for seed in &seeds[3..8] {
+                assert_eq!(xe_memory(seed).reason(), Some(ReasonCode::InvalidData));
+            }
+            assert_eq!(xe_memory(seeds[8]).value(), Some(&(31 * 4096)));
+        }
+        for seed in seeds {
+            super::xe_memory_checks::check(seed);
+            for index in 0..seed.len() {
+                let mut changed = seed.to_vec();
+                changed[index] ^= 0xff;
+                super::xe_memory_checks::check(&changed);
+            }
+        }
+    }
 
     #[test]
     fn windows_registry_utf16_uses_win32_and_rejects_placeholder() {

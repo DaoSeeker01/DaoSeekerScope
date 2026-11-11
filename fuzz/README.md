@@ -1,5 +1,14 @@
 # Fuzz 目标
 
+Xe 内存区域响应复用现有 `dmi_text` 目标。它调用生产解析器，检查 2824 字节和 32 区域上限、容量合计、共享内存排除及字段状态。改变使用量、CPU 可见容量、保留字段或区域顺序后，结果应保持一致。9 份合成小端种子覆盖系统内存、两个本地显存区域、零容量、重复区域、未知类别、溢出、截断和区域数量边界。harness 单测也运行这些断言及逐字节变异。
+
+此入口在 `fuzzing` feature 下启用，仅解析字节。实体设备、ioctl 和权限仍由对应的平台测试验证。执行时从仓库根目录运行下列命令，CI 使用同一随机种子和单输入超时。
+
+```sh
+cargo test --locked --manifest-path fuzz/Cargo.toml --lib
+cargo +nightly-2026-10-08 fuzz run dmi_text -- -seed=20261111 -max_total_time=60 -max_len=8192 -timeout=2 -rss_limit_mb=512
+```
+
 需要扩大测试时，在 GitHub Actions 手动运行 `desktop-contracts`，选择 `fuzz-extended`。12 个目标分四组并行运行，每个目标配置 300 秒。普通 push 和 PR 使用 60 秒检查。每组保存逐目标日志及失败复现输入，验收时核对完成标记、实际执行时长和次数。输入长度与内存门限沿用普通检查。单次输入与整个测试的时间设置参见 [libFuzzer 参数说明](https://llvm.org/docs/LibFuzzer.html#options)。
 
 2026-11-04，提交 `ba239ba` 的四组任务通过。12 个目标各运行 301 秒，共执行 929160798 次。每份日志的执行次数与完成摘要一致。这里的次数包含重复输入。[逐目标结果与日志哈希](../docs/evidence/extended-fuzz-41714025797.json)

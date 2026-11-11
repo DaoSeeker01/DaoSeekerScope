@@ -30,6 +30,6 @@ Xe 的 `DRM_XE_DEVICE_QUERY_MEM_REGIONS` 把设备本地显存和共享系统内
 
 ## 兼容与验证
 
-Rust 签名、C ABI 1、Schema 1 保持兼容。Linux Xe 查询复用 workspace 已锁定的 `libc`，只在支持架构上编译。两处 ioctl 调用集中在 Xe 模块，其他 Linux 采集代码继续禁止使用 unsafe。名称解析继续复用现有 `dmi_text` fuzz 目标。
+Rust 签名、C ABI 1、Schema 1 保持兼容。Linux Xe 查询复用 workspace 已锁定的 `libc`，只在支持架构上编译。两处 ioctl 调用集中在 Xe 模块，其他 Linux 采集代码继续禁止使用 unsafe。纯字节解析与状态转换由生产查询和默认关闭的 `fuzzing::xe_memory` 共用，解析模块禁止 unsafe。它和名称解析共用现有 `dmi_text` fuzz 目标，验证共享内存排除、无关字段变化及区域顺序。
 
 验证覆盖合成 sysfs/procfs、真实内核文件类型和权限、Xe 响应解析、长度握手、静态缓存、三平台 CI 及 CLI/C/Python。驱动报告的设备名称和 Intel Xe 专用显存容量还需对应的实体设备验证。
