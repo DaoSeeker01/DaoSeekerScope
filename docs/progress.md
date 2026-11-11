@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-11 许可预检增加 `--verify-archives`，将缺少材料的包与锁定归档、发布提交和源码位置关联。源码 `afb9955` 的三平台 CI 八项通过，本机 Python 352 项通过、6 项跳过。修复了损坏 Deflate 流中断整份预检的问题，原失败与首轮取消的 CI 单独保留。macOS 原生及本机跨目标均核验六个归档，六项分发材料缺口仍存在。[验收报告](evidence/notice-archive-ci-42938039525.json)
+
 2026-11-11 补齐 Xe 响应解析器 fuzz，源码 `a925ac8`。共用生产解析器，9 份种子及 6,847 次逐字节变异通过。三平台 CI 八项通过；包含 Xe 断言的 `dmi_text` 运行 61 秒、执行 6,799,822 次，全部 12 个 fuzz 目标通过。实体 Xe 和 Linux arm64 原生验证继续延期。[验收报告](evidence/linux-xe-fuzz-ci-42928665649.json)
 
 2026-11-11 归档 Intel Xe 专用显存，源码 `fec8dca`。三平台 CI 八项任务通过，包含 Linux 四项新增测试和非 root 容器 23 项 DRM 场景。各平台通过 8 个源码包与 8 种独立消费者配置。Linux arm64 交叉 Clippy 通过，原生执行待验。实体 Xe 容量读数和二进制响应解析器专门 fuzz 待补齐。[验收报告](evidence/linux-xe-memory-ci-42726746876.json)

@@ -33,6 +33,10 @@ python scripts/notice_audit.py --offline --verify-archives --target aarch64-appl
 
 ## macOS 当前材料
 
+2026-11-11，提交 `afb9955` 的三平台 CI 八项通过，原生 macOS 和 Windows 本机跨目标预检均核验了六个锁定归档。包校验和、包名、版本、SPDX 和发布提交一致，六个归档的根许可文件列表均为空。两种 macOS 架构查询的 CLI/SDK 仍各有六项材料缺口。归档来源记录现在由 `--verify-archives` 自动生成。[验收报告](evidence/notice-archive-ci-42938039525.json)
+
+本轮官方 Cargo 稀疏索引查询未发现这六个包更新的正式版本。上游作者确认旧版本以各包的 license 字段为准，但未确认历史版权声明完整。现有来源记录可用于逐版本补材料，分发材料的完整性与适用性仍待核对。[上游说明](https://github.com/madsmtm/objc2/issues/826#issuecomment-6107377999)
+
 2026-11-09 核对六个锁定 `.crate` 的 SHA-256、发布提交和归档内容。六个归档均缺少根许可材料，三个发布提交的根 `LICENSE.md` 指向同一份许可说明。上游补入完整许可文本的提交与 `objc2 0.6.5` 的发布提交分属不同分支。已定位早期 `rust-objc` 的 MIT 文本，相关历史材料的适用性和完整性仍待评审。[归档与来源记录](evidence/notice-provenance-93b01a2-2026-11-09.json) [上游许可讨论](https://github.com/madsmtm/objc2/issues/826)
 
 2026-11-02 复核：提交 `d76e8a9` 的原生 macOS CI 扫描与本机跨目标扫描仍为 CLI/SDK 各 20 个依赖包、6 项材料阻塞。新增的 [Mach-O 原生对照](macos-binary-validation.md)已通过，但没有改变文件门槛或开放打包；元数据检查不代替材料补齐。
@@ -42,6 +46,12 @@ python scripts/notice_audit.py --offline --verify-archives --target aarch64-appl
 原有六个 objc2 系列依赖的版本与源码调查见[历史记录](evidence/macos-license-research-2026-10-26.json)。冻结提交 `5124d16` 的实际扫描结果已归档，历史记录不覆盖。没有联系上游、改许可证、升级依赖或打开 macOS 二进制分发入口。
 
 ## 本轮验收
+
+归档核验实现新增 11 项 Python 测试，覆盖校验和、包信息、发布信息、路径、重复字段、链接和读取上限，以及 CLI 参数传递和单包错误隔离。损坏 Deflate 流最初抛出未归类异常，定向回归先失败，再通过修复。最终本机 Python 352 项通过、6 项平台跳过，Ruff、mypy（81 文件）、actionlint 和项目检查通过。
+
+修复后的 CI 42938039525 八项任务通过。首轮 CI 42936806518 被后续运行取消，其结果单独保留。三个平台各验证 8 个源码包和 8 种独立消费者配置，包内 Rust 测试为 Windows 311、Linux 307、macOS 310。现有 12 个 Rust/CLI fuzz 目标通过，归档检查器本轮使用确定性负向测试。[本轮结果与失败记录](evidence/notice-archive-ci-42938039525.json)
+
+### 首次预检验收
 
 [CI 40973873976](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40973873976)八项任务成功；[证据索引](evidence/notice-audit-ci-40973873976.json)保留三份原生 runner 扫描与两份 Windows 本机查询报告，以及来源、文件哈希和限制。
 

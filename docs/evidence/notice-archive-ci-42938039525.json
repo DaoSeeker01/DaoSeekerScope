@@ -1,0 +1,524 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-11-11T01:36:51.040738+00:00",
+  "source_commit": "afb9955166086c6e8581db1093081bd25212cc1d",
+  "ci": {
+    "run_id": 42938039525,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42938039525",
+    "conclusion": "success",
+    "created_at": "2026-11-11T01:18:53Z",
+    "updated_at": "2026-11-11T01:32:39Z",
+    "jobs": [
+      {
+        "name": "miri",
+        "databaseId": 130252919956,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "databaseId": 130252920192,
+        "conclusion": "success"
+      },
+      {
+        "name": "linux-container",
+        "databaseId": 130252920225,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "databaseId": 130252920241,
+        "conclusion": "success"
+      },
+      {
+        "name": "supply-chain",
+        "databaseId": 130252920244,
+        "conclusion": "success"
+      },
+      {
+        "name": "fuzz-smoke",
+        "databaseId": 130252920345,
+        "conclusion": "success"
+      },
+      {
+        "name": "ffi-asan",
+        "databaseId": 130252920463,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (windows-latest)",
+        "databaseId": 130252920514,
+        "conclusion": "success"
+      }
+    ]
+  },
+  "superseded_run": {
+    "conclusion": "cancelled",
+    "databaseId": 42936806518,
+    "headSha": "022047d25174c7a064d0d818f841a1bc1906726a",
+    "jobs": [
+      {
+        "conclusion": "success",
+        "name": "miri",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "linux-container",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "ffi-asan",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "desktop (macos-latest)",
+        "status": "completed"
+      },
+      {
+        "conclusion": "cancelled",
+        "name": "fuzz-smoke",
+        "status": "completed"
+      },
+      {
+        "conclusion": "cancelled",
+        "name": "desktop (windows-latest)",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "supply-chain",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "desktop (ubuntu-24.04)",
+        "status": "completed"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42936806518"
+  },
+  "local": {
+    "python_passed": 352,
+    "python_skipped": 6,
+    "python_log_sha256": "8a5a4a9bbef0439f144182799b514db1b8e495488b07e57171070381a48078d1",
+    "checks_passed": [
+      "Ruff format and lint",
+      "mypy on 81 files",
+      "actionlint without shellcheck or pyflakes",
+      "project files and documentation links"
+    ],
+    "deflate_regression": {
+      "before": "a checksum-matching malformed Deflate stream escaped as zlib.error",
+      "after": "invalid/archive_metadata_invalid is returned for that package",
+      "before_log_sha256": "014105c05f3dca41b3d1381f75f1d5568000ee90f473acc9c3d3f2dd68812004",
+      "after_log_sha256": "706e785a36f41110900ddd34b575d83477d587a7b834b4eb9f31cdf90e3ff58d"
+    }
+  },
+  "local_audits": {
+    "aarch64-apple-darwin": {
+      "original_report_sha256": "c13c90fa00977296212a7657170c2651910652d4ca8b9ede8ccaf907ef04e435",
+      "target": "aarch64-apple-darwin",
+      "products": {
+        "cli": {
+          "third_party_packages": 20,
+          "packager_notice_gate": "blocked",
+          "blocking_packages": 6,
+          "verified_archives": 6,
+          "blocking_materials_sha256": "a47ab9b5091d6c3013d2fbacdd9b0e67d6701dc328afc414acfe0d756501b8b1"
+        },
+        "ffi_sdk": {
+          "third_party_packages": 20,
+          "packager_notice_gate": "blocked",
+          "blocking_packages": 6,
+          "verified_archives": 6,
+          "blocking_materials_sha256": "a47ab9b5091d6c3013d2fbacdd9b0e67d6701dc328afc414acfe0d756501b8b1"
+        }
+      }
+    },
+    "x86_64-apple-darwin": {
+      "original_report_sha256": "84d8033ffa054fcbe26f9e05ec09ac920f318823c5644defbee6eb103363a11b",
+      "target": "x86_64-apple-darwin",
+      "products": {
+        "cli": {
+          "third_party_packages": 20,
+          "packager_notice_gate": "blocked",
+          "blocking_packages": 6,
+          "verified_archives": 6,
+          "blocking_materials_sha256": "a47ab9b5091d6c3013d2fbacdd9b0e67d6701dc328afc414acfe0d756501b8b1"
+        },
+        "ffi_sdk": {
+          "third_party_packages": 20,
+          "packager_notice_gate": "blocked",
+          "blocking_packages": 6,
+          "verified_archives": 6,
+          "blocking_materials_sha256": "a47ab9b5091d6c3013d2fbacdd9b0e67d6701dc328afc414acfe0d756501b8b1"
+        }
+      }
+    },
+    "x86_64-pc-windows-msvc": {
+      "original_report_sha256": "31951a5b4cdde9c7c248b481f7995532c2d33c1334c1ca279aa89758dae11277",
+      "target": "x86_64-pc-windows-msvc",
+      "products": {
+        "cli": {
+          "third_party_packages": 28,
+          "packager_notice_gate": "satisfied",
+          "blocking_packages": 0,
+          "verified_archives": 0,
+          "blocking_materials_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "ffi_sdk": {
+          "third_party_packages": 28,
+          "packager_notice_gate": "satisfied",
+          "blocking_packages": 0,
+          "verified_archives": 0,
+          "blocking_materials_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      }
+    },
+    "x86_64-unknown-linux-gnu": {
+      "original_report_sha256": "b4e314006814ee7648dc90b2bf2e3a0acf8861a95d6c288dcdb7f3c7180fda64",
+      "target": "x86_64-unknown-linux-gnu",
+      "products": {
+        "cli": {
+          "third_party_packages": 13,
+          "packager_notice_gate": "satisfied",
+          "blocking_packages": 0,
+          "verified_archives": 0,
+          "blocking_materials_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "ffi_sdk": {
+          "third_party_packages": 13,
+          "packager_notice_gate": "satisfied",
+          "blocking_packages": 0,
+          "verified_archives": 0,
+          "blocking_materials_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      }
+    }
+  },
+  "native_audits": {
+    "Linux-X64": {
+      "original_report_sha256": "b4e314006814ee7648dc90b2bf2e3a0acf8861a95d6c288dcdb7f3c7180fda64",
+      "target": "x86_64-unknown-linux-gnu",
+      "products": {
+        "cli": {
+          "third_party_packages": 13,
+          "packager_notice_gate": "satisfied",
+          "blocking_packages": 0,
+          "verified_archives": 0,
+          "blocking_materials_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "ffi_sdk": {
+          "third_party_packages": 13,
+          "packager_notice_gate": "satisfied",
+          "blocking_packages": 0,
+          "verified_archives": 0,
+          "blocking_materials_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      }
+    },
+    "macOS-ARM64": {
+      "original_report_sha256": "c13c90fa00977296212a7657170c2651910652d4ca8b9ede8ccaf907ef04e435",
+      "target": "aarch64-apple-darwin",
+      "products": {
+        "cli": {
+          "third_party_packages": 20,
+          "packager_notice_gate": "blocked",
+          "blocking_packages": 6,
+          "verified_archives": 6,
+          "blocking_materials_sha256": "a47ab9b5091d6c3013d2fbacdd9b0e67d6701dc328afc414acfe0d756501b8b1"
+        },
+        "ffi_sdk": {
+          "third_party_packages": 20,
+          "packager_notice_gate": "blocked",
+          "blocking_packages": 6,
+          "verified_archives": 6,
+          "blocking_materials_sha256": "a47ab9b5091d6c3013d2fbacdd9b0e67d6701dc328afc414acfe0d756501b8b1"
+        }
+      }
+    },
+    "Windows-X64": {
+      "original_report_sha256": "31951a5b4cdde9c7c248b481f7995532c2d33c1334c1ca279aa89758dae11277",
+      "target": "x86_64-pc-windows-msvc",
+      "products": {
+        "cli": {
+          "third_party_packages": 28,
+          "packager_notice_gate": "satisfied",
+          "blocking_packages": 0,
+          "verified_archives": 0,
+          "blocking_materials_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "ffi_sdk": {
+          "third_party_packages": 28,
+          "packager_notice_gate": "satisfied",
+          "blocking_packages": 0,
+          "verified_archives": 0,
+          "blocking_materials_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      }
+    }
+  },
+  "macos_blocking_packages": [
+    {
+      "name": "objc2-core-foundation",
+      "version": "0.3.2",
+      "spdx": "Zlib OR Apache-2.0 OR MIT",
+      "notices": [],
+      "errors": [
+        "missing_dependency_notice"
+      ],
+      "archive_provenance": {
+        "status": "verified",
+        "archive_sha256": "2a180dd8642fa45cdb7dd721cd4c11b1cadd4929ce112ebd8b9f5803cc79d536",
+        "archive_bytes": 180804,
+        "archive_members": 76,
+        "root_notices": [],
+        "vcs": {
+          "revision": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+          "path_in_vcs": "framework-crates/objc2-core-foundation",
+          "source_url": "https://github.com/madsmtm/objc2/tree/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/framework-crates/objc2-core-foundation"
+        }
+      }
+    },
+    {
+      "name": "objc2-encode",
+      "version": "4.1.0",
+      "spdx": "MIT",
+      "notices": [],
+      "errors": [
+        "missing_dependency_notice"
+      ],
+      "archive_provenance": {
+        "status": "verified",
+        "archive_sha256": "ef25abbcd74fb2609453eb695bd2f860d389e457f67dc17cafc8b8cbc89d0c33",
+        "archive_bytes": 21004,
+        "archive_members": 12,
+        "root_notices": [],
+        "vcs": {
+          "revision": "8d214f5477365ffcbcbb7de058c86ed9a518efb7",
+          "path_in_vcs": "crates/objc2-encode",
+          "source_url": "https://github.com/madsmtm/objc2/tree/8d214f5477365ffcbcbb7de058c86ed9a518efb7/crates/objc2-encode"
+        }
+      }
+    },
+    {
+      "name": "objc2-foundation",
+      "version": "0.3.2",
+      "spdx": "MIT",
+      "notices": [],
+      "errors": [
+        "missing_dependency_notice"
+      ],
+      "archive_provenance": {
+        "status": "verified",
+        "archive_sha256": "e3e0adef53c21f888deb4fa59fc59f7eb17404926ee8a6f59f5df0fd7f9f3272",
+        "archive_bytes": 345384,
+        "archive_members": 239,
+        "root_notices": [],
+        "vcs": {
+          "revision": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+          "path_in_vcs": "framework-crates/objc2-foundation",
+          "source_url": "https://github.com/madsmtm/objc2/tree/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/framework-crates/objc2-foundation"
+        }
+      }
+    },
+    {
+      "name": "objc2-io-kit",
+      "version": "0.3.2",
+      "spdx": "Zlib OR Apache-2.0 OR MIT",
+      "notices": [],
+      "errors": [
+        "missing_dependency_notice"
+      ],
+      "archive_provenance": {
+        "status": "verified",
+        "archive_sha256": "33fafba39597d6dc1fb709123dfa8289d39406734be322956a69f0931c73bb15",
+        "archive_bytes": 262569,
+        "archive_members": 25,
+        "root_notices": [],
+        "vcs": {
+          "revision": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+          "path_in_vcs": "framework-crates/objc2-io-kit",
+          "source_url": "https://github.com/madsmtm/objc2/tree/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/framework-crates/objc2-io-kit"
+        }
+      }
+    },
+    {
+      "name": "objc2-metal",
+      "version": "0.3.2",
+      "spdx": "Zlib OR Apache-2.0 OR MIT",
+      "notices": [],
+      "errors": [
+        "missing_dependency_notice"
+      ],
+      "archive_provenance": {
+        "status": "verified",
+        "archive_sha256": "a0125f776a10d00af4152d74616409f0d4a2053a6f57fa5b7d6aa2854ac04794",
+        "archive_bytes": 226999,
+        "archive_members": 116,
+        "root_notices": [],
+        "vcs": {
+          "revision": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+          "path_in_vcs": "framework-crates/objc2-metal",
+          "source_url": "https://github.com/madsmtm/objc2/tree/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/framework-crates/objc2-metal"
+        }
+      }
+    },
+    {
+      "name": "objc2",
+      "version": "0.6.5",
+      "spdx": "MIT",
+      "notices": [],
+      "errors": [
+        "missing_dependency_notice"
+      ],
+      "archive_provenance": {
+        "status": "verified",
+        "archive_sha256": "08849bbd4767dfae9457696856ae1c84fe4e0281bbe4a7abff2d0e06fb7981f8",
+        "archive_bytes": 276781,
+        "archive_members": 120,
+        "root_notices": [],
+        "vcs": {
+          "revision": "d7d2fa23ceaa5e6096c923b081040e5d81b3b9df",
+          "path_in_vcs": "crates/objc2",
+          "source_url": "https://github.com/madsmtm/objc2/tree/d7d2fa23ceaa5e6096c923b081040e5d81b3b9df/crates/objc2"
+        }
+      }
+    }
+  ],
+  "official_registry_check": {
+    "objc2-core-foundation": {
+      "url": "https://index.crates.io/ob/jc/objc2-core-foundation",
+      "index_sha256": "4a05ddfa7dccf3eae0df987339189d90fb9a81494ea62022d81935614e50bedb",
+      "latest_stable_when_checked": "0.3.2",
+      "archive_sha256": "2a180dd8642fa45cdb7dd721cd4c11b1cadd4929ce112ebd8b9f5803cc79d536"
+    },
+    "objc2-encode": {
+      "url": "https://index.crates.io/ob/jc/objc2-encode",
+      "index_sha256": "2abe5f8bd5b7d0860709bbacf58f7181391c017c5fd8529aa8cf49c2154e3ee5",
+      "latest_stable_when_checked": "4.1.0",
+      "archive_sha256": "ef25abbcd74fb2609453eb695bd2f860d389e457f67dc17cafc8b8cbc89d0c33"
+    },
+    "objc2-foundation": {
+      "url": "https://index.crates.io/ob/jc/objc2-foundation",
+      "index_sha256": "969d69b2d0b802d9dc9c74cf48de44286ba5e32c2f5428b0b9fd4d0857074077",
+      "latest_stable_when_checked": "0.3.2",
+      "archive_sha256": "e3e0adef53c21f888deb4fa59fc59f7eb17404926ee8a6f59f5df0fd7f9f3272"
+    },
+    "objc2-io-kit": {
+      "url": "https://index.crates.io/ob/jc/objc2-io-kit",
+      "index_sha256": "68091ffea576875ace7f69438034bb3e2e4fce6aec10631e91c559e88d6a4f8d",
+      "latest_stable_when_checked": "0.3.2",
+      "archive_sha256": "33fafba39597d6dc1fb709123dfa8289d39406734be322956a69f0931c73bb15"
+    },
+    "objc2-metal": {
+      "url": "https://index.crates.io/ob/jc/objc2-metal",
+      "index_sha256": "81063119cb9f92cd47510e4e7cbca1f5900dc210cbb7f615f4273810db5a4649",
+      "latest_stable_when_checked": "0.3.2",
+      "archive_sha256": "a0125f776a10d00af4152d74616409f0d4a2053a6f57fa5b7d6aa2854ac04794"
+    },
+    "objc2": {
+      "url": "https://index.crates.io/ob/jc/objc2",
+      "index_sha256": "fcff133b08cdff9fee35976d1e99b04d25800a8024be59c1aa960a912605d9f1",
+      "latest_stable_when_checked": "0.6.5",
+      "archive_sha256": "08849bbd4767dfae9457696856ae1c84fe4e0281bbe4a7abff2d0e06fb7981f8"
+    }
+  },
+  "upstream_attribution_discussion": "https://github.com/madsmtm/objc2/issues/826#issuecomment-6107377999",
+  "ci_packages": {
+    "Linux-X64": {
+      "original_report_sha256": "4f6a97cac95facf86e879f74d3beb78d2cbc78392a91247501999a8e9003d70e",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 307
+    },
+    "macOS-ARM64": {
+      "original_report_sha256": "628eac7a55886276260e6e92ed68ce56fe2e4347f8c1790e1eaf86feeffbb815",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 310
+    },
+    "Windows-X64": {
+      "original_report_sha256": "ca581a71f937166af23c6b2400940c15699dc0cbc05e2c46836f8f41508e71d4",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 311
+    }
+  },
+  "existing_fuzz_targets": {
+    "total_runs": 264076490,
+    "targets": {
+      "cli_args": {
+        "runs": 30322485,
+        "seconds": 61,
+        "log_sha256": "6d67c49aee57099da6d4b6a5dc1a17c48700d2171c04aea725d5001dfea6e625"
+      },
+      "cpu_stat": {
+        "runs": 1664308,
+        "seconds": 61,
+        "log_sha256": "295039ff25c200561c966e497506e3adacc14c1ee67261dad6ce9e35b3b183ad"
+      },
+      "dmi_text": {
+        "runs": 11779445,
+        "seconds": 61,
+        "log_sha256": "6a023f52411e497bda4d3f8b60e6e11212c46e6bf589baf5ab4e389cacacd579"
+      },
+      "hwmon_temperature": {
+        "runs": 33998493,
+        "seconds": 61,
+        "log_sha256": "d6be8fb3c549d2f11ca05077019aac705b603a4b8bf2cb2d9d9a2485144ac2df"
+      },
+      "macos_network": {
+        "runs": 8096683,
+        "seconds": 61,
+        "log_sha256": "40d0e1d9a3feb42cafc3a289429d80124d2e096ba19057d5465d7fa7bb10edac"
+      },
+      "meminfo": {
+        "runs": 6010934,
+        "seconds": 61,
+        "log_sha256": "36a48df02a63962e20b5ef9a23f076639c6b7e88dae0463b09486926853cc4f1"
+      },
+      "network_dev": {
+        "runs": 3701873,
+        "seconds": 61,
+        "log_sha256": "2ac2e973078befe4baf13a129c37e3733de69bc35571885c1f02703a25eb5888"
+      },
+      "power_supply": {
+        "runs": 33033891,
+        "seconds": 61,
+        "log_sha256": "9ed818ab4435a260dd39b76aaa3680edb4aba64015cb26eb44472ad4f08793a9"
+      },
+      "snapshot_json": {
+        "runs": 1059185,
+        "seconds": 61,
+        "log_sha256": "10d4845e2e4df8ada7ee6d833044b541e3f4ac84e94f3b644b3bea7a4f2bc470"
+      },
+      "storage_capacity": {
+        "runs": 49677957,
+        "seconds": 61,
+        "log_sha256": "0c4c52e96b5472f830aa8df05c643d0f865ec630d8f51ad6d2ca98afc92552a2"
+      },
+      "uptime": {
+        "runs": 33854840,
+        "seconds": 61,
+        "log_sha256": "e711db1da2b3eff88865b07818edb72e66676c63c885ca661cf458146b341a11"
+      },
+      "windows_cpu_groups": {
+        "runs": 50876396,
+        "seconds": 61,
+        "log_sha256": "424b53590a8c06209b26fcd739be5b9997e2e709b441b408c66da5e30469215a"
+      }
+    }
+  },
+  "notice_archive_reader_fuzzed": false,
+  "macos_materials_complete": false,
+  "legal_review": "not_performed",
+  "macos_binary_packaged": false,
+  "published": false,
+  "project_license": "MIT",
+  "c_abi_version": 1,
+  "schema_version": 1
+}
