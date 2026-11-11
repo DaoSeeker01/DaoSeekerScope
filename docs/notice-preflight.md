@@ -9,6 +9,7 @@
 ```sh
 python scripts/notice_audit.py --offline
 python scripts/notice_audit.py --offline --target aarch64-apple-darwin --output target/macos-notices.json
+python scripts/notice_audit.py --offline --verify-archives --target aarch64-apple-darwin --output target/macos-notice-sources.json
 ```
 
 离线模式要求 Cargo 缓存已有相关包；缺少缓存时失败，不冒充已完成扫描。命令不会编译或运行目标二进制，也不会上传或发布软件。跨目标查询不表示已验证该平台。
@@ -18,7 +19,13 @@ python scripts/notice_audit.py --offline --target aarch64-apple-darwin --output 
 - `blocked`：至少一个包缺少 SPDX、根许可文件、有效内容或安全文件名。`packages[].errors` 一次列出全部缺口。
 - `satisfied`：满足当前打包器的文件检查，不保证许可全文、版权声明或分发条件完整。`legal_review` 仍为 `not_performed`。
 
-报告只含版本、SPDX、文件名、大小及哈希，不记录本机 Cargo 缓存路径。扫描范围与现有打包器共用依赖闭包和文件发现规则：保守包含 build 依赖，排除 dev 依赖。只检查第三方 crate 根目录材料，不包含 Rust 工具链或系统 SDK 的许可；完整打包还需要其他检查。只读取包根目录原有材料，不从其他来源补写许可文件；未使用 `--offline` 时，Cargo 本身仍可能下载依赖。预检不会改写已缓存的文件。失败或中断作废旧报告；提交、工作区和锁文件须在前后保持一致。
+报告默认包含版本、SPDX、文件名、大小及哈希。扫描范围与打包器共用依赖闭包和根文件发现规则，保守包含 build 依赖，排除 dev 依赖。完整打包另检查 Rust 工具链材料。预检只读现有材料，失败或中断作废旧报告，提交、工作区和锁文件须在前后保持一致。
+
+`--verify-archives` 为缺少或无法读取材料的包增加 `archive_provenance`。工具先将本机缓存的 `.crate` 与 Cargo.lock 校验和比对，再核对归档内包名、版本和 SPDX，并读取发布提交、源码子目录与根许可文件。报告记录原始材料的哈希及精确源码链接，省去手工查找对应发布版本的步骤。
+
+该字段的 `verified` 表示归档来源核验通过，`invalid` 表示校验和或内容不符，`unavailable` 表示缓存、锁定校验和或缓存布局不可用。单包异常单独记录，其他包继续检查。材料是否齐全仍看 `packager_notice_gate` 和 `packages[].errors`。
+
+归档读取上限为 64 MiB，解压上限为 128 MiB，最多 8192 个条目，选中的单份文本最多 1 MiB。工具拒绝链接、重复条目、跨目录路径和异常版本元数据，只在内存中检查归档。报告省略本机缓存路径。未使用 `--offline` 时，Cargo 可能下载依赖。
 
 许可候选文件必须是普通文件。符号链接、Windows reparse 项和 FIFO 等特殊文件会阻止打包，即使同一包另有有效 LICENSE；普通许可目录仍不递归读取。文件被替换或读取失败时不收录内容，预检记录脱敏错误并继续检查其他依赖。具体规则、测试和边界见[许可输入验证](notice-input-validation.md)。
 

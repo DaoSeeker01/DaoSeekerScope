@@ -72,7 +72,7 @@ jobs:
       - name: Project data and documentation links
         run: python scripts/check_project.py
       - name: Dependency notice inventory (not distribution approval)
-        run: python scripts/notice_audit.py --offline
+        run: python scripts/notice_audit.py --offline --verify-archives
       - name: Frozen v0.1 manifest Schema and native ABI contract
         run: python scripts/check_contract.py
       - name: Crate archives and isolated consumer

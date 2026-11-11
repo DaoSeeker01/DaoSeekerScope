@@ -10,8 +10,10 @@ import argparse
 import json
 from pathlib import Path
 import re
+import tomllib
 from typing import Any
 
+from notice_archive import provenance
 from cli_bundle import (
     ROOT,
     MAX_FILE,
@@ -32,7 +34,12 @@ TARGETS = (
 )
 
 
-def inventory(metadata: dict[str, Any], root_package: str) -> dict[str, Any]:
+def inventory(
+    metadata: dict[str, Any],
+    root_package: str,
+    *,
+    archive_checksums: dict[tuple[str, str, str], str] | None = None,
+) -> dict[str, Any]:
     """Report all closure blockers; never replace or invent upstream notices."""
     packages = []
     for package in dependency_packages(metadata, root_package):
@@ -84,6 +91,11 @@ def inventory(metadata: dict[str, Any], root_package: str) -> dict[str, Any]:
                 "errors": sorted(set(errors)),
             }
         )
+        if errors and archive_checksums is not None:
+            checksum = archive_checksums.get(
+                (package["name"], package["version"], package["source"])
+            )
+            packages[-1]["archive_provenance"] = provenance(package, checksum)
     return {
         "root_package": root_package,
         "packager_notice_gate": "blocked"
@@ -101,7 +113,9 @@ def source_state() -> tuple[str, str]:
     ).strip()
 
 
-def audit(target: str, *, offline: bool = False) -> dict[str, Any]:
+def audit(
+    target: str, *, offline: bool = False, verify_archives: bool = False
+) -> dict[str, Any]:
     require(target in TARGETS, "unsupported_audit_target")
     initial = source_state()
     require(
@@ -123,8 +137,15 @@ def audit(target: str, *, offline: bool = False) -> dict[str, Any]:
             ]
         )
     )
+    checksums = None
+    if verify_archives:
+        checksums = {
+            (entry["name"], entry["version"], entry["source"]): entry["checksum"]
+            for entry in tomllib.loads(lock.decode("utf-8"))["package"]
+            if entry.get("source") is not None and entry.get("checksum") is not None
+        }
     products = {
-        name: inventory(metadata, root)
+        name: inventory(metadata, root, archive_checksums=checksums)
         for name, root in (
             ("cli", "daoseeker-scope-cli"),
             ("ffi_sdk", "daoseeker-scope-ffi"),
@@ -146,6 +167,7 @@ def audit(target: str, *, offline: bool = False) -> dict[str, Any]:
         "platform_executed": False,
         "binary_built": False,
         "published": False,
+        "archive_verification_requested": verify_archives,
         "limitations": "SPDX and discovered files do not establish complete attribution or legal clearance; no online fallback or inferred copyright holder",
     }
 
@@ -154,6 +176,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--target", choices=TARGETS)
     parser.add_argument("--offline", action="store_true")
+    parser.add_argument(
+        "--verify-archives",
+        action="store_true",
+        help="Verify cached crate archives for packages with missing or invalid notices.",
+    )
     parser.add_argument(
         "--output", type=Path, default=ROOT / "target/notice-audit-evidence.json"
     )
@@ -167,7 +194,9 @@ def main() -> None:
             hosts = re.findall(r"^host: ([^\r\n]+)", run(["rustc", "-vV"]), re.M)
             require(len(hosts) == 1, "invalid_host")
             target = hosts[0]
-        report = audit(target, offline=options.offline)
+        report = audit(
+            target, offline=options.offline, verify_archives=options.verify_archives
+        )
     except Exception:
         report = {"overall": "failed", "failure": "notice_audit_failed"}
         raise
