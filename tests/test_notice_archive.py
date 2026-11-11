@@ -256,6 +256,14 @@ class NoticeArchiveTests(unittest.TestCase):
         )
         self.assertEqual(result["status"], "invalid")
 
+    def test_invalid_deflate_stream_is_a_per_package_error(self) -> None:
+        data = b"\x1f\x8b\x08\x00" + b"\x00" * 6 + b"\x07" + b"\x00" * 8
+        self.archive.write_bytes(data)
+        self.assertEqual(
+            notice_archive.provenance(self.package, digest(data)),
+            {"status": "invalid", "reason": "archive_metadata_invalid"},
+        )
+
     def test_missing_vcs_does_not_hide_a_verified_archive_or_invent_revision(
         self,
     ) -> None:

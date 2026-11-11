@@ -11,6 +11,7 @@ import tarfile
 import tomllib
 from typing import Any
 from urllib.parse import quote
+import zlib
 
 from cli_bundle import digest, read_notice, require, safe_name, unique_object
 
@@ -157,5 +158,6 @@ def provenance(package: dict[str, Any], checksum: str | None) -> dict[str, Any]:
         OverflowError,
         RecursionError,
         tarfile.TarError,
+        zlib.error,
     ):
         return {"status": "invalid", "reason": "archive_metadata_invalid"}
