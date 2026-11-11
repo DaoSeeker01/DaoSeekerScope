@@ -1,5 +1,15 @@
 # Linux GPU 视图验收
 
+## 2026-11-11 Xe 解析器 fuzz
+
+源码 `a925ac8` 把 Xe 字节解析和状态转换接入已有 `dmi_text` 目标。生产查询与 fuzz 共用解析模块，容量计算和长度校验函数与上一轮源码的逐函数比对通过。解析回归现在可在 Windows、Linux 和 macOS 运行，默认关闭的 `fuzzing::xe_memory` 使用合成时间戳。[验收报告](evidence/linux-xe-fuzz-ci-42928665649.json)
+
+9 份合成小端种子覆盖系统内存、两个显存区域、零容量、重复区域、未知类别、溢出、截断及区域数量边界。harness 用同一套断言检查种子和 6,847 次逐字节变异，包含独立的 u128 容量合计、共享内存排除、无关字段变化和区域顺序。
+
+[三平台 CI](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42928665649)八项任务全部通过。`dmi_text` 运行 61 秒，执行 6,799,822 次，这一目标同时包含既有解析器。12 个短时 fuzz 目标共执行 154,030,202 次，harness 的 5 项测试通过。三个平台各完成 8 个源码包和 8 种独立消费者配置，包内测试数分别为 Windows 311、Linux 307、macOS 310。本机 Rust 311 项通过、1 项跳过，fuzz harness 5 项通过，严格 Clippy、双 Linux 目标交叉 Clippy、fmt、actionlint 和文件链接检查通过。
+
+该 fuzz 范围为响应字节解析。Xe ioctl 行为、实体显卡容量和 Linux arm64 原生执行仍需各自验证。
+
 ## 2026-11-11 Intel Xe 专用显存
 
 源码 `fec8dca` 的[三平台 CI](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42726746876)八项任务全部通过。Linux x86_64 和 arm64 已接入 Xe 内存区域查询，只合计驱动报告的 VRAM 可用容量。有效响应只有系统内存时返回 `NotApplicable/NotPresent`。容量仍按静态信息缓存，读取前提和错误状态见 [ADR 0017](adr/0017-linux-gpu.md)。
@@ -8,7 +18,7 @@ Ubuntu 原生通过四项新增测试，覆盖系统内存排除、多区域合�
 
 本机通过 308 项 Rust 测试、1 项跳过，Python 341 项通过、6 项跳过。fmt、严格 Clippy、严格文档、Schema、C/Rust 原生 ABI、Linux x86_64 和 arm64 交叉 Clippy 均通过。三个平台各完成 8 个源码包和 8 种独立 Rust 消费者配置，包内测试数分别为 Windows 308、Linux 306、macOS 307。Miri、AddressSanitizer、供应链检查与现有 12 个短时 fuzz 目标通过，fuzz 共执行 152,689,466 次。[验收报告](evidence/linux-xe-memory-ci-42726746876.json)
 
-实体 Xe 显卡容量和 Linux arm64 原生执行待验证。Xe 二进制响应解析器尚未接入专门 fuzz，现有 fuzz 结果仅覆盖原有目标。后续优先补齐该解析器的测试入口与异常响应种子。
+实体 Xe 显卡容量和 Linux arm64 原生执行待验证。此处记录的是首次采集实现的验收，后续解析器 fuzz 结果见本页上方。
 
 ## 2026-11-10 设备移除后恢复
 

@@ -1,0 +1,237 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-11-11T00:29:59.367301+00:00",
+  "source_commit": "a925ac86512680a352a962bed22ba47bd00b7811",
+  "ci": {
+    "run_id": 42928665649,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/42928665649",
+    "created_at": "2026-11-11T00:06:10Z",
+    "updated_at": "2026-11-11T00:21:13Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "fuzz-smoke",
+        "databaseId": 130221561391,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (macos-latest)",
+        "databaseId": 130221561637,
+        "conclusion": "success"
+      },
+      {
+        "name": "miri",
+        "databaseId": 130221561667,
+        "conclusion": "success"
+      },
+      {
+        "name": "supply-chain",
+        "databaseId": 130221561732,
+        "conclusion": "success"
+      },
+      {
+        "name": "linux-container",
+        "databaseId": 130221561735,
+        "conclusion": "success"
+      },
+      {
+        "name": "ffi-asan",
+        "databaseId": 130221561745,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (ubuntu-24.04)",
+        "databaseId": 130221561750,
+        "conclusion": "success"
+      },
+      {
+        "name": "desktop (windows-latest)",
+        "databaseId": 130221561925,
+        "conclusion": "success"
+      }
+    ]
+  },
+  "production_parser": {
+    "path": "crates/daoseeker-scope-linux/src/gpu/xe_regions.rs",
+    "synthetic_entry": "daoseeker_scope_linux::fuzzing::xe_memory",
+    "feature": "fuzzing (off by default)",
+    "extraction_comparison": {
+      "baseline_commit": "1e63d4a",
+      "comparison": "function source with whitespace normalized",
+      "function_sha256": {
+        "valid_size": "aad083887311ba5b62dd853bd991e94e1ec03fd819d1624270cb8aaa201a335d",
+        "capacity": "7108db48d34f10c3873f8ae8c53aab37d5cf47748ba73d83cb89741a4bdbec50"
+      }
+    },
+    "max_bytes": 2824,
+    "max_regions": 32,
+    "device_io_in_parser": false
+  },
+  "dmi_text": {
+    "seed": 20261111,
+    "max_input_bytes": 8192,
+    "per_input_timeout_seconds": 2,
+    "rss_limit_mb": 512,
+    "target_includes_other_existing_parsers": true,
+    "properties": [
+      "deterministic result and field metadata",
+      "u128 oracle for device-local capacity sum",
+      "system memory excluded",
+      "unique region identifiers and supported classes",
+      "usage, CPU visibility and reserved fields do not set capacity",
+      "region order does not set capacity"
+    ],
+    "synthetic_little_endian_seeds": {
+      "xe_capacity_overflow": {
+        "bytes": 184,
+        "sha256": "a40cfd01586b145080a2bba194b44993218f5bb15f4901c5a51dbe14217172bd"
+      },
+      "xe_duplicate_instance": {
+        "bytes": 184,
+        "sha256": "dbf638381370d463663a5b07920e029a85bc2dcb2d7dbda25e8514c60e082180"
+      },
+      "xe_maximum_regions": {
+        "bytes": 2824,
+        "sha256": "3dcf3db55b18a4b1212417c78eafdda895442c19d15b2ab32440de1a3c575ba3"
+      },
+      "xe_system_memory": {
+        "bytes": 96,
+        "sha256": "e7f4385adf0efe5e6f48bda4fbf4cf0e94c1ed02c35b8927935ff90ba20b7993"
+      },
+      "xe_too_many_regions": {
+        "bytes": 2912,
+        "sha256": "c8f1c4aa2fd1ded70431a9ccbcafe8ba232d11a05b807376ab092fe7c5181f2b"
+      },
+      "xe_truncated_region": {
+        "bytes": 95,
+        "sha256": "c7bed7a58e7d3e0d8650986ee04f75c0642e10e7b6a45d80d256a6c0dea657e6"
+      },
+      "xe_two_local_regions": {
+        "bytes": 272,
+        "sha256": "638240c598c9af636eeb0bbedea38e115245b2bc516b3df140124e58a696356d"
+      },
+      "xe_unknown_class": {
+        "bytes": 184,
+        "sha256": "dd5693516157eeedc29330e534bcebd05e88eb0cef05bbf13ce81c5d777abe78"
+      },
+      "xe_zero_local_memory": {
+        "bytes": 96,
+        "sha256": "709eaeb8635439a90f5df690019b85d978c656f754f50ce7bdd6ec2d3f11b432"
+      }
+    },
+    "seeded_byte_mutations_checked": 6847
+  },
+  "local": {
+    "rust_workspace_passed": 311,
+    "rust_workspace_ignored": 1,
+    "rust_log_sha256": "dae597dac438e5a3a2d030399c3f19a3c5bb9dc2790f493f8f4fb3762c70fea0",
+    "fuzz_harness_passed": 5,
+    "fuzz_harness_log_sha256": "7d0c2beee259f383f63030cf5598e6ac9d73f3381134b5b0a2505097f4a8f6d0",
+    "checks_passed": [
+      "workspace and fuzz formatting",
+      "strict workspace and fuzz Clippy",
+      "Linux x86_64 and arm64 cross Clippy",
+      "actionlint without shellcheck and pyflakes",
+      "project files and documentation links"
+    ]
+  },
+  "linux_container": {
+    "overall": "passed",
+    "observations_passed": 23,
+    "report_sha256": "803452c3463106a151818a573e2e3523607d9a485fa54fd67d740515cd653b80"
+  },
+  "ci_packages": {
+    "Linux-X64": {
+      "report_sha256": "7ca8dc04f8d9d65bec8600aed7385b6d267c94222002dbdc8e433d880db53f23",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 307,
+      "registry_publication_verified": false
+    },
+    "macOS-ARM64": {
+      "report_sha256": "0ad384c78f42a6572e951964c221b9a875dab68c4077ed99d37258d3591f7f28",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 310,
+      "registry_publication_verified": false
+    },
+    "Windows-X64": {
+      "report_sha256": "cd6b5b013cde1fd792f03047da5d4d0fff86d2bdc72d42374043c8d460fa6486",
+      "archives": 8,
+      "independent_consumers": 8,
+      "extracted_rust_tests_passed": 311,
+      "registry_publication_verified": false
+    }
+  },
+  "fuzz": {
+    "total_runs": 154030202,
+    "targets": {
+      "cli_args": {
+        "runs": 18411561,
+        "seconds": 61,
+        "log_sha256": "62177a608155ecdd312b70279ab5939ae6cd722a5aaa0d03ae189a9473a2f3cd"
+      },
+      "cpu_stat": {
+        "runs": 1045409,
+        "seconds": 61,
+        "log_sha256": "ab20d8eac7cd9784e16fa887365770dfdd90710bae105b7fe64fcc6f08cdc42a"
+      },
+      "dmi_text": {
+        "runs": 6799822,
+        "seconds": 61,
+        "log_sha256": "ba81777aa3625f19b3b3be4ca130cb6282bcb26491b5c50ca8aa955ec3bf1e90"
+      },
+      "hwmon_temperature": {
+        "runs": 18653044,
+        "seconds": 61,
+        "log_sha256": "a69e7ed77f9077a7b3d1fd6200d3da05fa7aeee827e3a8e76433a5ca1b7f8a7a"
+      },
+      "macos_network": {
+        "runs": 4617979,
+        "seconds": 61,
+        "log_sha256": "a81d2ef8c0981e77c0cf633b41d97a418fe506168c4432966db70f44eca4cd88"
+      },
+      "meminfo": {
+        "runs": 3487190,
+        "seconds": 61,
+        "log_sha256": "1022bf4f0d8c611e5f888f90895a28c06a43f2cf100c8ceaa5f8beed3d9b4d46"
+      },
+      "network_dev": {
+        "runs": 2916171,
+        "seconds": 61,
+        "log_sha256": "fda42be214535b73c4443c1014ebd4a204de873e1e764dc0d9e64dd68e12097f"
+      },
+      "power_supply": {
+        "runs": 19051887,
+        "seconds": 61,
+        "log_sha256": "2e9424d2f095d7be6de10a54317442900fff1b1b8ad36d5e9ad5b930ee315d05"
+      },
+      "snapshot_json": {
+        "runs": 602692,
+        "seconds": 61,
+        "log_sha256": "aaeff23a9a7a5bd5244040ba1e88c8e894fb3aa5921064e4ddb8bdf3ddd65be6"
+      },
+      "storage_capacity": {
+        "runs": 27970519,
+        "seconds": 61,
+        "log_sha256": "23762c1be0e1495f36f087901bedb80fe8bc3cd8dea9952141aafc8149f41d05"
+      },
+      "uptime": {
+        "runs": 20378952,
+        "seconds": 61,
+        "log_sha256": "5ce2ee5e966decdbc3d9a5653eb49432e4335d2636c9c131e10f5f7a9308abc8"
+      },
+      "windows_cpu_groups": {
+        "runs": 30094976,
+        "seconds": 61,
+        "log_sha256": "6f66e433b5d1237e676bf23fa59849893a9171b6c2e262d25319506afeb6a239"
+      }
+    }
+  },
+  "physical_xe_capacity_verified": false,
+  "ioctl_behavior_fuzzed": false,
+  "linux_arm64_execution_verified": false,
+  "c_abi_version": 1,
+  "schema_version": 1,
+  "project_license": "MIT"
+}
