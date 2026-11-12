@@ -51,6 +51,8 @@ python scripts/ffi_bundle_smoke.py <SDK归档路径>
 
 演练报告分别写入 `target/cli-bundle-evidence.json` 与 `target/ffi-bundle-evidence.json`。CLI 的版本、JSON 和隔离 JSON 调用还要求 stderr 为空；非空或超限时只记录固定错误，不保存原始内容。构建成功不代表安装/回滚演练已通过。
 
+激活前逐个核对安装文件的类型、大小和内容。大小不符时直接拒绝读取；大小匹配时最多读取预期字节数加一字节，检测检查期间文件增长的情况。内容或大小不符均返回 `installed_corruption`，原活动目录选择保持不变。此检查约束校验器的读取量，不保证后续文件不会再被修改。
+
 SDK 的 C/Python 消费者及 ELF 检查同样要求 stderr 为空。编译器可输出正常诊断，仍须成功退出；所有 SDK 子进程的 stderr 读取上限为 1 MiB，超限则失败，原始内容不写入报告。
 
 启动和退出失败使用固定标识，前缀表示调用方（`cli`、`c`、`python` 或 `compile`）：

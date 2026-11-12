@@ -1,6 +1,7 @@
 """Negative archive tests never execute the synthetic executable payload."""
 
 import json
+import io
 import os
 from pathlib import Path
 import stat
@@ -26,6 +27,46 @@ import cli_bundle_smoke
 
 
 class CliBundleTests(unittest.TestCase):
+    def test_activation_rejects_enlarged_file_before_reading(self) -> None:
+        payload = install(self.archive, self.checksum, self.root / "a")
+        first = next(iter(payload))
+        (self.root / "a" / first).write_bytes(payload[first] + b"extra")
+        (self.root / "active").write_text("b", encoding="ascii")
+        with (
+            patch.object(
+                Path,
+                "open",
+                side_effect=AssertionError("must not read mismatched file"),
+            ),
+            self.assertRaisesRegex(ValueError, "installed_corruption"),
+        ):
+            activate(self.root, "a", payload)
+        self.assertEqual((self.root / "active").read_text(), "b")
+        self.assertFalse((self.root / "pending").exists())
+
+    def test_activation_bounds_reads_when_file_changes_after_metadata(self) -> None:
+        payload = install(self.archive, self.checksum, self.root / "a")
+        first = next(iter(payload))
+        sizes = []
+
+        class GrowingFile(io.BytesIO):
+            def read(self, size: int | None = -1) -> bytes:
+                sizes.append(size)
+                return super().read(size)
+
+        (self.root / "active").write_text("b", encoding="ascii")
+        # Metadata still has the expected size, but the opened stream has grown.
+        with (
+            patch.object(
+                Path, "open", return_value=GrowingFile(payload[first] + b"extra")
+            ),
+            self.assertRaisesRegex(ValueError, "installed_corruption"),
+        ):
+            activate(self.root, "a", payload)
+        self.assertEqual(sizes, [len(payload[first]) + 1])
+        self.assertEqual((self.root / "active").read_text(), "b")
+        self.assertFalse((self.root / "pending").exists())
+
     @unittest.skipUnless(os.name == "nt", "Windows PATH required")
     def test_windows_cli_probe_uses_only_system_path(self) -> None:
         system = Path(os.environ["SystemRoot"])

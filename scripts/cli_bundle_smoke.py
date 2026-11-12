@@ -54,8 +54,11 @@ def activate(root: Path, slot: str, payload: dict[str, bytes]) -> None:
     target = json.loads(payload["manifest.json"])["target"]
     for name, data in payload.items():
         installed = root / slot / name
-        require(stat.S_ISREG(installed.lstat().st_mode), "installed_file_type")
-        require(installed.read_bytes() == data, "installed_corruption")
+        metadata = installed.lstat()
+        require(stat.S_ISREG(metadata.st_mode), "installed_file_type")
+        require(metadata.st_size == len(data), "installed_corruption")
+        with installed.open("rb") as source:
+            require(source.read(len(data) + 1) == data, "installed_corruption")
         if target == LINUX_TARGET:
             require(
                 stat.S_IMODE(installed.stat().st_mode) == file_mode(name, target),
