@@ -16,6 +16,8 @@ python scripts/ffi_bundle_smoke.py "$sdk"
 
 CLI 报告为 `target/cli-bundle-evidence.json`，SDK 为 `target/ffi-bundle-evidence.json`。失败或中断不能保留上次成功结果。候选保存在项目内，不安装系统运行库、不修改 PATH、不正式发布。
 
+CLI 的 readelf 检查要求成功退出且 stderr 为空。非空诊断返回 `elf_unexpected_stderr`，超过 1 MiB 返回 `elf_stderr_limit`；两者都会在激活和执行候选前使演练失败。stdout 同样按 1 MiB 上限读取，原始 stderr 不写入报告。SDK 的 ELF 检查继续沿用同样的空诊断要求。
+
 ## 如何读取结果
 
 - `direct_dependencies`：ELF 声明的直接库名，不是所有传递依赖。

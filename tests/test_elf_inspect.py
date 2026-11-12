@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
-from typing import BinaryIO, cast
+from typing import Any, BinaryIO, cast
 import unittest
 from unittest.mock import patch
 
@@ -33,6 +33,68 @@ OUTPUT = NEEDED + VERSIONS
 
 
 class ElfTests(unittest.TestCase):
+    def test_real_child_stderr_is_bounded_and_never_ignored(self) -> None:
+        real_run = subprocess.run
+        for size, expected in (
+            (23, "elf_unexpected_stderr"),
+            (elf_inspect.MAX_OUTPUT, "elf_unexpected_stderr"),
+            (elf_inspect.MAX_OUTPUT + 1, "elf_stderr_limit"),
+        ):
+            with self.subTest(size=size):
+
+                def child(
+                    arguments: list[str], **kwargs: Any
+                ) -> subprocess.CompletedProcess[bytes]:
+                    # Real child streams; the emitted readelf text is synthetic.
+                    return real_run(
+                        [
+                            sys.executable,
+                            "-c",
+                            f"import sys; sys.stdout.buffer.write({OUTPUT!r}); sys.stderr.write('X' * {size})",
+                        ],
+                        **kwargs,
+                    )
+
+                with (
+                    tempfile.TemporaryDirectory() as folder,
+                    patch("elf_inspect.subprocess.run", side_effect=child),
+                    self.assertRaises(ValueError) as error,
+                ):
+                    elf_inspect.inspect_file(Path(folder) / "not-executed")
+                self.assertEqual(str(error.exception), expected)
+
+    def test_real_child_clean_and_oversized_stdout(self) -> None:
+        real_run = subprocess.run
+        with tempfile.TemporaryDirectory() as folder:
+            for data in (OUTPUT, b"x" * (elf_inspect.MAX_OUTPUT + 1)):
+
+                def child(
+                    arguments: list[str], **kwargs: Any
+                ) -> subprocess.CompletedProcess[bytes]:
+                    return real_run(
+                        [
+                            sys.executable,
+                            "-c",
+                            "import sys; "
+                            + (
+                                f"sys.stdout.buffer.write({OUTPUT!r})"
+                                if data == OUTPUT
+                                else f"sys.stdout.write('x' * {len(data)})"
+                            ),
+                        ],
+                        **kwargs,
+                    )
+
+                with patch("elf_inspect.subprocess.run", side_effect=child):
+                    if data == OUTPUT:
+                        self.assertEqual(
+                            elf_inspect.inspect_file(Path(folder) / "not-executed"),
+                            inspect_elf(OUTPUT),
+                        )
+                    else:
+                        with self.assertRaisesRegex(ValueError, "elf_output_limit"):
+                            elf_inspect.inspect_file(Path(folder) / "not-executed")
+
     def test_requirements_and_limits_are_explicit(self) -> None:
         report = inspect_elf(OUTPUT)
         self.assertEqual(report["highest_glibc_numeric_requirement"], "GLIBC_2.34")
