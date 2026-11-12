@@ -160,6 +160,13 @@ jobs:
           path: target/ffi-bundle-evidence.json
           if-no-files-found: ignore
           retention-days: 14
+      - name: Windows SDK missing and damaged DLL recovery
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $sdk = [System.IO.File]::ReadAllText('target/windows-sdk-archive.txt').Trim()
+          python scripts/windows_loader_smoke.py $sdk
+          if ($LASTEXITCODE -ne 0) { throw 'Windows SDK loader checks failed' }
       - name: Linux FFI SDK candidate C and Python consumers
         if: runner.os == 'Linux'
         shell: bash
@@ -300,6 +307,7 @@ jobs:
             target/contract-evidence.json
             target/notice-audit-evidence.json
             target/windows-imports-evidence.json
+            target/windows-loader-evidence.json
             target/windows-display-probe.json
             target/windows-memory-evidence.json
             target/windows-cpu-evidence.json

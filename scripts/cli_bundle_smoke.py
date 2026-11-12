@@ -24,6 +24,8 @@ from cli_bundle import (
     require,
     require_runtime_host,
     verify_bundle,
+    require_child_exit,
+    child_start_failure,
 )
 from native_smoke import check_snapshot
 from elf_inspect import inspect_file as inspect_elf_file, linux_environment
@@ -83,16 +85,21 @@ def probe(binary: Path, version: str, target: str = TARGET) -> int:
     for arguments in commands:
         # Spool child output to disk, then read a bounded amount; never log snapshots.
         with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
-            result = subprocess.run(
-                [str(binary), *arguments],
-                cwd=binary.parent,
-                stdout=stdout,
-                stderr=stderr,
-                timeout=30,
-                check=True,
-                env=environment,
-            )
-            require(result.returncode == 0, "cli_exit")
+            try:
+                result = subprocess.run(
+                    [str(binary), *arguments],
+                    cwd=binary.parent,
+                    stdout=stdout,
+                    stderr=stderr,
+                    timeout=30,
+                    check=False,
+                    env=environment,
+                )
+            except subprocess.TimeoutExpired:
+                raise ValueError("cli_timeout") from None
+            except OSError as error:
+                raise child_start_failure(error, "cli", target) from None
+            require_child_exit(result.returncode, "cli", target)
             stdout.seek(0)
             data = stdout.read(1024 * 1024 + 1)
             stderr.seek(0)

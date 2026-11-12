@@ -53,6 +53,30 @@ def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def require_child_exit(code: int, label: str, target: str) -> None:
+    """Interpret known Windows statuses without guessing which dependency failed."""
+    reason = None
+    if target == TARGET:
+        reason = {
+            0xC0000135: "windows_dependency_missing",
+            0xC000007B: "windows_invalid_image",
+            0xC000012F: "windows_invalid_image",
+        }.get(code & 0xFFFFFFFF)
+    require(code == 0, f"{label}_{reason or 'exit'}")
+
+
+def child_start_failure(error: OSError, label: str, target: str) -> ValueError:
+    """Discard private executable paths and OS error messages at the boundary."""
+    reason = None
+    winerror = getattr(error, "winerror", None)
+    if target == TARGET and isinstance(winerror, int):
+        reason = {
+            126: "windows_dependency_missing",
+            193: "windows_invalid_image",
+        }.get(winerror)
+    return ValueError(f"{label}_{reason or 'start_failed'}")
+
+
 def bundle_format(target: str, product: str) -> int:
     require(
         target in SUPPORTED_TARGETS and product in ("cli", "ffi_sdk"),

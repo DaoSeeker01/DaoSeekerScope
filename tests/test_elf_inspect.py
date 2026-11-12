@@ -188,7 +188,7 @@ class ElfTests(unittest.TestCase):
                     "cli_bundle_smoke.subprocess.run",
                     side_effect=subprocess.TimeoutExpired("not-executed", 30),
                 ) as run,
-                self.assertRaises(subprocess.TimeoutExpired),
+                self.assertRaisesRegex(ValueError, "cli_timeout"),
             ):
                 cli_bundle_smoke.probe(root / "dscope", "0.1.0", LINUX_TARGET)
             self.assertNotIn("LD_PRELOAD", run.call_args.kwargs["env"])

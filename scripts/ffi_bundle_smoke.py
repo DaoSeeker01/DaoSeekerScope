@@ -23,6 +23,8 @@ from cli_bundle import (
     require,
     require_runtime_host,
     verify_bundle,
+    require_child_exit,
+    child_start_failure,
 )
 from cli_bundle_smoke import activate, install, runtime_environment
 from native_smoke import check_snapshot
@@ -40,15 +42,20 @@ def execute(
         else runtime_environment(target)
     )
     with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
-        result = subprocess.run(
-            arguments,
-            cwd=directory,
-            stdout=stdout,
-            stderr=stderr,
-            timeout=90,
-            env=environment,
-        )
-        require(result.returncode == 0, f"{label}_exit")
+        try:
+            result = subprocess.run(
+                arguments,
+                cwd=directory,
+                stdout=stdout,
+                stderr=stderr,
+                timeout=90,
+                env=environment,
+            )
+        except subprocess.TimeoutExpired:
+            raise ValueError(f"{label}_timeout") from None
+        except OSError as error:
+            raise child_start_failure(error, label, target) from None
+        require_child_exit(result.returncode, label, target)
         stdout.seek(0)
         data = stdout.read(1024 * 1024 + 1)
         stderr.seek(0)

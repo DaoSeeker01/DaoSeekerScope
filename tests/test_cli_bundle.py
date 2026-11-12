@@ -38,7 +38,7 @@ class CliBundleTests(unittest.TestCase):
                 side_effect=subprocess.TimeoutExpired("fixture", 30),
             ) as run,
         ):
-            with self.assertRaises(subprocess.TimeoutExpired):
+            with self.assertRaisesRegex(ValueError, "cli_timeout"):
                 cli_bundle_smoke.probe(self.root / "dscope.exe", "0.1.0")
             self.assertIsNotNone(run.call_args.kwargs["env"])
             self.assertEqual(run.call_args.kwargs["env"]["PATH"], expected)

@@ -49,6 +49,20 @@ python scripts/ffi_bundle_smoke.py <SDK归档路径>
 
 SDK 的 C/Python 消费者及 ELF 检查同样要求 stderr 为空。编译器可输出正常诊断，仍须成功退出；所有 SDK 子进程的 stderr 读取上限为 1 MiB，超限则失败，原始内容不写入报告。
 
+启动和退出失败使用固定标识，前缀表示调用方（`cli`、`c`、`python` 或 `compile`）：
+
+| 后缀 | 含义与下一步 |
+|---|---|
+| `windows_dependency_missing` | Windows 返回依赖缺失状态。检查候选目录是否完整，以及系统运行库是否齐全；该状态不指明缺少哪一个 DLL。 |
+| `windows_invalid_image` | Windows 拒绝二进制格式。核对架构、文件完整性及目标系统。 |
+| `start_failed` | 进程未能创建。核对文件是否存在、访问权限及执行环境。 |
+| `timeout` | 子进程超过本次等待期限，已请求终止并等待直接子进程退出；不表示运行库缺失。 |
+| `exit` | 进程已启动并非正常退出，原因未进一步归类。保留报告并按失败阶段排查。 |
+
+分类依据为微软的 [NTSTATUS 定义](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55)；程序也可主动返回相同数值，因此不能只据退出状态确定根因。
+
+Windows 可另外运行 `python scripts/windows_loader_smoke.py <SDK归档路径>`。它在临时安装中先运行真实 C/Python 消费者，再分别移走和损坏 DLL，验证拒绝加载，恢复原文件后复验 C 输出。报告写入 `target/windows-loader-evidence.json`，包含源码与载荷哈希。故障实验只改变该诊断进程的错误弹窗设置，结束时恢复；子进程继承规则见[微软文档](https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-seterrormode)。它不证明全新系统具备所有运行库，也不确定最低 Windows 版本。
+
 候选构建和演练不上传制品、不安装到全局 PATH。macOS 尚未开放该打包入口。同候选两槽位切换只验证恢复机制，旧正式版存在后再验证跨版本升级与回滚。
 
 6. 对照同一提交核对源码、归档/二进制哈希、平台、退出码、完成标记与原始报告。`failed`、`incomplete`、`not_run` 和跳过结果分别保留，不能以旧 pass 覆盖。
