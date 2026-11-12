@@ -40,6 +40,8 @@ Linux x64 使用已验收的构建用户空间，运行 `bash scripts/build_linu
 
 上述命令只构建并校验归档。随后在对应原生平台，分别把输出的实际 ZIP 路径传给演练脚本；与 ZIP 同目录的 `SHA256SUMS` 必须保留。
 
+归档中所有文件都必须非空，包括清单、许可证、说明与 SDK 材料。安装校验会在读取文件内容前检查大小；空文件返回 `file_limit`，即使归档和载荷哈希匹配也不接受，且不创建安装目录。文件非空仅是格式要求，不代替许可证内容与适用性评审。
+
 ```sh
 python scripts/cli_bundle_smoke.py <CLI归档路径>
 python scripts/ffi_bundle_smoke.py <SDK归档路径>

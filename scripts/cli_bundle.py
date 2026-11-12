@@ -181,7 +181,7 @@ def verify_bundle(archive: Path, expected_sha256: str) -> dict[str, bytes]:
             )
             require(not entry.flag_bits & 1, "encrypted_member")
             limit = MAX_MANIFEST if name == "manifest.json" else MAX_FILE
-            require(0 <= entry.file_size <= limit, "file_limit")
+            require(0 < entry.file_size <= limit, "file_limit")
             total += entry.file_size
             require(total <= MAX_TOTAL, "total_limit")
             with bundle.open(entry) as member:
