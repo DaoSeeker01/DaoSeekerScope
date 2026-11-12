@@ -29,6 +29,8 @@ cargo doc --locked --workspace --all-features --no-deps
 
 仅改动共享 C 探针或 Python 验证工具时，可选择 `scope=native-probe`，运行三个桌面任务，跳过未涉及的 Rust fuzz、Miri、ASan、供应链和 Linux 容器任务；验收记录应说明跳过范围。Rust 库改动仍使用完整检查。
 
+只修改候选包或 Python 验证脚本时，可手动运行 `candidate-tooling` 工作流：三平台执行 Python、类型和项目检查，Windows 另构建 CLI/SDK，验证安装、回滚与 DLL 故障恢复。它不执行完整 Rust 测试、ABI/Schema、fuzz 或资源矩阵，不能用作正式发布的完整验收。
+
 ## 工具、Schema 与文档
 
 更改公共模型、features、C 头文件或版本前，先读[发布前契约评审](docs/v0.1-contract-review.md)。在干净提交上运行 `python scripts/check_contract.py`，独立构建本机 C/Rust 探针并检查冻结基线；需要 C11 编译器，Windows 需 PowerShell 7、MSVC 与 Windows SDK。该检查触发兼容性评审，不代替 API、行为或完整平台验证；不得只重生成基线来消除失败。

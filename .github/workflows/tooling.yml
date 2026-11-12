@@ -1,0 +1,62 @@
+name: candidate-tooling
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: candidate-tooling-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  tooling:
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-24.04, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Python quality and project checks
+        run: |
+          ruff format --check scripts tests examples/collect.py
+          ruff check scripts tests examples/collect.py
+          mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py
+          python scripts/check_project.py
+      - name: Python regression tests
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force target | Out-Null
+          python -m unittest discover -s tests -p "test_*.py" *> target/tooling-python-tests.log
+          $result = $LASTEXITCODE
+          Get-Content target/tooling-python-tests.log
+          exit $result
+      - name: Windows toolchain
+        if: runner.os == 'Windows'
+        run: rustup toolchain install 1.96.0 --profile minimal
+      - name: Windows candidates and loader recovery
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $cli = python scripts/cli_bundle.py
+          if ($LASTEXITCODE -ne 0) { throw 'CLI candidate build failed' }
+          python scripts/cli_bundle_smoke.py $cli
+          if ($LASTEXITCODE -ne 0) { throw 'CLI candidate rehearsal failed' }
+          $sdk = python scripts/cli_bundle.py --product ffi_sdk
+          if ($LASTEXITCODE -ne 0) { throw 'SDK candidate build failed' }
+          python scripts/ffi_bundle_smoke.py $sdk
+          if ($LASTEXITCODE -ne 0) { throw 'SDK candidate rehearsal failed' }
+          python scripts/windows_loader_smoke.py $sdk
+          if ($LASTEXITCODE -ne 0) { throw 'SDK loader recovery failed' }
+      - name: Preserve tooling evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: tooling-evidence-${{ runner.os }}-${{ runner.arch }}
+          path: |
+            target/tooling-python-tests.log
+            target/cli-bundle-evidence.json
+            target/ffi-bundle-evidence.json
+            target/windows-loader-evidence.json
+          if-no-files-found: ignore
+          retention-days: 14
