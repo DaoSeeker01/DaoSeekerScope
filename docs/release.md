@@ -63,6 +63,8 @@ SDK 的 C/Python 消费者及 ELF 检查同样要求 stderr 为空。编译器�
 
 Windows 可另外运行 `python scripts/windows_loader_smoke.py <SDK归档路径>`。它在临时安装中先运行真实 C/Python 消费者，再分别移走和损坏 DLL，验证拒绝加载，恢复原文件后复验 C 输出。报告写入 `target/windows-loader-evidence.json`，包含源码与载荷哈希。故障实验只改变该诊断进程的错误弹窗设置，结束时恢复；子进程继承规则见[微软文档](https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-seterrormode)。它不证明全新系统具备所有运行库，也不确定最低 Windows 版本。
 
+提交 `2251884` 已在本机和 Windows 原生 CI 通过该实验及两产品安装回滚；[验收记录](evidence/windows-loader-ci-43131273622.json)保留三平台 Python 定向检查、首次失败及修复后的结果。本轮按工具变更范围验证，完整 Rust 与发布矩阵仍按上述步骤执行。
+
 候选构建和演练不上传制品、不安装到全局 PATH。macOS 尚未开放该打包入口。同候选两槽位切换只验证恢复机制，旧正式版存在后再验证跨版本升级与回滚。
 
 6. 对照同一提交核对源码、归档/二进制哈希、平台、退出码、完成标记与原始报告。`failed`、`incomplete`、`not_run` 和跳过结果分别保留，不能以旧 pass 覆盖。

@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-12 修复 CLI/SDK 候选演练的进程错误处理，源码 `2251884`。启动、超时和退出异常使用脱敏标识，Windows 依赖缺失与无效二进制分别表达。本机与 Windows CI 均通过真实 C 消费者的 DLL 缺失、损坏和恢复，以及 CLI/SDK 安装回滚。新增按需 `candidate-tooling`，本轮三平台任务全部通过，Windows/Linux/macOS 的 Python 分别为 369/372/371 项通过、6/3/4 项跳过。首轮类型检查失败及修复记录已保留；本轮未重跑完整 Rust、ABI/Schema、fuzz 或资源矩阵。[验收报告](evidence/windows-loader-ci-43131273622.json)
+
 2026-11-12 补齐 Core 与主库的编译后公共 API 检查，源码 `57742c2`。默认、关闭默认、仅 serde、schema 共八组接口，在本机 Windows 及 Windows/Linux/macOS 原生 CI 中与同一基线一致。独立真实编译的返回类型变更被拒绝并生成差异；10 项新增回归和本机 Python 362 项通过、6 项跳过。完整 CI 八项任务通过，各平台另通过 8 个源码包与 8 种消费者配置。基线只覆盖两个包的指定配置，最终兼容性评审仍待维护者确认。[验收报告](evidence/public-api-ci-43125279311.json)
 
 2026-11-11 许可预检增加 `--verify-archives`，将缺少材料的包与锁定归档、发布提交和源码位置关联。源码 `afb9955` 的三平台 CI 八项通过，本机 Python 352 项通过、6 项跳过。修复了损坏 Deflate 流中断整份预检的问题，原失败与首轮取消的 CI 单独保留。macOS 原生及本机跨目标均核验六个归档，六项分发材料缺口仍存在。[验收报告](evidence/notice-archive-ci-42938039525.json)

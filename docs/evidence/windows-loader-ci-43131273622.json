@@ -1,0 +1,246 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-11-12T01:11:41.994368+00:00",
+  "source_commit": "2251884310a12148cea388089809ae3a1cb1d567",
+  "ci": {
+    "databaseId": 43131273622,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/43131273622",
+    "createdAt": "2026-11-12T00:59:15Z",
+    "updatedAt": "2026-11-12T01:02:02Z",
+    "conclusion": "success",
+    "workflow": "candidate-tooling",
+    "scope": "Python checks on three platforms; Windows CLI/SDK candidates and loader controls",
+    "jobs": [
+      {
+        "databaseId": 130895744594,
+        "name": "tooling (macos-latest)",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 130895744734,
+        "name": "tooling (ubuntu-24.04)",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 130895744843,
+        "name": "tooling (windows-latest)",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "superseded_ci": {
+    "run_id": 43130905586,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/43130905586",
+    "conclusion": "failure",
+    "headSha": "8b0101a90d6c3780770422fb3150df2a9c4fd9ae",
+    "jobs": [
+      {
+        "name": "tooling (windows-latest)",
+        "databaseId": 130894500541,
+        "conclusion": "success",
+        "failed_steps": []
+      },
+      {
+        "name": "tooling (macos-latest)",
+        "databaseId": 130894500893,
+        "conclusion": "failure",
+        "failed_steps": [
+          "Python quality and project checks"
+        ]
+      },
+      {
+        "name": "tooling (ubuntu-24.04)",
+        "databaseId": 130894501040,
+        "conclusion": "failure",
+        "failed_steps": [
+          "Python quality and project checks"
+        ]
+      }
+    ],
+    "status": "completed",
+    "metadata_sha256": "5279dc40a00a3bbf78e3530b19d766e2ec7ccfe42363407c095d055d9882100b",
+    "failure_reason": "mypy on Linux/macOS rejected direct ctypes.WinDLL reference; corrected Windows-only dynamic binding",
+    "linux_job_log_sha256": "0601b89858e76059a22a7989eb8ff07d5ab4a36817212baae60e9060073a64d4"
+  },
+  "python_tests": {
+    "Windows": {
+      "total": 375,
+      "passed": 369,
+      "skipped": 6,
+      "log_sha256": "192f11519a8ed92e3e6b2709fd7d0f984c7c6f8e8ff4c681777990632f78ac41"
+    },
+    "Linux": {
+      "total": 375,
+      "passed": 372,
+      "skipped": 3,
+      "log_sha256": "0c9299b90cf2bacd683a80f8aa62c8085979071d32b3c2cb956a4160efb9d66a"
+    },
+    "macOS": {
+      "total": 375,
+      "passed": 371,
+      "skipped": 4,
+      "log_sha256": "80d22ff8c32eda6bb34584622dc8e7c532669d96d6c3b594688f97dbd7554690"
+    },
+    "Windows-local": {
+      "total": 375,
+      "passed": 369,
+      "skipped": 6,
+      "log_sha256": "ef9fc6b9b4236baf2de1907165199e8d2764f5f327bbbaec160aebf4ede8757a"
+    }
+  },
+  "new_regression_methods": 7,
+  "windows_candidates": {
+    "Windows-local": {
+      "cli": {
+        "overall": "passed",
+        "source_commit": "2251884310a12148cea388089809ae3a1cb1d567",
+        "archive_sha256": "3409ededc2e931235f49fe9d40aa46b5a88aa37a078b53ba4df99ced6b131ac1",
+        "processes": 9,
+        "windows_runtime_path": "system32_and_windows",
+        "report_sha256": "ad893ae15e0e3a84837c1f23d4bd9eff46213cf85b430dc3a3f2b5c0118d6423",
+        "cli_invocations": 9
+      },
+      "ffi_sdk": {
+        "overall": "passed",
+        "source_commit": "2251884310a12148cea388089809ae3a1cb1d567",
+        "archive_sha256": "72646b7d362d33f919f9f27b2ea67f0ecead24ed1662de4969cf629be423f7a3",
+        "processes": 9,
+        "windows_runtime_path": "system32_and_windows",
+        "report_sha256": "3db64bfe4957b47c9ac5e98bc8670cb5b5e76083af28c34cdef34061343208ed",
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300
+      }
+    },
+    "Windows-CI": {
+      "cli": {
+        "overall": "passed",
+        "source_commit": "2251884310a12148cea388089809ae3a1cb1d567",
+        "archive_sha256": "b7bc843e3566a14a84c73be62606f477778f0b470355400437c49e7b891b0ad8",
+        "processes": 9,
+        "windows_runtime_path": "system32_and_windows",
+        "report_sha256": "d2562045118c83ded8dcfa0181df8ce1402becc512a9772e5ac5bd0d16e48c0b",
+        "cli_invocations": 9
+      },
+      "ffi_sdk": {
+        "overall": "passed",
+        "source_commit": "2251884310a12148cea388089809ae3a1cb1d567",
+        "archive_sha256": "d417b2a9a4c5dfd369300f78ce0c4d7b9999e151559db0d69b298d1d118781e3",
+        "processes": 9,
+        "windows_runtime_path": "system32_and_windows",
+        "report_sha256": "4746cfef12e4df0647a2431c9100137f92f7ea654c1a9bcfd0b3ee31726ba669",
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300
+      }
+    }
+  },
+  "windows_loader_controls": {
+    "Windows-local": {
+      "report_sha256": "50d0cc7c5b150c0d805269638dfa5d9308813310fcc439190992df71d3a4165f",
+      "format": 1,
+      "overall": "passed",
+      "source_commit": "2251884310a12148cea388089809ae3a1cb1d567",
+      "source_dirty": false,
+      "target": "x86_64-pc-windows-msvc",
+      "host": {
+        "system": "Windows",
+        "version": "10.0.26300",
+        "machine": "AMD64"
+      },
+      "archive_sha256": "72646b7d362d33f919f9f27b2ea67f0ecead24ed1662de4969cf629be423f7a3",
+      "dll_sha256": "73a2ac0046d3e6de242af1e6c7231d47785267ce5defffb4e1c553011dd4f906",
+      "consumer_sha256": "bc99eee55eaa31e1f0f6702a8ea6a26456c5b7308dc998c2efb16b03733824c6",
+      "consumer_import_verified": true,
+      "negative_controls": [
+        {
+          "case": "missing",
+          "observed_failure": "c_windows_dependency_missing"
+        },
+        {
+          "case": "damaged",
+          "observed_failure": "c_windows_invalid_image"
+        }
+      ],
+      "restored_consumer_schema_and_privacy_passed": true,
+      "error_mode_restored": true,
+      "runtime_path": "system32_and_windows",
+      "published": false,
+      "scope": "Isolated verified SDK C consumer; no minimum OS, clean-system runtime or missing-DLL identity claim."
+    },
+    "Windows-CI": {
+      "report_sha256": "0706f43fc174f82da5b48a64c41b2c3dbe8f801d2135c7de302f03e06974309c",
+      "format": 1,
+      "overall": "passed",
+      "source_commit": "2251884310a12148cea388089809ae3a1cb1d567",
+      "source_dirty": false,
+      "target": "x86_64-pc-windows-msvc",
+      "host": {
+        "system": "Windows",
+        "version": "10.0.26100",
+        "machine": "AMD64"
+      },
+      "archive_sha256": "d417b2a9a4c5dfd369300f78ce0c4d7b9999e151559db0d69b298d1d118781e3",
+      "dll_sha256": "5fbb402f5ec449885f676cb21ebcd4ec7ebe6d354148b108690000a39a847093",
+      "consumer_sha256": "edcaee3e9d251921c52f32816a24d626e60530c49d58fd410cd0420a00fc56d6",
+      "consumer_import_verified": true,
+      "negative_controls": [
+        {
+          "case": "missing",
+          "observed_failure": "c_windows_dependency_missing"
+        },
+        {
+          "case": "damaged",
+          "observed_failure": "c_windows_invalid_image"
+        }
+      ],
+      "restored_consumer_schema_and_privacy_passed": true,
+      "error_mode_restored": true,
+      "runtime_path": "system32_and_windows",
+      "published": false,
+      "scope": "Isolated verified SDK C consumer; no minimum OS, clean-system runtime or missing-DLL identity claim."
+    }
+  },
+  "local_static_checks_passed": [
+    "ruff format --check scripts tests examples/collect.py",
+    "ruff check scripts tests examples/collect.py",
+    "mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+    "mypy --no-incremental --ignore-missing-imports --platform linux scripts tests examples/collect.py",
+    "mypy --no-incremental --ignore-missing-imports --platform darwin scripts tests examples/collect.py",
+    "actionlint 1.7.12",
+    "python scripts/check_project.py",
+    "git diff --check"
+  ],
+  "retained_failures": [
+    {
+      "scope": "initial five targeted tests before the implementation",
+      "failures": 17,
+      "errors": 13,
+      "log_sha256": "77845af75558fd75cc5ea9df33d7077053fe2f9bf8305acaa4c9ae2ea3a79946"
+    },
+    {
+      "scope": "full regression before updating the existing Linux CLI timeout expectation",
+      "total": 375,
+      "errors": 1,
+      "skipped": 6,
+      "log_sha256": "5c6ec9570f71be8c4bc520c226bea2a9e2aa33ca6d17257c7b35909f9ea6fa9e"
+    }
+  ],
+  "compatibility": {
+    "project_license": "MIT",
+    "c_abi": 1,
+    "hardware_schema": 1,
+    "rust_public_api_changed": false,
+    "crate_features_changed": false,
+    "dependencies_changed": false,
+    "candidate_bundle_format_changed": false,
+    "published": false
+  },
+  "not_run": [
+    "Full Rust fmt/clippy/test/doc, frozen ABI/Schema, eight source packages, fuzz, Miri/ASan and resource matrix were not rerun in this focused workflow.",
+    "No minimum Windows, clean-system runtime, physical Linux/macOS or macOS distribution acceptance."
+  ],
+  "limits": [
+    "Windows error statuses do not identify a particular DLL and may also be returned deliberately by applications.",
+    "Loader controls modify only the verified temporary SDK; error-mode settings are confined to the diagnostic process and restored.",
+    "The six macOS distribution notice gaps remain."
+  ]
+}
