@@ -33,6 +33,8 @@ cargo doc --locked --workspace --all-features --no-deps
 
 更改公共模型、features、C 头文件或版本前，先读[发布前契约评审](docs/v0.1-contract-review.md)。在干净提交上运行 `python scripts/check_contract.py`，独立构建本机 C/Rust 探针并检查冻结基线；需要 C11 编译器，Windows 需 PowerShell 7、MSVC 与 Windows SDK。该检查触发兼容性评审，不代替 API、行为或完整平台验证；不得只重生成基线来消除失败。
 
+Rust 接口另运行 `python scripts/check_public_api.py --offline`，比较 Core 与主库各四种配置的编译结果。工具安装、差异位置及有意变更的更新步骤见[公共 API 基线](docs/contracts/public-api/README.md)。CI 使用固定工具在三平台执行；基线更新必须说明兼容性影响。
+
 建议创建项目内虚拟环境，避免修改全局 Python：
 
 ```sh

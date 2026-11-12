@@ -75,6 +75,22 @@ jobs:
         run: python scripts/notice_audit.py --offline --verify-archives
       - name: Frozen v0.1 manifest Schema and native ABI contract
         run: python scripts/check_contract.py
+      - name: Pinned Rust API tools
+        run: |
+          rustup toolchain install nightly-2026-10-08 --profile minimal
+          cargo install cargo-public-api --version 0.52.0 --locked --root target/public-api-tools --target-dir target/public-api-tool-build
+      - name: Compiled Core and facade public API baselines
+        run: python scripts/check_public_api.py --offline
+      - name: Preserve public API evidence and differences
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: public-api-evidence-${{ runner.os }}-${{ runner.arch }}
+          path: |
+            target/public-api-evidence.json
+            target/public-api-diffs/*.diff
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Crate archives and isolated consumer
         run: python scripts/check_packages.py
       - name: Preserve package evidence

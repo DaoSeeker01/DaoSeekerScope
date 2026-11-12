@@ -1,5 +1,7 @@
 # 锁定依赖许可证清单
 
+2026-11-12 公共 API 检查使用开发工具 cargo-public-api 0.52.0（MIT）和 nightly-2026-10-08。工具独立安装到 `target/public-api-tools`，其构建依赖按该版本自带锁文件安装；不进入库的运行时依赖。使用方式见[接口基线](contracts/public-api/README.md)。
+
 2026-10-30 新增[分发材料预检](notice-preflight.md)：一次记录 CLI/SDK 所有 crate 文件缺口，三平台 CI 已验收。macOS 两产品各有六项缺口，仍未通过分发门槛；扫描完成或上游 issue 关闭不代表材料已收齐。本轮不新增依赖、放宽规则或改变许可声明。
 
 2026-10-26 macOS 制品材料调查：六个锁定 objc2 系列 crate 的归档缺独立许可文件；三个精确源码提交的根 LICENSE.md 为同一许可说明，不含完整 MIT grant。记录版本、SPDX、VCS 和原文件哈希的[调查索引](evidence/macos-license-research-2026-10-26.json)不认定既有许可证无效，也不作为分发许可结论。本轮未新增/升级依赖或更改许可证，只保留 macOS 完整许可材料待办，继续实现 Windows SDK 打包。

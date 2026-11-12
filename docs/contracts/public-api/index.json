@@ -1,0 +1,40 @@
+{
+  "settings": {
+    "format": 1,
+    "tool": "cargo-public-api 0.52.0",
+    "toolchain": "nightly-2026-10-08",
+    "omitted_items": [
+      "blanket-impls"
+    ],
+    "profiles": {
+      "default": [],
+      "bare": [
+        "--no-default-features"
+      ],
+      "serde": [
+        "--no-default-features",
+        "--features",
+        "serde"
+      ],
+      "schema": [
+        "--no-default-features",
+        "--features",
+        "schema"
+      ]
+    },
+    "packages": [
+      "daoseeker-scope-core",
+      "daoseeker-scope"
+    ]
+  },
+  "files": {
+    "daoseeker-scope-bare.txt": "b4fc3bc654bf72344712b01c4e8ba1f4ea6cb9d1c75f6298624da55a5aed1ddb",
+    "daoseeker-scope-core-bare.txt": "4f321f8a7d58fd47e220add8d7d06dfb1658cd673e031c9d473ce163155b3a7e",
+    "daoseeker-scope-core-default.txt": "4f321f8a7d58fd47e220add8d7d06dfb1658cd673e031c9d473ce163155b3a7e",
+    "daoseeker-scope-core-schema.txt": "7fdf76906018bd590815b603ddaadbb6fb8c716880d57c4078a27faa596fad6c",
+    "daoseeker-scope-core-serde.txt": "9ad4fad017767351774ad8c67f6ef0f4f013e176e892434ff92cd2db9c5ed239",
+    "daoseeker-scope-default.txt": "7fd4b041cb33b138de35f156f0b0b43c54599e752df50d76d6dc587b0d2303eb",
+    "daoseeker-scope-schema.txt": "7fd4b041cb33b138de35f156f0b0b43c54599e752df50d76d6dc587b0d2303eb",
+    "daoseeker-scope-serde.txt": "7fd4b041cb33b138de35f156f0b0b43c54599e752df50d76d6dc587b0d2303eb"
+  }
+}

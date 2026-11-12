@@ -1,0 +1,55 @@
+pub mod daoseeker_scope
+pub use daoseeker_scope::Availability
+pub use daoseeker_scope::Backend
+pub use daoseeker_scope::BackendIssue
+pub use daoseeker_scope::BatteryInfo
+pub use daoseeker_scope::CancelToken
+pub use daoseeker_scope::Capabilities
+pub use daoseeker_scope::Capability
+pub use daoseeker_scope::CapabilityLevel
+pub use daoseeker_scope::CollectContext
+pub use daoseeker_scope::CpuInfo
+pub use daoseeker_scope::DeviceInfo
+pub use daoseeker_scope::DisplayInfo
+pub use daoseeker_scope::DynamicSnapshot
+pub use daoseeker_scope::ErrorCode
+pub use daoseeker_scope::FirmwareInfo
+pub use daoseeker_scope::GpuInfo
+pub use daoseeker_scope::HardwareBuilder
+pub use daoseeker_scope::MAX_JSON_BYTES
+pub use daoseeker_scope::MemoryInfo
+pub use daoseeker_scope::MergeEvent
+pub use daoseeker_scope::MotherboardInfo
+pub use daoseeker_scope::NetworkInfo
+pub use daoseeker_scope::Observed
+pub use daoseeker_scope::Options
+pub use daoseeker_scope::OsInfo
+pub use daoseeker_scope::PrivacyOptions
+pub use daoseeker_scope::ReasonCode
+pub use daoseeker_scope::RuntimeInfo
+pub use daoseeker_scope::SCHEMA_VERSION
+pub use daoseeker_scope::ScopeError
+pub use daoseeker_scope::SensorInfo
+pub use daoseeker_scope::Snapshot
+pub use daoseeker_scope::Source
+pub use daoseeker_scope::StaticSnapshot
+pub use daoseeker_scope::StorageInfo
+pub use daoseeker_scope::SystemInfo
+pub use daoseeker_scope::Timestamp
+pub struct daoseeker_scope::Hardware(_)
+impl daoseeker_scope::Hardware
+pub fn daoseeker_scope::Hardware::capabilities(&self) -> daoseeker_scope_core::Capabilities
+pub fn daoseeker_scope::Hardware::collect(&self) -> core::result::Result<daoseeker_scope_core::Snapshot, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope::Hardware::collect_with(&self, daoseeker_scope_core::hardware::CancelToken) -> core::result::Result<daoseeker_scope_core::Snapshot, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope::Hardware::new() -> core::result::Result<Self, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope::Hardware::refresh_dynamic(&self) -> core::result::Result<daoseeker_scope_core::DynamicSnapshot, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope::Hardware::refresh_dynamic_with(&self, daoseeker_scope_core::hardware::CancelToken) -> core::result::Result<daoseeker_scope_core::DynamicSnapshot, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope::Hardware::shutdown(self) -> core::result::Result<(), daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope::Hardware::with_options(daoseeker_scope_core::hardware::Options) -> core::result::Result<Self, daoseeker_scope_core::ScopeError>
+impl !core::marker::Freeze for daoseeker_scope::Hardware
+impl core::marker::Send for daoseeker_scope::Hardware
+impl core::marker::Sync for daoseeker_scope::Hardware
+impl core::marker::Unpin for daoseeker_scope::Hardware
+impl core::marker::UnsafeUnpin for daoseeker_scope::Hardware
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope::Hardware
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope::Hardware

@@ -1,0 +1,947 @@
+pub mod daoseeker_scope_core
+#[non_exhaustive] pub enum daoseeker_scope_core::Availability
+pub daoseeker_scope_core::Availability::Available
+pub daoseeker_scope_core::Availability::NotApplicable
+pub daoseeker_scope_core::Availability::Restricted
+pub daoseeker_scope_core::Availability::Unavailable
+pub daoseeker_scope_core::Availability::Unsupported
+impl core::clone::Clone for daoseeker_scope_core::Availability
+pub fn daoseeker_scope_core::Availability::clone(&self) -> Self
+impl core::cmp::Eq for daoseeker_scope_core::Availability
+impl core::cmp::PartialEq for daoseeker_scope_core::Availability
+pub fn daoseeker_scope_core::Availability::eq(&self, &Self) -> bool
+impl core::fmt::Debug for daoseeker_scope_core::Availability
+pub fn daoseeker_scope_core::Availability::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::Copy for daoseeker_scope_core::Availability
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::Availability
+impl schemars::JsonSchema for daoseeker_scope_core::Availability
+pub fn daoseeker_scope_core::Availability::inline_schema() -> bool
+pub fn daoseeker_scope_core::Availability::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::Availability::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::Availability::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::Availability
+pub fn daoseeker_scope_core::Availability::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::Availability
+pub fn daoseeker_scope_core::Availability::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::Availability
+impl core::marker::Send for daoseeker_scope_core::Availability
+impl core::marker::Sync for daoseeker_scope_core::Availability
+impl core::marker::Unpin for daoseeker_scope_core::Availability
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::Availability
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::Availability
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::Availability
+#[non_exhaustive] pub enum daoseeker_scope_core::CapabilityLevel
+pub daoseeker_scope_core::CapabilityLevel::NotApplicable
+pub daoseeker_scope_core::CapabilityLevel::Partial
+pub daoseeker_scope_core::CapabilityLevel::Restricted
+pub daoseeker_scope_core::CapabilityLevel::Supported
+pub daoseeker_scope_core::CapabilityLevel::Unsupported
+impl core::clone::Clone for daoseeker_scope_core::CapabilityLevel
+pub fn daoseeker_scope_core::CapabilityLevel::clone(&self) -> Self
+impl core::cmp::Eq for daoseeker_scope_core::CapabilityLevel
+impl core::cmp::PartialEq for daoseeker_scope_core::CapabilityLevel
+pub fn daoseeker_scope_core::CapabilityLevel::eq(&self, &Self) -> bool
+impl core::fmt::Debug for daoseeker_scope_core::CapabilityLevel
+pub fn daoseeker_scope_core::CapabilityLevel::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::Copy for daoseeker_scope_core::CapabilityLevel
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::CapabilityLevel
+impl schemars::JsonSchema for daoseeker_scope_core::CapabilityLevel
+pub fn daoseeker_scope_core::CapabilityLevel::inline_schema() -> bool
+pub fn daoseeker_scope_core::CapabilityLevel::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::CapabilityLevel::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::CapabilityLevel::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::CapabilityLevel
+pub fn daoseeker_scope_core::CapabilityLevel::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::CapabilityLevel
+pub fn daoseeker_scope_core::CapabilityLevel::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::CapabilityLevel
+impl core::marker::Send for daoseeker_scope_core::CapabilityLevel
+impl core::marker::Sync for daoseeker_scope_core::CapabilityLevel
+impl core::marker::Unpin for daoseeker_scope_core::CapabilityLevel
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::CapabilityLevel
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::CapabilityLevel
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::CapabilityLevel
+#[non_exhaustive] pub enum daoseeker_scope_core::ErrorCode
+pub daoseeker_scope_core::ErrorCode::BackendFailure
+pub daoseeker_scope_core::ErrorCode::Busy
+pub daoseeker_scope_core::ErrorCode::Cancelled
+pub daoseeker_scope_core::ErrorCode::InvalidArgument
+pub daoseeker_scope_core::ErrorCode::InvalidBuffer
+pub daoseeker_scope_core::ErrorCode::Panic
+pub daoseeker_scope_core::ErrorCode::ResourceLimit
+pub daoseeker_scope_core::ErrorCode::Timeout
+pub daoseeker_scope_core::ErrorCode::UnsupportedPlatform
+impl core::clone::Clone for daoseeker_scope_core::ErrorCode
+pub fn daoseeker_scope_core::ErrorCode::clone(&self) -> Self
+impl core::cmp::Eq for daoseeker_scope_core::ErrorCode
+impl core::cmp::PartialEq for daoseeker_scope_core::ErrorCode
+pub fn daoseeker_scope_core::ErrorCode::eq(&self, &Self) -> bool
+impl core::fmt::Debug for daoseeker_scope_core::ErrorCode
+pub fn daoseeker_scope_core::ErrorCode::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::Copy for daoseeker_scope_core::ErrorCode
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::ErrorCode
+impl schemars::JsonSchema for daoseeker_scope_core::ErrorCode
+pub fn daoseeker_scope_core::ErrorCode::inline_schema() -> bool
+pub fn daoseeker_scope_core::ErrorCode::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::ErrorCode::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::ErrorCode::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::ErrorCode
+pub fn daoseeker_scope_core::ErrorCode::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::ErrorCode
+pub fn daoseeker_scope_core::ErrorCode::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::ErrorCode
+impl core::marker::Send for daoseeker_scope_core::ErrorCode
+impl core::marker::Sync for daoseeker_scope_core::ErrorCode
+impl core::marker::Unpin for daoseeker_scope_core::ErrorCode
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::ErrorCode
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::ErrorCode
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::ErrorCode
+#[non_exhaustive] pub enum daoseeker_scope_core::ReasonCode
+pub daoseeker_scope_core::ReasonCode::InvalidData
+pub daoseeker_scope_core::ReasonCode::NotPresent
+pub daoseeker_scope_core::ReasonCode::NotSupported
+pub daoseeker_scope_core::ReasonCode::PermissionDenied
+pub daoseeker_scope_core::ReasonCode::PrivacyRedacted
+pub daoseeker_scope_core::ReasonCode::Sandbox
+pub daoseeker_scope_core::ReasonCode::TemporarilyUnavailable
+pub daoseeker_scope_core::ReasonCode::Timeout
+pub daoseeker_scope_core::ReasonCode::Unknown
+impl core::clone::Clone for daoseeker_scope_core::ReasonCode
+pub fn daoseeker_scope_core::ReasonCode::clone(&self) -> Self
+impl core::cmp::Eq for daoseeker_scope_core::ReasonCode
+impl core::cmp::PartialEq for daoseeker_scope_core::ReasonCode
+pub fn daoseeker_scope_core::ReasonCode::eq(&self, &Self) -> bool
+impl core::fmt::Debug for daoseeker_scope_core::ReasonCode
+pub fn daoseeker_scope_core::ReasonCode::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::Copy for daoseeker_scope_core::ReasonCode
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::ReasonCode
+impl schemars::JsonSchema for daoseeker_scope_core::ReasonCode
+pub fn daoseeker_scope_core::ReasonCode::inline_schema() -> bool
+pub fn daoseeker_scope_core::ReasonCode::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::ReasonCode::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::ReasonCode::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::ReasonCode
+pub fn daoseeker_scope_core::ReasonCode::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::ReasonCode
+pub fn daoseeker_scope_core::ReasonCode::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::ReasonCode
+impl core::marker::Send for daoseeker_scope_core::ReasonCode
+impl core::marker::Sync for daoseeker_scope_core::ReasonCode
+impl core::marker::Unpin for daoseeker_scope_core::ReasonCode
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::ReasonCode
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::ReasonCode
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::ReasonCode
+#[non_exhaustive] pub enum daoseeker_scope_core::Source
+pub daoseeker_scope_core::Source::AndroidApi
+pub daoseeker_scope_core::Source::AppleApi
+pub daoseeker_scope_core::Source::Custom
+pub daoseeker_scope_core::Source::Drm
+pub daoseeker_scope_core::Source::Dxgi
+pub daoseeker_scope_core::Source::Hal
+pub daoseeker_scope_core::Source::Hwmon
+pub daoseeker_scope_core::Source::Iokit
+pub daoseeker_scope_core::Source::Pci
+pub daoseeker_scope_core::Source::Procfs
+pub daoseeker_scope_core::Source::Setupapi
+pub daoseeker_scope_core::Source::Smbios
+pub daoseeker_scope_core::Source::Sysctl
+pub daoseeker_scope_core::Source::Sysfs
+pub daoseeker_scope_core::Source::Sysinfo
+pub daoseeker_scope_core::Source::Udev
+pub daoseeker_scope_core::Source::WebApi
+pub daoseeker_scope_core::Source::Win32
+pub daoseeker_scope_core::Source::Wmi
+impl core::clone::Clone for daoseeker_scope_core::Source
+pub fn daoseeker_scope_core::Source::clone(&self) -> Self
+impl core::cmp::Eq for daoseeker_scope_core::Source
+impl core::cmp::PartialEq for daoseeker_scope_core::Source
+pub fn daoseeker_scope_core::Source::eq(&self, &Self) -> bool
+impl core::fmt::Debug for daoseeker_scope_core::Source
+pub fn daoseeker_scope_core::Source::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::Copy for daoseeker_scope_core::Source
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::Source
+impl schemars::JsonSchema for daoseeker_scope_core::Source
+pub fn daoseeker_scope_core::Source::inline_schema() -> bool
+pub fn daoseeker_scope_core::Source::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::Source::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::Source::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::Source
+pub fn daoseeker_scope_core::Source::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::Source
+pub fn daoseeker_scope_core::Source::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::Source
+impl core::marker::Send for daoseeker_scope_core::Source
+impl core::marker::Sync for daoseeker_scope_core::Source
+impl core::marker::Unpin for daoseeker_scope_core::Source
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::Source
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::Source
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::Source
+pub struct daoseeker_scope_core::BackendIssue
+pub daoseeker_scope_core::BackendIssue::backend: alloc::string::String
+pub daoseeker_scope_core::BackendIssue::code: daoseeker_scope_core::ErrorCode
+impl core::clone::Clone for daoseeker_scope_core::BackendIssue
+pub fn daoseeker_scope_core::BackendIssue::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::BackendIssue
+pub fn daoseeker_scope_core::BackendIssue::eq(&self, &Self) -> bool
+impl core::fmt::Debug for daoseeker_scope_core::BackendIssue
+pub fn daoseeker_scope_core::BackendIssue::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::BackendIssue
+impl schemars::JsonSchema for daoseeker_scope_core::BackendIssue
+pub fn daoseeker_scope_core::BackendIssue::inline_schema() -> bool
+pub fn daoseeker_scope_core::BackendIssue::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::BackendIssue::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::BackendIssue::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::BackendIssue
+pub fn daoseeker_scope_core::BackendIssue::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::BackendIssue
+pub fn daoseeker_scope_core::BackendIssue::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::BackendIssue
+impl core::marker::Send for daoseeker_scope_core::BackendIssue
+impl core::marker::Sync for daoseeker_scope_core::BackendIssue
+impl core::marker::Unpin for daoseeker_scope_core::BackendIssue
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::BackendIssue
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::BackendIssue
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::BackendIssue
+#[non_exhaustive] pub struct daoseeker_scope_core::BatteryInfo
+pub daoseeker_scope_core::BatteryInfo::charge_percent: daoseeker_scope_core::Observed<f64>
+pub daoseeker_scope_core::BatteryInfo::on_ac_power: daoseeker_scope_core::Observed<bool>
+impl core::clone::Clone for daoseeker_scope_core::BatteryInfo
+pub fn daoseeker_scope_core::BatteryInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::BatteryInfo
+pub fn daoseeker_scope_core::BatteryInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::BatteryInfo
+pub fn daoseeker_scope_core::BatteryInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::BatteryInfo
+pub fn daoseeker_scope_core::BatteryInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::BatteryInfo
+impl schemars::JsonSchema for daoseeker_scope_core::BatteryInfo
+pub fn daoseeker_scope_core::BatteryInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::BatteryInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::BatteryInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::BatteryInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::BatteryInfo
+pub fn daoseeker_scope_core::BatteryInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::BatteryInfo where daoseeker_scope_core::BatteryInfo: core::default::Default
+pub fn daoseeker_scope_core::BatteryInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::BatteryInfo
+impl core::marker::Send for daoseeker_scope_core::BatteryInfo
+impl core::marker::Sync for daoseeker_scope_core::BatteryInfo
+impl core::marker::Unpin for daoseeker_scope_core::BatteryInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::BatteryInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::BatteryInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::BatteryInfo
+pub struct daoseeker_scope_core::CancelToken(_)
+impl daoseeker_scope_core::CancelToken
+pub fn daoseeker_scope_core::CancelToken::cancel(&self)
+pub fn daoseeker_scope_core::CancelToken::is_cancelled(&self) -> bool
+impl core::clone::Clone for daoseeker_scope_core::CancelToken
+pub fn daoseeker_scope_core::CancelToken::clone(&self) -> Self
+impl core::default::Default for daoseeker_scope_core::CancelToken
+pub fn daoseeker_scope_core::CancelToken::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::CancelToken
+pub fn daoseeker_scope_core::CancelToken::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::Freeze for daoseeker_scope_core::CancelToken
+impl core::marker::Send for daoseeker_scope_core::CancelToken
+impl core::marker::Sync for daoseeker_scope_core::CancelToken
+impl core::marker::Unpin for daoseeker_scope_core::CancelToken
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::CancelToken
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::CancelToken
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::CancelToken
+#[non_exhaustive] pub struct daoseeker_scope_core::Capability
+pub daoseeker_scope_core::Capability::field: alloc::string::String
+pub daoseeker_scope_core::Capability::level: daoseeker_scope_core::CapabilityLevel
+pub daoseeker_scope_core::Capability::reason: core::option::Option<daoseeker_scope_core::ReasonCode>
+pub daoseeker_scope_core::Capability::source: daoseeker_scope_core::Source
+impl daoseeker_scope_core::Capability
+pub fn daoseeker_scope_core::Capability::new(&str, daoseeker_scope_core::CapabilityLevel, daoseeker_scope_core::Source) -> Self
+impl core::clone::Clone for daoseeker_scope_core::Capability
+pub fn daoseeker_scope_core::Capability::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::Capability
+pub fn daoseeker_scope_core::Capability::eq(&self, &Self) -> bool
+impl core::fmt::Debug for daoseeker_scope_core::Capability
+pub fn daoseeker_scope_core::Capability::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::Capability
+impl schemars::JsonSchema for daoseeker_scope_core::Capability
+pub fn daoseeker_scope_core::Capability::inline_schema() -> bool
+pub fn daoseeker_scope_core::Capability::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::Capability::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::Capability::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::Capability
+pub fn daoseeker_scope_core::Capability::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::Capability
+pub fn daoseeker_scope_core::Capability::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::Capability
+impl core::marker::Send for daoseeker_scope_core::Capability
+impl core::marker::Sync for daoseeker_scope_core::Capability
+impl core::marker::Unpin for daoseeker_scope_core::Capability
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::Capability
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::Capability
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::Capability
+pub struct daoseeker_scope_core::CollectContext
+pub daoseeker_scope_core::CollectContext::options: daoseeker_scope_core::Options
+impl daoseeker_scope_core::CollectContext
+pub fn daoseeker_scope_core::CollectContext::check(&self) -> core::result::Result<(), daoseeker_scope_core::ScopeError>
+impl core::marker::Freeze for daoseeker_scope_core::CollectContext
+impl core::marker::Send for daoseeker_scope_core::CollectContext
+impl core::marker::Sync for daoseeker_scope_core::CollectContext
+impl core::marker::Unpin for daoseeker_scope_core::CollectContext
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::CollectContext
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::CollectContext
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::CollectContext
+#[non_exhaustive] pub struct daoseeker_scope_core::CpuInfo
+pub daoseeker_scope_core::CpuInfo::architecture: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::CpuInfo::brand: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::CpuInfo::logical_count: daoseeker_scope_core::Observed<u32>
+pub daoseeker_scope_core::CpuInfo::physical_count: daoseeker_scope_core::Observed<u32>
+impl core::clone::Clone for daoseeker_scope_core::CpuInfo
+pub fn daoseeker_scope_core::CpuInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::CpuInfo
+pub fn daoseeker_scope_core::CpuInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::CpuInfo
+pub fn daoseeker_scope_core::CpuInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::CpuInfo
+pub fn daoseeker_scope_core::CpuInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::CpuInfo
+impl schemars::JsonSchema for daoseeker_scope_core::CpuInfo
+pub fn daoseeker_scope_core::CpuInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::CpuInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::CpuInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::CpuInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::CpuInfo
+pub fn daoseeker_scope_core::CpuInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::CpuInfo where daoseeker_scope_core::CpuInfo: core::default::Default
+pub fn daoseeker_scope_core::CpuInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::CpuInfo
+impl core::marker::Send for daoseeker_scope_core::CpuInfo
+impl core::marker::Sync for daoseeker_scope_core::CpuInfo
+impl core::marker::Unpin for daoseeker_scope_core::CpuInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::CpuInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::CpuInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::CpuInfo
+#[non_exhaustive] pub struct daoseeker_scope_core::DeviceInfo
+pub daoseeker_scope_core::DeviceInfo::model: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::DeviceInfo::serial_number: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::DeviceInfo::vendor: daoseeker_scope_core::Observed<alloc::string::String>
+impl core::clone::Clone for daoseeker_scope_core::DeviceInfo
+pub fn daoseeker_scope_core::DeviceInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::DeviceInfo
+pub fn daoseeker_scope_core::DeviceInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::DeviceInfo
+pub fn daoseeker_scope_core::DeviceInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::DeviceInfo
+pub fn daoseeker_scope_core::DeviceInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::DeviceInfo
+impl schemars::JsonSchema for daoseeker_scope_core::DeviceInfo
+pub fn daoseeker_scope_core::DeviceInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::DeviceInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::DeviceInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::DeviceInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::DeviceInfo
+pub fn daoseeker_scope_core::DeviceInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::DeviceInfo where daoseeker_scope_core::DeviceInfo: core::default::Default
+pub fn daoseeker_scope_core::DeviceInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::DeviceInfo
+impl core::marker::Send for daoseeker_scope_core::DeviceInfo
+impl core::marker::Sync for daoseeker_scope_core::DeviceInfo
+impl core::marker::Unpin for daoseeker_scope_core::DeviceInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::DeviceInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::DeviceInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::DeviceInfo
+#[non_exhaustive] pub struct daoseeker_scope_core::DisplayInfo
+pub daoseeker_scope_core::DisplayInfo::height_pixels: daoseeker_scope_core::Observed<u32>
+pub daoseeker_scope_core::DisplayInfo::name: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::DisplayInfo::width_pixels: daoseeker_scope_core::Observed<u32>
+impl core::clone::Clone for daoseeker_scope_core::DisplayInfo
+pub fn daoseeker_scope_core::DisplayInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::DisplayInfo
+pub fn daoseeker_scope_core::DisplayInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::DisplayInfo
+pub fn daoseeker_scope_core::DisplayInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::DisplayInfo
+pub fn daoseeker_scope_core::DisplayInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::DisplayInfo
+impl schemars::JsonSchema for daoseeker_scope_core::DisplayInfo
+pub fn daoseeker_scope_core::DisplayInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::DisplayInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::DisplayInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::DisplayInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::DisplayInfo
+pub fn daoseeker_scope_core::DisplayInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::DisplayInfo where daoseeker_scope_core::DisplayInfo: core::default::Default
+pub fn daoseeker_scope_core::DisplayInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::DisplayInfo
+impl core::marker::Send for daoseeker_scope_core::DisplayInfo
+impl core::marker::Sync for daoseeker_scope_core::DisplayInfo
+impl core::marker::Unpin for daoseeker_scope_core::DisplayInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::DisplayInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::DisplayInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::DisplayInfo
+#[non_exhaustive] pub struct daoseeker_scope_core::DynamicSnapshot
+pub daoseeker_scope_core::DynamicSnapshot::batteries: daoseeker_scope_core::Observed<alloc::vec::Vec<daoseeker_scope_core::BatteryInfo>>
+pub daoseeker_scope_core::DynamicSnapshot::cpu_usage_percent: daoseeker_scope_core::Observed<f64>
+pub daoseeker_scope_core::DynamicSnapshot::memory_available_bytes: daoseeker_scope_core::Observed<u64>
+pub daoseeker_scope_core::DynamicSnapshot::networks: daoseeker_scope_core::Observed<alloc::vec::Vec<daoseeker_scope_core::NetworkInfo>>
+pub daoseeker_scope_core::DynamicSnapshot::runtime: daoseeker_scope_core::RuntimeInfo
+pub daoseeker_scope_core::DynamicSnapshot::sensors: daoseeker_scope_core::Observed<alloc::vec::Vec<daoseeker_scope_core::SensorInfo>>
+impl core::clone::Clone for daoseeker_scope_core::DynamicSnapshot
+pub fn daoseeker_scope_core::DynamicSnapshot::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::DynamicSnapshot
+pub fn daoseeker_scope_core::DynamicSnapshot::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::DynamicSnapshot
+pub fn daoseeker_scope_core::DynamicSnapshot::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::DynamicSnapshot
+pub fn daoseeker_scope_core::DynamicSnapshot::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::DynamicSnapshot
+impl schemars::JsonSchema for daoseeker_scope_core::DynamicSnapshot
+pub fn daoseeker_scope_core::DynamicSnapshot::inline_schema() -> bool
+pub fn daoseeker_scope_core::DynamicSnapshot::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::DynamicSnapshot::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::DynamicSnapshot::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::DynamicSnapshot
+pub fn daoseeker_scope_core::DynamicSnapshot::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::DynamicSnapshot where daoseeker_scope_core::DynamicSnapshot: core::default::Default
+pub fn daoseeker_scope_core::DynamicSnapshot::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::DynamicSnapshot
+impl core::marker::Send for daoseeker_scope_core::DynamicSnapshot
+impl core::marker::Sync for daoseeker_scope_core::DynamicSnapshot
+impl core::marker::Unpin for daoseeker_scope_core::DynamicSnapshot
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::DynamicSnapshot
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::DynamicSnapshot
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::DynamicSnapshot
+#[non_exhaustive] pub struct daoseeker_scope_core::FirmwareInfo
+pub daoseeker_scope_core::FirmwareInfo::vendor: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::FirmwareInfo::version: daoseeker_scope_core::Observed<alloc::string::String>
+impl core::clone::Clone for daoseeker_scope_core::FirmwareInfo
+pub fn daoseeker_scope_core::FirmwareInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::FirmwareInfo
+pub fn daoseeker_scope_core::FirmwareInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::FirmwareInfo
+pub fn daoseeker_scope_core::FirmwareInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::FirmwareInfo
+pub fn daoseeker_scope_core::FirmwareInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::FirmwareInfo
+impl schemars::JsonSchema for daoseeker_scope_core::FirmwareInfo
+pub fn daoseeker_scope_core::FirmwareInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::FirmwareInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::FirmwareInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::FirmwareInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::FirmwareInfo
+pub fn daoseeker_scope_core::FirmwareInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::FirmwareInfo where daoseeker_scope_core::FirmwareInfo: core::default::Default
+pub fn daoseeker_scope_core::FirmwareInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::FirmwareInfo
+impl core::marker::Send for daoseeker_scope_core::FirmwareInfo
+impl core::marker::Sync for daoseeker_scope_core::FirmwareInfo
+impl core::marker::Unpin for daoseeker_scope_core::FirmwareInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::FirmwareInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::FirmwareInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::FirmwareInfo
+#[non_exhaustive] pub struct daoseeker_scope_core::GpuInfo
+pub daoseeker_scope_core::GpuInfo::dedicated_memory_bytes: daoseeker_scope_core::Observed<u64>
+pub daoseeker_scope_core::GpuInfo::name: daoseeker_scope_core::Observed<alloc::string::String>
+impl core::clone::Clone for daoseeker_scope_core::GpuInfo
+pub fn daoseeker_scope_core::GpuInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::GpuInfo
+pub fn daoseeker_scope_core::GpuInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::GpuInfo
+pub fn daoseeker_scope_core::GpuInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::GpuInfo
+pub fn daoseeker_scope_core::GpuInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::GpuInfo
+impl schemars::JsonSchema for daoseeker_scope_core::GpuInfo
+pub fn daoseeker_scope_core::GpuInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::GpuInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::GpuInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::GpuInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::GpuInfo
+pub fn daoseeker_scope_core::GpuInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::GpuInfo where daoseeker_scope_core::GpuInfo: core::default::Default
+pub fn daoseeker_scope_core::GpuInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::GpuInfo
+impl core::marker::Send for daoseeker_scope_core::GpuInfo
+impl core::marker::Sync for daoseeker_scope_core::GpuInfo
+impl core::marker::Unpin for daoseeker_scope_core::GpuInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::GpuInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::GpuInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::GpuInfo
+pub struct daoseeker_scope_core::Hardware
+impl daoseeker_scope_core::Hardware
+pub fn daoseeker_scope_core::Hardware::capabilities(&self) -> daoseeker_scope_core::Capabilities
+pub fn daoseeker_scope_core::Hardware::collect(&self) -> core::result::Result<daoseeker_scope_core::Snapshot, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope_core::Hardware::collect_with(&self, daoseeker_scope_core::CancelToken) -> core::result::Result<daoseeker_scope_core::Snapshot, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope_core::Hardware::refresh_dynamic(&self) -> core::result::Result<daoseeker_scope_core::DynamicSnapshot, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope_core::Hardware::refresh_dynamic_with(&self, daoseeker_scope_core::CancelToken) -> core::result::Result<daoseeker_scope_core::DynamicSnapshot, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope_core::Hardware::shutdown(self) -> core::result::Result<(), daoseeker_scope_core::ScopeError>
+impl !core::marker::Freeze for daoseeker_scope_core::Hardware
+impl core::marker::Send for daoseeker_scope_core::Hardware
+impl core::marker::Sync for daoseeker_scope_core::Hardware
+impl core::marker::Unpin for daoseeker_scope_core::Hardware
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::Hardware
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::Hardware
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::Hardware
+pub struct daoseeker_scope_core::HardwareBuilder
+impl daoseeker_scope_core::HardwareBuilder
+pub fn daoseeker_scope_core::HardwareBuilder::build(self) -> core::result::Result<daoseeker_scope_core::Hardware, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope_core::HardwareBuilder::new(daoseeker_scope_core::Options) -> Self
+pub fn daoseeker_scope_core::HardwareBuilder::with_backend<B: daoseeker_scope_core::Backend>(self, i32, B) -> Self
+impl core::default::Default for daoseeker_scope_core::HardwareBuilder
+pub fn daoseeker_scope_core::HardwareBuilder::default() -> Self
+impl core::marker::Freeze for daoseeker_scope_core::HardwareBuilder
+impl core::marker::Send for daoseeker_scope_core::HardwareBuilder
+impl !core::marker::Sync for daoseeker_scope_core::HardwareBuilder
+impl core::marker::Unpin for daoseeker_scope_core::HardwareBuilder
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::HardwareBuilder
+impl !core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::HardwareBuilder
+impl !core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::HardwareBuilder
+#[non_exhaustive] pub struct daoseeker_scope_core::MemoryInfo
+pub daoseeker_scope_core::MemoryInfo::installed_bytes: daoseeker_scope_core::Observed<u64>
+pub daoseeker_scope_core::MemoryInfo::total_usable_bytes: daoseeker_scope_core::Observed<u64>
+impl core::clone::Clone for daoseeker_scope_core::MemoryInfo
+pub fn daoseeker_scope_core::MemoryInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::MemoryInfo
+pub fn daoseeker_scope_core::MemoryInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::MemoryInfo
+pub fn daoseeker_scope_core::MemoryInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::MemoryInfo
+pub fn daoseeker_scope_core::MemoryInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::MemoryInfo
+impl schemars::JsonSchema for daoseeker_scope_core::MemoryInfo
+pub fn daoseeker_scope_core::MemoryInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::MemoryInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::MemoryInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::MemoryInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::MemoryInfo
+pub fn daoseeker_scope_core::MemoryInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::MemoryInfo where daoseeker_scope_core::MemoryInfo: core::default::Default
+pub fn daoseeker_scope_core::MemoryInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::MemoryInfo
+impl core::marker::Send for daoseeker_scope_core::MemoryInfo
+impl core::marker::Sync for daoseeker_scope_core::MemoryInfo
+impl core::marker::Unpin for daoseeker_scope_core::MemoryInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::MemoryInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::MemoryInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::MemoryInfo
+pub struct daoseeker_scope_core::MergeEvent
+pub daoseeker_scope_core::MergeEvent::field: alloc::string::String
+pub daoseeker_scope_core::MergeEvent::previous_source: daoseeker_scope_core::Source
+pub daoseeker_scope_core::MergeEvent::priority: i32
+pub daoseeker_scope_core::MergeEvent::selected_source: daoseeker_scope_core::Source
+impl core::clone::Clone for daoseeker_scope_core::MergeEvent
+pub fn daoseeker_scope_core::MergeEvent::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::MergeEvent
+pub fn daoseeker_scope_core::MergeEvent::eq(&self, &Self) -> bool
+impl core::fmt::Debug for daoseeker_scope_core::MergeEvent
+pub fn daoseeker_scope_core::MergeEvent::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::MergeEvent
+impl schemars::JsonSchema for daoseeker_scope_core::MergeEvent
+pub fn daoseeker_scope_core::MergeEvent::inline_schema() -> bool
+pub fn daoseeker_scope_core::MergeEvent::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::MergeEvent::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::MergeEvent::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::MergeEvent
+pub fn daoseeker_scope_core::MergeEvent::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::MergeEvent
+pub fn daoseeker_scope_core::MergeEvent::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::MergeEvent
+impl core::marker::Send for daoseeker_scope_core::MergeEvent
+impl core::marker::Sync for daoseeker_scope_core::MergeEvent
+impl core::marker::Unpin for daoseeker_scope_core::MergeEvent
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::MergeEvent
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::MergeEvent
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::MergeEvent
+#[non_exhaustive] pub struct daoseeker_scope_core::MotherboardInfo
+pub daoseeker_scope_core::MotherboardInfo::model: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::MotherboardInfo::vendor: daoseeker_scope_core::Observed<alloc::string::String>
+impl core::clone::Clone for daoseeker_scope_core::MotherboardInfo
+pub fn daoseeker_scope_core::MotherboardInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::MotherboardInfo
+pub fn daoseeker_scope_core::MotherboardInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::MotherboardInfo
+pub fn daoseeker_scope_core::MotherboardInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::MotherboardInfo
+pub fn daoseeker_scope_core::MotherboardInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::MotherboardInfo
+impl schemars::JsonSchema for daoseeker_scope_core::MotherboardInfo
+pub fn daoseeker_scope_core::MotherboardInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::MotherboardInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::MotherboardInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::MotherboardInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::MotherboardInfo
+pub fn daoseeker_scope_core::MotherboardInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::MotherboardInfo where daoseeker_scope_core::MotherboardInfo: core::default::Default
+pub fn daoseeker_scope_core::MotherboardInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::MotherboardInfo
+impl core::marker::Send for daoseeker_scope_core::MotherboardInfo
+impl core::marker::Sync for daoseeker_scope_core::MotherboardInfo
+impl core::marker::Unpin for daoseeker_scope_core::MotherboardInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::MotherboardInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::MotherboardInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::MotherboardInfo
+#[non_exhaustive] pub struct daoseeker_scope_core::NetworkInfo
+pub daoseeker_scope_core::NetworkInfo::interface_name: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::NetworkInfo::received_bytes: daoseeker_scope_core::Observed<u64>
+pub daoseeker_scope_core::NetworkInfo::transmitted_bytes: daoseeker_scope_core::Observed<u64>
+impl core::clone::Clone for daoseeker_scope_core::NetworkInfo
+pub fn daoseeker_scope_core::NetworkInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::NetworkInfo
+pub fn daoseeker_scope_core::NetworkInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::NetworkInfo
+pub fn daoseeker_scope_core::NetworkInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::NetworkInfo
+pub fn daoseeker_scope_core::NetworkInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::NetworkInfo
+impl schemars::JsonSchema for daoseeker_scope_core::NetworkInfo
+pub fn daoseeker_scope_core::NetworkInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::NetworkInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::NetworkInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::NetworkInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::NetworkInfo
+pub fn daoseeker_scope_core::NetworkInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::NetworkInfo where daoseeker_scope_core::NetworkInfo: core::default::Default
+pub fn daoseeker_scope_core::NetworkInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::NetworkInfo
+impl core::marker::Send for daoseeker_scope_core::NetworkInfo
+impl core::marker::Sync for daoseeker_scope_core::NetworkInfo
+impl core::marker::Unpin for daoseeker_scope_core::NetworkInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::NetworkInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::NetworkInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::NetworkInfo
+pub struct daoseeker_scope_core::Observed<T>
+impl<T> daoseeker_scope_core::Observed<T>
+pub fn daoseeker_scope_core::Observed<T>::availability(&self) -> daoseeker_scope_core::Availability
+pub fn daoseeker_scope_core::Observed<T>::available(T, daoseeker_scope_core::Source, daoseeker_scope_core::Timestamp) -> Self
+pub fn daoseeker_scope_core::Observed<T>::missing(daoseeker_scope_core::Availability, daoseeker_scope_core::Source, daoseeker_scope_core::ReasonCode) -> core::result::Result<Self, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope_core::Observed<T>::not_applicable(daoseeker_scope_core::Source) -> Self
+pub fn daoseeker_scope_core::Observed<T>::observed_at(&self) -> core::option::Option<daoseeker_scope_core::Timestamp>
+pub fn daoseeker_scope_core::Observed<T>::reason(&self) -> core::option::Option<daoseeker_scope_core::ReasonCode>
+pub fn daoseeker_scope_core::Observed<T>::restricted(daoseeker_scope_core::Source, daoseeker_scope_core::ReasonCode) -> Self
+pub fn daoseeker_scope_core::Observed<T>::source(&self) -> daoseeker_scope_core::Source
+pub fn daoseeker_scope_core::Observed<T>::unavailable(daoseeker_scope_core::Source, daoseeker_scope_core::ReasonCode) -> Self
+pub fn daoseeker_scope_core::Observed<T>::value(&self) -> core::option::Option<&T>
+impl<'de, T: serde_core::de::Deserialize<'de>> serde_core::de::Deserialize<'de> for daoseeker_scope_core::Observed<T>
+pub fn daoseeker_scope_core::Observed<T>::deserialize<D: serde_core::de::Deserializer<'de>>(D) -> core::result::Result<Self, <D as serde_core::de::Deserializer>::Error>
+impl<T: core::clone::Clone> core::clone::Clone for daoseeker_scope_core::Observed<T>
+pub fn daoseeker_scope_core::Observed<T>::clone(&self) -> Self
+impl<T: core::cmp::PartialEq> core::cmp::PartialEq for daoseeker_scope_core::Observed<T>
+pub fn daoseeker_scope_core::Observed<T>::eq(&self, &Self) -> bool
+impl<T: core::cmp::PartialEq> core::marker::StructuralPartialEq for daoseeker_scope_core::Observed<T>
+impl<T: core::fmt::Debug> core::fmt::Debug for daoseeker_scope_core::Observed<T>
+pub fn daoseeker_scope_core::Observed<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T> core::default::Default for daoseeker_scope_core::Observed<T>
+pub fn daoseeker_scope_core::Observed<T>::default() -> Self
+impl<T> schemars::JsonSchema for daoseeker_scope_core::Observed<T> where T: schemars::JsonSchema
+pub fn daoseeker_scope_core::Observed<T>::inline_schema() -> bool
+pub fn daoseeker_scope_core::Observed<T>::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::Observed<T>::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::Observed<T>::schema_name() -> alloc::borrow::Cow<'static, str>
+impl<T> serde_core::ser::Serialize for daoseeker_scope_core::Observed<T> where T: serde_core::ser::Serialize
+pub fn daoseeker_scope_core::Observed<T>::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<T> core::marker::Freeze for daoseeker_scope_core::Observed<T> where core::option::Option<T>: core::marker::Freeze
+impl<T> core::marker::Send for daoseeker_scope_core::Observed<T> where core::option::Option<T>: core::marker::Send
+impl<T> core::marker::Sync for daoseeker_scope_core::Observed<T> where core::option::Option<T>: core::marker::Sync
+impl<T> core::marker::Unpin for daoseeker_scope_core::Observed<T> where core::option::Option<T>: core::marker::Unpin
+impl<T> core::marker::UnsafeUnpin for daoseeker_scope_core::Observed<T> where core::option::Option<T>: core::marker::UnsafeUnpin
+impl<T> core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::Observed<T> where core::option::Option<T>: core::panic::unwind_safe::RefUnwindSafe
+impl<T> core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::Observed<T> where core::option::Option<T>: core::panic::unwind_safe::UnwindSafe
+pub struct daoseeker_scope_core::Options
+pub daoseeker_scope_core::Options::max_entries: usize
+pub daoseeker_scope_core::Options::privacy: daoseeker_scope_core::PrivacyOptions
+pub daoseeker_scope_core::Options::timeout: core::time::Duration
+impl daoseeker_scope_core::Options
+pub fn daoseeker_scope_core::Options::validate(&self) -> core::result::Result<(), daoseeker_scope_core::ScopeError>
+impl core::clone::Clone for daoseeker_scope_core::Options
+pub fn daoseeker_scope_core::Options::clone(&self) -> Self
+impl core::default::Default for daoseeker_scope_core::Options
+pub fn daoseeker_scope_core::Options::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::Options
+pub fn daoseeker_scope_core::Options::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::Freeze for daoseeker_scope_core::Options
+impl core::marker::Send for daoseeker_scope_core::Options
+impl core::marker::Sync for daoseeker_scope_core::Options
+impl core::marker::Unpin for daoseeker_scope_core::Options
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::Options
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::Options
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::Options
+#[non_exhaustive] pub struct daoseeker_scope_core::OsInfo
+pub daoseeker_scope_core::OsInfo::kernel_version: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::OsInfo::name: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::OsInfo::version: daoseeker_scope_core::Observed<alloc::string::String>
+impl core::clone::Clone for daoseeker_scope_core::OsInfo
+pub fn daoseeker_scope_core::OsInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::OsInfo
+pub fn daoseeker_scope_core::OsInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::OsInfo
+pub fn daoseeker_scope_core::OsInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::OsInfo
+pub fn daoseeker_scope_core::OsInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::OsInfo
+impl schemars::JsonSchema for daoseeker_scope_core::OsInfo
+pub fn daoseeker_scope_core::OsInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::OsInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::OsInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::OsInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::OsInfo
+pub fn daoseeker_scope_core::OsInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::OsInfo where daoseeker_scope_core::OsInfo: core::default::Default
+pub fn daoseeker_scope_core::OsInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::OsInfo
+impl core::marker::Send for daoseeker_scope_core::OsInfo
+impl core::marker::Sync for daoseeker_scope_core::OsInfo
+impl core::marker::Unpin for daoseeker_scope_core::OsInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::OsInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::OsInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::OsInfo
+pub struct daoseeker_scope_core::PrivacyOptions
+pub daoseeker_scope_core::PrivacyOptions::caller_authorized: bool
+pub daoseeker_scope_core::PrivacyOptions::include_sensitive: bool
+impl daoseeker_scope_core::PrivacyOptions
+pub fn daoseeker_scope_core::PrivacyOptions::permits_sensitive(self) -> bool
+impl core::clone::Clone for daoseeker_scope_core::PrivacyOptions
+pub fn daoseeker_scope_core::PrivacyOptions::clone(&self) -> Self
+impl core::default::Default for daoseeker_scope_core::PrivacyOptions
+pub fn daoseeker_scope_core::PrivacyOptions::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::PrivacyOptions
+pub fn daoseeker_scope_core::PrivacyOptions::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::Copy for daoseeker_scope_core::PrivacyOptions
+impl core::marker::Freeze for daoseeker_scope_core::PrivacyOptions
+impl core::marker::Send for daoseeker_scope_core::PrivacyOptions
+impl core::marker::Sync for daoseeker_scope_core::PrivacyOptions
+impl core::marker::Unpin for daoseeker_scope_core::PrivacyOptions
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::PrivacyOptions
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::PrivacyOptions
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::PrivacyOptions
+#[non_exhaustive] pub struct daoseeker_scope_core::RuntimeInfo
+pub daoseeker_scope_core::RuntimeInfo::uptime_seconds: daoseeker_scope_core::Observed<u64>
+impl core::clone::Clone for daoseeker_scope_core::RuntimeInfo
+pub fn daoseeker_scope_core::RuntimeInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::RuntimeInfo
+pub fn daoseeker_scope_core::RuntimeInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::RuntimeInfo
+pub fn daoseeker_scope_core::RuntimeInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::RuntimeInfo
+pub fn daoseeker_scope_core::RuntimeInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::RuntimeInfo
+impl schemars::JsonSchema for daoseeker_scope_core::RuntimeInfo
+pub fn daoseeker_scope_core::RuntimeInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::RuntimeInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::RuntimeInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::RuntimeInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::RuntimeInfo
+pub fn daoseeker_scope_core::RuntimeInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::RuntimeInfo where daoseeker_scope_core::RuntimeInfo: core::default::Default
+pub fn daoseeker_scope_core::RuntimeInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::RuntimeInfo
+impl core::marker::Send for daoseeker_scope_core::RuntimeInfo
+impl core::marker::Sync for daoseeker_scope_core::RuntimeInfo
+impl core::marker::Unpin for daoseeker_scope_core::RuntimeInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::RuntimeInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::RuntimeInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::RuntimeInfo
+pub struct daoseeker_scope_core::ScopeError
+pub daoseeker_scope_core::ScopeError::code: daoseeker_scope_core::ErrorCode
+impl daoseeker_scope_core::ScopeError
+pub const fn daoseeker_scope_core::ScopeError::new(daoseeker_scope_core::ErrorCode) -> Self
+impl core::clone::Clone for daoseeker_scope_core::ScopeError
+pub fn daoseeker_scope_core::ScopeError::clone(&self) -> Self
+impl core::cmp::Eq for daoseeker_scope_core::ScopeError
+impl core::cmp::PartialEq for daoseeker_scope_core::ScopeError
+pub fn daoseeker_scope_core::ScopeError::eq(&self, &Self) -> bool
+impl core::error::Error for daoseeker_scope_core::ScopeError
+impl core::fmt::Debug for daoseeker_scope_core::ScopeError
+pub fn daoseeker_scope_core::ScopeError::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::fmt::Display for daoseeker_scope_core::ScopeError
+pub fn daoseeker_scope_core::ScopeError::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::Copy for daoseeker_scope_core::ScopeError
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::ScopeError
+impl core::marker::Freeze for daoseeker_scope_core::ScopeError
+impl core::marker::Send for daoseeker_scope_core::ScopeError
+impl core::marker::Sync for daoseeker_scope_core::ScopeError
+impl core::marker::Unpin for daoseeker_scope_core::ScopeError
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::ScopeError
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::ScopeError
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::ScopeError
+#[non_exhaustive] pub struct daoseeker_scope_core::SensorInfo
+pub daoseeker_scope_core::SensorInfo::label: daoseeker_scope_core::Observed<alloc::string::String>
+pub daoseeker_scope_core::SensorInfo::temperature_celsius: daoseeker_scope_core::Observed<f64>
+impl core::clone::Clone for daoseeker_scope_core::SensorInfo
+pub fn daoseeker_scope_core::SensorInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::SensorInfo
+pub fn daoseeker_scope_core::SensorInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::SensorInfo
+pub fn daoseeker_scope_core::SensorInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::SensorInfo
+pub fn daoseeker_scope_core::SensorInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::SensorInfo
+impl schemars::JsonSchema for daoseeker_scope_core::SensorInfo
+pub fn daoseeker_scope_core::SensorInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::SensorInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::SensorInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::SensorInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::SensorInfo
+pub fn daoseeker_scope_core::SensorInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::SensorInfo where daoseeker_scope_core::SensorInfo: core::default::Default
+pub fn daoseeker_scope_core::SensorInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::SensorInfo
+impl core::marker::Send for daoseeker_scope_core::SensorInfo
+impl core::marker::Sync for daoseeker_scope_core::SensorInfo
+impl core::marker::Unpin for daoseeker_scope_core::SensorInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::SensorInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::SensorInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::SensorInfo
+#[non_exhaustive] pub struct daoseeker_scope_core::Snapshot
+pub daoseeker_scope_core::Snapshot::capabilities: daoseeker_scope_core::Capabilities
+pub daoseeker_scope_core::Snapshot::collected_at: daoseeker_scope_core::Timestamp
+pub daoseeker_scope_core::Snapshot::conflicts: alloc::vec::Vec<daoseeker_scope_core::MergeEvent>
+pub daoseeker_scope_core::Snapshot::dynamic: daoseeker_scope_core::DynamicSnapshot
+pub daoseeker_scope_core::Snapshot::issues: alloc::vec::Vec<daoseeker_scope_core::BackendIssue>
+pub daoseeker_scope_core::Snapshot::schema_version: u32
+pub daoseeker_scope_core::Snapshot::static_info: daoseeker_scope_core::StaticSnapshot
+impl core::clone::Clone for daoseeker_scope_core::Snapshot
+pub fn daoseeker_scope_core::Snapshot::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::Snapshot
+pub fn daoseeker_scope_core::Snapshot::eq(&self, &Self) -> bool
+impl core::fmt::Debug for daoseeker_scope_core::Snapshot
+pub fn daoseeker_scope_core::Snapshot::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::Snapshot
+impl schemars::JsonSchema for daoseeker_scope_core::Snapshot
+pub fn daoseeker_scope_core::Snapshot::inline_schema() -> bool
+pub fn daoseeker_scope_core::Snapshot::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::Snapshot::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::Snapshot::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::Snapshot
+pub fn daoseeker_scope_core::Snapshot::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::Snapshot
+pub fn daoseeker_scope_core::Snapshot::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::Snapshot
+impl core::marker::Send for daoseeker_scope_core::Snapshot
+impl core::marker::Sync for daoseeker_scope_core::Snapshot
+impl core::marker::Unpin for daoseeker_scope_core::Snapshot
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::Snapshot
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::Snapshot
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::Snapshot
+#[non_exhaustive] pub struct daoseeker_scope_core::StaticSnapshot
+pub daoseeker_scope_core::StaticSnapshot::displays: daoseeker_scope_core::Observed<alloc::vec::Vec<daoseeker_scope_core::DisplayInfo>>
+pub daoseeker_scope_core::StaticSnapshot::gpus: daoseeker_scope_core::Observed<alloc::vec::Vec<daoseeker_scope_core::GpuInfo>>
+pub daoseeker_scope_core::StaticSnapshot::storage: daoseeker_scope_core::Observed<alloc::vec::Vec<daoseeker_scope_core::StorageInfo>>
+pub daoseeker_scope_core::StaticSnapshot::system: daoseeker_scope_core::SystemInfo
+impl core::clone::Clone for daoseeker_scope_core::StaticSnapshot
+pub fn daoseeker_scope_core::StaticSnapshot::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::StaticSnapshot
+pub fn daoseeker_scope_core::StaticSnapshot::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::StaticSnapshot
+pub fn daoseeker_scope_core::StaticSnapshot::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::StaticSnapshot
+pub fn daoseeker_scope_core::StaticSnapshot::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::StaticSnapshot
+impl schemars::JsonSchema for daoseeker_scope_core::StaticSnapshot
+pub fn daoseeker_scope_core::StaticSnapshot::inline_schema() -> bool
+pub fn daoseeker_scope_core::StaticSnapshot::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::StaticSnapshot::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::StaticSnapshot::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::StaticSnapshot
+pub fn daoseeker_scope_core::StaticSnapshot::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::StaticSnapshot where daoseeker_scope_core::StaticSnapshot: core::default::Default
+pub fn daoseeker_scope_core::StaticSnapshot::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::StaticSnapshot
+impl core::marker::Send for daoseeker_scope_core::StaticSnapshot
+impl core::marker::Sync for daoseeker_scope_core::StaticSnapshot
+impl core::marker::Unpin for daoseeker_scope_core::StaticSnapshot
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::StaticSnapshot
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::StaticSnapshot
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::StaticSnapshot
+#[non_exhaustive] pub struct daoseeker_scope_core::StorageInfo
+pub daoseeker_scope_core::StorageInfo::capacity_bytes: daoseeker_scope_core::Observed<u64>
+pub daoseeker_scope_core::StorageInfo::name: daoseeker_scope_core::Observed<alloc::string::String>
+impl core::clone::Clone for daoseeker_scope_core::StorageInfo
+pub fn daoseeker_scope_core::StorageInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::StorageInfo
+pub fn daoseeker_scope_core::StorageInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::StorageInfo
+pub fn daoseeker_scope_core::StorageInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::StorageInfo
+pub fn daoseeker_scope_core::StorageInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::StorageInfo
+impl schemars::JsonSchema for daoseeker_scope_core::StorageInfo
+pub fn daoseeker_scope_core::StorageInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::StorageInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::StorageInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::StorageInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::StorageInfo
+pub fn daoseeker_scope_core::StorageInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::StorageInfo where daoseeker_scope_core::StorageInfo: core::default::Default
+pub fn daoseeker_scope_core::StorageInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::StorageInfo
+impl core::marker::Send for daoseeker_scope_core::StorageInfo
+impl core::marker::Sync for daoseeker_scope_core::StorageInfo
+impl core::marker::Unpin for daoseeker_scope_core::StorageInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::StorageInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::StorageInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::StorageInfo
+#[non_exhaustive] pub struct daoseeker_scope_core::SystemInfo
+pub daoseeker_scope_core::SystemInfo::cpu: daoseeker_scope_core::CpuInfo
+pub daoseeker_scope_core::SystemInfo::device: daoseeker_scope_core::DeviceInfo
+pub daoseeker_scope_core::SystemInfo::firmware: daoseeker_scope_core::FirmwareInfo
+pub daoseeker_scope_core::SystemInfo::memory: daoseeker_scope_core::MemoryInfo
+pub daoseeker_scope_core::SystemInfo::motherboard: daoseeker_scope_core::MotherboardInfo
+pub daoseeker_scope_core::SystemInfo::os: daoseeker_scope_core::OsInfo
+impl core::clone::Clone for daoseeker_scope_core::SystemInfo
+pub fn daoseeker_scope_core::SystemInfo::clone(&self) -> Self
+impl core::cmp::PartialEq for daoseeker_scope_core::SystemInfo
+pub fn daoseeker_scope_core::SystemInfo::eq(&self, &Self) -> bool
+impl core::default::Default for daoseeker_scope_core::SystemInfo
+pub fn daoseeker_scope_core::SystemInfo::default() -> Self
+impl core::fmt::Debug for daoseeker_scope_core::SystemInfo
+pub fn daoseeker_scope_core::SystemInfo::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::SystemInfo
+impl schemars::JsonSchema for daoseeker_scope_core::SystemInfo
+pub fn daoseeker_scope_core::SystemInfo::inline_schema() -> bool
+pub fn daoseeker_scope_core::SystemInfo::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::SystemInfo::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::SystemInfo::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::SystemInfo
+pub fn daoseeker_scope_core::SystemInfo::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::SystemInfo where daoseeker_scope_core::SystemInfo: core::default::Default
+pub fn daoseeker_scope_core::SystemInfo::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::SystemInfo
+impl core::marker::Send for daoseeker_scope_core::SystemInfo
+impl core::marker::Sync for daoseeker_scope_core::SystemInfo
+impl core::marker::Unpin for daoseeker_scope_core::SystemInfo
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::SystemInfo
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::SystemInfo
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::SystemInfo
+pub struct daoseeker_scope_core::Timestamp(pub u64)
+impl daoseeker_scope_core::Timestamp
+pub fn daoseeker_scope_core::Timestamp::now() -> core::result::Result<Self, daoseeker_scope_core::ScopeError>
+impl core::clone::Clone for daoseeker_scope_core::Timestamp
+pub fn daoseeker_scope_core::Timestamp::clone(&self) -> Self
+impl core::cmp::Eq for daoseeker_scope_core::Timestamp
+impl core::cmp::PartialEq for daoseeker_scope_core::Timestamp
+pub fn daoseeker_scope_core::Timestamp::eq(&self, &Self) -> bool
+impl core::fmt::Debug for daoseeker_scope_core::Timestamp
+pub fn daoseeker_scope_core::Timestamp::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::marker::Copy for daoseeker_scope_core::Timestamp
+impl core::marker::StructuralPartialEq for daoseeker_scope_core::Timestamp
+impl schemars::JsonSchema for daoseeker_scope_core::Timestamp
+pub fn daoseeker_scope_core::Timestamp::inline_schema() -> bool
+pub fn daoseeker_scope_core::Timestamp::json_schema(&mut schemars::generate::SchemaGenerator) -> schemars::schema::Schema
+pub fn daoseeker_scope_core::Timestamp::schema_id() -> alloc::borrow::Cow<'static, str>
+pub fn daoseeker_scope_core::Timestamp::schema_name() -> alloc::borrow::Cow<'static, str>
+impl serde_core::ser::Serialize for daoseeker_scope_core::Timestamp
+pub fn daoseeker_scope_core::Timestamp::serialize<__S>(&self, __S) -> core::result::Result<<__S as serde_core::ser::Serializer>::Ok, <__S as serde_core::ser::Serializer>::Error> where __S: serde_core::ser::Serializer
+impl<'de> serde_core::de::Deserialize<'de> for daoseeker_scope_core::Timestamp
+pub fn daoseeker_scope_core::Timestamp::deserialize<__D>(__D) -> core::result::Result<Self, <__D as serde_core::de::Deserializer>::Error> where __D: serde_core::de::Deserializer<'de>
+impl core::marker::Freeze for daoseeker_scope_core::Timestamp
+impl core::marker::Send for daoseeker_scope_core::Timestamp
+impl core::marker::Sync for daoseeker_scope_core::Timestamp
+impl core::marker::Unpin for daoseeker_scope_core::Timestamp
+impl core::marker::UnsafeUnpin for daoseeker_scope_core::Timestamp
+impl core::panic::unwind_safe::RefUnwindSafe for daoseeker_scope_core::Timestamp
+impl core::panic::unwind_safe::UnwindSafe for daoseeker_scope_core::Timestamp
+pub const daoseeker_scope_core::MAX_JSON_BYTES: usize
+pub const daoseeker_scope_core::SCHEMA_VERSION: u32
+pub trait daoseeker_scope_core::Backend: core::marker::Send + 'static
+pub fn daoseeker_scope_core::Backend::capabilities(&self) -> daoseeker_scope_core::Capabilities
+pub fn daoseeker_scope_core::Backend::collect_static(&mut self, &daoseeker_scope_core::CollectContext) -> core::result::Result<daoseeker_scope_core::StaticSnapshot, daoseeker_scope_core::ScopeError>
+pub fn daoseeker_scope_core::Backend::name(&self) -> &'static str
+pub fn daoseeker_scope_core::Backend::refresh_dynamic(&mut self, &daoseeker_scope_core::CollectContext) -> core::result::Result<daoseeker_scope_core::DynamicSnapshot, daoseeker_scope_core::ScopeError>
+pub type daoseeker_scope_core::Capabilities = alloc::vec::Vec<daoseeker_scope_core::Capability>
