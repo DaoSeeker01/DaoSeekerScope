@@ -1,0 +1,241 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-11-12T00:32:48.827093+00:00",
+  "source_commit": "57742c2189a6199b6d1644dd697e5500f9e80761",
+  "ci": {
+    "databaseId": 43125279311,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/43125279311",
+    "conclusion": "success",
+    "createdAt": "2026-11-12T00:10:07Z",
+    "updatedAt": "2026-11-12T00:29:03Z",
+    "jobs": [
+      {
+        "databaseId": 130875675056,
+        "name": "fuzz-smoke",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 130875675379,
+        "name": "supply-chain",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 130875675387,
+        "name": "desktop (macos-latest)",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 130875675400,
+        "name": "desktop (ubuntu-24.04)",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 130875675492,
+        "name": "ffi-asan",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 130875675495,
+        "name": "miri",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 130875675567,
+        "name": "linux-container",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 130875675673,
+        "name": "desktop (windows-latest)",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "baseline_index_sha256": "86ba5679496f2b7aff864b0b0c444b2b6557f16a8b7b44b413325af491d29b20",
+  "baseline": {
+    "settings": {
+      "format": 1,
+      "tool": "cargo-public-api 0.52.0",
+      "toolchain": "nightly-2026-10-08",
+      "omitted_items": [
+        "blanket-impls"
+      ],
+      "profiles": {
+        "default": [],
+        "bare": [
+          "--no-default-features"
+        ],
+        "serde": [
+          "--no-default-features",
+          "--features",
+          "serde"
+        ],
+        "schema": [
+          "--no-default-features",
+          "--features",
+          "schema"
+        ]
+      },
+      "packages": [
+        "daoseeker-scope-core",
+        "daoseeker-scope"
+      ]
+    },
+    "files": {
+      "daoseeker-scope-bare.txt": "b4fc3bc654bf72344712b01c4e8ba1f4ea6cb9d1c75f6298624da55a5aed1ddb",
+      "daoseeker-scope-core-bare.txt": "4f321f8a7d58fd47e220add8d7d06dfb1658cd673e031c9d473ce163155b3a7e",
+      "daoseeker-scope-core-default.txt": "4f321f8a7d58fd47e220add8d7d06dfb1658cd673e031c9d473ce163155b3a7e",
+      "daoseeker-scope-core-schema.txt": "7fdf76906018bd590815b603ddaadbb6fb8c716880d57c4078a27faa596fad6c",
+      "daoseeker-scope-core-serde.txt": "9ad4fad017767351774ad8c67f6ef0f4f013e176e892434ff92cd2db9c5ed239",
+      "daoseeker-scope-default.txt": "7fd4b041cb33b138de35f156f0b0b43c54599e752df50d76d6dc587b0d2303eb",
+      "daoseeker-scope-schema.txt": "7fd4b041cb33b138de35f156f0b0b43c54599e752df50d76d6dc587b0d2303eb",
+      "daoseeker-scope-serde.txt": "7fd4b041cb33b138de35f156f0b0b43c54599e752df50d76d6dc587b0d2303eb"
+    }
+  },
+  "native_api_results": {
+    "Windows-local": {
+      "report_sha256": "44577fa371b9ec2c43c20b51903b3ff646d387af3208e4e25ddddda54e09452e",
+      "overall": "passed",
+      "checked_at_utc": "2026-11-12T00:10:18.208564+00:00",
+      "source_commit": "57742c2189a6199b6d1644dd697e5500f9e80761",
+      "source_dirty": false,
+      "target": "x86_64-pc-windows-msvc",
+      "rustc": "rustc 1.101.0-nightly (1d81eb4ad 2026-10-07)\nbinary: rustc\ncommit-hash: 1d81eb4ad9cd207e3e638bd32b17ec4fce8412a6\ncommit-date: 2026-10-07\nhost: x86_64-pc-windows-msvc\nrelease: 1.101.0-nightly\nLLVM version: 23.1.3\n",
+      "generated_cases": 8,
+      "api_hashes_match_index": true
+    },
+    "Windows-CI": {
+      "report_sha256": "d3d5f645bcba59bf734398a9eaa437019a4038dd4c87d11eea319b2eaf4fb04d",
+      "overall": "passed",
+      "checked_at_utc": "2026-11-12T00:18:02.221610+00:00",
+      "source_commit": "57742c2189a6199b6d1644dd697e5500f9e80761",
+      "source_dirty": false,
+      "target": "x86_64-pc-windows-msvc",
+      "rustc": "rustc 1.101.0-nightly (1d81eb4ad 2026-10-07)\nbinary: rustc\ncommit-hash: 1d81eb4ad9cd207e3e638bd32b17ec4fce8412a6\ncommit-date: 2026-10-07\nhost: x86_64-pc-windows-msvc\nrelease: 1.101.0-nightly\nLLVM version: 23.1.3\n",
+      "generated_cases": 8,
+      "api_hashes_match_index": true
+    },
+    "Linux-CI": {
+      "report_sha256": "ffbe3f0ed376799fdf2d785ac88504209780b481ae98a7ed346f49dcb56840bf",
+      "overall": "passed",
+      "checked_at_utc": "2026-11-12T00:13:04.461698+00:00",
+      "source_commit": "57742c2189a6199b6d1644dd697e5500f9e80761",
+      "source_dirty": false,
+      "target": "x86_64-unknown-linux-gnu",
+      "rustc": "rustc 1.101.0-nightly (1d81eb4ad 2026-10-07)\nbinary: rustc\ncommit-hash: 1d81eb4ad9cd207e3e638bd32b17ec4fce8412a6\ncommit-date: 2026-10-07\nhost: x86_64-unknown-linux-gnu\nrelease: 1.101.0-nightly\nLLVM version: 23.1.3\n",
+      "generated_cases": 8,
+      "api_hashes_match_index": true
+    },
+    "macOS-CI": {
+      "report_sha256": "3c6f936f7aa6ad9e5d6e0baa0f1f2099d2b56cb44e1458c3458be4d9b3a6c59b",
+      "overall": "passed",
+      "checked_at_utc": "2026-11-12T00:12:08.813095+00:00",
+      "source_commit": "57742c2189a6199b6d1644dd697e5500f9e80761",
+      "source_dirty": false,
+      "target": "aarch64-apple-darwin",
+      "rustc": "rustc 1.101.0-nightly (1d81eb4ad 2026-10-07)\nbinary: rustc\ncommit-hash: 1d81eb4ad9cd207e3e638bd32b17ec4fce8412a6\ncommit-date: 2026-10-07\nhost: aarch64-apple-darwin\nrelease: 1.101.0-nightly\nLLVM version: 23.1.3\n",
+      "generated_cases": 8,
+      "api_hashes_match_index": true
+    }
+  },
+  "native_package_results": {
+    "Windows": {
+      "report_sha256": "573000952589b890eda8cfaa6f97f29f8aaf478422a4a9884f3a77f49c15d9af",
+      "source_commit": "57742c2189a6199b6d1644dd697e5500f9e80761",
+      "overall": "passed",
+      "archives": 8,
+      "independent_rust_consumers": 8,
+      "rust_tests_including_doctests": 311,
+      "registry_publication_verified": false
+    },
+    "Linux": {
+      "report_sha256": "0c334d716f51b46c3d088c66f5b2545cf07cca80d0681c4134fee88da95793a5",
+      "source_commit": "57742c2189a6199b6d1644dd697e5500f9e80761",
+      "overall": "passed",
+      "archives": 8,
+      "independent_rust_consumers": 8,
+      "rust_tests_including_doctests": 307,
+      "registry_publication_verified": false
+    },
+    "macOS": {
+      "report_sha256": "41879a9b6c0cd623cfdc7ff6217dd3b872003a11183238187a3c5105ad9042c0",
+      "source_commit": "57742c2189a6199b6d1644dd697e5500f9e80761",
+      "overall": "passed",
+      "archives": 8,
+      "independent_rust_consumers": 8,
+      "rust_tests_including_doctests": 310,
+      "registry_publication_verified": false
+    }
+  },
+  "local_validation": {
+    "python": {
+      "command": "python -m unittest discover -s tests -p test_*.py",
+      "total": 368,
+      "passed": 362,
+      "skipped": 6,
+      "exit_code": 0,
+      "log_sha256": "1f7f09371e6cdda4340b3969cb74ac65267094e2a75f928395e3ac9900f02ed7"
+    },
+    "new_checker_tests": 10,
+    "static_checks_passed": [
+      "ruff format --check scripts tests examples/collect.py",
+      "ruff check scripts tests examples/collect.py",
+      "mypy --no-incremental --ignore-missing-imports scripts tests examples/collect.py",
+      "python scripts/check_project.py",
+      "actionlint 1.7.12",
+      "git diff --check"
+    ],
+    "first_generation_attempt": {
+      "status": "failed",
+      "reason": "cold rustup metadata query exceeded 15 seconds; metadata deadline raised to 60 seconds before the successful generation",
+      "log_sha256": "c71aa30b9f11a2c05c31769c9dbcc55e4f91afdbe1b3a05a480b9ab2aa1f3d27"
+    }
+  },
+  "compiled_negative_control": {
+    "scope": "isolated real Rust fixture, not production API",
+    "original_check": "passed",
+    "changed_check": "failed",
+    "original_fixture_commit": "cce28e9ef90288159b7b985e30c93fe8166a6b2c",
+    "changed_fixture_commit": "5f8fe359d1d01ce97759f22073e18babc03d1969",
+    "difference": "--- baseline/public-api-fixture-default.txt\n+++ actual/public-api-fixture-default.txt\n@@ -1,2 +1,2 @@\n pub mod public_api_fixture\n-pub fn public_api_fixture::sample() -> u32\n+pub fn public_api_fixture::sample() -> u64\n",
+    "failure": "ValueError: public_api: api_drift",
+    "production_baselines_unchanged": true,
+    "report_sha256": "191e57d4e85fc4911260a78b8ad27b997bdc4fa8d64f8059fa09be43cffe4c50"
+  },
+  "macos_notice_status": {
+    "report_sha256": "fa91d5b3cb424d841a4665783a683d04f148c6734a8eaa3e65086cae83e98882",
+    "source_commit": "57742c2189a6199b6d1644dd697e5500f9e80761",
+    "gate": "blocked",
+    "missing_packages": {
+      "cli": [
+        "objc2-core-foundation",
+        "objc2-encode",
+        "objc2-foundation",
+        "objc2-io-kit",
+        "objc2-metal",
+        "objc2"
+      ],
+      "ffi_sdk": [
+        "objc2-core-foundation",
+        "objc2-encode",
+        "objc2-foundation",
+        "objc2-io-kit",
+        "objc2-metal",
+        "objc2"
+      ]
+    }
+  },
+  "compatibility": {
+    "rust_package_version": "0.1.0 unpublished",
+    "c_abi": 1,
+    "hardware_schema": 1,
+    "project_license": "MIT",
+    "new_development_tool": "cargo-public-api 0.52.0 (MIT)"
+  },
+  "limits": [
+    "Only Core and facade, four feature profiles each; blanket implementations and parameter names omitted.",
+    "Printed signatures do not establish behavior or automatic SemVer compatibility.",
+    "CI and local Windows execution do not replace deferred physical Linux/macOS hardware acceptance.",
+    "Six macOS distribution notice gaps remain; no tag, Release or registry publication."
+  ]
+}

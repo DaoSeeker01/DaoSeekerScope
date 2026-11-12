@@ -4,6 +4,7 @@
 
 - [v0.1 交付清单](v0.1-checklist.md)：首版门槛、后续增强与延期验证。
 - [发布前契约评审](v0.1-contract-review.md)：接口承诺、自动检查范围及待维护者确认项。
+- [Rust 公共 API 基线](contracts/public-api/README.md)：Core/主库的八种配置、接口差异检查与更新步骤。
 - [分发材料预检](notice-preflight.md)：一次列出依赖许可文件缺口，区分扫描完成与分发批准。
 - [许可输入验证](notice-input-validation.md)：拒绝链接和特殊文件，核对读取身份与异常释放。
 - [Windows 导入符号](windows-imports-validation.md)：名称/序号清单、DUMPBIN 对照与最低系统验证边界。
