@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-13 修复 Linux CLI 的 readelf 诊断漏检，源码 `4d7c91a`。stderr 非空或超过 1 MiB 时，在激活和执行候选前失败，原始诊断不写入报告。修复前三项负向检查失败，修复后本机 Python 371 项通过、6 项跳过；三平台工具定向 CI 全部通过，含 Linux 实际 C 共享库/readelf 检查及 Windows 候选回归。本轮未重跑完整 Rust/fuzz 矩阵或 Linux 候选包演练。[验收记录](evidence/elf-stderr-ci-43330982074.json)
+
 2026-11-12 修复 CLI/SDK 候选演练的进程错误处理，源码 `2251884`。启动、超时和退出异常使用脱敏标识，Windows 依赖缺失与无效二进制分别表达。本机与 Windows CI 均通过真实 C 消费者的 DLL 缺失、损坏和恢复，以及 CLI/SDK 安装回滚。新增按需 `candidate-tooling`，本轮三平台任务全部通过，Windows/Linux/macOS 的 Python 分别为 369/372/371 项通过、6/3/4 项跳过。首轮类型检查失败及修复记录已保留；本轮未重跑完整 Rust、ABI/Schema、fuzz 或资源矩阵。[验收报告](evidence/windows-loader-ci-43131273622.json)
 
 2026-11-12 补齐 Core 与主库的编译后公共 API 检查，源码 `57742c2`。默认、关闭默认、仅 serde、schema 共八组接口，在本机 Windows 及 Windows/Linux/macOS 原生 CI 中与同一基线一致。独立真实编译的返回类型变更被拒绝并生成差异；10 项新增回归和本机 Python 362 项通过、6 项跳过。完整 CI 八项任务通过，各平台另通过 8 个源码包与 8 种消费者配置。基线只覆盖两个包的指定配置，最终兼容性评审仍待维护者确认。[验收报告](evidence/public-api-ci-43125279311.json)

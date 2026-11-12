@@ -1,0 +1,113 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-11-12T23:45:15.605871+00:00",
+  "source_commit": "4d7c91a5812c1494dea659ee0313960873bb8122",
+  "ci": {
+    "databaseId": 43330982074,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/43330982074",
+    "createdAt": "2026-11-12T23:41:35Z",
+    "updatedAt": "2026-11-12T23:43:37Z",
+    "conclusion": "success",
+    "workflow": "candidate-tooling",
+    "jobs": [
+      {
+        "name": "tooling (ubuntu-24.04)",
+        "databaseId": 131575323961,
+        "conclusion": "success"
+      },
+      {
+        "name": "tooling (windows-latest)",
+        "databaseId": 131575324189,
+        "conclusion": "success"
+      },
+      {
+        "name": "tooling (macos-latest)",
+        "databaseId": 131575324493,
+        "conclusion": "success"
+      }
+    ]
+  },
+  "python_tests": {
+    "Windows": {
+      "total": 377,
+      "passed": 371,
+      "skipped": 6,
+      "log_sha256": "639f97356e2a23eb882685032e79b1691aa73e1c98c713e673319a65f70cdaec"
+    },
+    "Linux": {
+      "total": 377,
+      "passed": 374,
+      "skipped": 3,
+      "log_sha256": "ffcb74bb25590e5f1d5b399f198def34dac25376650603803a48ac3eb34bb533"
+    },
+    "macOS": {
+      "total": 377,
+      "passed": 373,
+      "skipped": 4,
+      "log_sha256": "0b341dc8c105049fa53fc99348b469c2a45c60a808af7271ef8e321c5bd5e9f4"
+    },
+    "Windows-local": {
+      "total": 377,
+      "passed": 371,
+      "skipped": 6,
+      "log_sha256": "aac8a932969d944a5326dd387cbef6f6e06d37826a87cfd423a9d1950c1b97a0"
+    }
+  },
+  "windows_candidate_checks": {
+    "cli-bundle-evidence.json": {
+      "report_sha256": "0917dd08bc83cb003e658fc50235204aff6d7eeb1d6de39d2a45349c129bf1c9",
+      "overall": "passed",
+      "source_commit": "4d7c91a5812c1494dea659ee0313960873bb8122",
+      "archive_sha256": "0f10aa4ae4772d71b578eeab454918337a991cfbb9e956557b3391af59bd5688"
+    },
+    "ffi-bundle-evidence.json": {
+      "report_sha256": "87b474c1800402513bb607ce7148509ae370c710293357ac276a9429d2a8263d",
+      "overall": "passed",
+      "source_commit": "4d7c91a5812c1494dea659ee0313960873bb8122",
+      "archive_sha256": "6a40fa5848863d86d9958cc151d47b309ca51cd04a93f9d331e52010b139a827"
+    },
+    "windows-loader-evidence.json": {
+      "report_sha256": "6f921176b6d1e141ed2c3ecc829220464478964523991cc5157d9fa796b4d923",
+      "overall": "passed",
+      "source_commit": "4d7c91a5812c1494dea659ee0313960873bb8122",
+      "archive_sha256": "6a40fa5848863d86d9958cc151d47b309ca51cd04a93f9d331e52010b139a827"
+    }
+  },
+  "regression": {
+    "before_fix": {
+      "tests": 17,
+      "failures": 3,
+      "skipped": 1,
+      "log_sha256": "6c317923cec700a226536b74c66d3c578701d639ed2b929e9223afe9ff27fa97"
+    },
+    "new_test_methods": 2,
+    "real_child_streams": "synthetic readelf stdout with empty, nonempty, exact-limit and over-limit stderr; clean and over-limit stdout",
+    "native_gnu_readelf": "existing Linux-only test compiles a shared C library and inspects it with readelf; passed in Linux CI"
+  },
+  "checks_passed": [
+    "Ruff format",
+    "Ruff lint",
+    "mypy",
+    "project data and documentation links",
+    "git diff --check"
+  ],
+  "compatibility": {
+    "project_license": "MIT",
+    "c_abi": 1,
+    "hardware_schema": 1,
+    "rust_api_changed": false,
+    "features_changed": false,
+    "dependencies_changed": false,
+    "published": false
+  },
+  "not_run": [
+    "Full Rust/ABI/Schema/fuzz/Miri/ASan/resource matrix",
+    "Linux CLI/SDK full candidate rehearsal on this source",
+    "Physical Linux/macOS and minimum OS acceptance"
+  ],
+  "limits": [
+    "Temporary files capture child output; the read limit is checked after child completion, not a strict disk allocation limit.",
+    "Static ELF metadata and a successful test-library inspection do not establish a minimum OS or complete runtime dependency closure.",
+    "Six macOS distribution notice gaps remain."
+  ]
+}

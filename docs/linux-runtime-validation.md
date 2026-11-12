@@ -18,6 +18,8 @@ CLI 报告为 `target/cli-bundle-evidence.json`，SDK 为 `target/ffi-bundle-evi
 
 CLI 的 readelf 检查要求成功退出且 stderr 为空。非空诊断返回 `elf_unexpected_stderr`，超过 1 MiB 返回 `elf_stderr_limit`；两者都会在激活和执行候选前使演练失败。stdout 同样按 1 MiB 上限读取，原始 stderr 不写入报告。SDK 的 ELF 检查继续沿用同样的空诊断要求。
 
+2026-11-13 提交 `4d7c91a` 的三平台工具 CI 通过。新增回归使用真实子进程传输合成 readelf 文本，覆盖非空、恰好上限、超限诊断和 stdout 上限；Linux 原生任务另用实际 GNU readelf 检查编译生成的共享库。修复前的失败与本轮范围见[验收记录](evidence/elf-stderr-ci-43330982074.json)。本轮未重新执行下文历史候选的完整安装演练，不据此扩大运行范围。
+
 ## 如何读取结果
 
 - `direct_dependencies`：ELF 声明的直接库名，不是所有传递依赖。
