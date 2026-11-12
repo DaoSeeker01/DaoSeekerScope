@@ -42,6 +42,8 @@ Linux x64 使用已验收的构建用户空间，运行 `bash scripts/build_linu
 
 归档中所有文件都必须非空，包括清单、许可证、说明与 SDK 材料。安装校验会在读取文件内容前检查大小；空文件返回 `file_limit`，即使归档和载荷哈希匹配也不接受，且不创建安装目录。文件非空仅是格式要求，不代替许可证内容与适用性评审。
 
+提交 `88dcac3` 的四种候选格式空文件回归及三平台工具 CI 已通过，Windows 正常候选的安装和回滚也通过。[验收记录](evidence/empty-bundle-ci-43332120977.json)保留修复前的失败与实际范围；这些归档格式测试不等同于 Linux 原生候选安装验收。
+
 ```sh
 python scripts/cli_bundle_smoke.py <CLI归档路径>
 python scripts/ffi_bundle_smoke.py <SDK归档路径>

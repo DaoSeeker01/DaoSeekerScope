@@ -1,0 +1,112 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-11-12T23:53:30.000074+00:00",
+  "source_commit": "88dcac35992b5ac9cc91eac586674bb3fd5ba733",
+  "ci": {
+    "databaseId": 43332120977,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/43332120977",
+    "createdAt": "2026-11-12T23:49:55Z",
+    "updatedAt": "2026-11-12T23:52:19Z",
+    "conclusion": "success",
+    "workflow": "candidate-tooling",
+    "jobs": [
+      {
+        "databaseId": 131579135512,
+        "name": "tooling (ubuntu-24.04)",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 131579135734,
+        "name": "tooling (windows-latest)",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 131579136001,
+        "name": "tooling (macos-latest)",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "python_tests": {
+    "Windows": {
+      "total": 379,
+      "passed": 373,
+      "skipped": 6,
+      "log_sha256": "44bab1e734261ad5ee322fc2962bbc447a44a3823ced1f1aac1778b0114659dc"
+    },
+    "Linux": {
+      "total": 379,
+      "passed": 376,
+      "skipped": 3,
+      "log_sha256": "c27e0b4d78521f0d2bfb8dbedf9919f2725f9129acf5f2a45186563c0151dc2f"
+    },
+    "macOS": {
+      "total": 379,
+      "passed": 375,
+      "skipped": 4,
+      "log_sha256": "b71cf6d44715a64b28d06c47a6b786427cbfa9e37b5b97f1451bd10ab1c2496a"
+    },
+    "Windows-local": {
+      "total": 379,
+      "passed": 373,
+      "skipped": 6,
+      "log_sha256": "51b1bd44cb95f0106055c043f27a34d47b28d917da029baa1130882fee8779f2"
+    }
+  },
+  "windows_candidate_checks": {
+    "cli-bundle-evidence.json": {
+      "report_sha256": "6ab43a35aa0b9adc531a89fa57a55a7cd51a4a473cd8488b041b2a5774b15705",
+      "source_commit": "88dcac35992b5ac9cc91eac586674bb3fd5ba733",
+      "overall": "passed",
+      "archive_sha256": "636fb5bc5b53b0338ef8bf776e14adc8316cb98af142aa144c7e1685762fc4af"
+    },
+    "ffi-bundle-evidence.json": {
+      "report_sha256": "c843dcab8cdbaf884ff1ee91f99ca15839ecf7ea61575d7e264b8773b4a642bb",
+      "source_commit": "88dcac35992b5ac9cc91eac586674bb3fd5ba733",
+      "overall": "passed",
+      "archive_sha256": "5cf46e4bd4c711a0ad4f952065dc565c041ac0491829353445067e6c745563fa"
+    },
+    "windows-loader-evidence.json": {
+      "report_sha256": "7fc37d1d7d00e1b93f5f962db29e8cb394647c4e04a666e9aa7d99c0b1c694ec",
+      "source_commit": "88dcac35992b5ac9cc91eac586674bb3fd5ba733",
+      "overall": "passed",
+      "archive_sha256": "5cf46e4bd4c711a0ad4f952065dc565c041ac0491829353445067e6c745563fa"
+    }
+  },
+  "regression": {
+    "new_test_methods": 2,
+    "before_fix_failures": 33,
+    "before_fix_log_sha256": "a1ae1e5b0ba43ecf6abc09f8b2ffb22b3d9390f7348b2b471c88dbbb677f4a83",
+    "scope": "Synthetic ZIP data, never executed. Four formats: Windows/Linux CLI and FFI SDK. Preserve modes and update payload size, payload hash and archive hash; assert rejection before destination creation.",
+    "empty_member_cases": {
+      "windows_cli": 6,
+      "linux_cli": 6,
+      "windows_sdk": 11,
+      "linux_sdk": 10
+    },
+    "before_fix_detail": "Non-manifest empty members were accepted; empty manifests failed JSON parsing instead of the required file_limit validation."
+  },
+  "checks_passed": [
+    "Ruff format",
+    "Ruff lint",
+    "mypy",
+    "project files and local links",
+    "git diff --check"
+  ],
+  "compatibility": {
+    "project_license": "MIT",
+    "c_abi": 1,
+    "hardware_schema": 1,
+    "rust_api_changed": false,
+    "features_changed": false,
+    "dependencies_changed": false,
+    "candidate_format_version_changed": false,
+    "published": false
+  },
+  "limits": [
+    "Nonempty files alone do not establish correct license content or a complete SDK.",
+    "Archive hashes do not authenticate the publisher.",
+    "No complete Rust/ABI/Schema/fuzz/resource matrix or Linux native candidate rehearsal was rerun.",
+    "Minimum OS, physical Linux/macOS acceptance and six macOS distribution notice gaps remain open."
+  ]
+}

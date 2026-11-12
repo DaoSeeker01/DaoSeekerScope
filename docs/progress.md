@@ -1,5 +1,7 @@
 # 剩余工作
 
+2026-11-13 修复候选包空文件校验不一致，源码 `88dcac3`。安装校验与打包器统一拒绝零字节文件，即使归档和载荷哈希匹配，也在创建安装目录前返回 `file_limit`。Windows/Linux 的 CLI/SDK 四种格式通过 33 个空条目场景回归。本机 Python 373 项通过、6 项跳过，三平台工具 CI 全部通过，Windows 正常候选安装回滚和 DLL 故障恢复通过。空文件规则不代替许可正文评审，本轮未重跑完整 Rust/fuzz 矩阵或 Linux 原生候选演练。[验收记录](evidence/empty-bundle-ci-43332120977.json)
+
 2026-11-13 修复 Linux CLI 的 readelf 诊断漏检，源码 `4d7c91a`。stderr 非空或超过 1 MiB 时，在激活和执行候选前失败，原始诊断不写入报告。修复前三项负向检查失败，修复后本机 Python 371 项通过、6 项跳过；三平台工具定向 CI 全部通过，含 Linux 实际 C 共享库/readelf 检查及 Windows 候选回归。本轮未重跑完整 Rust/fuzz 矩阵或 Linux 候选包演练。[验收记录](evidence/elf-stderr-ci-43330982074.json)
 
 2026-11-12 修复 CLI/SDK 候选演练的进程错误处理，源码 `2251884`。启动、超时和退出异常使用脱敏标识，Windows 依赖缺失与无效二进制分别表达。本机与 Windows CI 均通过真实 C 消费者的 DLL 缺失、损坏和恢复，以及 CLI/SDK 安装回滚。新增按需 `candidate-tooling`，本轮三平台任务全部通过，Windows/Linux/macOS 的 Python 分别为 369/372/371 项通过、6/3/4 项跳过。首轮类型检查失败及修复记录已保留；本轮未重跑完整 Rust、ABI/Schema、fuzz 或资源矩阵。[验收报告](evidence/windows-loader-ci-43131273622.json)
