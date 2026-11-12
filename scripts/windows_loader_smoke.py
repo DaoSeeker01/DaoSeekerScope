@@ -59,7 +59,7 @@ def collect(archive: Path) -> dict[str, Any]:
         library = sdk / "bin/daoseeker_scope_ffi.dll"
         binary = sdk / "bin/c-example.exe"
         schema = json.loads(payload["schema/snapshot-v1.schema.json"])
-        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+        kernel = getattr(ctypes, "WinDLL")("kernel32", use_last_error=True)
         kernel.GetErrorMode.argtypes = []
         kernel.GetErrorMode.restype = wintypes.UINT
         kernel.SetErrorMode.argtypes = [wintypes.UINT]
