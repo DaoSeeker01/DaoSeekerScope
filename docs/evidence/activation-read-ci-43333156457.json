@@ -1,0 +1,105 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-11-13T00:01:34.046693+00:00",
+  "source_commit": "90b18577818563de650042fd470153815a06afd7",
+  "ci": {
+    "databaseId": 43333156457,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/43333156457",
+    "createdAt": "2026-11-12T23:57:42Z",
+    "updatedAt": "2026-11-13T00:00:32Z",
+    "conclusion": "success",
+    "workflow": "candidate-tooling",
+    "jobs": [
+      {
+        "databaseId": 131582606829,
+        "name": "tooling (macos-latest)",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 131582607177,
+        "name": "tooling (ubuntu-24.04)",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 131582607189,
+        "name": "tooling (windows-latest)",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "python_tests": {
+    "Windows": {
+      "total": 381,
+      "passed": 375,
+      "skipped": 6,
+      "log_sha256": "daf1483c95c9e262ef4dfa94ff3e3a5b2ccf16c5bb0bdddf77e541cc5f7fd335"
+    },
+    "Linux": {
+      "total": 381,
+      "passed": 378,
+      "skipped": 3,
+      "log_sha256": "0b1c996be4083f6e89a3d34c55444fca555bb9fad23d64036929628cb5a4a167"
+    },
+    "macOS": {
+      "total": 381,
+      "passed": 377,
+      "skipped": 4,
+      "log_sha256": "9af0002bd4fc343d740e9ee4ed50049744fd28e7d687a3fb97b299198fef85ad"
+    },
+    "Windows-local": {
+      "total": 381,
+      "passed": 375,
+      "skipped": 6,
+      "log_sha256": "4178649324b4f60b402f52876a13062bd933577ea4d34e9e6e385d0a5cba1b9f"
+    }
+  },
+  "windows_candidate_checks": {
+    "cli-bundle-evidence.json": {
+      "report_sha256": "ee49454cf28ff666f9a999acd2062cf29598d85ceabca5f7e585df4b95ec734e",
+      "source_commit": "90b18577818563de650042fd470153815a06afd7",
+      "overall": "passed",
+      "archive_sha256": "5429fed954937a78f5dc57559234d2006953a6c2abdebd85ea95ed97ad9eef3f"
+    },
+    "ffi-bundle-evidence.json": {
+      "report_sha256": "6ca25e73927b3a26b4dee8cd7e3d0eb1e941548516fe14f33b0fa4742d467b22",
+      "source_commit": "90b18577818563de650042fd470153815a06afd7",
+      "overall": "passed",
+      "archive_sha256": "0519087ee2204ee3afda57cd7a09ea8b924cb010755e71df7c3006f4f6d60f78"
+    },
+    "windows-loader-evidence.json": {
+      "report_sha256": "ed160187e51939e0946a4851a58129fc580d89c925183f70085eb38d29975de9",
+      "source_commit": "90b18577818563de650042fd470153815a06afd7",
+      "overall": "passed",
+      "archive_sha256": "0519087ee2204ee3afda57cd7a09ea8b924cb010755e71df7c3006f4f6d60f78"
+    }
+  },
+  "regression": {
+    "new_test_methods": 2,
+    "before_fix_failures": 2,
+    "before_fix_log_sha256": "bc541b4d5903eb7a8540d2cd72ce862d03be693408792f5b8ceecd0aa5fcc517",
+    "scope": "Synthetic archive payloads are installed but never executed. Enlarged regular file is rejected before open. A mocked growing stream after normal metadata verifies an explicit expected-length-plus-one read. Both failures preserve the previous active slot and do not create pending selection."
+  },
+  "checks_passed": [
+    "Ruff format",
+    "Ruff lint",
+    "mypy",
+    "project files and local links",
+    "git diff --check"
+  ],
+  "compatibility": {
+    "project_license": "MIT",
+    "c_abi": 1,
+    "hardware_schema": 1,
+    "rust_api_changed": false,
+    "features_changed": false,
+    "dependencies_changed": false,
+    "candidate_format_version_changed": false,
+    "published": false
+  },
+  "limits": [
+    "Logical verification reads are bounded; this is not a process peak-memory benchmark.",
+    "Metadata and content checks do not prevent later file modifications or establish an atomic filesystem snapshot.",
+    "No complete Rust/ABI/Schema/fuzz/resource matrix or Linux native candidate rehearsal was rerun.",
+    "Minimum OS, physical Linux/macOS acceptance and six macOS distribution notice gaps remain open."
+  ]
+}
