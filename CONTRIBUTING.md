@@ -29,7 +29,7 @@ cargo doc --locked --workspace --all-features --no-deps
 
 仅改动共享 C 探针或 Python 验证工具时，可选择 `scope=native-probe`，运行三个桌面任务，跳过未涉及的 Rust fuzz、Miri、ASan、供应链和 Linux 容器任务；验收记录应说明跳过范围。Rust 库改动仍使用完整检查。
 
-只修改候选包或 Python 验证脚本时，可手动运行 `candidate-tooling` 工作流：三平台执行 Python、类型和项目检查，Windows 另构建 CLI/SDK，验证安装、回滚与 DLL 故障恢复。它不执行完整 Rust 测试、ABI/Schema、fuzz 或资源矩阵，不能用作正式发布的完整验收。
+只修改候选包或 Python 验证脚本时，可手动运行 `candidate-tooling` 工作流：三平台执行 Python、类型和项目检查；Windows 和 Linux 构建实际 CLI/SDK，验证安装与回滚。Windows 另检查 DLL 故障恢复；Linux 使用固定 Debian 12 构建环境，再以同一候选检查固定 glibc 2.34/2.36 的运行和 2.31 的预期加载拒绝。它不执行完整 Rust 测试、ABI/Schema、fuzz 或资源矩阵，不能用作正式发布的完整验收。
 
 ## 工具、Schema 与文档
 

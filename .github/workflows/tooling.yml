@@ -8,7 +8,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   tooling:
-    timeout-minutes: 20
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -33,9 +33,22 @@ jobs:
           $result = $LASTEXITCODE
           Get-Content target/tooling-python-tests.log
           exit $result
-      - name: Windows toolchain
-        if: runner.os == 'Windows'
+      - name: Candidate toolchain
+        if: runner.os != 'macOS'
         run: rustup toolchain install 1.96.0 --profile minimal
+      - name: Cache Linux candidate dependencies
+        if: runner.os == 'Linux'
+        run: cargo fetch --locked
+      - name: Linux candidates and older-userland runtime
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cli=$(bash scripts/build_linux_candidate.sh cli)
+          python scripts/cli_bundle_smoke.py "$cli"
+          sdk=$(bash scripts/build_linux_candidate.sh ffi_sdk)
+          python scripts/ffi_bundle_smoke.py "$sdk"
+          python scripts/linux_runtime_container_smoke.py "$cli" "$sdk"
       - name: Windows candidates and loader recovery
         if: runner.os == 'Windows'
         shell: pwsh
@@ -60,5 +73,6 @@ jobs:
             target/cli-bundle-evidence.json
             target/ffi-bundle-evidence.json
             target/windows-loader-evidence.json
+            target/linux-runtime-container-evidence.json
           if-no-files-found: ignore
           retention-days: 14
