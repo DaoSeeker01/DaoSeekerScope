@@ -9,14 +9,16 @@
 在有既有本地 Docker、GNU readelf、C 编译器和项目 Python 开发环境的 Linux x64 主机上，使用干净源码运行：
 
 ```sh
-cli=$(python scripts/cli_bundle.py)
-sdk=$(python scripts/cli_bundle.py --product ffi_sdk)
+cli=$(bash scripts/build_linux_candidate.sh cli)
+sdk=$(bash scripts/build_linux_candidate.sh ffi_sdk)
 python scripts/linux_runtime_container_smoke.py "$cli" "$sdk"
 ```
 
 脚本不安装或启动 Docker，不使用远程 daemon，不更改系统库或 PATH。报告写入 `target/linux-runtime-container-evidence.json`；任一步失败都不能沿用旧成功报告。镜像仅用于测试，不随项目分发。
 
 ## 已验证结果
+
+2026-11-13，提交 `6efc12a` 的工具定向 CI 已按上述固定构建入口验证近期候选校验修复。Windows/Linux 的 CLI/SDK 实际安装回滚通过，Linux 的三个固定用户空间也通过对应运行或预期拒绝检查。来源、候选和二进制哈希见[集中验收](evidence/linux-tooling-ci-43334360726.json)。下面继续保留 2026-10-28 的历史结果，不以新运行覆盖其来源。
 
 干净源码 `a5ae6fe799bfb899de8d1b4a44408905cc6d6c15` 的 [CI 40664519934](https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/40664519934)八项任务全部通过，受测文件与最终本机实现提交 `7c3e90a` 逐字节一致。完整报告见[容器结果](evidence/older-runtime-containers-linux-40664519934.json)，来源、哈希和门禁汇总见[验收索引](evidence/older-runtime-ci-40664519934.json)。
 

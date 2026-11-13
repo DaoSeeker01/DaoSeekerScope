@@ -1,0 +1,517 @@
+{
+  "report_version": 1,
+  "recorded_at_utc": "2026-11-13T00:11:28.938302+00:00",
+  "source_commit": "6efc12a8fb367ed038eac7b4796177fd1cf6fdcb",
+  "ci": {
+    "databaseId": 43334360726,
+    "url": "https://github.com/DaoSeeker01/DaoSeekerScope/actions/runs/43334360726",
+    "createdAt": "2026-11-13T00:06:26Z",
+    "updatedAt": "2026-11-13T00:09:28Z",
+    "conclusion": "success",
+    "workflow": "candidate-tooling",
+    "jobs": [
+      {
+        "databaseId": 131586680510,
+        "name": "tooling (macos-latest)",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 131586680777,
+        "name": "tooling (ubuntu-24.04)",
+        "conclusion": "success"
+      },
+      {
+        "databaseId": 131586680793,
+        "name": "tooling (windows-latest)",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "python_tests": {
+    "Windows": {
+      "total": 381,
+      "passed": 375,
+      "skipped": 6,
+      "log_sha256": "871484e315fc82a25bc5f7f4bed60cd867b8d5288547d7eb8247a96bc12fa7c6"
+    },
+    "Linux": {
+      "total": 381,
+      "passed": 378,
+      "skipped": 3,
+      "log_sha256": "57afc2eb5d34cd66b173a124f58a935150654f3ffbc16448c2f4a4335ae704a6"
+    },
+    "macOS": {
+      "total": 381,
+      "passed": 377,
+      "skipped": 4,
+      "log_sha256": "26408994fa440007c3d625b25fca0a0d2846dddb5bf02e54385bca29d2c11328"
+    }
+  },
+  "candidate_reports": {
+    "Windows": {
+      "cli": {
+        "report_sha256": "21a7e017a3b4a3147e894644bd208ae9c3f22b4ab09479eda930aafabaed49f3",
+        "overall": "passed",
+        "source_commit": "6efc12a8fb367ed038eac7b4796177fd1cf6fdcb",
+        "source_dirty": false,
+        "target": "x86_64-pc-windows-msvc",
+        "host": {
+          "system": "Windows",
+          "version": "10.0.26100",
+          "machine": "AMD64"
+        },
+        "version": "0.1.0",
+        "archive_sha256": "d7aa96a2fc489b03c3430865de3ae89b9cf0262aad2dece4001f7df4ccb2225b",
+        "payload_files": 73,
+        "processes": 9,
+        "cli_invocations": 9,
+        "cli_sha256": "7943ffb824062ba4be557e7a8cc7178dd70682423fea466b97dbbb67df70947b",
+        "same_candidate_two_slot_rollback": true,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true
+      },
+      "sdk": {
+        "report_sha256": "5235ef0f5dda19f6692f3b542fa01fde080ea803388c1e2932f51d7fd76ad58c",
+        "overall": "passed",
+        "source_commit": "6efc12a8fb367ed038eac7b4796177fd1cf6fdcb",
+        "source_dirty": false,
+        "target": "x86_64-pc-windows-msvc",
+        "host": {
+          "system": "Windows",
+          "version": "10.0.26100",
+          "machine": "AMD64"
+        },
+        "archive_sha256": "58ff8431540fd7501f1e40dd58a6f43c263646f10f6f1884ea37b06db9abf1f6",
+        "payload_files": 78,
+        "processes": 9,
+        "dll_sha256": "a35ec994248de2cf9a3c55db319153ed0b8cbe5b7b56954855acc943ab151d6d",
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300,
+        "same_candidate_two_slot_rollback": true,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true
+      }
+    },
+    "Linux": {
+      "cli": {
+        "report_sha256": "b622fe9ff9af64b3c0e8d868660bc4bbf82d14a5e1e3ec3f57a40aaf0d505f73",
+        "overall": "passed",
+        "source_commit": "6efc12a8fb367ed038eac7b4796177fd1cf6fdcb",
+        "source_dirty": false,
+        "target": "x86_64-unknown-linux-gnu",
+        "host": {
+          "system": "Linux",
+          "version": "#17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026",
+          "machine": "x86_64"
+        },
+        "version": "0.1.0",
+        "archive_sha256": "51c60fa34ba9d7de25a45d4e9d95f6ff50d10991bfb1f558eb61fa158017d30d",
+        "payload_files": 43,
+        "processes": 10,
+        "cli_invocations": 9,
+        "cli_sha256": "f23542eeaa6746700ce5fa4272f1a2c1a395770adad57b65a7662a6a77ab6e13",
+        "same_candidate_two_slot_rollback": true,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true
+      },
+      "sdk": {
+        "report_sha256": "905b24d9d0fd4e7b355f146c376c27cf9bd107b7d0978c86307ad6e35562b2a0",
+        "overall": "passed",
+        "source_commit": "6efc12a8fb367ed038eac7b4796177fd1cf6fdcb",
+        "source_dirty": false,
+        "target": "x86_64-unknown-linux-gnu",
+        "host": {
+          "system": "Linux",
+          "version": "#17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026",
+          "machine": "x86_64"
+        },
+        "archive_sha256": "cca8263ac8e932a722d77e25fc3810ff69c32241a26c0f9215b87a01abf80522",
+        "payload_files": 47,
+        "processes": 15,
+        "library_sha256": "c9e057d9366cfc1adf9fb129a2db174fd60eee57aa8984220b25f9b19c646eae",
+        "c_compile_and_runs": 3,
+        "python_collect_free_cycles": 300,
+        "same_candidate_two_slot_rollback": true,
+        "snapshot_schema_validated": true,
+        "minimum_read_and_default_privacy": true
+      }
+    }
+  },
+  "linux_runtime_report": {
+    "report_sha256": "bc388c05237683bb069c005fa041e4cde726cdc18ba1aeb5128c71338a559319",
+    "report_version": 2,
+    "overall": "passed",
+    "profiles": {
+      "bookworm": {
+        "status": "passed",
+        "image": "python@sha256:f576b530293e74140ea91d262232648d5c4f45640a95ec447757701bfcacf034",
+        "phase": "complete",
+        "image_id": "sha256:2e6b5bbf5b2f372ef9b208e7c7c300675be97a6dc1bbe7e3ac0b9c20035fd70e",
+        "configuration": {
+          "user": "65534:65534",
+          "network": "none",
+          "readonly_root": true,
+          "readonly_candidate_mount": true,
+          "writable_tmpfs": "/work",
+          "entrypoint": "python",
+          "memory_bytes": 268435456,
+          "pids": 32,
+          "cpus": 1
+        },
+        "expected": "runs",
+        "runtime": {
+          "glibc": "2.36",
+          "distribution": {
+            "id": "debian",
+            "version_id": "12"
+          },
+          "python": "3.13.13",
+          "debian": "12",
+          "kernel": "7.0.0-1017-azure",
+          "machine": "x86_64",
+          "uid": 65534,
+          "cargo_available": false,
+          "rustc_available": false
+        },
+        "binary_sha256": {
+          "cli": "f23542eeaa6746700ce5fa4272f1a2c1a395770adad57b65a7662a6a77ab6e13",
+          "library": "c9e057d9366cfc1adf9fb129a2db174fd60eee57aa8984220b25f9b19c646eae",
+          "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+        },
+        "installed_payload_files": {
+          "cli": 43,
+          "sdk": 47
+        },
+        "rebuilt_in_container": false,
+        "installation_storage": {
+          "capacity_bytes": 67108864,
+          "reserve_bytes": 16777216,
+          "available_before_copy_bytes": 67108864,
+          "available_after_copy_bytes": 31903744
+        },
+        "snapshot_schema_and_default_privacy": true,
+        "python_collect_free_cycles": 100,
+        "child_processes": 5,
+        "isolated_cli_completed": true,
+        "output_sha256": {
+          "cli_version": "492d0083a0d1e9de8fbfc97174806c46f68dd007a649cc18d398383c657cbe9d",
+          "cli_json": "24285fb1c6eaf83ed506dcf8d96b71ef4b241a407b97c109a68bd86b266185ee",
+          "cli_isolated_json": "c8308f57f29edbd0d0d22b6f37bab79d611533c79a75479a5f18bd20cbc577ec",
+          "c": "6385d2aebaa5c88b4d17a2192e8707de88b4cb690edd6a1b323f65b3756facb5",
+          "python": "57adedfa84f5ded89ada46a8084320007d4aa190f5ab67db6cc062d1699bdd66"
+        },
+        "container_removed": true
+      },
+      "bullseye": {
+        "status": "passed",
+        "image": "python@sha256:4ea2e567da526afcd5655339f71295ca6ef72271ff6123bb5c7144ae8fdc1692",
+        "phase": "complete",
+        "image_id": "sha256:932831e2e7dc0aebbabca90d6c78087538e5c3ecf38151069ab418d1ec4532d2",
+        "configuration": {
+          "user": "65534:65534",
+          "network": "none",
+          "readonly_root": true,
+          "readonly_candidate_mount": true,
+          "writable_tmpfs": "/work",
+          "entrypoint": "python",
+          "memory_bytes": 268435456,
+          "pids": 32,
+          "cpus": 1
+        },
+        "expected": "loader_rejects",
+        "runtime": {
+          "glibc": "2.31",
+          "distribution": {
+            "id": "debian",
+            "version_id": "11"
+          },
+          "python": "3.13.5",
+          "debian": "11",
+          "kernel": "7.0.0-1017-azure",
+          "machine": "x86_64",
+          "uid": 65534,
+          "cargo_available": false,
+          "rustc_available": false
+        },
+        "binary_sha256": {
+          "cli": "f23542eeaa6746700ce5fa4272f1a2c1a395770adad57b65a7662a6a77ab6e13",
+          "library": "c9e057d9366cfc1adf9fb129a2db174fd60eee57aa8984220b25f9b19c646eae",
+          "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+        },
+        "installed_payload_files": {
+          "cli": 43,
+          "sdk": 47
+        },
+        "rebuilt_in_container": false,
+        "installation_storage": {
+          "capacity_bytes": 67108864,
+          "reserve_bytes": 16777216,
+          "available_before_copy_bytes": 67108864,
+          "available_after_copy_bytes": 31903744
+        },
+        "collection_started": false,
+        "child_processes": 2,
+        "missing_glibc_versions": {
+          "cli": [
+            "GLIBC_2.32",
+            "GLIBC_2.33",
+            "GLIBC_2.34"
+          ],
+          "c": [
+            "GLIBC_2.32",
+            "GLIBC_2.33",
+            "GLIBC_2.34"
+          ],
+          "ctypes_load": [
+            "GLIBC_2.32"
+          ]
+        },
+        "container_removed": true
+      },
+      "ubi9": {
+        "status": "passed",
+        "image": "registry.access.redhat.com/ubi9/python-312@sha256:d2cacc387d43e61513038694222980f774cae60b2b8afea8b6846654e25da9e7",
+        "phase": "complete",
+        "image_id": "sha256:06e426750a52b32e8d258fa8a8e7f237421fa8167a0e38ad8307d6af4d4d68c6",
+        "configuration": {
+          "user": "65534:65534",
+          "network": "none",
+          "readonly_root": true,
+          "readonly_candidate_mount": true,
+          "writable_tmpfs": "/work",
+          "entrypoint": "/usr/bin/python3.12",
+          "memory_bytes": 268435456,
+          "pids": 32,
+          "cpus": 1
+        },
+        "expected": "runs",
+        "runtime": {
+          "glibc": "2.34",
+          "distribution": {
+            "id": "rhel",
+            "version_id": "9.8"
+          },
+          "python": "3.12.15",
+          "kernel": "7.0.0-1017-azure",
+          "machine": "x86_64",
+          "uid": 65534,
+          "cargo_available": false,
+          "rustc_available": false
+        },
+        "binary_sha256": {
+          "cli": "f23542eeaa6746700ce5fa4272f1a2c1a395770adad57b65a7662a6a77ab6e13",
+          "library": "c9e057d9366cfc1adf9fb129a2db174fd60eee57aa8984220b25f9b19c646eae",
+          "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+        },
+        "installed_payload_files": {
+          "cli": 43,
+          "sdk": 47
+        },
+        "rebuilt_in_container": false,
+        "installation_storage": {
+          "capacity_bytes": 67108864,
+          "reserve_bytes": 16777216,
+          "available_before_copy_bytes": 67108864,
+          "available_after_copy_bytes": 31903744
+        },
+        "snapshot_schema_and_default_privacy": true,
+        "python_collect_free_cycles": 100,
+        "child_processes": 5,
+        "isolated_cli_completed": true,
+        "output_sha256": {
+          "cli_version": "492d0083a0d1e9de8fbfc97174806c46f68dd007a649cc18d398383c657cbe9d",
+          "cli_json": "4efd7e13f686663f43502dbe8ebf67725d335f0a61e42c61caab50348f8e27e9",
+          "cli_isolated_json": "d42bd41f7b709815bea248addd3e801103022f1ded91a150209484b5da436190",
+          "c": "35df2ac5cfe3011c9bf0acd1bd3f8827e9af128877d39cb257b59f78bbbe8c51",
+          "python": "57adedfa84f5ded89ada46a8084320007d4aa190f5ab67db6cc062d1699bdd66"
+        },
+        "container_removed": true
+      }
+    },
+    "physical_device_validation": false,
+    "minimum_kernel_or_distribution_verified": false,
+    "published": false,
+    "source_commit": "6efc12a8fb367ed038eac7b4796177fd1cf6fdcb",
+    "source_dirty": false,
+    "docker_version": "28.0.4",
+    "payload_bytes": {
+      "cli": 17704377,
+      "sdk": 17253347
+    },
+    "binary_sha256": {
+      "cli": "f23542eeaa6746700ce5fa4272f1a2c1a395770adad57b65a7662a6a77ab6e13",
+      "library": "c9e057d9366cfc1adf9fb129a2db174fd60eee57aa8984220b25f9b19c646eae",
+      "consumer": "5dc9c259d07bba48faf7a6d0ff60ba31ac24ce9c1100eec895498426ee87619b"
+    },
+    "archive_sha256": {
+      "cli": "51c60fa34ba9d7de25a45d4e9d95f6ff50d10991bfb1f558eb61fa158017d30d",
+      "sdk": "cca8263ac8e932a722d77e25fc3810ff69c32241a26c0f9215b87a01abf80522"
+    },
+    "elf_requirements": {
+      "cli": {
+        "direct_dependencies": [
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ],
+        "required_symbol_versions": {
+          "ld-linux-x86-64.so.2": [
+            "GLIBC_2.3"
+          ],
+          "libc.so.6": [
+            "GLIBC_2.14",
+            "GLIBC_2.15",
+            "GLIBC_2.16",
+            "GLIBC_2.17",
+            "GLIBC_2.18",
+            "GLIBC_2.2.5",
+            "GLIBC_2.25",
+            "GLIBC_2.28",
+            "GLIBC_2.29",
+            "GLIBC_2.3",
+            "GLIBC_2.3.4",
+            "GLIBC_2.30",
+            "GLIBC_2.32",
+            "GLIBC_2.33",
+            "GLIBC_2.34",
+            "GLIBC_2.9"
+          ],
+          "libgcc_s.so.1": [
+            "GCC_3.0",
+            "GCC_3.3",
+            "GCC_4.2.0"
+          ]
+        },
+        "weak_symbol_versions": {},
+        "direct_dependencies_without_version_entries": [],
+        "highest_glibc_numeric_requirement": "GLIBC_2.34",
+        "minimum_glibc_or_distribution_verified": false,
+        "transitive_or_runtime_loads_inspected": false
+      },
+      "library": {
+        "direct_dependencies": [
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ],
+        "required_symbol_versions": {
+          "ld-linux-x86-64.so.2": [
+            "GLIBC_2.3"
+          ],
+          "libc.so.6": [
+            "GLIBC_2.14",
+            "GLIBC_2.16",
+            "GLIBC_2.17",
+            "GLIBC_2.18",
+            "GLIBC_2.2.5",
+            "GLIBC_2.25",
+            "GLIBC_2.28",
+            "GLIBC_2.3",
+            "GLIBC_2.3.4",
+            "GLIBC_2.30",
+            "GLIBC_2.32",
+            "GLIBC_2.33",
+            "GLIBC_2.34"
+          ],
+          "libgcc_s.so.1": [
+            "GCC_3.0",
+            "GCC_3.3",
+            "GCC_4.2.0"
+          ]
+        },
+        "weak_symbol_versions": {},
+        "direct_dependencies_without_version_entries": [],
+        "highest_glibc_numeric_requirement": "GLIBC_2.34",
+        "minimum_glibc_or_distribution_verified": false,
+        "transitive_or_runtime_loads_inspected": false
+      },
+      "consumer": {
+        "direct_dependencies": [
+          "libdaoseeker_scope_ffi.so",
+          "libc.so.6"
+        ],
+        "required_symbol_versions": {
+          "libc.so.6": [
+            "GLIBC_2.2.5",
+            "GLIBC_2.34",
+            "GLIBC_2.4"
+          ]
+        },
+        "weak_symbol_versions": {},
+        "direct_dependencies_without_version_entries": [
+          "libdaoseeker_scope_ffi.so"
+        ],
+        "highest_glibc_numeric_requirement": "GLIBC_2.34",
+        "minimum_glibc_or_distribution_verified": false,
+        "transitive_or_runtime_loads_inspected": false
+      }
+    },
+    "work_budget": {
+      "capacity_bytes": 67108864,
+      "reserve_bytes": 16777216,
+      "logical_bytes": 34974028,
+      "estimated_copy_bytes": 35360768,
+      "allocation_block_bytes": 4096,
+      "files": 93,
+      "directories": 38
+    }
+  },
+  "windows_loader_report": {
+    "report_sha256": "805562123699299e7faf719dadb08f9a3db5034d424c64fb7821d0c4163d3820",
+    "format": 1,
+    "overall": "passed",
+    "source_commit": "6efc12a8fb367ed038eac7b4796177fd1cf6fdcb",
+    "source_dirty": false,
+    "target": "x86_64-pc-windows-msvc",
+    "host": {
+      "system": "Windows",
+      "version": "10.0.26100",
+      "machine": "AMD64"
+    },
+    "archive_sha256": "58ff8431540fd7501f1e40dd58a6f43c263646f10f6f1884ea37b06db9abf1f6",
+    "dll_sha256": "a35ec994248de2cf9a3c55db319153ed0b8cbe5b7b56954855acc943ab151d6d",
+    "consumer_sha256": "850b209e0adfd6b76021ce3da8c225b799efc75a01a9937a32036f70dea4563a",
+    "consumer_import_verified": true,
+    "negative_controls": [
+      {
+        "case": "missing",
+        "observed_failure": "c_windows_dependency_missing"
+      },
+      {
+        "case": "damaged",
+        "observed_failure": "c_windows_invalid_image"
+      }
+    ],
+    "restored_consumer_schema_and_privacy_passed": true,
+    "error_mode_restored": true,
+    "runtime_path": "system32_and_windows",
+    "published": false,
+    "scope": "Isolated verified SDK C consumer; no minimum OS, clean-system runtime or missing-DLL identity claim."
+  },
+  "local_checks": [
+    "actionlint 1.7.12",
+    "python scripts/check_project.py",
+    "git diff --check"
+  ],
+  "compatibility": {
+    "project_license": "MIT",
+    "c_abi": 1,
+    "hardware_schema": 1,
+    "rust_api_changed": false,
+    "dependencies_changed": false,
+    "candidate_format_version_changed": false,
+    "published": false
+  },
+  "scope": "Existing fixed Debian 12 builder and runtime profiles reused; Windows/Linux native candidate install and same-candidate rollback plus exact Linux candidate hashes across three fixed userlands.",
+  "not_run": [
+    "Full Rust test/doc/clippy, frozen ABI/Schema, source-package and fuzz/Miri/ASan/resource matrix",
+    "Physical Linux/macOS, minimum kernel and complete distribution support acceptance",
+    "macOS binary candidates and formal publication"
+  ],
+  "limits": [
+    "glibc 2.31 passed only the expected loader-rejection check; collection did not start.",
+    "Runtime containers share the CI host kernel and do not establish a minimum kernel or physical device result.",
+    "Rollback switches between two installations of the same candidate; cross-version upgrades remain unverified.",
+    "Six macOS distribution notice gaps remain; upstream issue 826 has no new reply since the previously recorded discussion."
+  ]
+}

@@ -7,8 +7,8 @@
 新增固定摘要的 UBI 9 / Python 3.12 场景；选择与边界见 [ADR 0043](adr/0043-linux-glibc234-runtime.md)。在已有本地 Docker 的 Linux x64 主机上，从干净提交运行：
 
 ```sh
-cli=$(python scripts/cli_bundle.py)
-sdk=$(python scripts/cli_bundle.py --product ffi_sdk)
+cli=$(bash scripts/build_linux_candidate.sh cli)
+sdk=$(bash scripts/build_linux_candidate.sh ffi_sdk)
 python scripts/linux_runtime_container_smoke.py "$cli" "$sdk"
 ```
 

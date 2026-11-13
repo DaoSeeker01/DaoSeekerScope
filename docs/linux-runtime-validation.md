@@ -4,13 +4,13 @@
 
 ## 复现
 
-需要 GNU/Linux x64、项目 Python 开发环境、GNU readelf 和 C 工具链。在干净源码目录运行：
+需要 GNU/Linux x64、项目 Python 开发环境、GNU readelf、C 工具链及本地 Docker。在干净源码目录运行；候选在固定 Debian 12 环境中构建：
 
 ```sh
 python -m unittest discover -s tests -p test_elf_inspect.py -v
-cli=$(python scripts/cli_bundle.py)
+cli=$(bash scripts/build_linux_candidate.sh cli)
 python scripts/cli_bundle_smoke.py "$cli"
-sdk=$(python scripts/cli_bundle.py --product ffi_sdk)
+sdk=$(bash scripts/build_linux_candidate.sh ffi_sdk)
 python scripts/ffi_bundle_smoke.py "$sdk"
 ```
 
